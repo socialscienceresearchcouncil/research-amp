@@ -74,7 +74,7 @@ class ResearchTopic {
 						'taxonomy' => 'ssrc_research_topic',
 						'terms'    => $this->get_rt_term_id(),
 						'field'    => 'term_id',
-					]
+					],
 				],
 				'orderby'        => [ 'date' => 'DESC' ],
 			],
@@ -85,17 +85,19 @@ class ResearchTopic {
 	}
 
 	public function get_literature_reviews() {
-		return get_posts( [
-			'post_type'      => 'ssrc_lit_review',
-			'posts_per_page' => -1,
-			'tax_query'      => [
-				[
-					'taxonomy' => 'ssrc_research_topic',
-					'terms'    => $this->get_rt_term_id(),
-					'field'    => 'term_id',
-				]
-			],
-		] );
+		return get_posts(
+			[
+				'post_type'      => 'ssrc_lit_review',
+				'posts_per_page' => -1,
+				'tax_query'      => [
+					[
+						'taxonomy' => 'ssrc_research_topic',
+						'terms'    => $this->get_rt_term_id(),
+						'field'    => 'term_id',
+					],
+				],
+			]
+		);
 	}
 
 	public function get_literature_review() {

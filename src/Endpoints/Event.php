@@ -8,7 +8,7 @@ use \WP_REST_Server;
 
 class Event extends WP_REST_Controller {
 	public function register_routes() {
-		$version = '1';
+		$version   = '1';
 		$namespace = 'disinfo/v' . $version;
 
 		register_rest_route(
@@ -16,10 +16,10 @@ class Event extends WP_REST_Controller {
 			'/event',
 			[
 				[
-					'methods' => WP_REST_Server::CREATABLE,
-					'callback' => [ $this, 'create_item' ],
+					'methods'             => WP_REST_Server::CREATABLE,
+					'callback'            => [ $this, 'create_item' ],
 					'permission_callback' => [ $this, 'create_item_permissions_check' ],
-				]
+				],
 			]
 		);
 	}

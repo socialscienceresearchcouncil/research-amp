@@ -12,7 +12,7 @@ class PressForward {
 		add_action( 'admin_enqueue_scripts', [ $this, 'register_assets' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ], 20 );
 
-		add_action( 'wp_insert_post', [ $this, 'save_publication_date'] );
+		add_action( 'wp_insert_post', [ $this, 'save_publication_date' ] );
 		add_action( 'transition_pf_post_meta', [ $this, 'save_publication_date_on_transition' ], 10, 2 );
 
 		add_action( 'init', [ $this, 'adjust_taxonomies' ], 30 );
@@ -125,21 +125,23 @@ class PressForward {
 
 	public function add_taxonomies_to_nomthis() {
 		if ( ! function_exists( 'post_categories_meta_box' ) ) {
-			require_once( ABSPATH . '/wp-admin/includes/meta-boxes.php' );
+			require_once ABSPATH . '/wp-admin/includes/meta-boxes.php';
 		}
 
 		// all taxonomies
 		foreach ( get_object_taxonomies( 'nomination' ) as $tax_name ) {
 			$taxonomy = get_taxonomy( $tax_name );
-			if ( ! $taxonomy->show_ui || false === $taxonomy->meta_box_cb )
+			if ( ! $taxonomy->show_ui || false === $taxonomy->meta_box_cb ) {
 				continue;
+			}
 
 			$label = $taxonomy->labels->name;
 
-			if ( ! is_taxonomy_hierarchical( $tax_name ) )
+			if ( ! is_taxonomy_hierarchical( $tax_name ) ) {
 				$tax_meta_box_id = 'tagsdiv-' . $tax_name;
-			else
+			} else {
 				$tax_meta_box_id = $tax_name . 'div';
+			}
 
 			add_meta_box( $tax_meta_box_id, $label, $taxonomy->meta_box_cb, 'nomthis', 'side', 'low', array( 'taxonomy' => $tax_name ) );
 		}
@@ -149,7 +151,7 @@ class PressForward {
 	 * Generates markup for the Submit meta box on the Nominate This interface.
 	 */
 	public function submit_meta_box() {
-		$url = isset( $_GET['u'] ) ? esc_url( $_GET['u'] ) : '';
+		$url              = isset( $_GET['u'] ) ? esc_url( $_GET['u'] ) : '';
 		$author_retrieved = pressforward( 'controller.metas' )->get_author_from_url( $url );
 
 		?>
@@ -160,16 +162,16 @@ class PressForward {
 
 			$pf_draft_post_type_value = get_option( PF_SLUG . '_draft_post_type', 'post' );
 
-			if ('draft' == $publish_type){
-				$cap =  'edit_posts';
-			} else {
-				$cap = 'publish_posts';
-			}
+		if ( 'draft' == $publish_type ) {
+			$cap = 'edit_posts';
+		} else {
+			$cap = 'publish_posts';
+		}
 			submit_button( __( 'Nominate' ), 'button button-primary', 'draft', false, array( 'id' => 'save' ) );
 
-			if ( current_user_can( 'edit_others_posts' ) ) {
-				submit_button( 'Send to Draft', 'secondary', 'publish', false );
-			}
+		if ( current_user_can( 'edit_others_posts' ) ) {
+			submit_button( 'Send to Draft', 'secondary', 'publish', false );
+		}
 		?>
 				<span class="spinner" style="display: none;"></span>
 			</p>
@@ -183,8 +185,9 @@ class PressForward {
 				?>
 			<label for="item_author"><input type="text" id="item_author" name="item_author" value="<?php echo $author_value; ?>" /><br />&nbsp;<?php echo apply_filters( 'pf_author_nominate_this_prompt', __( 'Enter Authors', 'pf' ) ); ?></label>
 			</p>
-			<?php do_action( 'nominate_this_sidebar_head' );
-		?>
+			<?php
+			do_action( 'nominate_this_sidebar_head' );
+			?>
 
 		<?php
 	}
@@ -254,10 +257,12 @@ class PressForward {
 		if ( ! is_string( $terms_to_edit ) ) {
 			$terms_to_edit = '';
 		}
-		$tags = get_terms( [
-			'taxonomy'   => $tax_name,
-			'hide_empty' => false,
-		] );
+		$tags = get_terms(
+			[
+				'taxonomy'   => $tax_name,
+				'hide_empty' => false,
+			]
+		);
 		?>
 	<div class="tagsdiv" id="<?php echo $tax_name; ?>">
 		<select name="tax_input[ssrc_focus_tag]" multiple id="focus-tags-select">

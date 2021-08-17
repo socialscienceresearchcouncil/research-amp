@@ -403,15 +403,17 @@ class Admin {
 
 		$source_post = get_post( $post_id );
 
-		$version_id = wp_insert_post( [
-			'post_type'    => 'ssrc_lr_version',
-			'post_title'   => sprintf( '%s - Version %s', $source_post->post_title, $version_name ),
-			'post_name'    => sanitize_title( $version_name ),
-			'post_content' => $source_post->post_content,
-			'post_status'  => 'publish',
-			'post_parent'  => $source_post->ID,
-			'post_author'  => get_current_user_id(),
-		] );
+		$version_id = wp_insert_post(
+			[
+				'post_type'    => 'ssrc_lr_version',
+				'post_title'   => sprintf( '%s - Version %s', $source_post->post_title, $version_name ),
+				'post_name'    => sanitize_title( $version_name ),
+				'post_content' => $source_post->post_content,
+				'post_status'  => 'publish',
+				'post_parent'  => $source_post->ID,
+				'post_author'  => get_current_user_id(),
+			]
+		);
 
 		update_post_meta( $version_id, 'version_name', $version_name );
 
@@ -624,11 +626,13 @@ class Admin {
 		$eal_cache_key = 'subscriber_count' . $users_lc;
 		$eal_count     = wp_cache_get( $eal_cache_key, 'users' );
 		if ( false === $eal_count ) {
-			$subscribers = get_users( [
-				'fields' => 'ids',
-				'role'   => 'subscriber',
-			] );
-			$eal_count = count( $subscribers );
+			$subscribers = get_users(
+				[
+					'fields' => 'ids',
+					'role'   => 'subscriber',
+				]
+			);
+			$eal_count   = count( $subscribers );
 			wp_cache_set( $eal_cache_key, $eal_count, 'users' );
 		} else {
 			$eal_count = (int) $eal_count;
@@ -637,17 +641,19 @@ class Admin {
 		$claimed_cache_key = 'claimed_count' . $users_lc;
 		$claimed_count     = wp_cache_get( $claimed_cache_key, 'posts' );
 		if ( false === $claimed_count ) {
-			$claimed = get_posts( [
-				'fields'     => 'ids',
-				'post_type'  => 'ssrc_schprof_pt',
-				'meta_query' => [
-					[
-						'key'     => 'associated_user',
-						'compare' => 'EXISTS',
-					]
-				],
-				'posts_per_page' => -1,
-			] );
+			$claimed       = get_posts(
+				[
+					'fields'         => 'ids',
+					'post_type'      => 'ssrc_schprof_pt',
+					'meta_query'     => [
+						[
+							'key'     => 'associated_user',
+							'compare' => 'EXISTS',
+						],
+					],
+					'posts_per_page' => -1,
+				]
+			);
 			$claimed_count = count( $claimed );
 			wp_cache_set( $claimed_cache_key, $claimed_count, 'posts' );
 		} else {
@@ -657,11 +663,13 @@ class Admin {
 		$scholar_cache_key = 'scholar_count' . $users_lc;
 		$scholar_count     = wp_cache_get( $scholar_cache_key, 'posts' );
 		if ( false === $scholar_count ) {
-			$scholars = get_posts( [
-				'fields'         => 'ids',
-				'post_type'      => 'ssrc_schprof_pt',
-				'posts_per_page' => -1,
-			] );
+			$scholars      = get_posts(
+				[
+					'fields'         => 'ids',
+					'post_type'      => 'ssrc_schprof_pt',
+					'posts_per_page' => -1,
+				]
+			);
 			$scholar_count = count( $scholars );
 			wp_cache_set( $scholar_cache_key, $scholar_count, 'posts' );
 		} else {
@@ -671,13 +679,15 @@ class Admin {
 		$nom_cache_key = 'nom_count' . $users_lc;
 		$nom_count     = wp_cache_get( $nom_cache_key, 'posts' );
 		if ( false === $nom_count ) {
-			$nominations = get_posts( [
-				'fields'         => 'ids',
-				'post_type'      => 'nomination',
-				'post_status'    => 'any',
-				'posts_per_page' => -1,
-			] );
-			$nom_count = count( $nominations );
+			$nominations = get_posts(
+				[
+					'fields'         => 'ids',
+					'post_type'      => 'nomination',
+					'post_status'    => 'any',
+					'posts_per_page' => -1,
+				]
+			);
+			$nom_count   = count( $nominations );
 			wp_cache_set( $nom_cache_key, $nom_count, 'posts' );
 		} else {
 			$nom_count = (int) $nom_count;
@@ -686,19 +696,23 @@ class Admin {
 		$enom_cache_key = 'enom_count' . $users_lc;
 		$enom_count     = wp_cache_get( $enom_cache_key, 'posts' );
 		if ( false === $enom_count ) {
-			$authors = get_users( [
-				'fields'       => 'ids',
-				'role__not_in' => [ 'subscriber' ],
-			] );
+			$authors = get_users(
+				[
+					'fields'       => 'ids',
+					'role__not_in' => [ 'subscriber' ],
+				]
+			);
 
-			$enominations = get_posts( [
-				'fields'         => 'ids',
-				'post_type'      => 'nomination',
-				'post_status'    => 'any',
-				'posts_per_page' => -1,
-				'author__not_in' => array_map( 'intval', $authors ),
-			] );
-			$enom_count = count( $enominations );
+			$enominations = get_posts(
+				[
+					'fields'         => 'ids',
+					'post_type'      => 'nomination',
+					'post_status'    => 'any',
+					'posts_per_page' => -1,
+					'author__not_in' => array_map( 'intval', $authors ),
+				]
+			);
+			$enom_count   = count( $enominations );
 			wp_cache_set( $enom_cache_key, $enom_count, 'posts' );
 		} else {
 			$enom_count = (int) $enom_count;
@@ -724,11 +738,11 @@ class Admin {
 		<?php
 
 		$users_by_category_cache_key = 'users_by_category' . $users_lc;
-		$counts = wp_cache_get( $users_by_category_cache_key, 'users' );
+		$counts                      = wp_cache_get( $users_by_category_cache_key, 'users' );
 		if ( false === $counts ) {
 			global $wpdb;
 
-			$raw = $wpdb->get_col( "SELECT meta_value FROM {$wpdb->usermeta} WHERE meta_key = 'user_category'" );
+			$raw    = $wpdb->get_col( "SELECT meta_value FROM {$wpdb->usermeta} WHERE meta_key = 'user_category'" );
 			$counts = [];
 			foreach ( $raw as $type ) {
 				if ( ! isset( $counts[ $type ] ) ) {

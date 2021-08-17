@@ -53,10 +53,10 @@ class ScholarProfile {
 			$this->data[ $meta ] = get_post_meta( $post->ID, $meta, true );
 		}
 
-		$is_featured = get_post_meta( $post->ID, 'is_featured', true );
+		$is_featured               = get_post_meta( $post->ID, 'is_featured', true );
 		$this->data['is_featured'] = '1' === $is_featured;
 
-		$is_advisory = get_post_meta( $post->ID, 'is_advisory', true );
+		$is_advisory               = get_post_meta( $post->ID, 'is_advisory', true );
 		$this->data['is_advisory'] = '1' === $is_advisory;
 	}
 
@@ -185,7 +185,7 @@ class ScholarProfile {
 						'taxonomy' => 'ssrc_scholar_profile',
 						'terms'    => $this->get_sp_term_id(),
 						'field'    => 'term_id',
-					]
+					],
 				],
 			],
 			$args
@@ -197,16 +197,18 @@ class ScholarProfile {
 	public function get_citations() {
 		$citation_library = new CitationLibrary();
 
-		return $citation_library->get_recently_added_items_local( [
-			'tax_query' => [
-				[
-					'taxonomy' => 'ssrc_scholar_profile',
-					'terms'    => $this->get_sp_term_id(),
-					'field'    => 'term_id',
-				]
-			],
-			'posts_per_page' => -1,
-		] );
+		return $citation_library->get_recently_added_items_local(
+			[
+				'tax_query'      => [
+					[
+						'taxonomy' => 'ssrc_scholar_profile',
+						'terms'    => $this->get_sp_term_id(),
+						'field'    => 'term_id',
+					],
+				],
+				'posts_per_page' => -1,
+			]
+		);
 	}
 
 	public function get_avatar_path() {
@@ -215,7 +217,7 @@ class ScholarProfile {
 	}
 
 	public function get_avatar_url() {
-		$avatar_fn  = get_post_meta( $this->get_post_id(), 'avatar_filename', true );
+		$avatar_fn = get_post_meta( $this->get_post_id(), 'avatar_filename', true );
 		if ( ! $avatar_fn ) {
 			return '';
 		}
@@ -268,7 +270,7 @@ class ScholarProfile {
 		}
 
 		$GLOBALS['mediawell_is_provisioned_user'] = true;
-		$user_id = register_new_user( $r['username'], $r['email'] );
+		$user_id                                  = register_new_user( $r['username'], $r['email'] );
 		unset( $GLOBALS['mediawell_is_provisioned_user'] );
 
 		if ( is_wp_error( $user_id ) ) {

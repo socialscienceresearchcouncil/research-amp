@@ -13,11 +13,11 @@ class TranslationFetcher {
 		$result = wp_remote_post(
 			$this->url,
 			[
-				'body' => $item_url,
+				'body'    => $item_url,
 				'timeout' => 10,
 				'headers' => [
 					'Content-Type' => 'text/plain',
-				]
+				],
 			]
 		);
 

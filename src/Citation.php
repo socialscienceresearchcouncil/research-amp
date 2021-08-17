@@ -45,7 +45,7 @@ class Citation {
 		$client = new Client();
 
 		$zotero_id = $this->get_zotero_id();
-		$data = $client->get_record( $zotero_id );
+		$data      = $client->get_record( $zotero_id );
 
 		if ( isset( $data['data'] ) ) {
 			$data = (array) $data['data'];
@@ -99,7 +99,7 @@ class Citation {
 			if ( preg_match( '/^[0-9]{4}$/', $data['date'] ) ) {
 				$year = $data['date'];
 
-			// Here's another helpful citation format from Zotero.
+				// Here's another helpful citation format from Zotero.
 			} elseif ( preg_match( '/^[0-9]{4}\/[0-9]{2}$/', $data['date'] ) ) {
 				$year = substr( $data['date'], 0, 4 );
 			} else {
@@ -188,20 +188,24 @@ class Citation {
 	 * Update title as stored in WordPress.
 	 */
 	public function set_title( $title ) {
-		return wp_update_post( [
-			'ID'         => $this->get_post_id(),
-			'post_title' => $title,
-		] );
+		return wp_update_post(
+			[
+				'ID'         => $this->get_post_id(),
+				'post_title' => $title,
+			]
+		);
 	}
 
 	/**
 	 * Update abstract as stored in WordPress.
 	 */
 	public function set_abstract( $abstract ) {
-		return wp_update_post( [
-			'ID'           => $this->get_post_id(),
-			'post_content' => $abstract,
-		] );
+		return wp_update_post(
+			[
+				'ID'           => $this->get_post_id(),
+				'post_content' => $abstract,
+			]
+		);
 	}
 
 	/**

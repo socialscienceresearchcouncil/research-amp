@@ -50,7 +50,7 @@ class CPTTax {
 				$post->post_title,
 				$this->taxonomy,
 				[
-					'slug' => $post->post_name
+					'slug' => $post->post_name,
 				]
 			);
 

@@ -37,31 +37,31 @@ class Schema {
 		register_post_type(
 			'ssrc_lit_review',
 			[
-				'label' => 'Field Reviews',
-				'labels' => [
-					'name' => 'Field Reviews',
-					'singular_name' => 'Field Review',
-					'add_new_item' => 'Add New Field Review',
-					'edit_item' => 'Edit Field Review',
-					'new_item' => 'New Field Review',
-					'view_item' => 'View Field Review',
-					'view_items' => 'View Field Reviews',
-					'search_items' => 'Search Field Reviews',
-					'not_found' => 'No Field Reviews found',
+				'label'             => 'Field Reviews',
+				'labels'            => [
+					'name'               => 'Field Reviews',
+					'singular_name'      => 'Field Review',
+					'add_new_item'       => 'Add New Field Review',
+					'edit_item'          => 'Edit Field Review',
+					'new_item'           => 'New Field Review',
+					'view_item'          => 'View Field Review',
+					'view_items'         => 'View Field Reviews',
+					'search_items'       => 'Search Field Reviews',
+					'not_found'          => 'No Field Reviews found',
 					'not_found_in_trash' => 'No Field Reviews found in Trash',
-					'all_items' => 'All Field Reviews',
-					'name_admin_bar' => 'Field Reviews',
+					'all_items'          => 'All Field Reviews',
+					'name_admin_bar'     => 'Field Reviews',
 				],
-				'public' => true,
-				'has_archive' => true,
-				'rewrite' => [
-					'slug' => 'literature-reviews',
+				'public'            => true,
+				'has_archive'       => true,
+				'rewrite'           => [
+					'slug'       => 'literature-reviews',
 					'with_front' => false,
 				],
-				'menu_icon' => 'dashicons-book',
-				'show_in_rest' => false, // Disables Gutenberg.
+				'menu_icon'         => 'dashicons-book',
+				'show_in_rest'      => false, // Disables Gutenberg.
 				'show_in_nav_menus' => true,
-				'supports' => [ 'title', 'editor', 'excerpt', 'thumbnail', 'author' ]
+				'supports'          => [ 'title', 'editor', 'excerpt', 'thumbnail', 'author' ],
 			]
 		);
 
@@ -69,32 +69,32 @@ class Schema {
 		register_post_type(
 			'ssrc_lr_version',
 			[
-				'label' => 'Field Review Versions',
-				'labels' => [
-					'name' => 'Field Review Versions',
-					'singular_name' => 'Field Review Version',
-					'add_new_item' => 'Add New Field Review Version',
-					'edit_item' => 'Edit Field Review Version',
-					'new_item' => 'New Field Review Version',
-					'view_item' => 'View Field Review Version',
-					'view_items' => 'View Field Review Version',
-					'search_items' => 'Search Field Review Versions',
-					'not_found' => 'No Field Review Versions found',
+				'label'             => 'Field Review Versions',
+				'labels'            => [
+					'name'               => 'Field Review Versions',
+					'singular_name'      => 'Field Review Version',
+					'add_new_item'       => 'Add New Field Review Version',
+					'edit_item'          => 'Edit Field Review Version',
+					'new_item'           => 'New Field Review Version',
+					'view_item'          => 'View Field Review Version',
+					'view_items'         => 'View Field Review Version',
+					'search_items'       => 'Search Field Review Versions',
+					'not_found'          => 'No Field Review Versions found',
 					'not_found_in_trash' => 'No Field Review Versions found in Trash',
-					'all_items' => 'All Field Review Versions',
-					'name_admin_bar' => 'Field Review Versions',
+					'all_items'          => 'All Field Review Versions',
+					'name_admin_bar'     => 'Field Review Versions',
 				],
-				'public' => true,
-				'show_ui' => true,
-				'rewrite' => [
-					'slug' => 'literature-reviews/%lrslug%/versions',
+				'public'            => true,
+				'show_ui'           => true,
+				'rewrite'           => [
+					'slug'       => 'literature-reviews/%lrslug%/versions',
 					'with_front' => false,
 				],
-				'has_archive' => false,
-				'menu_icon' => 'dashicons-book',
-				'show_in_rest' => false, // Disables Gutenberg.
+				'has_archive'       => false,
+				'menu_icon'         => 'dashicons-book',
+				'show_in_rest'      => false, // Disables Gutenberg.
 				'show_in_nav_menus' => true,
-				'supports' => [ 'title', 'editor', 'excerpt', 'thumbnail', 'author' ]
+				'supports'          => [ 'title', 'editor', 'excerpt', 'thumbnail', 'author' ],
 			]
 		);
 
@@ -116,8 +116,8 @@ class Schema {
 		register_post_type(
 			'ssrc_expref_pt',
 			[
-				'label'        => 'Articles',
-				'labels'       => [
+				'label'             => 'Articles',
+				'labels'            => [
 					'name'               => 'Articles',
 					'singular_name'      => 'Article',
 					'add_new_item'       => 'Add New Article',
@@ -131,16 +131,16 @@ class Schema {
 					'all_items'          => 'All Articles',
 					'name_admin_bar'     => 'Articles',
 				],
-				'public'       => true,
-				'has_archive'  => true,
-				'rewrite'      => [
+				'public'            => true,
+				'has_archive'       => true,
+				'rewrite'           => [
 					'slug'       => 'articles',
 					'with_front' => false,
 				],
-				'menu_icon'    => 'dashicons-lightbulb',
-				'show_in_rest' => true,
+				'menu_icon'         => 'dashicons-lightbulb',
+				'show_in_rest'      => true,
 				'show_in_nav_menus' => true,
-				'supports'     => [ 'title', 'editor', 'excerpt', 'author', 'thumbnail' ]
+				'supports'          => [ 'title', 'editor', 'excerpt', 'author', 'thumbnail' ],
 			]
 		);
 
@@ -150,31 +150,31 @@ class Schema {
 		register_post_type(
 			'ssrc_restop_pt',
 			[
-				'label' => 'Research Field',
-				'labels' => [
-					'name' => 'Research Fields',
-					'singular_name' => 'Research Field',
-					'add_new_item' => 'Add New Research Field',
-					'edit_item' => 'Edit Research Field',
-					'new_item' => 'New Research Field',
-					'view_item' => 'View Research Field',
-					'view_items' => 'View Research Fields',
-					'search_items' => 'Search Research Fields',
-					'not_found' => 'No Research Fields found',
+				'label'             => 'Research Field',
+				'labels'            => [
+					'name'               => 'Research Fields',
+					'singular_name'      => 'Research Field',
+					'add_new_item'       => 'Add New Research Field',
+					'edit_item'          => 'Edit Research Field',
+					'new_item'           => 'New Research Field',
+					'view_item'          => 'View Research Field',
+					'view_items'         => 'View Research Fields',
+					'search_items'       => 'Search Research Fields',
+					'not_found'          => 'No Research Fields found',
 					'not_found_in_trash' => 'No Research Fields found in Trash',
-					'all_items' => 'All Research Fields',
-					'name_admin_bar' => 'Research Fields',
+					'all_items'          => 'All Research Fields',
+					'name_admin_bar'     => 'Research Fields',
 				],
-				'public' => true,
-				'has_archive' => 'research-fields',
-				'rewrite' => [
-					'slug' => 'research-fields',
+				'public'            => true,
+				'has_archive'       => 'research-fields',
+				'rewrite'           => [
+					'slug'       => 'research-fields',
 					'with_front' => false,
 				],
-				'menu_icon' => 'dashicons-format-status',
-				'show_in_rest' => false, // Disables Gutenberg.
+				'menu_icon'         => 'dashicons-format-status',
+				'show_in_rest'      => false, // Disables Gutenberg.
 				'show_in_nav_menus' => true,
-				'supports' => [ 'title', 'editor', 'excerpt', 'page-attributes', 'thumbnail' ]
+				'supports'          => [ 'title', 'editor', 'excerpt', 'page-attributes', 'thumbnail' ],
 			]
 		);
 
@@ -184,31 +184,31 @@ class Schema {
 		register_post_type(
 			'ssrc_schprof_pt',
 			[
-				'label' => 'Profiles',
-				'labels' => [
-					'name' => 'Profiles',
-					'singular_name' => 'Profile',
-					'add_new_item' => 'Add New Profile',
-					'edit_item' => 'Edit Profile',
-					'new_item' => 'New Profile',
-					'view_item' => 'View Profile',
-					'view_items' => 'View Profiles',
-					'search_items' => 'Search Profiles',
-					'not_found' => 'No Profiles found',
+				'label'        => 'Profiles',
+				'labels'       => [
+					'name'               => 'Profiles',
+					'singular_name'      => 'Profile',
+					'add_new_item'       => 'Add New Profile',
+					'edit_item'          => 'Edit Profile',
+					'new_item'           => 'New Profile',
+					'view_item'          => 'View Profile',
+					'view_items'         => 'View Profiles',
+					'search_items'       => 'Search Profiles',
+					'not_found'          => 'No Profiles found',
 					'not_found_in_trash' => 'No Profiles found in Trash',
-					'all_items' => 'All Profiles',
-					'name_admin_bar' => 'Profiles',
+					'all_items'          => 'All Profiles',
+					'name_admin_bar'     => 'Profiles',
 				],
-				'public' => true,
-				'show_ui' => true,
-				'has_archive' => true,
-				'rewrite' => [
-					'slug' => 'our-network',
+				'public'       => true,
+				'show_ui'      => true,
+				'has_archive'  => true,
+				'rewrite'      => [
+					'slug'       => 'our-network',
 					'with_front' => false,
 				],
-				'menu_icon' => 'dashicons-welcome-learn-more',
+				'menu_icon'    => 'dashicons-welcome-learn-more',
 				'show_in_rest' => true, // Disables Gutenberg.
-				'supports' => [ 'title', 'thumbnail', 'editor' ]
+				'supports'     => [ 'title', 'thumbnail', 'editor' ],
 			]
 		);
 
@@ -218,32 +218,32 @@ class Schema {
 		register_post_type(
 			'ssrc_citation',
 			[
-				'label' => 'Citations',
-				'labels' => [
-					'name' => 'Citations',
-					'singular_name' => 'Citation',
-					'add_new_item' => 'Add New Citation',
-					'edit_item' => 'Edit Citation',
-					'new_item' => 'New Citation',
-					'view_item' => 'View Citation',
-					'view_items' => 'View Citations',
-					'search_items' => 'Search Citations',
-					'not_found' => 'No Citations found',
+				'label'        => 'Citations',
+				'labels'       => [
+					'name'               => 'Citations',
+					'singular_name'      => 'Citation',
+					'add_new_item'       => 'Add New Citation',
+					'edit_item'          => 'Edit Citation',
+					'new_item'           => 'New Citation',
+					'view_item'          => 'View Citation',
+					'view_items'         => 'View Citations',
+					'search_items'       => 'Search Citations',
+					'not_found'          => 'No Citations found',
 					'not_found_in_trash' => 'No Citations found in Trash',
-					'all_items' => 'All Citations',
-					'name_admin_bar' => 'Citations',
+					'all_items'          => 'All Citations',
+					'name_admin_bar'     => 'Citations',
 				],
-				'public' => true,
-				'has_archive' => false,
-				'rewrite' => [
+				'public'       => true,
+				'has_archive'  => false,
+				'rewrite'      => [
 					'slug'       => 'citation',
 					'with_front' => false,
 				],
-				'show_ui' => true,
-				'menu_icon' => 'dashicons-portfolio',
+				'show_ui'      => true,
+				'menu_icon'    => 'dashicons-portfolio',
 				'show_in_rest' => true,
-				'rest_base' => 'citation',
-				'supports' => [ 'title', 'editor' ],
+				'rest_base'    => 'citation',
+				'supports'     => [ 'title', 'editor' ],
 			]
 		);
 	}
@@ -258,21 +258,21 @@ class Schema {
 
 		register_taxonomy(
 			'ssrc_research_topic',
-			array_merge( $post_types, [ 'nomination'] ),
+			array_merge( $post_types, [ 'nomination' ] ),
 			[
-				'label' => 'Research Fields',
-				'labels' => [
-					'name' => 'Research Fields',
+				'label'        => 'Research Fields',
+				'labels'       => [
+					'name'          => 'Research Fields',
 					'singular_name' => 'Research Field',
-					'add_new_item' => 'Add New Research Field',
-					'not_found' => 'No Research Fields found'
+					'add_new_item'  => 'Add New Research Field',
+					'not_found'     => 'No Research Fields found',
 				],
 				'hierarchical' => true,
-				'public' => true,
-				'rewrite' => [
+				'public'       => true,
+				'rewrite'      => [
 					'slug' => 'research-topic',
 				],
-				'show_ui' => true,
+				'show_ui'      => true,
 				'show_in_rest' => true,
 				'capabilities' => [
 					'manage_terms' => 'do_not_allow',
@@ -285,18 +285,18 @@ class Schema {
 
 		register_taxonomy(
 			'ssrc_focus_tag',
-			array_merge( $post_types, [ 'nomination'] ),
+			array_merge( $post_types, [ 'nomination' ] ),
 			[
-				'label' => 'Focus Tags',
-				'labels' => [
-					'name' => 'Focus Tags',
+				'label'        => 'Focus Tags',
+				'labels'       => [
+					'name'          => 'Focus Tags',
 					'singular_name' => 'Focus Tag',
-					'add_new_item' => 'Add New Focus Tag',
-					'not_found' => 'No Focus Tags found'
+					'add_new_item'  => 'Add New Focus Tag',
+					'not_found'     => 'No Focus Tags found',
 				],
 				'hierarchical' => true,
-				'public' => true,
-				'rewrite' => [
+				'public'       => true,
+				'rewrite'      => [
 					'slug' => 'tag',
 				],
 				'show_in_rest' => true,
@@ -313,24 +313,24 @@ class Schema {
 			'ssrc_scholar_profile',
 			array_diff( $post_types, [ 'ssrc_schprof_pt' ] ),
 			[
-				'label' => 'Profiles',
-				'labels' => [
-					'name' => 'Profiles',
+				'label'        => 'Profiles',
+				'labels'       => [
+					'name'          => 'Profiles',
 					'singular_name' => 'Profile',
-					'add_new_item' => 'Add New Profile',
-					'not_found' => 'No Profiles found'
+					'add_new_item'  => 'Add New Profile',
+					'not_found'     => 'No Profiles found',
 				],
 				'hierarchical' => true,
-				'public' => false,
-				'show_ui' => true,
+				'public'       => false,
+				'show_ui'      => true,
 				'show_in_rest' => true,
 				'capabilities' => [
 					'manage_terms' => 'do_not_allow',
-					'edit_terms' => 'do_not_allow',
+					'edit_terms'   => 'do_not_allow',
 					'delete_terms' => 'do_not_allow',
 					'assign_terms' => 'edit_posts',
 				],
-				'meta_box_cb' => [ $this, 'sp_meta_box_cb' ],
+				'meta_box_cb'  => [ $this, 'sp_meta_box_cb' ],
 			]
 		);
 
@@ -359,17 +359,17 @@ class Schema {
 			'ssrc_item_type',
 			[ 'post' ],
 			[
-				'label' => 'Item Type',
-				'labels' => [
-					'name' => 'Item Type',
+				'label'        => 'Item Type',
+				'labels'       => [
+					'name'          => 'Item Type',
 					'singular_name' => 'Item Types',
-					'add_new_item' => 'Add New Item Type',
-					'not_found' => 'No Item Types found',
+					'add_new_item'  => 'Add New Item Type',
+					'not_found'     => 'No Item Types found',
 				],
 				'hierarchical' => true, // Just to get the checkboxes.
-				'public' => true,
-				'show_ui' => true,
-				'rewrite' => [
+				'public'       => true,
+				'show_ui'      => true,
+				'rewrite'      => [
 					'slug' => 'item-type',
 				],
 			]
@@ -414,7 +414,7 @@ class Schema {
 
 	public function set_up_post_type_features() {
 
-//		$lit_reviews =
+		//      $lit_reviews =
 	}
 
 	public function filter_lr_version_link( $permalink, $post ) {
@@ -460,13 +460,13 @@ class Schema {
 		$addl_fields = [];
 
 		switch ( $post->post_type ) {
-			case 'post' :
+			case 'post':
 				$addl_fields = [
 					'item_author',
 				];
-			break;
+				break;
 
-			case 'ssrc_schprof_pt' :
+			case 'ssrc_schprof_pt':
 				$addl_fields = [
 					'email_address',
 					'first_name',
@@ -475,13 +475,13 @@ class Schema {
 					'orcid_id',
 					'title',
 				];
-			break;
+				break;
 
-			case 'ssrc_citation' :
+			case 'ssrc_citation':
 				$addl_fields = [
 					'zotero_author',
 				];
-			break;
+				break;
 		}
 
 		if ( ! $fields ) {
@@ -495,20 +495,22 @@ class Schema {
 		wp_enqueue_style( 'disinfo-select2' );
 		wp_enqueue_script( 'disinfo-sp-meta-box', content_url( '/plugins/disinfo/assets/js/sp-meta-box.js' ), [ 'jquery', 'disinfo-select2' ], null, true );
 
-		$sps = get_posts( [
-			'post_type'      => 'ssrc_schprof_pt',
-			'posts_per_page' => -1,
-			'fields'         => 'ids',
-			'orderby'        => [ 'meta_value' => 'ASC' ],
-			'meta_key'       => 'last_name',
-		] );
+		$sps = get_posts(
+			[
+				'post_type'      => 'ssrc_schprof_pt',
+				'posts_per_page' => -1,
+				'fields'         => 'ids',
+				'orderby'        => [ 'meta_value' => 'ASC' ],
+				'meta_key'       => 'last_name',
+			]
+		);
 
 		$sp_map = disinfo_app()->get_cpttax_map( 'scholar_profile' );
 
 		$terms = [];
 		foreach ( $sps as $sp_id ) {
 			$scholar_profile = ScholarProfile::get_instance( $sp_id );
-			$term_name = sprintf(
+			$term_name       = sprintf(
 				'%s, %s',
 				$scholar_profile->get_last_name(),
 				$scholar_profile->get_first_name()

@@ -16,11 +16,11 @@ class FeaturedItem {
 	public static function get_currently_featured_posts( $post_type ) {
 		$posts = get_posts(
 			[
-				'post_type'      => $post_type,
-				'post_status'    => 'publish',
-				'meta_key'       => 'disinfo_featured_timestamp',
-				'orderby'        => [ 'meta_value_num' => 'DESC' ],
-				'posts_per_page' => 5, // Hardcoded for the time being.
+				'post_type'                 => $post_type,
+				'post_status'               => 'publish',
+				'meta_key'                  => 'disinfo_featured_timestamp',
+				'orderby'                   => [ 'meta_value_num' => 'DESC' ],
+				'posts_per_page'            => 5, // Hardcoded for the time being.
 				'md_bone_duplicate_disable' => 'adp_disable',
 			]
 		);
@@ -72,7 +72,7 @@ class FeaturedItem {
 		$base = add_query_arg(
 			[
 				'disinfo-unfeature' => $this->get_post_id(),
-				'redirect_to'     => urlencode( $redirect_to ),
+				'redirect_to'       => urlencode( $redirect_to ),
 			],
 			admin_url()
 		);

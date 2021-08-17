@@ -61,7 +61,7 @@ class CitationLibrary {
 		}
 
 		$client = new Client();
-		$data = $client->post_item( $zotero_data );
+		$data   = $client->post_item( $zotero_data );
 
 		if ( ! $has_zotero_data ) {
 			$citation->set_zotero_id( $data['key'] );
@@ -230,15 +230,15 @@ class CitationLibrary {
 		];
 
 		// There is a more elegant way but I'm not going to find it today.
-		$fetch_more  = false;
-		$batch_start = $start;
-		$add_queue   = [];
+		$fetch_more   = false;
+		$batch_start  = $start;
+		$add_queue    = [];
 		$keys_fetched = [];
 		do {
-			$fetch_more = false;
-			$query_args = $default_args;
+			$fetch_more          = false;
+			$query_args          = $default_args;
 			$query_args['start'] = $batch_start;
-			$items = $client->get_items( $query_args );
+			$items               = $client->get_items( $query_args );
 
 			if ( defined( 'WP_CLI' ) ) {
 				$item_count = count( $items );
@@ -298,11 +298,15 @@ class CitationLibrary {
 		}
 
 		if ( ! $update_existing ) {
-			wp_mail( 'boone@gorg.es', 'Completed Just Tech Zotero sync', sprintf(
-				'Existing: %s  Created: %s',
-				count( $existing_keys ),
-				count( $create_keys )
-			) );
+			wp_mail(
+				'boone@gorg.es',
+				'Completed Just Tech Zotero sync',
+				sprintf(
+					'Existing: %s  Created: %s',
+					count( $existing_keys ),
+					count( $create_keys )
+				)
+			);
 		}
 	}
 

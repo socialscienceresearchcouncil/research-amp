@@ -27,13 +27,13 @@ function disinfo_app() {
 		$schema = new \SSRC\RAMP\Schema();
 
 		$pressforward = new \SSRC\RAMP\PressForward();
-		$admin = new \SSRC\RAMP\Admin( $pressforward );
+		$admin        = new \SSRC\RAMP\Admin( $pressforward );
 
-		$api = new \SSRC\RAMP\API();
-		$citation_library = new \SSRC\RAMP\CitationLibrary();
+		$api                 = new \SSRC\RAMP\API();
+		$citation_library    = new \SSRC\RAMP\CitationLibrary();
 		$the_events_calendar = new \SSRC\RAMP\TheEventsCalendar();
-		$router = new \SSRC\RAMP\Router();
-		$user_management = new \SSRC\RAMP\UserManagement();
+		$router              = new \SSRC\RAMP\Router();
+		$user_management     = new \SSRC\RAMP\UserManagement();
 
 		$app = new \SSRC\RAMP\App(
 			$schema,

@@ -15,7 +15,7 @@ use \SSRC\RAMP\Zotero\Client;
 
 class ZTFetch extends WP_REST_Controller {
 	public function register_routes() {
-		$version = '1';
+		$version   = '1';
 		$namespace = 'disinfo/v' . $version;
 
 		register_rest_route(
@@ -23,10 +23,10 @@ class ZTFetch extends WP_REST_Controller {
 			'/ztfetch',
 			[
 				[
-					'methods' => WP_REST_Server::CREATABLE,
-					'callback' => [ $this, 'create_item' ],
+					'methods'             => WP_REST_Server::CREATABLE,
+					'callback'            => [ $this, 'create_item' ],
 					'permission_callback' => [ $this, 'create_item_permissions_check' ],
-				]
+				],
 			]
 		);
 	}

@@ -10,7 +10,7 @@ use \WP_Query;
 
 class NominationStatus extends WP_REST_Controller {
 	public function register_routes() {
-		$version = '1';
+		$version   = '1';
 		$namespace = 'disinfo/v' . $version;
 
 		register_rest_route(
@@ -18,10 +18,10 @@ class NominationStatus extends WP_REST_Controller {
 			'/nomination-status',
 			[
 				[
-					'methods' => 'POST',
-					'callback' => [ $this, 'get_items' ],
+					'methods'             => 'POST',
+					'callback'            => [ $this, 'get_items' ],
 					'permission_callback' => [ $this, 'get_items_permissions_check' ],
-				]
+				],
 			]
 		);
 	}
@@ -40,14 +40,16 @@ class NominationStatus extends WP_REST_Controller {
 		];
 
 		if ( $item_ids ) {
-			$query = new WP_Query( [
-				'post_type' => 'nomination',
-				'post__in'  => $item_ids,
-				'update_post_term_cache' => false,
-				'update_post_meta_cache' => true,
-				'posts_per_page' => -1,
-				'post_status' => 'any',
-			] );
+			$query = new WP_Query(
+				[
+					'post_type'              => 'nomination',
+					'post__in'               => $item_ids,
+					'update_post_term_cache' => false,
+					'update_post_meta_cache' => true,
+					'posts_per_page'         => -1,
+					'post_status'            => 'any',
+				]
+			);
 
 			foreach ( $query->posts as $post ) {
 				$citation_id = get_post_meta( $post->ID, 'citation_id', true );

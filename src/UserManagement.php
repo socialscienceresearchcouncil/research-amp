@@ -45,13 +45,13 @@ class UserManagement {
 		$message = '';
 
 		switch ( $action ) {
-			case 'login' :
+			case 'login':
 				$message = sprintf( 'Log in using your MediaWell credentials to submit articles or to manage your profile.<br /><br />Don\'t have a MediaWell account yet? Learn more about becoming an <a href="%s">Editor-at-Large</a>, or <a href="%s">register for an account</a>.', meddem_get_involved_page_url(), add_query_arg( 'action', 'register', wp_login_url() ) );
-			break;
+				break;
 
-			case 'register' :
+			case 'register':
 				$message = sprintf( 'Want to become a MediaWell Editor-at-Large? Register below, or visit <a href="%s">our Get Involved page</a> for more information.<br /><br />Already have a MediaWell account? <a href="%s">Log in instead.</a>', meddem_get_involved_page_url(), wp_login_url() );
-			break;
+				break;
 		}
 
 		if ( ! $message ) {
@@ -93,7 +93,7 @@ class UserManagement {
 	}
 
 	public function registration_errors( $errors, $user_login, $user_email ) {
-		if ( ! empty( $GLOBALS['mediawell_is_provisioned_user']  ) ) {
+		if ( ! empty( $GLOBALS['mediawell_is_provisioned_user'] ) ) {
 			return $errors;
 		}
 
@@ -151,7 +151,7 @@ class UserManagement {
 			[
 				'id'   => 0,
 				'text' => '',
-			]
+			],
 		];
 		foreach ( get_users() as $user ) {
 			$all_users[] = [
@@ -256,9 +256,9 @@ class UserManagement {
 			if ( $avatar_file_name ) {
 				$upload_dir = wp_upload_dir();
 				$avatar_tmp = $upload_dir['basedir'] . '/ninja-forms/tmp/' . $avatar_file_name;
-				$extension = pathinfo( $avatar_file_name, PATHINFO_EXTENSION );
+				$extension  = pathinfo( $avatar_file_name, PATHINFO_EXTENSION );
 
-				$size = getimagesize( $avatar_tmp );
+				$size  = getimagesize( $avatar_tmp );
 				$max_w = $max_h = null;
 				if ( $size[0] > 1000 ) {
 					$max_w = 1000;
@@ -321,7 +321,7 @@ class UserManagement {
 
 		if ( ! empty( $GLOBALS['mediawell_is_provisioned_user'] ) ) {
 			$new_message = sprintf(
-	'Thank you for claiming your MediaWell Profile!
+				'Thank you for claiming your MediaWell Profile!
 
 To complete your registration, visit the following URL, where you will be asked to set your password:
 
@@ -335,7 +335,7 @@ After logging in for the first time, visit %s to learn more about submitting ite
 			);
 		} else {
 			$new_message = sprintf(
-	'Thank you for registering to be a MediaWell Editor-at-Large!
+				'Thank you for registering to be a MediaWell Editor-at-Large!
 
 To complete your registration, visit the following URL, where you will be asked to set your password:
 

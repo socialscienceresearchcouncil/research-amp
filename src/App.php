@@ -20,13 +20,13 @@ class App {
 		Router $router,
 		UserManagement $user_management
 	) {
-		$this->schema = $schema;
-		$this->admin = $admin;
-		$this->api = $api;
-		$this->citation_library = $citation_library;
+		$this->schema              = $schema;
+		$this->admin               = $admin;
+		$this->api                 = $api;
+		$this->citation_library    = $citation_library;
 		$this->the_events_calendar = $the_events_calendar;
-		$this->router = $router;
-		$this->user_management = $user_management;
+		$this->router              = $router;
+		$this->user_management     = $user_management;
 	}
 
 	public function init() {

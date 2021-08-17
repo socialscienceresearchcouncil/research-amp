@@ -11,7 +11,7 @@ class Version {
 	public function __construct( $id ) {
 		$this->id = (int) $id;
 
-		$post = get_post( $id );
+		$post        = get_post( $id );
 		$this->lr_id = $post->post_parent;
 	}
 
@@ -42,12 +42,14 @@ class Version {
 			return $fetched;
 		}
 
-		$query = new WP_Query( [
-			'post_type' => 'ssrc_lr_version',
-			'post_parent' => $lr_id,
-			'orderby' => 'date',
-			'order' => 'DESC',
-		] );
+		$query = new WP_Query(
+			[
+				'post_type'   => 'ssrc_lr_version',
+				'post_parent' => $lr_id,
+				'orderby'     => 'date',
+				'order'       => 'DESC',
+			]
+		);
 
 		$fetched = $query->posts;
 
