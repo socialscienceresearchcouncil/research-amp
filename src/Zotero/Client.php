@@ -85,7 +85,7 @@ class Client {
 			$url,
 			[
 				'headers' => $this->get_headers(),
-				'body'    => json_encode( $data ),
+				'body'    => wp_json_encode( $data ),
 			]
 		);
 
@@ -149,7 +149,7 @@ class Client {
 			$url,
 			[
 				'headers' => $this->get_headers(),
-				'body'    => json_encode( [ 0 => $data ] ),
+				'body'    => wp_json_encode( [ 0 => $data ] ),
 			]
 		);
 
