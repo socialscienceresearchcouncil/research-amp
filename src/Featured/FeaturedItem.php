@@ -60,7 +60,7 @@ class FeaturedItem {
 		$base = add_query_arg(
 			[
 				'disinfo-feature' => $this->get_post_id(),
-				'redirect_to'     => urlencode( $redirect_to ),
+				'redirect_to'     => rawurlencode( $redirect_to ),
 			],
 			admin_url()
 		);
@@ -72,7 +72,7 @@ class FeaturedItem {
 		$base = add_query_arg(
 			[
 				'disinfo-unfeature' => $this->get_post_id(),
-				'redirect_to'       => urlencode( $redirect_to ),
+				'redirect_to'       => rawurlencode( $redirect_to ),
 			],
 			admin_url()
 		);
