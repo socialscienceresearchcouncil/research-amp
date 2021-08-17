@@ -1,8 +1,9 @@
 <?php
 
 /*
-Plugin Name: Disinfo
-Description: Custom functionality for Disinformation Network
+Plugin Name: Research Area Mapping Platform (RAMP)
+Author: Social Science Research Council
+Version: 1.0-alpha
 */
 
 // Exit if accessed directly.
@@ -10,9 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DISINFO_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'DISINFO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'DISINFO_VER', '1.1' );
+define( 'RAMP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'RAMP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'RAMP_VER', '1.0-alpha' );
 
 require __DIR__ . '/autoload.php';
 

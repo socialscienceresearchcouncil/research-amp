@@ -64,7 +64,7 @@ class Citation {
 	 * Gets a Zotero URL for an item, as situated under a Collection.
 	 */
 	public function get_zotero_url() {
-		$library_url = 'https://www.zotero.org/groups/' . DISINFO_ZOTERO_GROUP_ID . '/items/';
+		$library_url = 'https://www.zotero.org/groups/' . RAMP_ZOTERO_GROUP_ID . '/items/';
 
 		$collection_ids = $this->get_collections_for_zotero();
 		if ( $collection_ids ) {

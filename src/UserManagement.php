@@ -35,8 +35,8 @@ class UserManagement {
 	}
 
 	public function enqueue_assets() {
-		wp_enqueue_style( 'disinfo-login', DISINFO_PLUGIN_URL . '/assets/css/login.css' );
-		wp_enqueue_script( 'disinfo-login', DISINFO_PLUGIN_URL . '/assets/js/login.js', array( 'jquery' ) );
+		wp_enqueue_style( 'disinfo-login', RAMP_PLUGIN_URL . '/assets/css/login.css' );
+		wp_enqueue_script( 'disinfo-login', RAMP_PLUGIN_URL . '/assets/js/login.js', array( 'jquery' ) );
 	}
 
 	public function login_message( $message ) {
@@ -145,7 +145,7 @@ class UserManagement {
 
 	public function meta_box_cb( $post ) {
 		wp_enqueue_style( 'disinfo-select2' );
-		wp_enqueue_script( 'disinfo-scholar-profile-admin', DISINFO_PLUGIN_URL . 'assets/js/scholar-profile-admin.js', array( 'disinfo-select2', 'jquery' ) );
+		wp_enqueue_script( 'disinfo-scholar-profile-admin', RAMP_PLUGIN_URL . 'assets/js/scholar-profile-admin.js', array( 'disinfo-select2', 'jquery' ) );
 
 		$all_users = [
 			[

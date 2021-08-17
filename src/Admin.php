@@ -149,7 +149,7 @@ class Admin {
 	}
 
 	public function scholar_profile_info_cb( $post ) {
-		include DISINFO_PLUGIN_DIR . '/templates/scholar-profile-form.php';
+		include RAMP_PLUGIN_DIR . '/templates/scholar-profile-form.php';
 	}
 
 	public function scholar_profile_claim_email_cb( $post ) {
@@ -171,7 +171,7 @@ class Admin {
 		$zotero_url = '';
 		$zotero_id  = get_post_meta( $post->ID, 'zotero_id', true );
 		if ( $zotero_id ) {
-			$zotero_url = 'https://www.zotero.org/groups/' . DISINFO_ZOTERO_GROUP_ID . '/items/itemKey/' . $zotero_id;
+			$zotero_url = 'https://www.zotero.org/groups/' . RAMP_ZOTERO_GROUP_ID . '/items/itemKey/' . $zotero_id;
 		}
 
 		if ( $zotero_id ) {
@@ -192,7 +192,7 @@ class Admin {
 		$zotero_url = '';
 		$zotero_id  = get_post_meta( $post->ID, 'zotero_collection_id', true );
 		if ( $zotero_id ) {
-			$zotero_url = 'https://www.zotero.org/groups/' . DISINFO_ZOTERO_GROUP_ID . '/collections/' . $zotero_id;
+			$zotero_url = 'https://www.zotero.org/groups/' . RAMP_ZOTERO_GROUP_ID . '/collections/' . $zotero_id;
 		}
 
 		if ( $zotero_id ) {
@@ -257,7 +257,7 @@ class Admin {
 	}
 
 	public function versions_cb( $post ) {
-		wp_enqueue_style( 'disinfo-versions-admin', DISINFO_PLUGIN_URL . '/assets/css/versions-admin.css' );
+		wp_enqueue_style( 'disinfo-versions-admin', RAMP_PLUGIN_URL . '/assets/css/versions-admin.css' );
 
 		$versions = Version::get( $post->ID );
 

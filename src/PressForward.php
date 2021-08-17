@@ -100,7 +100,7 @@ class PressForward {
 	public function register_assets() {
 		wp_register_script(
 			'disinfo-pressforward',
-			DISINFO_PLUGIN_URL . '/assets/js/pressforward.js',
+			RAMP_PLUGIN_URL . '/assets/js/pressforward.js',
 			array( 'jquery', PF_SLUG . '-twitter-bootstrap' ),
 			false,
 			true

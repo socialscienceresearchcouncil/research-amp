@@ -7,11 +7,11 @@ class Client {
 	protected $data = '';
 
 	protected function get_api_key() {
-		return defined( 'DISINFO_ZOTERO_API_KEY' ) ? DISINFO_ZOTERO_API_KEY : '';
+		return defined( 'RAMP_ZOTERO_API_KEY' ) ? RAMP_ZOTERO_API_KEY : '';
 	}
 
 	protected function get_group_id() {
-		return defined( 'DISINFO_ZOTERO_GROUP_ID' ) ? DISINFO_ZOTERO_GROUP_ID : '';
+		return defined( 'RAMP_ZOTERO_GROUP_ID' ) ? RAMP_ZOTERO_GROUP_ID : '';
 	}
 
 	protected function get_headers() {
