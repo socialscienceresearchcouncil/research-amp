@@ -102,7 +102,7 @@ class PressForward {
 			'disinfo-pressforward',
 			RAMP_PLUGIN_URL . '/assets/js/pressforward.js',
 			array( 'jquery', PF_SLUG . '-twitter-bootstrap' ),
-			false,
+			RAMP_VER,
 			true
 		);
 
@@ -151,6 +151,7 @@ class PressForward {
 	 * Generates markup for the Submit meta box on the Nominate This interface.
 	 */
 	public function submit_meta_box() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$url              = isset( $_GET['u'] ) ? esc_url( $_GET['u'] ) : '';
 		$author_retrieved = pressforward( 'controller.metas' )->get_author_from_url( $url );
 
@@ -162,7 +163,7 @@ class PressForward {
 
 			$pf_draft_post_type_value = get_option( PF_SLUG . '_draft_post_type', 'post' );
 
-		if ( 'draft' == $publish_type ) {
+		if ( 'draft' === $publish_type ) {
 			$cap = 'edit_posts';
 		} else {
 			$cap = 'publish_posts';
@@ -183,7 +184,7 @@ class PressForward {
 					$author_value = $author_retrieved;
 				}
 				?>
-			<label for="item_author"><input type="text" id="item_author" name="item_author" value="<?php echo $author_value; ?>" /><br />&nbsp;<?php echo apply_filters( 'pf_author_nominate_this_prompt', __( 'Enter Authors', 'pf' ) ); ?></label>
+			<label for="item_author"><input type="text" id="item_author" name="item_author" value="<?php echo esc_attr( $author_value ); ?>" /><br />&nbsp;<?php echo esc_html( apply_filters( 'pf_author_nominate_this_prompt', __( 'Enter Authors', 'pf' ) ) ); ?></label>
 			</p>
 			<?php
 			do_action( 'nominate_this_sidebar_head' );
@@ -193,19 +194,20 @@ class PressForward {
 	}
 
 	public function rts_meta_box( $post, $box ) {
-		wp_enqueue_style( 'disinfo-research-topics-metabox', content_url( 'plugins/disinfo/assets/css/research-topics-metabox.css' ) );
+		wp_enqueue_style( 'disinfo-research-topics-metabox', RAMP_PLUGIN_URL . '/assets/css/research-topics-metabox.css', [], RAMP_VER );
 
 		$tax_name = 'ssrc_research_topic';
 		$taxonomy = get_taxonomy( $tax_name );
 
 		?>
-		<div id="taxonomy-<?php echo $tax_name; ?>" class="categorydiv">
-			<div id="<?php echo $tax_name; ?>-all" class="tabs-panel">
+		<div id="taxonomy-<?php echo esc_attr( $tax_name ); ?>" class="categorydiv">
+			<div id="<?php echo esc_attr( $tax_name ); ?>-all" class="tabs-panel">
 				<?php
-				$name = ( $tax_name == 'category' ) ? 'post_category' : 'tax_input[' . $tax_name . ']';
+				$name = ( 'category' === $tax_name ) ? 'post_category' : 'tax_input[' . esc_attr( $tax_name ) . ']';
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo "<input type='hidden' name='{$name}[]' value='0' />"; // Allows for an empty term set to be sent. 0 is an invalid Term ID and will be ignored by empty() checks.
 				?>
-				<ul id="<?php echo $tax_name; ?>checklist" data-wp-lists="list:<?php echo $tax_name; ?>" class="categorychecklist form-no-clear">
+				<ul id="<?php echo esc_attr( $tax_name ); ?>checklist" data-wp-lists="list:<?php echo esc_attr( $tax_name ); ?>" class="categorychecklist form-no-clear">
 					<?php
 					wp_terms_checklist(
 						$post->ID,
@@ -246,10 +248,10 @@ class PressForward {
 		<?php
 	}
 
-	function focus_tags_meta_box( $post ) {
-		wp_enqueue_script( 'disinfo-focus-tags', content_url( 'plugins/disinfo/assets/js/focus-tags.js' ), [ 'jquery', 'disinfo-select2' ] );
+	public function focus_tags_meta_box( $post ) {
+		wp_enqueue_script( 'disinfo-focus-tags', RAMP_PLUGIN_URL . '/assets/js/focus-tags.js', [ 'jquery', 'disinfo-select2' ], RAMP_VER, true );
 		wp_enqueue_style( 'disinfo-select2' );
-		wp_enqueue_style( 'disinfo-focus-tags-metabox', content_url( 'plugins/disinfo/assets/css/focus-tags-metabox.css' ) );
+		wp_enqueue_style( 'disinfo-focus-tags-metabox', RAMP_PLUGIN_URL . '/assets/css/focus-tags-metabox.css', [], RAMP_VER );
 
 		$tax_name              = 'ssrc_focus_tag';
 		$taxonomy              = get_taxonomy( $tax_name );
@@ -264,14 +266,16 @@ class PressForward {
 			]
 		);
 		?>
-	<div class="tagsdiv" id="<?php echo $tax_name; ?>">
-		<select name="tax_input[ssrc_focus_tag]" multiple id="focus-tags-select">
-			<?php foreach ( $tags as $tag ) : ?>
-				<option value="<?php echo esc_attr( $tag->term_id ); ?>"><?php echo esc_html( $tag->name ); ?></option>
-			<?php endforeach; ?>
-		</select>
-		<p class="description">Begin typing to select from a list of tags.</p>
-	</div>
+
+		<div class="tagsdiv" id="<?php echo esc_attr( $tax_name ); ?>">
+			<select name="tax_input[ssrc_focus_tag]" multiple id="focus-tags-select">
+				<?php foreach ( $tags as $tag ) : ?>
+					<option value="<?php echo esc_attr( $tag->term_id ); ?>"><?php echo esc_html( $tag->name ); ?></option>
+				<?php endforeach; ?>
+			</select>
+			<p class="description">Begin typing to select from a list of tags.</p>
+		</div>
+
 		<?php
 	}
 
