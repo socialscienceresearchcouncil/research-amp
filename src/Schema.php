@@ -26,8 +26,9 @@ class Schema {
 	}
 
 	public function register_scripts() {
-		wp_register_script( 'disinfo-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js' );
-		wp_register_style( 'disinfo-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css' );
+		// @todo Must be included in plugin.
+		wp_register_script( 'disinfo-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js', [], RAMP_VER, true );
+		wp_register_style( 'disinfo-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css', [], RAMP_VER );
 	}
 
 	public function register_post_types() {
@@ -493,7 +494,7 @@ class Schema {
 
 	public function sp_meta_box_cb( $post ) {
 		wp_enqueue_style( 'disinfo-select2' );
-		wp_enqueue_script( 'disinfo-sp-meta-box', content_url( '/plugins/disinfo/assets/js/sp-meta-box.js' ), [ 'jquery', 'disinfo-select2' ], null, true );
+		wp_enqueue_script( 'disinfo-sp-meta-box', RAMP_PLUGIN_URL . '/assets/js/sp-meta-box.js', [ 'jquery', 'disinfo-select2' ], RAMP_VER, true );
 
 		$sps = get_posts(
 			[
