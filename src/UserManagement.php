@@ -35,11 +35,24 @@ class UserManagement {
 	}
 
 	public function enqueue_assets() {
-		wp_enqueue_style( 'disinfo-login', RAMP_PLUGIN_URL . '/assets/css/login.css' );
-		wp_enqueue_script( 'disinfo-login', RAMP_PLUGIN_URL . '/assets/js/login.js', array( 'jquery' ) );
+		wp_enqueue_style(
+			'disinfo-login',
+			RAMP_PLUGIN_URL . '/assets/css/login.css',
+			[],
+			RAMP_VER
+		);
+
+		wp_enqueue_script(
+			'disinfo-login',
+			RAMP_PLUGIN_URL . '/assets/js/login.js',
+			[ 'jquery' ],
+			RAMP_VER,
+			true
+		);
 	}
 
 	public function login_message( $message ) {
+		// @todo nonce verification
 		$action = isset( $_GET['action'] ) ? $_GET['action'] : 'login';
 
 		$message = '';
@@ -62,6 +75,7 @@ class UserManagement {
 	}
 
 	public function register_form() {
+		// @todo nonce verification
 		$name = '';
 		if ( isset( $_POST['name'] ) && is_string( $_POST['name'] ) ) {
 			$name = wp_unslash( $_POST['name'] );
@@ -93,6 +107,7 @@ class UserManagement {
 	}
 
 	public function registration_errors( $errors, $user_login, $user_email ) {
+		// @todo nonce verification
 		if ( ! empty( $GLOBALS['mediawell_is_provisioned_user'] ) ) {
 			return $errors;
 		}
@@ -110,6 +125,7 @@ class UserManagement {
 
 	public function register_new_user( $user_id ) {
 		// This is handled separately for automatically-provisioned users.
+		// @todo nonce verification
 		if ( ! empty( $GLOBALS['mediawell_is_provisioned_user'] ) ) {
 			return;
 		}
@@ -145,7 +161,13 @@ class UserManagement {
 
 	public function meta_box_cb( $post ) {
 		wp_enqueue_style( 'disinfo-select2' );
-		wp_enqueue_script( 'disinfo-scholar-profile-admin', RAMP_PLUGIN_URL . 'assets/js/scholar-profile-admin.js', array( 'disinfo-select2', 'jquery' ) );
+		wp_enqueue_script(
+			'disinfo-scholar-profile-admin',
+			RAMP_PLUGIN_URL . 'assets/js/scholar-profile-admin.js',
+			[ 'disinfo-select2', 'jquery' ],
+			RAMP_VER,
+			true
+		);
 
 		$all_users = [
 			[
@@ -259,7 +281,8 @@ class UserManagement {
 				$extension  = pathinfo( $avatar_file_name, PATHINFO_EXTENSION );
 
 				$size  = getimagesize( $avatar_tmp );
-				$max_w = $max_h = null;
+				$max_w = null;
+				$max_h = null;
 				if ( $size[0] > 1000 ) {
 					$max_w = 1000;
 				} elseif ( $size[1] > 1000 ) {
