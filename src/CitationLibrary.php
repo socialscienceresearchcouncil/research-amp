@@ -1,0 +1,401 @@
+<?php
+
+namespace SSRC\Disinfo;
+
+use SSRC\Disinfo\Citation;
+use SSRC\Disinfo\Zotero\Client;
+use \WP_Query;
+
+class CitationLibrary {
+	public function init() {
+		add_action( 'save_post_ssrc_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
+		add_action( 'save_post_ssrc_restop_pt', [ $this, 'maybe_send_collection_to_zotero' ], 10, 3 );
+
+		add_action( 'disinfo_zotero_ingest_hook', [ $this, 'start_ingest' ] );
+
+		add_action( 'disinfo_zotero_sync_hook', [ $this, 'start_sync_missing' ] );
+	}
+
+	public function maybe_send_item_to_zotero( $post_id, $post, $update ) {
+		if ( 'publish' !== $post->post_status ) {
+			return;
+		}
+
+		$existing = true;
+		$citation = Citation::get_from_post_id( $post_id );
+		if ( ! $citation ) {
+			$existing = false;
+			$citation = new Citation();
+			$citation->set_post_id( $post_id );
+		}
+
+		// Get a list of existing Research Fields (Zotero Collections).
+		$collections = $citation->get_collections_for_zotero();
+
+		// Get a list of existing Focus Tags (Zotero Tags).
+		$tags = $citation->get_tags_for_zotero();
+
+		$citation->delete_cached_zotero_data();
+		$zotero_data = $citation->get_zotero_data();
+
+		$has_zotero_data = false;
+		if ( ! $zotero_data ) {
+			// This is a new item. Use Zotero Translation Server data.
+			$zotero_data = get_post_meta( $post_id, 'zt_data', true );
+			if ( ! $zotero_data ) {
+				// @todo!
+				return;
+			}
+
+			unset( $zotero_data[0]['version'] );
+			unset( $zotero_data[0]['key'] );
+			$zotero_data[0]['collections'] = $collections;
+			$zotero_data[0]['tags']        = $tags;
+		} else {
+			$has_zotero_data = true;
+
+			$zotero_data['collections'] = $collections;
+			$zotero_data['tags']        = $tags;
+
+			$zotero_data = [ $zotero_data ];
+		}
+
+		$client = new Client();
+		$data = $client->post_item( $zotero_data );
+
+		if ( ! $has_zotero_data ) {
+			$citation->set_zotero_id( $data['key'] );
+		}
+
+		delete_transient( 'zotero_recent_items' );
+
+		$citation->set_cached_zotero_data( $data );
+	}
+
+	/**
+	 * Research Fields here map to Collections in Zotero.
+	 */
+	public function maybe_send_collection_to_zotero( $post_id, $post, $update ) {
+		if ( 'publish' !== $post->post_status ) {
+			return;
+		}
+
+		$client = new Client();
+
+		$collection_id = get_post_meta( $post_id, 'zotero_collection_id', true );
+
+		// Double-check that there's not an existing collection by this name before creating.
+		if ( ! $collection_id ) {
+			$all_collections = $client->get_collections();
+			foreach ( $all_collections as $collection ) {
+				if ( $post->post_title === $collection->data->name ) {
+					$collection_id = $collection->key;
+					update_post_meta( $post_id, 'zotero_collection_id', $collection_id );
+					break;
+				}
+			}
+		}
+
+		if ( $collection_id ) {
+			$collection_data = $client->get_collection( $collection_id );
+
+			// Something has gone wrong.
+			if ( ! $collection_data ) {
+				return;
+			}
+
+			// Only update if name has changed.
+			if ( $collection_data['name'] === $post->post_title ) {
+				return;
+			}
+
+			$update_data = [
+				'name'    => $post->post_title,
+				'version' => $collection_data['version'],
+			];
+
+			// No reliable return data due to problem in Zotero.
+			$updated = $client->update_collection( $collection_id, $update_data );
+		} else {
+			$collection_data = [
+				'name'             => $post->post_title,
+				'parentCollection' => false,
+			];
+
+			$collection_id = $client->create_collection( $collection_data );
+			if ( ! $collection_id ) {
+				return;
+			}
+
+			update_post_meta( $post_id, 'zotero_collection_id', $collection_id );
+		}
+	}
+
+	public static function get_post_id_from_zotero_id( $zotero_id ) {
+		$existing = new WP_Query(
+			[
+				'post_type'      => 'ssrc_citation',
+				'post_status'    => 'publish',
+				'fields'         => 'ids',
+				'posts_per_page' => 1,
+				'meta_query'     => [
+					[
+						'key'   => 'zotero_id',
+						'value' => $zotero_id,
+					],
+				],
+			]
+		);
+
+		if ( $existing->posts ) {
+			$post_id = reset( $existing->posts );
+		} else {
+			$post_id = null;
+		}
+
+		return $post_id;
+	}
+
+	// @todo This will eventually support collection searches (Research Field filter)
+	public function get_recently_added_items() {
+		$cached = get_transient( 'zotero_recent_items' );
+		if ( false !== $cached ) {
+			return $cached;
+		}
+
+		$client    = new Client();
+		$items_raw = $client->get_items();
+
+		if ( false === $items_raw ) {
+			// This is an error.
+			return [];
+		}
+
+		// Load individual post cache and make any necessary updates based on fresh data.
+		foreach ( $items_raw as $item ) {
+			$citation_id = self::get_post_id_from_zotero_id( $item->key );
+			if ( $citation_id ) {
+				$this->update_existing_citation( $citation_id, $item );
+			} else {
+				$this->create_new_citation( $item );
+			}
+		}
+
+		$items = wp_list_pluck( $items_raw, 'data' );
+
+		// Hardcoding 1 hour. We could discuss whether there needs to be manua flush.
+		set_transient( 'zotero_recent_items', $items, 1 * HOUR_IN_SECONDS );
+
+		return $items;
+	}
+
+	public function get_recently_added_items_local( $args = [] ) {
+		$query_args = [
+			'paged'          => 1,
+			'post_type'      => 'ssrc_citation',
+			'post_status'    => 'publish',
+			'posts_per_page' => 5,
+			'fields'         => 'ids',
+			'orderby'        => 'ID',
+			'order'          => 'DESC',
+		];
+
+		$r = array_merge( $query_args, $args );
+
+		$found = new WP_Query( $r );
+
+		// Holy hack.
+		set_query_var( 'citation_has_more_pages', $found->found_posts > ( $r['paged'] * $r['posts_per_page'] ) );
+
+		$retval = [];
+		foreach ( $found->posts as $post_id ) {
+			$citation = new Citation( $post_id );
+			$retval[] = $citation->get_zotero_data();
+		}
+
+		return $retval;
+	}
+
+	// @todo Set up cron job.
+	public function ingest( $since, $update_existing = true ) {
+		$client = new Client();
+
+		$chunk_size = 100;
+		$start      = 0;
+
+		$default_args = [
+			'limit' => $chunk_size,
+			'start' => $start,
+			'sort'  => 'dateModified',
+		];
+
+		// There is a more elegant way but I'm not going to find it today.
+		$fetch_more  = false;
+		$batch_start = $start;
+		$add_queue   = [];
+		$keys_fetched = [];
+		do {
+			$fetch_more = false;
+			$query_args = $default_args;
+			$query_args['start'] = $batch_start;
+			$items = $client->get_items( $query_args );
+
+			if ( defined( 'WP_CLI' ) ) {
+				$item_count = count( $items );
+				\WP_CLI::log( 'Fetched ' . $item_count . ' from Zotero using "start" value of ' . $batch_start );
+			}
+
+			// This will happen when we reach the end of the library.
+			if ( [] === $items ) {
+				break;
+			}
+
+			foreach ( $items as $item ) {
+				$the_key = $item->key;
+
+				// Stop once we hit a single item that's older than 'since'.
+				$item_timestamp = strtotime( $item->data->dateModified );
+				if ( $item_timestamp < $since ) {
+					break 2;
+				}
+
+				$add_queue[] = $item;
+			}
+
+			$fetch_more   = true;
+			$batch_start += $chunk_size;
+		} while ( $fetch_more );
+
+		// Nothing to do.
+		if ( ! $add_queue ) {
+			return;
+		}
+
+		$existing_keys = [];
+		$create_keys   = [];
+		foreach ( $add_queue as $queued_item ) {
+			// Skip 'attachments'.
+			if ( 'attachment' === $queued_item->data->itemType ) {
+				continue;
+			}
+
+			// Avoiding doing a bulk lookup for now - may not scale with large imports.
+			$existing = self::get_post_id_from_zotero_id( $queued_item->key );
+			if ( $existing ) {
+				$existing_keys[] = $queued_item->key;
+				if ( $update_existing ) {
+					$this->update_existing_citation( $existing, $queued_item );
+				}
+			} else {
+				$create_keys[] = $queued_item->key;
+				$this->create_new_citation( $queued_item );
+			}
+		}
+
+		if ( defined( 'WP_CLI' ) ) {
+			\WP_CLI::log( 'Existing: ' . count( $existing_keys ) );
+			\WP_CLI::log( 'Created: ' . count( $create_keys ) );
+		}
+
+		if ( ! $update_existing ) {
+			wp_mail( 'boone@gorg.es', 'Completed Just Tech Zotero sync', sprintf(
+				'Existing: %s  Created: %s',
+				count( $existing_keys ),
+				count( $create_keys )
+			) );
+		}
+	}
+
+	public function start_ingest() {
+		$last_ingested = (int) get_option( 'disinfo_last_zotero_ingest', 0 );
+
+		$this->ingest( $last_ingested );
+
+		update_option( 'disinfo_last_zotero_ingest', time() );
+
+	}
+
+	public function start_sync_missing() {
+		wp_mail( 'boone@gorg.es', 'Beginning MediaWell Zotero sync', date( 'Y-m-d H:i:s' ) );
+		$this->ingest( 0, false );
+	}
+
+	protected function update_existing_citation( $citation_id, $zotero_item ) {
+		// This is probably a Zotero meta item.
+		if ( empty( $zotero_item->data->collections ) ) {
+			return false;
+		}
+
+		// Update the WP post if one of the following has changed:
+		// - title
+		// - tags
+		// - abstract
+		// - Research Field (collections)
+		$citation = Citation::get_from_post_id( $citation_id );
+
+		// If the item is changed in Zotero, trigger a change here.
+		$citation->delete_cached_zotero_data();
+
+		if ( $zotero_item->data->title !== $citation->get_title() ) {
+			$citation->set_title( $zotero_item->data->title );
+		}
+
+		if ( $zotero_item->data->abstractNote !== $citation->get_abstract() ) {
+			$citation->set_abstract( $zotero_item->data->abstractNote );
+		}
+
+		$item_collections = $citation->get_collections_for_zotero();
+		if ( $zotero_item->data->collections != $item_collections ) {
+			$citation->set_research_topics_from_collection_ids( $zotero_item->data->collections );
+		}
+
+		$item_tags = $citation->get_tags_for_zotero();
+		if ( $zotero_item->data->tags != $item_tags ) {
+			$citation->set_focus_tags_from_tags( $zotero_item->data->tags );
+		}
+	}
+
+	protected function create_new_citation( $zotero_item ) {
+		// This is probably a Zotero meta item.
+		if ( empty( $zotero_item->data->collections ) ) {
+			return false;
+		}
+
+		$post_content = ! empty( $zotero_item->data->abstractNote ) ? $zotero_item->data->abstractNote : '';
+
+		remove_action( 'save_post_ssrc_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
+		$post_data = [
+			'post_type'     => 'ssrc_citation',
+			'post_status'   => 'publish',
+			'post_date_gmt' => date( 'Y-m-d H:i:s', strtotime( $zotero_item->data->dateAdded ) ),
+			'post_title'    => $zotero_item->data->title,
+			'post_content'  => $post_content,
+		];
+
+		$post_id = wp_insert_post( $post_data );
+
+		$citation = new Citation( $post_id );
+
+		$citation->set_research_topics_from_collection_ids( $zotero_item->data->collections );
+		$citation->set_focus_tags_from_tags( $zotero_item->data->tags );
+
+		if ( isset( $zotero_item->data->creators ) && is_array( $zotero_item->data->creators ) ) {
+			foreach ( $zotero_item->data->creators as $creator ) {
+				if ( isset( $creator->firstName ) && isset( $creator->lastName ) ) {
+					$creator_name = sprintf( '%s %s', $creator->firstName, $creator->lastName );
+					add_post_meta( $post_id, 'zotero_author', $creator_name );
+				}
+			}
+		}
+
+		update_post_meta( $post_id, 'zotero_id', $zotero_item->key );
+		update_post_meta( $post_id, 'imported_from_zotero', date( 'Y-m-d H:i:s' ) );
+
+		add_action( 'save_post_ssrc_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
+
+		// Manually sync to relevanssi.
+		if ( function_exists( 'relevanssi_publish' ) ) {
+			relevanssi_publish( $post_id, true );
+		}
+	}
+}

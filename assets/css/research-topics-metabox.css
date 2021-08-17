@@ -1,0 +1,10 @@
+/* Bookmarklet on desktop should not register as a mobile device */
+@media screen and (min-width: 500px) {
+	input[type="radio"], input[type="checkbox"] {
+		height: 16px;
+		width: 16px;
+	}
+	ul.categorychecklist li {
+		margin-bottom: 5px;
+	}
+}

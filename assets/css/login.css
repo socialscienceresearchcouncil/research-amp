@@ -1,0 +1,20 @@
+#reg_passmail {
+	color: #000;
+	font-style: italic;
+	margin: 10px 0 0 0;
+	padding: 0 24px 0;
+}
+
+#backtoblog {
+	font-weight: 600;
+}
+
+#login form p.description {
+	font-style: italic;
+	margin-bottom: 24px;
+	margin-top: -10px;
+}
+
+.login form select.input {
+	font-size: 16px;
+}
