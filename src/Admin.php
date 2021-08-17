@@ -251,13 +251,18 @@ class Admin {
 			return;
 		}
 
-		$claim_email = $_POST['claim-email'] ?: '';
+		$claim_email = $_POST['claim-email'] ? wp_unslash( $_POST['claim-email'] ) : '';
 
 		update_post_meta( $post_id, 'claim_email', $claim_email );
 	}
 
 	public function versions_cb( $post ) {
-		wp_enqueue_style( 'disinfo-versions-admin', RAMP_PLUGIN_URL . '/assets/css/versions-admin.css' );
+		wp_enqueue_style(
+			'disinfo-versions-admin',
+			RAMP_PLUGIN_URL . '/assets/css/versions-admin.css',
+			[],
+			RAMP_VER
+		);
 
 		$versions = Version::get( $post->ID );
 
@@ -301,7 +306,7 @@ class Admin {
 		<label for="version-name">Name</label>
 		<input id="version-name" name="version-name" type="text" value="" />
 
-		<button type="button" onclick="document.getElementById('version-name').value = '<?php echo date( 'Ymd' ); ?>'">Use current date</button>
+		<button type="button" onclick="document.getElementById('version-name').value = '<?php echo esc_js( gmdate( 'Ymd' ) ); ?>'">Use current date</button>
 
 		<?php wp_nonce_field( 'version-name', 'version-name-nonce', false ); ?>
 
@@ -567,15 +572,15 @@ class Admin {
 
 		$featured_post = Featured\FeaturedItem::get_instance( $current_post->ID );
 
-		$label = $current_post->post_type === 'ssrc_expref_pt' ? 'Article' : 'post';
+		$label = 'ssrc_expref_pt' === $current_post->post_type ? 'Article' : 'post';
 
 		$featured_date = $featured_post->get_featured_date();
 		if ( $featured_date ) {
 			printf(
 				'<p>This %s was initially featured on %s at %s.</p>',
 				esc_html( $label ),
-				$featured_date->format( 'Y-m-d' ),
-				$featured_date->setTimeZone( new \DateTimeZone( 'America/New_York' ) )->format( 'h:ia' )
+				esc_html( $featured_date->format( 'Y-m-d' ) ),
+				esc_html( $featured_date->setTimeZone( new \DateTimeZone( 'America/New_York' ) )->format( 'h:ia' ) )
 			);
 
 			if ( $featured_post->is_currently_featured( $current_post->post_type ) ) {
@@ -595,13 +600,13 @@ class Admin {
 
 			printf(
 				'<p><a class="button" href="%s">Unfeature this %s</a></p>',
-				$featured_post->get_unfeature_link( $_SERVER['REQUEST_URI'] ),
+				esc_attr( $featured_post->get_unfeature_link( $_SERVER['REQUEST_URI'] ) ),
 				esc_html( $label )
 			);
 		} else {
 			printf(
 				'<p><a class="button" href="%s">Feature this %s</a></p>',
-				$featured_post->get_feature_link( $_SERVER['REQUEST_URI'] ),
+				esc_attr( $featured_post->get_feature_link( $_SERVER['REQUEST_URI'] ) ),
 				esc_html( $label )
 			);
 
@@ -610,15 +615,6 @@ class Admin {
 				esc_html( $label )
 			);
 		}
-
-		/*
-		$featured_posts_url = '';
-		printf(
-			'<p><a href="%s">%s</a></p>',
-			$featured_posts_url,
-			'Managed featured posts'
-		);
-		*/
 	}
 
 	public function dashboard_widget_cb() {
@@ -773,7 +769,6 @@ class Admin {
 	public function add_schprof_featured_column( $columns ) {
 		$last = array_pop( $columns );
 		return array_merge( $columns, [ 'featured' => 'Featured?' ], [ $last ] );
-		return $columns;
 	}
 
 	public function schprof_featured_column_content( $column, $post_id ) {
@@ -804,10 +799,12 @@ class Admin {
 			return;
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( 'edit.php' !== $pagenow || empty( $_GET['post_type'] ) || 'ssrc_schprof_pt' !== $_GET['post_type'] ) {
 			return;
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( empty( $_GET['is_featured'] ) || '1' !== $_GET['is_featured'] ) {
 			return;
 		}
