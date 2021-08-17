@@ -103,7 +103,7 @@ class Citation {
 			} elseif ( preg_match( '/^[0-9]{4}\/[0-9]{2}$/', $data['date'] ) ) {
 				$year = substr( $data['date'], 0, 4 );
 			} else {
-				$year = date( 'Y', strtotime( $data['date'] ) );
+				$year = gmdate( 'Y', strtotime( $data['date'] ) );
 			}
 		}
 
@@ -120,6 +120,7 @@ class Citation {
 			foreach ( $data['creators'] as $creator ) {
 				$include_in_list = true;
 
+				// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 				if ( 'bookSection' === $item_type && isset( $creator->creatorType ) && 'editor' === $creator->creatorType ) {
 					$include_in_list = false;
 				}
@@ -133,6 +134,7 @@ class Citation {
 					$creator->lastName,
 					$creator->firstName
 				);
+				// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 
 			}
 		}
