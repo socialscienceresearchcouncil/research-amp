@@ -1,6 +1,6 @@
 <?php
 
-namespace SSRC\Disinfo;
+namespace SSRC\RAMP;
 
 class ResearchTopic {
 	protected $data = [

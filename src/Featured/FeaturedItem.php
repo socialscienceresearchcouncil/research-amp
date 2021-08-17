@@ -1,6 +1,6 @@
 <?php
 
-namespace SSRC\Disinfo\Featured;
+namespace SSRC\RAMP\Featured;
 
 class FeaturedItem {
 	protected $post_id;

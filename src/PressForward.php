@@ -1,6 +1,6 @@
 <?php
 
-namespace SSRC\Disinfo;
+namespace SSRC\RAMP;
 
 class PressForward {
 	public function init() {
@@ -108,7 +108,7 @@ class PressForward {
 
 		wp_localize_script(
 			'disinfo-pressforward',
-			'DisinfoPressForward',
+			'RAMPPressForward',
 			[
 				'eventsIsActive' => defined( 'TRIBE_EVENTS_FILE' ),
 				'restBase'       => esc_url_raw( rest_url( 'disinfo/v1' ) ),

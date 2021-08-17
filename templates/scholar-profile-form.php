@@ -1,6 +1,6 @@
 <?php
 
-namespace SSRC\Disinfo;
+namespace SSRC\RAMP;
 
 // todo - frontend
 $scholar_profile_id = is_admin() ? $GLOBALS['post_ID'] : 0;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SSRC\Disinfo\Zotero;
+namespace SSRC\RAMP\Zotero;
 
 class TranslationFetcher {
 	protected $url;

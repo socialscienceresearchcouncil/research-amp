@@ -1,8 +1,8 @@
 <?php
 
-namespace SSRC\Disinfo;
+namespace SSRC\RAMP;
 
-use SSRC\Disinfo\Zotero\Client;
+use SSRC\RAMP\Zotero\Client;
 use \WP_Query;
 
 class Citation {

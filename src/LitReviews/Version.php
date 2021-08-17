@@ -1,6 +1,6 @@
 <?php
 
-namespace SSRC\Disinfo\LitReviews;
+namespace SSRC\RAMP\LitReviews;
 
 use \WP_Query;
 

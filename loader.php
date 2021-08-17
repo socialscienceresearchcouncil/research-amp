@@ -24,18 +24,18 @@ function disinfo_app() {
 	static $instance;
 
 	if ( empty( $instance ) ) {
-		$schema = new \SSRC\Disinfo\Schema();
+		$schema = new \SSRC\RAMP\Schema();
 
-		$pressforward = new \SSRC\Disinfo\PressForward();
-		$admin = new \SSRC\Disinfo\Admin( $pressforward );
+		$pressforward = new \SSRC\RAMP\PressForward();
+		$admin = new \SSRC\RAMP\Admin( $pressforward );
 
-		$api = new \SSRC\Disinfo\API();
-		$citation_library = new \SSRC\Disinfo\CitationLibrary();
-		$the_events_calendar = new \SSRC\Disinfo\TheEventsCalendar();
-		$router = new \SSRC\Disinfo\Router();
-		$user_management = new \SSRC\Disinfo\UserManagement();
+		$api = new \SSRC\RAMP\API();
+		$citation_library = new \SSRC\RAMP\CitationLibrary();
+		$the_events_calendar = new \SSRC\RAMP\TheEventsCalendar();
+		$router = new \SSRC\RAMP\Router();
+		$user_management = new \SSRC\RAMP\UserManagement();
 
-		$app = new \SSRC\Disinfo\App(
+		$app = new \SSRC\RAMP\App(
 			$schema,
 			$admin,
 			$api,

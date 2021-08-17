@@ -18,9 +18,9 @@
 
 			$.ajax( {
 				method: 'POST',
-				url: DisinfoPressForward.restBase + '/citation/',
+				url: RAMPPressForward.restBase + '/citation/',
 				beforeSend: function ( xhr ) {
-					xhr.setRequestHeader( 'X-WP-Nonce', DisinfoPressForward.restNonce );
+					xhr.setRequestHeader( 'X-WP-Nonce', RAMPPressForward.restNonce );
 				},
 				data: {
 					articleId: $clicked.data('articleId')
@@ -38,9 +38,9 @@
 
 			$.ajax( {
 				method: 'POST',
-				url: DisinfoPressForward.restBase + '/event/',
+				url: RAMPPressForward.restBase + '/event/',
 				beforeSend: function ( xhr ) {
-					xhr.setRequestHeader( 'X-WP-Nonce', DisinfoPressForward.restNonce );
+					xhr.setRequestHeader( 'X-WP-Nonce', RAMPPressForward.restNonce );
 				},
 				data: {
 					articleId: $clicked.data('articleId')
@@ -73,10 +73,10 @@
 
 		if ( itemIds.length > 0 ) {
 			$.ajax( {
-				url: DisinfoPressForward.restBase + '/nomination-status/',
+				url: RAMPPressForward.restBase + '/nomination-status/',
 				method: 'POST',
 				beforeSend: function ( xhr ) {
-					xhr.setRequestHeader( 'X-WP-Nonce', DisinfoPressForward.restNonce );
+					xhr.setRequestHeader( 'X-WP-Nonce', RAMPPressForward.restNonce );
 				},
 				data: {
 					itemIds: itemIds

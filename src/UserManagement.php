@@ -1,6 +1,6 @@
 <?php
 
-namespace SSRC\Disinfo;
+namespace SSRC\RAMP;
 
 class UserManagement {
 	protected static $categories = [
@@ -169,7 +169,7 @@ class UserManagement {
 			'selectedUserId' => $selected_user_id,
 		];
 
-		wp_localize_script( 'disinfo-scholar-profile-admin', 'DisinfoScholarProfileUsers', $data );
+		wp_localize_script( 'disinfo-scholar-profile-admin', 'RAMPScholarProfileUsers', $data );
 
 		?>
 		<label for="associated-user" class="screen-reader-text">Associated user</label>

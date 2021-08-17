@@ -1,7 +1,7 @@
 <?php
 
 spl_autoload_register( function( $class ) {
-	$prefix = 'SSRC\\Disinfo\\';
+	$prefix = 'SSRC\\RAMP\\';
 	$base_dir = __DIR__ . '/src/';
 
 	// Does the class use the namespace prefix?

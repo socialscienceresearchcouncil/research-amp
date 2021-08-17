@@ -1,6 +1,6 @@
 <?php
 
-namespace SSRC\Disinfo\Endpoints;
+namespace SSRC\RAMP\Endpoints;
 
 /**
  * Zotero Translation fetch.
@@ -10,8 +10,8 @@ use \WP_REST_Request;
 use \WP_REST_Server;
 use \WP_Error;
 
-use \SSRC\Disinfo\Zotero\TranslationFetcher;
-use \SSRC\Disinfo\Zotero\Client;
+use \SSRC\RAMP\Zotero\TranslationFetcher;
+use \SSRC\RAMP\Zotero\Client;
 
 class ZTFetch extends WP_REST_Controller {
 	public function register_routes() {

@@ -1,6 +1,6 @@
 <?php
 
-namespace SSRC\Disinfo\Endpoints;
+namespace SSRC\RAMP\Endpoints;
 
 use \WP_REST_Controller;
 use \WP_REST_Request;

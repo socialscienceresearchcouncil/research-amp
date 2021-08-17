@@ -1,9 +1,9 @@
 <?php
 
-namespace SSRC\Disinfo;
+namespace SSRC\RAMP;
 
-use SSRC\Disinfo\Citation;
-use SSRC\Disinfo\Zotero\Client;
+use SSRC\RAMP\Citation;
+use SSRC\RAMP\Zotero\Client;
 use \WP_Query;
 
 class CitationLibrary {

@@ -1,8 +1,8 @@
 <?php
 
-namespace SSRC\Disinfo;
+namespace SSRC\RAMP;
 
-use SSRC\Disinfo\LitReviews\Version;
+use SSRC\RAMP\LitReviews\Version;
 use \WP_User;
 
 class Admin {
