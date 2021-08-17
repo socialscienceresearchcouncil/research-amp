@@ -43,7 +43,7 @@ class CitationLibrary {
 			// This is a new item. Use Zotero Translation Server data.
 			$zotero_data = get_post_meta( $post_id, 'zt_data', true );
 			if ( ! $zotero_data ) {
-				// @todo!
+				// @todo Better error handling.
 				return;
 			}
 
@@ -320,7 +320,8 @@ class CitationLibrary {
 	}
 
 	public function start_sync_missing() {
-		wp_mail( 'boone@gorg.es', 'Beginning MediaWell Zotero sync', date( 'Y-m-d H:i:s' ) );
+		// @todo This must be removed
+		wp_mail( 'boone@gorg.es', 'Beginning MediaWell Zotero sync', gmdate( 'Y-m-d H:i:s' ) );
 		$this->ingest( 0, false );
 	}
 
@@ -349,12 +350,12 @@ class CitationLibrary {
 		}
 
 		$item_collections = $citation->get_collections_for_zotero();
-		if ( $zotero_item->data->collections != $item_collections ) {
+		if ( $zotero_item->data->collections !== $item_collections ) {
 			$citation->set_research_topics_from_collection_ids( $zotero_item->data->collections );
 		}
 
 		$item_tags = $citation->get_tags_for_zotero();
-		if ( $zotero_item->data->tags != $item_tags ) {
+		if ( $zotero_item->data->tags !== $item_tags ) {
 			$citation->set_focus_tags_from_tags( $zotero_item->data->tags );
 		}
 	}
@@ -371,7 +372,7 @@ class CitationLibrary {
 		$post_data = [
 			'post_type'     => 'ssrc_citation',
 			'post_status'   => 'publish',
-			'post_date_gmt' => date( 'Y-m-d H:i:s', strtotime( $zotero_item->data->dateAdded ) ),
+			'post_date_gmt' => gmdate( 'Y-m-d H:i:s', strtotime( $zotero_item->data->dateAdded ) ),
 			'post_title'    => $zotero_item->data->title,
 			'post_content'  => $post_content,
 		];
@@ -383,6 +384,7 @@ class CitationLibrary {
 		$citation->set_research_topics_from_collection_ids( $zotero_item->data->collections );
 		$citation->set_focus_tags_from_tags( $zotero_item->data->tags );
 
+		// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 		if ( isset( $zotero_item->data->creators ) && is_array( $zotero_item->data->creators ) ) {
 			foreach ( $zotero_item->data->creators as $creator ) {
 				if ( isset( $creator->firstName ) && isset( $creator->lastName ) ) {
@@ -391,9 +393,10 @@ class CitationLibrary {
 				}
 			}
 		}
+		// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 
 		update_post_meta( $post_id, 'zotero_id', $zotero_item->key );
-		update_post_meta( $post_id, 'imported_from_zotero', date( 'Y-m-d H:i:s' ) );
+		update_post_meta( $post_id, 'imported_from_zotero', gmdate( 'Y-m-d H:i:s' ) );
 
 		add_action( 'save_post_ssrc_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
 
