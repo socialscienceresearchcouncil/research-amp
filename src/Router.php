@@ -29,7 +29,7 @@ class Router {
 
 		$latest_version = array_shift( $lr_versions );
 
-		wp_redirect( get_permalink( $latest_version ) );
+		wp_safe_redirect( get_permalink( $latest_version ) );
 		die;
 	}
 }
