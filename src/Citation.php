@@ -294,6 +294,7 @@ class Citation {
 
 	public function set_focus_tags_from_tags( $tags ) {
 		// Disabling for now.
+		// phpcs:disable Squiz.PHP.NonExecutableCode.Unreachable
 		return;
 
 		$focus_tags = [];
@@ -302,5 +303,6 @@ class Citation {
 		}
 
 		wp_set_object_terms( $this->get_post_id(), $focus_tags, 'ssrc_focus_tag' );
+		// phpcs:enable Squiz.PHP.NonExecutableCode.Unreachable
 	}
 }

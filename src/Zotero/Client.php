@@ -176,15 +176,17 @@ class Client {
 			[
 				'method'  => 'PUT',
 				'headers' => $this->get_headers(),
-				'body'    => json_encode( $data ),
+				'body'    => wp_json_encode( $data ),
 			]
 		);
 
 		$response_code = wp_remote_retrieve_response_code( $result );
+
 		// There seems to be a bug in Zotero that causes a 204 to return on a successful update.
 		// So we bail here.
 		return;
 
+		// phpcs:disable Squiz.PHP.NonExecutableCode.Unreachable
 		if ( 200 !== $response_code ) {
 			return null;
 		}
@@ -197,5 +199,6 @@ class Client {
 		$success       = (array) $json->success;
 		$collection_id = reset( $success );
 		return $collection_id;
+		// phpcs:enable Squiz.PHP.NonExecutableCode.Unreachable
 	}
 }
