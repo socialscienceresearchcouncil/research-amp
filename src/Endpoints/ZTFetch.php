@@ -50,7 +50,7 @@ class ZTFetch extends WP_REST_Controller {
 
 		$z = new TranslationFetcher();
 
-		// @todo abstract
+		// @todo This must be abstracted
 		$z->set_server_url( 'https://s9jtw4iduk.execute-api.us-east-2.amazonaws.com/Prod/web' );
 
 		$translation = $z->fetch( $item_link );

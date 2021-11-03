@@ -76,6 +76,7 @@ class UserManagement {
 
 	public function register_form() {
 		// @todo nonce verification
+		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		$name = '';
 		if ( isset( $_POST['name'] ) && is_string( $_POST['name'] ) ) {
 			$name = wp_unslash( $_POST['name'] );
@@ -85,6 +86,7 @@ class UserManagement {
 		if ( isset( $_POST['user_category'] ) ) {
 			$category = wp_unslash( $_POST['user_category'] );
 		}
+		// phpcs:enable WordPress.Security.NonceVerification.Missing
 
 		?>
 
@@ -108,6 +110,7 @@ class UserManagement {
 
 	public function registration_errors( $errors, $user_login, $user_email ) {
 		// @todo nonce verification
+		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		if ( ! empty( $GLOBALS['mediawell_is_provisioned_user'] ) ) {
 			return $errors;
 		}
@@ -119,6 +122,7 @@ class UserManagement {
 		if ( empty( $_POST['user_category'] ) ) {
 			$errors->add( 'empty_category', '<strong>ERROR</strong>: You must specify a category.' );
 		}
+		// phpcs:enable WordPress.Security.NonceVerification.Missing
 
 		return $errors;
 	}
@@ -126,12 +130,14 @@ class UserManagement {
 	public function register_new_user( $user_id ) {
 		// This is handled separately for automatically-provisioned users.
 		// @todo nonce verification
+		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		if ( ! empty( $GLOBALS['mediawell_is_provisioned_user'] ) ) {
 			return;
 		}
 
 		$name     = wp_unslash( $_POST['name'] );
 		$category = wp_unslash( $_POST['user_category'] );
+		// phpcs:enable WordPress.Security.NonceVerification.Missing
 
 		$last_space = strrpos( $name, ' ' );
 		$first_name = substr( $name, 0, $last_space );
