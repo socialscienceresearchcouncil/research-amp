@@ -12,7 +12,6 @@ class UserManagement {
 	];
 
 	public function init() {
-		add_filter( 'login_message', [ $this, 'login_message' ] );
 		add_action( 'register_form', [ $this, 'register_form' ] );
 		add_action( 'login_enqueue_scripts', [ $this, 'enqueue_assets' ] );
 		add_filter( 'registration_errors', [ $this, 'registration_errors' ], 10, 3 );
@@ -49,29 +48,6 @@ class UserManagement {
 			RAMP_VER,
 			true
 		);
-	}
-
-	public function login_message( $message ) {
-		// @todo nonce verification
-		$action = isset( $_GET['action'] ) ? $_GET['action'] : 'login';
-
-		$message = '';
-
-		switch ( $action ) {
-			case 'login':
-				$message = sprintf( 'Log in using your MediaWell credentials to submit articles or to manage your profile.<br /><br />Don\'t have a MediaWell account yet? Learn more about becoming an <a href="%s">Editor-at-Large</a>, or <a href="%s">register for an account</a>.', meddem_get_involved_page_url(), add_query_arg( 'action', 'register', wp_login_url() ) );
-				break;
-
-			case 'register':
-				$message = sprintf( 'Want to become a MediaWell Editor-at-Large? Register below, or visit <a href="%s">our Get Involved page</a> for more information.<br /><br />Already have a MediaWell account? <a href="%s">Log in instead.</a>', meddem_get_involved_page_url(), wp_login_url() );
-				break;
-		}
-
-		if ( ! $message ) {
-			return $message;
-		}
-
-		return '<p class="message">' . $message . '</p>';
 	}
 
 	public function register_form() {
