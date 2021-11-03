@@ -3,7 +3,7 @@
 /*
 Plugin Name: Research Area Mapping Platform (RAMP)
 Author: Social Science Research Council
-Version: 1.0-alpha
+Version: 1.0.0-alpha
 */
 
 // Exit if accessed directly.
@@ -19,6 +19,8 @@ require __DIR__ . '/autoload.php';
 
 /**
  * Shorthand function to fetch main plugin instance.
+ *
+ * @since 1.0.0
  */
 function disinfo_app() {
 	static $instance;
