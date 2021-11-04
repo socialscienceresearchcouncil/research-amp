@@ -219,7 +219,7 @@ class Schema {
 		register_post_type(
 			'ssrc_citation',
 			[
-				'label'        => __( 'Citations',
+				'label'        => __( 'Citations', 'ramp' ),
 				'labels'       => [
 					'name'               => __( 'Citations', 'ramp' ),
 					'singular_name'      => __( 'Citation', 'ramp' ),
@@ -314,7 +314,7 @@ class Schema {
 			'ssrc_scholar_profile',
 			array_diff( $post_types, [ 'ssrc_schprof_pt' ] ),
 			[
-				'label'        => __( 'Profiles',
+				'label'        => __( 'Profiles', 'ramp' ),
 				'labels'       => [
 					'name'          => __( 'Profiles', 'ramp' ),
 					'singular_name' => __( 'Profile', 'ramp' ),
