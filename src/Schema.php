@@ -34,24 +34,24 @@ class Schema {
 	public function register_post_types() {
 		add_post_type_support( 'page', 'excerpt' );
 
-		// Field Review (formerly Lit Review)
+		// Research Review (formerly Lit Review)
 		register_post_type(
 			'ssrc_lit_review',
 			[
-				'label'             => 'Field Reviews',
+				'label'             => __( 'Research Reviews', 'ramp' ),
 				'labels'            => [
-					'name'               => 'Field Reviews',
-					'singular_name'      => 'Field Review',
-					'add_new_item'       => 'Add New Field Review',
-					'edit_item'          => 'Edit Field Review',
-					'new_item'           => 'New Field Review',
-					'view_item'          => 'View Field Review',
-					'view_items'         => 'View Field Reviews',
-					'search_items'       => 'Search Field Reviews',
-					'not_found'          => 'No Field Reviews found',
-					'not_found_in_trash' => 'No Field Reviews found in Trash',
-					'all_items'          => 'All Field Reviews',
-					'name_admin_bar'     => 'Field Reviews',
+					'name'               => __( 'Research Reviews', 'ramp' ),
+					'singular_name'      => __( 'Research Review', 'ramp' ),
+					'add_new_item'       => __( 'Add New Research Review', 'ramp' ),
+					'edit_item'          => __( 'Edit Research Review', 'ramp' ),
+					'new_item'           => __( 'New Research Review', 'ramp' ),
+					'view_item'          => __( 'View Research Review', 'ramp' ),
+					'view_items'         => __( 'View Research Reviews', 'ramp' ),
+					'search_items'       => __( 'Search Research Reviews', 'ramp' ),
+					'not_found'          => __( 'No Research Reviews found', 'ramp' ),
+					'not_found_in_trash' => __( 'No Research Reviews found in Trash', 'ramp' ),
+					'all_items'          => __( 'All Research Reviews', 'ramp' ),
+					'name_admin_bar'     => __( 'Research Reviews', 'ramp' ),
 				],
 				'public'            => true,
 				'has_archive'       => true,
@@ -66,24 +66,24 @@ class Schema {
 			]
 		);
 
-		// Field Review Versions.
+		// Research Review Versions.
 		register_post_type(
 			'ssrc_lr_version',
 			[
-				'label'             => 'Field Review Versions',
+				'label'             => __( 'Research Review Versions', 'ramp' ),
 				'labels'            => [
-					'name'               => 'Field Review Versions',
-					'singular_name'      => 'Field Review Version',
-					'add_new_item'       => 'Add New Field Review Version',
-					'edit_item'          => 'Edit Field Review Version',
-					'new_item'           => 'New Field Review Version',
-					'view_item'          => 'View Field Review Version',
-					'view_items'         => 'View Field Review Version',
-					'search_items'       => 'Search Field Review Versions',
-					'not_found'          => 'No Field Review Versions found',
-					'not_found_in_trash' => 'No Field Review Versions found in Trash',
-					'all_items'          => 'All Field Review Versions',
-					'name_admin_bar'     => 'Field Review Versions',
+					'name'               => __( 'Research Review Versions', 'ramp' ),
+					'singular_name'      => __( 'Research Review Version', 'ramp' ),
+					'add_new_item'       => __( 'Add New Research Review Version', 'ramp' ),
+					'edit_item'          => __( 'Edit Research Review Version', 'ramp' ),
+					'new_item'           => __( 'New Research Review Version', 'ramp' ),
+					'view_item'          => __( 'View Research Review Version', 'ramp' ),
+					'view_items'         => __( 'View Research Review Version', 'ramp' ),
+					'search_items'       => __( 'Search Research Review Versions', 'ramp' ),
+					'not_found'          => __( 'No Research Review Versions found', 'ramp' ),
+					'not_found_in_trash' => __( 'No Research Review Versions found in Trash', 'ramp' ),
+					'all_items'          => __( 'All Research Review Versions', 'ramp' ),
+					'name_admin_bar'     => __( 'Research Review Versions', 'ramp' ),
 				],
 				'public'            => true,
 				'show_ui'           => true,
