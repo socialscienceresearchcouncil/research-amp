@@ -19,13 +19,6 @@ class Admin {
 	}
 
 	public static function admin_page_cb() {
-		wp_enqueue_script(
-			'ramp-zotero-libraries',
-			RAMP_PLUGIN_URL . '/assets/js/zotero-libraries.js',
-			[ 'jquery', 'backbone', 'wp-api' ]
-		);
-
-		self::print_templates();
 
 		echo 'ye';
 	}

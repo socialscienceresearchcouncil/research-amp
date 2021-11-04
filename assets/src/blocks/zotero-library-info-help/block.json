@@ -1,0 +1,10 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/zotero-library-info-help",
+	"title": "Zotero Library info help",
+	"icon": "book-alt",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	}
+}
