@@ -50,6 +50,8 @@ class Admin {
 		add_filter( 'pre_get_posts', [ $this, 'schprof_featured_query' ] );
 
 		$this->pressforward->init();
+
+		Zotero\Admin::init();
 	}
 
 	public function add_meta_boxes() {
