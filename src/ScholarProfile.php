@@ -237,6 +237,7 @@ class ScholarProfile {
 				esc_attr( $url )
 			);
 		} else {
+			// @todo Need a dynamic way to define default image.
 			$url   = get_stylesheet_directory_uri() . '/assets/MediaWell-logo-white.svg';
 			$class = 'scholar-avatar-default';
 

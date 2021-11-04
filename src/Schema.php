@@ -60,7 +60,7 @@ class Schema {
 					'with_front' => false,
 				],
 				'menu_icon'         => 'dashicons-book',
-				'show_in_rest'      => false, // Disables Gutenberg.
+				'show_in_rest'      => true,
 				'show_in_nav_menus' => true,
 				'supports'          => [ 'title', 'editor', 'excerpt', 'thumbnail', 'author' ],
 			]
@@ -93,7 +93,7 @@ class Schema {
 				],
 				'has_archive'       => false,
 				'menu_icon'         => 'dashicons-book',
-				'show_in_rest'      => false, // Disables Gutenberg.
+				'show_in_rest'      => true,
 				'show_in_nav_menus' => true,
 				'supports'          => [ 'title', 'editor', 'excerpt', 'thumbnail', 'author' ],
 			]
@@ -173,7 +173,7 @@ class Schema {
 					'with_front' => false,
 				],
 				'menu_icon'         => 'dashicons-format-status',
-				'show_in_rest'      => false, // Disables Gutenberg.
+				'show_in_rest'      => true,
 				'show_in_nav_menus' => true,
 				'supports'          => [ 'title', 'editor', 'excerpt', 'page-attributes', 'thumbnail' ],
 			]
@@ -208,7 +208,7 @@ class Schema {
 					'with_front' => false,
 				],
 				'menu_icon'    => 'dashicons-welcome-learn-more',
-				'show_in_rest' => true, // Disables Gutenberg.
+				'show_in_rest' => true,
 				'supports'     => [ 'title', 'thumbnail', 'editor' ],
 			]
 		);
