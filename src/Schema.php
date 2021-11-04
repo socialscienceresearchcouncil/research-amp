@@ -147,24 +147,24 @@ class Schema {
 
 		add_image_size( 'expert-reflection-image', 565, 202, true );
 
-		// Research Fields.
+		// Research Topics.
 		register_post_type(
 			'ssrc_restop_pt',
 			[
-				'label'             => 'Research Field',
+				'label'             => __( 'Research Topics', 'ramp' ),
 				'labels'            => [
-					'name'               => 'Research Fields',
-					'singular_name'      => 'Research Field',
-					'add_new_item'       => 'Add New Research Field',
-					'edit_item'          => 'Edit Research Field',
-					'new_item'           => 'New Research Field',
-					'view_item'          => 'View Research Field',
-					'view_items'         => 'View Research Fields',
-					'search_items'       => 'Search Research Fields',
-					'not_found'          => 'No Research Fields found',
-					'not_found_in_trash' => 'No Research Fields found in Trash',
-					'all_items'          => 'All Research Fields',
-					'name_admin_bar'     => 'Research Fields',
+					'name'               => __( 'Research Topics', 'ramp' ),
+					'singular_name'      => __( 'Research Topic', 'ramp' ),
+					'add_new_item'       => __( 'Add New Research Topic', 'ramp' ),
+					'edit_item'          => __( 'Edit Research Topic', 'ramp' ),
+					'new_item'           => __( 'New Research Topic', 'ramp' ),
+					'view_item'          => __( 'View Research Topic', 'ramp' ),
+					'view_items'         => __( 'View Research Topics', 'ramp' ),
+					'search_items'       => __( 'Search Research Topics', 'ramp' ),
+					'not_found'          => __( 'No Research Topics found', 'ramp' ),
+					'not_found_in_trash' => __( 'No Research Topics found in Trash', 'ramp' ),
+					'all_items'          => __( 'All Research Topics', 'ramp' ),
+					'name_admin_bar'     => __( 'Research Topics', 'ramp' ),
 				],
 				'public'            => true,
 				'has_archive'       => 'research-fields',
