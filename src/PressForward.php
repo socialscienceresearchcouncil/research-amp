@@ -58,7 +58,7 @@ class PressForward {
 
 		add_meta_box(
 			'disinfo-nomthis-submit',
-			'Send to MediaWell',
+			__( 'Send to MediaWell', 'ramp' ),
 			array( $this, 'submit_meta_box' ),
 			'nomthis',
 			'side',
@@ -67,7 +67,7 @@ class PressForward {
 
 		add_meta_box(
 			'disinfo-nomthis-rts',
-			'Research Fields',
+			__( 'Research Fields', 'ramp' ),
 			array( $this, 'rts_meta_box' ),
 			'nomthis',
 			'side'
@@ -75,7 +75,7 @@ class PressForward {
 
 		add_meta_box(
 			'disinfo-nomthis-focus-tags',
-			'Tags',
+			__( 'Tags', 'ramp' ),
 			array( $this, 'focus_tags_meta_box' ),
 			'nomthis',
 			'side'
@@ -83,7 +83,7 @@ class PressForward {
 
 		add_meta_box(
 			'disinfo-nomthis-date',
-			'Publication Date',
+			__( 'Publication Date, 'ramp' )',
 			array( $this, 'date_meta_box' ),
 			'nomthis',
 			'side'
@@ -168,10 +168,10 @@ class PressForward {
 		} else {
 			$cap = 'publish_posts';
 		}
-			submit_button( __( 'Nominate' ), 'button button-primary', 'draft', false, array( 'id' => 'save' ) );
+			submit_button( __( 'Nominate', 'ramp' ), 'button button-primary', 'draft', false, array( 'id' => 'save' ) );
 
 		if ( current_user_can( 'edit_others_posts' ) ) {
-			submit_button( 'Send to Draft', 'secondary', 'publish', false );
+			submit_button( __( 'Send to Draft', 'ramp' ), 'secondary', 'publish', false );
 		}
 		?>
 				<span class="spinner" style="display: none;"></span>
@@ -184,7 +184,7 @@ class PressForward {
 					$author_value = $author_retrieved;
 				}
 				?>
-			<label for="item_author"><input type="text" id="item_author" name="item_author" value="<?php echo esc_attr( $author_value ); ?>" /><br />&nbsp;<?php echo esc_html( apply_filters( 'pf_author_nominate_this_prompt', __( 'Enter Authors', 'pf' ) ) ); ?></label>
+			<label for="item_author"><input type="text" id="item_author" name="item_author" value="<?php echo esc_attr( $author_value ); ?>" /><br />&nbsp;<?php echo esc_html( apply_filters( 'pf_author_nominate_this_prompt', __( 'Enter Authors', 'ramp' ) ) ); ?></label>
 			</p>
 			<?php
 			do_action( 'nominate_this_sidebar_head' );
@@ -273,7 +273,7 @@ class PressForward {
 					<option value="<?php echo esc_attr( $tag->term_id ); ?>"><?php echo esc_html( $tag->name ); ?></option>
 				<?php endforeach; ?>
 			</select>
-			<p class="description">Begin typing to select from a list of tags.</p>
+			<p class="description"><?php esc_html_e( 'Begin typing to select from a list of tags.', 'ramp' ); ?></p>
 		</div>
 
 		<?php
@@ -282,7 +282,7 @@ class PressForward {
 	public function date_meta_box( $post ) {
 		?>
 <input type="date" name="publication-date" id="publication-date" />
-<p class="description">Enter the original publication date of the article</p>
+<p class="description"><?php esc_html_e( 'Enter the original publication date of the article', 'ramp' ); ?></p>
 		<?php
 		wp_nonce_field( 'disinfo-publication-date', 'disinfo_publication_date_nonce', false );
 	}
