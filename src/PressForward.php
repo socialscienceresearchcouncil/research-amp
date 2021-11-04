@@ -65,9 +65,10 @@ class PressForward {
 			'high'
 		);
 
+		$rt_post_type = get_post_type( 'ssrc_restop_pt' );
 		add_meta_box(
 			'disinfo-nomthis-rts',
-			__( 'Research Fields', 'ramp' ),
+			$rt_post_type->labels->plural,
 			array( $this, 'rts_meta_box' ),
 			'nomthis',
 			'side'
