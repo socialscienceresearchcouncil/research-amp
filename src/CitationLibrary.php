@@ -296,18 +296,6 @@ class CitationLibrary {
 			\WP_CLI::log( 'Existing: ' . count( $existing_keys ) );
 			\WP_CLI::log( 'Created: ' . count( $create_keys ) );
 		}
-
-		if ( ! $update_existing ) {
-			wp_mail(
-				'boone@gorg.es',
-				'Completed Just Tech Zotero sync',
-				sprintf(
-					'Existing: %s  Created: %s',
-					count( $existing_keys ),
-					count( $create_keys )
-				)
-			);
-		}
 	}
 
 	public function start_ingest() {
@@ -320,8 +308,6 @@ class CitationLibrary {
 	}
 
 	public function start_sync_missing() {
-		// @todo This must be removed
-		wp_mail( 'boone@gorg.es', 'Beginning MediaWell Zotero sync', gmdate( 'Y-m-d H:i:s' ) );
 		$this->ingest( 0, false );
 	}
 

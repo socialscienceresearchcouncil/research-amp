@@ -41,5 +41,9 @@
     "lint:js": "wp-scripts lint-js 'js/*.js'",
     "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map",
     "start": "wp-scripts start assets/src/index.js assets/src/frontend.js"
+  },
+  "dependencies": {
+    "@wordpress/api-fetch": "^5.2.4",
+    "@wordpress/url": "^3.2.3"
   }
 }

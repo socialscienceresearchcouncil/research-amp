@@ -4,14 +4,30 @@ namespace SSRC\RAMP\Zotero;
 
 class Client {
 	protected $base = 'https://api.zotero.org';
-	protected $data = '';
+	protected $data = [
+		'group_id' => '',
+		'api_key'  => '',
+	];
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $group_id
+	 * @param string $apk_key
+	 */
+	public function __construct( $group_id, $api_key ) {
+		$this->data['group_id'] = $group_id;
+		$this->data['api_key']  = $api_key;
+	}
 
 	protected function get_api_key() {
-		return defined( 'RAMP_ZOTERO_API_KEY' ) ? RAMP_ZOTERO_API_KEY : '';
+		return $this->data['api_key'];
 	}
 
 	protected function get_group_id() {
-		return defined( 'RAMP_ZOTERO_GROUP_ID' ) ? RAMP_ZOTERO_GROUP_ID : '';
+		return $this->data['group_id'];
 	}
 
 	protected function get_headers() {
