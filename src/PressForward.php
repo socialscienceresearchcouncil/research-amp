@@ -83,7 +83,7 @@ class PressForward {
 
 		add_meta_box(
 			'disinfo-nomthis-date',
-			__( 'Publication Date, 'ramp' )',
+			__( 'Publication Date', 'ramp' ),
 			array( $this, 'date_meta_box' ),
 			'nomthis',
 			'side'
