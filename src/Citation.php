@@ -212,7 +212,7 @@ class Citation {
 	}
 
 	/**
-	 * Get the Zotero Collection IDs belonging to an item, based on its WP Research Fields.
+	 * Get the Zotero Collection IDs belonging to an item, based on its WP Research Topics.
 	 */
 	public function get_collections_for_zotero() {
 		$rt_map = disinfo_app()->get_cpttax_map( 'research_topic' );

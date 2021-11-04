@@ -261,12 +261,12 @@ class Schema {
 			'ssrc_research_topic',
 			array_merge( $post_types, [ 'nomination' ] ),
 			[
-				'label'        => 'Research Fields',
+				'label'        => __( 'Research Fields', 'ramp' ),
 				'labels'       => [
-					'name'          => 'Research Fields',
-					'singular_name' => 'Research Field',
-					'add_new_item'  => 'Add New Research Field',
-					'not_found'     => 'No Research Fields found',
+					'name'          => __( 'Research Fields', 'ramp' ),
+					'singular_name' => __( 'Research Field', 'ramp' ),
+					'add_new_item'  => __( 'Add New Research Field', 'ramp' ),
+					'not_found'     => __( 'No Research Fields found', 'ramp' ),
 				],
 				'hierarchical' => true,
 				'public'       => true,

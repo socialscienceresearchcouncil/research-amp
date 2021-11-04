@@ -202,9 +202,9 @@ class Admin {
 			<?php
 		} else {
 			if ( 'publish' === $post->post_status ) {
-				esc_html_e( 'There is no Zotero collection corresponding to this Research Field. Save this post and a Zotero collection should be created automatically.', 'ramp' );
+				esc_html_e( 'There is no Zotero collection corresponding to this Research Topic. Save this post and a Zotero collection should be created automatically.', 'ramp' );
 			} else {
-				esc_html_e( 'A Zotero collection will be created when you publish this Research Field.', 'ramp' );
+				esc_html_e( 'A Zotero collection will be created when you publish this Research Topic.', 'ramp' );
 			}
 		}
 	}

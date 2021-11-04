@@ -29,7 +29,7 @@ class CitationLibrary {
 			$citation->set_post_id( $post_id );
 		}
 
-		// Get a list of existing Research Fields (Zotero Collections).
+		// Get a list of existing Research Topics (Zotero Collections).
 		$collections = $citation->get_collections_for_zotero();
 
 		// Get a list of existing Focus Tags (Zotero Tags).
@@ -73,7 +73,7 @@ class CitationLibrary {
 	}
 
 	/**
-	 * Research Fields here map to Collections in Zotero.
+	 * Research Topics here map to Collections in Zotero.
 	 */
 	public function maybe_send_collection_to_zotero( $post_id, $post, $update ) {
 		if ( 'publish' !== $post->post_status ) {
@@ -156,7 +156,7 @@ class CitationLibrary {
 		return $post_id;
 	}
 
-	// @todo This will eventually support collection searches (Research Field filter)
+	// @todo This will eventually support collection searches (Research Topic filter)
 	public function get_recently_added_items() {
 		$cached = get_transient( 'zotero_recent_items' );
 		if ( false !== $cached ) {
@@ -335,7 +335,7 @@ class CitationLibrary {
 		// - title
 		// - tags
 		// - abstract
-		// - Research Field (collections)
+		// - Research Topic (collections)
 		$citation = Citation::get_from_post_id( $citation_id );
 
 		// If the item is changed in Zotero, trigger a change here.
