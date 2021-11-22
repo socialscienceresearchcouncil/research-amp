@@ -48,6 +48,42 @@ class Library {
 	}
 
 	/**
+	 * Gets next scheduled 'ingest' event timestamp.
+	 *
+	 * @return int
+	 */
+	public function get_next_scheduled_ingest_event() {
+		return wp_next_scheduled( $this->get_ingest_cron_hook_name() );
+	}
+
+	/**
+	 * Gets the 'ingest' cron hook name.
+	 *
+	 * @return string
+	 */
+	public function get_ingest_cron_hook_name() {
+		return 'ramp_ingest_zotero_library-' . $this->get_id();
+	}
+
+	/**
+	 * Gets next scheduled 'ingest full' event timestamp.
+	 *
+	 * @return int
+	 */
+	public function get_next_scheduled_ingest_full_event() {
+		return wp_next_scheduled( $this->get_ingest_full_cron_hook_name() );
+	}
+
+	/**
+	 * Gets the 'ingest full' cron hook name.
+	 *
+	 * @return string
+	 */
+	public function get_ingest_full_cron_hook_name() {
+		return 'ramp_ingest_full_zotero_library-' . $this->get_id();
+	}
+
+	/**
 	 * Sets the timestamp of the last ingest for the library.
 	 *
 	 * @param int $timestamp Optional. Defaults to time().

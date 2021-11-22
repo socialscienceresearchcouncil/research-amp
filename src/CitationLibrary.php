@@ -15,9 +15,11 @@ class CitationLibrary {
 		add_action( 'save_post_ssrc_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
 		add_action( 'save_post_ssrc_restop_pt', [ $this, 'maybe_send_collection_to_zotero' ], 10, 3 );
 
+		add_action( 'save_post_ssrc_zotero_library', [ $this, 'maybe_schedule_ingest_events' ], 10, 3 );
+
 		foreach ( $libraries as $library ) {
-			add_action( 'ramp_ingest_zotero_library-' . $library->get_id(), [ $this, 'start_ingest' ] );
-			add_action( 'ramp_ingest_full_zotero_library-' . $library->get_id(), [ $this, 'start_ingest_full' ] );
+			add_action( $library->get_ingest_cron_hook_name(), [ $this, 'start_ingest' ] );
+			add_action( $library->get_ingest_full_cron_hook_name(), [ $this, 'start_ingest_full' ] );
 		}
 	}
 
@@ -133,6 +135,35 @@ class CitationLibrary {
 			}
 
 			update_post_meta( $post_id, 'zotero_collection_id', $collection_id );
+		}
+	}
+
+	/**
+	 * Schedules 'ingest' cron events for a Zotero library, if necessary.
+	 *
+	 * @param int     $post_id
+	 * @param WP_Post $post
+	 * @param bool    $update
+	 */
+	public function maybe_schedule_ingest_events( $post_id, $post, $update ) {
+		$library = ZoteroLibrary::get_instance_from_id( $post_id );
+
+		$next_ingest = $library->get_next_scheduled_ingest_event();
+		if ( ! $next_ingest ) {
+			wp_schedule_event(
+				time(),
+				'hourly',
+				$library->get_ingest_cron_hook_name()
+			);
+		}
+
+		$next_ingest_full = $library->get_next_scheduled_ingest_full_event();
+		if ( ! $next_ingest_full ) {
+			wp_schedule_event(
+				time(),
+				'weekly',
+				$library->get_ingest_full_cron_hook_name()
+			);
 		}
 	}
 
