@@ -17,7 +17,7 @@ class CitationLibrary {
 
 		foreach ( $libraries as $library ) {
 			add_action( 'ramp_ingest_zotero_library-' . $library->get_id(), [ $this, 'start_ingest' ] );
-//			add_action( 'disinfo_zotero_sync_hook', [ $this, 'start_sync_missing' ] );
+			add_action( 'ramp_ingest_full_zotero_library-' . $library->get_id(), [ $this, 'start_ingest_full' ] );
 		}
 	}
 
@@ -230,9 +230,10 @@ class CitationLibrary {
 	 * Ingest from Zotero.
 	 *
 	 * @param SSRC\RAMP\Zotero\Library $library
-	 * @param bool                     $update_existng
+	 * @param bool                     $update_existing
+	 * @param int                      $since
 	 */
-	public function ingest( ZoteroLibrary $library, $update_existing = true ) {
+	public function ingest( ZoteroLibrary $library, $update_existing = true, $since = null ) {
 		$client = new Client( $library->get_zotero_group_id(), $library->get_zotero_api_key() );
 
 		$chunk_size = 100;
@@ -244,7 +245,9 @@ class CitationLibrary {
 			'sort'  => 'dateModified',
 		];
 
-		$since = $library->get_last_ingest_timestamp();
+		if ( null === $since ) {
+			$since = $library->get_last_ingest_timestamp();
+		}
 
 		// There is a more elegant way but I'm not going to find it today.
 		$fetch_more   = false;
@@ -315,6 +318,12 @@ class CitationLibrary {
 		}
 	}
 
+	/**
+	 * Cron callback for regular ingest.
+	 *
+	 * Run regularly, this will look for items that have been created in the Zotero library
+	 * since the last ingest event.
+	 */
 	public function start_ingest() {
 		// Identify the currently processed library based on the hook name.
 		preg_match_all( '/ramp_ingest_zotero_library-([0-9]+)/', current_action(), $matches );
@@ -330,8 +339,23 @@ class CitationLibrary {
 		$library->set_last_ingest_timestamp();
 	}
 
-	public function start_sync_missing() {
-		$this->ingest( 0, false );
+	/**
+	 * Cron callback for "full" ingest.
+	 *
+	 * The purpose of this occasional routine is to find missing items through the entire Zotero
+	 * library. It will not update existing items.
+	 */
+	public function start_ingest_full() {
+		// Identify the currently processed library based on the hook name.
+		preg_match_all( '/ramp_ingest_full_zotero_library-([0-9]+)/', current_action(), $matches );
+		if ( empty( $matches[1] ) ) {
+			return;
+		}
+
+		$library_id = (int) $matches[1][0];
+		$library    = ZoteroLibrary::get_instance_from_id( $library_id );
+
+		$this->ingest( $library, false, 0 );
 	}
 
 	protected function update_existing_citation( $citation_id, $zotero_item, $zotero_group_id ) {
