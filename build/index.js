@@ -202,21 +202,21 @@ function ZoteroLibraryInfo(_ref) {
     apiKey,
     groupId,
     groupUrl,
+    libraryInfo,
     postId
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
     const {
-      // @todo
-      next_ingest_run,
-      next_sync_run,
       zotero_api_key,
       zotero_group_id,
       zotero_group_url
     } = select('core/editor').getEditedPostAttribute('meta');
     const postId = select('core/editor').getCurrentPostId();
+    const libraryInfo = select('ramp').getLibraryInfo(postId);
     return {
       apiKey: zotero_api_key,
       groupId: zotero_group_id,
       groupUrl: zotero_group_url,
+      libraryInfo,
       postId
     };
   }, []);
@@ -256,6 +256,12 @@ function ZoteroLibraryInfo(_ref) {
     });
   };
 
+  let nextIngest;
+
+  if (libraryInfo) {
+    nextIngest = libraryInfo.nextIngest;
+  }
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_edit_post__WEBPACK_IMPORTED_MODULE_3__.PluginDocumentSettingPanel, {
     name: "ramp-zotero-library-info",
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Library Settings', 'ramp')
@@ -271,11 +277,104 @@ function ZoteroLibraryInfo(_ref) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('API Key', 'ramp'),
     value: apiKey,
     onChange: value => setApiKey(value)
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+  }), nextIngest, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
     variant: "primary",
     onClick: triggerIngest
   }, "Trigger Zotero sync"));
 }
+
+/***/ }),
+
+/***/ "./assets/src/store.js":
+/*!*****************************!*\
+  !*** ./assets/src/store.js ***!
+  \*****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "STORE_NAME": function() { return /* binding */ STORE_NAME; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const DEFAULT_STATE = {
+  libraries: {}
+};
+const STORE_NAME = 'ramp';
+const actions = {
+  fetchFromAPI(path) {
+    return {
+      type: 'FETCH_FROM_API',
+      path
+    };
+  },
+
+  setLibraryInfo(libraryId, libraryInfo) {
+    return {
+      type: 'SET_LIBRARY_INFO',
+      libraryId,
+      libraryInfo
+    };
+  }
+
+};
+
+const reducer = function () {
+  let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  let action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case 'SET_LIBRARY_INFO':
+      return { ...state,
+        libraries: { ...state.libraries,
+          [action.libraryId]: action.libraryInfo
+        }
+      };
+
+    default:
+      return state;
+  }
+};
+
+const controls = {
+  FETCH_FROM_API(action) {
+    return _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
+      path: action.path
+    });
+  }
+
+};
+const selectors = {
+  getLibraryInfo(state, libraryId) {
+    const {
+      libraries
+    } = state;
+    const libraryInfo = libraries[libraryId];
+    return libraryInfo;
+  }
+
+};
+const resolvers = {
+  *getLibraryInfo(libraryId) {
+    const path = '/ramp/v1/zotero-library/' + libraryId;
+    const libraryInfo = yield actions.fetchFromAPI(path);
+    return actions.setLibraryInfo(libraryId, libraryInfo);
+  }
+
+};
+const storeConfig = {
+  actions,
+  reducer,
+  controls,
+  selectors,
+  resolvers
+};
+(0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.registerStore)(STORE_NAME, storeConfig);
+
 
 /***/ }),
 
@@ -486,13 +585,19 @@ var __webpack_exports__ = {};
   !*** ./assets/src/index.js ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _blocks_zotero_library_info_help__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blocks/zotero-library-info-help */ "./assets/src/blocks/zotero-library-info-help/index.js");
-/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
-/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/ZoteroLibraryInfo */ "./assets/src/components/ZoteroLibraryInfo.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./assets/src/store.js");
+/* harmony import */ var _blocks_zotero_library_info_help__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/zotero-library-info-help */ "./assets/src/blocks/zotero-library-info-help/index.js");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ZoteroLibraryInfo */ "./assets/src/components/ZoteroLibraryInfo.js");
+/**
+ * Set up store
+ */
+
 /**
  * Import blocks
  */
+
 
 /**
  * Components
@@ -500,9 +605,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__.registerPlugin)('zotero-library-info', {
+(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_2__.registerPlugin)('zotero-library-info', {
   icon: 'book-alt',
-  render: _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_2__["default"]
+  render: _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 }();
 /******/ })()

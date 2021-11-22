@@ -18,12 +18,8 @@ export default function ZoteroLibraryInfo( {
 		return null;
 	}
 
-	const { apiKey, groupId, groupUrl, postId } = useSelect( (select ) => {
+	const { apiKey, groupId, groupUrl, libraryInfo, postId } = useSelect( ( select ) => {
 		const {
-			// @todo
-			next_ingest_run,
-			next_sync_run,
-
 			zotero_api_key,
 			zotero_group_id,
 			zotero_group_url
@@ -31,10 +27,13 @@ export default function ZoteroLibraryInfo( {
 
 		const postId = select( 'core/editor' ).getCurrentPostId()
 
+		const libraryInfo = select( 'ramp' ).getLibraryInfo( postId )
+
 		return {
 			apiKey: zotero_api_key,
 			groupId: zotero_group_id,
 			groupUrl: zotero_group_url,
+			libraryInfo,
 			postId
 		}
 	}, [] )
@@ -74,6 +73,11 @@ export default function ZoteroLibraryInfo( {
 		} )
 	}
 
+	let nextIngest
+	if ( libraryInfo ) {
+		nextIngest = libraryInfo.nextIngest
+	}
+
 	return (
 		<PluginDocumentSettingPanel
 			name="ramp-zotero-library-info"
@@ -97,6 +101,8 @@ export default function ZoteroLibraryInfo( {
 				value={ apiKey }
 				onChange={ (value) => setApiKey( value ) }
 			/>
+
+			{nextIngest}
 
 			<Button
 				variant="primary"

@@ -1,4 +1,9 @@
 /**
+ * Set up store
+ */
+import './store'
+
+/**
  * Import blocks
  */
 import './blocks/zotero-library-info-help'
