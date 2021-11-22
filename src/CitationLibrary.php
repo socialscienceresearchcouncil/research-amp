@@ -4,16 +4,21 @@ namespace SSRC\RAMP;
 
 use SSRC\RAMP\Citation;
 use SSRC\RAMP\Zotero\Client;
+use SSRC\RAMP\Zotero\Library as ZoteroLibrary;
+
 use \WP_Query;
 
 class CitationLibrary {
 	public function init() {
+		$libraries = ZoteroLibrary::get_libraries();
+
 		add_action( 'save_post_ssrc_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
 		add_action( 'save_post_ssrc_restop_pt', [ $this, 'maybe_send_collection_to_zotero' ], 10, 3 );
 
-		add_action( 'disinfo_zotero_ingest_hook', [ $this, 'start_ingest' ] );
-
-		add_action( 'disinfo_zotero_sync_hook', [ $this, 'start_sync_missing' ] );
+		foreach ( $libraries as $library ) {
+			add_action( 'ramp_ingest_zotero_library-' . $library->get_id(), [ $this, 'start_ingest' ] );
+//			add_action( 'disinfo_zotero_sync_hook', [ $this, 'start_sync_missing' ] );
+		}
 	}
 
 	public function maybe_send_item_to_zotero( $post_id, $post, $update ) {
@@ -131,7 +136,7 @@ class CitationLibrary {
 		}
 	}
 
-	public static function get_post_id_from_zotero_id( $zotero_id ) {
+	public static function get_post_id_from_zotero_id( $zotero_id, $zotero_group_id ) {
 		$existing = new WP_Query(
 			[
 				'post_type'      => 'ssrc_citation',
@@ -142,6 +147,10 @@ class CitationLibrary {
 					[
 						'key'   => 'zotero_id',
 						'value' => $zotero_id,
+					],
+					[
+						'key'   => 'zotero_group_id',
+						'value' => $zotero_group_id,
 					],
 				],
 			]
@@ -217,8 +226,14 @@ class CitationLibrary {
 	}
 
 	// @todo Set up cron job.
-	public function ingest( $since, $update_existing = true ) {
-		$client = new Client();
+	/**
+	 * Ingest from Zotero.
+	 *
+	 * @param SSRC\RAMP\Zotero\Library $library
+	 * @param bool                     $update_existng
+	 */
+	public function ingest( ZoteroLibrary $library, $update_existing = true ) {
+		$client = new Client( $library->get_zotero_group_id(), $library->get_zotero_api_key() );
 
 		$chunk_size = 100;
 		$start      = 0;
@@ -228,6 +243,8 @@ class CitationLibrary {
 			'start' => $start,
 			'sort'  => 'dateModified',
 		];
+
+		$since = $library->get_last_ingest_timestamp();
 
 		// There is a more elegant way but I'm not going to find it today.
 		$fetch_more   = false;
@@ -280,15 +297,15 @@ class CitationLibrary {
 			}
 
 			// Avoiding doing a bulk lookup for now - may not scale with large imports.
-			$existing = self::get_post_id_from_zotero_id( $queued_item->key );
+			$existing = self::get_post_id_from_zotero_id( $queued_item->key, $library->get_zotero_group_id() );
 			if ( $existing ) {
 				$existing_keys[] = $queued_item->key;
 				if ( $update_existing ) {
-					$this->update_existing_citation( $existing, $queued_item );
+					$this->update_existing_citation( $existing, $queued_item, $library->get_zotero_group_id() );
 				}
 			} else {
 				$create_keys[] = $queued_item->key;
-				$this->create_new_citation( $queued_item );
+				$this->create_new_citation( $queued_item, $library->get_zotero_group_id() );
 			}
 		}
 
@@ -299,19 +316,25 @@ class CitationLibrary {
 	}
 
 	public function start_ingest() {
-		$last_ingested = (int) get_option( 'disinfo_last_zotero_ingest', 0 );
+		// Identify the currently processed library based on the hook name.
+		preg_match_all( '/ramp_ingest_zotero_library-([0-9]+)/', current_action(), $matches );
+		if ( empty( $matches[1] ) ) {
+			return;
+		}
 
-		$this->ingest( $last_ingested );
+		$library_id = (int) $matches[1][0];
+		$library    = ZoteroLibrary::get_instance_from_id( $library_id );
 
-		update_option( 'disinfo_last_zotero_ingest', time() );
+		$this->ingest( $library );
 
+		$library->set_last_ingest_timestamp();
 	}
 
 	public function start_sync_missing() {
 		$this->ingest( 0, false );
 	}
 
-	protected function update_existing_citation( $citation_id, $zotero_item ) {
+	protected function update_existing_citation( $citation_id, $zotero_item, $zotero_group_id ) {
 		// This is probably a Zotero meta item.
 		if ( empty( $zotero_item->data->collections ) ) {
 			return false;
@@ -344,9 +367,11 @@ class CitationLibrary {
 		if ( $zotero_item->data->tags !== $item_tags ) {
 			$citation->set_focus_tags_from_tags( $zotero_item->data->tags );
 		}
+
+		$citation->set_zotero_group_id( $zotero_library_id );
 	}
 
-	protected function create_new_citation( $zotero_item ) {
+	protected function create_new_citation( $zotero_item, $zotero_group_id ) {
 		// This is probably a Zotero meta item.
 		if ( empty( $zotero_item->data->collections ) ) {
 			return false;
@@ -369,6 +394,7 @@ class CitationLibrary {
 
 		$citation->set_research_topics_from_collection_ids( $zotero_item->data->collections );
 		$citation->set_focus_tags_from_tags( $zotero_item->data->tags );
+		$citation->set_zotero_group_id( $zotero_group_id );
 
 		// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 		if ( isset( $zotero_item->data->creators ) && is_array( $zotero_item->data->creators ) ) {

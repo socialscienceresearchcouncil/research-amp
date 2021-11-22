@@ -305,4 +305,13 @@ class Citation {
 		wp_set_object_terms( $this->get_post_id(), $focus_tags, 'ssrc_focus_tag' );
 		// phpcs:enable Squiz.PHP.NonExecutableCode.Unreachable
 	}
+
+	/**
+	 * Sets the Zotero group ID for an item.
+	 *
+	 * @param string $zotero_group_id
+	 */
+	public function set_zotero_group_id( $zotero_group_id ) {
+		update_post_meta( $this->get_post_id(), 'zotero_group_id', $zotero_group_id );
+	}
 }
