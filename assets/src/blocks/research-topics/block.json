@@ -1,0 +1,11 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/research-topics",
+	"title": "Research Topics",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"attributes": {}
+}

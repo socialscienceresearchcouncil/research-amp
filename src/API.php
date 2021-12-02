@@ -10,7 +10,7 @@ class API {
 	}
 
 	public function register_endpoints() {
-		$class_names = [ 'Citation', 'Event', 'NominationStatus', 'ZoteroLibrary', 'ZTFetch' ];
+		$class_names = [ 'BlockMarkup', 'Citation', 'Event', 'NominationStatus', 'ZoteroLibrary', 'ZTFetch' ];
 
 		foreach ( $class_names as $class_name ) {
 			$class_name_with_namespace      = '\SSRC\RAMP\Endpoints\\' . $class_name;

@@ -6,6 +6,7 @@ import './store'
 /**
  * Import blocks
  */
+import './blocks/research-topics'
 import './blocks/zotero-library-info-help'
 
 /**
