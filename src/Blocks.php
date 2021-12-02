@@ -2,6 +2,8 @@
 
 namespace SSRC\RAMP;
 
+use SSRC\RAMP\App;
+
 class Blocks {
 	/**
 	 * Initialize Blocks for RAMP.
@@ -13,6 +15,8 @@ class Blocks {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_block_assets_frontend' ] );
 
 		add_filter( 'block_categories_all', [ $this, 'register_block_category' ], 10, 2 );
+
+		add_action( 'init', [ $this, 'register_server_side_rendered_blocks' ] );
 	}
 
 	/**
@@ -90,5 +94,32 @@ class Blocks {
 				],
 			]
 		);
+	}
+
+	public function register_server_side_rendered_blocks() {
+		register_block_type_from_metadata(
+			RAMP_PLUGIN_DIR . '/assets/src/blocks/research-topics/block.json',
+			[
+				'render_callback' => [ $this, 'render_block_research_topics' ]
+			]
+		);
+	}
+
+	public function render_block_research_topics() {
+		return self::get_block_markup( 'research-topics' );
+	}
+
+	public static function get_block_markup( $block_type, $args = [] ) {
+		// @todo sanitize!
+		$template = App::locate_template( 'blocks/' . $block_type . '.php' );
+
+		ob_start();
+		include $template;
+
+		$contents = ob_get_contents();
+
+		ob_end_clean();
+
+		return $contents;
 	}
 }

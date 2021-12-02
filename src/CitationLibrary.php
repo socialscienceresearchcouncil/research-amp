@@ -87,6 +87,8 @@ class CitationLibrary {
 			return;
 		}
 
+		return;
+
 		$client = new Client();
 
 		$collection_id = get_post_meta( $post_id, 'zotero_collection_id', true );
