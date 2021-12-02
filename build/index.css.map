@@ -1,0 +1,1 @@
+{"version":3,"file":"index.css","mappings":";;;AAAA;EACC;AACD,C","sources":["webpack://RAMP/./assets/src/blocks/zotero-library-info-help/editor.scss"],"sourcesContent":[".ramp-zotero-library-info-help {\n\topacity: .7;\n}\n"],"names":[],"sourceRoot":""}

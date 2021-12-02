@@ -68,7 +68,7 @@ class PressForward {
 		$rt_post_type = get_post_type( 'ssrc_restop_pt' );
 		add_meta_box(
 			'disinfo-nomthis-rts',
-			$rt_post_type->labels->name,
+			__( 'Research Fields', 'ramp' ),
 			array( $this, 'rts_meta_box' ),
 			'nomthis',
 			'side'

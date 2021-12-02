@@ -10,6 +10,7 @@ class App {
 	protected $the_events_calendar;
 	protected $router;
 	protected $user_management;
+	protected $blocks;
 
 	public function __construct(
 		Schema $schema,
@@ -18,7 +19,8 @@ class App {
 		CitationLibrary $citation_library,
 		TheEventsCalendar $the_events_calendar,
 		Router $router,
-		UserManagement $user_management
+		UserManagement $user_management,
+		Blocks $blocks
 	) {
 		$this->schema              = $schema;
 		$this->admin               = $admin;
@@ -27,6 +29,7 @@ class App {
 		$this->the_events_calendar = $the_events_calendar;
 		$this->router              = $router;
 		$this->user_management     = $user_management;
+		$this->blocks              = $blocks;
 	}
 
 	public function init() {
@@ -36,6 +39,7 @@ class App {
 		$this->the_events_calendar->init();
 		$this->router->init();
 		$this->user_management->init();
+		$this->blocks->init();
 
 		if ( is_admin() ) {
 			$this->admin->init();

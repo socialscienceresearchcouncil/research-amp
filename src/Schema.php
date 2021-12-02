@@ -247,6 +247,73 @@ class Schema {
 				'supports'     => [ 'title', 'editor' ],
 			]
 		);
+
+		// Zotero libraries.
+		register_post_type(
+			'ssrc_zotero_library',
+			[
+				'label'        => __( 'Zotero Libraries', 'ramp' ),
+				'labels'       => [
+					'name'               => __( 'Zotero Libraries', 'ramp' ),
+					'singular_name'      => __( 'Zotero Library', 'ramp' ),
+					'add_new_item'       => __( 'Add New Zotero Library', 'ramp' ),
+					'edit_item'          => __( 'Edit Zotero Library', 'ramp' ),
+					'new_item'           => __( 'New Zotero Library', 'ramp' ),
+					'view_item'          => __( 'View Zotero Library', 'ramp' ),
+					'view_items'         => __( 'View Zotero Library', 'ramp' ),
+					'search_items'       => __( 'Search Zotero Libraries', 'ramp' ),
+					'not_found'          => __( 'No Zotero Libraries found', 'ramp' ),
+					'not_found_in_trash' => __( 'No Zotero Libraries found in Trash', 'ramp' ),
+					'all_items'          => __( 'All Zotero Libraries', 'ramp' ),
+					'name_admin_bar'     => __( 'Zotero Libraries', 'ramp' ),
+				],
+				'public'       => false,
+				'has_archive'  => false,
+				'show_ui'      => true,
+				'menu_icon'    => 'dashicons-book-alt',
+				'show_in_rest' => true,
+				'rest_base'    => 'zotero-library',
+				'supports'     => [ 'title', 'editor', 'custom-fields' ],
+				'template'     => [ [ 'ramp/zotero-library-info-help' ] ],
+				'template_lock' => 'all',
+			]
+		);
+
+		register_meta(
+			'post',
+			'zotero_group_id',
+			[
+				'object_subtype' => 'ssrc_zotero_library',
+				'type'           => 'string',
+				'single'         => true,
+				'show_in_rest'   => true,
+				'description'    => __( 'Zotero Group ID', 'ramp' ),
+			]
+		);
+
+		register_meta(
+			'post',
+			'zotero_group_url',
+			[
+				'object_subtype' => 'ssrc_zotero_library',
+				'type'           => 'string',
+				'single'         => true,
+				'show_in_rest'   => true,
+				'description'    => __( 'Zotero Group URL', 'ramp' ),
+			]
+		);
+
+		register_meta(
+			'post',
+			'zotero_api_key',
+			[
+				'object_subtype' => 'ssrc_zotero_library',
+				'type'           => 'string',
+				'single'         => true,
+				'show_in_rest'   => true,
+				'description'    => __( 'Zotero API Key', 'ramp' ),
+			]
+		);
 	}
 
 	public function register_taxonomies() {
