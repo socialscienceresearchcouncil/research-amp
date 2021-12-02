@@ -3,13 +3,8 @@
 namespace SSRC\RAMP;
 
 class UserManagement {
-	protected static $categories = [
-		'scholar'      => 'Scholar/Researcher',
-		'journalist'   => 'Journalist',
-		'practitioner' => 'Policy or Tech Practitioner',
-		'funder'       => 'Funder',
-		'citizen'      => 'Interested Citizen',
-	];
+	// @todo Does this remain?
+	protected static $categories;
 
 	public function init() {
 		add_action( 'register_form', [ $this, 'register_form' ] );
@@ -27,6 +22,14 @@ class UserManagement {
 
 		// Front-end save
 		add_action( 'template_redirect', [ $this, 'maybe_save' ] );
+
+		self::$categories = [
+			'scholar'      => __( 'Scholar/Researcher', 'ramp' ),
+			'journalist'   => __( 'Journalist', 'ramp' ),
+			'practitioner' => __( 'Policy or Tech Practitioner', 'ramp' ),
+			'funder'       => __( 'Funder', 'ramp' ),
+			'citizen'      => __( 'Interested Citizen', 'ramp' ),
+		];
 	}
 
 	public static function get_categories() {

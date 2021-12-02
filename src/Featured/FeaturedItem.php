@@ -21,6 +21,7 @@ class FeaturedItem {
 				'meta_key'                  => 'disinfo_featured_timestamp',
 				'orderby'                   => [ 'meta_value_num' => 'DESC' ],
 				'posts_per_page'            => 5, // Hardcoded for the time being.
+				// @todo This can be removed when no longer using parent theme.
 				'md_bone_duplicate_disable' => 'adp_disable',
 			]
 		);
