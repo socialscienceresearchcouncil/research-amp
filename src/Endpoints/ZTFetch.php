@@ -43,7 +43,7 @@ class ZTFetch extends WP_REST_Controller {
 
 		$citation = get_post( $citation_id );
 		if ( ! $citation || 'ssrc_citation' !== $citation->post_type ) {
-			return new WP_Error( 'citation_not_found', 'No citation found by that ID', 500 );
+			return new WP_Error( 'citation_not_found', __( 'No citation found by that ID', 'ramp' ), 500 );
 		}
 
 		$item_link = pressforward( 'controller.metas' )->get_post_pf_meta( $citation_id, 'item_link', true );
