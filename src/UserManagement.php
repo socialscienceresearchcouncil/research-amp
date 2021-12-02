@@ -70,14 +70,14 @@ class UserManagement {
 		?>
 
 		<p>
-			<label for="name">Name<br />
+			<label for="name"><?php esc_html_e( 'Name', 'ramp' ); ?><br />
 			<input type="text" name="name" id="name" class="input" required value="<?php echo esc_attr( $name ); ?>" size="25" /></label>
 		</p>
 
 		<p>
-			<label for="user_category">Which category best describes you?<br />
+			<label for="user_category"><?php esc_html_e( 'Which category best describes you?', 'ramp' ); ?><br />
 			<select name="user_category" id="user_category" class="input user-category" required>
-				<option value="" disabled <?php selected( ! $category ); ?>>Please select</option>
+				<option value="" disabled <?php selected( ! $category ); ?>><?php esc_html_e( 'Please select', 'ramp' ); ?></option>
 
 				<?php foreach ( self::get_categories() as $value => $label ) : ?>
 					<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $category, $value ); ?>><?php echo esc_html( $label ); ?></option>
@@ -95,11 +95,11 @@ class UserManagement {
 		}
 
 		if ( empty( $_POST['name'] ) ) {
-			$errors->add( 'empty_name', '<strong>ERROR</strong>: You must provide a name.' );
+			$errors->add( 'empty_name', __( '<strong>ERROR</strong>: You must provide a name.', 'ramp' ) );
 		}
 
 		if ( empty( $_POST['user_category'] ) ) {
-			$errors->add( 'empty_category', '<strong>ERROR</strong>: You must specify a category.' );
+			$errors->add( 'empty_category', __( '<strong>ERROR</strong>: You must specify a category.', 'ramp' ) );
 		}
 		// phpcs:enable WordPress.Security.NonceVerification.Missing
 
@@ -137,7 +137,7 @@ class UserManagement {
 	public function add_meta_boxes() {
 		add_meta_box(
 			'associated-account',
-			'Associated Account',
+			__( 'Associated Account', 'ramp' ),
 			[ $this, 'meta_box_cb' ],
 			'ssrc_schprof_pt',
 			'side'
@@ -179,9 +179,9 @@ class UserManagement {
 		wp_localize_script( 'disinfo-scholar-profile-admin', 'RAMPScholarProfileUsers', $data );
 
 		?>
-		<label for="associated-user" class="screen-reader-text">Associated user</label>
+		<label for="associated-user" class="screen-reader-text"><?php esc_html_e( 'Associated user', 'ramp' ); ?></label>
 		<select id="associated-user" name="associated-user"></select>
-		<p class="description">Select the WordPress user account associated with this Profile.</p>
+		<p class="description"><?php esc_html_e( 'Select the WordPress user account associated with this Profile.', 'ramp' ); ?></p>
 		<?php wp_nonce_field( 'disinfo-associated-user', 'disinfo-associated-user-nonce' ); ?>
 		<?php
 	}
@@ -311,7 +311,7 @@ class UserManagement {
 
 		?>
 		<table class="form-table">
-			<th scope="row">Audience type</th>
+			<th scope="row"><?php esc_html_e( 'Audience type', 'ramp' ); ?></th>
 			<td><?php echo esc_html( $category_label ); ?></td>
 		</table>
 
