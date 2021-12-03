@@ -3,6 +3,7 @@
 	"name": "ramp/zotero-library-info-help",
 	"title": "Zotero Library info help",
 	"icon": "book-alt",
+	"style": "file:../../../../build/index.css",
 	"category": "ramp",
 	"supports": {
 		"anchor": true

@@ -44,19 +44,11 @@ class App {
 		if ( is_admin() ) {
 			$this->admin->init();
 		}
+
+		require RAMP_PLUGIN_DIR . '/inc/functions.php';
 	}
 
 	public function get_cpttax_map( $key ) {
 		return $this->schema->get_cpttax_map( $key );
-	}
-
-	public static function locate_template( $part ) {
-		$located = locate_template( $part );
-
-		if ( ! $located ) {
-			$located = RAMP_PLUGIN_DIR . '/templates/' . $part;
-		}
-
-		return $located;
 	}
 }

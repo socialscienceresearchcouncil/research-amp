@@ -43,13 +43,6 @@ class Blocks {
 			$blocks_asset_file['dependencies'],
 			$blocks_asset_file['version']
 		);
-
-		wp_enqueue_style(
-			'ramp-blocks',
-			RAMP_PLUGIN_URL . '/build/index.css',
-			[],
-			$blocks_asset_file['version']
-		);
 	}
 
 	/**
@@ -110,14 +103,9 @@ class Blocks {
 	}
 
 	public static function get_block_markup( $block_type, $args = [] ) {
-		// @todo sanitize!
-		$template = App::locate_template( 'blocks/' . $block_type . '.php' );
-
 		ob_start();
-		include $template;
-
+		ramp_get_template_part( 'blocks/' . $block_type, $args );
 		$contents = ob_get_contents();
-
 		ob_end_clean();
 
 		return $contents;
