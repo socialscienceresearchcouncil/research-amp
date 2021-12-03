@@ -60,13 +60,13 @@ class Blocks {
 				'wp-block-editor'
 			)
 		);
+
 		wp_enqueue_style(
 			'ramp-blocks',
 			RAMP_PLUGIN_URL . '/build/frontend.css',
 			[],
 			$blocks_asset_file['version']
 		);
-
 	}
 
 	/**
