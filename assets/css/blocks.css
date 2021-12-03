@@ -1,0 +1,15 @@
+/** Lists */
+.item-type-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.item-type-list-flex {
+	display: flex;
+	gap: 28px;
+}
+
+.item-type-list-flex > li {
+	flex: 1 0 0;
+}
