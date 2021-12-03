@@ -252,8 +252,8 @@ class Schema {
 		register_post_type(
 			'ssrc_zotero_library',
 			[
-				'label'        => __( 'Zotero Libraries', 'ramp' ),
-				'labels'       => [
+				'label'         => __( 'Zotero Libraries', 'ramp' ),
+				'labels'        => [
 					'name'               => __( 'Zotero Libraries', 'ramp' ),
 					'singular_name'      => __( 'Zotero Library', 'ramp' ),
 					'add_new_item'       => __( 'Add New Zotero Library', 'ramp' ),
@@ -267,14 +267,14 @@ class Schema {
 					'all_items'          => __( 'All Zotero Libraries', 'ramp' ),
 					'name_admin_bar'     => __( 'Zotero Libraries', 'ramp' ),
 				],
-				'public'       => false,
-				'has_archive'  => false,
-				'show_ui'      => true,
-				'menu_icon'    => 'dashicons-book-alt',
-				'show_in_rest' => true,
-				'rest_base'    => 'zotero-library',
-				'supports'     => [ 'title', 'editor', 'custom-fields' ],
-				'template'     => [ [ 'ramp/zotero-library-info-help' ] ],
+				'public'        => false,
+				'has_archive'   => false,
+				'show_ui'       => true,
+				'menu_icon'     => 'dashicons-book-alt',
+				'show_in_rest'  => true,
+				'rest_base'     => 'zotero-library',
+				'supports'      => [ 'title', 'editor', 'custom-fields' ],
+				'template'      => [ [ 'ramp/zotero-library-info-help' ] ],
 				'template_lock' => 'all',
 			]
 		);

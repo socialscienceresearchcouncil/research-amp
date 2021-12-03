@@ -32,7 +32,7 @@ class Blocks {
 		$blocks_asset_file['dependencies'] = array_replace(
 			$blocks_asset_file['dependencies'],
 			array_fill_keys(
-				array_keys( $blocks_asset_file['dependencies'], 'wp-blockEditor' ),
+				array_keys( $blocks_asset_file['dependencies'], 'wp-blockEditor', true ),
 				'wp-block-editor'
 			)
 		);
@@ -41,7 +41,8 @@ class Blocks {
 			'ramp-blocks',
 			RAMP_PLUGIN_URL . '/build/index.js',
 			$blocks_asset_file['dependencies'],
-			$blocks_asset_file['version']
+			$blocks_asset_file['version'],
+			true
 		);
 	}
 
@@ -49,14 +50,14 @@ class Blocks {
 	 * Enqueues assets on the front end.
 	 */
 	public function enqueue_block_assets_frontend() {
-		$blocks_dir = RAMP_PLUGIN_DIR . '/build/';
+		$blocks_dir        = RAMP_PLUGIN_DIR . '/build/';
 		$blocks_asset_file = include $blocks_dir . 'index.asset.php';
 
 		// Replace "wp-blockEditor" with "wp-block-editor".
 		$blocks_asset_file['dependencies'] = array_replace(
 			$blocks_asset_file['dependencies'],
 			array_fill_keys(
-				array_keys( $blocks_asset_file['dependencies'], 'wp-blockEditor' ),
+				array_keys( $blocks_asset_file['dependencies'], 'wp-blockEditor', true ),
 				'wp-block-editor'
 			)
 		);
@@ -93,7 +94,7 @@ class Blocks {
 		register_block_type_from_metadata(
 			RAMP_PLUGIN_DIR . '/assets/src/blocks/research-topics/block.json',
 			[
-				'render_callback' => [ $this, 'render_block_research_topics' ]
+				'render_callback' => [ $this, 'render_block_research_topics' ],
 			]
 		);
 	}

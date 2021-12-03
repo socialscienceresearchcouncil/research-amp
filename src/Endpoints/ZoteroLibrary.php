@@ -37,7 +37,7 @@ class ZoteroLibrary extends WP_REST_Controller {
 						'library_id' => [
 							'validate_callback' => function( $param, $request, $key ) {
 								return is_numeric( $param );
-							}
+							},
 						],
 					],
 				],
@@ -77,12 +77,12 @@ class ZoteroLibrary extends WP_REST_Controller {
 
 			$next_ingest = $library->get_next_scheduled_ingest_event();
 			if ( $next_ingest ) {
-				$retval['nextIngest'] = date( 'Y-m-d H:i:s', $next_ingest );
+				$retval['nextIngest'] = gmdate( 'Y-m-d H:i:s', $next_ingest );
 			}
 
 			$next_ingest_full = $library->get_next_scheduled_ingest_full_event();
 			if ( $next_ingest ) {
-				$retval['nextIngestFull'] = date( 'Y-m-d H:i:s', $next_ingest_full );
+				$retval['nextIngestFull'] = gmdate( 'Y-m-d H:i:s', $next_ingest_full );
 			}
 		}
 
