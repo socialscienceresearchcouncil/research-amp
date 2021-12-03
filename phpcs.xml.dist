@@ -12,7 +12,10 @@
 	<exclude-pattern>*.min.js</exclude-pattern>
 	<exclude-pattern>/assets/js/build.js</exclude-pattern>
 	<exclude-pattern>/dist/*</exclude-pattern>
-	<exclude-pattern>/assets/css/openlab-toolbar.css</exclude-pattern>
+
+	<!-- Ignore JS and other static assets-->
+	<exclude-pattern>/assets/</exclude-pattern>
+	<exclude-pattern>/build/</exclude-pattern>
 
 	<!-- Iterate over all PHP files by default -->
 	<file>.</file>
