@@ -2,9 +2,9 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./assets/src/blocks/research-topics/edit.js":
+/***/ "./assets/src/blocks/article-teasers/edit.js":
 /*!***************************************************!*\
-  !*** ./assets/src/blocks/research-topics/edit.js ***!
+  !*** ./assets/src/blocks/article-teasers/edit.js ***!
   \***************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -24,7 +24,147 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./assets/src/blocks/research-topics/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./assets/src/blocks/article-teasers/editor.scss");
+
+
+
+
+
+
+
+
+/**
+ * Editor styles.
+ */
+
+
+/**
+ * Edit function.
+ *
+ * @return {WPElement} Element to render.
+ */
+
+function edit(_ref) {
+  let {
+    attributes,
+    setAttributes
+  } = _ref;
+  const {
+    featuredArticleId
+  } = attributes;
+
+  const blockProps = () => {
+    let classNames = []; // This is here to force the 'dirty' state.
+
+    classNames.push('featured-article-id-' + featuredArticleId);
+    return (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
+      className: classNames
+    });
+  };
+
+  const {
+    articles
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_5__.useSelect)(select => {
+    const articles = select('ramp').getArticles();
+    return {
+      articles
+    };
+  });
+  let articlesOptions = articles.map(article => {
+    return {
+      label: article.title.rendered,
+      value: article.id
+    };
+  });
+  articlesOptions.unshift({
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Featured Article', 'ramp'),
+    value: 0
+  });
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Panel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Featured Article', 'ramp')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select an Article for the Featured area', 'ramp'),
+    value: featuredArticleId,
+    options: articlesOptions,
+    onChange: featuredArticleId => setAttributes({
+      featuredArticleId
+    })
+  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default()), {
+    attributes: attributes,
+    block: "ramp/article-teasers",
+    httpMethod: "GET"
+  })));
+}
+
+/***/ }),
+
+/***/ "./assets/src/blocks/article-teasers/index.js":
+/*!****************************************************!*\
+  !*** ./assets/src/blocks/article-teasers/index.js ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./assets/src/blocks/article-teasers/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./assets/src/blocks/article-teasers/block.json");
+/**
+ * Research Topics block.
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+/**
+ * Block definition.
+ */
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__, {
+  /**
+   * @see ./edit.js
+   */
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+
+  /**
+   * Rendered in PHP.
+   */
+  save: () => {
+    return null;
+  }
+});
+
+/***/ }),
+
+/***/ "./assets/src/blocks/research-topic-teasers/edit.js":
+/*!**********************************************************!*\
+  !*** ./assets/src/blocks/research-topic-teasers/edit.js ***!
+  \**********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ edit; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/server-side-render */ "@wordpress/server-side-render");
+/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./assets/src/blocks/research-topic-teasers/editor.scss");
 
 
 
@@ -145,7 +285,7 @@ function edit(_ref) {
     })
   }))))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default()), {
     attributes: attributes,
-    block: "ramp/research-topics",
+    block: "ramp/research-topic-teasers",
     httpMethod: "GET",
     LoadingResponsePlaceholder: _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner
   })));
@@ -153,10 +293,10 @@ function edit(_ref) {
 
 /***/ }),
 
-/***/ "./assets/src/blocks/research-topics/index.js":
-/*!****************************************************!*\
-  !*** ./assets/src/blocks/research-topics/index.js ***!
-  \****************************************************/
+/***/ "./assets/src/blocks/research-topic-teasers/index.js":
+/*!***********************************************************!*\
+  !*** ./assets/src/blocks/research-topic-teasers/index.js ***!
+  \***********************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -164,8 +304,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./assets/src/blocks/research-topics/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./assets/src/blocks/research-topics/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./assets/src/blocks/research-topic-teasers/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./assets/src/blocks/research-topic-teasers/block.json");
 /**
  * Research Topics block.
  */
@@ -497,6 +637,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const DEFAULT_STATE = {
+  articles: [],
   libraries: {},
   researchTopics: []
 };
@@ -514,6 +655,13 @@ const actions = {
       type: 'SET_LIBRARY_INFO',
       libraryId,
       libraryInfo
+    };
+  },
+
+  setArticles(articles) {
+    return {
+      type: 'SET_ARTICLES',
+      articles
     };
   },
 
@@ -538,6 +686,11 @@ const reducer = function () {
         }
       };
 
+    case 'SET_ARTICLES':
+      return { ...state,
+        articles: action.articles
+      };
+
     case 'SET_RESEARCH_TOPICS':
       return { ...state,
         researchTopics: action.researchTopics
@@ -557,6 +710,13 @@ const controls = {
 
 };
 const selectors = {
+  getArticles(state) {
+    const {
+      articles
+    } = state;
+    return articles;
+  },
+
   getLibraryInfo(state, libraryId) {
     const {
       libraries
@@ -584,6 +744,12 @@ const resolvers = {
     const path = '/wp/v2/research-topics?per_page=50&orderby=title&order=asc';
     const researchTopics = yield actions.fetchFromAPI(path);
     return actions.setResearchTopics(researchTopics);
+  },
+
+  *getArticles() {
+    const path = '/wp/v2/articles?per_page=100&orderby=title&order=asc';
+    const articles = yield actions.fetchFromAPI(path);
+    return actions.setArticles(articles);
   }
 
 };
@@ -611,10 +777,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./assets/src/blocks/research-topics/editor.scss":
+/***/ "./assets/src/blocks/article-teasers/editor.scss":
 /*!*******************************************************!*\
-  !*** ./assets/src/blocks/research-topics/editor.scss ***!
+  !*** ./assets/src/blocks/article-teasers/editor.scss ***!
   \*******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./assets/src/blocks/research-topic-teasers/editor.scss":
+/*!**************************************************************!*\
+  !*** ./assets/src/blocks/research-topic-teasers/editor.scss ***!
+  \**************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -755,13 +933,23 @@ module.exports = window["wp"]["url"];
 
 /***/ }),
 
-/***/ "./assets/src/blocks/research-topics/block.json":
+/***/ "./assets/src/blocks/article-teasers/block.json":
 /*!******************************************************!*\
-  !*** ./assets/src/blocks/research-topics/block.json ***!
+  !*** ./assets/src/blocks/article-teasers/block.json ***!
   \******************************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/research-topics","title":"Research Topics","icon":"lightbulb","category":"ramp","style":"file:../../../../build/index.css","supports":{"anchor":true},"attributes":{"numberOfItems":{"type":"integer","default":3},"selectionType":{"type":"string","default":"random"},"slot1":{"type":"integer","default":0},"slot2":{"type":"integer","default":0},"slot3":{"type":"integer","default":0}}}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/article-teasers","title":"Article Teasers","icon":"lightbulb","category":"ramp","style":"file:../../../../build/index.css","supports":{"anchor":true},"attributes":{"featuredArticleId":{"type":"integer","default":0}}}');
+
+/***/ }),
+
+/***/ "./assets/src/blocks/research-topic-teasers/block.json":
+/*!*************************************************************!*\
+  !*** ./assets/src/blocks/research-topic-teasers/block.json ***!
+  \*************************************************************/
+/***/ (function(module) {
+
+module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/research-topic-teasers","title":"Research Topic Teasers","icon":"lightbulb","category":"ramp","style":"file:../../../../build/index.css","supports":{"anchor":true},"attributes":{"numberOfItems":{"type":"integer","default":3},"selectionType":{"type":"string","default":"random"},"slot1":{"type":"integer","default":0},"slot2":{"type":"integer","default":0},"slot3":{"type":"integer","default":0}}}');
 
 /***/ }),
 
@@ -851,12 +1039,13 @@ var __webpack_exports__ = {};
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./assets/src/store.js");
-/* harmony import */ var _blocks_research_topics__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/research-topics */ "./assets/src/blocks/research-topics/index.js");
-/* harmony import */ var _blocks_zotero_library_info_help__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blocks/zotero-library-info-help */ "./assets/src/blocks/zotero-library-info-help/index.js");
-/* harmony import */ var _css_blocks_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css/blocks.css */ "./assets/css/blocks.css");
-/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
-/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/ZoteroLibraryInfo */ "./assets/src/components/ZoteroLibraryInfo.js");
+/* harmony import */ var _blocks_research_topic_teasers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/research-topic-teasers */ "./assets/src/blocks/research-topic-teasers/index.js");
+/* harmony import */ var _blocks_article_teasers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blocks/article-teasers */ "./assets/src/blocks/article-teasers/index.js");
+/* harmony import */ var _blocks_zotero_library_info_help__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./blocks/zotero-library-info-help */ "./assets/src/blocks/zotero-library-info-help/index.js");
+/* harmony import */ var _css_blocks_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css/blocks.css */ "./assets/css/blocks.css");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/ZoteroLibraryInfo */ "./assets/src/components/ZoteroLibraryInfo.js");
 /**
  * Set up store
  */
@@ -864,6 +1053,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Import blocks
  */
+
 
 
 
@@ -878,9 +1068,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_4__.registerPlugin)('zotero-library-info', {
+(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_5__.registerPlugin)('zotero-library-info', {
   icon: 'book-alt',
-  render: _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_5__["default"]
+  render: _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 }();
 /******/ })()

@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./assets/src/blocks/research-topics/block.scss":
-/*!******************************************************!*\
-  !*** ./assets/src/blocks/research-topics/block.scss ***!
-  \******************************************************/
+/***/ "./assets/src/blocks/research-topic-teasers/block.scss":
+/*!*************************************************************!*\
+  !*** ./assets/src/blocks/research-topic-teasers/block.scss ***!
+  \*************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -60,7 +60,7 @@ var __webpack_exports__ = {};
   !*** ./assets/src/frontend.js ***!
   \********************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _blocks_research_topics_block_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blocks/research-topics/block.scss */ "./assets/src/blocks/research-topics/block.scss");
+/* harmony import */ var _blocks_research_topic_teasers_block_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blocks/research-topic-teasers/block.scss */ "./assets/src/blocks/research-topic-teasers/block.scss");
 
 }();
 /******/ })()
