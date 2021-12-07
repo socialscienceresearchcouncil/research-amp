@@ -30,6 +30,7 @@
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
 		<exclude name="PSR2.ControlStructures.SwitchDeclaration.SpaceBeforeColonCASE" />
+		<exclude name="PSR2.ControlStructures.SwitchDeclaration.SpaceBeforeColonDEFAULT" />
 		<exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent" />
 	</rule>
 
