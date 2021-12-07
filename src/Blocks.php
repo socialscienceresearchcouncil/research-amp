@@ -94,13 +94,20 @@ class Blocks {
 		register_block_type_from_metadata(
 			RAMP_PLUGIN_DIR . '/assets/src/blocks/research-topics/block.json',
 			[
+				'api_version'     => 1,
+				'attributes'      => [
+					'numberOfItems' => [
+						'type'    => 'integer',
+						'default' => 3,
+					],
+				],
 				'render_callback' => [ $this, 'render_block_research_topics' ],
 			]
 		);
 	}
 
-	public function render_block_research_topics() {
-		return self::get_block_markup( 'research-topics' );
+	public function render_block_research_topics( $atts ) {
+		return self::get_block_markup( 'research-topics', $atts );
 	}
 
 	public static function get_block_markup( $block_type, $args = [] ) {

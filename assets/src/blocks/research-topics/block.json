@@ -8,5 +8,10 @@
 	"supports": {
 		"anchor": true
 	},
-	"attributes": {}
+	"attributes": {
+		"numberOfItems": {
+			"type": "integer",
+			"default": 3
+		}
+	}
 }
