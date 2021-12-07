@@ -1,1 +1,1 @@
-import './blocks/research-topics/block.scss';
+import './blocks/research-topic-teasers/block.scss';

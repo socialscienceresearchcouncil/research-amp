@@ -15,20 +15,20 @@ $post_args = [
 
 switch ( $selection_type ) {
 	case 'alphabetical' :
-		$orderby = [ 'title' => 'ASC' ];
+		$post_orderby = [ 'title' => 'ASC' ];
 	break;
 
 	case 'latest' :
-		$orderby = [ 'date' => 'DESC' ];
+		$post_orderby = [ 'date' => 'DESC' ];
 	break;
 
 	case 'specific' :
-		$orderby = 'post__in';
+		$post_orderby = 'post__in';
 	break;
 
 	case 'random' :
-	default;
-		$orderby = 'rand';
+	default :
+		$post_orderby = 'rand';
 	break;
 }
 
@@ -45,8 +45,7 @@ if ( $post__in ) {
 	$post_args['post__in'] = $post__in;
 }
 
-$post_args['orderby'] = $orderby;
-
+$post_args['orderby'] = $post_orderby;
 
 $research_topics = get_posts( $post_args );
 

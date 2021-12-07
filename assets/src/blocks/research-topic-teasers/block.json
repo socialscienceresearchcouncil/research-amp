@@ -1,7 +1,7 @@
 {
 	"apiVersion": 2,
-	"name": "ramp/research-topics",
-	"title": "Research Topics",
+	"name": "ramp/research-topic-teasers",
+	"title": "Research Topic Teasers",
 	"icon": "lightbulb",
 	"category": "ramp",
 	"style": "file:../../../../build/index.css",

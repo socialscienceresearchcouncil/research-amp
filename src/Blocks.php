@@ -92,7 +92,7 @@ class Blocks {
 
 	public function register_server_side_rendered_blocks() {
 		register_block_type_from_metadata(
-			RAMP_PLUGIN_DIR . '/assets/src/blocks/research-topics/block.json',
+			RAMP_PLUGIN_DIR . '/assets/src/blocks/research-topic-teasers/block.json',
 			[
 				'api_version'     => 1,
 				'attributes'      => [
@@ -117,13 +117,13 @@ class Blocks {
 						'default' => 0,
 					],
 				],
-				'render_callback' => [ $this, 'render_block_research_topics' ],
+				'render_callback' => [ $this, 'render_block_research_topic_teasers' ],
 			]
 		);
 	}
 
-	public function render_block_research_topics( $atts ) {
-		return self::get_block_markup( 'research-topics', $atts );
+	public function render_block_research_topic_teasers( $atts ) {
+		return self::get_block_markup( 'research-topic-teasers', $atts );
 	}
 
 	public static function get_block_markup( $block_type, $args = [] ) {
