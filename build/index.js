@@ -18,11 +18,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/server-side-render */ "@wordpress/server-side-render");
-/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./assets/src/blocks/research-topics/editor.scss");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/server-side-render */ "@wordpress/server-side-render");
+/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./assets/src/blocks/research-topics/editor.scss");
+
+
+
 
 
 
@@ -44,20 +49,106 @@ function edit(_ref) {
     attributes,
     setAttributes
   } = _ref;
+  const {
+    numberOfItems,
+    selectionType,
+    slot1,
+    slot2,
+    slot3
+  } = attributes;
 
   const blockProps = () => {
-    let classNames = [];
-    return (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
+    let classNames = []; // This is here to force the 'dirty' state.
+
+    classNames.push('number-of-items-' + numberOfItems);
+    classNames.push('selection-type-' + selectionType);
+    classNames.push('slots-' + slot1 + '-' + slot2 + '-' + slot3);
+    return (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
       className: classNames
     });
   };
 
   const spinner = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner, null);
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_3___default()), {
+  const {
+    researchTopics
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_5__.useSelect)(select => {
+    const researchTopics = select('ramp').getResearchTopics();
+    return {
+      researchTopics
+    };
+  });
+  let researchTopicsOptions = researchTopics.map(topic => {
+    return {
+      label: topic.title.rendered,
+      value: topic.id
+    };
+  });
+  researchTopicsOptions.unshift({
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Research Topic', 'ramp'),
+    value: 0
+  });
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Panel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Number of Items', 'ramp')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalNumberControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Number of Research Topics to show', 'ramp'),
+    value: numberOfItems,
+    min: 0,
+    max: 5,
+    step: 1,
+    onChange: numberOfItems => setAttributes({
+      numberOfItems
+    })
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Panel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Settings', 'ramp')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Research Topics to show', 'ramp'),
+    value: selectionType,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Alphabetical', 'ramp'),
+      value: 'alphabetical'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Recently Added', 'ramp'),
+      value: 'latest'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Random', 'ramp'),
+      value: 'random'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Specific', 'ramp'),
+      value: 'specific'
+    }],
+    onChange: selectionType => setAttributes({
+      selectionType
+    })
+  }), 'specific' === selectionType && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("fieldset", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select a Research Topic for each slot.', 'ramp')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Slot 1', 'ramp'),
+    labelPosition: "side",
+    value: slot1,
+    options: researchTopicsOptions,
+    onChange: slot1 => setAttributes({
+      slot1
+    })
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Slot 2', 'ramp'),
+    labelPosition: "side",
+    value: slot2,
+    options: researchTopicsOptions,
+    onChange: slot2 => setAttributes({
+      slot2
+    })
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Slot 3', 'ramp'),
+    labelPosition: "side",
+    value: slot3,
+    options: researchTopicsOptions,
+    onChange: slot3 => setAttributes({
+      slot3
+    })
+  }))))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default()), {
+    attributes: attributes,
     block: "ramp/research-topics",
     httpMethod: "GET",
     LoadingResponsePlaceholder: _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner
-  }));
+  })));
 }
 
 /***/ }),
@@ -406,8 +497,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const DEFAULT_STATE = {
-  blockMarkup: {},
-  libraries: {}
+  libraries: {},
+  researchTopics: []
 };
 const STORE_NAME = 'ramp';
 const actions = {
@@ -418,19 +509,18 @@ const actions = {
     };
   },
 
-  setBlockMarkup(blockType, blockMarkup) {
-    return {
-      type: 'SET_BLOCK_MARKUP',
-      blockType,
-      blockMarkup
-    };
-  },
-
   setLibraryInfo(libraryId, libraryInfo) {
     return {
       type: 'SET_LIBRARY_INFO',
       libraryId,
       libraryInfo
+    };
+  },
+
+  setResearchTopics(researchTopics) {
+    return {
+      type: 'SET_RESEARCH_TOPICS',
+      researchTopics
     };
   }
 
@@ -441,18 +531,16 @@ const reducer = function () {
   let action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case 'SET_BLOCK_MARKUP':
-      return { ...state,
-        blockMarkup: { ...state.blockMarkup,
-          [action.blockType]: action.blockMarkup
-        }
-      };
-
     case 'SET_LIBRARY_INFO':
       return { ...state,
         libraries: { ...state.libraries,
           [action.libraryId]: action.libraryInfo
         }
+      };
+
+    case 'SET_RESEARCH_TOPICS':
+      return { ...state,
+        researchTopics: action.researchTopics
       };
 
     default:
@@ -477,12 +565,11 @@ const selectors = {
     return libraryInfo;
   },
 
-  getBlockMarkup(state, blockType) {
+  getResearchTopics(state) {
     const {
-      blockMarkup
+      researchTopics
     } = state;
-    const blockTypeMarkup = blockMarkup.hasOwnProperty(blockType) ? blockMarkup[blockType] : '';
-    return blockTypeMarkup;
+    return researchTopics;
   }
 
 };
@@ -493,10 +580,10 @@ const resolvers = {
     return actions.setLibraryInfo(libraryId, libraryInfo);
   },
 
-  *getBlockMarkup(blockType) {
-    const path = '/ramp/v1/block-markup/?blockType=' + blockType;
-    const blockTypeMarkup = yield actions.fetchFromAPI(path);
-    return actions.setBlockMarkup(blockType, blockTypeMarkup);
+  *getResearchTopics() {
+    const path = '/wp/v2/research-topics?per_page=50&orderby=title&order=asc';
+    const researchTopics = yield actions.fetchFromAPI(path);
+    return actions.setResearchTopics(researchTopics);
   }
 
 };
@@ -674,7 +761,7 @@ module.exports = window["wp"]["url"];
   \******************************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/research-topics","title":"Research Topics","icon":"lightbulb","category":"ramp","style":"file:../../../../build/index.css","supports":{"anchor":true},"attributes":{}}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/research-topics","title":"Research Topics","icon":"lightbulb","category":"ramp","style":"file:../../../../build/index.css","supports":{"anchor":true},"attributes":{"numberOfItems":{"type":"integer","default":3},"selectionType":{"type":"string","default":"random"},"slot1":{"type":"integer","default":0},"slot2":{"type":"integer","default":0},"slot3":{"type":"integer","default":0}}}');
 
 /***/ }),
 

@@ -1,1 +1,0 @@
-{"version":3,"file":"frontend.css","mappings":";;;AAAA;EACC;AACD,C","sources":["webpack://RAMP/./assets/src/blocks/research-topics/block.scss"],"sourcesContent":[".item-type-list-research-topics {\n\tborder: 1px solid #f00;\n}\n"],"names":[],"sourceRoot":""}
