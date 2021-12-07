@@ -167,13 +167,14 @@ class Schema {
 					'name_admin_bar'     => __( 'Research Topics', 'ramp' ),
 				],
 				'public'            => true,
-				'has_archive'       => 'research-fields',
+				'has_archive'       => 'research-topics',
 				'rewrite'           => [
-					'slug'       => 'research-fields',
+					'slug'       => 'research-topics',
 					'with_front' => false,
 				],
 				'menu_icon'         => 'dashicons-format-status',
 				'show_in_rest'      => true,
+				'rest_base'         => 'research-topics',
 				'show_in_nav_menus' => true,
 				'supports'          => [ 'title', 'editor', 'excerpt', 'page-attributes', 'thumbnail' ],
 			]

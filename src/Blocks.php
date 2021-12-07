@@ -100,6 +100,22 @@ class Blocks {
 						'type'    => 'integer',
 						'default' => 3,
 					],
+					'selectionType' => [
+						'type'    => 'string',
+						'default' => 'random',
+					],
+					'slot1' => [
+						'type'    => 'integer',
+						'default' => 0,
+					],
+					'slot2' => [
+						'type'    => 'integer',
+						'default' => 0,
+					],
+					'slot3' => [
+						'type'    => 'integer',
+						'default' => 0,
+					],
 				],
 				'render_callback' => [ $this, 'render_block_research_topics' ],
 			]

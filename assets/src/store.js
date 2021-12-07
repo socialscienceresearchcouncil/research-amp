@@ -3,7 +3,8 @@ import { registerStore } from '@wordpress/data'
 
 const DEFAULT_STATE = {
 	blockMarkup: {},
-	libraries: {}
+	libraries: {},
+	researchTopics: []
 }
 
 const STORE_NAME = 'ramp'
@@ -30,6 +31,13 @@ const actions = {
 			libraryId,
 			libraryInfo
 		}
+	},
+
+	setResearchTopics( researchTopics ) {
+		return {
+			type: 'SET_RESEARCH_TOPICS',
+			researchTopics
+		}
 	}
 }
 
@@ -51,6 +59,12 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 					...state.libraries,
 					[ action.libraryId ]: action.libraryInfo
 				}
+			}
+
+		case 'SET_RESEARCH_TOPICS' :
+			return {
+				...state,
+				researchTopics: action.researchTopics
 			}
 
 		default :
@@ -76,7 +90,13 @@ const selectors = {
 		const { blockMarkup } = state
 		const blockTypeMarkup = blockMarkup.hasOwnProperty( blockType ) ? blockMarkup[ blockType ] : ''
 		return blockTypeMarkup
-	}
+	},
+
+	getResearchTopics( state ) {
+		const { researchTopics } = state
+
+		return researchTopics
+	},
 }
 
 const resolvers = {
@@ -90,6 +110,12 @@ const resolvers = {
 		const path = '/ramp/v1/block-markup/?blockType=' + blockType
 		const blockTypeMarkup = yield actions.fetchFromAPI( path )
 		return actions.setBlockMarkup( blockType, blockTypeMarkup )
+	},
+
+	*getResearchTopics() {
+		const path = '/wp/v2/research-topics?per_page=50&orderby=title&order=asc'
+		const researchTopics = yield actions.fetchFromAPI( path )
+		return actions.setResearchTopics( researchTopics )
 	}
 }
 
