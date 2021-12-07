@@ -2,6 +2,7 @@ import apiFetch from '@wordpress/api-fetch'
 import { registerStore } from '@wordpress/data'
 
 const DEFAULT_STATE = {
+	articles: [],
 	libraries: {},
 	researchTopics: []
 }
@@ -24,6 +25,13 @@ const actions = {
 		}
 	},
 
+	setArticles( articles ) {
+		return {
+			type: 'SET_ARTICLES',
+			articles
+		}
+	},
+
 	setResearchTopics( researchTopics ) {
 		return {
 			type: 'SET_RESEARCH_TOPICS',
@@ -41,6 +49,12 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 					...state.libraries,
 					[ action.libraryId ]: action.libraryInfo
 				}
+			}
+
+		case 'SET_ARTICLES' :
+			return {
+				...state,
+				articles: action.articles
 			}
 
 		case 'SET_RESEARCH_TOPICS' :
@@ -61,6 +75,11 @@ const controls = {
 }
 
 const selectors = {
+	getArticles( state ) {
+		const { articles } = state
+		return articles
+	},
+
 	getLibraryInfo( state, libraryId ) {
 		const { libraries } = state
 		const libraryInfo = libraries[ libraryId ]
@@ -86,6 +105,12 @@ const resolvers = {
 		const path = '/wp/v2/research-topics?per_page=50&orderby=title&order=asc'
 		const researchTopics = yield actions.fetchFromAPI( path )
 		return actions.setResearchTopics( researchTopics )
+	},
+
+	*getArticles() {
+		const path = '/wp/v2/articles?per_page=100&orderby=title&order=asc'
+		const articles = yield actions.fetchFromAPI( path )
+		return actions.setArticles( articles )
 	}
 }
 

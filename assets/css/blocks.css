@@ -13,3 +13,13 @@
 .item-type-list-flex > li {
 	flex: 1 0 0;
 }
+
+/** Teasers */
+.teaser-thumb img {
+	max-width: 100%;
+}
+
+.article-type-tag {
+	font-weight: 700;
+	text-transform: uppercase;
+}

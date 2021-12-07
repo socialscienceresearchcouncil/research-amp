@@ -140,6 +140,7 @@ class Schema {
 				],
 				'menu_icon'         => 'dashicons-lightbulb',
 				'show_in_rest'      => true,
+				'rest_base'         => 'articles',
 				'show_in_nav_menus' => true,
 				'supports'          => [ 'title', 'editor', 'excerpt', 'author', 'thumbnail' ],
 			]
