@@ -29,6 +29,8 @@
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
+		<exclude name="PSR2.ControlStructures.SwitchDeclaration.SpaceBeforeColonCASE" />
+		<exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent" />
 	</rule>
 
 	<rule ref="WordPress.WP.DeprecatedClasses">
