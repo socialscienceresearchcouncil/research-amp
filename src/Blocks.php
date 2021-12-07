@@ -104,15 +104,15 @@ class Blocks {
 						'type'    => 'string',
 						'default' => 'random',
 					],
-					'slot1' => [
+					'slot1'         => [
 						'type'    => 'integer',
 						'default' => 0,
 					],
-					'slot2' => [
+					'slot2'         => [
 						'type'    => 'integer',
 						'default' => 0,
 					],
-					'slot3' => [
+					'slot3'         => [
 						'type'    => 'integer',
 						'default' => 0,
 					],

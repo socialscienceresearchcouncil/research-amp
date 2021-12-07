@@ -88,6 +88,7 @@ class CitationLibrary {
 		}
 
 		return;
+		// phpcs:disable Squiz.PHP.NonExecutableCode.Unreachable
 
 		$client = new Client();
 
@@ -138,6 +139,7 @@ class CitationLibrary {
 
 			update_post_meta( $post_id, 'zotero_collection_id', $collection_id );
 		}
+		// phpcs:enable Squiz.PHP.NonExecutableCode.Unreachable
 	}
 
 	/**
