@@ -2,7 +2,6 @@ import apiFetch from '@wordpress/api-fetch'
 import { registerStore } from '@wordpress/data'
 
 const DEFAULT_STATE = {
-	blockMarkup: {},
 	libraries: {},
 	researchTopics: []
 }
@@ -14,14 +13,6 @@ const actions = {
 		return {
 			type: 'FETCH_FROM_API',
 			path
-		}
-	},
-
-	setBlockMarkup( blockType, blockMarkup ) {
-		return {
-			type: 'SET_BLOCK_MARKUP',
-			blockType,
-			blockMarkup
 		}
 	},
 
@@ -43,15 +34,6 @@ const actions = {
 
 const reducer = ( state = DEFAULT_STATE, action ) => {
 	switch ( action.type ) {
-		case 'SET_BLOCK_MARKUP' :
-			return {
-				...state,
-				blockMarkup: {
-					...state.blockMarkup,
-					[ action.blockType ]: action.blockMarkup
-				}
-			}
-
 		case 'SET_LIBRARY_INFO' :
 			return {
 				...state,
@@ -86,12 +68,6 @@ const selectors = {
 		return libraryInfo
 	},
 
-	getBlockMarkup( state, blockType ) {
-		const { blockMarkup } = state
-		const blockTypeMarkup = blockMarkup.hasOwnProperty( blockType ) ? blockMarkup[ blockType ] : ''
-		return blockTypeMarkup
-	},
-
 	getResearchTopics( state ) {
 		const { researchTopics } = state
 
@@ -104,12 +80,6 @@ const resolvers = {
 		const path = '/ramp/v1/zotero-library/' + libraryId
 		const libraryInfo = yield actions.fetchFromAPI( path )
 		return actions.setLibraryInfo( libraryId, libraryInfo )
-	},
-
-	*getBlockMarkup( blockType ) {
-		const path = '/ramp/v1/block-markup/?blockType=' + blockType
-		const blockTypeMarkup = yield actions.fetchFromAPI( path )
-		return actions.setBlockMarkup( blockType, blockTypeMarkup )
 	},
 
 	*getResearchTopics() {
