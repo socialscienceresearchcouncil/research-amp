@@ -2,6 +2,110 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./assets/src/blocks/research-topics/edit.js":
+/*!***************************************************!*\
+  !*** ./assets/src/blocks/research-topics/edit.js ***!
+  \***************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ edit; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/server-side-render */ "@wordpress/server-side-render");
+/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./assets/src/blocks/research-topics/editor.scss");
+
+
+
+
+
+/**
+ * Editor styles.
+ */
+
+
+/**
+ * Edit function.
+ *
+ * @return {WPElement} Element to render.
+ */
+
+function edit(_ref) {
+  let {
+    attributes,
+    setAttributes
+  } = _ref;
+
+  const blockProps = () => {
+    let classNames = [];
+    return (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
+      className: classNames
+    });
+  };
+
+  const spinner = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner, null);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_3___default()), {
+    block: "ramp/research-topics",
+    httpMethod: "GET",
+    LoadingResponsePlaceholder: _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner
+  }));
+}
+
+/***/ }),
+
+/***/ "./assets/src/blocks/research-topics/index.js":
+/*!****************************************************!*\
+  !*** ./assets/src/blocks/research-topics/index.js ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./assets/src/blocks/research-topics/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./assets/src/blocks/research-topics/block.json");
+/**
+ * Research Topics block.
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+/**
+ * Block definition.
+ */
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__, {
+  /**
+   * @see ./edit.js
+   */
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+
+  /**
+   * Rendered in PHP.
+   */
+  save: () => {
+    return null;
+  }
+});
+
+/***/ }),
+
 /***/ "./assets/src/blocks/zotero-library-info-help/edit.js":
 /*!************************************************************!*\
   !*** ./assets/src/blocks/zotero-library-info-help/edit.js ***!
@@ -302,6 +406,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const DEFAULT_STATE = {
+  blockMarkup: {},
   libraries: {}
 };
 const STORE_NAME = 'ramp';
@@ -310,6 +415,14 @@ const actions = {
     return {
       type: 'FETCH_FROM_API',
       path
+    };
+  },
+
+  setBlockMarkup(blockType, blockMarkup) {
+    return {
+      type: 'SET_BLOCK_MARKUP',
+      blockType,
+      blockMarkup
     };
   },
 
@@ -328,6 +441,13 @@ const reducer = function () {
   let action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
+    case 'SET_BLOCK_MARKUP':
+      return { ...state,
+        blockMarkup: { ...state.blockMarkup,
+          [action.blockType]: action.blockMarkup
+        }
+      };
+
     case 'SET_LIBRARY_INFO':
       return { ...state,
         libraries: { ...state.libraries,
@@ -355,6 +475,14 @@ const selectors = {
     } = state;
     const libraryInfo = libraries[libraryId];
     return libraryInfo;
+  },
+
+  getBlockMarkup(state, blockType) {
+    const {
+      blockMarkup
+    } = state;
+    const blockTypeMarkup = blockMarkup.hasOwnProperty(blockType) ? blockMarkup[blockType] : '';
+    return blockTypeMarkup;
   }
 
 };
@@ -363,6 +491,12 @@ const resolvers = {
     const path = '/ramp/v1/zotero-library/' + libraryId;
     const libraryInfo = yield actions.fetchFromAPI(path);
     return actions.setLibraryInfo(libraryId, libraryInfo);
+  },
+
+  *getBlockMarkup(blockType) {
+    const path = '/ramp/v1/block-markup/?blockType=' + blockType;
+    const blockTypeMarkup = yield actions.fetchFromAPI(path);
+    return actions.setBlockMarkup(blockType, blockTypeMarkup);
   }
 
 };
@@ -374,6 +508,30 @@ const storeConfig = {
   resolvers
 };
 (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.registerStore)(STORE_NAME, storeConfig);
+
+
+/***/ }),
+
+/***/ "./assets/css/blocks.css":
+/*!*******************************!*\
+  !*** ./assets/css/blocks.css ***!
+  \*******************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./assets/src/blocks/research-topics/editor.scss":
+/*!*******************************************************!*\
+  !*** ./assets/src/blocks/research-topics/editor.scss ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
 
 
 /***/ }),
@@ -490,6 +648,16 @@ module.exports = window["wp"]["plugins"];
 
 /***/ }),
 
+/***/ "@wordpress/server-side-render":
+/*!******************************************!*\
+  !*** external ["wp","serverSideRender"] ***!
+  \******************************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["serverSideRender"];
+
+/***/ }),
+
 /***/ "@wordpress/url":
 /*!*****************************!*\
   !*** external ["wp","url"] ***!
@@ -500,13 +668,23 @@ module.exports = window["wp"]["url"];
 
 /***/ }),
 
+/***/ "./assets/src/blocks/research-topics/block.json":
+/*!******************************************************!*\
+  !*** ./assets/src/blocks/research-topics/block.json ***!
+  \******************************************************/
+/***/ (function(module) {
+
+module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/research-topics","title":"Research Topics","icon":"lightbulb","category":"ramp","style":"file:../../../../build/index.css","supports":{"anchor":true},"attributes":{}}');
+
+/***/ }),
+
 /***/ "./assets/src/blocks/zotero-library-info-help/block.json":
 /*!***************************************************************!*\
   !*** ./assets/src/blocks/zotero-library-info-help/block.json ***!
   \***************************************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/zotero-library-info-help","title":"Zotero Library info help","icon":"book-alt","category":"ramp","supports":{"anchor":true}}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/zotero-library-info-help","title":"Zotero Library info help","icon":"book-alt","style":"file:../../../../build/index.css","category":"ramp","supports":{"anchor":true}}');
 
 /***/ })
 
@@ -586,10 +764,12 @@ var __webpack_exports__ = {};
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./assets/src/store.js");
-/* harmony import */ var _blocks_zotero_library_info_help__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/zotero-library-info-help */ "./assets/src/blocks/zotero-library-info-help/index.js");
-/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
-/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ZoteroLibraryInfo */ "./assets/src/components/ZoteroLibraryInfo.js");
+/* harmony import */ var _blocks_research_topics__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/research-topics */ "./assets/src/blocks/research-topics/index.js");
+/* harmony import */ var _blocks_zotero_library_info_help__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blocks/zotero-library-info-help */ "./assets/src/blocks/zotero-library-info-help/index.js");
+/* harmony import */ var _css_blocks_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css/blocks.css */ "./assets/css/blocks.css");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/ZoteroLibraryInfo */ "./assets/src/components/ZoteroLibraryInfo.js");
 /**
  * Set up store
  */
@@ -599,15 +779,21 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
+/**
+ * Shared block styles.
+ */
+
+
 /**
  * Components
  */
 
 
 
-(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_2__.registerPlugin)('zotero-library-info', {
+(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_4__.registerPlugin)('zotero-library-info', {
   icon: 'book-alt',
-  render: _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_3__["default"]
+  render: _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
 }();
 /******/ })()
