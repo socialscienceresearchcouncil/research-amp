@@ -27,9 +27,14 @@ $authors = [
 	'Jane Doe',
 ];
 
+$article_classes = [ 'teaser' ];
+if ( $is_featured ) {
+	$article_classes[] = 'featured-article-teaser';
+}
+
 ?>
 
-<article class="teaser <?php if ( $is_featured ) : ?>featured-article-teaser<?php endif; ?>">
+<article class="<?php echo esc_attr( implode( ' ', $article_classes ) ); ?>">
 	<?php if ( $img_src ) : ?>
 		<div class="teaser-thumb article-teaser-thumb">
 			<a href="<?php echo esc_attr( get_permalink( $article ) ); ?>">
