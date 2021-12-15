@@ -1,0 +1,17 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/article-teasers",
+	"title": "Article Teasers",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"style": "file:../../../../build/index.css",
+	"supports": {
+		"anchor": true
+	},
+	"attributes": {
+		"associatedResearchTopic": {
+			"type": "string",
+			"default": "auto"
+		}
+	}
+}

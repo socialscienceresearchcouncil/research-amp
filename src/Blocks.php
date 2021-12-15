@@ -155,11 +155,16 @@ class Blocks {
 		);
 
 		register_block_type_from_metadata(
-			RAMP_PLUGIN_DIR . '/assets/src/blocks/research-topics-nav-submenu/block.json',
+			RAMP_PLUGIN_DIR . '/assets/src/blocks/article-teasers/block.json',
 			[
 				'api_version'     => 1,
-				'attributes'      => [],
-				'render_callback' => [ $this, 'render_block_research_topics_nav_submenu' ],
+				'attributes'      => [
+					'researchTopic' => [
+						'type'    => 'string',
+						'default' => 'auto',
+					],
+				],
+				'render_callback' => [ $this, 'render_block_article_teasers' ],
 			]
 		);
 	}
@@ -170,6 +175,10 @@ class Blocks {
 
 	public function render_block_research_review_teasers( $atts ) {
 		return self::get_block_markup( 'research-review-teasers', $atts );
+	}
+
+	public function render_block_article_teasers( $atts ) {
+		return self::get_block_markup( 'article-teasers', $atts );
 	}
 
 	public function render_block_article_teasers_with_featured_article( $atts ) {

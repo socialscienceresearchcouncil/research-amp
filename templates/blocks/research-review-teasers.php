@@ -40,7 +40,7 @@ $research_reviews = $rt->get_literature_reviews( $post_args );
 
 ?>
 
-<ul class="item-type-list item-type-list-flex item-type-list-research-reviews">
+<ul class="item-type-list item-type-list-research-reviews">
 	<?php foreach ( $research_reviews as $research_review ) : ?>
 		<li>
 			<?php ramp_get_template_part( 'teasers/research-review', [ 'id' => $research_review->ID ] ); ?>

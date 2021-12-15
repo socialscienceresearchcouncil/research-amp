@@ -20,6 +20,10 @@
 	gap: 16px;
 }
 
+.item-type-list-flex .teaser {
+	flex-direction: column;
+}
+
 .teaser-thumb img {
 	max-width: 100%;
 }

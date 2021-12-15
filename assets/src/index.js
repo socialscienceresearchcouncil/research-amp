@@ -6,6 +6,7 @@ import './store'
 /**
  * Import blocks
  */
+import './blocks/article-teasers'
 import './blocks/article-teasers-with-featured-article'
 import './blocks/research-topic-teasers'
 import './blocks/research-review-teasers'
