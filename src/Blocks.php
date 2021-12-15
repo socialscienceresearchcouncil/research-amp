@@ -126,7 +126,7 @@ class Blocks {
 			[
 				'api_version'     => 1,
 				'attributes'      => [
-					'order' => [
+					'order'         => [
 						'type'    => 'string',
 						'default' => 'alphabetical',
 					],

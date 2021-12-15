@@ -12,16 +12,16 @@ if ( 'auto' === $research_topic_id ) {
 	$research_topic_id = (int) $research_topic_id;
 }
 
-$order = isset( $args['order'] ) ? $args['order'] : 'alphabetical';
+$order_arg = isset( $args['order'] ) ? $args['order'] : 'alphabetical';
 if ( ! in_array( $order, [ 'alphabetical', 'latest', 'random' ], true ) ) {
-	$order = 'alphabetical';
+	$order_arg = 'alphabetical';
 }
 
 $rt = \SSRC\RAMP\ResearchTopic::get_instance( $research_topic_id );
 
 $post_args = [];
 
-switch ( $order ) {
+switch ( $order_arg ) {
 	case 'alphabetical' :
 		$post_args['orderby'] = [ 'title' => 'ASC' ];
 	break;
