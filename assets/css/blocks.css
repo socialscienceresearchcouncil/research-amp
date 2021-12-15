@@ -29,6 +29,10 @@
 	text-transform: uppercase;
 }
 
+.teaser.featured-article-teaser {
+	flex-direction: column;
+}
+
 .research-review-teaser-thumb {
 	flex: 0 0 30%;
 }

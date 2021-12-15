@@ -30,7 +30,7 @@ $article_ids = get_posts( $post_args );
 
 <div class="article-teasers">
 	<div class="featured-article-teaser">
-		<?php ramp_get_template_part( 'teasers/article', [ 'id' => $featured_article_id ] ); ?>
+		<?php ramp_get_template_part( 'teasers/article', [ 'id' => $featured_article_id, 'is_featured' => true ] ); ?>
 
 	</div>
 

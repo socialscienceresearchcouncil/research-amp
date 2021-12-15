@@ -2,6 +2,8 @@
 $article_id = $args['id'];
 $article    = get_post( $article_id );
 
+$is_featured = ! empty( $args['is_featured'] );
+
 $img_src      = '';
 $img_alt      = '';
 $thumbnail_id = get_post_thumbnail_id( $article );
@@ -27,7 +29,7 @@ $authors = [
 
 ?>
 
-<article class="teaser">
+<article class="teaser <?php if ( $is_featured ) : ?>featured-article-teaser<?php endif; ?>">
 	<?php if ( $img_src ) : ?>
 		<div class="teaser-thumb article-teaser-thumb">
 			<a href="<?php echo esc_attr( get_permalink( $article ) ); ?>">
