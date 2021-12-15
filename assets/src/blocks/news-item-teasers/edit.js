@@ -33,7 +33,6 @@ export default function edit( {
 	setAttributes,
 } ) {
 	const { researchTopic } = attributes
-	console.log(researchTopic);
 
 	const blockProps = () => {
 		let classNames = []
