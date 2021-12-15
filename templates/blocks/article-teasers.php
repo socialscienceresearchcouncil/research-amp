@@ -1,7 +1,6 @@
 <?php
 
 $research_topic_id = isset( $args['researchTopic'] ) ? $args['researchTopic'] : 'auto';
-_b( $args );
 if ( 'auto' === $research_topic_id ) {
 	if ( ! empty( $args['isEditMode'] ) ) {
 		$research_topic_id = ramp_get_most_recent_research_topic_id();

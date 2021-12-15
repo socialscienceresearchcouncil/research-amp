@@ -179,6 +179,26 @@ class Blocks {
 		);
 
 		register_block_type_from_metadata(
+			RAMP_PLUGIN_DIR . '/assets/src/blocks/citation-teasers/block.json',
+			[
+				'api_version'     => 1,
+				'attributes'      => [
+					'isEditMode'  => [
+						'type'    => 'boolean',
+						'default' => false,
+					],
+					'researchTopic' => [
+						'type'    => 'string',
+						'default' => 'auto',
+					],
+				],
+				'render_callback' => function( $atts ) {
+					return $this->render_block( 'citation-teasers', $atts );
+				},
+			]
+		);
+
+		register_block_type_from_metadata(
 			RAMP_PLUGIN_DIR . '/assets/src/blocks/news-item-teasers/block.json',
 			[
 				'api_version'     => 1,
@@ -195,6 +215,10 @@ class Blocks {
 				'render_callback' => [ $this, 'render_block_news_item_teasers' ],
 			]
 		);
+	}
+
+	public function render_block( $block_name, $atts ) {
+		return self::get_block_markup( $block_name, $atts );
 	}
 
 	public function render_block_research_topic_teasers( $atts ) {
