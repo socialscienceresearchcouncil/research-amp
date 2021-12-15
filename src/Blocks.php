@@ -92,137 +92,23 @@ class Blocks {
 	}
 
 	public function register_server_side_rendered_blocks() {
-		register_block_type_from_metadata(
-			RAMP_PLUGIN_DIR . '/assets/src/blocks/research-topic-teasers/block.json',
-			[
-				'api_version'     => 1,
-				'attributes'      => [
-					'numberOfItems' => [
-						'type'    => 'integer',
-						'default' => 3,
-					],
-					'selectionType' => [
-						'type'    => 'string',
-						'default' => 'random',
-					],
-					'slot1'         => [
-						'type'    => 'integer',
-						'default' => 0,
-					],
-					'slot2'         => [
-						'type'    => 'integer',
-						'default' => 0,
-					],
-					'slot3'         => [
-						'type'    => 'integer',
-						'default' => 0,
-					],
-				],
-				'render_callback' => function( $atts ) {
-					return ramp_render_block( 'research-topic-teasers', $atts );
-				},
-			]
-		);
+		$block_types = [
+			'article-teasers',
+			'article-teasers-with-featured-article',
+			'citation-teasers',
+			'news-item-teasers',
+			'research-review-teasers',
+			'research-topic-teasers',
+		];
 
-		register_block_type_from_metadata(
-			RAMP_PLUGIN_DIR . '/assets/src/blocks/research-review-teasers/block.json',
-			[
-				'api_version'     => 1,
-				'attributes'      => [
-					'isEditMode' => [
-						'type' => 'boolean',
-						'default' => false,
-					],
-					'order'                 => [
-						'type'    => 'string',
-						'default' => 'alphabetical',
-					],
-					'researchTopic'         => [
-						'type'    => 'string',
-						'default' => 'auto',
-					],
-				],
-				'render_callback' => function( $atts ) {
-					return ramp_render_block( 'research-review-teasers', $atts );
-				},
-			]
-		);
+		foreach ( $block_types as $block_type ) {
+			$block_file = RAMP_PLUGIN_DIR . '/inc/block-types/' . $block_type . '.php';
 
-		register_block_type_from_metadata(
-			RAMP_PLUGIN_DIR . '/assets/src/blocks/article-teasers-with-featured-article/block.json',
-			[
-				'api_version'     => 1,
-				'attributes'      => [
-					'featuredArticleId' => [
-						'type'    => 'integer',
-						'default' => 0,
-					],
-				],
-				'render_callback' => function( $atts ) {
-					return ramp_render_block( 'article-teasers-with-featured-article', $atts );
-				},
-			]
-		);
-
-		register_block_type_from_metadata(
-			RAMP_PLUGIN_DIR . '/assets/src/blocks/article-teasers/block.json',
-			[
-				'api_version'     => 1,
-				'attributes'      => [
-					'isEditMode'  => [
-						'type'    => 'boolean',
-						'default' => false,
-					],
-					'researchTopic' => [
-						'type'    => 'string',
-						'default' => 'auto',
-					],
-				],
-				'render_callback' => function( $atts ) {
-					return ramp_render_block( 'article-teasers', $atts );
-				},
-			]
-		);
-
-		register_block_type_from_metadata(
-			RAMP_PLUGIN_DIR . '/assets/src/blocks/citation-teasers/block.json',
-			[
-				'api_version'     => 1,
-				'attributes'      => [
-					'isEditMode'  => [
-						'type'    => 'boolean',
-						'default' => false,
-					],
-					'researchTopic' => [
-						'type'    => 'string',
-						'default' => 'auto',
-					],
-				],
-				'render_callback' => function( $atts ) {
-					return ramp_render_block( 'citation-teasers', $atts );
-				},
-			]
-		);
-
-		register_block_type_from_metadata(
-			RAMP_PLUGIN_DIR . '/assets/src/blocks/news-item-teasers/block.json',
-			[
-				'api_version'     => 1,
-				'attributes'      => [
-					'isEditMode'  => [
-						'type'    => 'boolean',
-						'default' => false,
-					],
-					'researchTopic' => [
-						'type'    => 'string',
-						'default' => 'auto',
-					],
-				],
-				'render_callback' => function( $atts ) {
-					return ramp_render_block( 'news-item-teasers', $atts );
-				},
-			]
-		);
+			register_block_type_from_metadata(
+				RAMP_PLUGIN_DIR . '/assets/src/blocks/' . $block_type . '/block.json',
+				require $block_file
+			);
+		}
 	}
 
 	public function register_block_styles() {
