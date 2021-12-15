@@ -3,7 +3,6 @@ import { __ } from '@wordpress/i18n';
 import {
 	Panel,
 	PanelBody,
-	SelectControl,
 	Spinner
 } from '@wordpress/components'
 
