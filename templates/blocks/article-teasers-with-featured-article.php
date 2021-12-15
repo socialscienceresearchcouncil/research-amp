@@ -26,11 +26,16 @@ $post_args = [
 
 $article_ids = get_posts( $post_args );
 
+$featured_article_part_args = [
+	'id'          => $featured_article_id,
+	'is_featured' => true,
+];
+
 ?>
 
 <div class="article-teasers">
 	<div class="featured-article-teaser">
-		<?php ramp_get_template_part( 'teasers/article', [ 'id' => $featured_article_id, 'is_featured' => true ] ); ?>
+		<?php ramp_get_template_part( 'teasers/article', $featured_article_part_args ); ?>
 
 	</div>
 
