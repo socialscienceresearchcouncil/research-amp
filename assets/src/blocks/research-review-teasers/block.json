@@ -1,0 +1,21 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/research-review-teasers",
+	"title": "Research Review Teasers",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"style": "file:../../../../build/index.css",
+	"supports": {
+		"anchor": true
+	},
+	"attributes": {
+		"order": {
+			"type": "string",
+			"default": "alphabetical"
+		},
+		"researchTopic": {
+			"type": "string",
+			"default": "auto"
+		}
+	}
+}

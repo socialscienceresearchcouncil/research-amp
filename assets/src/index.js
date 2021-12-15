@@ -8,6 +8,7 @@ import './store'
  */
 import './blocks/research-topic-teasers'
 import './blocks/article-teasers'
+import './blocks/research-review-teasers'
 import './blocks/zotero-library-info-help'
 
 /**

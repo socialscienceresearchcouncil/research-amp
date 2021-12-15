@@ -84,8 +84,8 @@ class ResearchTopic {
 		return get_posts( $query_args );
 	}
 
-	public function get_literature_reviews() {
-		return get_posts(
+	public function get_literature_reviews( $args = [] ) {
+		$query_args = array_merge(
 			[
 				'post_type'      => 'ssrc_lit_review',
 				'posts_per_page' => -1,
@@ -96,8 +96,11 @@ class ResearchTopic {
 						'field'    => 'term_id',
 					],
 				],
-			]
+			],
+			$args
 		);
+
+		return get_posts( $query_args );
 	}
 
 	public function get_literature_review() {

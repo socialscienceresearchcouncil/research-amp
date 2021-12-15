@@ -15,6 +15,11 @@
 }
 
 /** Teasers */
+.teaser {
+	display: flex;
+	gap: 16px;
+}
+
 .teaser-thumb img {
 	max-width: 100%;
 }
@@ -22,4 +27,8 @@
 .article-type-tag {
 	font-weight: 700;
 	text-transform: uppercase;
+}
+
+.research-review-teaser-thumb {
+	flex: 0 0 30%;
 }

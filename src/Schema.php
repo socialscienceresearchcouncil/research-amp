@@ -6,7 +6,7 @@ class Schema {
 	protected $cpttaxonomies = [];
 
 	public function init() {
-		add_action( 'init', [ $this, 'register_post_types' ] );
+		add_action( 'init', [ $this, 'register_post_types' ], 5 );
 		add_action( 'init', [ $this, 'register_taxonomies' ], 20 );
 		add_action( 'init', [ $this, 'link_cpts_and_taxonomies' ], 30 );
 		add_action( 'init', [ $this, 'set_up_post_type_features' ], 40 );
@@ -237,7 +237,7 @@ class Schema {
 					'name_admin_bar'     => __( 'Citations', 'ramp' ),
 				],
 				'public'       => true,
-				'has_archive'  => false,
+				'has_archive'  => true,
 				'rewrite'      => [
 					'slug'       => 'citation',
 					'with_front' => false,

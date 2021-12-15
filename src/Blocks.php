@@ -122,6 +122,24 @@ class Blocks {
 		);
 
 		register_block_type_from_metadata(
+			RAMP_PLUGIN_DIR . '/assets/src/blocks/research-review-teasers/block.json',
+			[
+				'api_version'     => 1,
+				'attributes'      => [
+					'order' => [
+						'type'    => 'string',
+						'default' => 'alphabetical',
+					],
+					'researchTopic' => [
+						'type'    => 'string',
+						'default' => 'auto',
+					],
+				],
+				'render_callback' => [ $this, 'render_block_research_review_teasers' ],
+			]
+		);
+
+		register_block_type_from_metadata(
 			RAMP_PLUGIN_DIR . '/assets/src/blocks/article-teasers/block.json',
 			[
 				'api_version'     => 1,
@@ -134,14 +152,31 @@ class Blocks {
 				'render_callback' => [ $this, 'render_block_article_teasers' ],
 			]
 		);
+
+		register_block_type_from_metadata(
+			RAMP_PLUGIN_DIR . '/assets/src/blocks/research-topics-nav-submenu/block.json',
+			[
+				'api_version'     => 1,
+				'attributes'      => [],
+				'render_callback' => [ $this, 'render_block_research_topics_nav_submenu' ],
+			]
+		);
 	}
 
 	public function render_block_research_topic_teasers( $atts ) {
 		return self::get_block_markup( 'research-topic-teasers', $atts );
 	}
 
+	public function render_block_research_review_teasers( $atts ) {
+		return self::get_block_markup( 'research-review-teasers', $atts );
+	}
+
 	public function render_block_article_teasers( $atts ) {
 		return self::get_block_markup( 'article-teasers', $atts );
+	}
+
+	public function render_block_research_topics_nav_submenu( $atts ) {
+		return self::get_block_markup( 'research-topics-nav-submenu', $atts );
 	}
 
 	public static function get_block_markup( $block_type, $args = [] ) {
