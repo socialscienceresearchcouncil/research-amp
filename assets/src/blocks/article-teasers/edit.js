@@ -52,7 +52,7 @@ export default function edit( {
 						title={ __( 'Research Topic', 'ramp' ) }
 					>
 						<ResearchTopicSelector
-							label={ __( 'Select the Research Topic whose Research Reviews will be shown in this block.', 'ramp' ) }
+							label={ __( 'Select the Research Topic whose Article will be shown in this block.', 'ramp' ) }
 							selected={ researchTopic }
 							onChangeCallback={ ( researchTopic ) => setAttributes( { researchTopic } ) }
 						/>
