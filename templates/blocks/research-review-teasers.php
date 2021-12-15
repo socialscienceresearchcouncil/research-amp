@@ -13,7 +13,7 @@ if ( 'auto' === $research_topic_id ) {
 }
 
 $order_arg = isset( $args['order'] ) ? $args['order'] : 'alphabetical';
-if ( ! in_array( $order, [ 'alphabetical', 'latest', 'random' ], true ) ) {
+if ( ! in_array( $order_arg, [ 'alphabetical', 'latest', 'random' ], true ) ) {
 	$order_arg = 'alphabetical';
 }
 
