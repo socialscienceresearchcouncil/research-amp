@@ -127,16 +127,22 @@ class Blocks {
 			[
 				'api_version'     => 1,
 				'attributes'      => [
-					'order'         => [
+					'isEditMode' => [
+						'type' => 'boolean',
+						'default' => false,
+					],
+					'order'                 => [
 						'type'    => 'string',
 						'default' => 'alphabetical',
 					],
-					'researchTopic' => [
+					'researchTopic'         => [
 						'type'    => 'string',
 						'default' => 'auto',
 					],
 				],
-				'render_callback' => [ $this, 'render_block_research_review_teasers' ],
+				'render_callback' => function( $attributes, $content, $block ) {
+					return $this->render_block_research_review_teasers( $attributes );
+				},
 			]
 		);
 
@@ -159,6 +165,10 @@ class Blocks {
 			[
 				'api_version'     => 1,
 				'attributes'      => [
+					'isEditMode'  => [
+						'type'    => 'boolean',
+						'default' => false,
+					],
 					'researchTopic' => [
 						'type'    => 'string',
 						'default' => 'auto',
@@ -173,6 +183,10 @@ class Blocks {
 			[
 				'api_version'     => 1,
 				'attributes'      => [
+					'isEditMode'  => [
+						'type'    => 'boolean',
+						'default' => false,
+					],
 					'researchTopic' => [
 						'type'    => 'string',
 						'default' => 'auto',

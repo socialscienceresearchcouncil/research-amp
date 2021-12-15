@@ -9,6 +9,10 @@
 		"anchor": true
 	},
 	"attributes": {
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
+		},
 		"order": {
 			"type": "string",
 			"default": "alphabetical"

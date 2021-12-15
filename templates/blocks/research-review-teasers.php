@@ -2,9 +2,8 @@
 
 $research_topic_id = isset( $args['researchTopic'] ) ? $args['researchTopic'] : 'auto';
 if ( 'auto' === $research_topic_id ) {
-	if ( wp_is_json_request() ) {
-		// This is FSE. Pick a random item.
-		$research_topic_id = 29;
+	if ( ! empty( $args['isEditMode'] ) ) {
+		$research_topic_id = ramp_get_most_recent_research_topic_id();
 	} else {
 		$research_topic_id = get_queried_object_id();
 	}

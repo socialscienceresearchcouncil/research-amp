@@ -24,3 +24,15 @@ function ramp_get_template_part( $template, $args ) {
 
 	load_template( $located, false, $args );
 }
+
+function ramp_get_most_recent_research_topic_id() {
+	$rts = get_posts(
+		[
+			'post_type'   => 'ssrc_restop_pt',
+			'numberposts' => 1,
+			'fields'      => 'ids',
+		]
+	);
+
+	return $rts[0];
+}

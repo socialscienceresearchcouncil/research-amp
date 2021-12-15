@@ -20,6 +20,8 @@ import ServerSideRender from '@wordpress/server-side-render'
 
 import { useSelect } from '@wordpress/data'
 
+import ResearchTopicSelector from '../../components/ResearchTopicSelector'
+
 /**
  * Editor styles.
  */
@@ -53,23 +55,7 @@ export default function edit( {
 
 	const spinner = <Spinner />
 
-	const { researchTopics } = useSelect( ( select ) => {
-		const researchTopics = select( 'ramp' ).getResearchTopics()
-
-		return {
-			researchTopics
-		}
-	} )
-
-	let researchTopicsOptions = researchTopics.map( ( topic ) => {
-		return {
-			label: topic.title.rendered,
-			value: topic.id.toString()
-		}
-	} )
-
-	researchTopicsOptions.unshift( { label: __( 'Use current Research Topic', 'ramp' ), value: 'auto' } )
-	researchTopicsOptions.unshift( { label: __( 'Select a Research Topic', 'ramp' ), value: '' } )
+	const serverSideAtts = Object.assign( {}, attributes, { isEditMode: true } )
 
 	return (
 		<Fragment>
@@ -78,11 +64,10 @@ export default function edit( {
 					<PanelBody
 						title={ __( 'Research Topic', 'ramp' ) }
 					>
-						<SelectControl
+						<ResearchTopicSelector
 							label={ __( 'Select the Research Topic whose Research Reviews will be shown in this block.', 'ramp' ) }
-							value={ researchTopic }
-							options={ researchTopicsOptions }
-							onChange={ ( researchTopic ) => setAttributes( { researchTopic } ) }
+							selected={ researchTopic }
+							onChangeCallback={ ( researchTopic ) => setAttributes( { researchTopic } ) }
 						/>
 					</PanelBody>
 				</Panel>
@@ -107,7 +92,7 @@ export default function edit( {
 
 			<div { ...blockProps() }>
 				<ServerSideRender
-					attributes={ attributes }
+					attributes={ serverSideAtts }
 					block="ramp/research-review-teasers"
 					httpMethod="GET"
 					LoadingResponsePlaceholder={ Spinner }

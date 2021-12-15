@@ -44,6 +44,8 @@ export default function edit( {
 		} )
 	}
 
+	const serverSideAtts = Object.assign( {}, attributes, { isEditMode: true } )
+
 	return (
 		<Fragment>
 			<InspectorControls>
@@ -62,7 +64,7 @@ export default function edit( {
 
 			<div { ...blockProps() }>
 				<ServerSideRender
-					attributes={ attributes }
+					attributes={ serverSideAtts }
 					block="ramp/news-item-teasers"
 					httpMethod="GET"
 				/>

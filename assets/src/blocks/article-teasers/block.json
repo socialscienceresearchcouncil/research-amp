@@ -12,6 +12,10 @@
 		"associatedResearchTopic": {
 			"type": "string",
 			"default": "auto"
+		},
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
 		}
 	}
 }
