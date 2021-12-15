@@ -85,7 +85,7 @@ export default function edit( {
 			<div { ...blockProps() }>
 				<ServerSideRender
 					attributes={ attributes }
-					block="ramp/article-teasers"
+					block="ramp/article-teasers-with-featured-article"
 					httpMethod="GET"
 				/>
 			</div>

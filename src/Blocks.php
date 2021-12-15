@@ -17,6 +17,7 @@ class Blocks {
 		add_filter( 'block_categories_all', [ $this, 'register_block_category' ], 10, 2 );
 
 		add_action( 'init', [ $this, 'register_server_side_rendered_blocks' ] );
+		add_action( 'init', [ $this, 'register_block_styles' ], 20 );
 	}
 
 	/**
@@ -140,7 +141,7 @@ class Blocks {
 		);
 
 		register_block_type_from_metadata(
-			RAMP_PLUGIN_DIR . '/assets/src/blocks/article-teasers/block.json',
+			RAMP_PLUGIN_DIR . '/assets/src/blocks/article-teasers-with-featured-article/block.json',
 			[
 				'api_version'     => 1,
 				'attributes'      => [
@@ -149,7 +150,7 @@ class Blocks {
 						'default' => 0,
 					],
 				],
-				'render_callback' => [ $this, 'render_block_article_teasers' ],
+				'render_callback' => [ $this, 'render_block_article_teasers_with_featured_article' ],
 			]
 		);
 
@@ -171,8 +172,8 @@ class Blocks {
 		return self::get_block_markup( 'research-review-teasers', $atts );
 	}
 
-	public function render_block_article_teasers( $atts ) {
-		return self::get_block_markup( 'article-teasers', $atts );
+	public function render_block_article_teasers_with_featured_article( $atts ) {
+		return self::get_block_markup( 'article-teasers-with-featured-article', $atts );
 	}
 
 	public function render_block_research_topics_nav_submenu( $atts ) {
@@ -186,5 +187,8 @@ class Blocks {
 		ob_end_clean();
 
 		return $contents;
+	}
+
+	public function register_block_styles() {
 	}
 }
