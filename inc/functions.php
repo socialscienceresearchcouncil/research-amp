@@ -25,6 +25,15 @@ function ramp_get_template_part( $template, $args ) {
 	load_template( $located, false, $args );
 }
 
+function ramp_render_block( $block_name, $atts ) {
+	ob_start();
+	ramp_get_template_part( 'blocks/' . $block_name, $atts );
+	$contents = ob_get_contents();
+	ob_end_clean();
+
+	return $contents;
+}
+
 function ramp_get_most_recent_research_topic_id() {
 	$rts = get_posts(
 		[
