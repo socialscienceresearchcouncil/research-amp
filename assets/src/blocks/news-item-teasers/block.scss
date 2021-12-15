@@ -1,0 +1,18 @@
+.article-teasers {
+	display: flex;
+	gap: 28px;
+}
+
+.article-teasers > div {
+	flex: 0 0 50%;
+}
+
+.non-featured-article-teasers .teaser {
+	display: flex;
+	gap: 28px;
+	margin-bottom: 28px;
+}
+
+.non-featured-article-teasers .teaser-thumb {
+	flex: 0 0 40%;
+}

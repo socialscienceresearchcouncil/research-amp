@@ -18,7 +18,7 @@ $articles = $rt_obj->get_expert_reflections( [ 'posts_per_page' => 3 ] );
 ?>
 
 <div class="article-teasers">
-	<ul class="item-type-list item-type-list-flex item-type-list-articles">
+	<ul class="item-type-list item-type-list-flex item-type-list-3 item-type-list-articles">
 		<?php foreach ( $articles as $article ) : ?>
 			<li>
 				<?php ramp_get_template_part( 'teasers/article', [ 'id' => $article->ID ] ); ?>
