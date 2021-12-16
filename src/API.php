@@ -7,6 +7,7 @@ class API {
 
 	public function init() {
 		add_action( 'rest_api_init', [ $this, 'register_endpoints' ] );
+		add_action( 'rest_api_init', [ $this, 'register_fields' ] );
 	}
 
 	public function register_endpoints() {
@@ -17,6 +18,22 @@ class API {
 			$this->endpoints[ $class_name ] = new $class_name_with_namespace();
 			$this->endpoints[ $class_name ]->register_routes();
 		}
+	}
+
+	/**
+	 * Registers additional fields on core WP endpoints.
+	 */
+	public function register_fields() {
+		register_rest_field(
+			'ssrc_restop_pt',
+			'associated_term_id',
+			[
+				'get_callback' => function( $object ) {
+					$rt_map = disinfo_app()->get_cpttax_map( 'research_topic' );
+					return $rt_map->get_term_id_for_post_id( $object['id'] );
+				},
+			]
+		);
 	}
 }
 

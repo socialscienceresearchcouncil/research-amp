@@ -1,0 +1,21 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/profile-research-topics",
+	"title": "Profile Research Topic Tags",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"style": "file:../../../../build/index.css",
+	"supports": {
+		"anchor": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"associatedResearchTopics": {
+			"type": "array",
+			"default": []
+		}
+	}
+}

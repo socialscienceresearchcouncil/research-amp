@@ -99,6 +99,7 @@ class Blocks {
 			'article-teasers-with-featured-article',
 			'citation-teasers',
 			'news-item-teasers',
+			'profile-research-topics',
 			'research-review-teasers',
 			'research-topic-teasers',
 		];

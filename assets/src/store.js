@@ -102,7 +102,7 @@ const resolvers = {
 	},
 
 	*getResearchTopics() {
-		const path = '/wp/v2/research-topics?per_page=50&orderby=title&order=asc'
+		const path = '/wp/v2/research-topics?per_page=50&orderby=title&order=asc&context=edit'
 		const researchTopics = yield actions.fetchFromAPI( path )
 		return actions.setResearchTopics( researchTopics )
 	},

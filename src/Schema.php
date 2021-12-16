@@ -247,6 +247,19 @@ class Schema {
 											]
 										],
 									],
+									[
+										'ramp/profile-research-topics',
+										[
+											'style' => [
+												'spacing' => [
+													'margin' => [
+														'bottom' => '48px',
+														'top'    => '48px',
+													]
+												],
+											]
+										]
+									],
 								]
 							],
 							[
