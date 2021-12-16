@@ -46,13 +46,21 @@ class CPTTax {
 		}
 
 		if ( $create ) {
+			// In case of empties.
+			$term_name = ! empty( $post->post_title ) ? $post->post_title : 'Profile ' . $post->ID;
+
 			$term = wp_insert_term(
-				$post->post_title,
+				$term_name,
 				$this->taxonomy,
 				[
 					'slug' => $post->post_name,
 				]
 			);
+
+			// This should never happen.
+			if ( is_wp_error( $term ) ) {
+				return $term;
+			}
 
 			$term_id = $term['term_id'];
 
