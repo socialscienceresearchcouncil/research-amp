@@ -235,6 +235,18 @@ class Schema {
 											'placeholder' => __( 'Enter title and institution', 'ramp-theme' ),
 										],
 									],
+									[
+										'core/group',
+										[
+											'className'   => 'ramp-profile-bio',
+										],
+										[
+											[
+												'core/paragraph',
+												[ 'placeholder' => __( 'Enter profile bio', 'ramp-theme' ) ]
+											]
+										],
+									],
 								]
 							],
 							[

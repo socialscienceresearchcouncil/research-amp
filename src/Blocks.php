@@ -144,6 +144,7 @@ class Blocks {
 	protected function recurse_cb_for_profile_data( $block, $profile_data = [] ) {
 		$block_map = [
 			'ramp-profile-title-institution' => 'ramp_profile_title_institution',
+			'ramp-profile-bio'               => 'ramp_profile_bio',
 		];
 
 		if ( ! empty( $block['attrs']['className'] ) ) {
