@@ -505,6 +505,125 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./assets/src/blocks/profile-research-topics/edit.js":
+/*!***********************************************************!*\
+  !*** ./assets/src/blocks/profile-research-topics/edit.js ***!
+  \***********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ edit; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./assets/src/blocks/profile-research-topics/editor.scss");
+
+
+
+
+/**
+ * Editor styles.
+ */
+
+
+/**
+ * Edit function.
+ *
+ * @return {WPElement} Element to render.
+ */
+
+function edit(_ref) {
+  let {
+    attributes,
+    setAttributes
+  } = _ref;
+
+  const blockProps = () => {
+    let classNames = ['ramp-profile-research-topics'];
+    return (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
+      className: classNames
+    });
+  };
+
+  const {
+    associatedIds,
+    researchTopics
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
+    const researchTopics = select('ramp').getResearchTopics();
+    const associatedIds = select('core/editor').getEditedPostAttribute('ssrc_research_topic');
+    return {
+      associatedIds,
+      researchTopics
+    };
+  });
+  const matchedTopics = researchTopics.filter(topic => {
+    return -1 !== associatedIds.indexOf(topic.associated_term_id);
+  });
+  let topicIndex = 0;
+  const topicTags = matchedTopics.map(topic => {
+    topicIndex++;
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      className: "ramp-research-topic-tag",
+      href: topic.link,
+      key: 'research-topic-tag-' + topicIndex
+    }, topic.title.raw);
+  });
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps(), topicTags);
+}
+
+/***/ }),
+
+/***/ "./assets/src/blocks/profile-research-topics/index.js":
+/*!************************************************************!*\
+  !*** ./assets/src/blocks/profile-research-topics/index.js ***!
+  \************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./assets/src/blocks/profile-research-topics/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./assets/src/blocks/profile-research-topics/block.json");
+/**
+ * Research Topics block.
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+/**
+ * Block definition.
+ */
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__, {
+  /**
+   * @see ./edit.js
+   */
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+
+  /**
+   * Rendered in PHP.
+   */
+  save: () => {
+    return null;
+  }
+});
+
+/***/ }),
+
 /***/ "./assets/src/blocks/research-review-teasers/edit.js":
 /*!***********************************************************!*\
   !*** ./assets/src/blocks/research-review-teasers/edit.js ***!
@@ -1312,7 +1431,7 @@ const resolvers = {
   },
 
   *getResearchTopics() {
-    const path = '/wp/v2/research-topics?per_page=50&orderby=title&order=asc';
+    const path = '/wp/v2/research-topics?per_page=50&orderby=title&order=asc&context=edit';
     const researchTopics = yield actions.fetchFromAPI(path);
     return actions.setResearchTopics(researchTopics);
   },
@@ -1388,6 +1507,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************!*\
   !*** ./assets/src/blocks/news-item-teasers/editor.scss ***!
   \*********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./assets/src/blocks/profile-research-topics/editor.scss":
+/*!***************************************************************!*\
+  !*** ./assets/src/blocks/profile-research-topics/editor.scss ***!
+  \***************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1592,6 +1723,16 @@ module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/news-item-teasers","ti
 
 /***/ }),
 
+/***/ "./assets/src/blocks/profile-research-topics/block.json":
+/*!**************************************************************!*\
+  !*** ./assets/src/blocks/profile-research-topics/block.json ***!
+  \**************************************************************/
+/***/ (function(module) {
+
+module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/profile-research-topics","title":"Profile Research Topic Tags","icon":"lightbulb","category":"ramp","style":"file:../../../../build/index.css","supports":{"anchor":true,"spacing":{"margin":true,"padding":true}},"attributes":{"associatedResearchTopics":{"type":"array","default":[]}}}');
+
+/***/ }),
+
 /***/ "./assets/src/blocks/research-review-teasers/block.json":
 /*!**************************************************************!*\
   !*** ./assets/src/blocks/research-review-teasers/block.json ***!
@@ -1704,11 +1845,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_news_item_teasers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./blocks/news-item-teasers */ "./assets/src/blocks/news-item-teasers/index.js");
 /* harmony import */ var _blocks_research_topic_teasers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./blocks/research-topic-teasers */ "./assets/src/blocks/research-topic-teasers/index.js");
 /* harmony import */ var _blocks_research_review_teasers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blocks/research-review-teasers */ "./assets/src/blocks/research-review-teasers/index.js");
-/* harmony import */ var _blocks_zotero_library_info_help__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./blocks/zotero-library-info-help */ "./assets/src/blocks/zotero-library-info-help/index.js");
-/* harmony import */ var _css_blocks_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../css/blocks.css */ "./assets/css/blocks.css");
-/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
-/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/ZoteroLibraryInfo */ "./assets/src/components/ZoteroLibraryInfo.js");
+/* harmony import */ var _blocks_profile_research_topics__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./blocks/profile-research-topics */ "./assets/src/blocks/profile-research-topics/index.js");
+/* harmony import */ var _blocks_zotero_library_info_help__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./blocks/zotero-library-info-help */ "./assets/src/blocks/zotero-library-info-help/index.js");
+/* harmony import */ var _css_blocks_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../css/blocks.css */ "./assets/css/blocks.css");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/ZoteroLibraryInfo */ "./assets/src/components/ZoteroLibraryInfo.js");
 /**
  * Set up store
  */
@@ -1716,12 +1858,16 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Import blocks
  */
+// Teaser blocks
 
 
 
 
 
 
+ // Profile blocks
+
+ // Miscellaneous
 
 
 /**
@@ -1735,9 +1881,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_9__.registerPlugin)('zotero-library-info', {
+(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_10__.registerPlugin)('zotero-library-info', {
   icon: 'book-alt',
-  render: _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_10__["default"]
+  render: _components_ZoteroLibraryInfo__WEBPACK_IMPORTED_MODULE_11__["default"]
 });
 }();
 /******/ })()
