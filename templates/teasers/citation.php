@@ -3,10 +3,10 @@ $citation_id = $args['id'];
 
 $article_classes = [ 'teaser' ];
 
-$citation_url = '';
-$author       = '';
-$publication  = '';
-$year         = '';
+$citation_url  = '';
+$author        = '';
+$publication   = '';
+$citation_year = '';
 
 if ( $citation_id ) {
 	$citation_object = SSRC\RAMP\Citation::get_from_post_id( $citation_id );
@@ -21,7 +21,7 @@ if ( $citation_id ) {
 		$publication = $zotero_data['publicationTitle'];
 	}
 
-	$year = $citation_object->get_publication_year();
+	$citation_year = $citation_object->get_publication_year();
 }
 
 ?>
@@ -30,7 +30,7 @@ if ( $citation_id ) {
 	<div class="teaser-content article-teaser-content">
 		<h1 class="item-title article-item-title"><a href="<?php echo esc_url( $citation_url ); ?>"><?php echo esc_html( $citation_object->get_title() ); ?></a></h1>
 
-		<?php if ( $author || $publication || $year ) : ?>
+		<?php if ( $author || $publication || $citation_year ) : ?>
 		<dl>
 			<?php if ( $author ) : ?>
 				<div>
@@ -46,10 +46,10 @@ if ( $citation_id ) {
 				</div>
 			<?php endif; ?>
 
-			<?php if ( $year ) : ?>
+			<?php if ( $citation_year ) : ?>
 				<div>
 					<dt><?php esc_html_e( 'Year:', 'ramp' ); ?></dt>
-					<dd><?php echo esc_html( $year ); ?></dd>
+					<dd><?php echo esc_html( $citation_year ); ?></dd>
 				</div>
 			<?php endif; ?>
 		</dl>

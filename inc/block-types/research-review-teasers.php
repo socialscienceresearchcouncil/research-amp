@@ -3,15 +3,15 @@
 return [
 	'api_version'     => 1,
 	'attributes'      => [
-		'isEditMode' => [
-			'type' => 'boolean',
+		'isEditMode'    => [
+			'type'    => 'boolean',
 			'default' => false,
 		],
-		'order'                 => [
+		'order'         => [
 			'type'    => 'string',
 			'default' => 'alphabetical',
 		],
-		'researchTopic'         => [
+		'researchTopic' => [
 			'type'    => 'string',
 			'default' => 'auto',
 		],

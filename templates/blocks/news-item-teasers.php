@@ -16,14 +16,14 @@ $rt_term_id = $rt_map->get_term_id_for_post_id( $research_topic_id );
 
 $news_items = get_posts(
 	[
-		'post_type'     => 'post',
-		'post_status'   => 'publish',
-		'tax_query'     => [
+		'post_type'      => 'post',
+		'post_status'    => 'publish',
+		'tax_query'      => [
 			[
 				'taxonomy' => 'ssrc_research_topic',
-				'terms' => $rt_term_id,
-				'field' => 'term_id',
-			]
+				'terms'    => $rt_term_id,
+				'field'    => 'term_id',
+			],
 		],
 		'posts_per_page' => 3,
 		'fields'         => 'ids',
