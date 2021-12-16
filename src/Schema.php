@@ -187,8 +187,8 @@ class Schema {
 		register_post_type(
 			'ssrc_schprof_pt',
 			[
-				'label'        => __( 'Profiles', 'ramp' ),
-				'labels'       => [
+				'label'         => __( 'Profiles', 'ramp' ),
+				'labels'        => [
 					'name'               => __( 'Profiles', 'ramp' ),
 					'singular_name'      => __( 'Profile', 'ramp' ),
 					'add_new_item'       => __( 'Add New Profile', 'ramp' ),
@@ -202,16 +202,16 @@ class Schema {
 					'all_items'          => __( 'All Profiles', 'ramp' ),
 					'name_admin_bar'     => __( 'Profiles', 'ramp' ),
 				],
-				'public'       => true,
-				'show_ui'      => true,
-				'has_archive'  => true,
-				'rewrite'      => [
+				'public'        => true,
+				'show_ui'       => true,
+				'has_archive'   => true,
+				'rewrite'       => [
 					'slug'       => 'our-network',
 					'with_front' => false,
 				],
-				'menu_icon'    => 'dashicons-welcome-learn-more',
-				'show_in_rest' => true,
-				'template'     => [
+				'menu_icon'     => 'dashicons-welcome-learn-more',
+				'show_in_rest'  => true,
+				'template'      => [
 					[
 						'core/columns',
 						[],
@@ -223,7 +223,7 @@ class Schema {
 									[
 										'core/paragraph',
 										[
-											'content'   => __( 'Profile', 'ramp-theme' ),
+											'content'   => __( 'Profile', 'ramp' ),
 											'className' => 'ramp-header-tag',
 										],
 									],
@@ -232,19 +232,19 @@ class Schema {
 										'core/paragraph',
 										[
 											'className'   => 'ramp-profile-title-institution',
-											'placeholder' => __( 'Enter title and institution', 'ramp-theme' ),
+											'placeholder' => __( 'Enter title and institution', 'ramp' ),
 										],
 									],
 									[
 										'core/group',
 										[
-											'className'   => 'ramp-profile-bio',
+											'className' => 'ramp-profile-bio',
 										],
 										[
 											[
 												'core/paragraph',
-												[ 'placeholder' => __( 'Enter profile bio', 'ramp-theme' ) ]
-											]
+												[ 'placeholder' => __( 'Enter profile bio', 'ramp' ) ],
+											],
 										],
 									],
 									[
@@ -255,12 +255,12 @@ class Schema {
 													'margin' => [
 														'bottom' => '48px',
 														'top'    => '48px',
-													]
+													],
 												],
-											]
-										]
+											],
+										],
 									],
-								]
+								],
 							],
 							[
 								'core/column',
@@ -268,13 +268,13 @@ class Schema {
 								[
 									[ 'core/post-featured-image' ],
 									[ 'core/separator' ],
-								]
+								],
 							],
 						],
-					]
+					],
 				],
 				'template_lock' => 'all',
-				'supports'     => [ 'title', 'thumbnail', 'editor' ],
+				'supports'      => [ 'title', 'thumbnail', 'editor' ],
 			]
 		);
 
