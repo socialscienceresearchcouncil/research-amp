@@ -18,6 +18,8 @@ class Blocks {
 
 		add_action( 'init', [ $this, 'register_server_side_rendered_blocks' ] );
 		add_action( 'init', [ $this, 'register_block_styles' ], 20 );
+
+		add_filter( 'save_post', [ $this, 'save_profile_data_from_blocks' ] );
 	}
 
 	/**
@@ -112,5 +114,55 @@ class Blocks {
 	}
 
 	public function register_block_styles() {
+	}
+
+	public function save_profile_data_from_blocks( $post ) {
+		$post = get_post( $post );
+
+		if ( 'ssrc_schprof_pt' !== $post->post_type ) {
+			return;
+		}
+
+		$blocks = parse_blocks( $post->post_content );
+
+		if ( empty( $blocks ) ) {
+			return;
+		}
+
+		$profile_data = [];
+		foreach ( $blocks as $block ) {
+			$block_profile_data = $this->recurse_cb_for_profile_data( $block );
+
+			$profile_data = array_merge( $profile_data, $block_profile_data );
+		}
+
+		foreach ( $profile_data as $meta_key => $meta_value ) {
+			update_post_meta( $post->ID, $meta_key, $meta_value );
+		}
+	}
+
+	protected function recurse_cb_for_profile_data( $block, $profile_data = [] ) {
+		$block_map = [
+			'ramp-profile-title-institution' => 'ramp_profile_title_institution',
+		];
+
+		if ( ! empty( $block['attrs']['className'] ) ) {
+			$class_name = $block['attrs']['className'];
+			if ( isset( $block_map[ $class_name ] ) ) {
+				$meta_key = $block_map[ $class_name ];
+
+				$profile_data[ $meta_key ] = render_block( $block );
+			}
+		}
+
+		if ( ! empty( $block['innerBlocks'] ) ) {
+			foreach ( $block['innerBlocks'] as $inner_block ) {
+				$inner_block_profile_data = $this->recurse_cb_for_profile_data( $inner_block, $profile_data );
+
+				$profile_data = array_merge( $profile_data, $inner_block_profile_data );
+			}
+		}
+
+		return $profile_data;
 	}
 }

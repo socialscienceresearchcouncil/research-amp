@@ -211,6 +211,44 @@ class Schema {
 				],
 				'menu_icon'    => 'dashicons-welcome-learn-more',
 				'show_in_rest' => true,
+				'template'     => [
+					[
+						'core/columns',
+						[],
+						[
+							[
+								'core/column',
+								[ 'width' => '66.66%' ],
+								[
+									[
+										'core/paragraph',
+										[
+											'content'   => __( 'Profile', 'ramp-theme' ),
+											'className' => 'ramp-header-tag',
+										],
+									],
+									[ 'core/post-title' ],
+									[
+										'core/paragraph',
+										[
+											'className'   => 'ramp-profile-title-institution',
+											'placeholder' => __( 'Enter title and institution', 'ramp-theme' ),
+										],
+									],
+								]
+							],
+							[
+								'core/column',
+								[ 'width' => '33.33%' ],
+								[
+									[ 'core/post-featured-image' ],
+									[ 'core/separator' ],
+								]
+							],
+						],
+					]
+				],
+				'template_lock' => 'all',
 				'supports'     => [ 'title', 'thumbnail', 'editor' ],
 			]
 		);
