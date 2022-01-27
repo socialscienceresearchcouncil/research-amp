@@ -268,6 +268,33 @@ class Schema {
 								[
 									[ 'core/post-featured-image' ],
 									[ 'core/separator' ],
+									[
+										'core/group',
+										[
+											'lock' => [
+												'remove' => false,
+												'move'   => false,
+											],
+										],
+										[
+											[
+												'ramp/profile-vital-link',
+												[ 'vitalType' => 'email' ],
+											],
+											[
+												'ramp/profile-vital-link',
+												[ 'vitalType' => 'twitter' ],
+											],
+											[
+												'ramp/profile-vital-link',
+												[ 'vitalType' => 'orcidId' ],
+											],
+											[
+												'ramp/profile-vital-link',
+												[ 'vitalType' => 'website' ],
+											],
+										]
+									],
 								],
 							],
 						],

@@ -1,0 +1,21 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/profile-vital-link",
+	"title": "Profile Vital Link",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"style": "file:../../../../build/index.css",
+	"supports": {
+		"anchor": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"vitalType": {
+			"type": "string",
+			"default": "email"
+		}
+	}
+}

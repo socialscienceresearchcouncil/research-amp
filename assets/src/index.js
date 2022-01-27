@@ -17,6 +17,7 @@ import './blocks/research-review-teasers'
 
 // Profile blocks
 import './blocks/profile-research-topics'
+import './blocks/profile-vital-link'
 
 // Miscellaneous
 import './blocks/zotero-library-info-help'
