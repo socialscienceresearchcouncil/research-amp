@@ -43,6 +43,7 @@
     "start": "wp-scripts start assets/src/index.js assets/src/frontend.js"
   },
   "dependencies": {
+    "@glidejs/glide": "^3.5.2",
     "@wordpress/api-fetch": "^5.2.4",
     "@wordpress/data": "^6.1.4",
     "@wordpress/url": "^3.2.3"
