@@ -13,9 +13,9 @@
     "url": "git+https://github.com/Hard-G/ramp.git"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^18.0.0",
+    "@wordpress/scripts": "^6.2.0",
     "dir-archiver": "^1.1.1",
-    "rtlcss": "^2.5.0",
+    "rtlcss": "^3.5.0",
     "sass": "^1.42.1"
   },
   "rtlcssConfig": {
