@@ -1,0 +1,1 @@
+{"version":3,"file":"frontend.css","mappings":";;;AAAA;EACC;AACD,C","sources":["webpack://RAMP/./assets/src/blocks/research-topic-teasers/block.scss"],"sourcesContent":[".item-type-list-research-topics li {\n\tbackground: var(--ramp-light-grey);\n}\n"],"names":[],"sourceRoot":""}
