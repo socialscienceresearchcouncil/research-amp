@@ -13,7 +13,7 @@
     "url": "git+https://github.com/Hard-G/ramp.git"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^6.2.0",
+    "@wordpress/scripts": "^20.0.0",
     "dir-archiver": "^1.1.1",
     "rtlcss": "^3.5.0",
     "sass": "^1.42.1"
