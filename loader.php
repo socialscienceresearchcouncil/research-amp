@@ -37,6 +37,7 @@ function disinfo_app() {
 		$router              = new \SSRC\RAMP\Router();
 		$user_management     = new \SSRC\RAMP\UserManagement();
 		$blocks              = new \SSRC\RAMP\Blocks();
+		$homepage_slides     = new \SSRC\RAMP\HomepageSlides();
 
 		$app = new \SSRC\RAMP\App(
 			$schema,
@@ -46,7 +47,8 @@ function disinfo_app() {
 			$the_events_calendar,
 			$router,
 			$user_management,
-			$blocks
+			$blocks,
+			$homepage_slides
 		);
 
 		$app->init();
