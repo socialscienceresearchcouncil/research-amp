@@ -1,0 +1,17 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/homepage-slides",
+	"title": "Homepage Slides",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"style": "file:../../../../build/index.css",
+	"supports": {
+		"anchor": true
+	},
+	"attributes": {
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

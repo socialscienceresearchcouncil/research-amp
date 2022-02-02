@@ -21,6 +21,7 @@ import './blocks/profile-vital-link'
 
 // Miscellaneous
 import './blocks/zotero-library-info-help'
+import './blocks/homepage-slides'
 
 /**
  * Shared block styles.

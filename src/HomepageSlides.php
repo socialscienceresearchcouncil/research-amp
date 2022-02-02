@@ -25,25 +25,10 @@ class HomepageSlides {
 		add_action( 'init', [ $this, 'register_post_type' ] );
 		add_action( 'init', [ $this, 'register_assets' ] );
 
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_block_assets' ] );
+
 		add_action( 'add_meta_boxes', [ $this, 'register_meta_boxes' ] );
 		add_action( 'save_post', [ $this, 'slide_info_save_cb' ] );
-
-		add_filter(
-			'kdmfi_featured_images',
-			function( $featured_images ) {
-				$featured_images[] = [
-					'id' => 'slide-background',
-					'desc' => 'Background image for the slide',
-					'label_name' => 'Slide Background',
-					'label_set' => 'Set slide background',
-					'label_remove' => 'Remove slide background',
-					'label_use' => 'Set slide background',
-					'post_type' => [ $this->post_type ],
-				];
-
-				return $featured_images;
-			}
-		);
 	}
 
 	public function register_post_type() {
@@ -63,11 +48,20 @@ class HomepageSlides {
 	}
 
 	public function register_assets() {
-		wp_register_style( 'glide-core', get_stylesheet_directory_uri() . '/lib/glide/css/glide.core.min.css', [] );
-		wp_register_style( 'glide-theme', get_stylesheet_directory_uri() . '/lib/glide/css/glide.theme.min.css', [] );
+		// RAMP-specific themes are loaded in the compiled frontend block styles.
+		wp_register_style( 'ramp-glide', RAMP_PLUGIN_URL . '/node_modules/@glidejs/glide/dist/css/glide.core.css', [] );
+		wp_register_style( 'ramp-glide-theme', RAMP_PLUGIN_URL . '/node_modules/@glidejs/glide/dist/css/glide.theme.css', [ 'ramp-glide' ] );
 
-		wp_register_script( 'glide', get_stylesheet_directory_uri() . '/lib/glide/glide.min.js', [], true );
-		wp_register_script( 'ramp-homepage-slides', get_stylesheet_directory_uri() . '/js/homepage-slides.js', [ 'glide' ], true );
+		wp_register_script( 'ramp-glide', RAMP_PLUGIN_URL . '/node_modules/@glidejs/glide/dist/glide.js', [], true );
+		wp_register_script( 'ramp-homepage-slides', RAMP_PLUGIN_URL . '/assets/js/homepage-slides.js', [ 'ramp-glide' ], true );
+	}
+
+	public function enqueue_block_assets() {
+		wp_enqueue_style( 'ramp-glide-theme' );
+
+		if ( ! is_admin() ) {
+			wp_enqueue_script( 'ramp-homepage-slides' );
+		}
 	}
 
 	public function register_meta_boxes( $post ) {

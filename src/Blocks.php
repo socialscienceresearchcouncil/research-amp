@@ -98,6 +98,7 @@ class Blocks {
 			'article-teasers',
 			'article-teasers-with-featured-article',
 			'citation-teasers',
+			'homepage-slides',
 			'news-item-teasers',
 			'profile-research-topics',
 			'research-review-teasers',
