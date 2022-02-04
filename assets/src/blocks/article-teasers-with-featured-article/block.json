@@ -4,7 +4,7 @@
 	"title": "Article Teasers with Featured Article",
 	"icon": "lightbulb",
 	"category": "ramp",
-	"style": "file:../../../../build/index.css",
+	"editorStyle": "file:../../../../build/index.css",
 	"supports": {
 		"anchor": true
 	},
