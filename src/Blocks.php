@@ -16,10 +16,22 @@ class Blocks {
 
 		add_filter( 'block_categories_all', [ $this, 'register_block_category' ], 10, 2 );
 
+		add_action( 'after_setup_theme', [ $this, 'add_image_sizes' ] );
+
 		add_action( 'init', [ $this, 'register_server_side_rendered_blocks' ] );
 		add_action( 'init', [ $this, 'register_block_styles' ], 20 );
 
 		add_filter( 'save_post', [ $this, 'save_profile_data_from_blocks' ] );
+	}
+
+	public function add_image_sizes() {
+		// 3:2 ratio
+		add_image_size(
+			'ramp-thumbnail',
+			840,
+			560,
+			true
+		);
 	}
 
 	/**
