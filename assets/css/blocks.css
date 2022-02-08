@@ -10,6 +10,14 @@
 	padding: 0;
 }
 
+.item-type-list > li {
+	margin-bottom: 16px;
+}
+
+.item-type-list > li:last-child {
+	margin-bottom: 0;
+}
+
 .item-type-list-flex {
 	display: flex;
 	gap: 28px;
@@ -17,6 +25,7 @@
 
 .item-type-list-flex > li {
 	flex: 1 0 0;
+	margin-bottom: 0;
 }
 
 .item-type-list-3 > li {
@@ -49,6 +58,7 @@
 
 .item-type-list-flex .teaser {
 	flex-direction: column;
+	height: 100%;
 }
 
 .teaser-thumb img {
@@ -66,4 +76,16 @@
 
 .research-review-teaser-thumb {
 	flex: 0 0 30%;
+}
+
+.research-topic-tags {
+	font-size: .8em;
+	text-transform: uppercase;
+}
+
+.research-topic-tags a {
+	display: block;
+	margin-bottom: .5em;
+	text-decoration: none;
+	font-weight: 700;
 }

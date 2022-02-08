@@ -65,7 +65,15 @@ if ( $research_topic_id ) {
 <ul class="item-type-list item-type-list-research-reviews <?php if ( 'teasers' === $variation_type ) : ?>item-type-list-flex<?php endif; ?>">
 	<?php foreach ( $research_reviews as $research_review ) : ?>
 		<li>
-			<?php ramp_get_template_part( 'teasers/research-review', [ 'id' => $research_review->ID ] ); ?>
+			<?php
+			ramp_get_template_part(
+				'teasers/research-review',
+				[
+					'id'                   => $research_review->ID,
+					'show_research_topics' => empty( $research_topic_id ),
+				]
+			);
+			?>
 		</li>
 	<?php endforeach; ?>
 </ul>

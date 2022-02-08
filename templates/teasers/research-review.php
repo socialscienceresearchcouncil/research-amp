@@ -18,6 +18,8 @@ if ( $img_src ) {
 	$article_class .= ' has-featured-image';
 }
 
+$show_research_topics = ! empty( $args['show_research_topics'] );
+
 ?>
 
 <article class="<?php echo esc_attr( $article_class ); ?>">
@@ -32,6 +34,15 @@ if ( $img_src ) {
 	</div>
 
 	<div class="teaser-content research-review-teaser-content">
+		<?php if ( $show_research_topics ) : ?>
+			<?php
+			ramp_get_template_part(
+				'research-topic-tags',
+				[ 'item_id' => $research_review_id ]
+			);
+			?>
+		<?php endif; ?>
+
 		<h1 class="item-title research-review-item-title"><a href="<?php echo esc_attr( get_permalink( $research_review_id ) ); ?>"><?php echo esc_html( get_the_title( $research_review_id ) ); ?></a></h1>
 
 		<div class="item-excerpt research-review-item-excerpt"><?php echo wp_kses_post( get_the_excerpt( $research_review_id ) ); ?></div>
