@@ -7,6 +7,10 @@ return [
 			'type'    => 'boolean',
 			'default' => false,
 		],
+		'numberOfItems' => [
+			'type'    => 'string',
+			'default' => '3',
+		],
 		'order'         => [
 			'type'    => 'string',
 			'default' => 'alphabetical',
@@ -14,6 +18,10 @@ return [
 		'researchTopic' => [
 			'type'    => 'string',
 			'default' => 'auto',
+		],
+		'variationType' => [
+			'enum'    => [ 'teasers', 'horizontal' ],
+			'default' => 'teasers',
 		],
 	],
 	'render_callback' => function( $atts ) {

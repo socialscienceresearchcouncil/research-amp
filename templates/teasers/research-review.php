@@ -12,9 +12,15 @@ if ( $thumbnail_id ) {
 	$img_src     = $img_details[0];
 	$img_alt     = trim( wp_strip_all_tags( get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true ) ) );
 }
+
+$article_class = 'teaser';
+if ( $img_src ) {
+	$article_class .= ' has-featured-image';
+}
+
 ?>
 
-<article class="teaser">
+<article class="<?php echo esc_attr( $article_class ); ?>">
 	<?php if ( $img_src ) : ?>
 		<div class="teaser-thumb research-review-teaser-thumb">
 			<a href="<?php echo esc_attr( get_permalink( $research_review_id ) ); ?>">

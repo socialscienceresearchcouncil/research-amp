@@ -37,15 +37,18 @@ export default function edit( {
 	setAttributes,
 } ) {
 	const {
+		numberOfItems,
 		order,
-		researchTopic
+		researchTopic,
+		variationType
 	} = attributes
 
 	const blockProps = () => {
 		let classNames = []
 
 		// This is here to force the 'dirty' state.
-		classNames.push( 'order' + order )
+		classNames.push( 'variation-type-' + variationType )
+		classNames.push( 'order-' + order )
 		classNames.push( 'research-topic-' + researchTopic )
 
 		return useBlockProps( {
@@ -74,17 +77,33 @@ export default function edit( {
 
 				<Panel>
 					<PanelBody
+						title={ __( 'Display Variations', 'ramp' ) }
+					>
+						<SelectControl
+							label={ __( 'Select the display variation', 'ramp' ) }
+							options={ [
+								{ label: __( 'Horizontal', 'ramp' ), value: 'horizontal' },
+								{ label: __( 'Teasers', 'ramp' ), value: 'teasers' },
+							] }
+							selected={ variationType }
+							onChange={ ( variationType ) => setAttributes( { variationType } ) }
+						/>
+					</PanelBody>
+				</Panel>
+
+				<Panel>
+					<PanelBody
 						title={ __( 'Order', 'ramp' ) }
 					>
 						<SelectControl
 							label={ __( 'Select the order of Research Reviews', 'ramp' ) }
-							value={ order }
 							options={ [
 								{ label: __( 'Alphabetical', 'ramp' ), value: 'alphabetical' },
 								{ label: __( 'Recently Added', 'ramp' ), value: 'latest' },
 								{ label: __( 'Random', 'ramp' ), value: 'random' }
 							] }
-							onChange={ ( selectionType ) => setAttributes( { selectionType } ) }
+							selected={ order }
+							onChange={ ( order ) => setAttributes( { order } ) }
 						/>
 					</PanelBody>
 				</Panel>

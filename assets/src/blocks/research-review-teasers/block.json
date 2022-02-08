@@ -13,13 +13,21 @@
 			"type": "boolean",
 			"default": false
 		},
-		"order": {
+		"numberOfItems": {
 			"type": "string",
+			"default": "3"
+		},
+		"order": {
+			"enum": [ "alphabetical", "latest", "random" ],
 			"default": "alphabetical"
 		},
 		"researchTopic": {
 			"type": "string",
 			"default": "auto"
+		},
+		"variationType": {
+			"enum": [ "teasers", "horizontal" ],
+			"default": "teasers"
 		}
 	}
 }
