@@ -25,6 +25,7 @@ const ResearchTopicSelector = ( props ) => {
 	} )
 
 	researchTopicsOptions.unshift( { label: __( 'Use current Research Topic', 'ramp' ), value: 'auto' } )
+	researchTopicsOptions.unshift( { label: __( 'All Research Topics', 'ramp' ), value: 'all' } )
 	researchTopicsOptions.unshift( { label: __( 'Select a Research Topic', 'ramp' ), value: '' } )
 
 	return (
