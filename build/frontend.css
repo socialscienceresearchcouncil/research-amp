@@ -1,8 +1,291 @@
+/*!***************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./assets/css/blocks.css ***!
+  \***************************************************************************************************************************************************************************/
+/** Shared vars */
+:root {
+	--ramp-light-grey: #eee;
+}
+
+/** Lists */
+.item-type-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.item-type-list > li {
+	margin-bottom: 16px;
+}
+
+.item-type-list > li:last-child {
+	margin-bottom: 0;
+}
+
+.item-type-list-flex {
+	display: flex;
+	gap: 28px;
+}
+
+.item-type-list-flex > li {
+	flex: 1 0 0;
+	margin-bottom: 0;
+}
+
+.item-type-list-3 > li {
+	flex: 0 1 33%;
+}
+
+/** Buttons, tags, etc */
+.ramp-header-tag {
+	font-size: .9em;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.ramp-research-topic-tag {
+	background: #eaeaea;
+	border-radius: 8px;
+	font-size: .9em;
+	font-weight: 700;
+	line-height: 2.5em;
+	margin-right: 12px;
+	padding: 4px 10px;
+	white-space: nowrap;
+}
+
+/** Teasers */
+.teaser {
+	display: flex;
+	gap: 16px;
+}
+
+.item-type-list-flex .teaser {
+	flex-direction: column;
+	height: 100%;
+}
+
+.teaser-thumb img {
+	max-width: 100%;
+}
+
+.article-type-tag {
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.teaser.featured-article-teaser {
+	flex-direction: column;
+}
+
+.research-review-teaser-thumb {
+	flex: 0 0 30%;
+}
+
+.research-topic-tags {
+	font-size: .8em;
+	text-transform: uppercase;
+}
+
+.research-topic-tags a {
+	display: block;
+	margin-bottom: .5em;
+	text-decoration: none;
+	font-weight: 700;
+}
+
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/article-teasers/block.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+.article-teasers {
+  display: flex;
+  gap: 28px;
+}
+
+.article-teasers > div {
+  flex: 0 0 50%;
+}
+
+.non-featured-article-teasers .teaser {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.non-featured-article-teasers .teaser-thumb {
+  flex: 0 0 40%;
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/article-teasers-with-featured-article/block.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************/
+.article-teasers {
+  display: flex;
+  gap: 28px;
+}
+
+.article-teasers > div {
+  flex: 0 0 50%;
+}
+
+.non-featured-article-teasers .teaser {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.non-featured-article-teasers .teaser-thumb {
+  flex: 0 0 40%;
+}
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/citation-teasers/block.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+.article-teasers {
+  display: flex;
+  gap: 28px;
+}
+
+.article-teasers > div {
+  flex: 0 0 50%;
+}
+
+.non-featured-article-teasers .teaser {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.non-featured-article-teasers .teaser-thumb {
+  flex: 0 0 40%;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/news-item-teasers/block.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+.article-teasers {
+  display: flex;
+  gap: 28px;
+}
+
+.article-teasers > div {
+  flex: 0 0 50%;
+}
+
+.non-featured-article-teasers .teaser {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.non-featured-article-teasers .teaser-thumb {
+  flex: 0 0 40%;
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/research-review-teasers/block.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
+.item-type-list-research-reviews.item-type-list-flex .item-excerpt {
+  display: none;
+}
 /*!****************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/research-topic-teasers/block.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************/
 .item-type-list-research-topics li {
   background: var(--ramp-light-grey);
+  padding: 24px;
+}
+
+.item-type-list-research-topics h1 {
+  margin-top: 0;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/homepage-slides/block.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+.homepage-slider .glide__track,
+.homepage-slider .glide__slides {
+  z-index: 1;
+}
+
+.homepage-slide {
+  display: flex;
+  gap: 32px;
+  position: relative;
+}
+
+.homepage-slide-left {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 50%;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+}
+
+.homepage-slide-img {
+  height: 300px;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.homepage-slide-right {
+  margin-bottom: 48px;
+  z-index: 3;
+}
+
+.homepage-slide-meta-text {
+  text-transform: uppercase;
+}
+
+.homepage-slide-text {
+  font-size: 0.94em;
+  line-height: 1.6em;
+  margin-bottom: 24px;
+}
+
+.homepage-slider-bullets-mobile {
+  display: none;
+}
+
+.homepage-slider-bullets {
+  bottom: 0;
+  position: absolute;
+  left: auto;
+  right: 0;
+  text-align: right;
+}
+
+.homepage-slider-bullets .glide__bullets {
+  bottom: auto;
+  left: auto;
+  position: relative;
+  transform: none;
+}
+
+.homepage-slider-bullets .glide__bullet {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 18px;
+  font-weight: 800;
+  margin-left: 8px;
+  padding: 0 3px 12px 2px;
+  /* Mismatched sides are a glitch of the font kerning */
+  text-align: center;
+  width: auto;
+}
+
+.homepage-slider-bullets .glide__bullet:focus,
+.homepage-slider-bullets .glide__bullet:hover {
+  border: none;
+  border-bottom: 2px solid var(--wp--preset--color--almost-black);
+  background: transparent;
+}
+
+.homepage-slider-bullets .glide__bullet.glide__bullet--active {
+  border-bottom: 2px solid var(--wp--preset--color--almost-black);
+}
+
+.homepage-slider-bullets .glide__bullet.glide__bullet--active:hover {
+  border-bottom: 2px solid transparent;
 }
 
 /*# sourceMappingURL=frontend.css.map*/
