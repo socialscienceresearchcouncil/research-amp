@@ -16,11 +16,11 @@ class Router {
 			return;
 		}
 
-		if ( 'ssrc_lit_review' !== $query->get( 'post_type' ) ) {
+		if ( 'ramp_review' !== $query->get( 'post_type' ) ) {
 			return;
 		}
 
-		$lit_review = get_page_by_path( $query->get( 'ssrc_lit_review' ), OBJECT, 'ssrc_lit_review' );
+		$lit_review = get_page_by_path( $query->get( 'ramp_review' ), OBJECT, 'ramp_review' );
 
 		$lr_versions = LitReviews\Version::get( $lit_review->ID );
 		if ( ! $lr_versions ) {

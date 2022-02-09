@@ -53,7 +53,7 @@ if ( $research_topic_id ) {
 	$query_args = array_merge(
 		$post_args,
 		[
-			'post_type' => 'ssrc_lit_review',
+			'post_type' => 'ramp_review',
 		]
 	);
 
@@ -62,7 +62,7 @@ if ( $research_topic_id ) {
 
 ?>
 
-<ul class="item-type-list item-type-list-research-reviews 
+<ul class="item-type-list item-type-list-research-reviews
 <?php
 if ( 'teasers' === $variation_type ) :
 	?>

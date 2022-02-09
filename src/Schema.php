@@ -36,7 +36,7 @@ class Schema {
 
 		// Research Review (formerly Lit Review)
 		register_post_type(
-			'ssrc_lit_review',
+			'ramp_review',
 			[
 				'label'             => __( 'Research Reviews', 'ramp' ),
 				'labels'            => [
@@ -412,7 +412,7 @@ class Schema {
 		$post_types = [
 			'ramp_profile',
 			'ramp_citation',
-			'ssrc_lit_review',
+			'ramp_review',
 			'ramp_article',
 		];
 
@@ -580,7 +580,7 @@ class Schema {
 	public function filter_lr_version_link( $permalink, $post ) {
 		$lr_post = get_post( $post->post_parent );
 
-		if ( ! $lr_post || 'ssrc_lit_review' !== $lr_post->post_type ) {
+		if ( ! $lr_post || 'ramp_review' !== $lr_post->post_type ) {
 			return $permalink;
 		}
 

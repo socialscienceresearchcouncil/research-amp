@@ -92,7 +92,7 @@ class Admin {
 			'literature-review-versions',
 			__( 'Versions', 'ramp' ),
 			[ $this, 'versions_cb' ],
-			'ssrc_lit_review',
+			'ramp_review',
 			'advanced'
 		);
 
@@ -118,7 +118,7 @@ class Admin {
 			'formatted-citation',
 			__( 'Formatted Citation', 'ramp' ),
 			[ $this, 'formatted_citation_cb' ],
-			[ 'ssrc_lit_review', 'ramp_article', 'ssrc_lr_version' ],
+			[ 'ramp_review', 'ramp_article', 'ssrc_lr_version' ],
 			'normal'
 		);
 
@@ -127,7 +127,7 @@ class Admin {
 			'doi',
 			__( 'DOI', 'ramp' ),
 			[ $this, 'doi_cb' ],
-			[ 'ssrc_lit_review', 'ramp_article' ],
+			[ 'ramp_review', 'ramp_article' ],
 			'normal'
 		);
 
@@ -391,7 +391,7 @@ class Admin {
 
 		wp_delete_post( $version_id );
 
-		$redirect = admin_url( 'post.php?action=edit&post_type=ssrc_lit_review&post=' . $parent );
+		$redirect = admin_url( 'post.php?action=edit&post_type=ramp_review&post=' . $parent );
 		wp_safe_redirect( $redirect );
 		die;
 	}

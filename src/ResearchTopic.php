@@ -87,7 +87,7 @@ class ResearchTopic {
 	public function get_literature_reviews( $args = [] ) {
 		$query_args = array_merge(
 			[
-				'post_type'      => 'ssrc_lit_review',
+				'post_type'      => 'ramp_review',
 				'posts_per_page' => -1,
 				'tax_query'      => [
 					[
