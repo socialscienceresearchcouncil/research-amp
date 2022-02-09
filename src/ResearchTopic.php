@@ -23,7 +23,7 @@ class ResearchTopic {
 	protected function fill( $research_topic_id ) {
 		$post = get_post( $research_topic_id );
 
-		if ( ! $post || 'ssrc_restop_pt' !== $post->post_type ) {
+		if ( ! $post || 'ramp_topic' !== $post->post_type ) {
 			return;
 		}
 

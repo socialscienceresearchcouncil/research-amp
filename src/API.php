@@ -25,7 +25,7 @@ class API {
 	 */
 	public function register_fields() {
 		register_rest_field(
-			'ssrc_restop_pt',
+			'ramp_topic',
 			'associated_term_id',
 			[
 				'get_callback' => function( $object ) {

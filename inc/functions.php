@@ -41,7 +41,7 @@ function ramp_render_block( $block_name, $atts ) {
 function ramp_get_most_recent_research_topic_id() {
 	$rts = get_posts(
 		[
-			'post_type'   => 'ssrc_restop_pt',
+			'post_type'   => 'ramp_topic',
 			'numberposts' => 1,
 			'fields'      => 'ids',
 		]

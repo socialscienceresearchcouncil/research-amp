@@ -13,7 +13,7 @@ class CitationLibrary {
 		$libraries = ZoteroLibrary::get_libraries();
 
 		add_action( 'save_post_ssrc_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
-		add_action( 'save_post_ssrc_restop_pt', [ $this, 'maybe_send_collection_to_zotero' ], 10, 3 );
+		add_action( 'save_post_ramp_topic', [ $this, 'maybe_send_collection_to_zotero' ], 10, 3 );
 
 		add_action( 'save_post_ssrc_zotero_library', [ $this, 'maybe_schedule_ingest_events' ], 10, 3 );
 

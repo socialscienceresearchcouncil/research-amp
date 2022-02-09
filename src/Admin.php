@@ -83,7 +83,7 @@ class Admin {
 			'zotero-collection-id',
 			__( 'Zotero', 'ramp' ),
 			[ $this, 'zotero_collection_cb' ],
-			'ssrc_restop_pt',
+			'ramp_topic',
 			'normal'
 		);
 

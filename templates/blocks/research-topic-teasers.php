@@ -8,7 +8,7 @@ if ( ! in_array( $selection_type, [ 'alphabetical', 'latest', 'random', 'specifi
 }
 
 $post_args = [
-	'post_type'      => 'ssrc_restop_pt',
+	'post_type'      => 'ramp_topic',
 	'posts_per_page' => $number_of_items,
 	'fields'         => 'ids',
 ];

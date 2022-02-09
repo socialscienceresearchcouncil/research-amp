@@ -250,7 +250,7 @@ class Citation {
 	public function get_post_id_from_zotero_collection_id( $zotero_collection_id ) {
 		$existing = new WP_Query(
 			[
-				'post_type'      => 'ssrc_restop_pt',
+				'post_type'      => 'ramp_topic',
 				'post_status'    => 'publish',
 				'fields'         => 'ids',
 				'posts_per_page' => 1,

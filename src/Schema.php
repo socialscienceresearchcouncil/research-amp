@@ -150,7 +150,7 @@ class Schema {
 
 		// Research Topics.
 		register_post_type(
-			'ssrc_restop_pt',
+			'ramp_topic',
 			[
 				'label'             => __( 'Research Topics', 'ramp' ),
 				'labels'            => [
@@ -563,7 +563,7 @@ class Schema {
 	}
 
 	public function link_cpts_and_taxonomies() {
-		$this->cpttaxonomies['research_topic']  = new CPTTax( 'ssrc_restop_pt', 'ssrc_research_topic' );
+		$this->cpttaxonomies['research_topic']  = new CPTTax( 'ramp_topic', 'ssrc_research_topic' );
 		$this->cpttaxonomies['scholar_profile'] = new CPTTax( 'ssrc_schprof_pt', 'ssrc_scholar_profile' );
 
 	}
