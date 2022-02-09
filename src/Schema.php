@@ -516,7 +516,7 @@ class Schema {
 		);
 
 		register_taxonomy(
-			'ssrc_item_type',
+			'ramp_item_type',
 			[ 'post' ],
 			[
 				'label'        => __( 'Item Type', 'ramp' ),
