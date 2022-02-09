@@ -139,7 +139,7 @@ class UserManagement {
 			'associated-account',
 			__( 'Associated Account', 'ramp' ),
 			[ $this, 'meta_box_cb' ],
-			'ssrc_schprof_pt',
+			'ramp_profile',
 			'side'
 		);
 	}
@@ -192,7 +192,7 @@ class UserManagement {
 		}
 
 		$post = get_post( $post_id );
-		if ( ! $post || 'ssrc_schprof_pt' !== $post->post_type ) {
+		if ( ! $post || 'ramp_profile' !== $post->post_type ) {
 			return;
 		}
 
@@ -212,7 +212,7 @@ class UserManagement {
 			return;
 		}
 
-		if ( ! is_singular( 'ssrc_schprof_pt' ) ) {
+		if ( ! is_singular( 'ramp_profile' ) ) {
 			return;
 		}
 

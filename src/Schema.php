@@ -185,7 +185,7 @@ class Schema {
 
 		// Profiles.
 		register_post_type(
-			'ssrc_schprof_pt',
+			'ramp_profile',
 			[
 				'label'         => __( 'Profiles', 'ramp' ),
 				'labels'        => [
@@ -410,7 +410,7 @@ class Schema {
 
 	public function register_taxonomies() {
 		$post_types = [
-			'ssrc_schprof_pt',
+			'ramp_profile',
 			'ssrc_citation',
 			'ssrc_lit_review',
 			'ramp_article',
@@ -471,7 +471,7 @@ class Schema {
 
 		register_taxonomy(
 			'ssrc_scholar_profile',
-			array_diff( $post_types, [ 'ssrc_schprof_pt' ] ),
+			array_diff( $post_types, [ 'ramp_profile' ] ),
 			[
 				'label'        => __( 'Profiles', 'ramp' ),
 				'labels'       => [
@@ -537,7 +537,7 @@ class Schema {
 
 		register_taxonomy(
 			'ssrc_profile_tag',
-			[ 'ssrc_schprof_pt' ],
+			[ 'ramp_profile' ],
 			[
 				'label'        => __( 'Profile Tag', 'ramp' ),
 				'labels'       => [
@@ -564,7 +564,7 @@ class Schema {
 
 	public function link_cpts_and_taxonomies() {
 		$this->cpttaxonomies['research_topic']  = new CPTTax( 'ramp_topic', 'ssrc_research_topic' );
-		$this->cpttaxonomies['scholar_profile'] = new CPTTax( 'ssrc_schprof_pt', 'ssrc_scholar_profile' );
+		$this->cpttaxonomies['scholar_profile'] = new CPTTax( 'ramp_profile', 'ssrc_scholar_profile' );
 
 	}
 
@@ -626,7 +626,7 @@ class Schema {
 				];
 				break;
 
-			case 'ssrc_schprof_pt':
+			case 'ramp_profile':
 				$addl_fields = [
 					'email_address',
 					'first_name',
@@ -657,7 +657,7 @@ class Schema {
 
 		$sps = get_posts(
 			[
-				'post_type'      => 'ssrc_schprof_pt',
+				'post_type'      => 'ramp_profile',
 				'posts_per_page' => -1,
 				'fields'         => 'ids',
 				'orderby'        => [ 'meta_value' => 'ASC' ],

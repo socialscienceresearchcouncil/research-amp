@@ -44,9 +44,9 @@ class Admin {
 		add_action( 'save_post', [ $this, 'doi_save_cb' ] );
 		add_action( 'save_post', [ $this, 'publication_date_save_cb' ] );
 
-		add_filter( 'manage_edit-ssrc_schprof_pt_columns', [ $this, 'add_schprof_featured_column' ] );
-		add_action( 'manage_ssrc_schprof_pt_posts_custom_column', [ $this, 'schprof_featured_column_content' ], 10, 2 );
-		add_filter( 'views_edit-ssrc_schprof_pt', [ $this, 'add_schprof_featured_view' ] );
+		add_filter( 'manage_edit-ramp_profile_columns', [ $this, 'add_schprof_featured_column' ] );
+		add_action( 'manage_ramp_profile_posts_custom_column', [ $this, 'schprof_featured_column_content' ], 10, 2 );
+		add_filter( 'views_edit-ramp_profile', [ $this, 'add_schprof_featured_view' ] );
 		add_filter( 'pre_get_posts', [ $this, 'schprof_featured_query' ] );
 
 		$this->pressforward->init();
@@ -59,7 +59,7 @@ class Admin {
 			'scholar-profile-info',
 			__( 'Profile Info', 'ramp' ),
 			[ $this, 'scholar_profile_info_cb' ],
-			'ssrc_schprof_pt',
+			'ramp_profile',
 			'normal'
 		);
 
@@ -67,7 +67,7 @@ class Admin {
 			'scholar-profile-claim-email',
 			__( 'Profile Claim Email', 'ramp' ),
 			[ $this, 'scholar_profile_claim_email_cb' ],
-			'ssrc_schprof_pt',
+			'ramp_profile',
 			'side'
 		);
 
@@ -671,7 +671,7 @@ class Admin {
 			$claimed       = get_posts(
 				[
 					'fields'         => 'ids',
-					'post_type'      => 'ssrc_schprof_pt',
+					'post_type'      => 'ramp_profile',
 					'meta_query'     => [
 						[
 							'key'     => 'associated_user',
@@ -693,7 +693,7 @@ class Admin {
 			$scholars      = get_posts(
 				[
 					'fields'         => 'ids',
-					'post_type'      => 'ssrc_schprof_pt',
+					'post_type'      => 'ramp_profile',
 					'posts_per_page' => -1,
 				]
 			);
@@ -819,7 +819,7 @@ class Admin {
 		$views['featured'] = sprintf(
 			'<a href="%s">%s <span class="count">(%s)</span></a>',
 			esc_html__( 'Featured', 'ramp' ),
-			esc_attr( admin_url( 'edit.php?post_type=ssrc_schprof_pt&is_featured=1' ) ),
+			esc_attr( admin_url( 'edit.php?post_type=ramp_profile&is_featured=1' ) ),
 			count( ScholarProfile::get_featured_ids() )
 		);
 		return $views;
@@ -833,7 +833,7 @@ class Admin {
 		}
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( 'edit.php' !== $pagenow || empty( $_GET['post_type'] ) || 'ssrc_schprof_pt' !== $_GET['post_type'] ) {
+		if ( 'edit.php' !== $pagenow || empty( $_GET['post_type'] ) || 'ramp_profile' !== $_GET['post_type'] ) {
 			return;
 		}
 

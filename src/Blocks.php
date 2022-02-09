@@ -134,7 +134,7 @@ class Blocks {
 	public function save_profile_data_from_blocks( $post ) {
 		$post = get_post( $post );
 
-		if ( 'ssrc_schprof_pt' !== $post->post_type ) {
+		if ( 'ramp_profile' !== $post->post_type ) {
 			return;
 		}
 

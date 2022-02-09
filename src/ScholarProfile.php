@@ -41,7 +41,7 @@ class ScholarProfile {
 	protected function fill( $scholar_profile_id ) {
 		$post = get_post( $scholar_profile_id );
 
-		if ( ! $post || 'ssrc_schprof_pt' !== $post->post_type ) {
+		if ( ! $post || 'ramp_profile' !== $post->post_type ) {
 			return;
 		}
 
@@ -149,7 +149,7 @@ class ScholarProfile {
 	}
 
 	public function get_focus_tag_links() {
-		$base = get_post_type_archive_link( 'ssrc_schprof_pt' );
+		$base = get_post_type_archive_link( 'ramp_profile' );
 
 		$links = array_map(
 			function( $tag ) use ( $base ) {
@@ -301,7 +301,7 @@ class ScholarProfile {
 	public static function get_featured_ids() {
 		$posts = get_posts(
 			[
-				'post_type'      => 'ssrc_schprof_pt',
+				'post_type'      => 'ramp_profile',
 				'post_status'    => 'publish',
 				'meta_key'       => 'is_featured',
 				'meta_value'     => '1',
@@ -321,7 +321,7 @@ class ScholarProfile {
 	public static function get_advisory_ids() {
 		$posts = get_posts(
 			[
-				'post_type'      => 'ssrc_schprof_pt',
+				'post_type'      => 'ramp_profile',
 				'post_status'    => 'publish',
 				'meta_key'       => 'is_advisory',
 				'meta_value'     => '1',

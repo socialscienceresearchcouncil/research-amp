@@ -12,7 +12,7 @@ if ( 'auto' === $args['researchTopic'] ) {
 }
 
 $query_args = [
-	'post_type'      => 'ssrc_schprof_pt',
+	'post_type'      => 'ramp_profile',
 	// phpcs:disable Squiz.PHP.CommentedOutCode.Found
 	/*
 	'post__in'       => $featured_ids,
