@@ -32,6 +32,10 @@
 	flex: 0 1 33%;
 }
 
+.item-type-list-4 > li {
+	flex: 0 0 24%;
+}
+
 /** Buttons, tags, etc */
 .ramp-header-tag {
 	font-size: .9em;
@@ -88,4 +92,18 @@
 	margin-bottom: .5em;
 	text-decoration: none;
 	font-weight: 700;
+}
+
+/* Profiles */
+.profile-teaser-avatar {
+	background-size: cover;
+	border-radius: 50%;
+	overflow: hidden;
+	height: 160px;
+	width: 160px;
+}
+
+.profile-teaser-avatar > img {
+	object-fit: cover;
+	width: 160px;
 }

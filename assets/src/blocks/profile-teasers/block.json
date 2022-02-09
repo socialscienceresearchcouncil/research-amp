@@ -1,0 +1,21 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/profile-teasers",
+	"title": "Profile Teasers",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"style": "file:../../../../build/index.css",
+	"supports": {
+		"anchor": true
+	},
+	"attributes": {
+		"associatedResearchTopic": {
+			"type": "string",
+			"default": "all"
+		},
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

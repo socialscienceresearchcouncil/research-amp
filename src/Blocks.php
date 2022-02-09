@@ -113,6 +113,7 @@ class Blocks {
 			'homepage-slides',
 			'news-item-teasers',
 			'profile-research-topics',
+			'profile-teasers',
 			'research-review-teasers',
 			'research-topic-teasers',
 		];

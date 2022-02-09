@@ -9,10 +9,10 @@ return [
 		],
 		'researchTopic' => [
 			'type'    => 'string',
-			'default' => 'auto',
+			'default' => 'all',
 		],
 	],
 	'render_callback' => function( $atts ) {
-		return ramp_render_block( 'article-teasers', $atts );
+		return ramp_render_block( 'profile-teasers', $atts );
 	},
 ];

@@ -20,6 +20,7 @@ return [
 			'default' => 'auto',
 		],
 		'variationType' => [
+			'type'    => 'string', /* WP throws PHP notice if this is not set */
 			'enum'    => [ 'teasers', 'horizontal' ],
 			'default' => 'teasers',
 		],
