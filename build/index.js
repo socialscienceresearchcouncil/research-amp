@@ -1375,7 +1375,7 @@ function edit(_ref) {
     researchTopics
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
     const researchTopics = select('ramp').getResearchTopics();
-    const associatedIds = select('core/editor').getEditedPostAttribute('ssrc_research_topic');
+    const associatedIds = select('core/editor').getEditedPostAttribute('ramp_assoc_topic');
     return {
       associatedIds,
       researchTopics
@@ -2783,7 +2783,7 @@ function ZoteroLibraryInfo(_ref) {
   } = _ref;
   const postType = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.select)('core/editor').getCurrentPostType();
 
-  if ('ssrc_zotero_library' !== postType) {
+  if ('ramp_zotero_library' !== postType) {
     return null;
   }
 
