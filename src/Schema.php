@@ -470,7 +470,7 @@ class Schema {
 		);
 
 		register_taxonomy(
-			'ssrc_scholar_profile',
+			'ramp_assoc_profile',
 			array_diff( $post_types, [ 'ramp_profile' ] ),
 			[
 				'label'        => __( 'Profiles', 'ramp' ),
@@ -555,16 +555,16 @@ class Schema {
 			]
 		);
 
-		register_taxonomy_for_object_type( 'ssrc_focus_tag', 'post' );
+		register_taxonomy_for_object_type( 'ramp_focus_tag', 'post' );
 		register_taxonomy_for_object_type( 'ramp_assoc_topic', 'post' );
-		register_taxonomy_for_object_type( 'ssrc_scholar_profile', 'post' );
+		register_taxonomy_for_object_type( 'ramp_assoc_profile', 'post' );
 
 		unregister_taxonomy_for_object_type( 'post_tag', 'post' );
 	}
 
 	public function link_cpts_and_taxonomies() {
 		$this->cpttaxonomies['research_topic']  = new CPTTax( 'ramp_topic', 'ramp_assoc_topic' );
-		$this->cpttaxonomies['scholar_profile'] = new CPTTax( 'ramp_profile', 'ssrc_scholar_profile' );
+		$this->cpttaxonomies['scholar_profile'] = new CPTTax( 'ramp_profile', 'ramp_assoc_profile' );
 
 	}
 
@@ -594,12 +594,12 @@ class Schema {
 		}
 
 		// Trigger when modifying a citation's RTs or SPs.
-		if ( 'ramp_assoc_topic' !== $taxonomy && 'ssrc_scholar_profile' !== $taxonomy ) {
+		if ( 'ramp_assoc_topic' !== $taxonomy && 'ramp_assoc_profile' !== $taxonomy ) {
 			return;
 		}
 
 		// Requery for clarity, since $terms could be one of two different things.
-		$citation_sps = wp_get_object_terms( $object_id, 'ssrc_scholar_profile' );
+		$citation_sps = wp_get_object_terms( $object_id, 'ramp_assoc_profile' );
 		$citation_rts = wp_get_object_terms( $object_id, 'ramp_assoc_topic' );
 
 		$sp_map = disinfo_app()->get_cpttax_map( 'scholar_profile' );
@@ -684,11 +684,11 @@ class Schema {
 			];
 		}
 
-		$terms_of_post = wp_get_object_terms( $post->ID, 'ssrc_scholar_profile', [ 'fields' => 'ids' ] );
+		$terms_of_post = wp_get_object_terms( $post->ID, 'ramp_assoc_profile', [ 'fields' => 'ids' ] );
 
 		?>
 		<label for="sp-selector" class="screen-reader-text"><?php esc_html_e( 'Select Profiles', 'ramp' ); ?></label>
-		<select id="sp-selector" name="tax_input[ssrc_scholar_profile][]" multiple>
+		<select id="sp-selector" name="tax_input[ramp_assoc_profile][]" multiple>
 			<?php foreach ( $terms as $term ) : ?>
 				<option value="<?php echo esc_attr( $term['id'] ); ?>" <?php selected( in_array( $term['id'], $terms_of_post, true ) ); ?>><?php echo esc_html( $term['name'] ); ?></option>
 			<?php endforeach; ?>

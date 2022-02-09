@@ -181,7 +181,7 @@ class ScholarProfile {
 				'posts_per_page' => -1,
 				'tax_query'      => [
 					[
-						'taxonomy' => 'ssrc_scholar_profile',
+						'taxonomy' => 'ramp_assoc_profile',
 						'terms'    => $this->get_sp_term_id(),
 						'field'    => 'term_id',
 					],
@@ -200,7 +200,7 @@ class ScholarProfile {
 			[
 				'tax_query'      => [
 					[
-						'taxonomy' => 'ssrc_scholar_profile',
+						'taxonomy' => 'ramp_assoc_profile',
 						'terms'    => $this->get_sp_term_id(),
 						'field'    => 'term_id',
 					],
