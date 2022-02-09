@@ -75,7 +75,7 @@ class Admin {
 			'zotero-id',
 			__( 'Zotero', 'ramp' ),
 			[ $this, 'zotero_cb' ],
-			'ssrc_citation',
+			'ramp_citation',
 			'normal'
 		);
 

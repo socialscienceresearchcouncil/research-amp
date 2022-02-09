@@ -16,7 +16,7 @@ $rt_term_id = $rt_map->get_term_id_for_post_id( $research_topic_id );
 
 $citations = get_posts(
 	[
-		'post_type'      => 'ssrc_citation',
+		'post_type'      => 'ramp_citation',
 		'post_status'    => 'publish',
 		'tax_query'      => [
 			[

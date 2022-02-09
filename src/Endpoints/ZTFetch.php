@@ -42,7 +42,7 @@ class ZTFetch extends WP_REST_Controller {
 		$citation_id = $request->get_param( 'citationId' );
 
 		$citation = get_post( $citation_id );
-		if ( ! $citation || 'ssrc_citation' !== $citation->post_type ) {
+		if ( ! $citation || 'ramp_citation' !== $citation->post_type ) {
 			return new WP_Error( 'citation_not_found', __( 'No citation found by that ID', 'ramp' ), 500 );
 		}
 

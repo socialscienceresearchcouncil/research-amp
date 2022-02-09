@@ -9,7 +9,7 @@ class Admin {
 
 	public static function add_admin_menu() {
 		add_submenu_page(
-			'edit.php?post_type=ssrc_citation',
+			'edit.php?post_type=ramp_citation',
 			__( 'Zotero Settings', 'ramp' ),
 			__( 'Zotero Settings', 'ramp' ),
 			'manage_options',

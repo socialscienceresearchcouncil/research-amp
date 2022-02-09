@@ -12,7 +12,7 @@ class CitationLibrary {
 	public function init() {
 		$libraries = ZoteroLibrary::get_libraries();
 
-		add_action( 'save_post_ssrc_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
+		add_action( 'save_post_ramp_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
 		add_action( 'save_post_ramp_topic', [ $this, 'maybe_send_collection_to_zotero' ], 10, 3 );
 
 		add_action( 'save_post_ssrc_zotero_library', [ $this, 'maybe_schedule_ingest_events' ], 10, 3 );
@@ -174,7 +174,7 @@ class CitationLibrary {
 	public static function get_post_id_from_zotero_id( $zotero_id, $zotero_group_id ) {
 		$existing = new WP_Query(
 			[
-				'post_type'      => 'ssrc_citation',
+				'post_type'      => 'ramp_citation',
 				'post_status'    => 'publish',
 				'fields'         => 'ids',
 				'posts_per_page' => 1,
@@ -236,7 +236,7 @@ class CitationLibrary {
 	public function get_recently_added_items_local( $args = [] ) {
 		$query_args = [
 			'paged'          => 1,
-			'post_type'      => 'ssrc_citation',
+			'post_type'      => 'ramp_citation',
 			'post_status'    => 'publish',
 			'posts_per_page' => 5,
 			'fields'         => 'ids',
@@ -438,9 +438,9 @@ class CitationLibrary {
 
 		$post_content = ! empty( $zotero_item->data->abstractNote ) ? $zotero_item->data->abstractNote : '';
 
-		remove_action( 'save_post_ssrc_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
+		remove_action( 'save_post_ramp_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
 		$post_data = [
-			'post_type'     => 'ssrc_citation',
+			'post_type'     => 'ramp_citation',
 			'post_status'   => 'publish',
 			'post_date_gmt' => gmdate( 'Y-m-d H:i:s', strtotime( $zotero_item->data->dateAdded ) ),
 			'post_title'    => $zotero_item->data->title,
@@ -469,7 +469,7 @@ class CitationLibrary {
 		update_post_meta( $post_id, 'zotero_id', $zotero_item->key );
 		update_post_meta( $post_id, 'imported_from_zotero', gmdate( 'Y-m-d H:i:s' ) );
 
-		add_action( 'save_post_ssrc_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
+		add_action( 'save_post_ramp_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
 
 		// Manually sync to relevanssi.
 		if ( function_exists( 'relevanssi_publish' ) ) {

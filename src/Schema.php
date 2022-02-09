@@ -309,7 +309,7 @@ class Schema {
 
 		// Citation Library.
 		register_post_type(
-			'ssrc_citation',
+			'ramp_citation',
 			[
 				'label'        => __( 'Citations', 'ramp' ),
 				'labels'       => [
@@ -411,7 +411,7 @@ class Schema {
 	public function register_taxonomies() {
 		$post_types = [
 			'ramp_profile',
-			'ssrc_citation',
+			'ramp_citation',
 			'ssrc_lit_review',
 			'ramp_article',
 		];
@@ -589,7 +589,7 @@ class Schema {
 
 	public function sync_citation_rts_to_sps( $object_id, $terms, $tt_ids, $taxonomy ) {
 		$citation_post = get_post( $object_id );
-		if ( ! $citation_post || 'ssrc_citation' !== $citation_post->post_type ) {
+		if ( ! $citation_post || 'ramp_citation' !== $citation_post->post_type ) {
 			return;
 		}
 
@@ -637,7 +637,7 @@ class Schema {
 				];
 				break;
 
-			case 'ssrc_citation':
+			case 'ramp_citation':
 				$addl_fields = [
 					'zotero_author',
 				];

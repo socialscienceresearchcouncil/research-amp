@@ -34,7 +34,7 @@ class Citation extends WP_REST_Controller {
 		$article = get_post( $article_id, ARRAY_A );
 
 		unset( $article['ID'] );
-		$article['post_type']   = 'ssrc_citation';
+		$article['post_type']   = 'ramp_citation';
 		$article['post_status'] = 'draft';
 
 		$citation_id = wp_insert_post( $article );

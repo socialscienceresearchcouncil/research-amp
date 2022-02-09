@@ -18,7 +18,7 @@ class Citation {
 
 	public static function get_from_post_id( $post_id ) {
 		$post = get_post( $post_id );
-		if ( ! $post || 'ssrc_citation' !== $post->post_type ) {
+		if ( ! $post || 'ramp_citation' !== $post->post_type ) {
 			return null;
 		}
 
