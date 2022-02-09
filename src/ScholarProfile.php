@@ -166,7 +166,7 @@ class ScholarProfile {
 	}
 
 	public function get_profile_tags() {
-		return wp_get_object_terms( $this->get_post_id(), 'ssrc_profile_tag' );
+		return wp_get_object_terms( $this->get_post_id(), 'ramp_profile_tag' );
 	}
 
 	public function get_sp_term_id() {

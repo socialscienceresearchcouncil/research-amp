@@ -536,7 +536,7 @@ class Schema {
 		);
 
 		register_taxonomy(
-			'ssrc_profile_tag',
+			'ramp_profile_tag',
 			[ 'ramp_profile' ],
 			[
 				'label'        => __( 'Profile Tag', 'ramp' ),
