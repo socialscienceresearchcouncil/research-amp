@@ -306,7 +306,7 @@ class Schema {
 			]
 		);
 
-		add_image_size( 'scholar-profile-avatar', 300, 300, true );
+		add_image_size( 'profile-avatar', 300, 300, true );
 
 		// Citation Library.
 		register_post_type(
@@ -565,7 +565,7 @@ class Schema {
 
 	public function link_cpts_and_taxonomies() {
 		$this->cpttaxonomies['research_topic']  = new CPTTax( 'ramp_topic', 'ramp_assoc_topic' );
-		$this->cpttaxonomies['scholar_profile'] = new CPTTax( 'ramp_profile', 'ramp_assoc_profile' );
+		$this->cpttaxonomies['profile']         = new CPTTax( 'ramp_profile', 'ramp_assoc_profile' );
 
 	}
 
@@ -603,7 +603,7 @@ class Schema {
 		$citation_sps = wp_get_object_terms( $object_id, 'ramp_assoc_profile' );
 		$citation_rts = wp_get_object_terms( $object_id, 'ramp_assoc_topic' );
 
-		$sp_map = disinfo_app()->get_cpttax_map( 'scholar_profile' );
+		$sp_map = disinfo_app()->get_cpttax_map( 'profile' );
 		foreach ( $citation_sps as $citation_sp ) {
 			$sp_id = $sp_map->get_post_id_for_term_id( $citation_sp->term_id );
 
@@ -666,15 +666,15 @@ class Schema {
 			]
 		);
 
-		$sp_map = disinfo_app()->get_cpttax_map( 'scholar_profile' );
+		$sp_map = disinfo_app()->get_cpttax_map( 'profile' );
 
 		$terms = [];
 		foreach ( $sps as $sp_id ) {
-			$scholar_profile = ScholarProfile::get_instance( $sp_id );
-			$term_name       = sprintf(
+			$profile   = Profile::get_instance( $sp_id );
+			$term_name = sprintf(
 				'%s, %s',
-				$scholar_profile->get_last_name(),
-				$scholar_profile->get_first_name()
+				$profile->get_last_name(),
+				$profile->get_first_name()
 			);
 
 			$term_id = $sp_map->get_term_id_for_post_id( $sp_id );

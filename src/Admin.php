@@ -35,8 +35,8 @@ class Admin {
 			5
 		);
 
-		add_action( 'save_post', [ $this, 'scholar_profile_info_save_cb' ] );
-		add_action( 'save_post', [ $this, 'scholar_profile_claim_email_save_cb' ] );
+		add_action( 'save_post', [ $this, 'profile_info_save_cb' ] );
+		add_action( 'save_post', [ $this, 'profile_claim_email_save_cb' ] );
 		add_action( 'save_post', [ $this, 'versions_save_cb' ] );
 		add_action( 'save_post', [ $this, 'version_name_save_cb' ] );
 		add_action( 'save_post', [ $this, 'news_item_author_save_cb' ] );
@@ -56,17 +56,17 @@ class Admin {
 
 	public function add_meta_boxes() {
 		add_meta_box(
-			'scholar-profile-info',
+			'profile-info',
 			__( 'Profile Info', 'ramp' ),
-			[ $this, 'scholar_profile_info_cb' ],
+			[ $this, 'profile_info_cb' ],
 			'ramp_profile',
 			'normal'
 		);
 
 		add_meta_box(
-			'scholar-profile-claim-email',
+			'profile-claim-email',
 			__( 'Profile Claim Email', 'ramp' ),
-			[ $this, 'scholar_profile_claim_email_cb' ],
+			[ $this, 'profile_claim_email_cb' ],
 			'ramp_profile',
 			'side'
 		);
@@ -150,11 +150,11 @@ class Admin {
 		);
 	}
 
-	public function scholar_profile_info_cb( $post ) {
-		include RAMP_PLUGIN_DIR . '/templates/scholar-profile-form.php';
+	public function profile_info_cb( $post ) {
+		include RAMP_PLUGIN_DIR . '/templates/profile-form.php';
 	}
 
-	public function scholar_profile_claim_email_cb( $post ) {
+	public function profile_claim_email_cb( $post ) {
 		$claim_email = get_post_meta( $post->ID, 'claim_email', true );
 
 		?>
@@ -163,7 +163,7 @@ class Admin {
 			<input type="text" name="claim-email" value="<?php echo esc_attr( $claim_email ); ?>" />
 		</label>
 
-		<p class="description"><?php esc_html_e( "Enter the scholar's institutional email here. If a user claims this Profile using this email address, the scholar's local account will be created automatically.", 'ramp' ); ?></p>
+		<p class="description"><?php esc_html_e( "Enter the user's institutional email here. If a user claims this Profile using this email address, the user's local account will be created automatically.", 'ramp' ); ?></p>
 
 		<?php
 		wp_nonce_field( 'claim-email', 'claim-email-nonce', false );
@@ -211,45 +211,45 @@ class Admin {
 		}
 	}
 
-	public function scholar_profile_info_save_cb( $post_id ) {
-		if ( ! isset( $_POST['scholar-profile-info'] ) ) {
+	public function profile_info_save_cb( $post_id ) {
+		if ( ! isset( $_POST['profile-info'] ) ) {
 			return;
 		}
 
-		check_admin_referer( 'scholar-profile-info-' . $post_id, 'scholar-profile-info-nonce' );
+		check_admin_referer( 'profile-info-' . $post_id, 'profile-info-nonce' );
 
-		$scholar_profile = ScholarProfile::get_instance( $post_id );
-		if ( ! $scholar_profile->exists() ) {
+		$profile = Profile::get_instance( $post_id );
+		if ( ! $profile->exists() ) {
 			return;
 		}
 
-		foreach ( $scholar_profile->get_meta_keys() as $meta ) {
-			if ( isset( $_POST['scholar-profile-info'][ $meta ] ) ) {
-				$scholar_profile->set( $meta, $_POST['scholar-profile-info'][ $meta ] );
+		foreach ( $profile->get_meta_keys() as $meta ) {
+			if ( isset( $_POST['profile-info'][ $meta ] ) ) {
+				$profile->set( $meta, $_POST['profile-info'][ $meta ] );
 			}
 		}
 
-		$is_featured = ! empty( $_POST['scholar-profile-info']['is_featured'] );
-		$scholar_profile->set( 'is_featured', $is_featured );
+		$is_featured = ! empty( $_POST['profile-info']['is_featured'] );
+		$profile->set( 'is_featured', $is_featured );
 
-		$is_advisory = ! empty( $_POST['scholar-profile-info']['is_advisory'] );
-		$scholar_profile->set( 'is_advisory', $is_advisory );
+		$is_advisory = ! empty( $_POST['profile-info']['is_advisory'] );
+		$profile->set( 'is_advisory', $is_advisory );
 
 		// Prevent recursion.
-		remove_action( 'save_post', [ $this, 'scholar_profile_info_save_cb' ] );
-		$scholar_profile->save();
-		add_action( 'save_post', [ $this, 'scholar_profile_info_save_cb' ] );
+		remove_action( 'save_post', [ $this, 'profile_info_save_cb' ] );
+		$profile->save();
+		add_action( 'save_post', [ $this, 'profile_info_save_cb' ] );
 	}
 
-	public function scholar_profile_claim_email_save_cb( $post_id ) {
+	public function profile_claim_email_save_cb( $post_id ) {
 		if ( ! isset( $_POST['claim-email-nonce'] ) ) {
 			return;
 		}
 
 		check_admin_referer( 'claim-email', 'claim-email-nonce' );
 
-		$scholar_profile = ScholarProfile::get_instance( $post_id );
-		if ( ! $scholar_profile->exists() ) {
+		$profile = Profile::get_instance( $post_id );
+		if ( ! $profile->exists() ) {
 			return;
 		}
 
@@ -687,20 +687,20 @@ class Admin {
 			$claimed_count = (int) $claimed_count;
 		}
 
-		$scholar_cache_key = 'scholar_count' . $users_lc;
-		$scholar_count     = wp_cache_get( $scholar_cache_key, 'posts' );
-		if ( false === $scholar_count ) {
-			$scholars      = get_posts(
+		$profile_cache_key = 'profile_count' . $users_lc;
+		$profile_count     = wp_cache_get( $profile_cache_key, 'posts' );
+		if ( false === $profile_count ) {
+			$profiles = get_posts(
 				[
 					'fields'         => 'ids',
 					'post_type'      => 'ramp_profile',
 					'posts_per_page' => -1,
 				]
 			);
-			$scholar_count = count( $scholars );
-			wp_cache_set( $scholar_cache_key, $scholar_count, 'posts' );
+			$profile_count = count( $profiles );
+			wp_cache_set( $profile_cache_key, $profile_count, 'posts' );
 		} else {
-			$scholar_count = (int) $scholar_count;
+			$profile_count = (int) $profile_count;
 		}
 
 		$nom_cache_key = 'nom_count' . $users_lc;
@@ -754,7 +754,7 @@ class Admin {
 
 			<tr>
 				<th scope="row"><?php esc_html_e( 'Claimed Profiles', 'ramp' ); ?></th>
-				<td><?php echo esc_html( $claimed_count ); ?> / <?php echo esc_html( $scholar_count ); ?> (<?php echo esc_html( floor( ( $claimed_count / $scholar_count ) * 100 ) ); ?>%)</td>
+				<td><?php echo esc_html( $claimed_count ); ?> / <?php echo esc_html( $profile_count ); ?> (<?php echo esc_html( floor( ( $claimed_count / $profile_count ) * 100 ) ); ?>%)</td>
 			</tr>
 
 			<tr>
@@ -808,9 +808,9 @@ class Admin {
 			return;
 		}
 
-		$scholar_profile = ScholarProfile::get_instance( $post_id );
+		$profile_profile = Profile::get_instance( $post_id );
 
-		if ( $scholar_profile->get_is_featured() ) {
+		if ( $profile_profile->get_is_featured() ) {
 			echo 'Yes';
 		}
 	}
@@ -820,7 +820,7 @@ class Admin {
 			'<a href="%s">%s <span class="count">(%s)</span></a>',
 			esc_html__( 'Featured', 'ramp' ),
 			esc_attr( admin_url( 'edit.php?post_type=ramp_profile&is_featured=1' ) ),
-			count( ScholarProfile::get_featured_ids() )
+			count( Profile::get_featured_ids() )
 		);
 		return $views;
 	}

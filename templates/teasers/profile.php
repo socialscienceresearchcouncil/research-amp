@@ -1,7 +1,7 @@
 <?php
 $profile_id = $args['id'];
 
-$sp_obj = \SSRC\RAMP\ScholarProfile::get_instance( $profile_id );
+$sp_obj = \SSRC\RAMP\Profile::get_instance( $profile_id );
 
 $is_featured = ! empty( $args['is_featured'] );
 

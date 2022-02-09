@@ -3,13 +3,13 @@
 		var $selector = $('#associated-user')
 
 		$selector.select2({
-			data: RAMPScholarProfileUsers.users,
+			data: RAMPProfileUsers.users,
 			placeholder: 'Select a user',
 			allowClear: true
 		});
 
-		if ( RAMPScholarProfileUsers.selectedUserId ) {
-			$selector.val( RAMPScholarProfileUsers.selectedUserId );
+		if ( RAMPProfileUsers.selectedUserId ) {
+			$selector.val( RAMPProfileUsers.selectedUserId );
 			$selector.trigger( 'change' );
 		}
 	});

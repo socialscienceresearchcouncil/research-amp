@@ -2,7 +2,7 @@
 
 namespace SSRC\RAMP;
 
-class ScholarProfile {
+class Profile {
 	protected $data = [
 		'post_id'       => null,
 		'display_name'  => '',
@@ -28,9 +28,9 @@ class ScholarProfile {
 		'title',
 	];
 
-	public static function get_instance( $scholar_profile_id ) {
+	public static function get_instance( $profile_id ) {
 		$instance = new self();
-		$instance->fill( $scholar_profile_id );
+		$instance->fill( $profile_id );
 		return $instance;
 	}
 
@@ -38,8 +38,8 @@ class ScholarProfile {
 		return ! is_null( $this->data['post_id'] );
 	}
 
-	protected function fill( $scholar_profile_id ) {
-		$post = get_post( $scholar_profile_id );
+	protected function fill( $profile_id ) {
+		$post = get_post( $profile_id );
 
 		if ( ! $post || 'ramp_profile' !== $post->post_type ) {
 			return;
@@ -170,7 +170,7 @@ class ScholarProfile {
 	}
 
 	public function get_sp_term_id() {
-		$sp_map = disinfo_app()->get_cpttax_map( 'scholar_profile' );
+		$sp_map = disinfo_app()->get_cpttax_map( 'profile' );
 		return $sp_map->get_term_id_for_post_id( $this->get_post_id() );
 	}
 
@@ -223,7 +223,7 @@ class ScholarProfile {
 
 		$upload_dir = wp_upload_dir();
 
-		return $upload_dir['baseurl'] . '/scholar-avatars/' . $avatar_fn;
+		return $upload_dir['baseurl'] . '/profile-avatars/' . $avatar_fn;
 	}
 
 	public function get_avatar_markup() {
@@ -233,16 +233,16 @@ class ScholarProfile {
 
 		if ( $url ) {
 			$markup = sprintf(
-				'<div class="scholar-avatar" style="background-image:url(\'%s\');"></div>',
+				'<div class="profile-avatar" style="background-image:url(\'%s\');"></div>',
 				esc_attr( $url )
 			);
 		} else {
 			// @todo Need a dynamic way to define default image.
 			$url   = get_stylesheet_directory_uri() . '/assets/MediaWell-logo-white.svg';
-			$class = 'scholar-avatar-default';
+			$class = 'profile-avatar-default';
 
 			$markup = sprintf(
-				'<div class="scholar-avatar scholar-avatar-default" style="background-image:url(\'%s\');"></div>',
+				'<div class="profile-avatar profile-avatar-default" style="background-image:url(\'%s\');"></div>',
 				$url
 			);
 		}

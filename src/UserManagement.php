@@ -147,8 +147,8 @@ class UserManagement {
 	public function meta_box_cb( $post ) {
 		wp_enqueue_style( 'disinfo-select2' );
 		wp_enqueue_script(
-			'disinfo-scholar-profile-admin',
-			RAMP_PLUGIN_URL . 'assets/js/scholar-profile-admin.js',
+			'disinfo-profile-admin',
+			RAMP_PLUGIN_URL . 'assets/js/profile-admin.js',
 			[ 'disinfo-select2', 'jquery' ],
 			RAMP_VER,
 			true
@@ -176,7 +176,7 @@ class UserManagement {
 			'selectedUserId' => $selected_user_id,
 		];
 
-		wp_localize_script( 'disinfo-scholar-profile-admin', 'RAMPScholarProfileUsers', $data );
+		wp_localize_script( 'disinfo-profile-admin', 'RAMPProfileUsers', $data );
 
 		?>
 		<label for="associated-user" class="screen-reader-text"><?php esc_html_e( 'Associated user', 'ramp' ); ?></label>
@@ -225,7 +225,7 @@ class UserManagement {
 		}
 
 		$sp_id  = get_queried_object_id();
-		$sp_obj = ScholarProfile::get_instance( $sp_id );
+		$sp_obj = Profile::get_instance( $sp_id );
 
 		// Permission checks.
 		if ( ! is_user_logged_in() ) {
@@ -279,7 +279,7 @@ class UserManagement {
 					$editor->resize( $max_w, $max_h, $crop );
 				}
 
-				$avatar_dir = $upload_dir['basedir'] . '/scholar-avatars/';
+				$avatar_dir = $upload_dir['basedir'] . '/profile-avatars/';
 				if ( ! file_exists( $avatar_dir ) ) {
 					wp_mkdir_p( $avatar_dir );
 				}
