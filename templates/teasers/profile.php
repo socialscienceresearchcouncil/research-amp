@@ -14,11 +14,18 @@ if ( $thumbnail_id ) {
 	$img_src = ramp_get_default_profile_avatar();
 }
 
+$background_style = '';
+if ( $img_src ) {
+	$background_style = 'style="background-image:url(' . esc_attr( $img_src ) . ');"';
+}
+
 ?>
 
 <article>
 	<div class="profile-teaser">
-		<a href="<?php the_permalink( $profile_id ); ?>"><div class="profile-teaser-avatar profile-avatar-wrapper"<?php if ( $img_src ) : ?> style="background-image:url(<?php echo esc_attr( $img_src ); ?>);<?php endif; ?>">
+		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<a href="<?php the_permalink( $profile_id ); ?>"><div class="profile-teaser-avatar profile-avatar-wrapper" <?php echo $background_style; ?>>
+			<?php // translators: Profile name ?>
 			<img class="profile-avatar" alt="<?php echo esc_attr( sprintf( __( 'Profile picture of %s', 'ramp' ), $sp_obj->get_display_name() ) ); ?>" src="<?php echo esc_attr( $img_src ); ?>" />
 		</div></a>
 

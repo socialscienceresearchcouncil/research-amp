@@ -35,13 +35,13 @@ class HomepageSlides {
 		register_post_type(
 			$this->post_type,
 			[
-				'labels' => [
-					'name' => 'Homepage Slides',
+				'labels'              => [
+					'name'          => 'Homepage Slides',
 					'singular_name' => 'Homepage Slide',
-					'menu_name' => 'Homepage Slides',
+					'menu_name'     => 'Homepage Slides',
 				],
-				'public' => true,
-				'supports' => [ 'title', 'editor', 'thumbnail', 'page-attributes' ],
+				'public'              => true,
+				'supports'            => [ 'title', 'editor', 'thumbnail', 'page-attributes' ],
 				'exclude_from_search' => true,
 			]
 		);
@@ -49,11 +49,11 @@ class HomepageSlides {
 
 	public function register_assets() {
 		// RAMP-specific themes are loaded in the compiled frontend block styles.
-		wp_register_style( 'ramp-glide', RAMP_PLUGIN_URL . '/node_modules/@glidejs/glide/dist/css/glide.core.css', [] );
-		wp_register_style( 'ramp-glide-theme', RAMP_PLUGIN_URL . '/node_modules/@glidejs/glide/dist/css/glide.theme.css', [ 'ramp-glide' ] );
+		wp_register_style( 'ramp-glide', RAMP_PLUGIN_URL . '/node_modules/@glidejs/glide/dist/css/glide.core.css', [], RAMP_VER );
+		wp_register_style( 'ramp-glide-theme', RAMP_PLUGIN_URL . '/node_modules/@glidejs/glide/dist/css/glide.theme.css', [ 'ramp-glide' ], RAMP_VER );
 
-		wp_register_script( 'ramp-glide', RAMP_PLUGIN_URL . '/node_modules/@glidejs/glide/dist/glide.js', [], true );
-		wp_register_script( 'ramp-homepage-slides', RAMP_PLUGIN_URL . '/assets/js/homepage-slides.js', [ 'ramp-glide' ], true );
+		wp_register_script( 'ramp-glide', RAMP_PLUGIN_URL . '/node_modules/@glidejs/glide/dist/glide.js', [], RAMP_VER, true );
+		wp_register_script( 'ramp-homepage-slides', RAMP_PLUGIN_URL . '/assets/js/homepage-slides.js', [ 'ramp-glide' ], RAMP_VER, true );
 	}
 
 	public function enqueue_block_assets() {
@@ -67,7 +67,7 @@ class HomepageSlides {
 	public function register_meta_boxes( $post ) {
 		add_meta_box(
 			'ramp_slide_info',
-			__( 'Slide Info', 'ramp-theme' ),
+			__( 'Slide Info', 'ramp' ),
 			[ $this, 'slide_info_cb' ],
 			$this->post_type,
 			'normal',
@@ -129,9 +129,9 @@ class HomepageSlides {
 			return;
 		}
 
-		$meta_text = wp_unslash( $_POST['slide-meta-text'] );
+		$meta_text   = wp_unslash( $_POST['slide-meta-text'] );
 		$button_text = wp_unslash( $_POST['slide-button-text'] );
-		$button_url = wp_unslash( $_POST['slide-button-url'] );
+		$button_url  = wp_unslash( $_POST['slide-button-url'] );
 
 		update_post_meta( $post_id, 'ramp_slide_meta_text', $meta_text );
 		update_post_meta( $post_id, 'ramp_slide_button_text', $button_text );

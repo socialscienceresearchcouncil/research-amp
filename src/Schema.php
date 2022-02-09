@@ -293,7 +293,7 @@ class Schema {
 												'ramp/profile-vital-link',
 												[ 'vitalType' => 'website' ],
 											],
-										]
+										],
 									],
 								],
 							],

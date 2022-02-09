@@ -19,10 +19,10 @@ $slide_count = count( $slides );
 		<ul class="glide__slides">
 			<?php foreach ( $slides as $slide ) : ?>
 				<?php
-				$slide_title       = $slide->post_title;
-				$slide_text        = $slide->post_content;
-				$slide_img         = get_the_post_thumbnail_url( $slide, 'x-large' );
-				$slide_img_alt     = trim( strip_tags( get_post_meta( $slide->ID, '_wp_attachment_image_alt', true ) ) );
+				$slide_title   = $slide->post_title;
+				$slide_text    = $slide->post_content;
+				$slide_img     = get_the_post_thumbnail_url( $slide, 'x-large' );
+				$slide_img_alt = trim( wp_strip_all_tags( get_post_meta( $slide->ID, '_wp_attachment_image_alt', true ) ) );
 
 				$slide_meta_text   = get_post_meta( $slide->ID, 'ramp_slide_meta_text', true );
 				$slide_button_text = get_post_meta( $slide->ID, 'ramp_slide_button_text', true );
@@ -58,6 +58,7 @@ $slide_count = count( $slides );
 								</h1>
 
 								<div class="homepage-slide-text">
+									<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 									<?php echo apply_filters( 'the_content', $slide_text ); ?>
 								</div>
 

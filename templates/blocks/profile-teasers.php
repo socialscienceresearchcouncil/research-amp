@@ -13,8 +13,11 @@ if ( 'auto' === $args['researchTopic'] ) {
 
 $query_args = [
 	'post_type'      => 'ssrc_schprof_pt',
-	/*'post__in'       => $featured_ids,
-	'orderby'        => 'post__in',*/
+	// phpcs:disable Squiz.PHP.CommentedOutCode.Found
+	/*
+	'post__in'       => $featured_ids,
+	'orderby'        => 'post__in',
+	*/
 	'posts_per_page' => 4,
 	'orderby'        => 'RAND',
 ];
