@@ -67,7 +67,7 @@ class ResearchTopic {
 	public function get_expert_reflections( $args = [] ) {
 		$query_args = array_merge(
 			[
-				'post_type'      => 'ssrc_expref_pt',
+				'post_type'      => 'ramp_article',
 				'posts_per_page' => -1,
 				'tax_query'      => [
 					[

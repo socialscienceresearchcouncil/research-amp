@@ -6,7 +6,7 @@ $featured_article_id = isset( $args['featuredArticleId'] ) ? (int) $args['featur
 if ( ! $featured_article_id ) {
 	$featured_article = get_posts(
 		[
-			'post_type'      => 'ssrc_expref_pt',
+			'post_type'      => 'ramp_article',
 			'posts_per_page' => 1,
 			'orderby'        => [ 'date' => 'DESC' ],
 			'fields'         => 'ids',
@@ -17,7 +17,7 @@ if ( ! $featured_article_id ) {
 }
 
 $post_args = [
-	'post_type'      => 'ssrc_expref_pt',
+	'post_type'      => 'ramp_article',
 	'posts_per_page' => 3,
 	'post__not_in'   => [ $featured_article_id ],
 	'orderby'        => [ 'date' => 'DESC' ],

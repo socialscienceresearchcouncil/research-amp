@@ -115,7 +115,7 @@ class Schema {
 
 		// Articles
 		register_post_type(
-			'ssrc_expref_pt',
+			'ramp_article',
 			[
 				'label'             => __( 'Articles', 'ramp' ),
 				'labels'            => [
@@ -413,7 +413,7 @@ class Schema {
 			'ssrc_schprof_pt',
 			'ssrc_citation',
 			'ssrc_lit_review',
-			'ssrc_expref_pt',
+			'ramp_article',
 		];
 
 		register_taxonomy(
@@ -496,7 +496,7 @@ class Schema {
 
 		register_taxonomy(
 			'ssrc_article_type',
-			[ 'ssrc_expref_pt' ],
+			[ 'ramp_article' ],
 			[
 				'label'        => __( 'Article Type', 'ramp' ),
 				'labels'       => [

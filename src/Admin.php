@@ -118,7 +118,7 @@ class Admin {
 			'formatted-citation',
 			__( 'Formatted Citation', 'ramp' ),
 			[ $this, 'formatted_citation_cb' ],
-			[ 'ssrc_lit_review', 'ssrc_expref_pt', 'ssrc_lr_version' ],
+			[ 'ssrc_lit_review', 'ramp_article', 'ssrc_lr_version' ],
 			'normal'
 		);
 
@@ -127,7 +127,7 @@ class Admin {
 			'doi',
 			__( 'DOI', 'ramp' ),
 			[ $this, 'doi_cb' ],
-			[ 'ssrc_lit_review', 'ssrc_expref_pt' ],
+			[ 'ssrc_lit_review', 'ramp_article' ],
 			'normal'
 		);
 
@@ -145,7 +145,7 @@ class Admin {
 			'featured_status',
 			__( 'Featured', 'ramp' ),
 			[ $this, 'featured_status_date_cb' ],
-			[ 'post', 'ssrc_expref_pt' ],
+			[ 'post', 'ramp_article' ],
 			'side'
 		);
 	}
@@ -576,7 +576,7 @@ class Admin {
 		$featured_post = Featured\FeaturedItem::get_instance( $current_post->ID );
 
 		// @todo This does not translate
-		$label = 'ssrc_expref_pt' === $current_post->post_type ? 'Article' : 'post';
+		$label = 'ramp_article' === $current_post->post_type ? 'Article' : 'post';
 
 		$featured_date = $featured_post->get_featured_date();
 		if ( $featured_date ) {
