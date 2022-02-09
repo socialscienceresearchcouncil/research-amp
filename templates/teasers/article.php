@@ -16,7 +16,7 @@ if ( $thumbnail_id ) {
 	$img_alt     = trim( wp_strip_all_tags( get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true ) ) );
 }
 
-$article_type_terms = get_the_terms( $article_id, 'ssrc_article_type' );
+$article_type_terms = get_the_terms( $article_id, 'ramp_article_type' );
 $article_types      = [];
 if ( $article_type_terms ) {
 	$article_types = array_map(
