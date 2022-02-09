@@ -146,7 +146,8 @@ class Schema {
 			]
 		);
 
-		add_image_size( 'expert-reflection-image', 565, 202, true );
+		// @todo Should be removed.
+		add_image_size( 'article-image', 565, 202, true );
 
 		// Research Topics.
 		register_post_type(

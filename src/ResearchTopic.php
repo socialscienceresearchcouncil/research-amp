@@ -64,7 +64,7 @@ class ResearchTopic {
 		return $rt_map->get_term_id_for_post_id( $this->get_post_id() );
 	}
 
-	public function get_expert_reflections( $args = [] ) {
+	public function get_articles( $args = [] ) {
 		$query_args = array_merge(
 			[
 				'post_type'      => 'ramp_article',

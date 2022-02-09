@@ -13,7 +13,7 @@ if ( 'auto' === $research_topic_id ) {
 
 $rt_obj = \SSRC\RAMP\ResearchTopic::get_instance( $research_topic_id );
 
-$articles = $rt_obj->get_expert_reflections( [ 'posts_per_page' => 3 ] );
+$articles = $rt_obj->get_articles( [ 'posts_per_page' => 3 ] );
 
 ?>
 
