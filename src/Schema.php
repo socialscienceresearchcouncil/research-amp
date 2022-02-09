@@ -342,7 +342,7 @@ class Schema {
 
 		// Zotero libraries.
 		register_post_type(
-			'ssrc_zotero_library',
+			'ramp_zotero_library',
 			[
 				'label'         => __( 'Zotero Libraries', 'ramp' ),
 				'labels'        => [
@@ -375,7 +375,7 @@ class Schema {
 			'post',
 			'zotero_group_id',
 			[
-				'object_subtype' => 'ssrc_zotero_library',
+				'object_subtype' => 'ramp_zotero_library',
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,
@@ -387,7 +387,7 @@ class Schema {
 			'post',
 			'zotero_group_url',
 			[
-				'object_subtype' => 'ssrc_zotero_library',
+				'object_subtype' => 'ramp_zotero_library',
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,
@@ -399,7 +399,7 @@ class Schema {
 			'post',
 			'zotero_api_key',
 			[
-				'object_subtype' => 'ssrc_zotero_library',
+				'object_subtype' => 'ramp_zotero_library',
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,

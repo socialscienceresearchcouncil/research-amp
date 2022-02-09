@@ -14,7 +14,7 @@ export default function ZoteroLibraryInfo( {
 	setAttributes
 } ) {
 	const postType = select( 'core/editor' ).getCurrentPostType();
-	if ( 'ssrc_zotero_library' !== postType ) {
+	if ( 'ramp_zotero_library' !== postType ) {
 		return null;
 	}
 

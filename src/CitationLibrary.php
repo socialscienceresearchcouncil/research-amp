@@ -15,7 +15,7 @@ class CitationLibrary {
 		add_action( 'save_post_ramp_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
 		add_action( 'save_post_ramp_topic', [ $this, 'maybe_send_collection_to_zotero' ], 10, 3 );
 
-		add_action( 'save_post_ssrc_zotero_library', [ $this, 'maybe_schedule_ingest_events' ], 10, 3 );
+		add_action( 'save_post_ramp_zotero_library', [ $this, 'maybe_schedule_ingest_events' ], 10, 3 );
 
 		foreach ( $libraries as $library ) {
 			add_action( $library->get_ingest_cron_hook_name(), [ $this, 'start_ingest' ] );

@@ -9,7 +9,7 @@ class Library {
 		'zotero_api_key'  => '',
 	];
 
-	protected static $post_type = 'ssrc_zotero_library';
+	protected static $post_type = 'ramp_zotero_library';
 
 	/**
 	 * Gets the ID of a library.
