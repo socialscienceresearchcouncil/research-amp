@@ -417,7 +417,7 @@ class Schema {
 		];
 
 		register_taxonomy(
-			'ssrc_research_topic',
+			'ramp_assoc_topic',
 			array_merge( $post_types, [ 'nomination' ] ),
 			[
 				'label'        => __( 'Research Fields', 'ramp' ),
@@ -556,14 +556,14 @@ class Schema {
 		);
 
 		register_taxonomy_for_object_type( 'ssrc_focus_tag', 'post' );
-		register_taxonomy_for_object_type( 'ssrc_research_topic', 'post' );
+		register_taxonomy_for_object_type( 'ramp_assoc_topic', 'post' );
 		register_taxonomy_for_object_type( 'ssrc_scholar_profile', 'post' );
 
 		unregister_taxonomy_for_object_type( 'post_tag', 'post' );
 	}
 
 	public function link_cpts_and_taxonomies() {
-		$this->cpttaxonomies['research_topic']  = new CPTTax( 'ramp_topic', 'ssrc_research_topic' );
+		$this->cpttaxonomies['research_topic']  = new CPTTax( 'ramp_topic', 'ramp_assoc_topic' );
 		$this->cpttaxonomies['scholar_profile'] = new CPTTax( 'ramp_profile', 'ssrc_scholar_profile' );
 
 	}
@@ -594,20 +594,20 @@ class Schema {
 		}
 
 		// Trigger when modifying a citation's RTs or SPs.
-		if ( 'ssrc_research_topic' !== $taxonomy && 'ssrc_scholar_profile' !== $taxonomy ) {
+		if ( 'ramp_assoc_topic' !== $taxonomy && 'ssrc_scholar_profile' !== $taxonomy ) {
 			return;
 		}
 
 		// Requery for clarity, since $terms could be one of two different things.
 		$citation_sps = wp_get_object_terms( $object_id, 'ssrc_scholar_profile' );
-		$citation_rts = wp_get_object_terms( $object_id, 'ssrc_research_topic' );
+		$citation_rts = wp_get_object_terms( $object_id, 'ramp_assoc_topic' );
 
 		$sp_map = disinfo_app()->get_cpttax_map( 'scholar_profile' );
 		foreach ( $citation_sps as $citation_sp ) {
 			$sp_id = $sp_map->get_post_id_for_term_id( $citation_sp->term_id );
 
 			// Never overwrite - these can be managed manually by SSRC team.
-			wp_set_object_terms( $sp_id, wp_list_pluck( $citation_rts, 'term_id' ), 'ssrc_research_topic', true );
+			wp_set_object_terms( $sp_id, wp_list_pluck( $citation_rts, 'term_id' ), 'ramp_assoc_topic', true );
 		}
 	}
 

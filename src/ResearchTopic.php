@@ -71,7 +71,7 @@ class ResearchTopic {
 				'posts_per_page' => -1,
 				'tax_query'      => [
 					[
-						'taxonomy' => 'ssrc_research_topic',
+						'taxonomy' => 'ramp_assoc_topic',
 						'terms'    => $this->get_rt_term_id(),
 						'field'    => 'term_id',
 					],
@@ -91,7 +91,7 @@ class ResearchTopic {
 				'posts_per_page' => -1,
 				'tax_query'      => [
 					[
-						'taxonomy' => 'ssrc_research_topic',
+						'taxonomy' => 'ramp_assoc_topic',
 						'terms'    => $this->get_rt_term_id(),
 						'field'    => 'term_id',
 					],

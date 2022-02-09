@@ -24,7 +24,7 @@ class PressForward {
 		add_filter(
 			'pf_valid_post_taxonomies',
 			function() {
-				return [ 'ssrc_research_topic', 'ssrc_focus_tag' ];
+				return [ 'ramp_assoc_topic', 'ssrc_focus_tag' ];
 			}
 		);
 
@@ -93,7 +93,7 @@ class PressForward {
 
 	public function adjust_taxonomies() {
 		$nomination_post_type = pressforward( 'schema.nominations' )->post_type;
-		register_taxonomy_for_object_type( 'ssrc_research_topic', pressforward( 'schema.nominations' )->post_type );
+		register_taxonomy_for_object_type( 'ramp_assoc_topic', pressforward( 'schema.nominations' )->post_type );
 		unregister_taxonomy_for_object_type( 'post_tag', pressforward( 'schema.nominations' )->post_type );
 		unregister_taxonomy_for_object_type( 'category', pressforward( 'schema.nominations' )->post_type );
 	}
@@ -197,7 +197,7 @@ class PressForward {
 	public function rts_meta_box( $post, $box ) {
 		wp_enqueue_style( 'disinfo-research-topics-metabox', RAMP_PLUGIN_URL . '/assets/css/research-topics-metabox.css', [], RAMP_VER );
 
-		$tax_name = 'ssrc_research_topic';
+		$tax_name = 'ramp_assoc_topic';
 		$taxonomy = get_taxonomy( $tax_name );
 
 		?>

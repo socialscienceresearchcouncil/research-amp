@@ -219,7 +219,7 @@ class Citation {
 
 		$collection_ids = [];
 
-		$research_topics_raw = wp_get_object_terms( $this->get_post_id(), 'ssrc_research_topic' );
+		$research_topics_raw = wp_get_object_terms( $this->get_post_id(), 'ramp_assoc_topic' );
 		foreach ( $research_topics_raw as $term_data ) {
 			$collection_post_id = $rt_map->get_post_id_for_term_id( $term_data->term_id );
 			$collection_id      = get_post_meta( $collection_post_id, 'zotero_collection_id', true );
@@ -290,7 +290,7 @@ class Citation {
 
 			$research_topics[] = $collection_term_id;
 		}
-		wp_set_object_terms( $this->get_post_id(), $research_topics, 'ssrc_research_topic' );
+		wp_set_object_terms( $this->get_post_id(), $research_topics, 'ramp_assoc_topic' );
 	}
 
 	public function set_focus_tags_from_tags( $tags ) {

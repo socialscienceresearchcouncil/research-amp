@@ -31,7 +31,7 @@ export default function edit( {
 	const { associatedIds, researchTopics } = useSelect( ( select ) => {
 		const researchTopics = select( 'ramp' ).getResearchTopics()
 
-		const associatedIds = select( 'core/editor' ).getEditedPostAttribute( 'ssrc_research_topic' )
+		const associatedIds = select( 'core/editor' ).getEditedPostAttribute( 'ramp_assoc_topic' )
 
 		return {
 			associatedIds,

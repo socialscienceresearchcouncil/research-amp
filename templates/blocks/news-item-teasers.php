@@ -20,7 +20,7 @@ $news_items = get_posts(
 		'post_status'    => 'publish',
 		'tax_query'      => [
 			[
-				'taxonomy' => 'ssrc_research_topic',
+				'taxonomy' => 'ramp_assoc_topic',
 				'terms'    => $rt_term_id,
 				'field'    => 'term_id',
 			],

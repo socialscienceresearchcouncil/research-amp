@@ -11,7 +11,7 @@ if ( function_exists( 'pressforward' ) ) {
 
 $article_classes = [ 'teaser' ];
 
-$associated_research_topics = get_the_terms( $news_item_id, 'ssrc_research_topic' );
+$associated_research_topics = get_the_terms( $news_item_id, 'ramp_assoc_topic' );
 
 ?>
 

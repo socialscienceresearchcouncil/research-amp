@@ -1,6 +1,6 @@
 <?php
 
-$associated_research_topics = get_the_terms( $args['item_id'], 'ssrc_research_topic' );
+$associated_research_topics = get_the_terms( $args['item_id'], 'ramp_assoc_topic' );
 
 ?>
 

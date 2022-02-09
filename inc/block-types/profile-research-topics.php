@@ -21,7 +21,7 @@ return [
 					esc_html( $term->name )
 				);
 			},
-			get_the_terms( get_queried_object(), 'ssrc_research_topic' )
+			get_the_terms( get_queried_object(), 'ramp_assoc_topic' )
 		);
 
 		// How is there no way in WP to do this?

@@ -27,7 +27,7 @@ if ( $research_topic_id ) {
 
 	$query_args['tax_query'] = [
 		'research_topic' => [
-			'taxonomy' => 'ssrc_research_topic',
+			'taxonomy' => 'ramp_assoc_topic',
 			'terms'    => $rt_map->get_term_id_for_post_id( $research_topic_id ),
 			'field'    => 'term_id',
 		],
