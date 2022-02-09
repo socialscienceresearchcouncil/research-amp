@@ -89,7 +89,7 @@ class Admin {
 
 		// Lit Reviews Version system.
 		add_meta_box(
-			'literature-review-versions',
+			'research-review-versions',
 			__( 'Versions', 'ramp' ),
 			[ $this, 'versions_cb' ],
 			'ramp_review',
@@ -97,7 +97,7 @@ class Admin {
 		);
 
 		add_meta_box(
-			'literature-review-version-name',
+			'research-review-version-name',
 			__( 'Version Name', 'ramp' ),
 			[ $this, 'version_name_cb' ],
 			'ssrc_lr_version',

@@ -84,7 +84,7 @@ class ResearchTopic {
 		return get_posts( $query_args );
 	}
 
-	public function get_literature_reviews( $args = [] ) {
+	public function get_research_reviews( $args = [] ) {
 		$query_args = array_merge(
 			[
 				'post_type'      => 'ramp_review',
@@ -103,8 +103,8 @@ class ResearchTopic {
 		return get_posts( $query_args );
 	}
 
-	public function get_literature_review() {
-		$reviews = $this->get_literature_reviews();
+	public function get_research_review() {
+		$reviews = $this->get_research_reviews();
 		if ( $reviews ) {
 			return $reviews[0];
 		} else {

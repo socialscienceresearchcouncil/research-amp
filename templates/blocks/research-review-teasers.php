@@ -48,7 +48,7 @@ switch ( $order_arg ) {
 if ( $research_topic_id ) {
 	$rt = \SSRC\RAMP\ResearchTopic::get_instance( $research_topic_id );
 
-	$research_reviews = $rt->get_literature_reviews( $post_args );
+	$research_reviews = $rt->get_research_reviews( $post_args );
 } else {
 	$query_args = array_merge(
 		$post_args,

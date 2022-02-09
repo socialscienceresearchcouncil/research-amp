@@ -56,7 +56,7 @@ class Schema {
 				'public'            => true,
 				'has_archive'       => true,
 				'rewrite'           => [
-					'slug'       => 'literature-reviews',
+					'slug'       => 'research-reviews',
 					'with_front' => false,
 				],
 				'menu_icon'         => 'dashicons-book',
@@ -88,7 +88,7 @@ class Schema {
 				'public'            => true,
 				'show_ui'           => true,
 				'rewrite'           => [
-					'slug'       => 'literature-reviews/%lrslug%/versions',
+					'slug'       => 'research-reviews/%lrslug%/versions',
 					'with_front' => false,
 				],
 				'has_archive'       => false,
@@ -100,7 +100,7 @@ class Schema {
 		);
 
 		add_rewrite_rule(
-			'^literature-reviews/([^/]+)/versions/([^/]+)/?',
+			'^research-reviews/([^/]+)/versions/([^/]+)/?',
 			'index.php?post_type=ssrc_lr_version&lr_slug=$matches[1]&name=$matches[2]',
 			'top'
 		);
