@@ -145,7 +145,7 @@ class ScholarProfile {
 	}
 
 	public function get_focus_tags() {
-		return wp_get_object_terms( $this->get_post_id(), 'ssrc_focus_tag' );
+		return wp_get_object_terms( $this->get_post_id(), 'ramp_focus_tag' );
 	}
 
 	public function get_focus_tag_links() {

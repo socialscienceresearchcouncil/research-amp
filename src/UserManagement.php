@@ -254,7 +254,7 @@ class UserManagement {
 			$focus_tag_ids = [];
 		}
 
-		$set = wp_set_object_terms( $sp_id, $focus_tag_ids, 'ssrc_focus_tag' );
+		$set = wp_set_object_terms( $sp_id, $focus_tag_ids, 'ramp_focus_tag' );
 
 		// Avatar
 		if ( ! empty( $_POST['avatar_changed'] ) ) {

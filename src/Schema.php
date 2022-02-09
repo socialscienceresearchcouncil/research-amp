@@ -444,7 +444,7 @@ class Schema {
 		);
 
 		register_taxonomy(
-			'ssrc_focus_tag',
+			'ramp_focus_tag',
 			array_merge( $post_types, [ 'nomination' ] ),
 			[
 				'label'        => __( 'Focus Tags', 'ramp' ),

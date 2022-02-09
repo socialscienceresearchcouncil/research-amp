@@ -237,7 +237,7 @@ class Citation {
 	public function get_tags_for_zotero() {
 		$tags = [];
 
-		$focus_tags_raw = wp_get_object_terms( $this->get_post_id(), 'ssrc_focus_tag' );
+		$focus_tags_raw = wp_get_object_terms( $this->get_post_id(), 'ramp_focus_tag' );
 		foreach ( $focus_tags_raw as $term_data ) {
 			$tags[] = [
 				'tag' => $term_data->name,
@@ -303,7 +303,7 @@ class Citation {
 			$focus_tags[] = $tag->tag;
 		}
 
-		wp_set_object_terms( $this->get_post_id(), $focus_tags, 'ssrc_focus_tag' );
+		wp_set_object_terms( $this->get_post_id(), $focus_tags, 'ramp_focus_tag' );
 		// phpcs:enable Squiz.PHP.NonExecutableCode.Unreachable
 	}
 

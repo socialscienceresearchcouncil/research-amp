@@ -24,7 +24,7 @@ class PressForward {
 		add_filter(
 			'pf_valid_post_taxonomies',
 			function() {
-				return [ 'ramp_assoc_topic', 'ssrc_focus_tag' ];
+				return [ 'ramp_assoc_topic', 'ramp_focus_tag' ];
 			}
 		);
 
@@ -254,7 +254,7 @@ class PressForward {
 		wp_enqueue_style( 'disinfo-select2' );
 		wp_enqueue_style( 'disinfo-focus-tags-metabox', RAMP_PLUGIN_URL . '/assets/css/focus-tags-metabox.css', [], RAMP_VER );
 
-		$tax_name              = 'ssrc_focus_tag';
+		$tax_name              = 'ramp_focus_tag';
 		$taxonomy              = get_taxonomy( $tax_name );
 		$user_can_assign_terms = current_user_can( $taxonomy->cap->assign_terms );
 		if ( ! is_string( $terms_to_edit ) ) {
@@ -269,7 +269,7 @@ class PressForward {
 		?>
 
 		<div class="tagsdiv" id="<?php echo esc_attr( $tax_name ); ?>">
-			<select name="tax_input[ssrc_focus_tag]" multiple id="focus-tags-select">
+			<select name="tax_input[ramp_focus_tag]" multiple id="focus-tags-select">
 				<?php foreach ( $tags as $tag ) : ?>
 					<option value="<?php echo esc_attr( $tag->term_id ); ?>"><?php echo esc_html( $tag->name ); ?></option>
 				<?php endforeach; ?>
