@@ -1192,14 +1192,18 @@ function edit(_ref) {
     setAttributes
   } = _ref;
   const {
-    researchTopic
+    featuredItemId,
+    researchTopic,
+    variationType
   } = attributes;
 
   const blockProps = () => {
     _s();
 
     let classNames = [];
+    classNames.push('featured-item-id-' + featuredItemId);
     classNames.push('research-topic-' + researchTopic);
+    classNames.push('variation-type-' + variationType);
     return (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
       className: classNames
     });
@@ -1219,6 +1223,33 @@ function edit(_ref) {
     selected: researchTopic,
     onChangeCallback: researchTopic => setAttributes({
       researchTopic
+    })
+  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Panel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Display', 'ramp')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select the format to be used when displaying News Items.', 'ramp'),
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Single row', 'ramp'),
+      value: 'single'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Two rows', 'ramp'),
+      value: 'two'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Featured + Two rows', 'ramp'),
+      value: 'three'
+    }],
+    selected: variationType,
+    value: variationType,
+    onChange: variationType => setAttributes({
+      variationType
+    })
+  })))), 'three' === variationType && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Panel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Featured News Item', 'ramp')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter the ID of the post you want to feature.', 'ramp'),
+    value: featuredItemId,
+    onChange: featuredItemId => setAttributes({
+      featuredItemId
     })
   })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default()), {
     attributes: serverSideAtts,
@@ -10357,7 +10388,7 @@ module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/homepage-slides","titl
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/news-item-teasers","title":"News Teasers","icon":"lightbulb","category":"ramp","style":"file:../../../../build/index.css","supports":{"anchor":true},"attributes":{"associatedResearchTopic":{"type":"string","default":"auto"},"isEditMode":{"type":"boolean","default":false}}}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"ramp/news-item-teasers","title":"News Teasers","icon":"lightbulb","category":"ramp","style":"file:../../../../build/index.css","supports":{"anchor":true},"attributes":{"isEditMode":{"type":"boolean","default":false},"featuredItemId":{"type":"string","default":""},"researchTopic":{"type":"string","default":"auto"},"variationType":{"enum":["single","two","three"],"default":"single"}}}');
 
 /***/ }),
 
