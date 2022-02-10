@@ -4,6 +4,7 @@ import { registerStore } from '@wordpress/data'
 const DEFAULT_STATE = {
 	articles: [],
 	libraries: {},
+	rampPosts: {},
 	researchTopics: []
 }
 
@@ -22,6 +23,14 @@ const actions = {
 			type: 'SET_LIBRARY_INFO',
 			libraryId,
 			libraryInfo
+		}
+	},
+
+	setPost( postId, post ) {
+		return {
+			type: 'SET_POST',
+			postId,
+			post
 		}
 	},
 
@@ -48,6 +57,15 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 				libraries: {
 					...state.libraries,
 					[ action.libraryId ]: action.libraryInfo
+				}
+			}
+
+		case 'SET_POST' :
+			return {
+				...state,
+				rampPosts: {
+					...state.rampPosts,
+					[ action.postId ]: action.post
 				}
 			}
 
@@ -87,6 +105,13 @@ const selectors = {
 		return libraryInfo
 	},
 
+	getPost( state, postId ) {
+		const { rampPosts } = state
+		const post = rampPosts[ postId ]
+
+		return post
+	},
+
 	getResearchTopics( state ) {
 		const { researchTopics } = state
 
@@ -111,6 +136,12 @@ const resolvers = {
 		const path = '/wp/v2/articles?per_page=100&orderby=title&order=asc'
 		const articles = yield actions.fetchFromAPI( path )
 		return actions.setArticles( articles )
+	},
+
+	*getPost( postId ) {
+		const path = '/wp/v2/posts/' + postId
+		const post = yield actions.fetchFromAPI( path )
+		return actions.setPost( postId, post )
 	}
 }
 

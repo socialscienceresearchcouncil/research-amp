@@ -2,25 +2,22 @@
 
 $research_topic_id = \SSRC\RAMP\Blocks::get_research_topic_from_template_args( $args );
 
-$variation_type = isset( $args['variationType'] ) && in_array( $args['variationType'], [ 'single', 'two', 'three' ], true ) ? $args['variationType'] : 'single';
+$variation_type = isset( $args['variationType'] ) && in_array( $args['variationType'], [ 'one', 'two' ], true ) ? $args['variationType'] : 'one';
 
-$featured_item_id = null;
-if ( 'three' === $variation_type ) {
-	$featured_item_id = ! empty( $args['featuredItemId'] ) ? (int) $args['featuredItemId'] : null;
-	if ( ! $featured_item_id ) {
-		$variation_type = 'two';
-	}
-}
+$show_featured_item = ! empty( $args['showFeaturedItem'] );
 
-$posts_per_page = 'single' === $variation_type ? 3 : 5;
+$featured_item_id = ! empty( $args['featuredItemId'] ) ? (int) $args['featuredItemId'] : null;
+
+$posts_per_page = 'one' === $variation_type ? 3 : 5;
 
 $query_args = [
 	'post_type'      => 'post',
 	'post_status'    => 'publish',
 	'posts_per_page' => $posts_per_page,
 ];
+var_Dump( $args );
 
-if ( $featured_item_id ) {
+if ( $show_featured_item && $featured_item_id ) {
 	$query_args['post__not_in'] = [ $featured_item_id ];
 }
 
@@ -39,12 +36,12 @@ if ( $research_topic_id ) {
 
 $news_items = get_posts( $query_args );
 
-$variation_class = 'single' === $variation_type ? 'item-type-list-3' : 'item-type-list-wrap';
+$variation_class = 'one' === $variation_type ? 'item-type-list-3' : 'item-type-list-wrap';
 
 ?>
 
 <div class="news-item-teasers">
-	<?php if ( $featured_item_id ) : ?>
+	<?php if ( $show_featured_item && $featured_item_id ) : ?>
 		<div class="featured-news-item">
 			<?php ramp_get_template_part( 'teasers/news-item-featured', [ 'id' => $featured_item_id ] ); ?>
 		</div>
@@ -59,7 +56,7 @@ $variation_class = 'single' === $variation_type ? 'item-type-list-3' : 'item-typ
 
 			<?php
 			$count++;
-			if ( ( 'two' === $variation_type || 'three' === $variation_type ) && 3 === $count ) {
+			if ( 'two' === $variation_type && 3 === $count ) {
 				echo '<li class="break-row"></li>';
 			}
 			?>

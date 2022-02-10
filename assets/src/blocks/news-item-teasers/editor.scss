@@ -1,1 +1,10 @@
 @import './block.scss';
+
+.currently-featured-notice {
+	color: rgb(117, 117, 117);
+	margin-bottom: 24px;
+
+	span {
+		font-style: italic;
+	}
+}

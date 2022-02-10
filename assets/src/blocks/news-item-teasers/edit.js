@@ -5,7 +5,8 @@ import {
 	PanelBody,
 	SelectControl,
 	Spinner,
-	TextControl
+	TextControl,
+	ToggleControl
 } from '@wordpress/components'
 
 import {
@@ -15,8 +16,13 @@ import {
 
 import ServerSideRender from '@wordpress/server-side-render'
 
-import { Fragment } from '@wordpress/element'
+import { useSelect } from '@wordpress/data'
 
+import {
+	Fragment
+} from '@wordpress/element'
+
+import { PostPicker } from '../../components/PostPicker'
 import ResearchTopicSelector from '../../components/ResearchTopicSelector'
 
 /**
@@ -36,8 +42,23 @@ export default function edit( {
 	const {
 		featuredItemId,
 		researchTopic,
+		showFeaturedItem,
 		variationType
 	} = attributes
+
+	const { post } = useSelect( ( select ) => {
+		const post = select( 'ramp' ).getPost( featuredItemId )
+
+		return {
+			post
+		}
+	}, [ featuredItemId ] )
+
+	let postUrl, postTitle
+	if ( post && post.hasOwnProperty( 'title' ) ) {
+		postTitle = post.title.rendered
+		postUrl = post.link
+	}
 
 	const blockProps = () => {
 		let classNames = []
@@ -50,6 +71,15 @@ export default function edit( {
 			className: classNames
 		} )
 	}
+
+	const currentlyFeaturedNotice =
+		postUrl
+		? ( <div className="currently-featured-notice">
+					<span>{ __( 'Currently Featured News Item: ', 'ramp' ) }</span>
+					<div><a href={ postUrl }>{ postTitle }</a></div>
+				</div>
+			)
+		: <div />
 
 	const serverSideAtts = Object.assign( {}, attributes, { isEditMode: true } )
 
@@ -72,14 +102,13 @@ export default function edit( {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Display', 'ramp' ) }
+						title={ __( 'Layout', 'ramp' ) }
 					>
 						<SelectControl
-							label={ __( 'Select the format to be used when displaying News Items.', 'ramp' ) }
+							label={ __( 'Select a layout', 'ramp' ) }
 							options={ [
-								{ label: __( 'Single row', 'ramp' ), value: 'single' },
+								{ label: __( 'One row', 'ramp' ), value: 'one' },
 								{ label: __( 'Two rows', 'ramp' ), value: 'two' },
-								{ label: __( 'Featured + Two rows', 'ramp' ), value: 'three' },
 							] }
 							selected={ variationType }
 							value={ variationType }
@@ -89,21 +118,33 @@ export default function edit( {
 				</Panel>
 			</InspectorControls>
 
-			{'three' === variationType &&
-				<InspectorControls>
-					<Panel>
-						<PanelBody
-							title={ __( 'Featured News Item', 'ramp' ) }
-						>
-							<TextControl
-								label={ __( 'Enter the ID of the post you want to feature.', 'ramp' ) }
-								value={ featuredItemId }
-								onChange={ ( featuredItemId ) => setAttributes( { featuredItemId } ) }
-							/>
-						</PanelBody>
-					</Panel>
-				</InspectorControls>
-			}
+			<InspectorControls>
+				<Panel>
+					<PanelBody
+						title={ __( 'Featured News Item', 'ramp' ) }
+					>
+						<ToggleControl
+							label={ __( 'Show a Featured News Item?', 'ramp' ) }
+							checked={ showFeaturedItem }
+							help={ showFeaturedItem ? __( 'A Featured News Item will be shown.', 'ramp' ) : __( 'No Featured News Item will be shown.', 'ramp' ) }
+							onChange={ ( showFeaturedItem ) => setAttributes( { showFeaturedItem } ) }
+						/>
+
+						{ showFeaturedItem && (
+							<Fragment>
+								{ currentlyFeaturedNotice }
+
+								<PostPicker
+									onSelectPost={ ( selectedPost ) => setAttributes( { featuredItemId: selectedPost.id } ) }
+									label={ __( 'Select a Featured News Item', 'ramp' ) }
+									placeholder={ __( 'Start typing to search.', 'ramp' ) }
+									postTypes={ [ 'posts' ] }
+								/>
+							</Fragment>
+						) }
+					</PanelBody>
+				</Panel>
+			</InspectorControls>
 
 			<div { ...blockProps() }>
 				<ServerSideRender

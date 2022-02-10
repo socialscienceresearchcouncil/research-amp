@@ -3,22 +3,26 @@
 return [
 	'api_version'     => 2,
 	'attributes'      => [
-		'isEditMode'     => [
+		'isEditMode'       => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'featuredItemId' => [
-			'type'    => 'string',
-			'default' => '',
+		'featuredItemId'   => [
+			'type'    => 'number',
+			'default' => 0,
 		],
-		'researchTopic'  => [
+		'researchTopic'    => [
 			'type'    => 'string',
 			'default' => 'auto',
 		],
-		'variationType'  => [
+		'showFeaturedItem' => [
+			'type'    => 'boolean',
+			'default' => false,
+		],
+		'variationType'    => [
 			'type'    => 'string',
-			'enum'    => [ 'single', 'two', 'three' ],
-			'default' => 'single',
+			'enum'    => [ 'one', 'two' ],
+			'default' => 'one',
 		],
 	],
 	'render_callback' => function( $atts ) {

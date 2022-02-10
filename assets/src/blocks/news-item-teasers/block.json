@@ -14,16 +14,20 @@
 			"default": false
 		},
 		"featuredItemId": {
-			"type": "string",
-			"default": ""
+			"type": "number",
+			"default": 0
 		},
 		"researchTopic": {
 			"type": "string",
 			"default": "auto"
 		},
+		"showFeaturedItem": {
+			"type": "boolean",
+			"default": "false"
+		},
 		"variationType": {
-			"enum": [ "single", "two", "three" ],
-			"default": "single"
+			"enum": [ "one", "two" ],
+			"default": "one"
 		}
 	}
 }
