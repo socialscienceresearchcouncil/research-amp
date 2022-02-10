@@ -182,6 +182,7 @@ class Schema {
 			]
 		);
 
+		// @todo Should be removed.
 		add_image_size( 'research-topic-image', 564, 180, true );
 
 		// Profiles.
@@ -306,6 +307,7 @@ class Schema {
 			]
 		);
 
+		// @todo Probably OK to keep but we should use everywhere.
 		add_image_size( 'profile-avatar', 300, 300, true );
 
 		// Citation Library.
@@ -566,16 +568,10 @@ class Schema {
 	public function link_cpts_and_taxonomies() {
 		$this->cpttaxonomies['research_topic']  = new CPTTax( 'ramp_topic', 'ramp_assoc_topic' );
 		$this->cpttaxonomies['profile']         = new CPTTax( 'ramp_profile', 'ramp_assoc_profile' );
-
 	}
 
 	public function get_cpttax_map( $key ) {
 		return $this->cpttaxonomies[ $key ];
-	}
-
-	public function set_up_post_type_features() {
-
-		//      $lit_reviews =
 	}
 
 	public function filter_lr_version_link( $permalink, $post ) {
