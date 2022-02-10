@@ -18,7 +18,7 @@ class FeaturedItem {
 			[
 				'post_type'                 => $post_type,
 				'post_status'               => 'publish',
-				'meta_key'                  => 'disinfo_featured_timestamp',
+				'meta_key'                  => 'ramp_featured_timestamp',
 				'orderby'                   => [ 'meta_value_num' => 'DESC' ],
 				'posts_per_page'            => 5, // Hardcoded for the time being.
 				// @todo This can be removed when no longer using parent theme.
@@ -48,7 +48,7 @@ class FeaturedItem {
 	}
 
 	public function get_featured_date() {
-		$timestamp = get_post_meta( $this->get_post_id(), 'disinfo_featured_timestamp', true );
+		$timestamp = get_post_meta( $this->get_post_id(), 'ramp_featured_timestamp', true );
 
 		if ( ! $timestamp ) {
 			return null;
@@ -60,32 +60,32 @@ class FeaturedItem {
 	public function get_feature_link( $redirect_to ) {
 		$base = add_query_arg(
 			[
-				'disinfo-feature' => $this->get_post_id(),
+				'ramp-feature' => $this->get_post_id(),
 				'redirect_to'     => rawurlencode( $redirect_to ),
 			],
 			admin_url()
 		);
 
-		return wp_nonce_url( $base, 'disinfo-feature-' . $this->get_post_id() );
+		return wp_nonce_url( $base, 'ramp-feature-' . $this->get_post_id() );
 	}
 
 	public function get_unfeature_link( $redirect_to ) {
 		$base = add_query_arg(
 			[
-				'disinfo-unfeature' => $this->get_post_id(),
+				'ramp-unfeature' => $this->get_post_id(),
 				'redirect_to'       => rawurlencode( $redirect_to ),
 			],
 			admin_url()
 		);
 
-		return wp_nonce_url( $base, 'disinfo-unfeature-' . $this->get_post_id() );
+		return wp_nonce_url( $base, 'ramp-unfeature-' . $this->get_post_id() );
 	}
 
 	public function mark_featured() {
-		update_post_meta( $this->get_post_id(), 'disinfo_featured_timestamp', time() );
+		update_post_meta( $this->get_post_id(), 'ramp_featured_timestamp', time() );
 	}
 
 	public function mark_unfeatured() {
-		delete_post_meta( $this->get_post_id(), 'disinfo_featured_timestamp' );
+		delete_post_meta( $this->get_post_id(), 'ramp_featured_timestamp' );
 	}
 }

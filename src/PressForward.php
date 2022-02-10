@@ -57,7 +57,7 @@ class PressForward {
 		remove_meta_box( 'pf-tagsdiv', 'nomthis', 'side' );
 
 		add_meta_box(
-			'disinfo-nomthis-submit',
+			'ramp-nomthis-submit',
 			__( 'Send to MediaWell', 'ramp' ),
 			array( $this, 'submit_meta_box' ),
 			'nomthis',
@@ -67,7 +67,7 @@ class PressForward {
 
 		$rt_post_type = get_post_type( 'ramp_topic' );
 		add_meta_box(
-			'disinfo-nomthis-rts',
+			'ramp-nomthis-rts',
 			__( 'Research Fields', 'ramp' ),
 			array( $this, 'rts_meta_box' ),
 			'nomthis',
@@ -75,7 +75,7 @@ class PressForward {
 		);
 
 		add_meta_box(
-			'disinfo-nomthis-focus-tags',
+			'ramp-nomthis-focus-tags',
 			__( 'Tags', 'ramp' ),
 			array( $this, 'focus_tags_meta_box' ),
 			'nomthis',
@@ -83,7 +83,7 @@ class PressForward {
 		);
 
 		add_meta_box(
-			'disinfo-nomthis-date',
+			'ramp-nomthis-date',
 			__( 'Publication Date', 'ramp' ),
 			array( $this, 'date_meta_box' ),
 			'nomthis',
@@ -100,7 +100,7 @@ class PressForward {
 
 	public function register_assets() {
 		wp_register_script(
-			'disinfo-pressforward',
+			'ramp-pressforward',
 			RAMP_PLUGIN_URL . '/assets/js/pressforward.js',
 			array( 'jquery', PF_SLUG . '-twitter-bootstrap' ),
 			RAMP_VER,
@@ -108,11 +108,11 @@ class PressForward {
 		);
 
 		wp_localize_script(
-			'disinfo-pressforward',
+			'ramp-pressforward',
 			'RAMPPressForward',
 			[
 				'eventsIsActive' => defined( 'TRIBE_EVENTS_FILE' ),
-				'restBase'       => esc_url_raw( rest_url( 'disinfo/v1' ) ),
+				'restBase'       => esc_url_raw( rest_url( 'ramp/v1' ) ),
 				'restNonce'      => wp_create_nonce( 'wp_rest' ),
 			]
 		);
@@ -120,7 +120,7 @@ class PressForward {
 
 	public function enqueue_scripts( $hook ) {
 		if ( 'pressforward_page_pf-review' === $hook ) {
-			wp_enqueue_script( 'disinfo-pressforward' );
+			wp_enqueue_script( 'ramp-pressforward' );
 		}
 	}
 
@@ -195,7 +195,7 @@ class PressForward {
 	}
 
 	public function rts_meta_box( $post, $box ) {
-		wp_enqueue_style( 'disinfo-research-topics-metabox', RAMP_PLUGIN_URL . '/assets/css/research-topics-metabox.css', [], RAMP_VER );
+		wp_enqueue_style( 'ramp-research-topics-metabox', RAMP_PLUGIN_URL . '/assets/css/research-topics-metabox.css', [], RAMP_VER );
 
 		$tax_name = 'ramp_assoc_topic';
 		$taxonomy = get_taxonomy( $tax_name );
@@ -250,9 +250,9 @@ class PressForward {
 	}
 
 	public function focus_tags_meta_box( $post ) {
-		wp_enqueue_script( 'disinfo-focus-tags', RAMP_PLUGIN_URL . '/assets/js/focus-tags.js', [ 'jquery', 'disinfo-select2' ], RAMP_VER, true );
-		wp_enqueue_style( 'disinfo-select2' );
-		wp_enqueue_style( 'disinfo-focus-tags-metabox', RAMP_PLUGIN_URL . '/assets/css/focus-tags-metabox.css', [], RAMP_VER );
+		wp_enqueue_script( 'ramp-focus-tags', RAMP_PLUGIN_URL . '/assets/js/focus-tags.js', [ 'jquery', 'ramp-select2' ], RAMP_VER, true );
+		wp_enqueue_style( 'ramp-select2' );
+		wp_enqueue_style( 'ramp-focus-tags-metabox', RAMP_PLUGIN_URL . '/assets/css/focus-tags-metabox.css', [], RAMP_VER );
 
 		$tax_name              = 'ramp_focus_tag';
 		$taxonomy              = get_taxonomy( $tax_name );
@@ -285,7 +285,7 @@ class PressForward {
 <input type="date" name="publication-date" id="publication-date" />
 <p class="description"><?php esc_html_e( 'Enter the original publication date of the article', 'ramp' ); ?></p>
 		<?php
-		wp_nonce_field( 'disinfo-publication-date', 'disinfo_publication_date_nonce', false );
+		wp_nonce_field( 'ramp-publication-date', 'ramp', false );
 	}
 
 	public function save_publication_date( $post_id ) {
@@ -294,11 +294,11 @@ class PressForward {
 			return;
 		}
 
-		if ( ! isset( $_POST['disinfo_publication_date_nonce'] ) ) {
+		if ( ! isset( $_POST['ramp_publication_date_nonce'] ) ) {
 			return;
 		}
 
-		check_admin_referer( 'disinfo-publication-date', 'disinfo_publication_date_nonce' );
+		check_admin_referer( 'ramp-publication-date', 'ramp_publication_date_nonce' );
 
 		if ( empty( $_POST['publication-date'] ) ) {
 			return;

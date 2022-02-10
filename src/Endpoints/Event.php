@@ -9,7 +9,7 @@ use \WP_REST_Server;
 class Event extends WP_REST_Controller {
 	public function register_routes() {
 		$version   = '1';
-		$namespace = 'disinfo/v' . $version;
+		$namespace = 'ramp/v' . $version;
 
 		register_rest_route(
 			$namespace,

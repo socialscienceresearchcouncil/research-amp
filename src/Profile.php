@@ -170,7 +170,7 @@ class Profile {
 	}
 
 	public function get_sp_term_id() {
-		$sp_map = disinfo_app()->get_cpttax_map( 'profile' );
+		$sp_map = ramp_app()->get_cpttax_map( 'profile' );
 		return $sp_map->get_term_id_for_post_id( $this->get_post_id() );
 	}
 

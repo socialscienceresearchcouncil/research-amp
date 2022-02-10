@@ -260,7 +260,7 @@ class Admin {
 
 	public function versions_cb( $post ) {
 		wp_enqueue_style(
-			'disinfo-versions-admin',
+			'ramp-versions-admin',
 			RAMP_PLUGIN_URL . '/assets/css/versions-admin.css',
 			[],
 			RAMP_VER
@@ -320,13 +320,13 @@ class Admin {
 			return;
 		}
 
-		if ( empty( $_GET['disinfo-feature'] ) ) {
+		if ( empty( $_GET['ramp-feature'] ) ) {
 			return;
 		}
 
-		$post_id = intval( $_GET['disinfo-feature'] );
+		$post_id = intval( $_GET['ramp-feature'] );
 
-		check_admin_referer( 'disinfo-feature-' . $post_id );
+		check_admin_referer( 'ramp-feature-' . $post_id );
 
 		$featured_post = Featured\FeaturedItem::get_instance( $post_id );
 		$featured_post->mark_featured();
@@ -344,13 +344,13 @@ class Admin {
 			return;
 		}
 
-		if ( empty( $_GET['disinfo-unfeature'] ) ) {
+		if ( empty( $_GET['ramp-unfeature'] ) ) {
 			return;
 		}
 
-		$post_id = intval( $_GET['disinfo-unfeature'] );
+		$post_id = intval( $_GET['ramp-unfeature'] );
 
-		check_admin_referer( 'disinfo-unfeature-' . $post_id );
+		check_admin_referer( 'ramp-unfeature-' . $post_id );
 
 		$featured_post = Featured\FeaturedItem::get_instance( $post_id );
 		$featured_post->mark_unfeatured();

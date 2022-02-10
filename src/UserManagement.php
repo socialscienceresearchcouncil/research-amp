@@ -38,14 +38,14 @@ class UserManagement {
 
 	public function enqueue_assets() {
 		wp_enqueue_style(
-			'disinfo-login',
+			'ramp-login',
 			RAMP_PLUGIN_URL . '/assets/css/login.css',
 			[],
 			RAMP_VER
 		);
 
 		wp_enqueue_script(
-			'disinfo-login',
+			'ramp-login',
 			RAMP_PLUGIN_URL . '/assets/js/login.js',
 			[ 'jquery' ],
 			RAMP_VER,
@@ -145,11 +145,11 @@ class UserManagement {
 	}
 
 	public function meta_box_cb( $post ) {
-		wp_enqueue_style( 'disinfo-select2' );
+		wp_enqueue_style( 'ramp-select2' );
 		wp_enqueue_script(
-			'disinfo-profile-admin',
+			'ramp-profile-admin',
 			RAMP_PLUGIN_URL . 'assets/js/profile-admin.js',
-			[ 'disinfo-select2', 'jquery' ],
+			[ 'ramp-select2', 'jquery' ],
 			RAMP_VER,
 			true
 		);
@@ -176,18 +176,18 @@ class UserManagement {
 			'selectedUserId' => $selected_user_id,
 		];
 
-		wp_localize_script( 'disinfo-profile-admin', 'RAMPProfileUsers', $data );
+		wp_localize_script( 'ramp-profile-admin', 'RAMPProfileUsers', $data );
 
 		?>
 		<label for="associated-user" class="screen-reader-text"><?php esc_html_e( 'Associated user', 'ramp' ); ?></label>
 		<select id="associated-user" name="associated-user"></select>
 		<p class="description"><?php esc_html_e( 'Select the WordPress user account associated with this Profile.', 'ramp' ); ?></p>
-		<?php wp_nonce_field( 'disinfo-associated-user', 'disinfo-associated-user-nonce' ); ?>
+		<?php wp_nonce_field( 'ramp-associated-user', 'ramp-associated-user-nonce' ); ?>
 		<?php
 	}
 
 	public function meta_box_save_cb( $post_id ) {
-		if ( empty( $_POST['disinfo-associated-user-nonce'] ) ) {
+		if ( empty( $_POST['ramp-associated-user-nonce'] ) ) {
 			return;
 		}
 
@@ -196,7 +196,7 @@ class UserManagement {
 			return;
 		}
 
-		check_admin_referer( 'disinfo-associated-user', 'disinfo-associated-user-nonce' );
+		check_admin_referer( 'ramp-associated-user', 'ramp-associated-user-nonce' );
 
 		$associated_user = (int) wp_unslash( $_POST['associated-user'] );
 		if ( ! $associated_user ) {

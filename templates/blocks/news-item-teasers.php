@@ -11,7 +11,7 @@ if ( 'auto' === $research_topic_id ) {
 	$research_topic_id = (int) $research_topic_id;
 }
 
-$rt_map     = disinfo_app()->get_cpttax_map( 'research_topic' );
+$rt_map     = ramp_app()->get_cpttax_map( 'research_topic' );
 $rt_term_id = $rt_map->get_term_id_for_post_id( $research_topic_id );
 
 $news_items = get_posts(

@@ -23,7 +23,7 @@ $query_args = [
 ];
 
 if ( $research_topic_id ) {
-	$rt_map = disinfo_app()->get_cpttax_map( 'research_topic' );
+	$rt_map = ramp_app()->get_cpttax_map( 'research_topic' );
 
 	$query_args['tax_query'] = [
 		'research_topic' => [

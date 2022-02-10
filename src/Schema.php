@@ -27,8 +27,8 @@ class Schema {
 
 	public function register_scripts() {
 		// @todo Must be included in plugin.
-		wp_register_script( 'disinfo-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js', [], RAMP_VER, true );
-		wp_register_style( 'disinfo-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css', [], RAMP_VER );
+		wp_register_script( 'ramp-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js', [], RAMP_VER, true );
+		wp_register_style( 'ramp-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css', [], RAMP_VER );
 	}
 
 	public function register_post_types() {
@@ -599,7 +599,7 @@ class Schema {
 		$citation_sps = wp_get_object_terms( $object_id, 'ramp_assoc_profile' );
 		$citation_rts = wp_get_object_terms( $object_id, 'ramp_assoc_topic' );
 
-		$sp_map = disinfo_app()->get_cpttax_map( 'profile' );
+		$sp_map = ramp_app()->get_cpttax_map( 'profile' );
 		foreach ( $citation_sps as $citation_sp ) {
 			$sp_id = $sp_map->get_post_id_for_term_id( $citation_sp->term_id );
 
@@ -649,8 +649,8 @@ class Schema {
 	}
 
 	public function sp_meta_box_cb( $post ) {
-		wp_enqueue_style( 'disinfo-select2' );
-		wp_enqueue_script( 'disinfo-sp-meta-box', RAMP_PLUGIN_URL . '/assets/js/sp-meta-box.js', [ 'jquery', 'disinfo-select2' ], RAMP_VER, true );
+		wp_enqueue_style( 'ramp-select2' );
+		wp_enqueue_script( 'ramp-sp-meta-box', RAMP_PLUGIN_URL . '/assets/js/sp-meta-box.js', [ 'jquery', 'ramp-select2' ], RAMP_VER, true );
 
 		$sps = get_posts(
 			[
@@ -662,7 +662,7 @@ class Schema {
 			]
 		);
 
-		$sp_map = disinfo_app()->get_cpttax_map( 'profile' );
+		$sp_map = ramp_app()->get_cpttax_map( 'profile' );
 
 		$terms = [];
 		foreach ( $sps as $sp_id ) {

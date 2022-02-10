@@ -6,15 +6,15 @@
 					var $btns     = $( v );
 					var articleId = $btns.closest( 'article' ).attr( 'id' );
 
-					var citationButton = '<button class="btn btn-small schema-switchable disinfo-send-to-citation-library" data-article-id="' + articleId + '" data-original-title="Send to Citation Library"><i class="icon-folder-open"></i></button>';
+					var citationButton = '<button class="btn btn-small schema-switchable ramp-send-to-citation-library" data-article-id="' + articleId + '" data-original-title="Send to Citation Library"><i class="icon-folder-open"></i></button>';
 					$btns.append( citationButton );
 
-					var eventsButton = '<button class="btn btn-small schema-switchable disinfo-send-to-events" data-article-id="' + articleId + '" data-original-title="Send to Events"><i class="icon-calendar"></i></button>';
+					var eventsButton = '<button class="btn btn-small schema-switchable ramp-send-to-events" data-article-id="' + articleId + '" data-original-title="Send to Events"><i class="icon-calendar"></i></button>';
 					$btns.append( eventsButton );
 				}
 			);
 
-			$( '.disinfo-send-to-citation-library' ).on(
+			$( '.ramp-send-to-citation-library' ).on(
 				'click',
 				function(){
 					var $clicked = $( this );
@@ -39,7 +39,7 @@
 				}
 			);
 
-			$( '.disinfo-send-to-events' ).on(
+			$( '.ramp-send-to-events' ).on(
 				'click',
 				function(){
 					var $clicked = $( this );
@@ -66,14 +66,14 @@
 
 			refreshNominationStatus();
 
-			$( '.disinfo-send-to-citation-library' ).tooltip(
+			$( '.ramp-send-to-citation-library' ).tooltip(
 				{
 					placement: 'top',
 					trigger: 'hover',
 					title: 'Send to Citation Library'
 				}
 			);
-			$( '.disinfo-send-to-events' ).tooltip(
+			$( '.ramp-send-to-events' ).tooltip(
 				{
 					placement: 'top',
 					trigger: 'hover',
@@ -105,13 +105,13 @@
 					success: function(response) {
 						for ( var itemId in response.has_citation ) {
 							$( 'article#' + itemId )
-								.find( '.disinfo-send-to-citation-library' )
+								.find( '.ramp-send-to-citation-library' )
 								.addClass( 'btn-info' )
 								.attr( 'disabled', 'disabled' );
 						}
 						for ( var itemId in response.has_event ) {
 							$( 'article#' + itemId )
-								.find( '.disinfo-send-to-events' )
+								.find( '.ramp-send-to-events' )
 								.addClass( 'btn-info' )
 								.attr( 'disabled', 'disabled' );
 						}

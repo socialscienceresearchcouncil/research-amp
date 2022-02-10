@@ -22,7 +22,7 @@ require __DIR__ . '/autoload.php';
  *
  * @since 1.0.0
  */
-function disinfo_app() {
+function ramp_app() {
 	static $instance;
 
 	if ( empty( $instance ) ) {
@@ -58,4 +58,4 @@ function disinfo_app() {
 
 	return $instance;
 }
-add_action( 'plugins_loaded', 'disinfo_app' );
+add_action( 'plugins_loaded', 'ramp_app' );

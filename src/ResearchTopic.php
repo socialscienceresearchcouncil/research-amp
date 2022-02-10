@@ -60,7 +60,7 @@ class ResearchTopic {
 	}
 
 	public function get_rt_term_id() {
-		$rt_map = disinfo_app()->get_cpttax_map( 'research_topic' );
+		$rt_map = ramp_app()->get_cpttax_map( 'research_topic' );
 		return $rt_map->get_term_id_for_post_id( $this->get_post_id() );
 	}
 
