@@ -181,4 +181,27 @@ class Blocks {
 
 		return $profile_data;
 	}
+
+	/**
+	 * Get the research topic ID from the args passed to the template.
+	 *
+	 * @param array $args
+	 * @return int|null
+	 */
+	public static function get_research_topic_from_template_args( $args ) {
+		$research_topic_id = null;
+		if ( isset( $args['researchTopic'] ) ) {
+			if ( 'auto' === $args['researchTopic'] ) {
+				if ( ! empty( $args['isEditMode'] ) ) {
+					$research_topic_id = ramp_get_most_recent_research_topic_id();
+				} elseif ( is_singular( 'ramp_topic' ) ) {
+					$research_topic_id = get_queried_object_id();
+				}
+			} elseif ( 'all' !== $args['researchTopic'] ) {
+				$research_topic_id = (int) $research_topic_id;
+			}
+		}
+
+		return $research_topic_id;
+	}
 }

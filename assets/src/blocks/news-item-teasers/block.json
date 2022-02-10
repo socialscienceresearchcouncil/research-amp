@@ -9,13 +9,21 @@
 		"anchor": true
 	},
 	"attributes": {
-		"associatedResearchTopic": {
-			"type": "string",
-			"default": "auto"
-		},
 		"isEditMode": {
 			"type": "boolean",
 			"default": false
+		},
+		"featuredItemId": {
+			"type": "string",
+			"default": ""
+		},
+		"researchTopic": {
+			"type": "string",
+			"default": "auto"
+		},
+		"variationType": {
+			"enum": [ "single", "two", "three" ],
+			"default": "single"
 		}
 	}
 }

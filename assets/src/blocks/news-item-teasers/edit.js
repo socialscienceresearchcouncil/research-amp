@@ -3,7 +3,9 @@ import { __ } from '@wordpress/i18n';
 import {
 	Panel,
 	PanelBody,
-	Spinner
+	SelectControl,
+	Spinner,
+	TextControl
 } from '@wordpress/components'
 
 import {
@@ -31,12 +33,18 @@ export default function edit( {
 	attributes,
 	setAttributes,
 } ) {
-	const { researchTopic } = attributes
+	const {
+		featuredItemId,
+		researchTopic,
+		variationType
+	} = attributes
 
 	const blockProps = () => {
 		let classNames = []
 
+		classNames.push( 'featured-item-id-' + featuredItemId )
 		classNames.push( 'research-topic-' + researchTopic )
+		classNames.push( 'variation-type-' + variationType )
 
 		return useBlockProps( {
 			className: classNames
@@ -60,6 +68,42 @@ export default function edit( {
 					</PanelBody>
 				</Panel>
 			</InspectorControls>
+
+			<InspectorControls>
+				<Panel>
+					<PanelBody
+						title={ __( 'Display', 'ramp' ) }
+					>
+						<SelectControl
+							label={ __( 'Select the format to be used when displaying News Items.', 'ramp' ) }
+							options={ [
+								{ label: __( 'Single row', 'ramp' ), value: 'single' },
+								{ label: __( 'Two rows', 'ramp' ), value: 'two' },
+								{ label: __( 'Featured + Two rows', 'ramp' ), value: 'three' },
+							] }
+							selected={ variationType }
+							value={ variationType }
+							onChange={ ( variationType ) => setAttributes( { variationType } ) }
+						/>
+					</PanelBody>
+				</Panel>
+			</InspectorControls>
+
+			{'three' === variationType &&
+				<InspectorControls>
+					<Panel>
+						<PanelBody
+							title={ __( 'Featured News Item', 'ramp' ) }
+						>
+							<TextControl
+								label={ __( 'Enter the ID of the post you want to feature.', 'ramp' ) }
+								value={ featuredItemId }
+								onChange={ ( featuredItemId ) => setAttributes( { featuredItemId } ) }
+							/>
+						</PanelBody>
+					</Panel>
+				</InspectorControls>
+			}
 
 			<div { ...blockProps() }>
 				<ServerSideRender

@@ -9,7 +9,6 @@ class Schema {
 		add_action( 'init', [ $this, 'register_post_types' ], 5 );
 		add_action( 'init', [ $this, 'register_taxonomies' ], 20 );
 		add_action( 'init', [ $this, 'link_cpts_and_taxonomies' ], 30 );
-		add_action( 'init', [ $this, 'set_up_post_type_features' ], 40 );
 		add_action( 'init', [ $this, 'register_scripts' ] );
 
 		// Sync Citation RTs to associated SPs.

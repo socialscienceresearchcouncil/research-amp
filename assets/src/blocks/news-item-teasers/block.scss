@@ -1,18 +1,18 @@
-.article-teasers {
-	display: flex;
-	gap: 28px;
+.teaser.featured-news-item-teaser {
+	gap: 0;
 }
 
-.article-teasers > div {
-	flex: 0 0 50%;
-}
+.featured-news-item {
+	margin-bottom: 64px;
 
-.non-featured-article-teasers .teaser {
-	display: flex;
-	gap: 28px;
-	margin-bottom: 28px;
-}
+	.teaser-content {
+		background-color: #eee;
+		padding: 32px;
+	}
 
-.non-featured-article-teasers .teaser-thumb {
-	flex: 0 0 40%;
+	.teaser-image {
+		background-position: center center;
+		background-size: cover;
+		flex: 0 0 40%;
+	}
 }

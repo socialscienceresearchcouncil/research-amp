@@ -1,15 +1,24 @@
 <?php
 
 return [
-	'api_version'     => 1,
+	'api_version'     => 2,
 	'attributes'      => [
-		'isEditMode'    => [
+		'isEditMode'     => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'researchTopic' => [
+		'featuredItemId' => [
+			'type'    => 'string',
+			'default' => '',
+		],
+		'researchTopic'  => [
 			'type'    => 'string',
 			'default' => 'auto',
+		],
+		'variationType'  => [
+			'type'    => 'string',
+			'enum'    => [ 'single', 'two', 'three' ],
+			'default' => 'single',
 		],
 	],
 	'render_callback' => function( $atts ) {
