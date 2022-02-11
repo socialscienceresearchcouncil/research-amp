@@ -3,6 +3,10 @@
 return [
 	'api_version'     => 2,
 	'attributes'      => [
+		'featuredItemId'   => [
+			'type'    => 'number',
+			'default' => 0,
+		],
 		'isEditMode'    => [
 			'type'    => 'boolean',
 			'default' => false,
@@ -10,6 +14,15 @@ return [
 		'researchTopic' => [
 			'type'    => 'string',
 			'default' => 'auto',
+		],
+		'showFeaturedItem' => [
+			'type'    => 'boolean',
+			'default' => false,
+		],
+		'variationType'    => [
+			'type'    => 'string',
+			'enum'    => [ 'grid', 'columns' ],
+			'default' => 'grid',
 		],
 	],
 	'render_callback' => function( $atts ) {
