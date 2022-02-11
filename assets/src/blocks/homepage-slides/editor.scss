@@ -1,9 +1,7 @@
 @import './block.scss';
 
-.homepage-slider ul.glide__slides {
-	list-style: none;
-
-	li:not(:first-child) {
+.homepage-slider .glide__slides {
+	article:not(:first-child) {
 		display: none;
 	}
 }

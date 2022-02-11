@@ -61,7 +61,7 @@
 .homepage-slider-bullets .glide__bullet {
 	background: transparent;
 	border: none;
-	border-bottom: 3px solid transparent;
+	border-bottom: 2px solid transparent;
 	border-radius: 0;
 	box-shadow: none;
 	font-size: 18px;
@@ -69,20 +69,20 @@
 	margin-left: 8px;
 	padding: 0 3px 12px 2px; /* Mismatched sides are a glitch of the font kerning */
 	text-align: center;
+	text-decoration: none;
 	width: auto;
 }
 
 .homepage-slider-bullets .glide__bullet:focus,
 .homepage-slider-bullets .glide__bullet:hover {
-	border: none;
-	border-bottom: 2px solid var(--wp--preset--color--almost-black);
+	border-color: inherit;
 	background: transparent;
 }
 
 .homepage-slider-bullets .glide__bullet.glide__bullet--active {
-	border-bottom: 2px solid var(--wp--preset--color--almost-black);
+	border-color: inherit;
 }
 
 .homepage-slider-bullets .glide__bullet.glide__bullet--active:hover {
-	border-bottom: 2px solid transparent;
+	border-color: transparent;
 }
