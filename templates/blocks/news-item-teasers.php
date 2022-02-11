@@ -15,7 +15,6 @@ $query_args = [
 	'post_status'    => 'publish',
 	'posts_per_page' => $posts_per_page,
 ];
-var_Dump( $args );
 
 if ( $show_featured_item && $featured_item_id ) {
 	$query_args['post__not_in'] = [ $featured_item_id ];
