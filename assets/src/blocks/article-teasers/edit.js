@@ -56,7 +56,10 @@ export default function edit( {
 	}
 
 	const { post } = useSelect( ( select ) => {
-		const post = select( 'ramp' ).getPost( featuredItemId )
+		let post = {}
+		if ( featuredItemId ) {
+			post = select( 'ramp' ).getPost( featuredItemId, 'articles' )
+		}
 
 		return {
 			post

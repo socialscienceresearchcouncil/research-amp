@@ -138,8 +138,8 @@ const resolvers = {
 		return actions.setArticles( articles )
 	},
 
-	*getPost( postId ) {
-		const path = '/wp/v2/posts/' + postId
+	*getPost( postId, postType ) {
+		const path = '/wp/v2/' + postType + '/' + postId
 		const post = yield actions.fetchFromAPI( path )
 		return actions.setPost( postId, post )
 	}
