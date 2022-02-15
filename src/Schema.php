@@ -302,7 +302,55 @@ class Schema {
 					],
 				],
 				'template_lock' => 'all',
-				'supports'      => [ 'title', 'thumbnail', 'editor' ],
+				'supports'      => [ 'title', 'thumbnail', 'editor', 'custom-fields' ],
+			]
+		);
+
+		register_meta(
+			'post',
+			'ramp_vital_email',
+			[
+				'object_subtype' => 'ramp_profile',
+				'type'           => 'string',
+				'single'         => true,
+				'show_in_rest'   => true,
+				'description'    => __( 'Profile Email Address', 'ramp' ),
+			]
+		);
+
+		register_meta(
+			'post',
+			'ramp_vital_twitter',
+			[
+				'object_subtype' => 'ramp_profile',
+				'type'           => 'string',
+				'single'         => true,
+				'show_in_rest'   => true,
+				'description'    => __( 'Profile Twitter Handle', 'ramp' ),
+			]
+		);
+
+		register_meta(
+			'post',
+			'ramp_vital_orcid',
+			[
+				'object_subtype' => 'ramp_profile',
+				'type'           => 'string',
+				'single'         => true,
+				'show_in_rest'   => true,
+				'description'    => __( 'Profile ORCID ID', 'ramp' ),
+			]
+		);
+
+		register_meta(
+			'post',
+			'ramp_vital_website',
+			[
+				'object_subtype' => 'ramp_profile',
+				'type'           => 'string',
+				'single'         => true,
+				'show_in_rest'   => true,
+				'description'    => __( 'Profile Website', 'ramp' ),
 			]
 		);
 

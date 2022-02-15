@@ -6,7 +6,10 @@ import {
 	useBlockProps
 } from '@wordpress/block-editor';
 
-import { useSelect } from '@wordpress/data';
+import {
+	dispatch,
+	useSelect
+} from '@wordpress/data';
 
 import { find } from 'lodash';
 import variations from './variations';
@@ -28,14 +31,35 @@ import { EmailIcon } from './icons/email'
 import './editor.scss';
 
 const getIconByVitalType = ( name ) => {
-	const variation = find( variations, { name } );
-	return variation ? variation.icon : EmailIcon;
-};
+	const variation = find( variations, { name } )
+	return variation ? variation.icon : EmailIcon
+}
+
+const getPlaceholderByVitalType = ( name ) => {
+	const variation = find( variations, { name } )
+	return variation ? variation.placeholder : __( 'Enter content' )
+}
 
 const getTitleByVitalType = ( name ) => {
-	const variation = find( variations, { name } );
-	return variation ? variation.title : __( 'Enter content' );
-};
+	const variation = find( variations, { name } )
+	return variation ? variation.title : __( 'Enter content' )
+}
+
+const getMetaKeyByVitalType = ( name ) => {
+	const variation = find( variations, { name } )
+	return variation ? variation.metaKey : ''
+}
+
+const setVitalValue = ( vitalType, value ) => {
+	const metaKey = getMetaKeyByVitalType( vitalType )
+
+	let meta = {}
+	meta[ metaKey ] = value
+
+	dispatch( 'core/editor' ).editPost( {
+		meta
+	} )
+}
 
 /**
  * Edit function.
@@ -48,7 +72,6 @@ export default function edit( {
 	setAttributes,
 } ) {
 	const {
-		value,
 		vitalType
 	} = attributes
 
@@ -59,6 +82,22 @@ export default function edit( {
 			className: classNames
 		} )
 	}
+
+	const { value } = useSelect( ( select ) => {
+		const postMeta = select( 'core/editor' ).getEditedPostAttribute( 'meta' )
+
+		if ( postMeta ) {
+			const metaKey = getMetaKeyByVitalType( vitalType )
+
+			return {
+				value: postMeta[ metaKey ]
+			}
+		} else {
+			return {
+				value: ''
+			}
+		}
+	}, [] )
 
 	const IconComponent = getIconByVitalType( vitalType )
 
@@ -76,11 +115,14 @@ export default function edit( {
 			<IconComponent />
 
 			{ isSelected && (
-				<TextControl
-					label={ getTitleByVitalType( name ) }
-					value={ value }
-					onChange={ ( value ) => setAttributes( { value } ) }
-				/>
+				<div className="profile-vital-link-edit">
+					<TextControl
+						label={ getTitleByVitalType( vitalType ) }
+						value={ value }
+						onChange={ ( value ) => setVitalValue( vitalType, value ) }
+						placeholder={ getPlaceholderByVitalType( vitalType ) }
+					/>
+				</div>
 			) }
 
 			{ ! isSelected && (
