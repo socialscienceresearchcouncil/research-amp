@@ -117,6 +117,10 @@ class Blocks {
 			'research-topic-teasers',
 		];
 
+		if ( defined( 'TRIBE_EVENTS_FILE' ) ) {
+			$block_types[] = 'event-teasers';
+		}
+
 		foreach ( $block_types as $block_type ) {
 			$block_file = RAMP_PLUGIN_DIR . '/inc/block-types/' . $block_type . '.php';
 

@@ -1,0 +1,21 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/event-teasers",
+	"title": "Event Teasers",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"editorStyle": "file:../../../../build/index.css",
+	"supports": {
+		"anchor": true
+	},
+	"attributes": {
+		"numberOfItems": {
+			"type": "integer",
+			"default": 3
+		},
+		"researchTopic": {
+			"type": "string",
+			"default": "all"
+		}
+	}
+}

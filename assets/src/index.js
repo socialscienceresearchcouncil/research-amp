@@ -10,6 +10,7 @@ import './store'
 // Teaser blocks
 import './blocks/article-teasers'
 import './blocks/citation-teasers'
+import './blocks/event-teasers'
 import './blocks/news-item-teasers'
 import './blocks/profile-teasers'
 import './blocks/research-topic-teasers'
