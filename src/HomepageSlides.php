@@ -58,10 +58,6 @@ class HomepageSlides {
 
 	public function enqueue_block_assets() {
 		wp_enqueue_style( 'ramp-glide-theme' );
-
-		if ( ! is_admin() ) {
-			wp_enqueue_script( 'ramp-homepage-slides' );
-		}
 	}
 
 	public function register_meta_boxes( $post ) {

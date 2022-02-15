@@ -1,5 +1,9 @@
 <?php
 
+if ( ! is_admin() ) {
+	wp_enqueue_script( 'ramp-homepage-slides' );
+}
+
 $slides = get_posts(
 	[
 		'post_type'      => 'ramp_homepage_slide',
