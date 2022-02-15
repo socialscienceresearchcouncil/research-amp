@@ -75,7 +75,7 @@
 
 .homepage-slider-bullets .glide__bullet:focus,
 .homepage-slider-bullets .glide__bullet:hover {
-	border-color: inherit;
+	border: inherit;
 	background: transparent;
 }
 
@@ -86,3 +86,4 @@
 .homepage-slider-bullets .glide__bullet.glide__bullet--active:hover {
 	border-color: transparent;
 }
+

@@ -4,7 +4,6 @@
 	"title": "Article Teasers",
 	"icon": "lightbulb",
 	"category": "ramp",
-	"style": "file:../../../../build/index.css",
 	"supports": {
 		"anchor": true
 	},

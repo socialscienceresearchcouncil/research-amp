@@ -4,7 +4,6 @@
 	"title": "Research Review Teasers",
 	"icon": "lightbulb",
 	"category": "ramp",
-	"style": "file:../../../../build/index.css",
 	"supports": {
 		"anchor": true
 	},
