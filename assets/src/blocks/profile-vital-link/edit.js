@@ -30,36 +30,12 @@ import { EmailIcon } from './icons/email'
  */
 import './editor.scss';
 
-const getIconByVitalType = ( name ) => {
-	const variation = find( variations, { name } )
-	return variation ? variation.icon : EmailIcon
-}
-
-const getPlaceholderByVitalType = ( name ) => {
-	const variation = find( variations, { name } )
-	return variation ? variation.placeholder : __( 'Enter content' )
-}
-
-const getTitleByVitalType = ( name ) => {
-	const variation = find( variations, { name } )
-	return variation ? variation.title : __( 'Enter content' )
-}
-
-const getMetaKeyByVitalType = ( name ) => {
-	const variation = find( variations, { name } )
-	return variation ? variation.metaKey : ''
-}
-
-const setVitalValue = ( vitalType, value ) => {
-	const metaKey = getMetaKeyByVitalType( vitalType )
-
-	let meta = {}
-	meta[ metaKey ] = value
-
-	dispatch( 'core/editor' ).editPost( {
-		meta
-	} )
-}
+import {
+	getIconByVitalType,
+	getMetaKeyByVitalType,
+	getPlaceholderByVitalType,
+	getTitleByVitalType,
+} from './variation-utils'
 
 /**
  * Edit function.
@@ -72,8 +48,10 @@ export default function edit( {
 	setAttributes,
 } ) {
 	const {
+		value,
 		vitalType
 	} = attributes
+	console.log(attributes);
 
 	const blockProps = () => {
 		let classNames = [ 'ramp-profile-vital-link' ]
@@ -82,22 +60,6 @@ export default function edit( {
 			className: classNames
 		} )
 	}
-
-	const { value } = useSelect( ( select ) => {
-		const postMeta = select( 'core/editor' ).getEditedPostAttribute( 'meta' )
-
-		if ( postMeta ) {
-			const metaKey = getMetaKeyByVitalType( vitalType )
-
-			return {
-				value: postMeta[ metaKey ]
-			}
-		} else {
-			return {
-				value: ''
-			}
-		}
-	}, [] )
 
 	const IconComponent = getIconByVitalType( vitalType )
 
@@ -119,7 +81,7 @@ export default function edit( {
 					<TextControl
 						label={ getTitleByVitalType( vitalType ) }
 						value={ value }
-						onChange={ ( value ) => setVitalValue( vitalType, value ) }
+						onChange={ ( value ) => setAttributes( { value } ) }
 						placeholder={ getPlaceholderByVitalType( vitalType ) }
 					/>
 				</div>

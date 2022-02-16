@@ -12,6 +12,10 @@
 		}
 	},
 	"attributes": {
+		"value": {
+			"type": "string",
+			"default": ""
+		},
 		"vitalType": {
 			"type": "string",
 			"default": "email"

@@ -22,6 +22,8 @@ class Blocks {
 		add_action( 'init', [ $this, 'register_block_styles' ], 20 );
 
 		add_filter( 'save_post', [ $this, 'save_profile_data_from_blocks' ] );
+
+		add_action( 'save_post', [ __CLASS__, 'mirror_profile_vital_link_to_postmeta' ] );
 	}
 
 	public function add_image_sizes() {
@@ -206,5 +208,53 @@ class Blocks {
 		}
 
 		return $research_topic_id;
+	}
+
+	public static function mirror_profile_vital_link_to_postmeta( $post ) {
+		$post = get_post( $post );
+
+		if ( 'ramp_profile' !== $post->post_type ) {
+			return;
+		}
+
+		$blocks = parse_blocks( $post->post_content );
+
+		if ( empty( $blocks ) ) {
+			return;
+		}
+
+		$vitals = [
+
+		];
+
+		foreach ( $blocks as $block ) {
+			if ( 'ramp/profile-vital-link' !== $block['blockName'] ) {
+				continue;
+			}
+
+			if ( empty( $block['attrs']['value'] ) ) {
+				continue;
+			}
+
+			$vital_type = $block['attrs']['vitalType'];
+			$value      = $block['attrs']['value'];
+
+			$vitals[ $vital_type ] = $value;
+		}
+
+		$map = [
+			'email'   => 'ramp_vital_email',
+			'twitter' => 'ramp_vital_twitter',
+			'orcidId' => 'ramp_vital_orcid',
+			'webpage' => 'ramp_vital_webpage',
+		];
+
+		foreach ( $vitals as $vital_key => $vital_value ) {
+			if ( ! isset( $map[ $vital_key ] ) ) {
+				continue;
+			}
+
+			update_post_meta( $post->ID, $map[ $vital_key ], $vital_value );
+		}
 	}
 }
