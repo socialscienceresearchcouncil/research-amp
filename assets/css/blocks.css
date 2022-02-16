@@ -20,6 +20,7 @@
 
 .item-type-list-flex {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 28px;
 }
 
@@ -29,7 +30,7 @@
 }
 
 .item-type-list-3 > li {
-	flex: 0 1 33%;
+	flex: 0 1 30%;
 }
 
 .item-type-list-4 > li {
