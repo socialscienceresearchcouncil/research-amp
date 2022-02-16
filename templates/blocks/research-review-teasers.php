@@ -60,13 +60,18 @@ if ( $research_topic_id ) {
 	$research_reviews = get_posts( $query_args );
 }
 
+$list_classes = [
+	'item-type-list',
+	'item-type-list-research-reviews',
+];
+
+if ( 'teasers' === $variation_type ) {
+	$list_classes[] = 'item-type-list-flex';
+	$list_classes[] = 'item-type-list-3';
+}
 ?>
 
-<ul class="item-type-list item-type-list-research-reviews
-<?php
-if ( 'teasers' === $variation_type ) :
-	?>
-	item-type-list-flex<?php endif; ?>">
+<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
 	<?php foreach ( $research_reviews as $research_review ) : ?>
 		<li>
 			<?php
