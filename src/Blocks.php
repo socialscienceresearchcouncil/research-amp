@@ -223,9 +223,7 @@ class Blocks {
 			return;
 		}
 
-		$vitals = [
-
-		];
+		$vitals = [];
 
 		foreach ( $blocks as $block ) {
 			if ( 'ramp/profile-vital-link' !== $block['blockName'] ) {

@@ -37,6 +37,7 @@ $associated_research_topics = get_the_terms( $news_item_id, 'ramp_assoc_topic' )
 		<h1 class="item-title news-item-item-title"><a href="<?php echo esc_attr( get_permalink( $news_item_id ) ); ?>"><?php echo esc_html( get_the_title( $news_item_id ) ); ?></a></h1>
 
 		<div class="news-item-teaser-excerpt">
+			<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php echo get_the_excerpt( $news_item_id ); ?>
 		</div>
 

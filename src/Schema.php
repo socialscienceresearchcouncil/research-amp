@@ -613,8 +613,8 @@ class Schema {
 	}
 
 	public function link_cpts_and_taxonomies() {
-		$this->cpttaxonomies['research_topic']  = new CPTTax( 'ramp_topic', 'ramp_assoc_topic' );
-		$this->cpttaxonomies['profile']         = new CPTTax( 'ramp_profile', 'ramp_assoc_profile' );
+		$this->cpttaxonomies['research_topic'] = new CPTTax( 'ramp_topic', 'ramp_assoc_topic' );
+		$this->cpttaxonomies['profile']        = new CPTTax( 'ramp_profile', 'ramp_assoc_profile' );
 	}
 
 	public function get_cpttax_map( $key ) {

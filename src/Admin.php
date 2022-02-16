@@ -690,7 +690,7 @@ class Admin {
 		$profile_cache_key = 'profile_count' . $users_lc;
 		$profile_count     = wp_cache_get( $profile_cache_key, 'posts' );
 		if ( false === $profile_count ) {
-			$profiles = get_posts(
+			$profiles      = get_posts(
 				[
 					'fields'         => 'ids',
 					'post_type'      => 'ramp_profile',

@@ -61,7 +61,7 @@ class FeaturedItem {
 		$base = add_query_arg(
 			[
 				'ramp-feature' => $this->get_post_id(),
-				'redirect_to'     => rawurlencode( $redirect_to ),
+				'redirect_to'  => rawurlencode( $redirect_to ),
 			],
 			admin_url()
 		);
@@ -73,7 +73,7 @@ class FeaturedItem {
 		$base = add_query_arg(
 			[
 				'ramp-unfeature' => $this->get_post_id(),
-				'redirect_to'       => rawurlencode( $redirect_to ),
+				'redirect_to'    => rawurlencode( $redirect_to ),
 			],
 			admin_url()
 		);

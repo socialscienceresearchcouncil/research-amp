@@ -45,7 +45,7 @@ $articles = get_posts( $query_args );
 
 $teasers_classes = [
 	'article-teasers',
-	'article-teasers-' . $variation_type
+	'article-teasers-' . $variation_type,
 ];
 
 $list_classes = [

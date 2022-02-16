@@ -7,11 +7,11 @@ return [
 			'type'    => 'number',
 			'default' => 0,
 		],
-		'isEditMode'    => [
+		'isEditMode'       => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'researchTopic' => [
+		'researchTopic'    => [
 			'type'    => 'string',
 			'default' => 'auto',
 		],

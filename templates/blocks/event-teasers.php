@@ -6,7 +6,7 @@ $research_topic_id = \SSRC\RAMP\Blocks::get_research_topic_from_template_args( $
 
 $event_query_args = [
 	'posts_per_page' => $number_events,
-	'start_date' => date( 'Y-m-d', time() - DAY_IN_SECONDS ),
+	'start_date'     => gmdate( 'Y-m-d', time() - DAY_IN_SECONDS ),
 ];
 
 if ( $research_topic_id ) {
