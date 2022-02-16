@@ -20,6 +20,10 @@ class Router {
 			return;
 		}
 
+		if ( $query->is_archive() ) {
+			return;
+		}
+
 		$lit_review = get_page_by_path( $query->get( 'ramp_review' ), OBJECT, 'ramp_review' );
 
 		$lr_versions = LitReviews\Version::get( $lit_review->ID );
