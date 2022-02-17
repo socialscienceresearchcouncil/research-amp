@@ -12,6 +12,7 @@ $query_args = [
 	'tax_query'      => [],
 ];
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 $requested_rt = isset( $_GET['research-topic'] ) ? wp_unslash( $_GET['research-topic'] ) : null;
 
 $research_topics = get_posts(
