@@ -379,7 +379,7 @@ class Schema {
 				'public'       => true,
 				'has_archive'  => true,
 				'rewrite'      => [
-					'slug'       => 'citation',
+					'slug'       => 'citations',
 					'with_front' => false,
 				],
 				'show_ui'      => true,
