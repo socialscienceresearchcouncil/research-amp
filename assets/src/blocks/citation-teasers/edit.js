@@ -3,7 +3,8 @@ import { __ } from '@wordpress/i18n';
 import {
 	Panel,
 	PanelBody,
-	Spinner
+	Spinner,
+	ToggleControl
 } from '@wordpress/components'
 
 import {
@@ -31,12 +32,18 @@ export default function edit( {
 	attributes,
 	setAttributes,
 } ) {
-	const { researchTopic } = attributes
+	const {
+		numberOfItems,
+		researchTopic,
+		showFilters
+	} = attributes
 
 	const blockProps = () => {
 		let classNames = []
 
+		classNames.push( 'number-of-items-' + numberOfItems )
 		classNames.push( 'research-topic-' + researchTopic )
+		classNames.push( 'show-filters-' + ( showFilters ? 'on' : 'off' ) )
 
 		return useBlockProps( {
 			className: classNames
@@ -59,6 +66,18 @@ export default function edit( {
 							max={ 5 }
 							step={ 1 }
 							onChange={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+						/>
+					</PanelBody>
+				</Panel>
+
+				<Panel>
+					<PanelBody
+						title={ __( 'Filters', 'ramp' ) }
+					>
+						<ToggleControl
+							label={ __( 'Show Citation Library directory filters?', 'ramp' ) }
+							checked={ showFilters }
+							onChange={ ( showFilters ) => setAttributes( { showFilters } ) }
 						/>
 					</PanelBody>
 				</Panel>

@@ -1,0 +1,153 @@
+.directory-filters {
+	margin-bottom: 24px;
+}
+
+.directory-filter,
+.directory-filter-legend {
+	display: inline-block;
+	height: 60px;
+	padding: 0 12px 0 0;
+}
+
+.directory-filter-legend {
+	color: #a62151;
+	font-weight: 700;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+}
+
+.directory-filters label {
+	color: #a11f50;
+}
+
+.directory-filters select {
+	display: inline;
+}
+
+.directory-filter .select2-container {
+	border: 1px solid #666;
+	font-size: 16px;
+}
+
+body .directory-filter .select2-container--default .select2-selection--single {
+	height: 32px;
+}
+
+body .directory-filter .select2-container--default .select2-selection--single .select2-selection__rendered {
+	line-height: 32px;
+}
+body .directory-filter .select2-container--default .select2-selection--single .select2-selection__arrow {
+	height: 32px;
+}
+
+.directory-filters-submit  {
+	display: inline-block;
+}
+
+.directory-filters-submit input.mw-button {
+	font-size: 12px;
+	line-height: 28px;
+	padding-left: 52px;
+	padding-right: 52px;
+}
+
+.directory-filter-toggle {
+	display: none;
+}
+
+@media (max-width: 767px) {
+	.directory-filters-container {
+		background: #eaeaea;
+		margin:30px 0px 20px 0px;
+	}
+
+	.directory-filter-toggle {
+		color: #fff;
+		padding: 13px 24px;
+		text-transform: uppercase;
+	}
+
+	.directory-filter-toggle h3 {
+		font-size: 16px;
+		font-weight: 600;
+		margin: 0;
+		text-transform: uppercase;
+	}
+
+	.directory-filter-toggle button {
+		background-color: inherit;
+		border: none;
+		padding: 0;
+	}
+
+	.directory-filter select {
+		width: 100%;
+	}
+
+	.directory-filter-toggle {
+		display: block;
+		cursor: pointer;
+		background-image: url('assets/mw-icon-arrow-up.svg');
+		background-repeat: no-repeat;
+		background-size: 13px;
+		background-position: right 24px center;
+	}
+
+	.no-js .directory-filter-toggle {
+		display: none;
+	}
+
+	.directory-filters-container.toggle-closed .directory-filters {
+		display: none;
+	}
+
+	.toggle-closed .directory-filter-toggle {
+		background-image: url('assets/mw-icon-arrow-down.svg');
+	}
+
+	.directory-filters label {
+		font-weight: 600;
+	}
+
+	/* Yikes */
+	.directory-filters label > span {
+		display: none;
+	}
+
+	.directory-filter {
+		display: block;
+		margin-bottom: 0px;
+		width: 100%;
+		padding:0 32px 0 0;
+	}
+
+	.directory-filters {
+		padding: 18px 24px 24px 24px;
+	}
+
+	.directory-filters label,
+	.directory-filters select {
+		display: block;
+		width: 100% !important;
+	}
+
+	.directory-filters .select2-container {
+		width: 100% !important;
+	}
+
+	.directory-filters label {
+		line-height: 1em;
+		margin-bottom: 12px;
+		display: none;
+
+	}
+	.directory-filter-legend {
+		display:none;
+	}
+	.directory-filters-submit {
+		padding-top: 0px;
+		position: relative;
+		right: auto;
+		top: auto;
+	}
+}

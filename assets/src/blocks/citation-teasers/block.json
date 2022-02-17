@@ -9,13 +9,17 @@
 		"anchor": true
 	},
 	"attributes": {
-		"associatedResearchTopic": {
+		"researchTopic": {
 			"type": "string",
 			"default": "auto"
 		},
 		"numberOfItems": {
 			"type": "number",
 			"default": 3
+		},
+		"showFilters": {
+			"type": "boolean",
+			"default": false
 		},
 		"isEditMode": {
 			"type": "boolean",

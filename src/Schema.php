@@ -25,9 +25,24 @@ class Schema {
 	}
 
 	public function register_scripts() {
-		// @todo Must be included in plugin.
+		// @todo Don't use this, which requires jQuery. See https://github.com/Choices-js/Choices
 		wp_register_script( 'ramp-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js', [], RAMP_VER, true );
 		wp_register_style( 'ramp-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css', [], RAMP_VER );
+
+		wp_register_style(
+			'ramp-directory-filters',
+			RAMP_PLUGIN_URL . '/assets/css/directory-filters.css',
+			[],
+			RAMP_VER
+		);
+
+		wp_register_script(
+			'ramp-directory-filters',
+			RAMP_PLUGIN_URL . '/assets/js/directory-filters.js',
+			[],
+			RAMP_VER,
+			true
+		);
 	}
 
 	public function register_post_types() {
