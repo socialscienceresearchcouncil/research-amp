@@ -110,6 +110,7 @@ class Blocks {
 	public function register_server_side_rendered_blocks() {
 		$block_types = [
 			'article-teasers',
+			'citation-library-filters',
 			'citation-teasers',
 			'homepage-slides',
 			'news-item-teasers',

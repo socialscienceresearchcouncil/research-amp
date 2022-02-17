@@ -1,0 +1,11 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/citation-library-filters",
+	"title": "Citation Library Filters",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"style": "file:../../../../build/index.css",
+	"editorStyle": "file:../../../css/directory-filters.css",
+	"supports": {},
+	"attributes": {}
+}

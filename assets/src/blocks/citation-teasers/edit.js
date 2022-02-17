@@ -14,6 +14,8 @@ import {
 
 import ServerSideRender from '@wordpress/server-side-render'
 
+import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
+
 import { Fragment } from '@wordpress/element'
 
 import ResearchTopicSelector from '../../components/ResearchTopicSelector'

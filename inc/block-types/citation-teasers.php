@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'api_version'     => 1,
+	'api_version'     => 2,
 	'attributes'      => [
 		'isEditMode'    => [
 			'type'    => 'boolean',

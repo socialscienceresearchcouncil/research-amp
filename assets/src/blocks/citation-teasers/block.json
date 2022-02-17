@@ -17,10 +17,6 @@
 			"type": "number",
 			"default": 3
 		},
-		"showFilters": {
-			"type": "boolean",
-			"default": false
-		},
 		"isEditMode": {
 			"type": "boolean",
 			"default": false
