@@ -7,6 +7,10 @@ return [
 			'type'    => 'boolean',
 			'default' => false,
 		],
+		'numberOfItems' => [
+			'type'    => 'number',
+			'default' => 3,
+		],
 		'researchTopic' => [
 			'type'    => 'string',
 			'default' => 'auto',

@@ -1,34 +1,30 @@
 <?php
 
-$research_topic_id = isset( $args['researchTopic'] ) ? $args['researchTopic'] : 'auto';
-if ( 'auto' === $research_topic_id ) {
-	if ( ! empty( $args['isEditMode'] ) ) {
-		$research_topic_id = ramp_get_most_recent_research_topic_id();
-	} else {
-		$research_topic_id = get_queried_object_id();
-	}
-} else {
-	$research_topic_id = (int) $research_topic_id;
+$research_topic_id = \SSRC\RAMP\Blocks::get_research_topic_from_template_args( $args );
+
+$number_of_items = isset( $args['numberOfItems'] ) ? (int) $args['numberOfItems'] : 3;
+
+$query_args = [
+	'post_type'      => 'ramp_citation',
+	'post_status'    => 'publish',
+	'posts_per_page' => $number_of_items,
+	'fields'         => 'ids',
+];
+
+if ( $research_topic_id ) {
+	$rt_map     = ramp_app()->get_cpttax_map( 'research_topic' );
+	$rt_term_id = $rt_map->get_term_id_for_post_id( $research_topic_id );
+
+	$query_args['tax_query'] = [
+		[
+			'taxonomy' => 'ramp_assoc_topic',
+			'terms'    => $rt_term_id,
+			'field'    => 'term_id',
+		],
+	];
 }
 
-$rt_map     = ramp_app()->get_cpttax_map( 'research_topic' );
-$rt_term_id = $rt_map->get_term_id_for_post_id( $research_topic_id );
-
-$citations = get_posts(
-	[
-		'post_type'      => 'ramp_citation',
-		'post_status'    => 'publish',
-		'tax_query'      => [
-			[
-				'taxonomy' => 'ramp_assoc_topic',
-				'terms'    => $rt_term_id,
-				'field'    => 'term_id',
-			],
-		],
-		'posts_per_page' => 3,
-		'fields'         => 'ids',
-	]
-);
+$citations = get_posts( $query_args );
 
 ?>
 

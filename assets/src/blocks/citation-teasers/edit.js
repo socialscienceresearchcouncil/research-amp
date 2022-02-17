@@ -50,6 +50,21 @@ export default function edit( {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
+						title={ __( 'Number of Items', 'ramp' ) }
+					>
+						<NumberControl
+							label={ __( 'Number of Citations to show', 'ramp' ) }
+							value={ numberOfItems }
+							min={ 0 }
+							max={ 5 }
+							step={ 1 }
+							onChange={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+						/>
+					</PanelBody>
+				</Panel>
+
+				<Panel>
+					<PanelBody
 						title={ __( 'Research Topic', 'ramp' ) }
 					>
 						<ResearchTopicSelector
