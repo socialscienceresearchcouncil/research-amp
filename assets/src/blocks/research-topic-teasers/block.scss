@@ -1,8 +1,12 @@
-.item-type-list-research-topics li {
-	background: var(--ramp-light-grey);
-	padding: 24px;
-}
+.item-type-list-research-topics {
+	li {
+		background: var(--ramp-light-grey);
+		padding: 24px;
+	}
 
-.item-type-list-research-topics h1 {
-	margin-top: 0;
+	h3 {
+		font-size: var(--wp--preset--font-size--medium);
+		margin-top: 0;
+	}
+
 }

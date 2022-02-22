@@ -56,9 +56,9 @@ $slide_count = count( $slides );
 								</div>
 							<?php endif; ?>
 
-							<h1 class="homepage-slide-title">
+							<h2 class="homepage-slide-title">
 								<?php echo esc_html( $slide_title ); ?>
-							</h1>
+							</h2>
 
 							<div class="homepage-slide-text">
 								<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
