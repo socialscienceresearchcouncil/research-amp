@@ -467,6 +467,14 @@ ansiHTML.reset()
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_blocks_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/blocks.css */ "./assets/css/blocks.css");
+/* harmony import */ var _blocks_article_teasers_block_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/article-teasers/block.scss */ "./assets/src/blocks/article-teasers/block.scss");
+/* harmony import */ var _blocks_citation_teasers_block_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blocks/citation-teasers/block.scss */ "./assets/src/blocks/citation-teasers/block.scss");
+/* harmony import */ var _blocks_event_teasers_block_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./blocks/event-teasers/block.scss */ "./assets/src/blocks/event-teasers/block.scss");
+/* harmony import */ var _blocks_news_item_teasers_block_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./blocks/news-item-teasers/block.scss */ "./assets/src/blocks/news-item-teasers/block.scss");
+/* harmony import */ var _blocks_profile_teasers_block_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./blocks/profile-teasers/block.scss */ "./assets/src/blocks/profile-teasers/block.scss");
+/* harmony import */ var _blocks_research_review_teasers_block_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blocks/research-review-teasers/block.scss */ "./assets/src/blocks/research-review-teasers/block.scss");
+/* harmony import */ var _blocks_research_topic_teasers_block_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./blocks/research-topic-teasers/block.scss */ "./assets/src/blocks/research-topic-teasers/block.scss");
+/* harmony import */ var _blocks_homepage_slides_block_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./blocks/homepage-slides/block.scss */ "./assets/src/blocks/homepage-slides/block.scss");
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "react-refresh/runtime.js");
 
@@ -474,16 +482,14 @@ __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/r
  * Shared block styles.
  */
 
-/*
-import './blocks/article-teasers/block.scss';
-import './blocks/citation-teasers/block.scss';
-import './blocks/news-item-teasers/block.scss';
-import './blocks/profile-teasers/block.scss';
-import './blocks/research-review-teasers/block.scss';
-import './blocks/research-topic-teasers/block.scss';
 
-import './blocks/homepage-slides/block.scss';
-*/
+
+
+
+
+
+
+
 
 var $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
 var $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
@@ -5478,6 +5484,110 @@ Object.defineProperty(exports, "__esModule", ({value:true}));exports.fromCodePoi
 /*!*******************************!*\
   !*** ./assets/css/blocks.css ***!
   \*******************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./assets/src/blocks/article-teasers/block.scss":
+/*!******************************************************!*\
+  !*** ./assets/src/blocks/article-teasers/block.scss ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./assets/src/blocks/citation-teasers/block.scss":
+/*!*******************************************************!*\
+  !*** ./assets/src/blocks/citation-teasers/block.scss ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./assets/src/blocks/event-teasers/block.scss":
+/*!****************************************************!*\
+  !*** ./assets/src/blocks/event-teasers/block.scss ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./assets/src/blocks/homepage-slides/block.scss":
+/*!******************************************************!*\
+  !*** ./assets/src/blocks/homepage-slides/block.scss ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./assets/src/blocks/news-item-teasers/block.scss":
+/*!********************************************************!*\
+  !*** ./assets/src/blocks/news-item-teasers/block.scss ***!
+  \********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./assets/src/blocks/profile-teasers/block.scss":
+/*!******************************************************!*\
+  !*** ./assets/src/blocks/profile-teasers/block.scss ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./assets/src/blocks/research-review-teasers/block.scss":
+/*!**************************************************************!*\
+  !*** ./assets/src/blocks/research-review-teasers/block.scss ***!
+  \**************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./assets/src/blocks/research-topic-teasers/block.scss":
+/*!*************************************************************!*\
+  !*** ./assets/src/blocks/research-topic-teasers/block.scss ***!
+  \*************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

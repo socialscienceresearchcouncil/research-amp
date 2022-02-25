@@ -23,6 +23,7 @@
 
 .item-type-list-flex {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 28px;
 }
 
@@ -32,7 +33,7 @@
 }
 
 .item-type-list-3 > li {
-	flex: 0 1 33%;
+	flex: 0 1 30%;
 }
 
 .item-type-list-4 > li {
@@ -82,8 +83,10 @@
 	max-width: 100%;
 }
 
-.article-type-tag {
+.item-type-tag {
+	font-family: var(--wp--preset--font-family--open-sans);
 	font-weight: 700;
+	margin-bottom: 8px;
 	text-transform: uppercase;
 }
 
@@ -122,5 +125,202 @@
 	width: 160px;
 }
 
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/article-teasers/block.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+.article-teasers {
+  display: flex;
+  gap: 28px;
+}
+
+.article-teasers h3 {
+  margin-top: 0;
+}
+
+.article-teasers > div {
+  flex: 0 0 50%;
+}
+
+.non-featured-article-teasers.item-type-list-flex {
+  flex-direction: column;
+}
+.non-featured-article-teasers.item-type-list-flex .teaser {
+  flex-direction: row;
+  display: flex;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+.non-featured-article-teasers .teaser-thumb {
+  flex: 0 0 40%;
+}
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/citation-teasers/block.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+.article-teasers {
+  display: flex;
+  gap: 28px;
+}
+
+.article-teasers > div {
+  flex: 0 0 50%;
+}
+
+.non-featured-article-teasers .teaser {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.non-featured-article-teasers .teaser-thumb {
+  flex: 0 0 40%;
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/event-teasers/block.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.item-type-list-research-topics li {
+  background: var(--ramp-light-grey);
+  padding: 24px;
+}
+
+.item-type-list-research-topics h1 {
+  margin-top: 0;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/news-item-teasers/block.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+.teaser.featured-news-item-teaser {
+  gap: 0;
+}
+
+.featured-news-item {
+  margin-bottom: 64px;
+}
+.featured-news-item .teaser-content {
+  background-color: #eee;
+  padding: 32px;
+}
+.featured-news-item .teaser-image {
+  background-position: center center;
+  background-size: cover;
+  flex: 0 0 40%;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/profile-teasers/block.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/research-review-teasers/block.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
+.item-type-list-research-reviews h3 {
+  font-size: var(--wp--preset--font-size--medium);
+}
+
+.item-type-list-research-reviews.item-type-list-flex .item-excerpt {
+  display: none;
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/research-topic-teasers/block.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
+.item-type-list-research-topics li {
+  background: var(--ramp-light-grey);
+  padding: 24px;
+}
+.item-type-list-research-topics h3 {
+  font-size: var(--wp--preset--font-size--medium);
+  margin-top: 0;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/homepage-slides/block.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+.homepage-slider .glide__track,
+.homepage-slider .glide__slides {
+  z-index: 1;
+}
+
+.homepage-slide {
+  display: flex;
+  gap: 32px;
+  position: relative;
+}
+
+.homepage-slide-left {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 50%;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+}
+
+.homepage-slide-img {
+  height: 300px;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.homepage-slide-right {
+  margin-bottom: 48px;
+  z-index: 3;
+}
+
+.homepage-slide-meta-text {
+  text-transform: uppercase;
+}
+
+.homepage-slide-text {
+  font-size: 0.94em;
+  line-height: 1.6em;
+  margin-bottom: 24px;
+}
+
+.homepage-slider-bullets-mobile {
+  display: none;
+}
+
+.homepage-slider-bullets {
+  bottom: 0;
+  position: absolute;
+  left: auto;
+  right: 0;
+  text-align: right;
+}
+
+.homepage-slider-bullets .glide__bullets {
+  bottom: auto;
+  left: auto;
+  position: relative;
+  transform: none;
+}
+
+.homepage-slider-bullets .glide__bullet {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 18px;
+  font-weight: 800;
+  margin-left: 8px;
+  padding: 0 3px 12px 2px;
+  /* Mismatched sides are a glitch of the font kerning */
+  text-align: center;
+  text-decoration: none;
+  width: auto;
+}
+
+.homepage-slider-bullets .glide__bullet:focus,
+.homepage-slider-bullets .glide__bullet:hover {
+  border: inherit;
+  background: transparent;
+}
+
+.homepage-slider-bullets .glide__bullet.glide__bullet--active {
+  border-color: inherit;
+}
+
+.homepage-slider-bullets .glide__bullet.glide__bullet--active:hover {
+  border-color: transparent;
+}
 
 /*# sourceMappingURL=frontend.css.map*/

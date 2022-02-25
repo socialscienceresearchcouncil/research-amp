@@ -6,6 +6,10 @@
   gap: 28px;
 }
 
+.article-teasers h3 {
+  margin-top: 0;
+}
+
 .article-teasers > div {
   flex: 0 0 50%;
 }
@@ -42,6 +46,17 @@
 
 .non-featured-article-teasers .teaser-thumb {
   flex: 0 0 40%;
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/event-teasers/editor.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
+.item-type-list-research-topics li {
+  background: var(--ramp-light-grey);
+  padding: 24px;
+}
+
+.item-type-list-research-topics h1 {
+  margin-top: 0;
 }
 /*!************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/news-item-teasers/editor.scss ***!
@@ -81,13 +96,17 @@
   background: var(--ramp-light-grey);
   padding: 24px;
 }
-
-.item-type-list-research-topics h1 {
+.item-type-list-research-topics h3 {
+  font-size: var(--wp--preset--font-size--medium);
   margin-top: 0;
 }
 /*!******************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/research-review-teasers/editor.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************/
+.item-type-list-research-reviews h3 {
+  font-size: var(--wp--preset--font-size--medium);
+}
+
 .item-type-list-research-reviews.item-type-list-flex .item-excerpt {
   display: none;
 }
@@ -104,6 +123,10 @@
 
 .ramp-profile-vital-link-text.has-placeholder {
   opacity: 0.7;
+}
+
+.profile-vital-link-edit {
+  padding-left: 8px;
 }
 /*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/zotero-library-info-help/editor.scss ***!
@@ -193,7 +216,7 @@
 
 .homepage-slider-bullets .glide__bullet:focus,
 .homepage-slider-bullets .glide__bullet:hover {
-  border-color: inherit;
+  border: inherit;
   background: transparent;
 }
 
@@ -208,6 +231,10 @@
 .homepage-slider .glide__slides article:not(:first-child) {
   display: none;
 }
+/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./assets/src/blocks/citation-library-filters/editor.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************/
+
 /*!***************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./assets/css/blocks.css ***!
   \***************************************************************************************************************************************************************************/
@@ -233,6 +260,7 @@
 
 .item-type-list-flex {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 28px;
 }
 
@@ -242,7 +270,7 @@
 }
 
 .item-type-list-3 > li {
-	flex: 0 1 33%;
+	flex: 0 1 30%;
 }
 
 .item-type-list-4 > li {
@@ -292,8 +320,10 @@
 	max-width: 100%;
 }
 
-.article-type-tag {
+.item-type-tag {
+	font-family: var(--wp--preset--font-family--open-sans);
 	font-weight: 700;
+	margin-bottom: 8px;
 	text-transform: uppercase;
 }
 
