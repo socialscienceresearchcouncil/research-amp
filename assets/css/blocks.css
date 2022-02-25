@@ -33,10 +33,6 @@
 	flex: 0 1 30%;
 }
 
-.item-type-list-4 > li {
-	flex: 0 0 24%;
-}
-
 .item-type-list-wrap {
 	flex-wrap: wrap;
 }
@@ -112,11 +108,11 @@
 	background-size: cover;
 	border-radius: 50%;
 	overflow: hidden;
-	height: 160px;
-	width: 160px;
+	height: 196px;
+	width: 196px;
 }
 
 .profile-teaser-avatar > img {
 	object-fit: cover;
-	width: 160px;
+	width: 196px;
 }

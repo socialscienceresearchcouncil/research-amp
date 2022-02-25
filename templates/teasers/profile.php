@@ -1,7 +1,7 @@
 <?php
 $profile_id = $args['id'];
 
-$sp_obj = \SSRC\RAMP\Profile::get_instance( $profile_id );
+$profile_obj = \SSRC\RAMP\Profile::get_instance( $profile_id );
 
 $is_featured = ! empty( $args['is_featured'] );
 
@@ -26,15 +26,15 @@ if ( $img_src ) {
 		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<a href="<?php the_permalink( $profile_id ); ?>"><div class="profile-teaser-avatar profile-avatar-wrapper" <?php echo $background_style; ?>>
 			<?php // translators: Profile name ?>
-			<img class="profile-avatar" alt="<?php echo esc_attr( sprintf( __( 'Profile picture of %s', 'ramp' ), $sp_obj->get_display_name() ) ); ?>" src="<?php echo esc_attr( $img_src ); ?>" />
+			<img class="profile-avatar" alt="<?php echo esc_attr( sprintf( __( 'Profile picture of %s', 'ramp' ), $profile_obj->get_display_name() ) ); ?>" src="<?php echo esc_attr( $img_src ); ?>" />
 		</div></a>
 
 		<div class="profile-teaser-name">
-			<h1><a href="<?php the_permalink( $profile_id ); ?>"><?php echo esc_html( $sp_obj->get_display_name() ); ?></a></h1>
+			<h3 class="has-medium-font-size"><a href="<?php the_permalink( $profile_id ); ?>"><?php echo esc_html( $profile_obj->get_display_name() ); ?></a></h3>
 		</div>
 
 		<div class="profile-teaser-title">
-			<?php echo esc_html( $sp_obj->get_title() ); ?>
+			<?php echo esc_html( $profile_obj->get_title() ); ?>
 		</div>
 	</div>
 </article>
