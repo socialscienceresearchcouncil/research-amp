@@ -27,9 +27,7 @@ if ( $article_type_terms ) {
 	);
 }
 
-$authors = [
-	'Jane Doe',
-];
+$author_links = \SSRC\RAMP\Profile::get_profile_links_for_post( $article_id );
 
 $article_classes = [ 'teaser' ];
 if ( $is_featured ) {
@@ -56,7 +54,7 @@ if ( $is_featured ) {
 
 		<div class="article-teaser-byline teaser-byline">
 			<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			<?php printf( '<span class="teaser-byline-by">By</span>: %s', implode( ', ', $authors ) ); ?>
+			<?php printf( '<span class="teaser-byline-by">By</span> %s', implode( ', ', $author_links ) ); ?>
 		</div>
 	</div>
 </article>

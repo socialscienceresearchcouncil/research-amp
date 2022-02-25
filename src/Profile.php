@@ -355,4 +355,67 @@ class Profile {
 
 		return array_map( 'intval', $posts );
 	}
+
+	/**
+	 * Gets the profiles corresponding to a post.
+	 *
+	 * @param int $post_id
+	 * @return array
+	 */
+	public static function get_profiles_for_post( $post_id ) {
+		$profiles     = [];
+		$author_terms = get_the_terms( $post_id, 'ramp_assoc_profile' );
+		if ( $author_terms ) {
+			foreach ( $author_terms as $author_term ) {
+				$profile_map = ramp_app()->get_cpttax_map( 'profile' );
+				$profile_id  = $profile_map->get_post_id_for_term_id( $author_term->term_id );
+				if ( $profile_id ) {
+					$profiles[] = self::get_instance( $profile_id );
+				}
+			}
+		}
+
+		// Sort profiles by last name.
+		usort(
+			$profiles,
+			function( $a, $b ) {
+				$ln_a = $a->get_last_name();
+				$ln_b = $b->get_last_name();
+
+				if ( $ln_a === $ln_b ) {
+					$fn_a = $a->get_first_name();
+					$fn_b = $b->get_first_name();
+
+					if ( $fn_a === $fn_b ) {
+						return 0;
+					}
+
+					return strnatcasecmp( $fn_a, $fn_b );
+				}
+
+				return strnatcasecmp( $ln_a, $ln_b );
+			}
+		);
+
+		return $profiles;
+	}
+
+	/**
+	 * Gets a list of links to profiles associated with a post.
+	 *
+	 * @param int $post_id
+	 * @return array
+	 */
+	public static function get_profile_links_for_post( $post_id ) {
+		return array_map(
+			function( $profile ) {
+				return sprintf(
+					'<a href="%s">%s</a>',
+					esc_url( get_permalink( $profile->get_post_id() ) ),
+					esc_html( $profile->get_display_name() )
+				);
+			},
+			self::get_profiles_for_post( $post_id )
+		);
+	}
 }
