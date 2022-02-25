@@ -6,6 +6,15 @@
 	"category": "ramp",
 	"style": "file:../../../../build/index.css",
 	"editorStyle": "file:../../../css/directory-filters.css",
-	"supports": {},
-	"attributes": {}
+	"supports": {
+		"color": true
+		},
+	"attributes": {
+		"backgroundColor": {
+			"type": "string"
+		},
+		"textColor": {
+			"type": "string"
+		}
+	}
 }
