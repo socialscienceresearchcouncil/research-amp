@@ -17,14 +17,9 @@ $associated_research_topics = get_the_terms( $news_item_id, 'ramp_assoc_topic' )
 
 <article class="<?php echo esc_attr( implode( ' ', $article_classes ) ); ?>">
 	<div class="teaser-content news-item-teaser-content">
-		<?php if ( $associated_research_topics ) : ?>
-			<div class="research-topic-tags">
-				<?php foreach ( $associated_research_topics as $associated_research_topic ) : ?>
-					<?php get_template_part( 'template-parts/research-topic-tag', '', [ 'term_id' => $associated_research_topic->term_id ] ); ?>
-				<?php endforeach; ?>
-			</div>
-		<?php endif; ?>
-		<h1 class="item-title news-item-item-title"><a href="<?php echo esc_attr( get_permalink( $news_item_id ) ); ?>"><?php echo esc_html( get_the_title( $news_item_id ) ); ?></a></h1>
+		<?php ramp_get_template_part( 'research-topic-tags', [ 'item_id' => $news_item_id ] ); ?>
+
+		<h3 class="has-medium-font-size item-title news-item-item-title"><a href="<?php echo esc_attr( get_permalink( $news_item_id ) ); ?>"><?php echo esc_html( get_the_title( $news_item_id ) ); ?></a></h3>
 
 		<?php if ( $custom_author ) : ?>
 			<div class="article-teaser-byline teaser-byline">

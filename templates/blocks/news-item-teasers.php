@@ -55,7 +55,7 @@ $variation_class = 'one' === $variation_type ? 'item-type-list-3' : 'item-type-l
 
 			<?php
 			$count++;
-			if ( 'two' === $variation_type && 3 === $count ) {
+			if ( 'two' === $variation_type && 2 === $count ) {
 				echo '<li class="break-row"></li>';
 			}
 			?>
