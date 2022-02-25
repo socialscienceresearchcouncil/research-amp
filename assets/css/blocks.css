@@ -83,6 +83,7 @@
 .item-type-tag {
 	font-family: var(--wp--preset--font-family--open-sans);
 	font-weight: 700;
+	margin-bottom: 8px;
 	text-transform: uppercase;
 }
 
