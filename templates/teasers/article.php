@@ -49,12 +49,10 @@ if ( $is_featured ) {
 
 	<div class="teaser-content article-teaser-content">
 		<?php if ( $article_types ) : ?>
-			<div class="article-type-tag">
-				<?php echo esc_html( $article_types[0] ); ?>
-			</div>
+			<?php ramp_get_template_part( 'item-type-tag', [ 'label' => $article_types[0] ] ); ?>
 		<?php endif; ?>
 
-		<h1 class="item-title article-item-title"><a href="<?php echo esc_attr( get_permalink( $article_id ) ); ?>"><?php echo esc_html( get_the_title( $article_id ) ); ?></a></h1>
+		<h3 class="has-medium-font-size item-title article-item-title"><a href="<?php echo esc_attr( get_permalink( $article_id ) ); ?>"><?php echo esc_html( get_the_title( $article_id ) ); ?></a></h3>
 
 		<div class="article-teaser-byline teaser-byline">
 			<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

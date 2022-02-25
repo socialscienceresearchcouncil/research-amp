@@ -80,7 +80,8 @@
 	max-width: 100%;
 }
 
-.article-type-tag {
+.item-type-tag {
+	font-family: var(--wp--preset--font-family--open-sans);
 	font-weight: 700;
 	text-transform: uppercase;
 }
