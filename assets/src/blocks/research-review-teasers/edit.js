@@ -41,7 +41,6 @@ export default function edit( {
 		contentModeProfile,
 		contentModeResearchTopic,
 		numberOfItems,
-		researchTopic,
 		order,
 		variationType
 	} = attributes
@@ -68,8 +67,8 @@ export default function edit( {
 			<InspectorControls>
 				<ContentModePanel
 					changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
-					changeProfileCallback={ ( profile ) => setAttributes( { profile } ) }
-					changeResearchTopicCallback={ ( researchTopic ) => setAttributes( { researchTopic } ) }
+					changeProfileCallback={ ( profileObj ) => setAttributes( { contentModeProfile: profileObj.id } ) }
+					changeResearchTopicCallback={ ( contentModeResearchTopic ) => setAttributes( { contentModeResearchTopic } ) }
 					legend={ __( 'Determine which Research Reviews will be shown in this block.', 'ramp' ) }
 					selectedMode={ contentMode }
 					selectedProfile={ contentModeProfile }
