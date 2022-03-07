@@ -20,7 +20,7 @@ import ServerSideRender from '@wordpress/server-side-render'
 
 import { useSelect } from '@wordpress/data'
 
-import ResearchTopicSelector from '../../components/ResearchTopicSelector'
+import ContentModePanel from '../../components/ContentModePanel'
 
 /**
  * Editor styles.
@@ -37,9 +37,12 @@ export default function edit( {
 	setAttributes,
 } ) {
 	const {
+		contentMode,
+		contentModeProfile,
+		contentModeResearchTopic,
 		numberOfItems,
-		order,
 		researchTopic,
+		order,
 		variationType
 	} = attributes
 
@@ -49,7 +52,7 @@ export default function edit( {
 		// This is here to force the 'dirty' state.
 		classNames.push( 'variation-type-' + variationType )
 		classNames.push( 'order-' + order )
-		classNames.push( 'research-topic-' + researchTopic )
+		classNames.push( 'content-mode-' + contentMode )
 
 		return useBlockProps( {
 			className: classNames
@@ -63,17 +66,15 @@ export default function edit( {
 	return (
 		<Fragment>
 			<InspectorControls>
-				<Panel>
-					<PanelBody
-						title={ __( 'Research Topic', 'ramp' ) }
-					>
-						<ResearchTopicSelector
-							label={ __( 'Select the Research Topic whose Research Reviews will be shown in this block.', 'ramp' ) }
-							selected={ researchTopic }
-							onChangeCallback={ ( researchTopic ) => setAttributes( { researchTopic } ) }
-						/>
-					</PanelBody>
-				</Panel>
+				<ContentModePanel
+					changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
+					changeProfileCallback={ ( profile ) => setAttributes( { profile } ) }
+					changeResearchTopicCallback={ ( researchTopic ) => setAttributes( { researchTopic } ) }
+					legend={ __( 'Determine which Research Reviews will be shown in this block.', 'ramp' ) }
+					selectedMode={ contentMode }
+					selectedProfile={ contentModeProfile }
+					selectedResearchTopic={ contentModeResearchTopic }
+				/>
 
 				<Panel>
 					<PanelBody

@@ -3,6 +3,11 @@
 return [
 	'api_version'     => 1,
 	'attributes'      => [
+		'contentMode'    => [
+			'type'    => 'string',
+			'enum'    => [ 'auto', 'all', 'advanced' ],
+			'default' => 'auto',
+		],
 		'isEditMode'    => [
 			'type'    => 'boolean',
 			'default' => false,

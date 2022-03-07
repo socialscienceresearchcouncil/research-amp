@@ -8,6 +8,10 @@
 		"anchor": true
 	},
 	"attributes": {
+		"contentMode": {
+			"enum": [ "auto", "all", "advanced" ],
+			"default": "auto"
+		},
 		"isEditMode": {
 			"type": "boolean",
 			"default": false
