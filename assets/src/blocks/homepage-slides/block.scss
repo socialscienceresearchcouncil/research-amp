@@ -34,9 +34,16 @@
 }
 
 .homepage-slide-text {
-	font-size: .94em;
-	line-height: 1.6em;
 	margin-bottom: 24px;
+}
+
+.homepage-slide-text p {
+	font-size: var(--wp--preset--font-size--small);
+	line-height: 1.6em;
+}
+
+.homepage-slide-button {
+	font-size: var(--wp--preset--font-size--small);
 }
 
 .homepage-slider-bullets-mobile {

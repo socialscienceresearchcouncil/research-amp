@@ -71,6 +71,11 @@
 	height: 100%;
 }
 
+.profile-teaser-title,
+.teaser-byline {
+	font-size: var(--wp--preset--font-size--small);
+}
+
 .teaser-thumb img {
 	max-width: 100%;
 }

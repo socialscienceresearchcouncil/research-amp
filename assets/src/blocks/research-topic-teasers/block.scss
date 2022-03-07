@@ -5,8 +5,11 @@
 	}
 
 	h3 {
-		font-size: var(--wp--preset--font-size--medium);
 		margin-top: 0;
 	}
 
+	.item-excerpt {
+		font-size: var(--wp--preset--font-size--small);
+		line-height: 1.6rem;
+	}
 }
