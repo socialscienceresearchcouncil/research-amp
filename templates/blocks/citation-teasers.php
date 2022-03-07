@@ -23,7 +23,7 @@ $research_topics = get_posts(
 	]
 );
 
-if ( ! in_array( $requested_rt, wp_list_pluck( $research_topics, 'slug' ), true ) ) {
+if ( ! in_array( $requested_rt, wp_list_pluck( $research_topics, 'post_name' ), true ) ) {
 	$requested_rt = null;
 }
 
@@ -33,18 +33,7 @@ if ( $requested_rt ) {
 
 	$query_args['tax_query']['assoc_topic'] = [
 		'taxonomy' => 'ramp_assoc_topic',
-		'terms'    => $requested_rt->term_id,
-		'field'    => 'term_id',
-	];
-}
-
-if ( $research_topic_id ) {
-	$rt_map     = ramp_app()->get_cpttax_map( 'research_topic' );
-	$rt_term_id = $rt_map->get_term_id_for_post_id( $research_topic_id );
-
-	$query_args['tax_query']['assoc_topic'] = [
-		'taxonomy' => 'ramp_assoc_topic',
-		'terms'    => $rt_term_id,
+		'terms'    => $requested_rt_term->term_id,
 		'field'    => 'term_id',
 	];
 }

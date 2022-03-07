@@ -13,7 +13,7 @@ $research_topics = get_posts(
 	]
 );
 
-if ( ! in_array( $requested_rt, wp_list_pluck( $research_topics, 'slug' ), true ) ) {
+if ( ! in_array( $requested_rt, wp_list_pluck( $research_topics, 'post_name' ), true ) ) {
 	$requested_rt = null;
 }
 
