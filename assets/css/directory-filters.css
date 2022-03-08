@@ -2,31 +2,29 @@
 	margin-bottom: 24px;
 }
 
-.directory-filter,
-.directory-filter-legend {
-	display: inline-block;
-	height: 60px;
-	padding: 0 12px 0 0;
+.directory-filter-form {
+	background: var(--wp--preset--color--light-grey);
+	display: flex;
+	gap: 24px;
+	padding: 12px 24px;
 }
 
-.directory-filter-legend {
-	color: #a62151;
-	font-weight: 700;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 14px;
+.directory-filter {
+	align-items: center;
+	display: flex;
+	gap: 24px;
 }
 
-.directory-filters label {
-	color: #a11f50;
+.directory-filter input,
+.directory-filter select {
+	background: var(--wp--preset--color--white);
+	border: 1px solid #ABB8C3;
+	font-size: var(--wp--preset--font-size--small);
+	padding: 12px 20px;
 }
 
-.directory-filters select {
-	display: inline;
-}
-
-.directory-filter .select2-container {
-	border: 1px solid #666;
-	font-size: 16px;
+.directory-filter select {
+	padding-left: 16px;
 }
 
 body .directory-filter .select2-container--default .select2-selection--single {
@@ -41,7 +39,15 @@ body .directory-filter .select2-container--default .select2-selection--single .s
 }
 
 .directory-filters-submit  {
-	display: inline-block;
+	margin-left: auto;
+}
+
+input.search-input {
+	background-image: url('../img/search-magnifying-glass.png');
+	background-position: left 20px center;
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	padding-left: 58px;
 }
 
 .directory-filters-submit input.mw-button {

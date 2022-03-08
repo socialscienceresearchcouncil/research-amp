@@ -38,6 +38,12 @@ if ( $requested_rt ) {
 	];
 }
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+$requested_search_term = isset( $_GET['search-term'] ) ? wp_unslash( $_GET['search-term'] ) : null;
+if ( $requested_search_term ) {
+	$query_args['s'] = $requested_search_term;
+}
+
 $citations = get_posts( $query_args );
 
 ?>
