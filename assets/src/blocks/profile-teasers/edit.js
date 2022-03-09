@@ -31,7 +31,7 @@ export default function edit( {
 	attributes,
 	setAttributes,
 } ) {
-	const { researchTopic } = attributes
+	const { numberOfItems, researchTopic } = attributes
 
 	const blockProps = () => {
 		let classNames = []

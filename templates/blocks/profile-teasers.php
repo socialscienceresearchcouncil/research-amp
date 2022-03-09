@@ -1,5 +1,7 @@
 <?php
 
+$number_of_items = isset( $args['numberOfItems'] ) ? (int) $args['numberOfItems'] : 3;
+
 $research_topic_id = null;
 if ( 'auto' === $args['researchTopic'] ) {
 	if ( ! empty( $args['isEditMode'] ) ) {
@@ -18,7 +20,7 @@ $query_args = [
 	'post__in'       => $featured_ids,
 	'orderby'        => 'post__in',
 	*/
-	'posts_per_page' => 4,
+	'posts_per_page' => $number_of_items,
 	'orderby'        => 'RAND',
 ];
 

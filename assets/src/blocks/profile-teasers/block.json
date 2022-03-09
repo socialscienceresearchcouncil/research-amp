@@ -15,6 +15,10 @@
 		"isEditMode": {
 			"type": "boolean",
 			"default": false
+		},
+		"numberOfItems": {
+			"type": "string",
+			"default": "4"
 		}
 	}
 }

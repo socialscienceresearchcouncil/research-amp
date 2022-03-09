@@ -222,7 +222,7 @@ class Schema {
 				'show_ui'       => true,
 				'has_archive'   => true,
 				'rewrite'       => [
-					'slug'       => 'our-network',
+					'slug'       => 'profiles',
 					'with_front' => false,
 				],
 				'menu_icon'     => 'dashicons-welcome-learn-more',
