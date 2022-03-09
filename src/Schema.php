@@ -43,6 +43,14 @@ class Schema {
 			RAMP_VER,
 			true
 		);
+
+		wp_register_script(
+			'ramp-load-more',
+			RAMP_PLUGIN_URL . '/assets/js/load-more.js',
+			[ 'jquery' ],
+			RAMP_VER,
+			true
+		);
 	}
 
 	public function register_post_types() {

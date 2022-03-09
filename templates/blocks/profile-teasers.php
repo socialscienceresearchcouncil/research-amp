@@ -1,6 +1,10 @@
 <?php
 
+global $wp_query;
+
 $number_of_items = isset( $args['numberOfItems'] ) ? (int) $args['numberOfItems'] : 3;
+
+$offset = $wp_query->get( 'pag-offset' );
 
 $research_topic_id = null;
 if ( 'auto' === $args['researchTopic'] ) {
@@ -20,6 +24,7 @@ $query_args = [
 	'post__in'       => $featured_ids,
 	'orderby'        => 'post__in',
 	*/
+	'offset'         => $offset,
 	'posts_per_page' => $number_of_items,
 	'orderby'        => 'RAND',
 ];
@@ -36,16 +41,31 @@ if ( $research_topic_id ) {
 	];
 }
 
-$profile_posts = get_posts( $query_args );
+$profile_query = new WP_Query( $query_args );
+
+global $wp;
+$show_load_more = ! empty( $args['showLoadMore'] ) && ( ( $offset + $number_of_items ) <= $profile_query->found_posts );
+if ( $show_load_more ) {
+	$load_more_href = home_url( add_query_arg( [], $wp->request ) );
+	$load_more_href = add_query_arg( 'pag-offset', $offset + $number_of_items, $load_more_href );
+
+	wp_enqueue_script( 'ramp-load-more' );
+}
 
 ?>
 
 <div class="profile-teasers">
-	<ul class="item-type-list item-type-list-flex item-type-list-4 item-type-list-profiles">
-		<?php foreach ( $profile_posts as $profile_post ) : ?>
+	<ul class="item-type-list item-type-list-flex item-type-list-4 item-type-list-profiles load-more-list">
+		<?php foreach ( $profile_query->posts as $profile_post ) : ?>
 			<li>
 				<?php ramp_get_template_part( 'teasers/profile', [ 'id' => $profile_post->ID ] ); ?>
 			</li>
 		<?php endforeach; ?>
 	</ul>
+
+	<?php if ( $show_load_more ) : ?>
+		<div class="wp-block-button aligncenter is-style-primary load-more-button">
+			<a href="<?php echo esc_url( $load_more_href ); ?>" class="wp-block-button__link"><?php esc_html_e( 'Load More', 'ramp' ); ?></a>
+		</div>
+	<?php endif; ?>
 </div>

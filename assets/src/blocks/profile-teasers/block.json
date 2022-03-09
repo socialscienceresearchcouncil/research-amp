@@ -19,6 +19,10 @@
 		"numberOfItems": {
 			"type": "string",
 			"default": "4"
+		},
+		"showLoadMore": {
+			"type": "boolean",
+			"default": false
 		}
 	}
 }

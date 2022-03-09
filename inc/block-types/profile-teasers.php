@@ -15,6 +15,10 @@ return [
 			'type'    => 'string',
 			'default' => 'all',
 		],
+		'showLoadMore' => [
+			'type'    => 'boolean',
+			'default' => false,
+		],
 	],
 	'render_callback' => function( $atts ) {
 		return ramp_render_block( 'profile-teasers', $atts );
