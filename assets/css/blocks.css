@@ -50,14 +50,16 @@
 	text-transform: uppercase;
 }
 
-.tag-plain {
+.tag-plain,
+.editor-styles-wrapper a.tag-plain { /* specificity required in editor */
 	color: var(--wp--preset--color--ramp-green);
 	font-size: var(--wp--preset--font-size--body-text);
 	font-weight: 700;
 	text-transform: uppercase;
 }
 
-.tag-bubble {
+.tag-bubble,
+.editor-styles-wrapper a.tag-bubble {
 	background: var(--wp--preset--color--ramp-blue);
 	border-radius: 1em;
 	color: #fff;
@@ -65,10 +67,18 @@
 	white-space: nowrap;
 }
 
+.editor-styles-wrapper a.tag-plain,
+.editor-styles-wrapper a.tag-bubble {
+	text-decoration: none;
+}
+
+a.tag-plain:hover {
+	text-decoration: underline;
+}
+
 .research-topic-tags a {
 	display: inline-block;
 	margin-right: 8px;
-	text-decoration: none;
 }
 
 /** Teasers */
