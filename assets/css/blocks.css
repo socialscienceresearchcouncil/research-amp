@@ -55,6 +55,7 @@
 	color: var(--wp--preset--color--ramp-green);
 	font-size: var(--wp--preset--font-size--body-text);
 	font-weight: 700;
+	text-decoration: none;
 	text-transform: uppercase;
 }
 
@@ -63,13 +64,11 @@
 	background: var(--wp--preset--color--ramp-blue);
 	border-radius: 1em;
 	color: #fff;
-	padding: 6px 16px;
-	white-space: nowrap;
-}
-
-.editor-styles-wrapper a.tag-plain,
-.editor-styles-wrapper a.tag-bubble {
+	font-size: var(--wp--preset--font-size--small-text);
+	margin-bottom: 4px;
+	padding: 2px 16px;
 	text-decoration: none;
+	white-space: nowrap;
 }
 
 a.tag-plain:hover {
