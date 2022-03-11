@@ -51,13 +51,19 @@
 }
 
 .research-topic-tag {
-	background: var( --wp--preset--color--ramp-blue );
+	background: var(--wp--preset--color--ramp-blue);
 	border-radius: 1em;
 	color: #fff;
-	font-size: 14px;
-	font-weight: 700;
-	padding: 4px 16px;
+	font-size: var(--wp--preset--font-size--small-text);
+	padding: 6px 16px;
 	white-space: nowrap;
+}
+
+.research-topic-tags a {
+	display: inline-block;
+	margin-bottom: .5em;
+	margin-right: 8px;
+	text-decoration: none;
 }
 
 /** Teasers */
@@ -73,7 +79,7 @@
 
 .profile-teaser-title,
 .teaser-byline {
-	font-size: var(--wp--preset--font-size--small);
+	font-size: var(--wp--preset--font-size--small-text);
 }
 
 .teaser-thumb img {
@@ -92,14 +98,6 @@
 
 .research-review-teaser-thumb {
 	flex: 0 0 30%;
-}
-
-.research-topic-tags a {
-	display: inline-block;
-	margin-bottom: .5em;
-	margin-right: 8px;
-	text-decoration: none;
-	font-weight: 700;
 }
 
 /* Profiles */

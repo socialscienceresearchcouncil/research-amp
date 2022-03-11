@@ -19,7 +19,7 @@
 .directory-filter select {
 	background: var(--wp--preset--color--white);
 	border: 1px solid #ABB8C3;
-	font-size: var(--wp--preset--font-size--small);
+	font-size: var(--wp--preset--font-size--small-text);
 	padding: 12px 20px;
 }
 

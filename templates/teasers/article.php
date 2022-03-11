@@ -50,7 +50,7 @@ if ( $is_featured ) {
 			<?php ramp_get_template_part( 'item-type-tag', [ 'label' => $article_types[0] ] ); ?>
 		<?php endif; ?>
 
-		<h3 class="has-medium-font-size item-title article-item-title"><a href="<?php echo esc_attr( get_permalink( $article_id ) ); ?>"><?php echo esc_html( get_the_title( $article_id ) ); ?></a></h3>
+		<h3 class="has-h-4-font-size item-title article-item-title"><a href="<?php echo esc_attr( get_permalink( $article_id ) ); ?>"><?php echo esc_html( get_the_title( $article_id ) ); ?></a></h3>
 
 		<div class="article-teaser-byline teaser-byline">
 			<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

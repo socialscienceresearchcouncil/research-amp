@@ -19,7 +19,7 @@ $associated_research_topics = get_the_terms( $news_item_id, 'ramp_assoc_topic' )
 	<div class="teaser-content news-item-teaser-content">
 		<?php ramp_get_template_part( 'research-topic-tags', [ 'item_id' => $news_item_id ] ); ?>
 
-		<h3 class="has-medium-font-size item-title news-item-item-title"><a href="<?php echo esc_attr( get_permalink( $news_item_id ) ); ?>"><?php echo esc_html( get_the_title( $news_item_id ) ); ?></a></h3>
+		<h3 class="has-h-4-font-size item-title news-item-item-title"><a href="<?php echo esc_attr( get_permalink( $news_item_id ) ); ?>"><?php echo esc_html( get_the_title( $news_item_id ) ); ?></a></h3>
 
 		<?php if ( $custom_author ) : ?>
 			<div class="article-teaser-byline teaser-byline">
