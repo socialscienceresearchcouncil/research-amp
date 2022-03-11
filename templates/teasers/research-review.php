@@ -18,6 +18,8 @@ if ( $img_src ) {
 	$article_class .= ' has-featured-image';
 }
 
+$author_links = \SSRC\RAMP\Profile::get_profile_links_for_post( $research_review_id );
+
 $show_research_topics = ! empty( $args['show_research_topics'] );
 
 ?>
@@ -49,5 +51,10 @@ $show_research_topics = ! empty( $args['show_research_topics'] );
 		<h3 class="item-title research-review-item-title"><a href="<?php echo esc_attr( get_permalink( $research_review_id ) ); ?>"><?php echo esc_html( get_the_title( $research_review_id ) ); ?></a></h3>
 
 		<div class="item-excerpt research-review-item-excerpt"><?php echo wp_kses_post( get_the_excerpt( $research_review_id ) ); ?></div>
+
+		<div class="teaser-byline research-review-teaser-byline">
+			<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php printf( '<span class="teaser-byline-by">By</span> %s', implode( ', ', $author_links ) ); ?>
+		</div>
 	</div>
 </article>

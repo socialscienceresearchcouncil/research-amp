@@ -9,6 +9,11 @@
 	position: relative;
 }
 
+.homepage-slide h2 {
+	margin-bottom: 8px;
+	margin-top: 8px;
+}
+
 .homepage-slide-left {
 	display: flex;
 	flex-direction: column;
@@ -25,6 +30,7 @@
 }
 
 .homepage-slide-right {
+	padding-top: 48px;
 	margin-bottom: 48px;
 	z-index: 3;
 }
@@ -35,15 +41,6 @@
 
 .homepage-slide-text {
 	margin-bottom: 24px;
-}
-
-.homepage-slide-text p {
-	font-size: var(--wp--preset--font-size--small-text);
-	line-height: 1.6em;
-}
-
-.homepage-slide-button {
-	font-size: var(--wp--preset--font-size--small-text);
 }
 
 .homepage-slider-bullets-mobile {

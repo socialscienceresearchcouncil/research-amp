@@ -51,7 +51,7 @@ $slide_count = count( $slides );
 
 						<div class="homepage-slide-right">
 							<?php if ( $slide_meta_text ) : ?>
-								<div class="homepage-slide-meta-text meta-text">
+								<div class="tag-plain">
 									<?php echo esc_html( $slide_meta_text ); ?>
 								</div>
 							<?php endif; ?>
@@ -67,7 +67,7 @@ $slide_count = count( $slides );
 
 							<?php if ( $slide_button_url && $slide_button_text ) : ?>
 								<div class="homepage-slide-button">
-									<a class="mw-button arrow-button slide-button" href="<?php echo esc_attr( $slide_button_url ); ?>"><?php echo esc_html( $slide_button_text ); ?></a>
+									<a class="arrow-button slide-button" href="<?php echo esc_attr( $slide_button_url ); ?>"><?php echo esc_html( $slide_button_text ); ?></a>
 								</div>
 							<?php endif; ?>
 						</div>
