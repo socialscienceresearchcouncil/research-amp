@@ -16,6 +16,7 @@ import ServerSideRender from '@wordpress/server-side-render'
 import { Fragment } from '@wordpress/element'
 
 import ResearchTopicSelector from '../../components/ResearchTopicSelector'
+import LoadMoreToggle from '../../components/LoadMoreToggle'
 
 /**
  * Editor styles.
@@ -31,7 +32,7 @@ export default function edit( {
 	attributes,
 	setAttributes,
 } ) {
-	const { numberOfItems, researchTopic } = attributes
+	const { numberOfItems, researchTopic, showLoadMore } = attributes
 
 	const blockProps = () => {
 		let classNames = []
@@ -56,6 +57,15 @@ export default function edit( {
 							label={ __( 'Select the Research Topic whose Profiles will be shown in this block.', 'ramp' ) }
 							selected={ researchTopic }
 							onChangeCallback={ ( researchTopic ) => setAttributes( { researchTopic } ) }
+						/>
+					</PanelBody>
+
+					<PanelBody
+						title={ __( 'Load More', 'ramp' ) }
+					>
+						<LoadMoreToggle
+							showLoadMore={ showLoadMore }
+							onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
 						/>
 					</PanelBody>
 				</Panel>
