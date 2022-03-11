@@ -38,7 +38,10 @@ $show_research_topics = ! empty( $args['show_research_topics'] );
 			<?php
 			ramp_get_template_part(
 				'research-topic-tags',
-				[ 'item_id' => $research_review_id ]
+				[
+					'display_type' => 'plain',
+					'item_id'      => $research_review_id,
+				]
 			);
 			?>
 		<?php endif; ?>

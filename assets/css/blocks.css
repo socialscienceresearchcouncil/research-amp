@@ -50,18 +50,23 @@
 	text-transform: uppercase;
 }
 
-.research-topic-tag {
+.tag-plain {
+	color: var(--wp--preset--color--ramp-green);
+	font-size: var(--wp--preset--font-size--body-text);
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.tag-bubble {
 	background: var(--wp--preset--color--ramp-blue);
 	border-radius: 1em;
 	color: #fff;
-	font-size: var(--wp--preset--font-size--small-text);
 	padding: 6px 16px;
 	white-space: nowrap;
 }
 
 .research-topic-tags a {
 	display: inline-block;
-	margin-bottom: .5em;
 	margin-right: 8px;
 	text-decoration: none;
 }
