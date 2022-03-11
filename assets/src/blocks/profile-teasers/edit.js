@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	Panel,
 	PanelBody,
+	PanelRow,
 	Spinner
 } from '@wordpress/components'
 
@@ -17,6 +18,7 @@ import { Fragment } from '@wordpress/element'
 
 import ResearchTopicSelector from '../../components/ResearchTopicSelector'
 import LoadMoreToggle from '../../components/LoadMoreToggle'
+import NumberOfItemsControl from '../../components/NumberOfItemsControl'
 
 /**
  * Editor styles.
@@ -61,12 +63,21 @@ export default function edit( {
 					</PanelBody>
 
 					<PanelBody
-						title={ __( 'Load More', 'ramp' ) }
+						title={ __( 'Content Settings', 'ramp' ) }
 					>
-						<LoadMoreToggle
-							showLoadMore={ showLoadMore }
-							onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
-						/>
+						<PanelRow>
+							<NumberOfItemsControl
+								numberOfItems={ numberOfItems }
+								onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+							/>
+						</PanelRow>
+
+						<PanelRow>
+							<LoadMoreToggle
+								showLoadMore={ showLoadMore }
+								onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+							/>
+						</PanelRow>
 					</PanelBody>
 				</Panel>
 			</InspectorControls>
