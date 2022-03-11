@@ -46,6 +46,7 @@
     "@glidejs/glide": "^3.5.2",
     "@wordpress/api-fetch": "^5.2.4",
     "@wordpress/data": "^6.1.4",
-    "@wordpress/url": "^3.2.3"
+    "@wordpress/url": "^3.2.3",
+    "classnames": "^2.3.1"
   }
 }
