@@ -13,6 +13,8 @@ class App {
 	protected $blocks;
 	protected $homepage_slides;
 
+	protected $cli;
+
 	public function __construct(
 		Schema $schema,
 		Admin $admin,
@@ -47,6 +49,11 @@ class App {
 
 		if ( is_admin() ) {
 			$this->admin->init();
+		}
+
+		if ( defined( 'WP_CLI' ) ) {
+			$this->cli = new CLI();
+			$this->cli->init();
 		}
 
 		require RAMP_PLUGIN_DIR . '/inc/functions.php';
