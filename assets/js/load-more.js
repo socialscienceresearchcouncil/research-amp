@@ -17,7 +17,7 @@
 						var newLoadMore = doc.querySelector('.load-more-button a');
 
 						if ( newItems ) {
-							$('.load-more-list').append(newItems);
+							$clicked.closest('.load-more-container').find('.load-more-list').append(newItems);
 						}
 
 						if ( newLoadMore ) {

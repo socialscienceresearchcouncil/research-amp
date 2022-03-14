@@ -54,7 +54,7 @@ if ( $show_load_more ) {
 
 ?>
 
-<div class="profile-teasers">
+<div class="profile-teasers load-more-container">
 	<ul class="item-type-list item-type-list-flex item-type-list-4 item-type-list-profiles load-more-list">
 		<?php foreach ( $profile_query->posts as $profile_post ) : ?>
 			<li>
