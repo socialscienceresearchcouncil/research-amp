@@ -3,7 +3,7 @@
 return [
 	'api_version'     => 1,
 	'attributes'      => [
-		'contentMode'    => [
+		'contentMode'   => [
 			'type'    => 'string',
 			'enum'    => [ 'auto', 'all', 'advanced' ],
 			'default' => 'auto',

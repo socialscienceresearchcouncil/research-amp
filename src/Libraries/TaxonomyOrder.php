@@ -86,7 +86,6 @@ class TaxonomyOrder {
 					}
 				}
 			}
-
 		}
 
 		return $post_types;

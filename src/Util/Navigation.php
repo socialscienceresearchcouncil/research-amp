@@ -11,7 +11,7 @@ class Navigation {
 	 */
 	public static function get_nav_id( $nav ) {
 		$ramp_nav_menus = get_option( 'ramp_nav_menus', [] );
-		$nav_id = isset( $ramp_nav_menus[ $nav ] ) ? (int) $ramp_nav_menus[ $nav ] : 0;
+		$nav_id         = isset( $ramp_nav_menus[ $nav ] ) ? (int) $ramp_nav_menus[ $nav ] : 0;
 		return $nav_id;
 	}
 
@@ -48,7 +48,7 @@ class Navigation {
 			$research_reviews_link,
 			$articles_link,
 			$profiles_link,
-			$citations_link
+			$citations_link,
 		];
 
 		return join( "\n", $items );
@@ -128,7 +128,7 @@ class Navigation {
 			$research_reviews_link,
 			$articles_link,
 			$resources_link,
-			$citations_link
+			$citations_link,
 		];
 
 		return join( "\n", $items );
@@ -140,11 +140,13 @@ class Navigation {
 	 * @todo This works for the initial insertion, but it's not dynamic for newly created RTs.
 	 */
 	public static function get_research_topics_submenu_block() {
-		$rts = get_posts( [
-			'post_type' => 'ramp_topic',
-			'posts_per_page' => -1,
-			'orderby' => [ 'title' => 'ASC' ],
-		] );
+		$rts = get_posts(
+			[
+				'post_type'      => 'ramp_topic',
+				'posts_per_page' => -1,
+				'orderby'        => [ 'title' => 'ASC' ],
+			]
+		);
 
 		// This should probably be its own block.
 		$research_topics_submenu_items = '';

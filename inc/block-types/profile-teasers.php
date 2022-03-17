@@ -15,7 +15,7 @@ return [
 			'type'    => 'string',
 			'default' => 'all',
 		],
-		'showLoadMore' => [
+		'showLoadMore'  => [
 			'type'    => 'boolean',
 			'default' => false,
 		],

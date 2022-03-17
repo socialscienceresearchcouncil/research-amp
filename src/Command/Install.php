@@ -18,15 +18,15 @@ class Install extends WP_CLI_Command {
 
 	protected function install_default_pages() {
 		$pages_data = [
-			'get-started' => [
+			'get-started'          => [
 				'post_title'   => __( 'Get Started', 'ramp' ),
 				'post_content' => __( 'Use this page to provide information on how readers can get involved in contributing to your project.', 'ramp' ),
 			],
-			'about' => [
+			'about'                => [
 				'post_title'   => __( 'About', 'ramp' ),
 				'post_content' => __( 'Use this page to provide background information on your project.', 'ramp' ),
 			],
-			'contact' => [
+			'contact'              => [
 				'post_title'   => __( 'Contact', 'ramp' ),
 				'post_content' => __( 'Use this page to contact information for your project or organization. You may decide to use a WordPress plugin to provide a contact form.', 'ramp' ),
 			],
@@ -73,7 +73,7 @@ class Install extends WP_CLI_Command {
 
 	protected function install_default_nav_menus() {
 		$nav_menus = [
-			'primary-nav' => [
+			'primary-nav'   => [
 				'post_title'   => __( 'Primary navigation', 'ramp' ),
 				'post_content' => Navigation::get_default_primary_nav_items(),
 			],

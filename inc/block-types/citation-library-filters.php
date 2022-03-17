@@ -6,7 +6,7 @@ return [
 		'backgroundColor' => [
 			'type' => 'string',
 		],
-		'textColor' => [
+		'textColor'       => [
 			'type' => 'string',
 		],
 	],
