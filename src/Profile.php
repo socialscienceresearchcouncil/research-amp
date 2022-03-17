@@ -364,7 +364,7 @@ class Profile {
 	 */
 	public static function get_profiles_for_post( $post_id ) {
 		$profiles     = [];
-		$author_terms = get_the_terms( $post_id, 'ramp_assoc_profile' );
+		$author_terms = wp_get_object_terms( $post_id, 'ramp_assoc_profile', [ 'orderby' => 'term_order' ] );
 		if ( $author_terms ) {
 			foreach ( $author_terms as $author_term ) {
 				$profile_map = ramp_app()->get_cpttax_map( 'profile' );
@@ -374,28 +374,6 @@ class Profile {
 				}
 			}
 		}
-
-		// Sort profiles by last name.
-		usort(
-			$profiles,
-			function( $a, $b ) {
-				$ln_a = $a->get_last_name();
-				$ln_b = $b->get_last_name();
-
-				if ( $ln_a === $ln_b ) {
-					$fn_a = $a->get_first_name();
-					$fn_b = $b->get_first_name();
-
-					if ( $fn_a === $fn_b ) {
-						return 0;
-					}
-
-					return strnatcasecmp( $fn_a, $fn_b );
-				}
-
-				return strnatcasecmp( $ln_a, $ln_b );
-			}
-		);
 
 		return $profiles;
 	}
