@@ -17,6 +17,9 @@
 	<exclude-pattern>/assets/</exclude-pattern>
 	<exclude-pattern>/build/</exclude-pattern>
 
+	<!-- Exclude Libraries directory -->
+	<exclude-pattern>/src/Libraries/</exclude-pattern>
+
 	<!-- Iterate over all PHP files by default -->
 	<file>.</file>
 

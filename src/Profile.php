@@ -109,7 +109,7 @@ class Profile {
 	}
 
 	public function get_title() {
-		return strip_tags( get_post_meta( $this->get_post_id(), 'ramp_profile_title_institution', true ) );
+		return wp_strip_all_tags( get_post_meta( $this->get_post_id(), 'ramp_profile_title_institution', true ) );
 	}
 
 	public function get_biography() {
