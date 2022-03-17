@@ -122,3 +122,53 @@ a.tag-plain:hover {
 	object-fit: cover;
 	width: 196px;
 }
+
+.sortable-multi-select-selected-items {
+	margin-top: 10px;
+}
+
+.sortable-multi-select-item {
+	align-items: center;
+	border: 1px solid #222;
+	border-radius: 2px;
+    background-color: #f5f5f5;
+	display: flex;
+	gap: 12px;
+	margin-bottom: 5px;
+	padding: 6px 12px 6px 6px;
+	width: 100%;
+}
+
+.sortable-multi-select-item-hover {
+	background-color: #ddd;
+}
+
+.sortable-multi-select-item-handle {
+	cursor: grab;
+	width: 100%;
+}
+
+.sortable-multi-select-item-remove {
+	background: transparent;
+	border: 1px solid transparent;
+	border-radius: 2px;
+	color: rgba( 256, 0, 0, 1 );
+	height: 28px;
+	flex: 0 0 28px;
+	position: relative;
+	width: 28px;
+}
+
+.sortable-multi-select-item-remove:after {
+	content: "\00D7";
+	font-size: 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.sortable-multi-select-item-remove:hover {
+	border-color: #ccc;
+	color: rgba( 256, 0, 0, .7 );
+}

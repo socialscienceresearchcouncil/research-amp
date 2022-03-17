@@ -43,3 +43,21 @@ registerPlugin(
 		render: renderZoteroLibraryInfo,
 	}
 );
+
+import ReorderableFlatTermSelector from './components/ReorderableFlatTermSelector'
+
+const selectTaxonomySelector = ( OriginalComponent ) => {
+	return ( props ) => {
+		if ( 'ramp_assoc_profile' === props.slug || 'ramp_assoc_topic' === props.slug ) {
+			return <ReorderableFlatTermSelector {...props} />
+		} else {
+			return <OriginalComponent {...props} />
+		}
+	}
+}
+
+wp.hooks.addFilter(
+	'editor.PostTaxonomyType',
+	'ramp/select-taxonomy-selector',
+	selectTaxonomySelector
+)

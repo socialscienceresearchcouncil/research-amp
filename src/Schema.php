@@ -5,6 +5,19 @@ namespace SSRC\RAMP;
 class Schema {
 	protected $cpttaxonomies = [];
 
+	protected $sortable_taxonomies = [
+		'ramp_assoc_profile',
+		'ramp_assoc_topic',
+	];
+
+	protected $post_types_for_sortable_taxonomies = [
+		'ramp_review',
+		'ramp_article',
+		'ramp_topic',
+		'ramp_profile',
+		'ramp_citation',
+	];
+
 	public function init() {
 		add_action( 'init', [ $this, 'register_post_types' ], 5 );
 		add_action( 'init', [ $this, 'register_taxonomies' ], 20 );
@@ -22,6 +35,9 @@ class Schema {
 
 		// Loosen restrictions on LR Version slug uniqueness.
 		add_filter( 'pre_wp_unique_post_slug', [ $this, 'check_lr_version_post_slug' ], 10, 6 );
+
+		// Set default sort order for certain taxonomies.
+		add_filter( 'get_terms_defaults', [ $this, 'set_get_terms_defaults' ], 10, 2 );
 	}
 
 	public function register_scripts() {
@@ -633,6 +649,12 @@ class Schema {
 		register_taxonomy_for_object_type( 'ramp_assoc_profile', 'post' );
 
 		unregister_taxonomy_for_object_type( 'post_tag', 'post' );
+
+		// Set up taxonomy sync.
+		new Libraries\TaxonomyOrder(
+			$this->post_types_for_sortable_taxonomies,
+			$this->sortable_taxonomies
+		);
 	}
 
 	public function link_cpts_and_taxonomies() {
@@ -789,5 +811,16 @@ class Schema {
 		} else {
 			return $retval;
 		}
+	}
+
+	public function set_get_terms_defaults( $defaults, $taxonomies ) {
+		// Err on the side of caution.
+		if ( array_diff( $taxonomies, $this->sortable_taxonomies ) ) {
+			return $defaults;
+		}
+
+		$defaults['orderby'] = 'term_order';
+
+		return $defaults;
 	}
 }
