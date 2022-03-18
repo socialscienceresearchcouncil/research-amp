@@ -1,10 +1,38 @@
 .item-type-list-research-topics {
-	li {
-		background: var(--ramp-light-grey);
-		padding: 24px;
-	}
-
 	h3 {
 		margin-top: 0;
+	}
+
+	&.research-topic-teasers-grid {
+		li {
+			background: var(--ramp-light-grey);
+			padding: 24px;
+		}
+	}
+
+	&.research-topic-teasers-list {
+		li {
+			border-top: 1px solid var(--wp--preset--color--medium-grey);
+			padding: 48px 0;
+		}
+
+		li:last-child {
+			border-bottom: 1px solid var(--wp--preset--color--medium-grey);
+		}
+
+		article {
+			align-items: flex-start;
+			display: flex;
+			gap: 28px;
+		}
+
+		.research-topic-teaser-image {
+			flex: 0 0 534px;
+			height: 356px;
+		}
+
+		.research-topic-item-excerpt {
+			margin-bottom: 24px;
+		}
 	}
 }

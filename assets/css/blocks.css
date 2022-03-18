@@ -180,3 +180,7 @@ a.tag-plain:hover {
 	border-color: #ccc;
 	color: rgba( 256, 0, 0, .7 );
 }
+
+.load-more-button {
+	margin-top: 72px;
+}

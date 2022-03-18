@@ -17,6 +17,10 @@
 			"type": "string",
 			"default": "random"
 		},
+		"showLoadMore": {
+			"type": "boolean",
+			"default": false
+		},
 		"slot1": {
 			"type": "integer",
 			"default": 0
@@ -28,6 +32,10 @@
 		"slot3": {
 			"type": "integer",
 			"default": 0
+		},
+		"variationType": {
+			"enum": [ "grid", "list" ],
+			"default": "grid"
 		}
 	}
 }

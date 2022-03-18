@@ -11,6 +11,10 @@ return [
 			'type'    => 'string',
 			'default' => 'random',
 		],
+		'showLoadMore'  => [
+			'type'    => 'boolean',
+			'default' => false,
+		],
 		'slot1'         => [
 			'type'    => 'integer',
 			'default' => 0,
@@ -22,6 +26,11 @@ return [
 		'slot3'         => [
 			'type'    => 'integer',
 			'default' => 0,
+		],
+		'variationType' => [
+			'type'    => 'string',
+			'default' => 'grid',
+			'enum'    => [ 'grid', 'list' ],
 		],
 	],
 	'render_callback' => function( $atts ) {
