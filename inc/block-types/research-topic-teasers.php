@@ -4,7 +4,7 @@ return [
 	'api_version'     => 1,
 	'attributes'      => [
 		'numberOfItems' => [
-			'type'    => 'integer',
+			'type'    => 'number',
 			'default' => 3,
 		],
 		'selectionType' => [

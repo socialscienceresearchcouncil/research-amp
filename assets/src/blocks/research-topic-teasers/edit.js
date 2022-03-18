@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	Panel,
 	PanelBody,
+	PanelRow,
 	SelectControl,
 	Spinner
 } from '@wordpress/components'
@@ -14,7 +15,8 @@ import {
 
 import { Fragment } from '@wordpress/element'
 
-import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import LoadMoreToggle from '../../components/LoadMoreToggle'
+import NumberOfItemsControl from '../../components/NumberOfItemsControl'
 
 import ServerSideRender from '@wordpress/server-side-render'
 
@@ -37,6 +39,7 @@ export default function edit( {
 	const {
 		numberOfItems,
 		selectionType,
+		showLoadMore,
 		slot1,
 		slot2,
 		slot3
@@ -77,21 +80,6 @@ export default function edit( {
 	return (
 		<Fragment>
 			<InspectorControls>
-				<Panel>
-					<PanelBody
-						title={ __( 'Number of Items', 'ramp' ) }
-					>
-						<NumberControl
-							label={ __( 'Number of Research Topics to show', 'ramp' ) }
-							value={ numberOfItems }
-							min={ 0 }
-							max={ 5 }
-							step={ 1 }
-							onChange={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
-						/>
-					</PanelBody>
-				</Panel>
-
 				<Panel>
 					<PanelBody
 						title={ __( 'Content Settings', 'ramp' ) }
@@ -144,7 +132,26 @@ export default function edit( {
 								</ul>
 							</fieldset>
 						}
+
+						{ 'specific' !== selectionType &&
+							<>
+								<PanelRow>
+									<NumberOfItemsControl
+										numberOfItems={ numberOfItems }
+										onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+									/>
+								</PanelRow>
+
+								<PanelRow>
+									<LoadMoreToggle
+										showLoadMore={ showLoadMore }
+										onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+									/>
+								</PanelRow>
+							</>
+						}
 					</PanelBody>
+
 				</Panel>
 			</InspectorControls>
 
