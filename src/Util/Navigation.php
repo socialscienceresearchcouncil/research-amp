@@ -99,6 +99,12 @@ class Navigation {
 	 * Gets the default navigation items for the footer nav.
 	 */
 	public static function get_default_footer_nav_items() {
+		$research_topics_link = sprintf(
+			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
+			esc_attr( __( 'Research Topics', 'ramp' ) ),
+			esc_url( get_post_type_archive_link( 'ramp_topic' ) )
+		);
+
 		$research_reviews_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
 			esc_attr( __( 'Research Reviews', 'ramp' ) ),
@@ -111,10 +117,10 @@ class Navigation {
 			esc_url( get_post_type_archive_link( 'ramp_article' ) )
 		);
 
-		$resources_link = sprintf(
+		$profiles_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
-			esc_attr( __( 'Resources', 'ramp' ) ),
-			esc_url( '#' )
+			esc_attr( __( 'Profiles', 'ramp' ) ),
+			esc_url( get_post_type_archive_link( 'ramp_profile' ) )
 		);
 
 		$citations_link = sprintf(
@@ -123,12 +129,19 @@ class Navigation {
 			esc_url( get_post_type_archive_link( 'ramp_citation' ) )
 		);
 
+		$news_items_link = sprintf(
+			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
+			esc_attr( __( 'News Items', 'ramp' ) ),
+			esc_url( get_post_type_archive_link( 'post' ) )
+		);
+
 		$items = [
-			self::get_research_topics_submenu_block(),
+			$research_topics_link,
 			$research_reviews_link,
 			$articles_link,
-			$resources_link,
+			$profiles_link,
 			$citations_link,
+			$news_items_link,
 		];
 
 		return join( "\n", $items );
@@ -166,7 +179,7 @@ class Navigation {
 			'%s' .
 			'<!-- /wp:navigation-submenu -->',
 			esc_attr( __( 'Research Topics', 'ramp' ) ),
-			esc_url( get_post_type_archive_link( 'ramp_theme' ) ),
+			esc_url( get_post_type_archive_link( 'ramp_topic' ) ),
 			$research_topics_submenu_items
 		);
 

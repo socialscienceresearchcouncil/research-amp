@@ -81,12 +81,10 @@ class Install extends WP_CLI_Command {
 				'post_title'   => __( 'Secondary navigation', 'ramp' ),
 				'post_content' => Navigation::get_default_secondary_nav_items(),
 			],
-			/*
 			'footer-nav' => [
 				'post_title'   => __( 'Footer navigation', 'ramp' ),
-				'post_content' => $this->get_secondary_primary_nav_items(),
+				'post_content' => Navigation::get_default_footer_nav_items(),
 			],
-			*/
 		];
 
 		$ramp_nav_menus = get_option( 'ramp_nav_menus', [] );
