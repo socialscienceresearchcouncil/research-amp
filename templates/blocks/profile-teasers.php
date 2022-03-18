@@ -4,7 +4,8 @@ global $wp_query;
 
 $number_of_items = isset( $args['numberOfItems'] ) ? (int) $args['numberOfItems'] : 3;
 
-$offset = $wp_query->get( 'pag-offset' );
+$offset_query_var = 'profile-pag-offset';
+$offset = (int) $wp_query->get( $offset_query_var );
 
 $research_topic_id = null;
 if ( 'auto' === $args['researchTopic'] ) {
@@ -43,14 +44,7 @@ if ( $research_topic_id ) {
 
 $profile_query = new WP_Query( $query_args );
 
-global $wp;
-$show_load_more = ! empty( $args['showLoadMore'] ) && ( ( $offset + $number_of_items ) <= $profile_query->found_posts );
-if ( $show_load_more ) {
-	$load_more_href = home_url( add_query_arg( [], $wp->request ) );
-	$load_more_href = add_query_arg( 'pag-offset', $offset + $number_of_items, $load_more_href );
-
-	wp_enqueue_script( 'ramp-load-more' );
-}
+$has_more_pages = ( $offset + $number_of_items ) <= $profile_query->found_posts;
 
 ?>
 
@@ -63,9 +57,16 @@ if ( $show_load_more ) {
 		<?php endforeach; ?>
 	</ul>
 
-	<?php if ( $show_load_more ) : ?>
-		<div class="wp-block-button aligncenter is-style-primary load-more-button">
-			<a href="<?php echo esc_url( $load_more_href ); ?>" class="wp-block-button__link"><?php esc_html_e( 'Load More', 'ramp' ); ?></a>
-		</div>
+	<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
+		<?php
+		ramp_get_template_part(
+			'load-more-button',
+			[
+				'offset'          => $offset,
+				'query_var'       => $offset_query_var,
+				'number_of_items' => $number_of_items,
+			]
+		);
+		?>
 	<?php endif; ?>
 </div>
