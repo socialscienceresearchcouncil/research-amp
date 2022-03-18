@@ -216,14 +216,14 @@ class Profile {
 	}
 
 	public function get_avatar_url() {
-		$avatar_fn = get_post_meta( $this->get_post_id(), 'avatar_filename', true );
-		if ( ! $avatar_fn ) {
-			return '';
+		$img_src      = '';
+		$thumbnail_id = get_post_thumbnail_id( $this->get_post_id() );
+		if ( $thumbnail_id ) {
+			$img_details = wp_get_attachment_image_src( $thumbnail_id, 'profile-image' );
+			$img_src     = $img_details[0];
 		}
 
-		$upload_dir = wp_upload_dir();
-
-		return $upload_dir['baseurl'] . '/profile-avatars/' . $avatar_fn;
+		return $img_src;
 	}
 
 	public function get_avatar_markup() {

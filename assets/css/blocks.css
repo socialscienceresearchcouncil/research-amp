@@ -111,11 +111,19 @@ a.tag-plain:hover {
 
 /* Profiles */
 .profile-teaser-avatar {
+	background-color: var(--wp--preset--color--light-grey);
+	background-repeat: no-repeat;
 	background-size: cover;
 	border-radius: 50%;
 	overflow: hidden;
 	height: 196px;
 	width: 196px;
+}
+
+.profile-teaser-avatar.has-default-avatar {
+	background-image: url(../img/default-avatar.png);
+	background-size: 48px 48px;
+	background-position: center center;
 }
 
 .profile-teaser-avatar > img {
