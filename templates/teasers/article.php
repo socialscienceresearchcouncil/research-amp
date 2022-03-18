@@ -8,10 +8,7 @@ $img_src      = '';
 $img_alt      = '';
 $thumbnail_id = get_post_thumbnail_id( $article );
 if ( $thumbnail_id ) {
-	$all_sizes = wp_get_registered_image_subsizes();
-	$img_size  = 'ramp-thumbnail';
-
-	$img_details = wp_get_attachment_image_src( $thumbnail_id, $img_size );
+	$img_details = wp_get_attachment_image_src( $thumbnail_id, 'ramp-thumbnail' );
 	$img_src     = $img_details[0];
 	$img_alt     = trim( wp_strip_all_tags( get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true ) ) );
 }
