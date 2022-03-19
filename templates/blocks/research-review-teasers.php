@@ -1,6 +1,17 @@
 <?php
 
-$number_of_items = isset( $args['numberOfItems'] ) ? (int) $args['numberOfItems'] : -1;
+$r = array_merge(
+	[
+		'contentMode'         => 'auto',
+		'numberOfItems'       => 3,
+		'order'               => 'alphabetical',
+		'showPublicationDate' => true,
+		'variationType'       => 'grid',
+	],
+	$args
+);
+
+$number_of_items = (int) $r['numberOfItems'];
 
 $research_topic_id = isset( $args['researchTopic'] ) ? $args['researchTopic'] : 'auto';
 if ( 'auto' === $research_topic_id ) {
@@ -15,12 +26,12 @@ if ( 'auto' === $research_topic_id ) {
 	$research_topic_id = (int) $research_topic_id;
 }
 
-$order_arg = isset( $args['order'] ) ? $args['order'] : 'alphabetical';
-if ( ! in_array( $order_arg, [ 'alphabetical', 'latest', 'random' ], true ) ) {
-	$order_arg = 'alphabetical';
-}
+$order_args = [ 'alphabetical', 'latest', 'random' ];
+$order_arg  = in_array( $r['order'], $order_args, true ) ? $r['order'] : 'alphabetical';
 
-$variation_type = isset( $args['variationType'] ) && 'list' === $args['variationType'] ? 'list' : 'grid';
+$variation_type = 'list' === $r['variationType'] ? 'list' : 'grid';
+
+$show_publication_date = (bool) $r['showPublicationDate'];
 
 $post_args = [
 	'posts_per_page' => $number_of_items,
@@ -75,8 +86,9 @@ if ( 'grid' === $variation_type ) {
 			ramp_get_template_part(
 				'teasers/research-review',
 				[
-					'id'                   => $research_review->ID,
-					'show_research_topics' => empty( $research_topic_id ),
+					'id'                    => $research_review->ID,
+					'show_publication_date' => $show_publication_date,
+					'show_research_topics'  => empty( $research_topic_id ),
 				]
 			);
 			?>

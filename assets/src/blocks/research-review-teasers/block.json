@@ -28,6 +28,10 @@
 			"type": "string",
 			"default": "auto"
 		},
+		"showPublicationDate": {
+			"type": "boolean",
+			"default": true
+		},
 		"variationType": {
 			"enum": [ "grid", "list" ],
 			"default": "grid"

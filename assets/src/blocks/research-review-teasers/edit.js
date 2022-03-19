@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	Panel,
 	PanelBody,
+	PanelRow,
 	SelectControl,
 	Spinner
 } from '@wordpress/components'
@@ -19,6 +20,7 @@ import ServerSideRender from '@wordpress/server-side-render'
 import { useSelect } from '@wordpress/data'
 
 import ContentModePanel from '../../components/ContentModePanel'
+import PublicationDateToggle from '../../components/PublicationDateToggle'
 
 /**
  * Editor styles.
@@ -40,6 +42,7 @@ export default function edit( {
 		contentModeResearchTopic,
 		numberOfItems,
 		order,
+		showPublicationDate,
 		variationType
 	} = attributes
 
@@ -75,17 +78,26 @@ export default function edit( {
 
 				<Panel>
 					<PanelBody
-						title={ __( 'Display Format', 'ramp' ) }
+						title={ __( 'Display Options', 'ramp' ) }
 					>
-						<SelectControl
-							label={ __( 'Select the display format', 'ramp' ) }
-							options={ [
-								{ label: __( 'Grid', 'ramp' ), value: 'grid' },
-								{ label: __( 'List', 'ramp' ), value: 'list' },
-							] }
-							selected={ variationType }
-							onChange={ ( variationType ) => setAttributes( { variationType } ) }
-						/>
+						<PanelRow>
+							<SelectControl
+								label={ __( 'Select the display format', 'ramp' ) }
+								options={ [
+									{ label: __( 'Grid', 'ramp' ), value: 'grid' },
+									{ label: __( 'List', 'ramp' ), value: 'list' },
+								] }
+								selected={ variationType }
+								onChange={ ( variationType ) => setAttributes( { variationType } ) }
+							/>
+						</PanelRow>
+
+						<PanelRow>
+							<PublicationDateToggle
+								onChangeCallback={ ( showPublicationDate ) => setAttributes( { showPublicationDate } ) }
+								showPublicationDate={ showPublicationDate }
+							/>
+						</PanelRow>
 					</PanelBody>
 				</Panel>
 

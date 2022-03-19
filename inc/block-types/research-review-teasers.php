@@ -3,28 +3,32 @@
 return [
 	'api_version'     => 1,
 	'attributes'      => [
-		'contentMode'   => [
+		'contentMode'         => [
 			'type'    => 'string',
 			'enum'    => [ 'auto', 'all', 'advanced' ],
 			'default' => 'auto',
 		],
-		'isEditMode'    => [
+		'isEditMode'          => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'numberOfItems' => [
+		'numberOfItems'       => [
 			'type'    => 'string',
 			'default' => '3',
 		],
-		'order'         => [
+		'order'               => [
 			'type'    => 'string',
 			'default' => 'alphabetical',
 		],
-		'researchTopic' => [
+		'researchTopic'       => [
 			'type'    => 'string',
 			'default' => 'auto',
 		],
-		'variationType' => [
+		'showPublicationDate' => [
+			'type'    => 'boolean',
+			'default' => true,
+		],
+		'variationType'       => [
 			'type'    => 'string', /* WP throws PHP notice if this is not set */
 			'enum'    => [ 'grid', 'list' ],
 			'default' => 'grid',

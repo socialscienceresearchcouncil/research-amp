@@ -18,9 +18,24 @@ if ( $img_src ) {
 	$article_class .= ' has-featured-image';
 }
 
-$author_links = \SSRC\RAMP\Profile::get_profile_links_for_post( $research_review_id );
+$show_publication_date = ! empty( $args['show_publication_date'] );
+$show_research_topics  = ! empty( $args['show_research_topics'] );
 
-$show_research_topics = ! empty( $args['show_research_topics'] );
+$author_links = \SSRC\RAMP\Profile::get_profile_links_for_post( $research_review_id );
+if ( $show_publication_date ) {
+	$byline = sprintf(
+		/* translators: 1. author link, 2. publication date */
+		esc_html__( 'By %1$s on %2$s', 'ramp' ),
+		'<span class="byline-author">' . implode( ', ', $author_links ) . '</span>',
+		'<span class="byline-publication-date">' . esc_html( get_the_date( '', $research_review_id ) ) . '</span>'
+	);
+} else {
+	$byline = sprintf(
+		/* translators: author link */
+		esc_html__( 'By %s', 'ramp' ),
+		'<span class="byline-author">' . implode( ', ', $author_links ) . '</span>'
+	);
+}
 
 ?>
 
@@ -54,7 +69,7 @@ $show_research_topics = ! empty( $args['show_research_topics'] );
 
 		<div class="teaser-byline research-review-teaser-byline">
 			<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			<?php printf( '<span class="teaser-byline-by">By</span> %s', implode( ', ', $author_links ) ); ?>
+			<?php echo $byline; ?>
 		</div>
 	</div>
 </article>
