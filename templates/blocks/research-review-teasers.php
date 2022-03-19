@@ -59,6 +59,7 @@ if ( $research_topic_id ) {
 $list_classes = [
 	'item-type-list',
 	'item-type-list-research-reviews',
+	'research-reviews-' . $variation_type,
 ];
 
 if ( 'grid' === $variation_type ) {

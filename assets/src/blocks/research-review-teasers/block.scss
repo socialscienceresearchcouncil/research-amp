@@ -1,6 +1,14 @@
 .item-type-list-research-reviews {
-	h3 {
-		font-size: var(--wp--preset--font-size--h-4);
+	&.research-reviews-grid {
+		h3 {
+			font-size: var(--wp--preset--font-size--h-4);
+		}
+	}
+
+	&.research-reviews-list {
+		h3 {
+			margin-top: 0;
+		}
 	}
 }
 
