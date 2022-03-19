@@ -20,11 +20,7 @@ if ( ! in_array( $order_arg, [ 'alphabetical', 'latest', 'random' ], true ) ) {
 	$order_arg = 'alphabetical';
 }
 
-if ( isset( $args['variationType'] ) && 'teasers' === $args['variationType'] ) {
-	$variation_type = 'teasers';
-} else {
-	$variation_type = 'column';
-}
+$variation_type = isset( $args['variationType'] ) && 'list' === $args['variationType'] ? 'list' : 'grid';
 
 $post_args = [
 	'posts_per_page' => $number_of_items,
@@ -65,7 +61,7 @@ $list_classes = [
 	'item-type-list-research-reviews',
 ];
 
-if ( 'teasers' === $variation_type ) {
+if ( 'grid' === $variation_type ) {
 	$list_classes[] = 'item-type-list-flex';
 	$list_classes[] = 'item-type-list-3';
 }

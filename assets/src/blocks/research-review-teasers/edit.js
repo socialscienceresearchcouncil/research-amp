@@ -75,13 +75,13 @@ export default function edit( {
 
 				<Panel>
 					<PanelBody
-						title={ __( 'Display Variations', 'ramp' ) }
+						title={ __( 'Display Format', 'ramp' ) }
 					>
 						<SelectControl
-							label={ __( 'Select the display variation', 'ramp' ) }
+							label={ __( 'Select the display format', 'ramp' ) }
 							options={ [
-								{ label: __( 'Horizontal', 'ramp' ), value: 'horizontal' },
-								{ label: __( 'Teasers', 'ramp' ), value: 'teasers' },
+								{ label: __( 'Grid', 'ramp' ), value: 'grid' },
+								{ label: __( 'List', 'ramp' ), value: 'list' },
 							] }
 							selected={ variationType }
 							onChange={ ( variationType ) => setAttributes( { variationType } ) }

@@ -29,8 +29,8 @@
 			"default": "auto"
 		},
 		"variationType": {
-			"enum": [ "teasers", "horizontal" ],
-			"default": "teasers"
+			"enum": [ "grid", "list" ],
+			"default": "grid"
 		}
 	}
 }

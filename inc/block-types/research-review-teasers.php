@@ -26,8 +26,8 @@ return [
 		],
 		'variationType' => [
 			'type'    => 'string', /* WP throws PHP notice if this is not set */
-			'enum'    => [ 'teasers', 'horizontal' ],
-			'default' => 'teasers',
+			'enum'    => [ 'grid', 'list' ],
+			'default' => 'grid',
 		],
 	],
 	'render_callback' => function( $atts ) {
