@@ -10,17 +10,17 @@ import { useSelect } from '@wordpress/data'
 import './content-mode-panel.scss'
 
 import ResearchTopicSelector from './ResearchTopicSelector'
-import { PostPicker } from './PostPicker'
+import ProfileSelector from './ProfileSelector'
 
 const ContentModePanel = ( props ) => {
 	const {
 		changeCallback,
-		changeProfileCallback,
-		changeResearchTopicCallback,
+		changeProfileIdCallback,
+		changeResearchTopicIdCallback,
 		legend,
 		selectedMode,
-		selectedProfile,
-		selectedResearchTopic
+		selectedProfileId,
+		selectedResearchTopicId
 	} = props
 
 	const changeCallbacks = {
@@ -52,17 +52,6 @@ const ContentModePanel = ( props ) => {
 			'gloss': __( 'Advanced configuration options', 'ramp' )
 		}
 	]
-
-	const { profile } = useSelect( ( select ) => {
-		let profile = {}
-		if ( selectedProfile ) {
-			profile = select( 'ramp' ).getPost( selectedProfile, 'ramp_profile' )
-		}
-
-		return {
-			profile
-		}
-	}, [ selectedProfile ] )
 
 	return (
 		<Panel>
@@ -114,16 +103,15 @@ const ContentModePanel = ( props ) => {
 
 						<ResearchTopicSelector
 							label={ __( 'Research Topic', 'ramp' ) }
-							selected={ selectedResearchTopic }
-							onChangeCallback={ changeResearchTopicCallback }
+							selected={ selectedResearchTopicId }
+							onChangeCallback={ changeResearchTopicIdCallback }
 						/>
 
-						<PostPicker
-							postTypes={ [ 'ramp_profile' ] }
-							onSelectPost={ changeProfileCallback }
-							label={ __( 'Profile', 'ramp' ) }
-							placeholder={ __( 'Start typing to search.', 'ramp' ) }
+						<ProfileSelector
+							onChangeCallback={ changeProfileIdCallback }
+							selectedProfileId={ selectedProfileId }
 						/>
+
 					</fieldset>
 				) }
 			</PanelBody>

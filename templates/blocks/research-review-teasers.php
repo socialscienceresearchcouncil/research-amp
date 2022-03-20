@@ -2,29 +2,20 @@
 
 $r = array_merge(
 	[
-		'contentMode'         => 'auto',
-		'numberOfItems'       => 3,
-		'order'               => 'alphabetical',
-		'showPublicationDate' => true,
-		'variationType'       => 'grid',
+		'contentMode'               => 'auto',
+		'contentModeResearchTopicId' => 0,
+		'contentModeProfileId'       => 0,
+		'numberOfItems'              => 3,
+		'order'                      => 'alphabetical',
+		'showPublicationDate'        => true,
+		'variationType'              => 'grid',
 	],
 	$args
 );
 
 $number_of_items = (int) $r['numberOfItems'];
 
-$research_topic_id = isset( $args['researchTopic'] ) ? $args['researchTopic'] : 'auto';
-if ( 'auto' === $research_topic_id ) {
-	if ( ! empty( $args['isEditMode'] ) ) {
-		$research_topic_id = ramp_get_most_recent_research_topic_id();
-	} else {
-		$research_topic_id = get_queried_object_id();
-	}
-} elseif ( 'all' === $research_topic_id ) {
-	$research_topic_id = null;
-} else {
-	$research_topic_id = (int) $research_topic_id;
-}
+$content_mode_settings = \SSRC\RAMP\Blocks::get_content_mode_settings_from_template_args( $r );
 
 $order_args = [ 'alphabetical', 'latest', 'random' ];
 $order_arg  = in_array( $r['order'], $order_args, true ) ? $r['order'] : 'alphabetical';
@@ -34,8 +25,35 @@ $variation_type = 'list' === $r['variationType'] ? 'list' : 'grid';
 $show_publication_date = (bool) $r['showPublicationDate'];
 
 $post_args = [
+	'post_type'      => 'ramp_review',
 	'posts_per_page' => $number_of_items,
+	'tax_query'      => [],
 ];
+
+switch ( $content_mode_settings['mode'] ) {
+	case 'auto' :
+	case 'advanced' :
+		if ( ! empty( $content_mode_settings['research_topic_id'] ) ) {
+			$rt_map = ramp_app()->get_cpttax_map( 'research_topic' );
+
+			$post_args['tax_query'][] = [
+				'taxonomy' => 'ramp_assoc_topic',
+				'terms'    => [ $rt_map->get_term_id_for_post_id( $content_mode_settings['research_topic_id'] ) ],
+				'field'    => 'term_id',
+			];
+		}
+
+		if ( ! empty( $content_mode_settings['profile_id'] ) ) {
+			$p_map = ramp_app()->get_cpttax_map( 'profile' );
+
+			$post_args['tax_query'][] = [
+				'taxonomy' => 'ramp_assoc_profile',
+				'terms'    => [ $p_map->get_term_id_for_post_id( $content_mode_settings['profile_id'] ) ],
+				'field'    => 'term_id',
+			];
+		}
+	break;
+}
 
 switch ( $order_arg ) {
 	case 'alphabetical' :
@@ -52,20 +70,7 @@ switch ( $order_arg ) {
 	break;
 }
 
-if ( $research_topic_id ) {
-	$rt = \SSRC\RAMP\ResearchTopic::get_instance( $research_topic_id );
-
-	$research_reviews = $rt->get_research_reviews( $post_args );
-} else {
-	$query_args = array_merge(
-		$post_args,
-		[
-			'post_type' => 'ramp_review',
-		]
-	);
-
-	$research_reviews = get_posts( $query_args );
-}
+$research_review_query = new WP_Query( $post_args );
 
 $list_classes = [
 	'item-type-list',
@@ -77,10 +82,11 @@ if ( 'grid' === $variation_type ) {
 	$list_classes[] = 'item-type-list-flex';
 	$list_classes[] = 'item-type-list-3';
 }
+
 ?>
 
 <ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
-	<?php foreach ( $research_reviews as $research_review ) : ?>
+	<?php foreach ( $research_review_query->posts as $research_review ) : ?>
 		<li>
 			<?php
 			ramp_get_template_part(
@@ -88,7 +94,7 @@ if ( 'grid' === $variation_type ) {
 				[
 					'id'                    => $research_review->ID,
 					'show_publication_date' => $show_publication_date,
-					'show_research_topics'  => empty( $research_topic_id ),
+					'show_research_topics'  => ! $content_mode_settings['research_topic_id'],
 				]
 			);
 			?>

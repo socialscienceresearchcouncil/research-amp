@@ -38,10 +38,11 @@ export default function edit( {
 } ) {
 	const {
 		contentMode,
-		contentModeProfile,
-		contentModeResearchTopic,
+		contentModeProfileId,
+		contentModeResearchTopicId,
 		numberOfItems,
 		order,
+		showLoadMore,
 		showPublicationDate,
 		variationType
 	} = attributes
@@ -68,12 +69,12 @@ export default function edit( {
 			<InspectorControls>
 				<ContentModePanel
 					changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
-					changeProfileCallback={ ( profileObj ) => setAttributes( { contentModeProfile: profileObj.id } ) }
-					changeResearchTopicCallback={ ( contentModeResearchTopic ) => setAttributes( { contentModeResearchTopic } ) }
+					changeProfileIdCallback={ ( profileObj ) => setAttributes( { contentModeProfileId: profileObj.id } ) }
+					changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
 					legend={ __( 'Determine which Research Reviews will be shown in this block.', 'ramp' ) }
 					selectedMode={ contentMode }
-					selectedProfile={ contentModeProfile }
-					selectedResearchTopic={ contentModeResearchTopic }
+					selectedProfileId={ contentModeProfileId }
+					selectedResearchTopicId={ contentModeResearchTopicId }
 				/>
 
 				<Panel>

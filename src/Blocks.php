@@ -188,6 +188,44 @@ class Blocks {
 		return $profile_data;
 	}
 
+	public static function get_content_mode_settings_from_template_args( $args ) {
+		$content_mode = isset( $args['contentMode'] ) ? $args['contentMode'] : 'auto';
+
+		$retval = [
+			'mode'              => $content_mode,
+			'research_topic_id' => 0,
+			'profile_id'        => 0,
+		];
+
+		switch ( $content_mode ) {
+			case 'all' :
+				$retval['research_topic_id'] = 0;
+				$retval['profile_id']        = 0;
+			break;
+
+			case 'advanced' :
+				$retval['research_topic_id'] = (int) $args['contentModeResearchTopicId'];
+				$retval['profile_id']        = (int) $args['contentModeProfileId'];
+			break;
+
+			case 'auto' :
+			default :
+				// For preview, we fall onto the most recent Research Topic.
+				if ( ! empty( $args['isEditMode'] ) ) {
+					$retval['research_topic_id'] = ramp_get_most_recent_research_topic_id();
+				} elseif ( is_singular( 'ramp_topic' ) ) {
+					$retval['research_topic_id'] = get_queried_object_id();
+				}
+
+				if ( is_singular( 'ramp_profile' ) ) {
+					$retval['profile_id'] = get_queried_object_id();
+				}
+			break;
+		}
+
+		return $retval;
+	}
+
 	/**
 	 * Get the research topic ID from the args passed to the template.
 	 *

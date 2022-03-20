@@ -254,6 +254,7 @@ class Schema {
 				],
 				'menu_icon'     => 'dashicons-welcome-learn-more',
 				'show_in_rest'  => true,
+				'rest_base'     => 'profiles',
 				'template'      => [
 					[
 						'core/columns',
