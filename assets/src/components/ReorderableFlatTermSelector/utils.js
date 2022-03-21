@@ -2,7 +2,12 @@ import { map, unescape as lodashUnescapeString } from 'lodash';
 
 // Lodash unescape function handles &#39; but not &#039; which may be return in some API requests.
 export const unescapeString = ( arg ) => {
-	return lodashUnescapeString( arg.replace( '&#039;', "'" ) );
+	return lodashUnescapeString(
+		arg.replace( '&#039;', "'" )
+       .replace( '&#8220;', "'" )
+       .replace( '&#8221;', "'" )
+			 .replace( '&#038;', "&" )
+	);
 };
 
 /**

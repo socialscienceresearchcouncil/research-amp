@@ -2,6 +2,8 @@ import { __ } from '@wordpress/i18n'
 import { useSelect } from '@wordpress/data'
 import { SelectControl } from '@wordpress/components'
 
+import { unescapeString } from './ReorderableFlatTermSelector/utils'
+
 const ResearchTopicSelector = ( props ) => {
 	const {
 		label,
@@ -19,7 +21,7 @@ const ResearchTopicSelector = ( props ) => {
 
 	let researchTopicsOptions = researchTopics.map( ( topic ) => {
 		return {
-			label: topic.title.rendered,
+			label: unescapeString( topic.title.rendered ),
 			value: topic.id.toString()
 		}
 	} )
