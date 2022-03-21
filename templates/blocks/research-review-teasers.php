@@ -25,33 +25,8 @@ $variation_type = 'list' === $r['variationType'] ? 'list' : 'grid';
 $post_args = [
 	'post_type'      => 'ramp_review',
 	'posts_per_page' => $number_of_items,
-	'tax_query'      => [],
+	'tax_query'      => \SSRC\RAMP\Blocks::get_content_mode_tax_query_from_template_args( $r ),
 ];
-
-switch ( $content_mode_settings['mode'] ) {
-	case 'auto' :
-	case 'advanced' :
-		if ( ! empty( $content_mode_settings['research_topic_id'] ) ) {
-			$rt_map = ramp_app()->get_cpttax_map( 'research_topic' );
-
-			$post_args['tax_query'][] = [
-				'taxonomy' => 'ramp_assoc_topic',
-				'terms'    => [ $rt_map->get_term_id_for_post_id( $content_mode_settings['research_topic_id'] ) ],
-				'field'    => 'term_id',
-			];
-		}
-
-		if ( ! empty( $content_mode_settings['profile_id'] ) ) {
-			$p_map = ramp_app()->get_cpttax_map( 'profile' );
-
-			$post_args['tax_query'][] = [
-				'taxonomy' => 'ramp_assoc_profile',
-				'terms'    => [ $p_map->get_term_id_for_post_id( $content_mode_settings['profile_id'] ) ],
-				'field'    => 'term_id',
-			];
-		}
-	break;
-}
 
 switch ( $order_arg ) {
 	case 'alphabetical' :
