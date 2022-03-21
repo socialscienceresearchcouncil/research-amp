@@ -4,6 +4,7 @@ import {
 	Panel,
 	PanelBody,
 	PanelRow,
+	SelectControl,
 	Spinner
 } from '@wordpress/components'
 
@@ -16,7 +17,7 @@ import ServerSideRender from '@wordpress/server-side-render'
 
 import { Fragment } from '@wordpress/element'
 
-import ResearchTopicSelector from '../../components/ResearchTopicSelector'
+import ContentModeControl from '../../components/ContentModeControl'
 import LoadMoreToggle from '../../components/LoadMoreToggle'
 import NumberOfItemsControl from '../../components/NumberOfItemsControl'
 
@@ -34,12 +35,18 @@ export default function edit( {
 	attributes,
 	setAttributes,
 } ) {
-	const { numberOfItems, researchTopic, showLoadMore } = attributes
+	const {
+		contentMode,
+		contentModeResearchTopicId,
+		numberOfItems,
+		order,
+		showLoadMore
+	} = attributes
 
 	const blockProps = () => {
 		let classNames = []
 
-		classNames.push( 'research-topic-' + researchTopic )
+		classNames.push( 'content-mode-' + contentMode )
 
 		return useBlockProps( {
 			className: classNames
@@ -53,22 +60,34 @@ export default function edit( {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Research Topic', 'ramp' ) }
-					>
-						<ResearchTopicSelector
-							label={ __( 'Select the Research Topic whose Profiles will be shown in this block.', 'ramp' ) }
-							selected={ researchTopic }
-							onChangeCallback={ ( researchTopic ) => setAttributes( { researchTopic } ) }
-						/>
-					</PanelBody>
-
-					<PanelBody
 						title={ __( 'Content Settings', 'ramp' ) }
 					>
+						<ContentModeControl
+							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
+							disabledTypes={ { 'profile': true } }
+							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
+							legend={ __( 'Determine which Profiles will be shown in this block.', 'ramp' ) }
+							selectedMode={ contentMode }
+							selectedResearchTopicId={ contentModeResearchTopicId }
+						/>
+
+						<PanelRow>
+							<SelectControl
+								label={ __( 'Order', 'ramp' ) }
+								options={ [
+									{ label: __( 'Alphabetical', 'ramp' ), value: 'alphabetical' },
+									{ label: __( 'Recently Added', 'ramp' ), value: 'latest' },
+									{ label: __( 'Random', 'ramp' ), value: 'random' }
+								] }
+								value={ order }
+								onChange={ ( order ) => setAttributes( { order } ) }
+							/>
+						</PanelRow>
+
 						<PanelRow>
 							<NumberOfItemsControl
 								numberOfItems={ numberOfItems }
-								onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+								onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
 							/>
 						</PanelRow>
 

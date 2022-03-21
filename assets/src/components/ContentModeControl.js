@@ -14,6 +14,7 @@ const ContentModeControl = ( props ) => {
 		changeCallback,
 		changeProfileIdCallback,
 		changeResearchTopicIdCallback,
+		disabledTypes,
 		legend,
 		selectedMode,
 		selectedProfileId,
@@ -32,6 +33,8 @@ const ContentModeControl = ( props ) => {
 		}
 	}
 
+	const disabledItemTypes = { ...{ profile: false, researchTopic: false }, ...disabledTypes }
+
 	const contentModeOpts = [
 		{
 			'value': 'auto',
@@ -49,6 +52,15 @@ const ContentModeControl = ( props ) => {
 			'gloss': __( 'Advanced configuration options', 'ramp' )
 		}
 	]
+
+	let advancedLegend
+	if ( disabledItemTypes.profile ) {
+		advancedLegend = __( 'Limit displayed items to those associated with a specific Research Topic.', 'ramp' )
+	} else if ( disabledItemTypes.researchTopic ) {
+		advancedLegend = __( 'Limit displayed items to those associated with a specific Profile.', 'ramp' )
+	} else {
+		advancedLegend = __( 'Limit displayed items to those associated with a specific Research Topic or Profile.', 'ramp' )
+	}
 
 	return (
 		<>
@@ -96,18 +108,22 @@ const ContentModeControl = ( props ) => {
 						className="content-mode-selector-advanced-options"
 						key="content-mode-selector-advanced-options"
 					>
-						<legend>{ __( 'Limit displayed items to those associated with a specific Research Topic or Profile.', 'ramp' ) }</legend>
+						<legend>{ advancedLegend }</legend>
 
-						<ResearchTopicSelector
-							label={ __( 'Research Topic', 'ramp' ) }
-							selected={ selectedResearchTopicId }
-							onChangeCallback={ changeResearchTopicIdCallback }
-						/>
+						{ ! disabledItemTypes.researchTopic && (
+							<ResearchTopicSelector
+								label={ __( 'Research Topic', 'ramp' ) }
+								selected={ selectedResearchTopicId }
+								onChangeCallback={ changeResearchTopicIdCallback }
+							/>
+						) }
 
-						<ProfileSelector
-							onChangeCallback={ changeProfileIdCallback }
-							selectedProfileId={ selectedProfileId }
-						/>
+						{ ! disabledItemTypes.profile && (
+							<ProfileSelector
+								onChangeCallback={ changeProfileIdCallback }
+								selectedProfileId={ selectedProfileId }
+							/>
+						) }
 
 					</fieldset>
 				</PanelRow>

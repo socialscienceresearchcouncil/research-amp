@@ -1,6 +1,8 @@
 <?php
 $profile_id = $args['id'];
 
+$is_edit_mode = ! empty( $args['is_edit_mode'] );
+
 $profile_obj = \SSRC\RAMP\Profile::get_instance( $profile_id );
 
 $img_src = $profile_obj->get_avatar_url();
@@ -21,15 +23,33 @@ if ( $img_src ) {
 <article>
 	<div class="profile-teaser">
 		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		<a href="<?php the_permalink( $profile_id ); ?>"><div class="<?php echo esc_attr( $avatar_class ); ?>" <?php echo $background_style; ?>>
+		<?php if ( ! $is_edit_mode ) : ?>
+			<a href="<?php the_permalink( $profile_id ); ?>">
+		<?php endif; ?>
+
+		<div class="<?php echo esc_attr( $avatar_class ); ?>" <?php echo $background_style; ?>>
 			<?php if ( $img_src ) : ?>
 				<?php // translators: Profile name ?>
 				<img class="profile-avatar" alt="<?php echo esc_attr( sprintf( __( 'Profile picture of %s', 'ramp' ), $profile_obj->get_display_name() ) ); ?>" src="<?php echo esc_attr( $img_src ); ?>" />
 			<?php endif; ?>
-		</div></a>
+		</div>
+
+		<?php if ( ! $is_edit_mode ) : ?>
+			</a>
+		<?php endif; ?>
 
 		<div class="profile-teaser-name">
-			<h3 class="has-medium-font-size"><a href="<?php the_permalink( $profile_id ); ?>"><?php echo esc_html( $profile_obj->get_display_name() ); ?></a></h3>
+			<h3 class="has-medium-font-size">
+				<?php if ( ! $is_edit_mode ) : ?>
+					<a href="<?php the_permalink( $profile_id ); ?>">
+				<?php endif; ?>
+
+				<?php echo esc_html( $profile_obj->get_display_name() ); ?>
+
+				<?php if ( ! $is_edit_mode ) : ?>
+					</a>
+				<?php endif; ?>
+			</h3>
 		</div>
 
 		<div class="profile-teaser-title">

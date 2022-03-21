@@ -3,19 +3,28 @@
 return [
 	'api_version'     => 2,
 	'attributes'      => [
-		'isEditMode'    => [
+		'contentMode'                => [
+			'type'    => 'string',
+			'enum'    => [ 'auto', 'all', 'advanced' ],
+			'default' => 'auto',
+		],
+		'contentModeResearchTopicId' => [
+			'type'    => 'integer',
+			'default' => 0,
+		],
+		'isEditMode'                 => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'numberOfItems' => [
+		'numberOfItems'              => [
 			'type'    => 'string',
 			'default' => '3',
 		],
-		'researchTopic' => [
+		'order'                      => [
 			'type'    => 'string',
-			'default' => 'all',
+			'default' => 'alphabetical',
 		],
-		'showLoadMore'  => [
+		'showLoadMore'               => [
 			'type'    => 'boolean',
 			'default' => false,
 		],

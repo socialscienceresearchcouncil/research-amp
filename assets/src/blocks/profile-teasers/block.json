@@ -8,9 +8,13 @@
 		"anchor": true
 	},
 	"attributes": {
-		"associatedResearchTopic": {
-			"type": "string",
-			"default": "all"
+		"contentMode": {
+			"enum": [ "auto", "all", "advanced" ],
+			"default": "auto"
+		},
+		"contentModeResearchTopicId": {
+			"type": "integer",
+			"default": 0
 		},
 		"isEditMode": {
 			"type": "boolean",
@@ -19,6 +23,10 @@
 		"numberOfItems": {
 			"type": "string",
 			"default": "4"
+		},
+		"order": {
+			"enum": [ "alphabetical", "latest", "random" ],
+			"default": "alphabetical"
 		},
 		"showLoadMore": {
 			"type": "boolean",

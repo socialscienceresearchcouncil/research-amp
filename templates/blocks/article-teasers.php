@@ -25,7 +25,6 @@ if ( in_array( $r['variationType'], [ 'grid', 'list', 'featured' ], true ) ) {
 $query_args = [
 	'post_type'      => 'ramp_article',
 	'post_status'    => 'publish',
-	'posts_per_page' => $posts_per_page,
 	'tax_query'      => \SSRC\RAMP\Blocks::get_content_mode_tax_query_from_template_args( $r ),
 
 ];
