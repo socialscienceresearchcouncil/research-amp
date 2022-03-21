@@ -2,15 +2,17 @@
 
 $r = array_merge(
 	[
-		'contentMode'         => 'auto',
-		'featuredItemId'      => 0,
-		'isEditMode'          => false,
-		'numberOfItems'       => 3,
-		'order'               => 'latest',
-		'researchTopic'       => null,
-		'showLoadMore'        => false,
-		'showPublicationDate' => true,
-		'variationType'       => 'grid',
+		'contentMode'                => 'auto',
+		'contentModeResearchTopicId' => 0,
+		'contentModeProfileId'       => 0,
+		'featuredItemId'             => 0,
+		'isEditMode'                 => false,
+		'numberOfItems'              => 3,
+		'order'                      => 'latest',
+		'researchTopic'              => null,
+		'showLoadMore'               => false,
+		'showPublicationDate'        => true,
+		'variationType'              => 'grid',
 	],
 	$args
 );
@@ -25,6 +27,8 @@ $query_args = [
 	'post_type'      => 'ramp_article',
 	'post_status'    => 'publish',
 	'posts_per_page' => $posts_per_page,
+	'tax_query'      => \SSRC\RAMP\Blocks::get_content_mode_tax_query_from_template_args( $r ),
+
 ];
 
 $order_args = [ 'alphabetical', 'latest', 'random' ];
