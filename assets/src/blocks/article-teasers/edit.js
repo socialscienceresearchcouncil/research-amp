@@ -1,14 +1,20 @@
 import { __ } from '@wordpress/i18n';
 
+import { usePrevious } from '@wordpress/compose'
+
 import {
 	Panel,
 	PanelBody,
 	Spinner,
 	SelectControl,
-	ToggleControl
+	ToggleControl,
+	Toolbar,
+	ToolbarButton,
+	ToolbarGroup
 } from '@wordpress/components'
 
 import {
+	BlockControls,
 	InspectorControls,
 	useBlockProps
 } from '@wordpress/block-editor';
@@ -17,10 +23,12 @@ import ServerSideRender from '@wordpress/server-side-render'
 
 import { useSelect } from '@wordpress/data'
 
-import { Fragment } from '@wordpress/element'
-
 import { PostPicker } from '../../components/PostPicker'
 import ResearchTopicSelector from '../../components/ResearchTopicSelector'
+
+import { GridIcon } from '../../icons/Grid'
+import { ListIcon } from '../../icons/List'
+import { FeaturedIcon } from '../../icons/Featured'
 
 /**
  * Editor styles.
@@ -37,9 +45,8 @@ export default function edit( {
 	setAttributes,
 } ) {
 	const {
+		contentMode,
 		featuredItemId,
-		researchTopic,
-		showFeaturedItem,
 		variationType
 	} = attributes
 
@@ -47,7 +54,7 @@ export default function edit( {
 		let classNames = []
 
 		classNames.push( 'featured-item-id-' + featuredItemId )
-		classNames.push( 'research-topic-' + researchTopic )
+		classNames.push( 'content-mode-' + contentMode )
 		classNames.push( 'variation-type-' + variationType )
 
 		return useBlockProps( {
@@ -81,78 +88,70 @@ export default function edit( {
 			)
 		: <div />
 
-	const serverSideAtts = Object.assign( {}, attributes, { isEditMode: true } )
+	const serverSideAtts = Object.assign( {}, attributes, {
+		isEditMode: true,
+		forceRefresh: featuredItemId !== usePrevious( featuredItemId ) // Addresses race condition with useSelect() and ServerSideRender()
+	} )
 
 	return (
-		<Fragment>
+		<>
 			<InspectorControls>
 				<Panel>
 					<PanelBody
 						title={ __( 'Research Topic', 'ramp' ) }
 					>
-						<ResearchTopicSelector
-							label={ __( 'Select the Research Topic whose Article will be shown in this block.', 'ramp' ) }
-							selected={ researchTopic }
-							onChangeCallback={ ( researchTopic ) => setAttributes( { researchTopic } ) }
-						/>
 					</PanelBody>
 				</Panel>
-			</InspectorControls>
 
-			<InspectorControls>
-				<Panel>
-					<PanelBody
-						title={ __( 'Layout', 'ramp' ) }
-					>
-						<SelectControl
-							label={ __( 'Select a layout', 'ramp' ) }
-							options={ [
-								{ label: __( 'Grid', 'ramp' ), value: 'grid' },
-								{ label: __( 'Columns', 'ramp' ), value: 'columns' },
-							] }
-							selected={ variationType }
-							value={ variationType }
-							onChange={ ( variationType ) => setAttributes( { variationType } ) }
-						/>
-					</PanelBody>
-				</Panel>
-			</InspectorControls>
-
-			<InspectorControls>
+				{ 'featured' === variationType && (
 				<Panel>
 					<PanelBody
 						title={ __( 'Featured Article', 'ramp' ) }
 					>
-						<ToggleControl
-							label={ __( 'Show a Featured Article?', 'ramp' ) }
-							checked={ showFeaturedItem }
-							help={ showFeaturedItem ? __( 'A Featured Article will be shown.', 'ramp' ) : __( 'No Featured Article will be shown.', 'ramp' ) }
-							onChange={ ( showFeaturedItem ) => setAttributes( { showFeaturedItem } ) }
+						{ currentlyFeaturedNotice }
+
+						<PostPicker
+							onSelectPost={ ( selectedPost ) => setAttributes( { featuredItemId: selectedPost.id } ) }
+							label={ __( 'Select a Featured Article', 'ramp' ) }
+							placeholder={ __( 'Start typing to search.', 'ramp' ) }
+							postTypes={ [ 'articles' ] }
 						/>
-
-						{ showFeaturedItem && (
-							<Fragment>
-								{ currentlyFeaturedNotice }
-
-								<PostPicker
-									onSelectPost={ ( selectedPost ) => setAttributes( { featuredItemId: selectedPost.id } ) }
-									label={ __( 'Select a Featured Article', 'ramp' ) }
-									placeholder={ __( 'Start typing to search.', 'ramp' ) }
-									postTypes={ [ 'articles' ] }
-								/>
-							</Fragment>
-						) }
 					</PanelBody>
 				</Panel>
+				) }
 			</InspectorControls>
+
+			<BlockControls>
+				<ToolbarGroup>
+					<ToolbarButton
+						icon={ ListIcon }
+						isActive={ 'list' === variationType }
+						label={ __( 'List', 'ramp' ) }
+						onClick={ () => setAttributes( { variationType: 'list' } ) }
+					/>
+					<ToolbarButton
+						icon={ GridIcon }
+						isActive={ 'grid' === variationType }
+						label={ __( 'Grid', 'ramp' ) }
+						onClick={ () => setAttributes( { variationType: 'grid' } ) }
+					/>
+					<ToolbarButton
+						icon={ FeaturedIcon }
+						isActive={ 'featured' === variationType }
+						label={ __( 'Featured', 'ramp' ) }
+						onClick={ () => setAttributes( { variationType: 'featured' } ) }
+					/>
+				</ToolbarGroup>
+			</BlockControls>
 
 			<div { ...blockProps() }>
 				<ServerSideRender
 					attributes={ serverSideAtts }
 					block="ramp/article-teasers"
+					className={"featured-item-id-" + featuredItemId}
 					httpMethod="GET"
 				/>
 			</div>
-		</Fragment>
+		</>
 	)
 }
