@@ -197,6 +197,14 @@ class Blocks {
 			'profile_id'        => 0,
 		];
 
+		$r = array_merge(
+			[
+				'contentModeProfileId'       => 0,
+				'contentModeResearchTopicId' => 0,
+			],
+			$args
+		);
+
 		switch ( $content_mode ) {
 			case 'all' :
 				$retval['research_topic_id'] = 0;
@@ -204,8 +212,8 @@ class Blocks {
 			break;
 
 			case 'advanced' :
-				$retval['research_topic_id'] = (int) $args['contentModeResearchTopicId'];
-				$retval['profile_id']        = (int) $args['contentModeProfileId'];
+				$retval['research_topic_id'] = (int) $r['contentModeResearchTopicId'];
+				$retval['profile_id']        = (int) $r['contentModeProfileId'];
 			break;
 
 			case 'auto' :
