@@ -26,7 +26,7 @@ const ResearchTopicSelector = ( props ) => {
 		}
 	} )
 
-	researchTopicsOptions.unshift( { label: __( 'Select a Research Topic', 'ramp' ), value: '' } )
+	researchTopicsOptions.unshift( { label: __( 'Select a Research Topic', 'ramp' ), value: 0 } )
 
 	return (
 		<SelectControl
