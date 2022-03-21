@@ -830,6 +830,7 @@ class Schema {
 
 	public function add_offset_query_vars( $vars ) {
 		$vars[] = 'profile-pag-offset';
+		$vars[] = 'review-pag-offset';
 		$vars[] = 'topic-pag-offset';
 		return $vars;
 	}

@@ -7,13 +7,15 @@
 
 				var $clicked = $(this);
 
+				var queryArg = $clicked.data('queryArg');
+
 				var href = this.href;
 				$.ajax({
 					url: href,
 					success: function( response ) {
 						var parser = new DOMParser();
 						var doc = parser.parseFromString(response, 'text/html');
-						var newItems = doc.querySelectorAll('.load-more-list li');
+						var newItems = doc.querySelectorAll('.uses-query-arg-' + queryArg + ' .load-more-list li');
 						var newLoadMore = doc.querySelector('.load-more-button a');
 
 						if ( newItems ) {
@@ -22,6 +24,8 @@
 
 						if ( newLoadMore ) {
 							$clicked.attr('href', newLoadMore.href);
+						} else {
+							$clicked.remove();
 						}
 					}
 				});

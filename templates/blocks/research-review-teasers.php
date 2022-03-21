@@ -7,6 +7,7 @@ $r = array_merge(
 		'contentModeProfileId'       => 0,
 		'numberOfItems'              => 3,
 		'order'                      => 'alphabetical',
+		'showLoadMore'               => false,
 		'showPublicationDate'        => true,
 		'variationType'              => 'grid',
 	],
@@ -43,11 +44,19 @@ switch ( $order_arg ) {
 	break;
 }
 
+$offset_query_var = 'review-pag-offset';
+$offset           = (int) $wp_query->get( $offset_query_var );
+
+$post_args['offset'] = $offset;
+
 $research_review_query = new WP_Query( $post_args );
+
+$has_more_pages   = ( $offset + $number_of_items ) <= $research_review_query->found_posts;
 
 $list_classes = [
 	'item-type-list',
 	'item-type-list-research-reviews',
+	'load-more-list',
 	'research-reviews-' . $variation_type,
 ];
 
@@ -56,21 +65,42 @@ if ( 'grid' === $variation_type ) {
 	$list_classes[] = 'item-type-list-3';
 }
 
+$div_classes = [
+	'research-review-teasers',
+	'load-more-container',
+	'uses-query-arg-' . $offset_query_var
+];
+
 ?>
 
-<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
-	<?php foreach ( $research_review_query->posts as $research_review ) : ?>
-		<li>
-			<?php
-			ramp_get_template_part(
-				'teasers/research-review',
-				[
-					'id'                    => $research_review->ID,
-					'show_publication_date' => (bool) $r['showPublicationDate'],
-					'show_research_topics'  => ! $content_mode_settings['research_topic_id'],
-				]
-			);
-			?>
-		</li>
-	<?php endforeach; ?>
-</ul>
+<div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
+	<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
+		<?php foreach ( $research_review_query->posts as $research_review ) : ?>
+			<li>
+				<?php
+				ramp_get_template_part(
+					'teasers/research-review',
+					[
+						'id'                    => $research_review->ID,
+						'show_publication_date' => (bool) $r['showPublicationDate'],
+						'show_research_topics'  => ! $content_mode_settings['research_topic_id'],
+					]
+				);
+				?>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+
+	<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
+		<?php
+		ramp_get_template_part(
+			'load-more-button',
+			[
+				'offset'          => $offset,
+				'query_var'       => $offset_query_var,
+				'number_of_items' => $number_of_items,
+			]
+		);
+		?>
+	<?php endif; ?>
+</div>

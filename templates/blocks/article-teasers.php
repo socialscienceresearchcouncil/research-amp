@@ -9,7 +9,6 @@ $r = array_merge(
 		'isEditMode'                 => false,
 		'numberOfItems'              => 3,
 		'order'                      => 'latest',
-		'researchTopic'              => null,
 		'showLoadMore'               => false,
 		'showPublicationDate'        => true,
 		'variationType'              => 'grid',
@@ -54,8 +53,6 @@ if ( 'featured' === $variation_type ) {
 
 	$query_args['posts_per_page'] = 3;
 	$query_args['post__not_in']   = [ $featured_item_id ];
-
-	$featured_item = get_post( $featured_item );
 } else {
 	$query_args['posts_per_page'] = (int) $r['numberOfItems'];
 }

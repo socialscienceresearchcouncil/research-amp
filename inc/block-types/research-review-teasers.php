@@ -3,40 +3,40 @@
 return [
 	'api_version'     => 1,
 	'attributes'      => [
-		'contentMode'         => [
+		'contentMode'                => [
 			'type'    => 'string',
 			'enum'    => [ 'auto', 'all', 'advanced' ],
 			'default' => 'auto',
 		],
-		'contentModeProfileId'           => [
+		'contentModeProfileId'       => [
 			'type'    => 'integer',
 			'default' => 0,
 		],
-		'contentModeResearchTopicId'     => [
+		'contentModeResearchTopicId' => [
 			'type'    => 'integer',
 			'default' => 0,
 		],
-		'isEditMode'          => [
+		'isEditMode'                 => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'numberOfItems'       => [
+		'numberOfItems'              => [
 			'type'    => 'string',
 			'default' => '3',
 		],
-		'order'               => [
+		'order'                      => [
 			'type'    => 'string',
 			'default' => 'alphabetical',
 		],
-		'showLoadMore'        => [
+		'showLoadMore'               => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'showPublicationDate' => [
+		'showPublicationDate'        => [
 			'type'    => 'boolean',
 			'default' => true,
 		],
-		'variationType'       => [
+		'variationType'              => [
 			'type'    => 'string', /* WP throws PHP notice if this is not set */
 			'enum'    => [ 'grid', 'list' ],
 			'default' => 'grid',
