@@ -3,13 +3,26 @@
 return [
 	'api_version'     => 2,
 	'attributes'      => [
+		'contentMode'         => [
+			'type'    => 'string',
+			'enum'    => [ 'auto', 'all', 'advanced' ],
+			'default' => 'auto',
+		],
 		'featuredItemId'   => [
-			'type'    => 'number',
+			'type'    => 'integer',
 			'default' => 0,
 		],
 		'isEditMode'       => [
 			'type'    => 'boolean',
 			'default' => false,
+		],
+		'numberOfItems'       => [
+			'type'    => 'string',
+			'default' => '3',
+		],
+		'order'               => [
+			'type'    => 'string',
+			'default' => 'alphabetical',
 		],
 		'researchTopic'    => [
 			'type'    => 'string',
@@ -21,7 +34,7 @@ return [
 		],
 		'variationType'    => [
 			'type'    => 'string',
-			'enum'    => [ 'grid', 'columns' ],
+			'enum'    => [ 'grid', 'home' ],
 			'default' => 'grid',
 		],
 	],
