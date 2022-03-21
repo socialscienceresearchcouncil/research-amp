@@ -43,6 +43,10 @@
 	height: 0;
 }
 
+.teaser-byline {
+	margin-top: 16px;
+}
+
 /** Buttons, tags, etc */
 .ramp-header-tag {
 	font-size: .9em;
@@ -156,6 +160,7 @@ a.tag-plain:hover {
 	width: 100%;
 }
 
+.profile-selector-clear-selected,
 .sortable-multi-select-item-remove {
 	background: transparent;
 	border: 1px solid transparent;
@@ -167,6 +172,7 @@ a.tag-plain:hover {
 	width: 28px;
 }
 
+.profile-selector-clear-selected:after,
 .sortable-multi-select-item-remove:after {
 	content: "\00D7";
 	font-size: 20px;
@@ -176,9 +182,15 @@ a.tag-plain:hover {
 	width: 100%;
 }
 
+.profile-selector-clear-selected:hover,
 .sortable-multi-select-item-remove:hover {
 	border-color: #ccc;
 	color: rgba( 256, 0, 0, .7 );
+}
+
+.profile-selector-selected {
+	align-items: center;
+	display: flex;
 }
 
 .load-more-button {
