@@ -68,9 +68,15 @@ if ( 'grid' === $variation_type ) {
 	$list_classes[] = 'item-type-list-flex';
 }
 
+$div_classes = [
+	'research-topic-teasers',
+	'load-more-container',
+	'uses-query-arg-' . $offset_query_var
+];
+
 ?>
 
-<div class="research-topic-teasers load-more-container">
+<div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
 	<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
 		<?php foreach ( $research_topic_query->posts as $research_topic ) : ?>
 			<li>
