@@ -30,7 +30,7 @@
 }
 
 .item-type-list-3 > li {
-	flex: 0 1 30%;
+	flex: 1 0 30%;
 }
 
 .item-type-list-wrap {
