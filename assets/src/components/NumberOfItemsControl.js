@@ -4,12 +4,14 @@ import { __experimentalNumberControl as NumberControl } from '@wordpress/compone
 
 const NumberOfItemsControl = ( props ) => {
 	const {
+		disabled,
 		onChangeCallback,
 		numberOfItems
 	} = props
 
 	return (
 		<NumberControl
+			disabled={ disabled }
 			label={ __( 'Number of items to show', 'ramp' ) }
 			value={ numberOfItems }
 			min={ 1 }

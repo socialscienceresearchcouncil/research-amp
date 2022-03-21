@@ -4,35 +4,20 @@ $r = array_merge(
 	[
 		'contentMode'      => 'auto',
 		'featuredItemId'   => 0,
+		'isEditMode'       => false,
 		'numberOfItems'    => 3,
+		'order'            => 'latest',
 		'researchTopic'    => null,
-		'showFeaturedItem' => false,
 		'showLoadMore'     => false,
 		'variationType'    => 'grid',
 	],
 	$args
 );
 
-$research_topic_id = \SSRC\RAMP\Blocks::get_research_topic_from_template_args( $r );
-
-$show_featured_item = (bool) $r['showFeaturedItem'];
-$featured_item_id   = (int) $r['featuredItemId'];
-
-if ( in_array( $r['variationType'], [ 'grid', 'home' ], true ) ) {
+if ( in_array( $r['variationType'], [ 'grid', 'list', 'featured' ], true ) ) {
 	$variation_type = $r['variationType'];
 } else {
 	$variation_type = 'grid';
-}
-
-switch ( $variation_type ) {
-	case 'home' :
-		$posts_per_page = $show_featured_item && $featured_item_id ? 3 : 4;
-	break;
-
-	case 'grid' :
-	default :
-		$posts_per_page = 3;
-	break;
 }
 
 $query_args = [
@@ -41,24 +26,36 @@ $query_args = [
 	'posts_per_page' => $posts_per_page,
 ];
 
-if ( $research_topic_id ) {
-	$rt_map     = ramp_app()->get_cpttax_map( 'research_topic' );
-	$rt_term_id = $rt_map->get_term_id_for_post_id( $research_topic_id );
+$order_args = [ 'alphabetical', 'latest', 'random' ];
+$order_arg  = in_array( $r['order'], $order_args, true ) ? $r['order'] : 'alphabetical';
 
-	$query_args['tax_query'] = [
-		[
-			'taxonomy' => 'ramp_assoc_topic',
-			'terms'    => $rt_term_id,
-			'field'    => 'term_id',
-		],
-	];
+switch ( $order_arg ) {
+	case 'alphabetical' :
+		$query_args['orderby'] = [ 'title' => 'ASC' ];
+	break;
+
+	case 'latest' :
+		$query_args['orderby'] = [ 'date' => 'DESC' ];
+	break;
+
+	case 'random' :
+	default :
+		$query_args['orderby'] = 'rand';
+	break;
 }
 
-if ( $show_featured_item && $featured_item_id ) {
-	$query_args['post__not_in'] = [ $featured_item_id ];
+if ( 'featured' === $variation_type ) {
+	$featured_item_id = (int) $r['featuredItemId'];
+
+	$query_args['posts_per_page'] = 3;
+	$query_args['post__not_in']   = [ $featured_item_id ];
+
+	$featured_item = get_post( $featured_item );
+} else {
+	$query_args['posts_per_page'] = (int) $r['numberOfItems'];
 }
 
-$articles = get_posts( $query_args );
+$articles_query = new WP_Query( $query_args );
 
 $teasers_classes = [
 	'article-teasers',
@@ -71,35 +68,36 @@ $list_classes = [
 	'item-type-list-articles',
 ];
 
-if ( 'columns' === $variation_type ) {
-	if ( $show_featured_item && $featured_item_id ) {
-		$first_item = get_post( $featured_item_id );
-	} else {
-		$first_item = array_shift( $articles );
-	}
-
+if ( 'featured' === $variation_type ) {
 	$list_classes[] = 'non-featured-article-teasers';
 }
 
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $teasers_classes ) ); ?>">
-	<?php if ( 'home' === $variation_type ) : ?>
+	<?php if ( 'featured' === $variation_type ) : ?>
 		<div class="featured-article-teaser">
 			<?php
-			ramp_get_template_part(
-				'teasers/article',
-				[
-					'id'          => $first_item->ID,
-					'is_featured' => true,
-				]
-			);
+			if ( $featured_item_id ) {
+				ramp_get_template_part(
+					'teasers/article',
+					[
+						'id'          => $featured_item_id,
+						'is_featured' => true,
+					]
+				);
+			} elseif ( $r['isEditMode'] ) {
+				printf(
+					'<p class="featured-article-notice">%s</p>',
+					esc_html__( 'Use the "Featured Article" setting in the right-hand panel to select the item that will appear in this space.', 'ramp' )
+				);
+			}
 			?>
 		</div>
 	<?php endif; ?>
 
 	<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
-		<?php foreach ( $articles as $article ) : ?>
+		<?php foreach ( $articles_query->posts as $article ) : ?>
 			<li>
 				<?php ramp_get_template_part( 'teasers/article', [ 'id' => $article->ID ] ); ?>
 			</li>

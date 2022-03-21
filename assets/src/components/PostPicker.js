@@ -171,12 +171,6 @@ function SearchItem( props ) {
                     }
 				</span>
 			</span>
-			{ suggestion.type && (
-				<span className="block-editor-link-control__search-item-type">
-					{ /* Rename 'post_tag' to 'tag'. Ideally, the API would return the localised CPT or taxonomy label. */ }
-					{ suggestion.type === 'post_tag' ? 'tag' : suggestion.type }
-				</span>
-			) }
 		</Button>
 	);
 }

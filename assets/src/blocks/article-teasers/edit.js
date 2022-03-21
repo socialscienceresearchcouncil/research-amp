@@ -5,6 +5,7 @@ import { usePrevious } from '@wordpress/compose'
 import {
 	Panel,
 	PanelBody,
+	PanelRow,
 	Spinner,
 	SelectControl,
 	ToggleControl,
@@ -24,7 +25,10 @@ import ServerSideRender from '@wordpress/server-side-render'
 import { useSelect } from '@wordpress/data'
 
 import { PostPicker } from '../../components/PostPicker'
-import ResearchTopicSelector from '../../components/ResearchTopicSelector'
+import ContentModeControl from '../../components/ContentModeControl'
+import PublicationDateToggle from '../../components/PublicationDateToggle'
+import LoadMoreToggle from '../../components/LoadMoreToggle'
+import NumberOfItemsControl from '../../components/NumberOfItemsControl'
 
 import { GridIcon } from '../../icons/Grid'
 import { ListIcon } from '../../icons/List'
@@ -46,7 +50,13 @@ export default function edit( {
 } ) {
 	const {
 		contentMode,
+		contentModeProfileId,
+		contentModeResearchTopicId,
 		featuredItemId,
+		numberOfItems,
+		order,
+		showLoadMore,
+		showPublicationDate,
 		variationType
 	} = attributes
 
@@ -98,8 +108,47 @@ export default function edit( {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Research Topic', 'ramp' ) }
+						title={ __( 'Content Settings', 'ramp' ) }
 					>
+						<ContentModeControl
+							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
+							changeProfileIdCallback={ ( profileObj ) => setAttributes( { contentModeProfileId: profileObj.id } ) }
+							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
+							legend={ __( 'Determine which Research Reviews will be shown in this block.', 'ramp' ) }
+							selectedMode={ contentMode }
+							selectedProfileId={ contentModeProfileId }
+							selectedResearchTopicId={ contentModeResearchTopicId }
+						/>
+
+						<PanelRow>
+							<SelectControl
+								label={ __( 'Order', 'ramp' ) }
+								options={ [
+									{ label: __( 'Alphabetical', 'ramp' ), value: 'alphabetical' },
+									{ label: __( 'Recently Added', 'ramp' ), value: 'latest' },
+									{ label: __( 'Random', 'ramp' ), value: 'random' }
+								] }
+								value={ order }
+								onChange={ ( order ) => setAttributes( { order } ) }
+							/>
+						</PanelRow>
+
+						<PanelRow>
+							<NumberOfItemsControl
+								disabled={ 'featured' === variationType }
+								numberOfItems={ numberOfItems }
+								onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+							/>
+						</PanelRow>
+
+						<PanelRow>
+							<LoadMoreToggle
+								disabled={ 'featured' === variationType }
+								numberOfItems={ numberOfItems }
+								showLoadMore={ 'featured' === variationType ? false : showLoadMore }
+								onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+							/>
+						</PanelRow>
 					</PanelBody>
 				</Panel>
 

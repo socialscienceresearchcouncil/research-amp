@@ -3,38 +3,54 @@
 return [
 	'api_version'     => 2,
 	'attributes'      => [
-		'contentMode'         => [
+		'contentMode'                => [
 			'type'    => 'string',
 			'enum'    => [ 'auto', 'all', 'advanced' ],
 			'default' => 'auto',
 		],
-		'featuredItemId'   => [
+		'contentModeProfileId'       => [
 			'type'    => 'integer',
 			'default' => 0,
 		],
-		'isEditMode'       => [
+		'contentModeResearchTopicId' => [
+			'type'    => 'integer',
+			'default' => 0,
+		],
+		'featuredItemId'             => [
+			'type'    => 'integer',
+			'default' => 0,
+		],
+		'isEditMode'                 => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'numberOfItems'       => [
-			'type'    => 'string',
-			'default' => '3',
+		'numberOfItems'              => [
+			'type'    => 'integer',
+			'default' => 3,
 		],
-		'order'               => [
+		'order'                      => [
 			'type'    => 'string',
 			'default' => 'alphabetical',
 		],
-		'researchTopic'    => [
+		'researchTopic'              => [
 			'type'    => 'string',
 			'default' => 'auto',
 		],
-		'showFeaturedItem' => [
+		'showLoadMore'               => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'variationType'    => [
+		'showFeaturedItem'           => [
+			'type'    => 'boolean',
+			'default' => false,
+		],
+		'showPublicationDate'        => [
+			'type'    => 'boolean',
+			'default' => true,
+		],
+		'variationType'              => [
 			'type'    => 'string',
-			'enum'    => [ 'grid', 'home' ],
+			'enum'    => [ 'grid', 'list', 'featured' ],
 			'default' => 'grid',
 		],
 	],

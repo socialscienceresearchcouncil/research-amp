@@ -18,7 +18,7 @@ function ramp_locate_template( $template ) {
 	return $located;
 }
 
-function ramp_get_template_part( $template, $args ) {
+function ramp_get_template_part( $template, $args = [] ) {
 	$template_name = $template . '.php';
 	$located       = ramp_locate_template( $template_name );
 

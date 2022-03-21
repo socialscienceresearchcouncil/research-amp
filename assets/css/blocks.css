@@ -54,6 +54,11 @@
 	text-transform: uppercase;
 }
 
+.ramp-tag {
+	display: inline-block;
+	width: fit-content;
+}
+
 .tag-plain,
 .editor-styles-wrapper a.tag-plain { /* specificity required in editor */
 	color: var(--wp--preset--color--ramp-green);
@@ -77,6 +82,12 @@
 
 a.tag-plain:hover {
 	text-decoration: underline;
+}
+
+.tag-bubble.featured-tag {
+	background: var(--wp--preset--color--ramp-green);
+	font-size: var(--wp--preset--font-size--small-text);
+	text-transform: uppercase;
 }
 
 .research-topic-tags a {

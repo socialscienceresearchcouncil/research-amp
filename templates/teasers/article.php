@@ -34,6 +34,10 @@ if ( $is_featured ) {
 ?>
 
 <article class="<?php echo esc_attr( implode( ' ', $article_classes ) ); ?>">
+	<?php if ( $is_featured ) : ?>
+		<?php ramp_get_template_part( 'featured-tag' ); ?>
+	<?php endif; ?>
+
 	<?php if ( $img_src ) : ?>
 		<div class="teaser-thumb article-teaser-thumb">
 			<a href="<?php echo esc_attr( get_permalink( $article ) ); ?>">
