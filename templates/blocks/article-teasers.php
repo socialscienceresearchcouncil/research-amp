@@ -1,14 +1,31 @@
 <?php
 
-$research_topic_id = \SSRC\RAMP\Blocks::get_research_topic_from_template_args( $args );
+$r = array_merge(
+	[
+		'contentMode'      => 'auto',
+		'featuredItemId'   => 0,
+		'numberOfItems'    => 3,
+		'researchTopic'    => null,
+		'showFeaturedItem' => false,
+		'showLoadMore'     => false,
+		'variationType'    => 'grid',
+	],
+	$args
+);
 
-$show_featured_item = ! empty( $args['showFeaturedItem'] );
-$featured_item_id   = ! empty( $args['featuredItemId'] ) ? (int) $args['featuredItemId'] : null;
+$research_topic_id = \SSRC\RAMP\Blocks::get_research_topic_from_template_args( $r );
 
-$variation_type = isset( $args['variationType'] ) && in_array( $args['variationType'], [ 'grid', 'columns' ], true ) ? $args['variationType'] : 'grid';
+$show_featured_item = (bool) $r['showFeaturedItem'];
+$featured_item_id   = (int) $r['featuredItemId'];
+
+if ( in_array( $r['variationType'], [ 'grid', 'home' ], true ) ) {
+	$variation_type = $r['variationType'];
+} else {
+	$variation_type = 'grid';
+}
 
 switch ( $variation_type ) {
-	case 'columns' :
+	case 'home' :
 		$posts_per_page = $show_featured_item && $featured_item_id ? 3 : 4;
 	break;
 
@@ -67,7 +84,7 @@ if ( 'columns' === $variation_type ) {
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $teasers_classes ) ); ?>">
-	<?php if ( 'columns' === $variation_type ) : ?>
+	<?php if ( 'home' === $variation_type ) : ?>
 		<div class="featured-article-teaser">
 			<?php
 			ramp_get_template_part(
