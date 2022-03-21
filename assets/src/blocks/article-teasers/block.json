@@ -8,6 +8,10 @@
 		"anchor": true
 	},
 	"attributes": {
+		"contentMode": {
+			"enum": [ "auto", "all", "advanced" ],
+			"default": "auto"
+		},
 		"featuredItemId": {
 			"type": "number",
 			"default": 0
@@ -15,6 +19,14 @@
 		"isEditMode": {
 			"type": "boolean",
 			"default": false
+		},
+		"numberOfItems": {
+			"type": "string",
+			"default": "3"
+		},
+		"order": {
+			"enum": [ "alphabetical", "latest", "random" ],
+			"default": "alphabetical"
 		},
 		"researchTopic": {
 			"type": "string",
@@ -24,8 +36,16 @@
 			"type": "boolean",
 			"default": "false"
 		},
+		"showLoadMore": {
+			"type": "boolean",
+			"default": false
+		},
+		"showPublicationDate": {
+			"type": "boolean",
+			"default": true
+		},
 		"variationType": {
-			"enum": [ "grid", "columns" ],
+			"enum": [ "grid", "home" ],
 			"default": "grid"
 		}
 	}

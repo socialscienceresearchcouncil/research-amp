@@ -1,5 +1,7 @@
 import { __ } from '@wordpress/i18n'
 
+import { PanelRow } from '@wordpress/components'
+
 import { useSelect } from '@wordpress/data'
 
 import './content-mode-panel.scss'
@@ -50,61 +52,65 @@ const ContentModeControl = ( props ) => {
 
 	return (
 		<>
-			<fieldset
-				key="content-mode-selector"
-				className="content-mode-selector"
-			>
-				<legend>{ legend }</legend>
-				{ contentModeOpts.map( ( { value, label, gloss } ) => (
-					<div
-						key={ value }
-						className="content-mode-selector__choice"
-					>
-						<input
-							type="radio"
-							name="content-mode"
-							value={ value }
-							id={ `content-mode-${ value }` }
-							aria-describedby={ `content-mode-${ value }-description` }
-							onChange={ changeCallbacks[ value ] }
-							checked={ value === selectedMode }
-						/>
-
-						<label
-							htmlFor={ `content-mode-${ value }` }
+			<PanelRow>
+				<fieldset
+					key="content-mode-selector"
+					className="content-mode-selector"
+				>
+					<legend>{ legend }</legend>
+					{ contentModeOpts.map( ( { value, label, gloss } ) => (
+						<div
+							key={ value }
+							className="content-mode-selector__choice"
 						>
-							{ label }
-						</label>
+							<input
+								type="radio"
+								name="content-mode"
+								value={ value }
+								id={ `content-mode-${ value }` }
+								aria-describedby={ `content-mode-${ value }-description` }
+								onChange={ changeCallbacks[ value ] }
+								checked={ value === selectedMode }
+							/>
 
-						<p
-							id={ `content-mode-${ value }-description` }
-							className="content-mode-description"
-						>
-							{ gloss }
-						</p>
-					</div>
-				) ) }
-			</fieldset>
+							<label
+								htmlFor={ `content-mode-${ value }` }
+							>
+								{ label }
+							</label>
+
+							<p
+								id={ `content-mode-${ value }-description` }
+								className="content-mode-description"
+							>
+								{ gloss }
+							</p>
+						</div>
+					) ) }
+				</fieldset>
+			</PanelRow>
 
 			{ 'advanced' === selectedMode && (
-				<fieldset
-					className="content-mode-selector-advanced-options"
-					key="content-mode-selector-advanced-options"
-				>
-					<legend>{ __( 'Limit displayed items to those associated with a specific Research Topic or Profile.', 'ramp' ) }</legend>
+				<PanelRow>
+					<fieldset
+						className="content-mode-selector-advanced-options"
+						key="content-mode-selector-advanced-options"
+					>
+						<legend>{ __( 'Limit displayed items to those associated with a specific Research Topic or Profile.', 'ramp' ) }</legend>
 
-					<ResearchTopicSelector
-						label={ __( 'Research Topic', 'ramp' ) }
-						selected={ selectedResearchTopicId }
-						onChangeCallback={ changeResearchTopicIdCallback }
-					/>
+						<ResearchTopicSelector
+							label={ __( 'Research Topic', 'ramp' ) }
+							selected={ selectedResearchTopicId }
+							onChangeCallback={ changeResearchTopicIdCallback }
+						/>
 
-					<ProfileSelector
-						onChangeCallback={ changeProfileIdCallback }
-						selectedProfileId={ selectedProfileId }
-					/>
+						<ProfileSelector
+							onChangeCallback={ changeProfileIdCallback }
+							selectedProfileId={ selectedProfileId }
+						/>
 
-				</fieldset>
+					</fieldset>
+				</PanelRow>
 			) }
 		</>
 	)

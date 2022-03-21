@@ -80,6 +80,19 @@ export default function edit( {
 							selectedProfileId={ contentModeProfileId }
 							selectedResearchTopicId={ contentModeResearchTopicId }
 						/>
+
+						<PanelRow>
+							<SelectControl
+								label={ __( 'Order', 'ramp' ) }
+								options={ [
+									{ label: __( 'Alphabetical', 'ramp' ), value: 'alphabetical' },
+									{ label: __( 'Recently Added', 'ramp' ), value: 'latest' },
+									{ label: __( 'Random', 'ramp' ), value: 'random' }
+								] }
+								value={ order }
+								onChange={ ( order ) => setAttributes( { order } ) }
+							/>
+						</PanelRow>
 					</PanelBody>
 				</Panel>
 
@@ -94,7 +107,7 @@ export default function edit( {
 									{ label: __( 'Grid', 'ramp' ), value: 'grid' },
 									{ label: __( 'List', 'ramp' ), value: 'list' },
 								] }
-								selected={ variationType }
+								value={ variationType }
 								onChange={ ( variationType ) => setAttributes( { variationType } ) }
 							/>
 						</PanelRow>
@@ -105,23 +118,6 @@ export default function edit( {
 								showPublicationDate={ showPublicationDate }
 							/>
 						</PanelRow>
-					</PanelBody>
-				</Panel>
-
-				<Panel>
-					<PanelBody
-						title={ __( 'Order', 'ramp' ) }
-					>
-						<SelectControl
-							label={ __( 'Select the order of Research Reviews', 'ramp' ) }
-							options={ [
-								{ label: __( 'Alphabetical', 'ramp' ), value: 'alphabetical' },
-								{ label: __( 'Recently Added', 'ramp' ), value: 'latest' },
-								{ label: __( 'Random', 'ramp' ), value: 'random' }
-							] }
-							selected={ order }
-							onChange={ ( order ) => setAttributes( { order } ) }
-						/>
 					</PanelBody>
 				</Panel>
 			</InspectorControls>
