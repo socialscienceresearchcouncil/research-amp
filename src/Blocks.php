@@ -226,6 +226,38 @@ class Blocks {
 		return $retval;
 	}
 
+	public static function get_content_mode_tax_query_from_template_args( $args ) {
+		$content_mode_settings = self::get_content_mode_settings_from_template_args( $args );
+
+		$tax_query = [];
+		switch ( $content_mode_settings['mode'] ) {
+			case 'auto' :
+			case 'advanced' :
+				if ( ! empty( $content_mode_settings['research_topic_id'] ) ) {
+					$rt_map = ramp_app()->get_cpttax_map( 'research_topic' );
+
+					$tax_query[] = [
+						'taxonomy' => 'ramp_assoc_topic',
+						'terms'    => [ $rt_map->get_term_id_for_post_id( $content_mode_settings['research_topic_id'] ) ],
+						'field'    => 'term_id',
+					];
+				}
+
+				if ( ! empty( $content_mode_settings['profile_id'] ) ) {
+					$p_map = ramp_app()->get_cpttax_map( 'profile' );
+
+					$tax_query[] = [
+						'taxonomy' => 'ramp_assoc_profile',
+						'terms'    => [ $p_map->get_term_id_for_post_id( $content_mode_settings['profile_id'] ) ],
+						'field'    => 'term_id',
+					];
+				}
+			break;
+		}
+
+		return $tax_query;
+	}
+
 	/**
 	 * Get the research topic ID from the args passed to the template.
 	 *
