@@ -2,14 +2,15 @@
 
 $r = array_merge(
 	[
-		'contentMode'      => 'auto',
-		'featuredItemId'   => 0,
-		'isEditMode'       => false,
-		'numberOfItems'    => 3,
-		'order'            => 'latest',
-		'researchTopic'    => null,
-		'showLoadMore'     => false,
-		'variationType'    => 'grid',
+		'contentMode'         => 'auto',
+		'featuredItemId'      => 0,
+		'isEditMode'          => false,
+		'numberOfItems'       => 3,
+		'order'               => 'latest',
+		'researchTopic'       => null,
+		'showLoadMore'        => false,
+		'showPublicationDate' => true,
+		'variationType'       => 'grid',
 	],
 	$args
 );
@@ -82,8 +83,9 @@ if ( 'featured' === $variation_type ) {
 				ramp_get_template_part(
 					'teasers/article',
 					[
-						'id'          => $featured_item_id,
-						'is_featured' => true,
+						'id'                    => $featured_item_id,
+						'is_featured'           => true,
+						'show_publication_date' => (bool) $r['showPublicationDate'],
 					]
 				);
 			} elseif ( $r['isEditMode'] ) {
@@ -99,7 +101,15 @@ if ( 'featured' === $variation_type ) {
 	<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
 		<?php foreach ( $articles_query->posts as $article ) : ?>
 			<li>
-				<?php ramp_get_template_part( 'teasers/article', [ 'id' => $article->ID ] ); ?>
+				<?php
+				ramp_get_template_part(
+					'teasers/article',
+					[
+						'id'                    => $article->ID,
+						'show_publication_date' => (bool) $r['showPublicationDate'],
+					]
+				);
+				?>
 			</li>
 		<?php endforeach; ?>
 	</ul>

@@ -168,6 +168,19 @@ export default function edit( {
 					</PanelBody>
 				</Panel>
 				) }
+
+				<Panel>
+					<PanelBody
+						title={ __( 'Display Options', 'ramp' ) }
+					>
+						<PanelRow>
+							<PublicationDateToggle
+								onChangeCallback={ ( showPublicationDate ) => setAttributes( { showPublicationDate } ) }
+								showPublicationDate={ showPublicationDate }
+							/>
+						</PanelRow>
+					</PanelBody>
+				</Panel>
 			</InspectorControls>
 
 			<BlockControls>

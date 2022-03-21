@@ -22,8 +22,6 @@ $order_arg  = in_array( $r['order'], $order_args, true ) ? $r['order'] : 'alphab
 
 $variation_type = 'list' === $r['variationType'] ? 'list' : 'grid';
 
-$show_publication_date = (bool) $r['showPublicationDate'];
-
 $post_args = [
 	'post_type'      => 'ramp_review',
 	'posts_per_page' => $number_of_items,
@@ -93,7 +91,7 @@ if ( 'grid' === $variation_type ) {
 				'teasers/research-review',
 				[
 					'id'                    => $research_review->ID,
-					'show_publication_date' => $show_publication_date,
+					'show_publication_date' => (bool) $r['showPublicationDate'],
 					'show_research_topics'  => ! $content_mode_settings['research_topic_id'],
 				]
 			);
