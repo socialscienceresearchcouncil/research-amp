@@ -25,6 +25,8 @@ import { useSelect } from '@wordpress/data'
 
 import ContentModeControl from '../../components/ContentModeControl'
 import PublicationDateToggle from '../../components/PublicationDateToggle'
+import LoadMoreToggle from '../../components/LoadMoreToggle'
+import NumberOfItemsControl from '../../components/NumberOfItemsControl'
 
 import { GridIcon } from '../../icons/Grid'
 import { ListIcon } from '../../icons/List'
@@ -98,6 +100,20 @@ export default function edit( {
 								] }
 								value={ order }
 								onChange={ ( order ) => setAttributes( { order } ) }
+							/>
+						</PanelRow>
+
+						<PanelRow>
+							<NumberOfItemsControl
+								numberOfItems={ numberOfItems }
+								onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+							/>
+						</PanelRow>
+
+						<PanelRow>
+							<LoadMoreToggle
+								showLoadMore={ showLoadMore }
+								onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
 							/>
 						</PanelRow>
 					</PanelBody>
