@@ -48,6 +48,11 @@
 }
 
 /** Buttons, tags, etc */
+.editor-styles-wrapper a.wp-block-button__link {
+	color: var(--wp--preset--color--white);
+	text-decoration: none;
+}
+
 .ramp-header-tag {
 	font-size: .9em;
 	font-weight: 700;

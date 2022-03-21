@@ -17,7 +17,6 @@
 						var doc = parser.parseFromString(response, 'text/html');
 						var newItems = doc.querySelectorAll('.uses-query-arg-' + queryArg + ' .load-more-list li');
 						var newLoadMore = doc.querySelector('.uses-query-arg-' + queryArg + '.load-more-button a');
-						console.log(newLoadMore);
 
 						if ( newItems ) {
 							$clicked.closest('.load-more-container').find('.load-more-list').append(newItems);
