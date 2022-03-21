@@ -19,7 +19,7 @@ import ServerSideRender from '@wordpress/server-side-render'
 
 import { useSelect } from '@wordpress/data'
 
-import ContentModePanel from '../../components/ContentModePanel'
+import ContentModeControl from '../../components/ContentModeControl'
 import PublicationDateToggle from '../../components/PublicationDateToggle'
 
 /**
@@ -67,15 +67,21 @@ export default function edit( {
 	return (
 		<Fragment>
 			<InspectorControls>
-				<ContentModePanel
-					changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
-					changeProfileIdCallback={ ( profileObj ) => setAttributes( { contentModeProfileId: profileObj.id } ) }
-					changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
-					legend={ __( 'Determine which Research Reviews will be shown in this block.', 'ramp' ) }
-					selectedMode={ contentMode }
-					selectedProfileId={ contentModeProfileId }
-					selectedResearchTopicId={ contentModeResearchTopicId }
-				/>
+				<Panel>
+					<PanelBody
+						title={ __( 'Content Settings', 'ramp' ) }
+					>
+						<ContentModeControl
+							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
+							changeProfileIdCallback={ ( profileObj ) => setAttributes( { contentModeProfileId: profileObj.id } ) }
+							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
+							legend={ __( 'Determine which Research Reviews will be shown in this block.', 'ramp' ) }
+							selectedMode={ contentMode }
+							selectedProfileId={ contentModeProfileId }
+							selectedResearchTopicId={ contentModeResearchTopicId }
+						/>
+					</PanelBody>
+				</Panel>
 
 				<Panel>
 					<PanelBody
@@ -83,7 +89,7 @@ export default function edit( {
 					>
 						<PanelRow>
 							<SelectControl
-								label={ __( 'Select the display format', 'ramp' ) }
+								label={ __( 'Layout', 'ramp' ) }
 								options={ [
 									{ label: __( 'Grid', 'ramp' ), value: 'grid' },
 									{ label: __( 'List', 'ramp' ), value: 'list' },
