@@ -196,3 +196,11 @@ a.tag-plain:hover {
 .load-more-button {
 	margin-top: 72px;
 }
+
+.ramp-icon path {
+	fill: #222;
+}
+
+.is-pressed .ramp-icon path {
+	fill: #fff;
+}

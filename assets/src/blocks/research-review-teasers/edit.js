@@ -5,10 +5,14 @@ import {
 	PanelBody,
 	PanelRow,
 	SelectControl,
-	Spinner
+	Spinner,
+	Toolbar,
+	ToolbarButton,
+	ToolbarGroup
 } from '@wordpress/components'
 
 import {
+	BlockControls,
 	InspectorControls,
 	useBlockProps
 } from '@wordpress/block-editor';
@@ -21,6 +25,9 @@ import { useSelect } from '@wordpress/data'
 
 import ContentModeControl from '../../components/ContentModeControl'
 import PublicationDateToggle from '../../components/PublicationDateToggle'
+
+import { GridIcon } from '../../icons/Grid'
+import { ListIcon } from '../../icons/List'
 
 /**
  * Editor styles.
@@ -101,18 +108,6 @@ export default function edit( {
 						title={ __( 'Display Options', 'ramp' ) }
 					>
 						<PanelRow>
-							<SelectControl
-								label={ __( 'Layout', 'ramp' ) }
-								options={ [
-									{ label: __( 'Grid', 'ramp' ), value: 'grid' },
-									{ label: __( 'List', 'ramp' ), value: 'list' },
-								] }
-								value={ variationType }
-								onChange={ ( variationType ) => setAttributes( { variationType } ) }
-							/>
-						</PanelRow>
-
-						<PanelRow>
 							<PublicationDateToggle
 								onChangeCallback={ ( showPublicationDate ) => setAttributes( { showPublicationDate } ) }
 								showPublicationDate={ showPublicationDate }
@@ -121,6 +116,23 @@ export default function edit( {
 					</PanelBody>
 				</Panel>
 			</InspectorControls>
+
+			<BlockControls>
+				<ToolbarGroup>
+					<ToolbarButton
+						icon={ ListIcon }
+						isActive={ 'list' === variationType }
+						label={ __( 'List', 'ramp' ) }
+						onClick={ () => setAttributes( { variationType: 'list' } ) }
+					/>
+					<ToolbarButton
+						icon={ GridIcon }
+						isActive={ 'grid' === variationType }
+						label={ __( 'Grid', 'ramp' ) }
+						onClick={ () => setAttributes( { variationType: 'grid' } ) }
+					/>
+				</ToolbarGroup>
+			</BlockControls>
 
 			<div { ...blockProps() }>
 				<ServerSideRender
