@@ -44,6 +44,7 @@ const ProfileSelector = ( props ) => {
 				controlShouldRenderValue={ true }
 				isClearable={ true }
 				isDisabled={ disabled }
+				menuPortalTarget={document.querySelector('body')}
 				onChange={ handleChange }
 				options={ profilesOptions }
 				placeholder={ __( 'Select a Profile', 'ramp' ) }

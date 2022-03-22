@@ -45,6 +45,7 @@ const ResearchTopicSelector = ( props ) => {
 				isDisabled={ disabled }
 				isClearable={ true }
 				label={ label }
+				menuPortalTarget={document.querySelector('body')}
 				options={ researchTopicsOptions }
 				onChange={ handleChange }
 				placeholder={ __( 'Select a Research Topic', 'ramp' ) }
