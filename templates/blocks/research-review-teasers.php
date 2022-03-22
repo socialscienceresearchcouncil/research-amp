@@ -2,9 +2,10 @@
 
 $r = array_merge(
 	[
-		'contentMode'               => 'auto',
+		'contentMode'                => 'auto',
 		'contentModeResearchTopicId' => 0,
 		'contentModeProfileId'       => 0,
+		'isEditMode'                 => false,
 		'numberOfItems'              => 3,
 		'order'                      => 'alphabetical',
 		'showLoadMore'               => false,
@@ -96,6 +97,7 @@ $div_classes = [
 		ramp_get_template_part(
 			'load-more-button',
 			[
+				'is_edit_mode'    => $r['isEditMode'],
 				'offset'          => $offset,
 				'query_var'       => $offset_query_var,
 				'number_of_items' => $number_of_items,

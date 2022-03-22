@@ -1,6 +1,8 @@
 <?php
 $research_review_id = $args['id'];
 
+$is_edit_mode = $r['is_edit_mode'];
+
 $img_src      = '';
 $img_alt      = '';
 $thumbnail_id = get_post_thumbnail_id( $research_review_id );
@@ -42,9 +44,15 @@ if ( $show_publication_date ) {
 <article class="<?php echo esc_attr( $article_class ); ?>">
 	<div class="teaser-thumb research-review-teaser-thumb">
 		<?php if ( $img_src ) : ?>
-			<a href="<?php echo esc_attr( get_permalink( $research_review_id ) ); ?>">
-				<img class="research_review-teaser-thumb-img" src="<?php echo esc_attr( $img_src ); ?>" alt="<?php echo esc_attr( $img_alt ); ?>" />
-			</a>
+			<?php if ( $is_edit_mode ) : ?>
+				<a href="<?php echo esc_attr( get_permalink( $research_review_id ) ); ?>">
+			<?php endif; ?>
+
+			<img class="research_review-teaser-thumb-img" src="<?php echo esc_attr( $img_src ); ?>" alt="<?php echo esc_attr( $img_alt ); ?>" />
+
+			<?php if ( $is_edit_mode ) : ?>
+				</a>
+			<?php endif; ?>
 		<?php else : ?>
 			&nbsp; <?php /* Force flex to use the available space */ ?>
 		<?php endif; ?>
@@ -63,7 +71,17 @@ if ( $show_publication_date ) {
 			?>
 		<?php endif; ?>
 
-		<h3 class="item-title research-review-item-title"><a href="<?php echo esc_attr( get_permalink( $research_review_id ) ); ?>"><?php echo esc_html( get_the_title( $research_review_id ) ); ?></a></h3>
+		<h3 class="item-title research-review-item-title">
+			<?php if ( $is_edit_mode ) : ?>
+				<a href="<?php echo esc_attr( get_permalink( $research_review_id ) ); ?>">
+			<?php endif; ?>
+
+			<?php echo esc_html( get_the_title( $research_review_id ) ); ?>
+
+			<?php if ( $is_edit_mode ) : ?>
+				</a>
+			<?php endif; ?>
+		</h3>
 
 		<div class="item-excerpt research-review-item-excerpt"><?php echo wp_kses_post( get_the_excerpt( $research_review_id ) ); ?></div>
 
