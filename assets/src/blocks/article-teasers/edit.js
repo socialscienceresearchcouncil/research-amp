@@ -119,7 +119,13 @@ export default function edit( {
 							selectedProfileId={ contentModeProfileId }
 							selectedResearchTopicId={ contentModeResearchTopicId }
 						/>
+					</PanelBody>
+				</Panel>
 
+				<Panel>
+					<PanelBody
+						title={ __( 'Order and Pagination', 'ramp' ) }
+					>
 						<PanelRow>
 							<SelectControl
 								label={ __( 'Order', 'ramp' ) }
