@@ -30,11 +30,11 @@
 }
 
 .item-type-list-3 > li {
-	flex: 0 0 30%;
+	flex-basis: calc( 33.3333% - 28px );
 }
 
-.item-type-list-wrap {
-	flex-wrap: wrap;
+.item-type-list-4 > li {
+	flex-basis: calc( 25% - 28px );
 }
 
 .item-type-list-flex > li.break-row {
