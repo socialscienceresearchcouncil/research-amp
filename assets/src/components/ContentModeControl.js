@@ -35,11 +35,23 @@ const ContentModeControl = ( props ) => {
 
 	const disabledItemTypes = { ...{ profile: false, researchTopic: false }, ...disabledTypes }
 
+	let advancedLegend, currentContextGloss
+	if ( disabledItemTypes.profile ) {
+		advancedLegend = __( 'Limit displayed items to those associated with a specific Research Topic.', 'ramp' )
+		currentContextGloss = __( 'Show items relevant to the current context. When viewing a Research Topic, items will be shown only if linked to that Research Topic.', 'ramp' )
+	} else if ( disabledItemTypes.researchTopic ) {
+		advancedLegend = __( 'Limit displayed items to those associated with a specific Profile.', 'ramp' )
+		currentContextGloss = __( 'Show items relevant to the current context. When viewing a Profile, items will be shown only if linked to that Profile.', 'ramp' )
+	} else {
+		advancedLegend = __( 'Limit displayed items to those associated with a specific Research Topic or Profile.', 'ramp' )
+		currentContextGloss = __( 'Show items relevant to the current context. When viewing a Profile or Research Topic, items will be shown only if linked to that Profile or Research Topic.', 'ramp' )
+	}
+
 	const contentModeOpts = [
 		{
 			'value': 'auto',
 			'label': __( 'Use current context', 'ramp' ),
-			'gloss': __( 'Show items relevant to the current context. When viewing a Profile or Research Topic, items will be shown only if linked to that Profile or Research Topic.', 'ramp' )
+			'gloss': currentContextGloss
 		},
 		{
 			'value': 'all',
@@ -52,15 +64,6 @@ const ContentModeControl = ( props ) => {
 			'gloss': __( 'Advanced configuration options', 'ramp' )
 		}
 	]
-
-	let advancedLegend
-	if ( disabledItemTypes.profile ) {
-		advancedLegend = __( 'Limit displayed items to those associated with a specific Research Topic.', 'ramp' )
-	} else if ( disabledItemTypes.researchTopic ) {
-		advancedLegend = __( 'Limit displayed items to those associated with a specific Profile.', 'ramp' )
-	} else {
-		advancedLegend = __( 'Limit displayed items to those associated with a specific Research Topic or Profile.', 'ramp' )
-	}
 
 	return (
 		<>
