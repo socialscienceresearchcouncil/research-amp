@@ -82,14 +82,25 @@ export default function edit( {
 					>
 						<ContentModeControl
 							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
-							changeProfileIdCallback={ ( profileObj ) => setAttributes( { contentModeProfileId: profileObj.id } ) }
+							changeProfileIdCallback={ ( contentModeProfileId ) => setAttributes( { contentModeProfileId } ) }
 							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
+							glossAuto={ __( 'Show Research Reviews relevant to the current Research Topic or Profile context.', 'ramp' ) }
+							glossAll={ __( 'Pull from all Research Reviews.', 'ramp' ) }
+							glossAdvanced={__( 'Show Research Reviews associated with a specific Research Topic or Profile.', 'ramp' )}
+							labelAuto={ __( 'Relevant Research Reviews', 'ramp' ) }
+							labelAll={ __( 'All Research Reviews', 'ramp' ) }
 							legend={ __( 'Determine which Research Reviews will be shown in this block.', 'ramp' ) }
 							selectedMode={ contentMode }
 							selectedProfileId={ contentModeProfileId }
 							selectedResearchTopicId={ contentModeResearchTopicId }
 						/>
+					</PanelBody>
+				</Panel>
 
+				<Panel>
+					<PanelBody
+						title={ __( 'Order and Pagination', 'ramp' ) }
+					>
 						<PanelRow>
 							<SelectControl
 								label={ __( 'Order', 'ramp' ) }

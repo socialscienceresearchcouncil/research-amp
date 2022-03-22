@@ -1,11 +1,13 @@
 import { __ } from '@wordpress/i18n'
 import { useSelect } from '@wordpress/data'
-import { SelectControl } from '@wordpress/components'
+
+import Select from 'react-select'
 
 import { unescapeString } from './ReorderableFlatTermSelector/utils'
 
 const ResearchTopicSelector = ( props ) => {
 	const {
+		disabled = false,
 		label,
 		onChangeCallback,
 		selected
@@ -22,19 +24,33 @@ const ResearchTopicSelector = ( props ) => {
 	let researchTopicsOptions = researchTopics.map( ( topic ) => {
 		return {
 			label: unescapeString( topic.title.rendered ),
-			value: topic.id.toString()
+			value: topic.id
 		}
 	} )
 
-	researchTopicsOptions.unshift( { label: __( 'Select a Research Topic', 'ramp' ), value: 0 } )
+	const selectedOption = researchTopicsOptions.find( ( option ) => option.value === selected  )
+
+	const handleChange = ( selected ) => {
+		const newValue = selected ? selected.value : 0
+		onChangeCallback( newValue )
+	}
 
 	return (
-		<SelectControl
-			label={ label }
-			value={ selected  }
-			options={ researchTopicsOptions }
-			onChange={ ( researchTopic ) => onChangeCallback( researchTopic ) }
-		/>
+		<>
+			<label
+				className="screen-reader-text"
+			>{ __( 'Select a Research Topic', 'ramp' ) }</label>
+
+			<Select
+				isDisabled={ disabled }
+				isClearable={ true }
+				label={ label }
+				options={ researchTopicsOptions }
+				onChange={ handleChange }
+				placeholder={ __( 'Select a Research Topic', 'ramp' ) }
+				value={ selectedOption }
+			/>
+		</>
 	)
 }
 

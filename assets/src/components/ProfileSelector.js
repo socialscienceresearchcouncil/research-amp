@@ -1,48 +1,54 @@
 import { __ } from '@wordpress/i18n'
 import { useSelect } from '@wordpress/data'
 
-import { PostPicker } from './PostPicker'
+import Select from 'react-select'
+
 import { unescapeString } from './ReorderableFlatTermSelector/utils'
 
 const ProfileSelector = ( props ) => {
 	const {
+		disabled = false,
 		onChangeCallback,
 		selectedProfileId
 	} = props
 
-	const { post } = useSelect( ( select ) => {
-		let post = {}
-		if ( selectedProfileId ) {
-			post = select( 'ramp' ).getPost( selectedProfileId, 'profiles' )
-		}
+	const { profiles } = useSelect( ( select ) => {
+		const profiles = select( 'ramp' ).getProfiles()
 
 		return {
-			post
+			profiles
 		}
-	}, [ selectedProfileId ] )
+	}, [] )
 
-	const profileName = 'undefined' !== typeof post && post.hasOwnProperty( 'title' ) ? post.title.rendered : ''
+	const profilesOptions = profiles ? profiles.map( ( profile ) => {
+		return {
+			label: unescapeString( profile.title.rendered ),
+			value: profile.id
+		}
+	} ) : []
+
+	const selectedOption = profiles.find( ( option ) => option.value === selectedProfileId  )
+
+	const handleChange = ( selected ) => {
+		const newValue = selected ? selected.value : 0
+		onChangeCallback( newValue )
+	}
 
 	return (
 		<>
-			<PostPicker
-				postTypes={ [ 'profiles' ] }
-				onSelectPost={ onChangeCallback }
-				label={ __( 'Profile', 'ramp' ) }
-				placeholder={ __( 'Start typing to search.', 'ramp' ) }
-			/>
+			<label
+				className="screen-reader-text"
+			>{ __( 'Select a Profile', 'ramp' ) }</label>
 
-			{profileName &&
-				<div className="profile-selector-selected">
-					<button
-						className="profile-selector-clear-selected"
-						onClick={ () => { onChangeCallback( { id: 0 } ) } }
-					>
-						<span className="screen-reader-text">{ __( 'Unselect Profile', 'ramp' ) }</span>
-					</button>
-					{profileName}
-				</div>
-			}
+			<Select
+				controlShouldRenderValue={ true }
+				isClearable={ true }
+				isDisabled={ disabled }
+				onChange={ handleChange }
+				options={ profilesOptions }
+				placeholder={ __( 'Select a Profile', 'ramp' ) }
+				value={ selectedOption }
+			/>
 		</>
 	)
 }

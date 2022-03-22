@@ -9,12 +9,18 @@
 
 	.content-mode-description {
 		font-style: italic;
+		margin-top: 8px;
 		padding-left: 20px;
+	}
+
+	.content-mode-selector__choice {
+		margin-top: 8px;
 	}
 }
 
 .content-mode-selector-advanced-options {
 	padding-left: 20px;
+	width: 100%;
 
 	legend {
 		margin-bottom: 1em;
@@ -22,5 +28,9 @@
 
 	label {
 		font-weight: 700;
+	}
+
+	.option-row {
+		margin-bottom: 8px;
 	}
 }

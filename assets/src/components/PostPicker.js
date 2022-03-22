@@ -21,6 +21,8 @@ const namespace = 'gutenberg-post-picker';
  */
 export const PostPicker = (props) => {
 	const {
+				disabled = false,
+				hideLabelFromVision = false,
         onSelectPost,
         label = '',
         postTypes = [ 'posts', 'pages' ],
@@ -66,13 +68,17 @@ export const PostPicker = (props) => {
 
 	return (
 		<div className={namespace}>
-            <NavigableMenu onNavigate={ handleSelection } orientation={ 'vertical' }>
+			<NavigableMenu onNavigate={ handleSelection } orientation={ 'vertical' }>
+
 			<TextControl
+				disabled={ disabled }
+				hideLabelFromVision={ hideLabelFromVision }
 				label={label}
 				value={searchString}
-                onChange={handleSearchStringChange}
-                placeholder={ placeholder }
+				onChange={handleSearchStringChange}
+				placeholder={ placeholder }
 			/>
+
 			{searchString.length ? (
                     <ul
                         className={namespace + '-grid'}

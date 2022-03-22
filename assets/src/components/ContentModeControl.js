@@ -15,6 +15,12 @@ const ContentModeControl = ( props ) => {
 		changeProfileIdCallback,
 		changeResearchTopicIdCallback,
 		disabledTypes,
+		glossAdvanced,
+		glossAll,
+		glossAuto,
+		labelAdvanced,
+		labelAll,
+		labelAuto,
 		legend,
 		selectedMode,
 		selectedProfileId,
@@ -35,33 +41,33 @@ const ContentModeControl = ( props ) => {
 
 	const disabledItemTypes = { ...{ profile: false, researchTopic: false }, ...disabledTypes }
 
-	let advancedLegend, currentContextGloss
-	if ( disabledItemTypes.profile ) {
-		advancedLegend = __( 'Limit displayed items to those associated with a specific Research Topic.', 'ramp' )
-		currentContextGloss = __( 'Show items relevant to the current context. When viewing a Research Topic, items will be shown only if linked to that Research Topic.', 'ramp' )
-	} else if ( disabledItemTypes.researchTopic ) {
-		advancedLegend = __( 'Limit displayed items to those associated with a specific Profile.', 'ramp' )
-		currentContextGloss = __( 'Show items relevant to the current context. When viewing a Profile, items will be shown only if linked to that Profile.', 'ramp' )
-	} else {
-		advancedLegend = __( 'Limit displayed items to those associated with a specific Research Topic or Profile.', 'ramp' )
-		currentContextGloss = __( 'Show items relevant to the current context. When viewing a Profile or Research Topic, items will be shown only if linked to that Profile or Research Topic.', 'ramp' )
+	const labels = {
+		auto: labelAuto ?? __( 'Relevant Items', 'ramp' ),
+		all: labelAll ?? __( 'All Items', 'ramp' ),
+		advanced: labelAdvanced ?? __( 'Advanced', 'ramp' )
+	}
+
+	const glosses = {
+		auto: glossAuto ?? __( 'Show items relevant to the current Research Topic or Profile context.', 'ramp' ),
+		all: glossAll ?? __( 'Items will be shown regardless of associated Research Topic or Profile', 'ramp' ),
+		advanced: glossAdvanced ?? __( 'Show items associated with a specific Research Topic or Profile', 'ramp' )
 	}
 
 	const contentModeOpts = [
 		{
 			'value': 'auto',
-			'label': __( 'Use current context', 'ramp' ),
-			'gloss': currentContextGloss
+			'label': labels.auto,
+			'gloss': glosses.auto
 		},
 		{
 			'value': 'all',
-			'label': __( 'All content', 'ramp' ),
-			'gloss': __( 'Pull from all items, regardless of current page context.', 'ramp' )
+			'label': labels.all,
+			'gloss': glosses.all
 		},
 		{
 			'value': 'advanced',
-			'label': __( 'Advanced', 'ramp' ),
-			'gloss': __( 'Advanced configuration options', 'ramp' )
+			'label': labels.advanced,
+			'gloss': glosses.advanced
 		}
 	]
 
@@ -94,12 +100,14 @@ const ContentModeControl = ( props ) => {
 								{ label }
 							</label>
 
-							<p
-								id={ `content-mode-${ value }-description` }
-								className="content-mode-description"
-							>
-								{ gloss }
-							</p>
+							{value === selectedMode && (
+								<p
+									id={ `content-mode-${ value }-description` }
+									className="content-mode-description"
+								>
+									{ gloss }
+								</p>
+							)}
 						</div>
 					) ) }
 				</fieldset>
@@ -111,21 +119,27 @@ const ContentModeControl = ( props ) => {
 						className="content-mode-selector-advanced-options"
 						key="content-mode-selector-advanced-options"
 					>
-						<legend>{ advancedLegend }</legend>
+						<legend>{ __( 'Filtered by', 'ramp' ) }</legend>
 
 						{ ! disabledItemTypes.researchTopic && (
-							<ResearchTopicSelector
-								label={ __( 'Research Topic', 'ramp' ) }
-								selected={ selectedResearchTopicId }
-								onChangeCallback={ changeResearchTopicIdCallback }
-							/>
+							<div className="option-row">
+								<ResearchTopicSelector
+									disabled={ !! selectedProfileId }
+									label={ __( 'Research Topic', 'ramp' ) }
+									selected={ selectedResearchTopicId }
+									onChangeCallback={ changeResearchTopicIdCallback }
+								/>
+							</div>
 						) }
 
 						{ ! disabledItemTypes.profile && (
-							<ProfileSelector
-								onChangeCallback={ changeProfileIdCallback }
-								selectedProfileId={ selectedProfileId }
-							/>
+							<div className="option-row">
+								<ProfileSelector
+									disabled={ !! selectedResearchTopicId }
+									onChangeCallback={ changeProfileIdCallback }
+									selectedProfileId={ selectedProfileId }
+								/>
+							</div>
 						) }
 
 					</fieldset>

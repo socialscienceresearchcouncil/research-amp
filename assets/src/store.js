@@ -4,6 +4,7 @@ import { registerStore } from '@wordpress/data'
 const DEFAULT_STATE = {
 	articles: [],
 	libraries: {},
+	profiles: [],
 	rampPosts: {},
 	researchTopics: []
 }
@@ -41,6 +42,13 @@ const actions = {
 		}
 	},
 
+	setProfiles( profiles ) {
+		return {
+			type: 'SET_PROFILES',
+			profiles
+		}
+	},
+
 	setResearchTopics( researchTopics ) {
 		return {
 			type: 'SET_RESEARCH_TOPICS',
@@ -73,6 +81,12 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 			return {
 				...state,
 				articles: action.articles
+			}
+
+		case 'SET_PROFILES' :
+			return {
+				...state,
+				profiles: action.profiles
 			}
 
 		case 'SET_RESEARCH_TOPICS' :
@@ -112,6 +126,12 @@ const selectors = {
 		return post
 	},
 
+	getProfiles( state ) {
+		const { profiles } = state
+
+		return profiles
+	},
+
 	getResearchTopics( state ) {
 		const { researchTopics } = state
 
@@ -124,6 +144,12 @@ const resolvers = {
 		const path = '/ramp/v1/zotero-library/' + libraryId
 		const libraryInfo = yield actions.fetchFromAPI( path )
 		return actions.setLibraryInfo( libraryId, libraryInfo )
+	},
+
+	*getProfiles() {
+		const path = '/wp/v2/profiles?per_page=-1&orderby=title&order=asc&context=edit'
+		const profiles = yield actions.fetchFromAPI( path )
+		return actions.setProfiles( profiles )
 	},
 
 	*getResearchTopics() {
