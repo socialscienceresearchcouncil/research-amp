@@ -82,10 +82,10 @@ export default function edit( {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Content Settings', 'ramp' ) }
+						title={ __( 'Order and Pagination', 'ramp' ) }
 					>
 						<SelectControl
-							label={ __( 'Research Topics to show', 'ramp' ) }
+							label={ __( 'Order', 'ramp' ) }
 							value={ selectionType }
 							options={ [
 								{ label: __( 'Alphabetical', 'ramp' ), value: 'alphabetical' },
