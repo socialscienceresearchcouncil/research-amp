@@ -69,7 +69,7 @@ if ( 'grid' === $variation_type ) {
 $div_classes = [
 	'research-review-teasers',
 	'load-more-container',
-	'uses-query-arg-' . $offset_query_var
+	'uses-query-arg-' . $offset_query_var,
 ];
 
 ?>

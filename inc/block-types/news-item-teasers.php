@@ -16,11 +16,11 @@ return [
 			'type'    => 'integer',
 			'default' => 0,
 		],
-		'featuredItemId'   => [
+		'featuredItemId'             => [
 			'type'    => 'number',
 			'default' => 0,
 		],
-		'isEditMode'       => [
+		'isEditMode'                 => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
@@ -32,7 +32,7 @@ return [
 			'type'    => 'string',
 			'default' => 'latest',
 		],
-		'showFeaturedItem' => [
+		'showFeaturedItem'           => [
 			'type'    => 'boolean',
 			'default' => false,
 		],

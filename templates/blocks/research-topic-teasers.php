@@ -3,7 +3,7 @@
 $number_of_items = isset( $args['numberOfItems'] ) ? (int) $args['numberOfItems'] : 3;
 
 $offset_query_var = 'topic-pag-offset';
-$offset = (int) $wp_query->get( $offset_query_var );
+$offset           = (int) $wp_query->get( $offset_query_var );
 
 $selection_type = isset( $args['selectionType'] ) ? $args['selectionType'] : 'random';
 if ( ! in_array( $selection_type, [ 'alphabetical', 'latest', 'random', 'specific' ], true ) ) {
@@ -71,7 +71,7 @@ if ( 'grid' === $variation_type ) {
 $div_classes = [
 	'research-topic-teasers',
 	'load-more-container',
-	'uses-query-arg-' . $offset_query_var
+	'uses-query-arg-' . $offset_query_var,
 ];
 
 ?>
