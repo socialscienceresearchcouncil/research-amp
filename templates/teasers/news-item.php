@@ -2,7 +2,7 @@
 $news_item_id = $args['id'];
 $news_item    = get_post( $news_item_id );
 
-$is_featured = ! empty( $args['is_featured'] );
+$is_edit_mode = ! empty( $args['is_edit_mode'] );
 
 $article_classes = [ 'teaser' ];
 
@@ -44,15 +44,33 @@ if ( $show_publication_date ) {
 	);
 }
 
-$associated_research_topics = get_the_terms( $news_item_id, 'ramp_assoc_topic' );
-
 ?>
 
 <article class="<?php echo esc_attr( implode( ' ', $article_classes ) ); ?>">
 	<div class="teaser-content news-item-teaser-content">
-		<?php ramp_get_template_part( 'research-topic-tags', [ 'item_id' => $news_item_id ] ); ?>
+		<?php if ( $show_research_topics ) : ?>
+			<?php
+			ramp_get_template_part(
+				'research-topic-tags',
+				[
+					'is_edit_mode' => $is_edit_mode,
+					'item_id'      => $news_item_id,
+				]
+			);
+			?>
+		<?php endif; ?>
 
-		<h3 class="has-h-4-font-size item-title news-item-item-title"><a href="<?php echo esc_attr( get_permalink( $news_item_id ) ); ?>"><?php echo esc_html( get_the_title( $news_item_id ) ); ?></a></h3>
+		<h3 class="has-h-4-font-size item-title news-item-item-title">
+			<?php if ( ! $is_edit_mode ) : ?>
+				<a href="<?php echo esc_attr( get_permalink( $news_item_id ) ); ?>">
+			<?php endif; ?>
+
+			<?php echo esc_html( get_the_title( $news_item_id ) ); ?>
+
+			<?php if ( ! $is_edit_mode ) : ?>
+				</a>
+			<?php endif; ?>
+		</h3>
 
 		<?php if ( $custom_author ) : ?>
 			<div class="article-teaser-byline teaser-byline">

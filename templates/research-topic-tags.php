@@ -14,6 +14,7 @@ $display_type = ! empty( $args['display_type'] ) && 'plain' === $args['display_t
 				'research-topic-tag',
 				[
 					'display_type' => $display_type,
+					'is_edit_mode' => ! empty( $args['is_edit_mode'] ),
 					'term_id'      => $associated_research_topic->term_id,
 				]
 			);

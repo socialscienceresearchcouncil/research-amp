@@ -94,6 +94,7 @@ $list_classes = [
 					'teasers/news-item',
 					[
 						'id'                    => $news_item->ID,
+						'is_edit_mode'          => $r['isEditMode'],
 						'show_publication_date' => (bool) $r['showPublicationDate'],
 						'show_research_topics'  => ! $content_mode_settings['research_topic_id'],
 					]
@@ -108,7 +109,6 @@ $list_classes = [
 		ramp_get_template_part(
 			'load-more-button',
 			[
-				'is_edit_mode'    => $r['isEditMode'],
 				'offset'          => $offset,
 				'query_var'       => $offset_query_var,
 				'number_of_items' => $number_of_items,
