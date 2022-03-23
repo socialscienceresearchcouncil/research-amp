@@ -1,64 +1,119 @@
 <?php
 
-$research_topic_id = \SSRC\RAMP\Blocks::get_research_topic_from_template_args( $args );
+$r = array_merge(
+	[
+		'contentMode'                => 'auto',
+		'contentModeResearchTopicId' => 0,
+		'contentModeProfileId'       => 0,
+		'isEditMode'                 => false,
+		'numberOfItems'              => 3,
+		'order'                      => 'latest',
+		'showLoadMore'               => false,
+		'showPublicationDate'        => true,
+		'variationType'              => 'grid',
+	],
+	$args
+);
 
-$variation_type = isset( $args['variationType'] ) && in_array( $args['variationType'], [ 'one', 'two' ], true ) ? $args['variationType'] : 'one';
+$number_of_items = (int) $r['numberOfItems'];
+
+$content_mode_settings = \SSRC\RAMP\Blocks::get_content_mode_settings_from_template_args( $r );
+
+$order_args = [ 'alphabetical', 'latest', 'random' ];
+$order_arg  = in_array( $r['order'], $order_args, true ) ? $r['order'] : 'alphabetical';
+
+$variation_type = 'list' === $r['variationType'] ? 'list' : 'grid';
 
 $show_featured_item = ! empty( $args['showFeaturedItem'] );
-
-$featured_item_id = ! empty( $args['featuredItemId'] ) ? (int) $args['featuredItemId'] : null;
-
-$posts_per_page = 'one' === $variation_type ? 3 : 5;
+$featured_item_id   = ! empty( $args['featuredItemId'] ) ? (int) $args['featuredItemId'] : null;
 
 $query_args = [
 	'post_type'      => 'post',
 	'post_status'    => 'publish',
-	'posts_per_page' => $posts_per_page,
+	'posts_per_page' => $number_of_items,
+	'tax_query'      => \SSRC\RAMP\Blocks::get_content_mode_tax_query_from_template_args( $r ),
 ];
 
 if ( $show_featured_item && $featured_item_id ) {
 	$query_args['post__not_in'] = [ $featured_item_id ];
 }
 
-if ( $research_topic_id ) {
-	$rt_map     = ramp_app()->get_cpttax_map( 'research_topic' );
-	$rt_term_id = $rt_map->get_term_id_for_post_id( $research_topic_id );
+switch ( $order_arg ) {
+	case 'alphabetical' :
+		$query_args['orderby'] = [ 'title' => 'ASC' ];
+	break;
 
-	$query_args['tax_query'] = [
-		[
-			'taxonomy' => 'ramp_assoc_topic',
-			'terms'    => $rt_term_id,
-			'field'    => 'term_id',
-		],
-	];
+	case 'latest' :
+		$query_args['orderby'] = [ 'date' => 'DESC' ];
+	break;
+
+	case 'random' :
+	default :
+		$query_args['orderby'] = 'rand';
+	break;
 }
 
-$news_items = get_posts( $query_args );
+$offset_query_var = 'news-item-pag-offset';
+$offset           = (int) $wp_query->get( $offset_query_var );
 
-$variation_class = 'one' === $variation_type ? 'item-type-list-3' : 'item-type-list-wrap';
+$query_args['offset'] = $offset;
+
+$news_item_query = new WP_Query( $query_args );
+
+$has_more_pages = ( $offset + $number_of_items ) <= $news_item_query->found_posts;
+
+$div_classes = [
+	'news-item-teasers',
+	'load-more-container',
+	'uses-query-arg-' . $offset_query_var,
+];
+
+$list_classes = [
+	'item-type-list',
+	'item-type-list-flex',
+	'item-type-list-3',
+	'item-type-list-news-items',
+	'load-more-list',
+	'news-items-' . $variation_type,
+];
 
 ?>
 
-<div class="news-item-teasers">
+<div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
 	<?php if ( $show_featured_item && $featured_item_id ) : ?>
 		<div class="featured-news-item">
 			<?php ramp_get_template_part( 'teasers/news-item-featured', [ 'id' => $featured_item_id ] ); ?>
 		</div>
 	<?php endif; ?>
 
-	<ul class="item-type-list item-type-list-flex <?php echo esc_attr( $variation_class ); ?> item-type-list-news-items">
-		<?php $count = 0; ?>
-		<?php foreach ( $news_items as $news_item ) : ?>
+	<ul class="<?php echo esc_html( implode( ' ', $list_classes ) ); ?>">
+		<?php foreach ( $news_item_query->posts as $news_item ) : ?>
 			<li>
-				<?php ramp_get_template_part( 'teasers/news-item', [ 'id' => $news_item->ID ] ); ?>
+				<?php
+				ramp_get_template_part(
+					'teasers/news-item',
+					[
+						'id'                    => $news_item->ID,
+						'show_publication_date' => (bool) $r['showPublicationDate'],
+						'show_research_topics'  => ! $content_mode_settings['research_topic_id'],
+					]
+				);
+				?>
 			</li>
-
-			<?php
-			$count++;
-			if ( 'two' === $variation_type && 2 === $count ) {
-				echo '<li class="break-row"></li>';
-			}
-			?>
 		<?php endforeach; ?>
 	</ul>
+
+	<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
+		<?php
+		ramp_get_template_part(
+			'load-more-button',
+			[
+				'is_edit_mode'    => $r['isEditMode'],
+				'offset'          => $offset,
+				'query_var'       => $offset_query_var,
+				'number_of_items' => $number_of_items,
+			]
+		);
+		?>
+	<?php endif; ?>
 </div>

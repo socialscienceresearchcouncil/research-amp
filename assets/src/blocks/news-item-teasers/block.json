@@ -8,25 +8,45 @@
 		"anchor": true
 	},
 	"attributes": {
-		"isEditMode": {
-			"type": "boolean",
-			"default": false
+		"contentMode": {
+			"enum": [ "auto", "all", "advanced" ],
+			"default": "auto"
+		},
+		"contentModeProfileId": {
+			"type": "integer",
+			"default": 0
+		},
+		"contentModeResearchTopicId": {
+			"type": "integer",
+			"default": 0
 		},
 		"featuredItemId": {
 			"type": "number",
 			"default": 0
 		},
-		"researchTopic": {
-			"type": "string",
-			"default": "auto"
-		},
-		"showFeaturedItem": {
+		"isEditMode": {
 			"type": "boolean",
-			"default": "false"
+			"default": false
+		},
+		"numberOfItems": {
+			"type": "string",
+			"default": "3"
+		},
+		"order": {
+			"enum": [ "alphabetical", "latest", "random" ],
+			"default": "latest"
+		},
+		"showLoadMore": {
+			"type": "boolean",
+			"default": false
+		},
+		"showPublicationDate": {
+			"type": "boolean",
+			"default": true
 		},
 		"variationType": {
-			"enum": [ "one", "two" ],
-			"default": "one"
+			"enum": [ "grid", "list" ],
+			"default": "grid"
 		}
 	}
 }

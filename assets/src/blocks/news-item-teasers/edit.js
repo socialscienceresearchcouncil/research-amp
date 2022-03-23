@@ -3,13 +3,15 @@ import { __ } from '@wordpress/i18n';
 import {
 	Panel,
 	PanelBody,
+	PanelRow,
 	SelectControl,
-	Spinner,
-	TextControl,
-	ToggleControl
+	Toolbar,
+	ToolbarButton,
+	ToolbarGroup
 } from '@wordpress/components'
 
 import {
+	BlockControls,
 	InspectorControls,
 	useBlockProps
 } from '@wordpress/block-editor';
@@ -23,7 +25,14 @@ import {
 } from '@wordpress/element'
 
 import { PostPicker } from '../../components/PostPicker'
-import ResearchTopicSelector from '../../components/ResearchTopicSelector'
+
+import ContentModeControl from '../../components/ContentModeControl'
+import PublicationDateToggle from '../../components/PublicationDateToggle'
+import LoadMoreToggle from '../../components/LoadMoreToggle'
+import NumberOfItemsControl from '../../components/NumberOfItemsControl'
+
+import { GridIcon } from '../../icons/Grid'
+import { ListIcon } from '../../icons/List'
 
 /**
  * Editor styles.
@@ -40,9 +49,15 @@ export default function edit( {
 	setAttributes,
 } ) {
 	const {
+		contentMode,
+		contentModeProfileId,
+		contentModeResearchTopicId,
 		featuredItemId,
-		researchTopic,
+		numberOfItems,
+		order,
 		showFeaturedItem,
+		showLoadMore,
+		showPublicationDate,
 		variationType
 	} = attributes
 
@@ -67,7 +82,7 @@ export default function edit( {
 		let classNames = []
 
 		classNames.push( 'featured-item-id-' + featuredItemId )
-		classNames.push( 'research-topic-' + researchTopic )
+		classNames.push( 'content-mode-' + contentMode )
 		classNames.push( 'variation-type-' + variationType )
 
 		return useBlockProps( {
@@ -91,63 +106,88 @@ export default function edit( {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Research Topic', 'ramp' ) }
+						title={ __( 'Content Settings', 'ramp' ) }
 					>
-						<ResearchTopicSelector
-							label={ __( 'Select the Research Topic whose News Items will be shown in this block.', 'ramp' ) }
-							selected={ researchTopic }
-							onChangeCallback={ ( researchTopic ) => setAttributes( { researchTopic } ) }
+						<ContentModeControl
+							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
+							changeProfileIdCallback={ ( contentModeProfileId ) => setAttributes( { contentModeProfileId } ) }
+							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
+							glossAuto={ __( 'Show News Items relevant to the current Research Topic or Profile context.', 'ramp' ) }
+							glossAll={ __( 'Pull from all News Items.', 'ramp' ) }
+							glossAdvanced={__( 'Show News Items associated with a specific Research Topic or Profile.', 'ramp' )}
+							labelAuto={ __( 'Relevant News Items', 'ramp' ) }
+							labelAll={ __( 'All News Items', 'ramp' ) }
+							legend={ __( 'Determine which News Items will be shown in this block.', 'ramp' ) }
+							selectedMode={ contentMode }
+							selectedProfileId={ contentModeProfileId }
+							selectedResearchTopicId={ contentModeResearchTopicId }
 						/>
 					</PanelBody>
 				</Panel>
-			</InspectorControls>
 
-			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Layout', 'ramp' ) }
+						title={ __( 'Order and Pagination', 'ramp' ) }
 					>
-						<SelectControl
-							label={ __( 'Select a layout', 'ramp' ) }
-							options={ [
-								{ label: __( 'One row', 'ramp' ), value: 'one' },
-								{ label: __( 'Two rows', 'ramp' ), value: 'two' },
-							] }
-							selected={ variationType }
-							value={ variationType }
-							onChange={ ( variationType ) => setAttributes( { variationType } ) }
-						/>
+						<PanelRow>
+							<SelectControl
+								label={ __( 'Order', 'ramp' ) }
+								options={ [
+									{ label: __( 'Alphabetical', 'ramp' ), value: 'alphabetical' },
+									{ label: __( 'Recently Added', 'ramp' ), value: 'latest' },
+									{ label: __( 'Random', 'ramp' ), value: 'random' }
+								] }
+								value={ order }
+								onChange={ ( order ) => setAttributes( { order } ) }
+							/>
+						</PanelRow>
+
+						<PanelRow>
+							<NumberOfItemsControl
+								numberOfItems={ numberOfItems }
+								onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+							/>
+						</PanelRow>
+
+						<PanelRow>
+							<LoadMoreToggle
+								showLoadMore={ showLoadMore }
+								onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+							/>
+						</PanelRow>
 					</PanelBody>
 				</Panel>
-			</InspectorControls>
 
-			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Featured News Item', 'ramp' ) }
+						title={ __( 'Display Options', 'ramp' ) }
 					>
-						<ToggleControl
-							label={ __( 'Show a Featured News Item?', 'ramp' ) }
-							checked={ showFeaturedItem }
-							help={ showFeaturedItem ? __( 'A Featured News Item will be shown.', 'ramp' ) : __( 'No Featured News Item will be shown.', 'ramp' ) }
-							onChange={ ( showFeaturedItem ) => setAttributes( { showFeaturedItem } ) }
-						/>
-
-						{ showFeaturedItem && (
-							<Fragment>
-								{ currentlyFeaturedNotice }
-
-								<PostPicker
-									onSelectPost={ ( selectedPost ) => setAttributes( { featuredItemId: selectedPost.id } ) }
-									label={ __( 'Select a Featured News Item', 'ramp' ) }
-									placeholder={ __( 'Start typing to search.', 'ramp' ) }
-									postTypes={ [ 'posts' ] }
-								/>
-							</Fragment>
-						) }
+						<PanelRow>
+							<PublicationDateToggle
+								onChangeCallback={ ( showPublicationDate ) => setAttributes( { showPublicationDate } ) }
+								showPublicationDate={ showPublicationDate }
+							/>
+						</PanelRow>
 					</PanelBody>
 				</Panel>
 			</InspectorControls>
+
+			<BlockControls>
+				<ToolbarGroup>
+					<ToolbarButton
+						icon={ ListIcon }
+						isActive={ 'list' === variationType }
+						label={ __( 'List', 'ramp' ) }
+						onClick={ () => setAttributes( { variationType: 'list' } ) }
+					/>
+					<ToolbarButton
+						icon={ GridIcon }
+						isActive={ 'grid' === variationType }
+						label={ __( 'Grid', 'ramp' ) }
+						onClick={ () => setAttributes( { variationType: 'grid' } ) }
+					/>
+				</ToolbarGroup>
+			</BlockControls>
 
 			<div { ...blockProps() }>
 				<ServerSideRender
