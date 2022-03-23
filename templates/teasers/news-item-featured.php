@@ -39,8 +39,8 @@ if ( $show_publication_date ) {
 			'<span class="byline-publication-date">' . $formatted_date . '</span>'
 		);
 	} else {
-		/* translators: publication date */
 		$byline = sprintf(
+			/* translators: publication date */
 			esc_html__( 'On %s', 'ramp' ),
 			'<span class="byline-publication-date">' . $formatted_date . '</span>'
 		);

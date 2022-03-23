@@ -27,6 +27,7 @@ if ( $img_src ) {
 			<a href="<?php the_permalink( $profile_id ); ?>">
 		<?php endif; ?>
 
+		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<div class="<?php echo esc_attr( $avatar_class ); ?>" <?php echo $background_style; ?>>
 			<?php if ( $img_src ) : ?>
 				<?php // translators: Profile name ?>

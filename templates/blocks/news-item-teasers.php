@@ -90,7 +90,8 @@ $list_classes = [
 					'is_edit_mode'          => $r['isEditMode'],
 					'show_publication_date' => (bool) $r['showPublicationDate'],
 				]
-			); ?>
+			);
+			?>
 		</div>
 	<?php endif; ?>
 
