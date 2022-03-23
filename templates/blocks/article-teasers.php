@@ -16,6 +16,8 @@ $r = array_merge(
 	$args
 );
 
+$is_edit_mode = (bool) $r['isEditMode'];
+
 if ( in_array( $r['variationType'], [ 'grid', 'list', 'featured' ], true ) ) {
 	$variation_type = $r['variationType'];
 } else {
@@ -106,11 +108,12 @@ if ( 'featured' === $variation_type ) {
 						'teasers/article',
 						[
 							'id'                    => $featured_item_id,
+							'is_edit_mode'          => $is_edit_mode,
 							'is_featured'           => true,
 							'show_publication_date' => (bool) $r['showPublicationDate'],
 						]
 					);
-				} elseif ( $r['isEditMode'] ) {
+				} elseif ( $is_edit_mode ) {
 					printf(
 						'<p class="featured-article-notice">%s</p>',
 						esc_html__( 'Use the "Featured Article" setting in the right-hand panel to select the item that will appear in this space.', 'ramp' )
@@ -128,6 +131,7 @@ if ( 'featured' === $variation_type ) {
 						'teasers/article',
 						[
 							'id'                    => $article->ID,
+							'is_edit_mode'          => $is_edit_mode,
 							'show_publication_date' => (bool) $r['showPublicationDate'],
 						]
 					);
