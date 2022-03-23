@@ -151,6 +151,10 @@ a.tag-plain:hover {
 	width: 196px;
 }
 
+.profile-teaser .profile-teaser-name h3 {
+	margin-bottom: 8px;
+}
+
 .sortable-multi-select-selected-items {
 	margin-top: 10px;
 }
