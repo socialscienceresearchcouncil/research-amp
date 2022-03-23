@@ -1,7 +1,7 @@
 <?php
 $research_review_id = $args['id'];
 
-$is_edit_mode = $r['is_edit_mode'];
+$is_edit_mode = ! empty( $args['is_edit_mode'] );
 
 $img_src      = '';
 $img_alt      = '';
