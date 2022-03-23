@@ -77,6 +77,7 @@
 .editor-styles-wrapper a.tag-bubble {
 	background: var(--wp--preset--color--ramp-blue);
 	border-radius: 1em;
+	display: inline-block;
 	color: #fff;
 	font-size: var(--wp--preset--font-size--small-text);
 	margin-bottom: 4px;
@@ -96,7 +97,6 @@ a.tag-plain:hover {
 }
 
 .research-topic-tags a {
-	display: inline-block;
 	margin-right: 8px;
 }
 

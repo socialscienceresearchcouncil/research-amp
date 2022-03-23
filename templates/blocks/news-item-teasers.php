@@ -82,7 +82,15 @@ $list_classes = [
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
 	<?php if ( $show_featured_item && $featured_item_id ) : ?>
 		<div class="featured-news-item">
-			<?php ramp_get_template_part( 'teasers/news-item-featured', [ 'id' => $featured_item_id ] ); ?>
+			<?php
+			ramp_get_template_part(
+				'teasers/news-item-featured',
+				[
+					'id'                    => $featured_item_id,
+					'is_edit_mode'          => $r['isEditMode'],
+					'show_publication_date' => (bool) $r['showPublicationDate'],
+				]
+			); ?>
 		</div>
 	<?php endif; ?>
 

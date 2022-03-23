@@ -1,14 +1,17 @@
-import { __ } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n'
 
 import {
 	Panel,
 	PanelBody,
 	PanelRow,
 	SelectControl,
+	ToggleControl,
 	Toolbar,
 	ToolbarButton,
 	ToolbarGroup
 } from '@wordpress/components'
+
+import { usePrevious } from '@wordpress/compose'
 
 import {
 	BlockControls,
@@ -99,7 +102,10 @@ export default function edit( {
 			)
 		: <div />
 
-	const serverSideAtts = Object.assign( {}, attributes, { isEditMode: true } )
+	const serverSideAtts = Object.assign( {}, attributes, {
+		isEditMode: true,
+		forceRefresh: featuredItemId !== usePrevious( featuredItemId ) // Addresses race condition with useSelect() and ServerSideRender()
+	} )
 
 	return (
 		<Fragment>
@@ -122,6 +128,31 @@ export default function edit( {
 							selectedProfileId={ contentModeProfileId }
 							selectedResearchTopicId={ contentModeResearchTopicId }
 						/>
+					</PanelBody>
+				</Panel>
+
+				<Panel>
+					<PanelBody
+						title={ __( 'Featured News Item', 'ramp' ) }
+					>
+						<ToggleControl
+							label={ __( 'Show a Featured News Item?', 'ramp' ) }
+							checked={ showFeaturedItem }
+							onChange={ ( showFeaturedItem ) => setAttributes( { showFeaturedItem } ) }
+						/>
+
+						{ showFeaturedItem && (
+							<>
+								{ currentlyFeaturedNotice }
+
+								<PostPicker
+									onSelectPost={ ( selectedPost ) => setAttributes( { featuredItemId: selectedPost.id } ) }
+									label={ __( 'Select a Featured News Item', 'ramp' ) }
+									placeholder={ __( 'Start typing to search.', 'ramp' ) }
+									postTypes={ [ 'posts' ] }
+								/>
+							</>
+						) }
 					</PanelBody>
 				</Panel>
 
