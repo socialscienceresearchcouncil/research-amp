@@ -5,10 +5,14 @@ import {
 	PanelBody,
 	PanelRow,
 	SelectControl,
-	Spinner
+	Spinner,
+	Toolbar,
+	ToolbarButton,
+	ToolbarGroup
 } from '@wordpress/components'
 
 import {
+	BlockControls,
 	InspectorControls,
 	useBlockProps
 } from '@wordpress/block-editor';
@@ -21,6 +25,9 @@ import NumberOfItemsControl from '../../components/NumberOfItemsControl'
 import ServerSideRender from '@wordpress/server-side-render'
 
 import { useSelect } from '@wordpress/data'
+
+import { GridIcon } from '../../icons/Grid'
+import { ListIcon } from '../../icons/List'
 
 /**
  * Editor styles.
@@ -42,7 +49,8 @@ export default function edit( {
 		showLoadMore,
 		slot1,
 		slot2,
-		slot3
+		slot3,
+		variationType
 	} = attributes
 
 	const blockProps = () => {
@@ -73,6 +81,10 @@ export default function edit( {
 			label: topic.title.rendered,
 			value: topic.id
 		}
+	} )
+
+	const serverSideAtts = Object.assign( {}, attributes, {
+		isEditMode: true,
 	} )
 
 	researchTopicsOptions.unshift( { label: __( 'Select a Research Topic', 'ramp' ), value: 0 } )
@@ -155,9 +167,26 @@ export default function edit( {
 				</Panel>
 			</InspectorControls>
 
+			<BlockControls>
+				<ToolbarGroup>
+					<ToolbarButton
+						icon={ ListIcon }
+						isActive={ 'list' === variationType }
+						label={ __( 'List', 'ramp' ) }
+						onClick={ () => setAttributes( { variationType: 'list' } ) }
+					/>
+					<ToolbarButton
+						icon={ GridIcon }
+						isActive={ 'grid' === variationType }
+						label={ __( 'Grid', 'ramp' ) }
+						onClick={ () => setAttributes( { variationType: 'grid' } ) }
+					/>
+				</ToolbarGroup>
+			</BlockControls>
+
 			<div { ...blockProps() }>
 				<ServerSideRender
-					attributes={ attributes }
+					attributes={ serverSideAtts }
 					block="ramp/research-topic-teasers"
 					httpMethod="GET"
 					LoadingResponsePlaceholder={ Spinner }

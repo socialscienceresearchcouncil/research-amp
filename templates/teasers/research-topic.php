@@ -1,6 +1,8 @@
 <?php
 $research_topic_id = $args['id'];
 
+$is_edit_mode = ! empty( $args['is_edit_mode'] );
+
 $variation_type = isset( $args['variation_type'] ) && 'list' === $args['variation_type'] ? 'list' : 'grid';
 
 $article_classes = [
@@ -30,12 +32,27 @@ if ( 'list' === $variation_type ) {
 	<?php endif; ?>
 
 	<div class="research-topic-teaser-contents">
-		<h3 class="item-title research-topic-item-title"><a href="<?php echo esc_attr( get_permalink( $research_topic_id ) ); ?>"><?php echo esc_html( get_the_title( $research_topic_id ) ); ?></a></h3>
+		<h3 class="item-title research-topic-item-title">
+
+			<?php if ( ! $is_edit_mode ) : ?>
+				<a href="<?php echo esc_attr( get_permalink( $research_topic_id ) ); ?>">
+			<?php endif; ?>
+
+			<?php echo esc_html( get_the_title( $research_topic_id ) ); ?>
+
+			<?php if ( ! $is_edit_mode ) : ?>
+				</a>
+			<?php endif; ?>
+		</h3>
 
 		<div class="item-excerpt research-topic-item-excerpt"><?php echo wp_kses_post( get_the_excerpt( $research_topic_id ) ); ?></div>
 
 		<?php if ( 'list' === $variation_type ) : ?>
-			<a class="ramp-arrow-more-link" href="<?php echo esc_attr( get_permalink( $research_topic_id ) ); ?>"><?php esc_html_e( 'Learn more', 'ramp' ); ?></a>
+			<?php if ( $is_edit_mode ) : ?>
+				<span class="ramp-arrow-more-link"><?php esc_html_e( 'Learn more', 'ramp' ); ?></span>
+			<?php else : ?>
+				<a class="ramp-arrow-more-link" href="<?php echo esc_attr( get_permalink( $research_topic_id ) ); ?>"><?php esc_html_e( 'Learn more', 'ramp' ); ?></a>
+			<?php endif; ?>
 		<?php endif; ?>
 	</div>
 </article>

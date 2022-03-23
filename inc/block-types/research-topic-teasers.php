@@ -3,6 +3,10 @@
 return [
 	'api_version'     => 1,
 	'attributes'      => [
+		'isEditMode'  =>   [
+			'type'    => 'boolean',
+			'default' => false,
+		],
 		'numberOfItems' => [
 			'type'    => 'number',
 			'default' => 3,

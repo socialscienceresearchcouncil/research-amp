@@ -1,5 +1,7 @@
 <?php
 
+$is_edit_mode = ! empty( $args['isEditMode'] );
+
 $number_of_items = isset( $args['numberOfItems'] ) ? (int) $args['numberOfItems'] : 3;
 
 $offset_query_var = 'topic-pag-offset';
@@ -85,6 +87,7 @@ $div_classes = [
 					'teasers/research-topic',
 					[
 						'id'             => $research_topic,
+						'is_edit_mode'   => $is_edit_mode,
 						'variation_type' => $variation_type,
 					]
 				);
