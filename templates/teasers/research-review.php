@@ -23,19 +23,24 @@ if ( $img_src ) {
 $show_publication_date = ! empty( $args['show_publication_date'] );
 $show_research_topics  = ! empty( $args['show_research_topics'] );
 
-$author_links = \SSRC\RAMP\Profile::get_profile_links_for_post( $research_review_id );
+$author_links  = \SSRC\RAMP\Profile::get_profile_links_for_post( $research_review_id );
+$author_string = implode( ', ', $author_links );
+if ( $is_edit_mode ) {
+	$author_string = wp_strip_all_tags( $author_string );
+}
+
 if ( $show_publication_date ) {
 	$byline = sprintf(
 		/* translators: 1. author link, 2. publication date */
 		esc_html__( 'By %1$s on %2$s', 'ramp' ),
-		'<span class="byline-author">' . implode( ', ', $author_links ) . '</span>',
+		'<span class="byline-author">' . $author_string . '</span>',
 		'<span class="byline-publication-date">' . esc_html( get_the_date( '', $research_review_id ) ) . '</span>'
 	);
 } else {
 	$byline = sprintf(
 		/* translators: author link */
 		esc_html__( 'By %s', 'ramp' ),
-		'<span class="byline-author">' . implode( ', ', $author_links ) . '</span>'
+		'<span class="byline-author">' . $author_string . '</span>'
 	);
 }
 
@@ -44,13 +49,13 @@ if ( $show_publication_date ) {
 <article class="<?php echo esc_attr( $article_class ); ?>">
 	<div class="teaser-thumb research-review-teaser-thumb">
 		<?php if ( $img_src ) : ?>
-			<?php if ( $is_edit_mode ) : ?>
+			<?php if ( ! $is_edit_mode ) : ?>
 				<a href="<?php echo esc_attr( get_permalink( $research_review_id ) ); ?>">
 			<?php endif; ?>
 
 			<img class="research_review-teaser-thumb-img" src="<?php echo esc_attr( $img_src ); ?>" alt="<?php echo esc_attr( $img_alt ); ?>" />
 
-			<?php if ( $is_edit_mode ) : ?>
+			<?php if ( ! $is_edit_mode ) : ?>
 				</a>
 			<?php endif; ?>
 		<?php else : ?>
@@ -72,13 +77,13 @@ if ( $show_publication_date ) {
 		<?php endif; ?>
 
 		<h3 class="item-title research-review-item-title">
-			<?php if ( $is_edit_mode ) : ?>
+			<?php if ( ! $is_edit_mode ) : ?>
 				<a href="<?php echo esc_attr( get_permalink( $research_review_id ) ); ?>">
 			<?php endif; ?>
 
 			<?php echo esc_html( get_the_title( $research_review_id ) ); ?>
 
-			<?php if ( $is_edit_mode ) : ?>
+			<?php if ( ! $is_edit_mode ) : ?>
 				</a>
 			<?php endif; ?>
 		</h3>
