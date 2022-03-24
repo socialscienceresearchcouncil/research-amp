@@ -3,8 +3,12 @@ import { __ } from '@wordpress/i18n';
 import {
 	Panel,
 	PanelBody,
+	PanelRow,
 	SelectControl,
-	Spinner
+	Spinner,
+	Toolbar,
+	ToolbarButton,
+	ToolbarGroup
 } from '@wordpress/components'
 
 import {
@@ -14,13 +18,12 @@ import {
 
 import { Fragment } from '@wordpress/element'
 
-import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import ContentModeControl from '../../components/ContentModeControl'
+import NumberOfItemsControl from '../../components/NumberOfItemsControl'
 
 import ServerSideRender from '@wordpress/server-side-render'
 
 import { useSelect } from '@wordpress/data'
-
-import ResearchTopicSelector from '../../components/ResearchTopicSelector'
 
 /**
  * Editor styles.
@@ -37,19 +40,17 @@ export default function edit( {
 	setAttributes,
 } ) {
 	const {
-		numberOfItems,
-		order,
-		researchTopic,
-		variationType
+		contentMode,
+		contentModeProfileId,
+		contentModeResearchTopicId,
+		numberOfItems
 	} = attributes
 
 	const blockProps = () => {
 		let classNames = []
 
 		// This is here to force the 'dirty' state.
-		classNames.push( 'variation-type-' + variationType )
-		classNames.push( 'order-' + order )
-		classNames.push( 'research-topic-' + researchTopic )
+		classNames.push( 'content-mode-' + contentMode )
 
 		return useBlockProps( {
 			className: classNames
@@ -65,30 +66,35 @@ export default function edit( {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Research Topic', 'ramp' ) }
+						title={ __( 'Content Settings', 'ramp' ) }
 					>
-						<ResearchTopicSelector
-							label={ __( 'Select the Research Topic whose Research Reviews will be shown in this block.', 'ramp' ) }
-							selected={ researchTopic }
-							onChangeCallback={ ( researchTopic ) => setAttributes( { researchTopic } ) }
+						<ContentModeControl
+							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
+							changeProfileIdCallback={ ( contentModeProfileId ) => setAttributes( { contentModeProfileId } ) }
+							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
+							glossAuto={ __( 'Show Events relevant to the current Research Topic or Profile context.', 'ramp' ) }
+							glossAll={ __( 'Pull from all Events.', 'ramp' ) }
+							glossAdvanced={__( 'Show Events associated with a specific Research Topic or Profile.', 'ramp' )}
+							labelAuto={ __( 'Relevant Events', 'ramp' ) }
+							labelAll={ __( 'All Events', 'ramp' ) }
+							legend={ __( 'Determine which Events will be shown in this block.', 'ramp' ) }
+							selectedMode={ contentMode }
+							selectedProfileId={ contentModeProfileId }
+							selectedResearchTopicId={ contentModeResearchTopicId }
 						/>
 					</PanelBody>
 				</Panel>
 
 				<Panel>
 					<PanelBody
-						title={ __( 'Order', 'ramp' ) }
+						title={ __( 'Number of Items', 'ramp' ) }
 					>
-						<SelectControl
-							label={ __( 'Select the order of Events.', 'ramp' ) }
-							options={ [
-								{ label: __( 'Alphabetical', 'ramp' ), value: 'alphabetical' },
-								{ label: __( 'Recently Added', 'ramp' ), value: 'latest' },
-								{ label: __( 'Random', 'ramp' ), value: 'random' }
-							] }
-							selected={ order }
-							onChange={ ( order ) => setAttributes( { order } ) }
-						/>
+						<PanelRow>
+							<NumberOfItemsControl
+								numberOfItems={ numberOfItems }
+								onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+							/>
+						</PanelRow>
 					</PanelBody>
 				</Panel>
 			</InspectorControls>

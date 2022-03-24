@@ -1,26 +1,23 @@
 <?php
 
-$number_of_items = isset( $args['numberOfItems'] ) ? (int) $args['numberOfItems'] : -1;
+$r = array_merge(
+	[
+		'contentMode'                => 'auto',
+		'contentModeProfileId'       => 0,
+		'contentModeResearchTopicId' => 0,
+		'isEditMode'                 => false,
+		'numberOfItems'              => 3,
+	],
+	$args
+);
 
-$research_topic_id = \SSRC\RAMP\Blocks::get_research_topic_from_template_args( $args );
+$number_of_items = (int) $args['numberOfItems'];
 
 $event_query_args = [
-	'posts_per_page' => $number_events,
+	'posts_per_page' => $number_of_items,
 	'start_date'     => gmdate( 'Y-m-d', time() - DAY_IN_SECONDS ),
+	'tax_query'      => \SSRC\RAMP\Blocks::get_content_mode_tax_query_from_template_args( $r ),
 ];
-
-if ( $research_topic_id ) {
-	$rt_map     = ramp_app()->get_cpttax_map( 'research_topic' );
-	$rt_term_id = $rt_map->get_term_id_for_post_id( $research_topic_id );
-
-	$query_args['tax_query'] = [
-		[
-			'taxonomy' => 'ramp_assoc_topic',
-			'terms'    => $rt_term_id,
-			'field'    => 'term_id',
-		],
-	];
-}
 
 // This is how we customize the orderby.
 $orderby_cb = function() {
@@ -35,14 +32,15 @@ remove_action( 'tribe_events_pre_get_posts', $orderby_cb );
 
 ?>
 
-<ul class="item-type-list item-type-list-research-reviews item-type-list-flex">
+<ul class="item-type-list item-type-list-events item-type-list-flex item-type-list-3">
 	<?php foreach ( $event_query->posts as $event ) : ?>
 		<li>
 			<?php
 			ramp_get_template_part(
 				'teasers/event',
 				[
-					'id' => $event->ID,
+					'id'           => $event->ID,
+					'is_edit_mode' => ! empty( $r['isEditMode'] ),
 				]
 			);
 			?>
