@@ -9,6 +9,7 @@ $r = array_merge(
 		'numberOfItems'              => 3,
 		'order'                      => 'latest',
 		'showLoadMore'               => false,
+		'showResearchTopics'         => true,
 		'showPublicationDate'        => true,
 		'variationType'              => 'grid',
 	],
@@ -105,7 +106,7 @@ $list_classes = [
 						'id'                    => $news_item->ID,
 						'is_edit_mode'          => $r['isEditMode'],
 						'show_publication_date' => (bool) $r['showPublicationDate'],
-						'show_research_topics'  => ! $content_mode_settings['research_topic_id'],
+						'show_research_topics'  => (bool) $r['showResearchTopics'],
 					]
 				);
 				?>

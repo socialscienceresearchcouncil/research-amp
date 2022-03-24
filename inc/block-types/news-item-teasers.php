@@ -40,6 +40,10 @@ return [
 			'type'    => 'boolean',
 			'default' => false,
 		],
+		'showResearchTopics'         => [
+			'type'    => 'boolean',
+			'default' => true,
+		],
 		'showPublicationDate'        => [
 			'type'    => 'boolean',
 			'default' => true,

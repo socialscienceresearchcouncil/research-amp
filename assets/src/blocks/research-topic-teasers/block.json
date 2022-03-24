@@ -25,6 +25,10 @@
 			"type": "boolean",
 			"default": false
 		},
+		"showResearchTopics": {
+			"type": "boolean",
+			"default": true
+		},
 		"slot1": {
 			"type": "integer",
 			"default": 0
