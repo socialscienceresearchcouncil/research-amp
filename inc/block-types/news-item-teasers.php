@@ -25,8 +25,8 @@ return [
 			'default' => false,
 		],
 		'numberOfItems'              => [
-			'type'    => 'string',
-			'default' => '3',
+			'type'    => 'integer',
+			'default' => 3,
 		],
 		'order'                      => [
 			'type'    => 'string',

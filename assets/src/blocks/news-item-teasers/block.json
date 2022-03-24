@@ -21,7 +21,7 @@
 			"default": 0
 		},
 		"featuredItemId": {
-			"type": "number",
+			"type": "integer",
 			"default": 0
 		},
 		"isEditMode": {
@@ -29,8 +29,8 @@
 			"default": false
 		},
 		"numberOfItems": {
-			"type": "string",
-			"default": "3"
+			"type": "integer",
+			"default": 3
 		},
 		"order": {
 			"enum": [ "alphabetical", "latest", "random" ],
