@@ -14,6 +14,8 @@ class Blocks {
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_assets' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_block_assets_frontend' ] );
 
+		add_action( 'wp_footer', [ $this, 'load_empty_block_js' ] );
+
 		add_filter( 'block_categories_all', [ $this, 'register_block_category' ], 10, 2 );
 
 		add_action( 'after_setup_theme', [ $this, 'add_image_sizes' ] );
@@ -85,6 +87,28 @@ class Blocks {
 			[],
 			$blocks_asset_file['version']
 		);
+	}
+
+	/**
+	 * Loads JS for hiding empty blocks.
+	 *
+	 * While teaser blocks are rendered on the server, and thus can be disabled when there
+	 * are no items to show, we can't hide larger "blocks" (ie, item-type-block patterns,
+	 * or "content blades") in the same way, since they're stored in HTML templates. Thus
+	 * we hide them dynamically.
+	 */
+	public function load_empty_block_js() {
+		?>
+		<script type="text/javascript">
+		var itemTypeBlocks = document.querySelectorAll('.item-type-block');
+		itemTypeBlocks.forEach( function( itemTypeBlock ) {
+			var blockHasItems = itemTypeBlock.querySelector('.item-type-list').querySelectorAll('li').length > 0;
+			if ( ! blockHasItems ) {
+				itemTypeBlock.hidden = true;
+			}
+		} );
+		</script>
+		<?php
 	}
 
 	/**
