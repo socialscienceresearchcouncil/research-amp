@@ -12,7 +12,7 @@ wp_enqueue_script( 'ramp-load-more' );
 
 ?>
 
-<div class="wp-block-button aligncenter is-style-primary load-more-button">
+<div class="wp-block-button aligncenter is-style-secondary load-more-button">
 	<a href="<?php echo esc_url( $load_more_href ); ?>" class="wp-block-button__link" data-query-arg="<?php echo esc_attr( $query_var ); ?>"><?php esc_html_e( 'Load More', 'ramp' ); ?></a>
 </div>
 
