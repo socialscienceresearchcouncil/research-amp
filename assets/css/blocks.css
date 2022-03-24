@@ -30,11 +30,13 @@
 }
 
 .item-type-list-3 > li {
-	flex-basis: calc( 33.3333% - 28px );
+	/* ( 28 * 2 ) / 3 */
+	flex: 0 0 calc( 33.3333% - 18.666px );
 }
 
 .item-type-list-4 > li {
-	flex-basis: calc( 25% - 28px );
+	/* ( 28 * 3 ) / 4 */
+	flex: 0 0 calc( 25% - 21px );
 }
 
 .item-type-list-flex > li.break-row {
