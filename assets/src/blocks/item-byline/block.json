@@ -1,0 +1,21 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/item-byline",
+	"title": "Byline",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"usesContext": [ "postType", "postId" ],
+	"attributes": {
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
+		},
+		"showPublicationDate": {
+			"type": "boolean",
+			"default": true
+		}
+	}
+}

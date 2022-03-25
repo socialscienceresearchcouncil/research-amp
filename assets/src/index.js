@@ -21,9 +21,10 @@ import './blocks/profile-research-topics'
 import './blocks/profile-vital-link'
 
 // Miscellaneous
-import './blocks/zotero-library-info-help'
-import './blocks/homepage-slides'
 import './blocks/citation-library-filters'
+import './blocks/homepage-slides'
+import './blocks/item-byline'
+import './blocks/zotero-library-info-help'
 
 /**
  * Shared block styles.

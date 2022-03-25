@@ -21,7 +21,6 @@ class Blocks {
 		add_action( 'after_setup_theme', [ $this, 'add_image_sizes' ] );
 
 		add_action( 'init', [ $this, 'register_server_side_rendered_blocks' ] );
-		add_action( 'init', [ $this, 'register_block_styles' ], 20 );
 
 		add_filter( 'save_post', [ $this, 'save_profile_data_from_blocks' ] );
 
@@ -137,6 +136,7 @@ class Blocks {
 			'citation-library-filters',
 			'citation-teasers',
 			'homepage-slides',
+			'item-byline',
 			'news-item-teasers',
 			'profile-research-topics',
 			'profile-teasers',
@@ -156,9 +156,6 @@ class Blocks {
 				require $block_file
 			);
 		}
-	}
-
-	public function register_block_styles() {
 	}
 
 	public function save_profile_data_from_blocks( $post ) {

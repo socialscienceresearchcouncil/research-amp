@@ -101,6 +101,7 @@ class Schema {
 					'with_front' => false,
 				],
 				'menu_icon'         => 'dashicons-book',
+				'rest_base'         => 'reviews',
 				'show_in_rest'      => true,
 				'show_in_nav_menus' => true,
 				'supports'          => [ 'title', 'editor', 'excerpt', 'thumbnail', 'author' ],
@@ -575,6 +576,7 @@ class Schema {
 				],
 				'hierarchical' => true,
 				'public'       => false,
+				'rest_base'    => 'associated-profiles',
 				'show_ui'      => true,
 				'show_in_rest' => true,
 				'capabilities' => [

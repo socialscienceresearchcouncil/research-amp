@@ -29,9 +29,17 @@ function ramp_get_template_part( $template, $args = [] ) {
 	load_template( $located, false, $args );
 }
 
-function ramp_render_block( $block_name, $atts ) {
+function ramp_render_block( $block_name, $atts, $content = '', $block = null ) {
+	$template_args = array_merge(
+		$atts,
+		[
+			'content' => $content,
+			'block'   => $block,
+		]
+	);
+
 	ob_start();
-	ramp_get_template_part( 'blocks/' . $block_name, $atts );
+	ramp_get_template_part( 'blocks/' . $block_name, $template_args );
 	$contents = ob_get_contents();
 	ob_end_clean();
 
