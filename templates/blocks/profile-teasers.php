@@ -50,6 +50,9 @@ if ( (bool) $r['hasRowRules'] ) {
 	$list_classes[] = 'has-no-row-rules';
 }
 
+// For display reasons, the grid must always contain 4n items.
+$placeholder_count = 4 - ( count( $profile_query->posts ) % 4 );
+
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
@@ -67,6 +70,10 @@ if ( (bool) $r['hasRowRules'] ) {
 				?>
 			</li>
 		<?php endforeach; ?>
+
+		<?php for ( $i = 0; $i < $placeholder_count; $i++ ) : ?>
+			<li aria-hidden=true"></li>
+		<?php endfor; ?>
 	</ul>
 
 	<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
