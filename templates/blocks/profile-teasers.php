@@ -4,6 +4,7 @@ $r = array_merge(
 	[
 		'contentMode'                => 'auto',
 		'contentModeResearchTopicId' => 0,
+		'hasRowRules'                => true,
 		'isEditMode'                 => false,
 		'numberOfItems'              => 4,
 		'order'                      => 'latest',
@@ -35,10 +36,24 @@ $div_classes = [
 	'uses-query-arg-' . $offset_query_var,
 ];
 
+$list_classes = [
+	'item-type-list',
+	'item-type-list-flex',
+	'item-type-list-4',
+	'item-type-list-profiles',
+	'load-more-list',
+];
+
+if ( (bool) $r['hasRowRules'] ) {
+	$list_classes[] = 'has-row-rules';
+} else {
+	$list_classes[] = 'has-no-row-rules';
+}
+
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
-	<ul class="item-type-list item-type-list-flex item-type-list-4 item-type-list-profiles load-more-list">
+	<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
 		<?php foreach ( $profile_query->posts as $profile_post ) : ?>
 			<li>
 				<?php

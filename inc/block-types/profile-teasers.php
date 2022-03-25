@@ -12,6 +12,10 @@ return [
 			'type'    => 'integer',
 			'default' => 0,
 		],
+		'hasRowRules'                => [
+			'type'    => 'boolean',
+			'default' => true,
+		],
 		'isEditMode'                 => [
 			'type'    => 'boolean',
 			'default' => false,

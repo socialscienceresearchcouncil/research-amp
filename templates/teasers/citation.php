@@ -24,17 +24,31 @@ if ( $citation_id ) {
 	$citation_year = $citation_object->get_publication_year();
 }
 
+$is_edit_mode = ! empty( $args['is_edit_mode'] );
+
+$article_classes = [ 'citation-teaser', 'teaser' ];
+
 ?>
 
 <article class="<?php echo esc_attr( implode( ' ', $article_classes ) ); ?>">
-	<div class="teaser-content article-teaser-content">
-		<h1 class="item-title article-item-title"><a href="<?php echo esc_url( $citation_url ); ?>"><?php echo esc_html( $citation_object->get_title() ); ?></a></h1>
+	<div class="teaser-content citation-teaser-content">
+		<h3 class="has-h-4-font-size item-title citation-item-title enforce-reading-width">
+			<?php if ( ! $is_edit_mode ) : ?>
+				<a href="<?php echo esc_url( $citation_url ); ?>">
+			<?php endif; ?>
+
+			<?php echo esc_html( $citation_object->get_title() ); ?>
+
+			<?php if ( ! $is_edit_mode ) : ?>
+				</a>
+			<?php endif; ?>
+		</h3>
 
 		<?php if ( $author || $publication || $citation_year ) : ?>
 		<dl>
 			<?php if ( $author ) : ?>
 				<div>
-					<dt><?php esc_html_e( 'Author(s):', 'ramp' ); ?></dt>
+					<dt><?php esc_html_e( 'Author:', 'ramp' ); ?></dt>
 					<dd><?php echo esc_html( $author ); ?></dd>
 				</div>
 			<?php endif; ?>

@@ -16,13 +16,17 @@ return [
 			'type'    => 'integer',
 			'default' => 0,
 		],
+		'hasRowRules'                => [
+			'type'    => 'boolean',
+			'default' => true,
+		],
 		'isEditMode'                 => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
 		'numberOfItems'              => [
-			'type'    => 'string',
-			'default' => '3',
+			'type'    => 'integer',
+			'default' => 3,
 		],
 		'order'                      => [
 			'type'    => 'string',

@@ -5,6 +5,7 @@ $r = array_merge(
 		'contentMode'                => 'auto',
 		'contentModeResearchTopicId' => 0,
 		'contentModeProfileId'       => 0,
+		'hasRowRules'                => true,
 		'isEditMode'                 => false,
 		'numberOfItems'              => 3,
 		'order'                      => 'alphabetical',
@@ -64,6 +65,12 @@ $list_classes = [
 if ( 'grid' === $variation_type ) {
 	$list_classes[] = 'item-type-list-flex';
 	$list_classes[] = 'item-type-list-3';
+}
+
+if ( (bool) $r['hasRowRules'] ) {
+	$list_classes[] = 'has-row-rules';
+} else {
+	$list_classes[] = 'has-no-row-rules';
 }
 
 $div_classes = [

@@ -19,30 +19,78 @@
 }
 
 .item-type-list-flex {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 28px;
+	display: grid;
+	gap: 0;
+	position: relative;
 }
 
 .item-type-list-flex > li {
-	flex: 1 0 0;
 	margin-bottom: 0;
+	padding: 32px 9.333px;
 }
 
-.item-type-list-3 > li {
-	/* ( 28 * 2 ) / 3 */
-	flex: 0 0 calc( 33.3333% - 18.666px );
+.item-type-list-3 {
+	grid-template-columns: repeat( 3, 1fr );
 }
 
-.item-type-list-4 > li {
-	/* ( 28 * 3 ) / 4 */
-	flex: 0 0 calc( 25% - 21px );
+.item-type-list-3.has-row-rules > li {
+	border-bottom: 1px solid var(--wp--preset--color--medium-grey);
+	padding-bottom: 48px;
+	padding-top: 48px;
 }
 
-.item-type-list-flex > li.break-row {
-	flex: 0 0 0;
-	flex-basis: 100%;
-	height: 0;
+.item-type-list-flex.item-type-list-3 > li:nth-child( 3n + 1 ) {
+	padding-left: 0;
+	padding-right: 18.666px;
+}
+
+.item-type-list-flex.item-type-list-3 > li:nth-child( 3n ) {
+	padding-left: 18.666px;
+	padding-right: 0;
+}
+
+.item-type-list-flex.item-type-list-3 > li:nth-child( 1 ),
+.item-type-list-flex.item-type-list-3 > li:nth-child( 2 ),
+.item-type-list-flex.item-type-list-3 > li:nth-child( 3 ) {
+	padding-top: 0;
+}
+
+.item-type-list-flex.has-no-row-rules.item-type-list-3 > li:nth-last-child( 1 ),
+.item-type-list-flex.has-no-row-rules.item-type-list-3 > li:nth-last-child( 2 ),
+.item-type-list-flex.has-no-row-rules.item-type-list-3 > li:nth-last-child( 3 ) {
+	padding-bottom: 0;
+}
+
+.item-type-list-4.has-row-rules > li {
+	border-bottom: 1px solid var(--wp--preset--color--medium-grey);
+	padding-bottom: 48px;
+	padding-top: 48px;
+}
+
+.item-type-list-4 {
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.item-type-list-flex.item-type-list-4 > li:nth-child( 4n + 1 ) {
+	padding-left: 0;
+}
+
+.item-type-list-flex.item-type-list-4 > li:nth-child( 4n ) {
+	padding-right: 0;
+}
+
+.item-type-list-flex.item-type-list-4 > li:nth-child( 1 ),
+.item-type-list-flex.item-type-list-4 > li:nth-child( 2 ),
+.item-type-list-flex.item-type-list-4 > li:nth-child( 3 ),
+.item-type-list-flex.item-type-list-4 > li:nth-child( 4 ) {
+	padding-top: 0;
+}
+
+.item-type-list-flex.has-no-row-rules.item-type-list-4 > li:nth-last-child( 1 ),
+.item-type-list-flex.has-no-row-rules.item-type-list-4 > li:nth-last-child( 2 ),
+.item-type-list-flex.has-no-row-rules.item-type-list-4 > li:nth-last-child( 3 ),
+.item-type-list-flex.has-no-row-rules.item-type-list-4 > li:nth-last-child( 4 ) {
+	padding-bottom: 0;
 }
 
 .teaser-byline {

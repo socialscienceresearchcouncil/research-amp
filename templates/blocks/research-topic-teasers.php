@@ -67,6 +67,7 @@ $list_classes = [
 ];
 
 if ( 'grid' === $variation_type ) {
+	$list_classes[] = 'item-type-list-3';
 	$list_classes[] = 'item-type-list-flex';
 }
 

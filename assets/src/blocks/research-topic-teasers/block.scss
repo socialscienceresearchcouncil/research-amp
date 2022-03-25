@@ -4,9 +4,10 @@
 	}
 
 	&.research-topic-teasers-grid {
-		li {
+		li article {
 			background: var(--ramp-light-grey);
 			padding: 24px;
+			height: 100%;
 		}
 	}
 

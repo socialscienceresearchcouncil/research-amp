@@ -13,13 +13,24 @@
 
 .non-featured-article-teasers {
 	&.item-type-list-flex {
-		flex-direction: column;
+		li {
+			border-bottom: 1px solid var(--wp--preset--color--medium-grey);
+			padding: 32px 0;
+		}
+
+		li:first-child {
+			padding-top: 0;
+		}
+
+		li:last-child {
+			border-bottom: none;
+			padding-bottom: 0;
+		}
 
 		.teaser {
 			flex-direction: row;
 			display: flex;
 			gap: 28px;
-			margin-bottom: 28px;
 		}
 	}
 
