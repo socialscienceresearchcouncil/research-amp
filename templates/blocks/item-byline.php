@@ -15,9 +15,6 @@ if ( 'ramp_review_version' === $args['block']->context['postType'] ) {
 
 $author_links  = \SSRC\RAMP\Profile::get_profile_links_for_post( $parent_item_id );
 $author_string = implode( ', ', $author_links );
-if ( $is_edit_mode ) {
-	$author_string = wp_strip_all_tags( $author_string );
-}
 
 if ( ! empty( $args['showPublicationDate'] ) ) {
 	$byline = sprintf(
