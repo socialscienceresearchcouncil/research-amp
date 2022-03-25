@@ -44,7 +44,7 @@ class Version {
 
 		$query = new WP_Query(
 			[
-				'post_type'   => 'ssrc_lr_version',
+				'post_type'   => 'ramp_review_version',
 				'post_parent' => $lr_id,
 				'orderby'     => 'date',
 				'order'       => 'DESC',

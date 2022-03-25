@@ -15,7 +15,7 @@ class Admin {
 	public function init() {
 		add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
 
-		add_action( 'admin_init', [ $this, 'catch_lr_version_delete' ] );
+		add_action( 'admin_init', [ $this, 'catch_review_version_delete' ] );
 		add_action( 'admin_init', [ $this, 'catch_feature_request' ] );
 		add_action( 'admin_init', [ $this, 'catch_unfeature_request' ] );
 
@@ -100,7 +100,7 @@ class Admin {
 			'research-review-version-name',
 			__( 'Version Name', 'ramp' ),
 			[ $this, 'version_name_cb' ],
-			'ssrc_lr_version',
+			'ramp_review_version',
 			'side'
 		);
 
@@ -118,7 +118,7 @@ class Admin {
 			'formatted-citation',
 			__( 'Formatted Citation', 'ramp' ),
 			[ $this, 'formatted_citation_cb' ],
-			[ 'ramp_review', 'ramp_article', 'ssrc_lr_version' ],
+			[ 'ramp_review', 'ramp_article', 'ramp_review_version' ],
 			'normal'
 		);
 
@@ -286,7 +286,7 @@ class Admin {
 					<?php foreach ( $versions as $version ) : ?>
 						<?php
 						$delete_link = add_query_arg( 'delete-version', $version->ID );
-						$delete_link = wp_nonce_url( $delete_link, 'delete_lr_version_' . $version->ID );
+						$delete_link = wp_nonce_url( $delete_link, 'delete_review_version_' . $version->ID );
 						?>
 						<tr>
 							<td><?php printf( '<a href="%s">%s</a>', esc_attr( get_permalink( $version ) ), esc_html( get_post_meta( $version->ID, 'version_name', true ) ) ); ?></td>
@@ -363,7 +363,7 @@ class Admin {
 		}
 	}
 
-	public function catch_lr_version_delete() {
+	public function catch_review_version_delete() {
 		global $pagenow;
 
 		if ( ! current_user_can( 'delete_posts' ) ) {
@@ -384,7 +384,7 @@ class Admin {
 
 		$version_id = intval( $_GET['delete-version'] );
 
-		check_admin_referer( 'delete_lr_version_' . $version_id );
+		check_admin_referer( 'delete_review_version_' . $version_id );
 
 		$version = get_post( $version_id );
 		$parent  = $version->post_parent;
@@ -412,7 +412,7 @@ class Admin {
 
 		$version_id = wp_insert_post(
 			[
-				'post_type'    => 'ssrc_lr_version',
+				'post_type'    => 'ramp_review_version',
 				/* translators: 1. Research review version title; 2. Version name */
 				'post_title'   => sprintf( __( '%1$s - Version %2$s', 'ramp' ), $source_post->post_title, $version_name ),
 				'post_name'    => sanitize_title( $version_name ),

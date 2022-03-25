@@ -28,13 +28,13 @@ class Schema {
 		add_action( 'set_object_terms', [ $this, 'sync_citation_rts_to_sps' ], 10, 4 );
 
 		// Filter post_type_link for LR versions.
-		add_filter( 'post_type_link', [ $this, 'filter_lr_version_link' ], 10, 2 );
+		add_filter( 'post_type_link', [ $this, 'filter_review_version_link' ], 10, 2 );
 
 		// Include postmeta fields in Relevanssi.
 		add_filter( 'relevanssi_index_custom_fields', [ $this, 'add_fields_to_index' ], 10, 2 );
 
 		// Loosen restrictions on LR Version slug uniqueness.
-		add_filter( 'pre_wp_unique_post_slug', [ $this, 'check_lr_version_post_slug' ], 10, 6 );
+		add_filter( 'pre_wp_unique_post_slug', [ $this, 'check_review_version_post_slug' ], 10, 6 );
 
 		// Set default sort order for certain taxonomies.
 		add_filter( 'get_terms_defaults', [ $this, 'set_get_terms_defaults' ], 10, 2 );
@@ -109,7 +109,7 @@ class Schema {
 
 		// Research Review Versions.
 		register_post_type(
-			'ssrc_lr_version',
+			'ramp_review_version',
 			[
 				'label'             => __( 'Research Review Versions', 'ramp' ),
 				'labels'            => [
@@ -142,7 +142,7 @@ class Schema {
 
 		add_rewrite_rule(
 			'^research-reviews/([^/]+)/versions/([^/]+)/?',
-			'index.php?post_type=ssrc_lr_version&lr_slug=$matches[1]&name=$matches[2]',
+			'index.php?post_type=ramp_review_version&lr_slug=$matches[1]&name=$matches[2]',
 			'top'
 		);
 
@@ -670,7 +670,7 @@ class Schema {
 		return $this->cpttaxonomies[ $key ];
 	}
 
-	public function filter_lr_version_link( $permalink, $post ) {
+	public function filter_review_version_link( $permalink, $post ) {
 		$lr_post = get_post( $post->post_parent );
 
 		if ( ! $lr_post || 'ramp_review' !== $lr_post->post_type ) {
@@ -789,8 +789,8 @@ class Schema {
 		<?php
 	}
 
-	public function check_lr_version_post_slug( $retval, $slug, $post_id, $post_status, $post_type, $post_parent ) {
-		if ( 'ssrc_lr_version' !== $post_type ) {
+	public function check_review_version_post_slug( $retval, $slug, $post_id, $post_status, $post_type, $post_parent ) {
+		if ( 'ramp_review_version' !== $post_type ) {
 			return $retval;
 		}
 

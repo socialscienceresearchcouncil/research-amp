@@ -4,10 +4,10 @@ namespace SSRC\RAMP;
 
 class Router {
 	public function init() {
-		add_action( 'parse_query', [ $this, 'redirect_to_lr_versions' ] );
+		add_action( 'parse_query', [ $this, 'redirect_to_review_versions' ] );
 	}
 
-	public function redirect_to_lr_versions( $query ) {
+	public function redirect_to_review_versions( $query ) {
 		if ( is_admin() ) {
 			return;
 		}
@@ -24,14 +24,14 @@ class Router {
 			return;
 		}
 
-		$lit_review = get_page_by_path( $query->get( 'ramp_review' ), OBJECT, 'ramp_review' );
+		$review = get_page_by_path( $query->get( 'ramp_review' ), OBJECT, 'ramp_review' );
 
-		$lr_versions = LitReviews\Version::get( $lit_review->ID );
-		if ( ! $lr_versions ) {
+		$review_versions = LitReviews\Version::get( $review->ID );
+		if ( ! $review_versions ) {
 			return;
 		}
 
-		$latest_version = array_shift( $lr_versions );
+		$latest_version = array_shift( $review_versions );
 
 		wp_safe_redirect( get_permalink( $latest_version ) );
 		die;
