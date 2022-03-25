@@ -4,11 +4,11 @@ $r = array_merge(
 	[
 		'contentMode'                => 'auto',
 		'contentModeResearchTopicId' => 0,
-		'hasRowRules'                => true,
 		'isEditMode'                 => false,
 		'numberOfItems'              => 4,
 		'order'                      => 'latest',
 		'showLoadMore'               => false,
+		'showRowRules'               => true,
 	],
 	$args
 );
@@ -44,7 +44,7 @@ $list_classes = [
 	'load-more-list',
 ];
 
-if ( (bool) $r['hasRowRules'] ) {
+if ( (bool) $r['showRowRules'] ) {
 	$list_classes[] = 'has-row-rules';
 } else {
 	$list_classes[] = 'has-no-row-rules';

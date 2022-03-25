@@ -12,10 +12,6 @@ return [
 			'type'    => 'integer',
 			'default' => 0,
 		],
-		'hasRowRules'                => [
-			'type'    => 'boolean',
-			'default' => true,
-		],
 		'isEditMode'                 => [
 			'type'    => 'boolean',
 			'default' => false,
@@ -31,6 +27,10 @@ return [
 		'showLoadMore'               => [
 			'type'    => 'boolean',
 			'default' => false,
+		],
+		'showRowRules'               => [
+			'type'    => 'boolean',
+			'default' => true,
 		],
 	],
 	'render_callback' => function( $atts ) {

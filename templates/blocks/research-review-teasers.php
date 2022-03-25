@@ -5,12 +5,12 @@ $r = array_merge(
 		'contentMode'                => 'auto',
 		'contentModeResearchTopicId' => 0,
 		'contentModeProfileId'       => 0,
-		'hasRowRules'                => true,
 		'isEditMode'                 => false,
 		'numberOfItems'              => 3,
 		'order'                      => 'alphabetical',
 		'showLoadMore'               => false,
 		'showPublicationDate'        => true,
+		'showRowRules'               => true,
 		'variationType'              => 'grid',
 	],
 	$args
@@ -67,7 +67,7 @@ if ( 'grid' === $variation_type ) {
 	$list_classes[] = 'item-type-list-3';
 }
 
-if ( (bool) $r['hasRowRules'] ) {
+if ( (bool) $r['showRowRules'] ) {
 	$list_classes[] = 'has-row-rules';
 } else {
 	$list_classes[] = 'has-no-row-rules';
