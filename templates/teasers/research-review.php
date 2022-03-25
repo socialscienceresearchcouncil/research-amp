@@ -3,7 +3,7 @@ $research_review_id = $args['id'];
 
 $is_edit_mode = ! empty( $args['is_edit_mode'] );
 
-$img_src      = '';
+$img_src      = RAMP_PLUGIN_URL . '/assets/img/empty-image.png';
 $img_alt      = '';
 $thumbnail_id = get_post_thumbnail_id( $research_review_id );
 if ( $thumbnail_id ) {
