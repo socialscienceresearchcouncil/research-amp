@@ -51,7 +51,7 @@ if ( (bool) $r['hasRowRules'] ) {
 }
 
 // For display reasons, the grid must always contain 4n items.
-$placeholder_count = 4 - ( count( $profile_query->posts ) % 4 );
+$placeholder_count = ramp_get_placeholder_count( count( $profile_query->posts ), 4 );
 
 ?>
 

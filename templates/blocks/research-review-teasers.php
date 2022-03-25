@@ -79,6 +79,9 @@ $div_classes = [
 	'uses-query-arg-' . $offset_query_var,
 ];
 
+// For display reasons, the grid must always contain 3n items.
+$placeholder_count = ramp_get_placeholder_count( count( $research_review_query->posts ), 3 );
+
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
@@ -98,6 +101,12 @@ $div_classes = [
 				?>
 			</li>
 		<?php endforeach; ?>
+
+		<?php if ( 'list' !== $variation_type ) : ?>
+			<?php for ( $i = 0; $i < $placeholder_count; $i++ ) : ?>
+				<li aria-hidden=true"></li>
+			<?php endfor; ?>
+		<?php endif; ?>
 	</ul>
 
 	<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>

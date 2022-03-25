@@ -49,3 +49,14 @@ function ramp_get_most_recent_research_topic_id() {
 
 	return $rts[0];
 }
+
+function ramp_get_placeholder_count( $query_count, $row_count ) {
+	$placeholder_count = $row_count - ( $query_count % $row_count );
+
+	// Account for modulo returning 0.
+	if ( $placeholder_count === $row_count ) {
+		$placeholder_count = 0;
+	}
+
+	return $placeholder_count;
+}
