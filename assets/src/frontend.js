@@ -12,3 +12,5 @@ import './blocks/research-review-teasers/block.scss';
 import './blocks/research-topic-teasers/block.scss';
 
 import './blocks/homepage-slides/block.scss';
+
+import './blocks/review-version-selector/block.scss';

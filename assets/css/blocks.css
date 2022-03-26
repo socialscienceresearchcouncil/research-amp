@@ -274,3 +274,76 @@ a.tag-plain:hover {
 .is-pressed .ramp-icon path {
 	fill: #fff;
 }
+
+.sidebar-section {
+	border-top: 1px solid var(--wp--preset--color--medium-grey);
+	padding: 24px;
+}
+
+.sidebar-section:last-child {
+	border-bottom: 1px solid var(--wp--preset--color--medium-grey);
+}
+
+.editor-styles-wrapper h3.sidebar-section-title,
+.sidebar-section-title {
+	color: var(--wp--preset--color--ramp-green);
+	font-size: var(--wp--preset--font-size--h-6);
+	margin-top: 0;
+	text-transform: uppercase;
+}
+
+/* Select2 overrides */
+body.admin-bar .select2-dropdown--below,
+body.admin-bar .select2-dropdown--above {
+	margin-top: 32px;
+}
+
+.select2-container .select2-selection--single {
+	border-radius: 0;
+	height: 51px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+	line-height: 51px;
+	padding-left: 20px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+	height: 50px;
+	width: 40px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow:after {
+	background-image: url(../img/expand-more.png);
+	background-position: center right 20px;
+	background-repeat: no-repeat;
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+	border: 0;
+}
+
+.select2-results__option {
+	padding: 6px 20px;
+}
+
+.select2-dropdown {
+	border-radius: 0;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+	background: #fff;
+	color: var(--wp--preset--color--ramp-green);
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+	background: #fff;
+}

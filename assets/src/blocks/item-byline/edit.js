@@ -73,8 +73,6 @@ export default function edit( {
 				displayName
 			)
 
-	console.log(byline)
-
 	return (
 		<>
 			<InspectorControls>

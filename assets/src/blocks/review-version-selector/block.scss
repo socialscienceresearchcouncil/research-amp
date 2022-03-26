@@ -1,0 +1,13 @@
+.wp-block-ramp-review-version-selector {
+	display: flex;
+	justify-content: space-between;
+
+	h3.sidebar-section-title {
+		line-height: 51px;
+		margin-bottom: 0;
+	}
+
+	select {
+		flex-basis: 30%;
+	}
+}
