@@ -57,9 +57,28 @@ class App {
 		}
 
 		require RAMP_PLUGIN_DIR . '/inc/functions.php';
+
+		add_action( 'wp_enqueue_scripts', [ $this, 'register_global_assets' ], 5 );
 	}
 
 	public function get_cpttax_map( $key ) {
 		return $this->schema->get_cpttax_map( $key );
+	}
+
+	public function register_global_assets() {
+		wp_register_script(
+			'ramp-select2',
+			RAMP_PLUGIN_URL . '/lib/select2/select2.min.js',
+			[ 'jquery' ],
+			RAMP_VER,
+			true
+		);
+
+		wp_register_style(
+			'ramp-select2',
+			RAMP_PLUGIN_URL . '/lib/select2/select2.min.css',
+			[],
+			RAMP_VER
+		);
 	}
 }

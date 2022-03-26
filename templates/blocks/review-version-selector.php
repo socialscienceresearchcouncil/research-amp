@@ -8,7 +8,7 @@ $r = array_merge(
 
 $classnames = [
 	'wp-block-ramp-review-version-selector',
-	'sidebar-section'
+	'sidebar-section',
 ];
 
 $version_id = isset( $args['block']->context['postId'] ) ? $args['block']->context['postId'] : 0;

@@ -132,16 +132,20 @@ class Blocks {
 
 	public function register_server_side_rendered_blocks() {
 		$block_types = [
+			// Teaser blocks
 			'article-teasers',
-			'citation-library-filters',
 			'citation-teasers',
-			'homepage-slides',
-			'item-byline',
 			'news-item-teasers',
-			'profile-research-topics',
 			'profile-teasers',
 			'research-review-teasers',
 			'research-topic-teasers',
+
+			// Miscellaneous
+			'citation-library-filters',
+			'homepage-slides',
+			'item-byline',
+			'profile-research-topics',
+			'review-version-selector',
 		];
 
 		if ( defined( 'TRIBE_EVENTS_FILE' ) ) {

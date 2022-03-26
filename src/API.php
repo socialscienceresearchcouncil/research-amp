@@ -43,7 +43,7 @@ class API {
 			[
 				'get_callback' => function( $object ) {
 					$version = new LitReviewVersion( $object['id'] );
-					$parent  = $review_version->get_parent();
+					$parent  = $version->get_parent();
 					return $parent ? $parent->ID : 0;
 				},
 			]
