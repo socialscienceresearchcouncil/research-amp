@@ -292,6 +292,43 @@ a.tag-plain:hover {
 	text-transform: uppercase;
 }
 
+/* Collapsible sections */
+.sidebar-section-collapsible {
+	position: relative;
+}
+
+.sidebar-section-collapsible h3.sidebar-section-title {
+	padding-right: 32px;
+}
+
+.sidebar-section-collapsible.section-closed h3.sidebar-section-title {
+	color: var(--wp--preset--color--almost-black);
+	margin-bottom: 0;
+}
+
+.section-toggle {
+	background-color: transparent;
+	background-size: 20px 20px;
+	border: none;
+	height: 20px;
+	position: absolute;
+	top: 24px;
+	right: 24px;
+	width: 20px;
+}
+
+.section-open .section-toggle {
+	background-image: url(../img/toggle-close.png);
+}
+
+.section-closed .section-toggle {
+	background-image: url(../img/toggle-open.png);
+}
+
+.section-closed .section-content {
+	display: none;
+}
+
 /* Select2 overrides */
 body.admin-bar .select2-dropdown--below,
 body.admin-bar .select2-dropdown--above {
