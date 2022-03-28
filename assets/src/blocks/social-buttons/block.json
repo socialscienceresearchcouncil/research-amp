@@ -12,6 +12,14 @@
 		"postType"
 	],
 	"attributes": {
+		"altmetricsEnabled": {
+			"type": "boolean",
+			"default": true
+		},
+		"altmetricsThreshold": {
+			"type": "integer",
+			"default": 20
+		},
 		"isEditMode": {
 			"type": "boolean",
 			"default": false

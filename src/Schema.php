@@ -98,6 +98,14 @@ class Schema {
 				'buttonTextShowLess' => __( 'Show Less', 'ramp' ),
 			]
 		);
+
+		wp_register_script(
+			'ramp-altmetrics',
+			RAMP_PLUGIN_URL . '/assets/js/altmetrics.js',
+			[],
+			RAMP_VER,
+			true
+		);
 	}
 
 	public function register_post_types() {

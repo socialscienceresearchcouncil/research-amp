@@ -1,12 +1,19 @@
 .sidebar-section.wp-block-ramp-social-buttons {
-	border-bottom: 0;
 	display: flex;
+	justify-content: space-between;
 	padding-left: 0;
 	padding-right: 0;
 
+	&:last-child {
+		border-bottom: 0;
+	}
+
 	.social-buttons-links {
+		align-items: center;
 		display: flex;
 		gap: 16px;
+		justify-content: flex-start;
+		padding-bottom: 6px;
 	}
 
 	.social-button {

@@ -62,6 +62,14 @@ class Blocks {
 			$blocks_asset_file['version'],
 			true
 		);
+
+		wp_add_inline_script(
+			'ramp-blocks',
+			'const RAMPBlocks = ' . json_encode( [
+				'dkpdfIsEnabled' => class_exists( '\\DKPDF' ),
+			] ),
+			'before'
+		);
 	}
 
 	/**
