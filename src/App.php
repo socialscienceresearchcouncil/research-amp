@@ -12,6 +12,7 @@ class App {
 	protected $user_management;
 	protected $blocks;
 	protected $homepage_slides;
+	protected $toc;
 
 	protected $cli;
 
@@ -24,7 +25,8 @@ class App {
 		Router $router,
 		UserManagement $user_management,
 		Blocks $blocks,
-		HomepageSlides $homepage_slides
+		HomepageSlides $homepage_slides,
+		TOC $toc
 	) {
 		$this->schema              = $schema;
 		$this->admin               = $admin;
@@ -35,6 +37,7 @@ class App {
 		$this->user_management     = $user_management;
 		$this->blocks              = $blocks;
 		$this->homepage_slides     = $homepage_slides;
+		$this->toc                 = $toc;
 	}
 
 	public function init() {
@@ -46,6 +49,7 @@ class App {
 		$this->user_management->init();
 		$this->blocks->init();
 		$this->homepage_slides->init();
+		$this->toc->init();
 
 		if ( is_admin() ) {
 			$this->admin->init();
@@ -57,28 +61,9 @@ class App {
 		}
 
 		require RAMP_PLUGIN_DIR . '/inc/functions.php';
-
-		add_action( 'wp_enqueue_scripts', [ $this, 'register_global_assets' ], 5 );
 	}
 
 	public function get_cpttax_map( $key ) {
 		return $this->schema->get_cpttax_map( $key );
-	}
-
-	public function register_global_assets() {
-		wp_register_script(
-			'ramp-select2',
-			RAMP_PLUGIN_URL . '/lib/select2/select2.min.js',
-			[ 'jquery' ],
-			RAMP_VER,
-			true
-		);
-
-		wp_register_style(
-			'ramp-select2',
-			RAMP_PLUGIN_URL . '/lib/select2/select2.min.css',
-			[],
-			RAMP_VER
-		);
 	}
 }

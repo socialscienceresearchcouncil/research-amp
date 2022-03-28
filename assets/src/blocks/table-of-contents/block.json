@@ -1,0 +1,24 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/table-of-contents",
+	"title": "Table of Contents",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"attributes": {
+		"headingText": {
+			"type": "string",
+			"default": "Table of Contents"
+		},
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

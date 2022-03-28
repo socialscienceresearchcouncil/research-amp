@@ -44,10 +44,6 @@ class Schema {
 	}
 
 	public function register_scripts() {
-		// @todo Don't use this, which requires jQuery. See https://github.com/Choices-js/Choices
-		wp_register_script( 'ramp-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js', [], RAMP_VER, true );
-		wp_register_style( 'ramp-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css', [], RAMP_VER );
-
 		wp_register_style(
 			'ramp-directory-filters',
 			RAMP_PLUGIN_URL . '/assets/css/directory-filters.css',
@@ -69,6 +65,38 @@ class Schema {
 			[ 'jquery' ],
 			RAMP_VER,
 			true
+		);
+
+		wp_register_script(
+			'ramp-select2',
+			RAMP_PLUGIN_URL . '/lib/select2/select2.min.js',
+			[ 'jquery' ],
+			RAMP_VER,
+			true
+		);
+
+		wp_register_style(
+			'ramp-select2',
+			RAMP_PLUGIN_URL . '/lib/select2/select2.min.css',
+			[],
+			RAMP_VER
+		);
+
+		wp_register_script(
+			'ramp-sidebar',
+			RAMP_PLUGIN_URL . '/assets/js/sidebar.js',
+			[],
+			RAMP_VER,
+			true
+		);
+
+		wp_localize_script(
+			'ramp-sidebar',
+			'RAMPSidebar',
+			[
+				'buttonTextShowMore' => __( 'Show More', 'ramp' ),
+				'buttonTextShowLess' => __( 'Show Less', 'ramp' ),
+			]
 		);
 	}
 

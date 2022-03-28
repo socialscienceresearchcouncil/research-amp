@@ -152,6 +152,10 @@ class Blocks {
 			$block_types[] = 'event-teasers';
 		}
 
+		if ( class_exists( 'ezTOC' ) ) {
+			$block_types[] = 'table-of-contents';
+		}
+
 		foreach ( $block_types as $block_type ) {
 			$block_file = RAMP_PLUGIN_DIR . '/inc/block-types/' . $block_type . '.php';
 

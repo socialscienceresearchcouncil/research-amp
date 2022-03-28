@@ -38,6 +38,7 @@ function ramp_app() {
 		$user_management     = new \SSRC\RAMP\UserManagement();
 		$blocks              = new \SSRC\RAMP\Blocks();
 		$homepage_slides     = new \SSRC\RAMP\HomepageSlides();
+		$toc                 = new \SSRC\RAMP\TOC();
 
 		$app = new \SSRC\RAMP\App(
 			$schema,
@@ -48,7 +49,8 @@ function ramp_app() {
 			$router,
 			$user_management,
 			$blocks,
-			$homepage_slides
+			$homepage_slides,
+			$toc
 		);
 
 		$app->init();

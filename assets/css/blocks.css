@@ -310,6 +310,7 @@ a.tag-plain:hover {
 	background-color: transparent;
 	background-size: 20px 20px;
 	border: none;
+	cursor: pointer;
 	height: 20px;
 	position: absolute;
 	top: 24px;

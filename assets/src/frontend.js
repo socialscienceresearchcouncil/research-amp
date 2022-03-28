@@ -14,3 +14,4 @@ import './blocks/research-topic-teasers/block.scss';
 import './blocks/homepage-slides/block.scss';
 
 import './blocks/review-version-selector/block.scss';
+import './blocks/table-of-contents/block.scss';
