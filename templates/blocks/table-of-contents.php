@@ -34,6 +34,7 @@ $classnames = [
 	<h3 class="sidebar-section-title"><?php echo esc_html( $r['headingText'] ); ?></h3>
 
 	<div class="section-content">
+		<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>
 		<?php echo $toc; ?>
 	</div>
 </div>

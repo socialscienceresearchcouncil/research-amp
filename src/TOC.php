@@ -16,7 +16,12 @@ class TOC {
 		add_filter( 'the_content', [ $this, 'filter_the_content' ] );
 
 		add_filter( 'ez_toc_get_option_show_heading_text', '__return_false' );
-		add_filter( 'ez_toc_get_option_counter', function() { return 'none'; } );
+		add_filter(
+			'ez_toc_get_option_counter',
+			function() {
+				return 'none';
+			}
+		);
 	}
 
 	public function filter_the_content( $content ) {
