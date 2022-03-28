@@ -31,14 +31,18 @@ class TOC {
 		}
 
 		remove_filter( 'the_content', [ $this, 'filter_the_content' ] );
-		$content = $this->process_for_toc( $content );
+		$content = self::process_for_toc( $content );
 		add_filter( 'the_content', [ $this, 'filter_the_content' ] );
 
 		return $content;
 	}
 
-	protected function process_for_toc( $content ) {
-		$post = ezTOC::get( get_the_ID() );
+	public static function process_for_toc( $content, $post_id = null ) {
+		if ( null === $post_id ) {
+			$post_id = get_the_ID();
+		}
+
+		$post = ezTOC::get( $post_id );
 
 		// Bail if no headings found.
 		if ( ! $post->hasTOCItems() ) {

@@ -2,9 +2,18 @@
 $r = array_merge(
 	[
 		'headingText' => __( 'Table of Contents', 'ramp' ),
+		'isEditMode'  => false,
+		'postId'      => get_queried_object_id(),
 	],
 	$args
 );
+
+if ( $r['isEditMode'] ) {
+	// Set up the TOC.
+	$toc_post    = get_post( $r['postId'] );
+	$toc_content = $toc_post ? $toc_post->content : '';
+	$toc_content = \SSRC\RAMP\TOC::process_for_toc( $toc_content, $r['postId'] );
+}
 
 $toc = ! empty( $GLOBALS['the_toc'] ) ? $GLOBALS['the_toc'] : '';
 

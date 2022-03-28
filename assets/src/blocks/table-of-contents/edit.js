@@ -4,6 +4,8 @@ import { __, sprintf } from '@wordpress/i18n'
 
 import classNames from 'classnames'
 
+import ServerSideRender from '@wordpress/server-side-render'
+
 import {
 	InspectorControls,
 	RichText,
@@ -69,17 +71,35 @@ export default function edit( {
 		</div>
 	)
 
+	const showFakeTOC = 'undefined' === typeof postId
+
+	const serverSideAtts = Object.assign( {}, attributes, {
+		isEditMode: true
+	} )
+
 	return (
 		<>
 			<div { ...blockProps }>
-				<RichText
-					className="sidebar-section-title"
-					onChange={ (headingText) => setAttributes( { headingText } ) }
-					tagName="h3"
-					value={ headingTextValue }
-				/>
+				{ showFakeTOC && (
+					<>
+						<RichText
+							className="sidebar-section-title"
+							onChange={ (headingText) => setAttributes( { headingText } ) }
+							tagName="h3"
+							value={ headingTextValue }
+						/>
 
-				{ fakeTOC }
+						{ fakeTOC }
+					</>
+				) }
+
+				{ ! showFakeTOC && (
+					<ServerSideRender
+						attributes={ serverSideAtts }
+						block="ramp/table-of-contents"
+						httpMethod="GET"
+					/>
+				) }
 			</div>
 		</>
 	)
