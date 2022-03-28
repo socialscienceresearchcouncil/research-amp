@@ -1,0 +1,28 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/cite-this",
+	"title": "Cite This",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"attributes": {
+		"headingText": {
+			"type": "string",
+			"default": "Cite This"
+		},
+		"helpText": {
+			"type": "string",
+			"default": "Copy and paste the text below to cite this item."
+		},
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

@@ -58,6 +58,16 @@ class API {
 				},
 			]
 		);
+
+		register_rest_field(
+			[ 'ramp_topic', 'ramp_review', 'ramp_review_version', 'ramp_article', 'post' ],
+			'formatted_citation',
+			[
+				'get_callback' => function( $object ) {
+					return get_post_meta( $object['id'], 'formatted_citation', true );
+				},
+			]
+		);
 	}
 }
 

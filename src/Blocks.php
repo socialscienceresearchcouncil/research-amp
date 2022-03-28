@@ -142,6 +142,7 @@ class Blocks {
 
 			// Miscellaneous
 			'citation-library-filters',
+			'cite-this',
 			'homepage-slides',
 			'item-byline',
 			'profile-research-topics',

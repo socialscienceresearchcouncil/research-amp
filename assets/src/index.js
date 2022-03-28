@@ -22,6 +22,7 @@ import './blocks/profile-vital-link'
 
 // Miscellaneous
 import './blocks/citation-library-filters'
+import './blocks/cite-this'
 import './blocks/homepage-slides'
 import './blocks/item-byline'
 import './blocks/review-version-selector'

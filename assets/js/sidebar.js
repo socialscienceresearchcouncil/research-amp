@@ -1,8 +1,10 @@
 (function(){
 	document.addEventListener('DOMContentLoaded', function() {
-		const collapsibleSections = document.querySelectorAll( '.sidebar-section-collapsible' )
+		// Collapsibles.
+		document.querySelectorAll( '.sidebar-section-collapsible' ).forEach( ( section ) => initCollapsible( section ) )
 
-		collapsibleSections.forEach( ( section ) => initCollapsible( section ) )
+		// Cite This click-to-highlight.
+		document.querySelectorAll( '.cite-this-citation' ).forEach( ( citation ) => initClickToHighlight( citation ) )
 	})
 
 	const initCollapsible = ( section ) => {
@@ -36,5 +38,25 @@
 		section.classList.toggle( 'section-closed' )
 
 		setButtonText( section )
+	}
+
+	const initClickToHighlight = ( element ) => {
+		element.addEventListener( 'click', ( event ) => {
+			var doc = document
+					, text = event.target
+					, range, selection
+			;
+			if (doc.body.createTextRange) { //ms
+					range = doc.body.createTextRange();
+					range.moveToElementText(text);
+					range.select();
+			} else if (window.getSelection) { //all others
+					selection = window.getSelection();
+					range = doc.createRange();
+					range.selectNodeContents(text);
+					selection.removeAllRanges();
+					selection.addRange(range);
+			}
+		} )
 	}
 }())
