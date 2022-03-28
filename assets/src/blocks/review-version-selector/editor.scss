@@ -1,1 +1,31 @@
-@import './block.scss'
+@import './block.scss';
+
+.fake-select-container {
+	border: 1px solid #aaa;
+	height: 51px;
+	line-height: 51px;
+	padding: 0 56px 0 20px;
+	position: relative;
+
+	.select2-selection__arrow {
+		height: 50px;
+		width: 40px;
+		position: absolute;
+		top: 1px;
+		right: 1px;
+
+		&:after {
+			background-image: url(../../../img/expand-more.png);
+			background-position: center right 20px;
+			background-repeat: no-repeat;
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+		}
+	}
+}

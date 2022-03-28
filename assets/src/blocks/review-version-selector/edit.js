@@ -35,6 +35,13 @@ export default function edit( {
 
 	const headingTextValue = headingText ?? __( 'Version', 'ramp' )
 
+	const fakeSelect = (
+		<div className="fake-select-container">
+			<span className="select2-selection__rendered">1.1</span>
+			<span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
+		</div>
+	)
+
 	return (
 		<>
 			<div { ...blockProps }>
@@ -44,6 +51,8 @@ export default function edit( {
 					tagName="h3"
 					value={ headingTextValue }
 				/>
+
+				{ fakeSelect }
 			</div>
 		</>
 	)
