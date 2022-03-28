@@ -1,0 +1,33 @@
+.sidebar-section.wp-block-ramp-social-buttons {
+	border-bottom: 0;
+	display: flex;
+	padding-left: 0;
+	padding-right: 0;
+
+	.social-buttons-links {
+		display: flex;
+		gap: 16px;
+	}
+
+	.social-button {
+		background: var(--wp--preset--color--dark-grey);
+		background-position: center center;
+		background-repeat: no-repeat;
+		border-radius: 50%;
+		display: inline-block;
+		height: 29px;
+		width: 29px;
+
+		&.social-button-twitter {
+			background-image: url(../../../img/icon-twitter-white.png);
+		}
+
+		&.social-button-facebook {
+			background-image: url(../../../img/icon-facebook-white.png);
+		}
+
+		&.social-button-download {
+			background-image: url(../../../img/icon-download-white.png);
+		}
+	}
+}

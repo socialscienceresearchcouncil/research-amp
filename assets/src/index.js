@@ -26,6 +26,7 @@ import './blocks/cite-this'
 import './blocks/homepage-slides'
 import './blocks/item-byline'
 import './blocks/review-version-selector'
+import './blocks/social-buttons'
 import './blocks/table-of-contents'
 import './blocks/zotero-library-info-help'
 

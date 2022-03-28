@@ -147,6 +147,7 @@ class Blocks {
 			'item-byline',
 			'profile-research-topics',
 			'review-version-selector',
+			'social-buttons',
 		];
 
 		if ( defined( 'TRIBE_EVENTS_FILE' ) ) {
@@ -157,11 +158,14 @@ class Blocks {
 			$block_types[] = 'table-of-contents';
 		}
 
+		$blocks_dir        = RAMP_PLUGIN_DIR . '/build/';
+		$blocks_asset_file = include $blocks_dir . 'index.asset.php';
+
 		foreach ( $block_types as $block_type ) {
-			$block_file = RAMP_PLUGIN_DIR . '/inc/block-types/' . $block_type . '.php';
+			$block_file = RAMP_PLUGIN_DIR . 'inc/block-types/' . $block_type . '.php';
 
 			register_block_type_from_metadata(
-				RAMP_PLUGIN_DIR . '/assets/src/blocks/' . $block_type . '/block.json',
+				RAMP_PLUGIN_DIR . 'assets/src/blocks/' . $block_type . '/block.json',
 				require $block_file
 			);
 		}

@@ -1,0 +1,20 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/social-buttons",
+	"title": "Social Sharing buttons",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"attributes": {
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

@@ -15,4 +15,5 @@ import './blocks/homepage-slides/block.scss';
 
 import './blocks/cite-this/block.scss';
 import './blocks/review-version-selector/block.scss';
+import './blocks/social-buttons/block.scss';
 import './blocks/table-of-contents/block.scss';

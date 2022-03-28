@@ -5,6 +5,9 @@
 
 		// Cite This click-to-highlight.
 		document.querySelectorAll( '.cite-this-citation' ).forEach( ( citation ) => initClickToHighlight( citation ) )
+
+		// Social buttons.
+		document.querySelectorAll( '.social-button' ).forEach( ( button ) => initSocialButton( button ) )
 	})
 
 	const initCollapsible = ( section ) => {
@@ -57,6 +60,29 @@
 					selection.removeAllRanges();
 					selection.addRange(range);
 			}
+		} )
+	}
+
+	const initSocialButton = ( button ) => {
+		const { url, title } = button.closest( '.social-buttons-links' ).dataset
+
+		if ( button.classList.contains( 'social-button-facebook' ) ) {
+			const facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent( url ) + "&t=" + encodeURIComponent( title )
+			button.setAttribute( 'href', facebookUrl )
+		} else if ( button.classList.contains( 'social-button-twitter' ) ) {
+			const twitterUrl = "https://twitter.com/intent/tweet?url=" + encodeURIComponent( url ) + "&text=" + encodeURIComponent( title )
+			button.setAttribute( 'href', twitterUrl )
+		} else {
+			return
+		}
+
+		button.addEventListener( 'click', ( event ) => {
+			event.preventDefault()
+			window.open(
+				event.target.href,
+				'_blank',
+				'height=450, width=550, toolbar=0, location=0, menubar=0, directories=0,scrollbars=0'
+			)
 		} )
 	}
 }())
