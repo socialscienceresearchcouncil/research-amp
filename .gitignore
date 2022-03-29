@@ -2,6 +2,9 @@
 node_modules/
 vendor/
 
+# ignore build files
+/build
+
 # ignore log files and databases
 *.log
 *.sql
