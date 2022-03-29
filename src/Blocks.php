@@ -63,11 +63,13 @@ class Blocks {
 			true
 		);
 
+		$inline_settings = [
+			'dkpdfIsEnabled' => class_exists( '\\DKPDF' ),
+		];
+
 		wp_add_inline_script(
 			'ramp-blocks',
-			'const RAMPBlocks = ' . json_encode( [
-				'dkpdfIsEnabled' => class_exists( '\\DKPDF' ),
-			] ),
+			'const RAMPBlocks = ' . wp_json_encode( $inline_settings ),
 			'before'
 		);
 	}
