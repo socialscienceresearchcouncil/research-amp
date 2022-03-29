@@ -1,5 +1,7 @@
 .wp-block-ramp-cite-this {
-	background: var( --wp--preset--color--light-grey );
+	&.section-open {
+		background: var( --wp--preset--color--light-grey );
+	}
 
 	.cite-this-citation {
 		background: #fff;
