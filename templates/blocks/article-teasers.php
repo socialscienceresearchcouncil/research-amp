@@ -11,6 +11,7 @@ $r = array_merge(
 		'order'                      => 'latest',
 		'showLoadMore'               => false,
 		'showPublicationDate'        => true,
+		'showRowRules'               => true,
 		'variationType'              => 'grid',
 	],
 	$args
@@ -85,15 +86,24 @@ $div_classes = [
 
 $list_classes = [
 	'item-type-list',
-	'item-type-list-flex',
 	'item-type-list-articles',
 	'load-more-list',
 ];
+
+if ( 'list' !== $variation_type ) {
+	$list_classes[] = 'item-type-list-flex';
+}
 
 if ( 'featured' === $variation_type ) {
 	$list_classes[] = 'non-featured-article-teasers';
 } elseif ( 'grid' === $variation_type ) {
 	$list_classes[] = 'item-type-list-3';
+}
+
+if ( (bool) $r['showRowRules'] ) {
+	$list_classes[] = 'has-row-rules';
+} else {
+	$list_classes[] = 'has-no-row-rules';
 }
 
 ?>
@@ -133,6 +143,7 @@ if ( 'featured' === $variation_type ) {
 							'id'                    => $article->ID,
 							'is_edit_mode'          => $is_edit_mode,
 							'show_publication_date' => (bool) $r['showPublicationDate'],
+							'show_research_topics'  => 'list' === $variation_type,
 						]
 					);
 					?>

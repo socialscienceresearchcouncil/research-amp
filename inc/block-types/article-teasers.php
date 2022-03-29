@@ -36,11 +36,15 @@ return [
 			'type'    => 'string',
 			'default' => 'auto',
 		],
+		'showFeaturedItem'           => [
+			'type'    => 'boolean',
+			'default' => false,
+		],
 		'showLoadMore'               => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'showFeaturedItem'           => [
+		'showRowRules'               => [
 			'type'    => 'boolean',
 			'default' => false,
 		],

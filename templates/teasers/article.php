@@ -26,6 +26,7 @@ if ( $article_type_terms ) {
 }
 
 $show_publication_date = ! empty( $args['show_publication_date'] );
+$show_research_topics  = ! empty( $args['show_research_topics'] );
 
 $author_links  = \SSRC\RAMP\Profile::get_profile_links_for_post( $article_id );
 $author_string = implode( ', ', $author_links );
@@ -95,5 +96,17 @@ if ( $is_featured ) {
 			<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php echo $byline; ?>
 		</div>
+
+		<?php if ( $show_research_topics ) : ?>
+			<?php
+			ramp_get_template_part(
+				'research-topic-tags',
+				[
+					'is_edit_mode' => $is_edit_mode,
+					'item_id'      => $article_id,
+				]
+			);
+			?>
+		<?php endif; ?>
 	</div>
 </article>
