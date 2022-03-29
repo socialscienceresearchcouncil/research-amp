@@ -1,0 +1,32 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/suggested-items",
+	"title": "Suggested Items",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"attributes": {
+		"headingText": {
+			"type": "string",
+			"default": ""
+		},
+		"itemType": {
+			"enum": [ "article", "news-item" ],
+			"default": "article"
+		},
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
+		},
+		"numberOfItems": {
+			"type": "integer",
+			"default": 3
+		}
+	}
+}

@@ -159,6 +159,7 @@ class Blocks {
 			'profile-research-topics',
 			'review-version-selector',
 			'social-buttons',
+			'suggested-items',
 		];
 
 		if ( defined( 'TRIBE_EVENTS_FILE' ) ) {
