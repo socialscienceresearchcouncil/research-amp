@@ -638,6 +638,7 @@ class Schema {
 				],
 				'hierarchical' => true, // Just to get the checkboxes.
 				'public'       => true,
+				'rest_base'    => 'article-types',
 				'show_ui'      => true,
 				'show_in_rest' => true,
 				'rewrite'      => [

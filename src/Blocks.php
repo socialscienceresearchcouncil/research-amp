@@ -155,6 +155,7 @@ class Blocks {
 			'cite-this',
 			'homepage-slides',
 			'item-byline',
+			'item-type-label',
 			'profile-research-topics',
 			'review-version-selector',
 			'social-buttons',
