@@ -30,7 +30,7 @@ export default function edit( {
 	} = attributes
 
 	const blockProps = useBlockProps({
-		className: [ 'sidebar-section' ]
+		className: [ 'is-latest-version', 'sidebar-section' ]
 	})
 
 	const headingTextValue = headingText ?? __( 'Version', 'ramp' )
@@ -45,14 +45,16 @@ export default function edit( {
 	return (
 		<>
 			<div { ...blockProps }>
-				<RichText
-					className="sidebar-section-title"
-					onChange={ (headingText) => setAttributes( { headingText } ) }
-					tagName="h3"
-					value={ headingTextValue }
-				/>
+				<div className="version-selector">
+					<RichText
+						className="sidebar-section-title"
+						onChange={ (headingText) => setAttributes( { headingText } ) }
+						tagName="h3"
+						value={ headingTextValue }
+					/>
 
-				{ fakeSelect }
+					{ fakeSelect }
+				</div>
 			</div>
 		</>
 	)
