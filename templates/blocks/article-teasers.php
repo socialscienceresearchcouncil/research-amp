@@ -19,7 +19,7 @@ $r = array_merge(
 
 $is_edit_mode = (bool) $r['isEditMode'];
 
-if ( in_array( $r['variationType'], [ 'grid', 'list', 'featured' ], true ) ) {
+if ( in_array( $r['variationType'], [ 'grid', 'list', 'list-mini', 'featured' ], true ) ) {
 	$variation_type = $r['variationType'];
 } else {
 	$variation_type = 'grid';
@@ -65,6 +65,10 @@ if ( 'featured' === $variation_type ) {
 // Load More doesn't work with the Featured variation type.
 $show_load_more = $r['showLoadMore'] && 'featured' !== $variation_type;
 
+$show_publication_date = $r['showPublicationDate'] && 'list-mini' !== $variation_type;
+$show_byline           = 'list-mini' !== $variation_type;
+$show_image            = 'list-mini' !== $variation_type;
+
 $offset_query_var = 'article-pag-offset';
 $offset           = (int) $wp_query->get( $offset_query_var );
 
@@ -90,7 +94,7 @@ $list_classes = [
 	'load-more-list',
 ];
 
-if ( 'list' !== $variation_type ) {
+if ( 'list' !== $variation_type && 'list-mini' !== $variation_type ) {
 	$list_classes[] = 'item-type-list-flex';
 }
 
@@ -120,7 +124,7 @@ if ( (bool) $r['showRowRules'] ) {
 							'id'                    => $featured_item_id,
 							'is_edit_mode'          => $is_edit_mode,
 							'is_featured'           => true,
-							'show_publication_date' => (bool) $r['showPublicationDate'],
+							'show_publication_date' => $show_publication_date,
 						]
 					);
 				} elseif ( $is_edit_mode ) {
@@ -137,13 +141,18 @@ if ( (bool) $r['showRowRules'] ) {
 			<?php foreach ( $articles_query->posts as $article ) : ?>
 				<li>
 					<?php
+					$title_size = 'list-mini' === $variation_type ? 'h-5' : 'h-4';
+
 					ramp_get_template_part(
 						'teasers/article',
 						[
 							'id'                    => $article->ID,
 							'is_edit_mode'          => $is_edit_mode,
-							'show_publication_date' => (bool) $r['showPublicationDate'],
+							'show_byline'           => $show_byline,
+							'show_image'            => $show_image,
+							'show_publication_date' => $show_publication_date,
 							'show_research_topics'  => 'list' === $variation_type,
+							'title_size'            => $title_size,
 						]
 					);
 					?>

@@ -54,7 +54,7 @@ return [
 		],
 		'variationType'              => [
 			'type'    => 'string',
-			'enum'    => [ 'grid', 'list', 'featured' ],
+			'enum'    => [ 'grid', 'list', 'list-mini', 'featured' ],
 			'default' => 'grid',
 		],
 	],
