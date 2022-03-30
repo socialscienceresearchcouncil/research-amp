@@ -106,41 +106,36 @@ class Install extends WP_CLI_Command {
 		update_option( 'ramp_nav_menus', $ramp_nav_menus );
 	}
 
-	protected function install_default_page_for_posts() {
-		$existing_page_for_posts = get_option( 'page_for_posts' );
-		$existing_page_on_front  = get_option( 'page_on_front' );
-		if ( $existing_page_for_posts || $existing_page_on_front ) {
-			return;
-		}
-
-		$page_for_posts = wp_insert_post(
+	protected function install_default_page_on_front() {
+		$news_items_page = wp_insert_post(
 			[
 				'post_title'   => __( 'News Items', 'ramp' ),
+				'post_name'    => 'news-items',
 				'post_type'    => 'page',
 				'post_status'  => 'publish',
 				'post_content' => '',
 			]
 		);
 
-		if ( ! $page_for_posts ) {
-			return;
+		if ( $news_items_page ) {
+			update_post_meta( $news_items_page, '_wp_page_template', 'page-news-items' );
 		}
-
-		update_option( 'page_for_posts', $page_for_posts );
 
 		$page_on_front = wp_insert_post(
 			[
 				'post_title'   => __( 'Home Page', 'ramp' ),
+				'post_name'    => 'home-page',
 				'post_type'    => 'page',
 				'post_status'  => 'publish',
 				'post_content' => '',
 			]
 		);
 
-		if ( ! $page_on_front ) {
-			return;
+		if ( $page_on_front ) {
+			update_option( 'show_on_front', 'page' );
+			update_option( 'page_on_front', $page_on_front );
+			update_post_meta( $page_on_front, '_wp_page_template', 'page-home-page' );
 		}
 
-		update_option( 'page_on_front', $page_on_front );
 	}
 }
