@@ -21,6 +21,10 @@ switch ( $args['block']->context['postType'] ) {
 
 		$item_type_label = $article_types ? $article_types[0] : '';
 	break;
+
+	case 'post' :
+		$item_type_label = __( 'News Item', 'ramp' );
+	break;
 }
 
 if ( ! $item_type_label ) {

@@ -59,6 +59,9 @@ export default function edit( {
 
 				case 'single-ramp_article' :
 					return __( 'Article Type', 'ramp' )
+
+				case 'single' :
+					return __( 'News Item', 'ramp' )
 			}
 		}
 
