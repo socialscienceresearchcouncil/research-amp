@@ -66,7 +66,7 @@ if ( 'featured' === $variation_type ) {
 $show_load_more = $r['showLoadMore'] && 'featured' !== $variation_type;
 
 $show_publication_date = $r['showPublicationDate'] && 'list-mini' !== $variation_type;
-$show_byline           = true;
+$show_byline           = 'list-mini' !== $variation_type;
 $show_image            = 'list-mini' !== $variation_type;
 
 $offset_query_var = 'article-pag-offset';
