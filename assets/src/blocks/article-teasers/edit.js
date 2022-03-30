@@ -103,6 +103,10 @@ export default function edit( {
 		forceRefresh: featuredItemId !== usePrevious( featuredItemId ) // Addresses race condition with useSelect() and ServerSideRender()
 	} )
 
+	const showVariationTypeButtons = 'list-mini' !== variationType
+	const showPublicationDateToggle = 'list-mini' !== variationType
+	const showLoadMoreToggle = 'list-mini' !== variationType
+
 	return (
 		<>
 			<InspectorControls>
@@ -147,14 +151,16 @@ export default function edit( {
 							/>
 						</PanelRow>
 
-						<PanelRow>
-							<LoadMoreToggle
-								disabled={ 'featured' === variationType }
-								numberOfItems={ numberOfItems }
-								showLoadMore={ 'featured' === variationType ? false : showLoadMore }
-								onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
-							/>
-						</PanelRow>
+						{ showLoadMoreToggle && (
+							<PanelRow>
+								<LoadMoreToggle
+									disabled={ 'featured' === variationType }
+									numberOfItems={ numberOfItems }
+									showLoadMore={ 'featured' === variationType ? false : showLoadMore }
+									onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+								/>
+							</PanelRow>
+						) }
 					</PanelBody>
 				</Panel>
 
@@ -175,42 +181,46 @@ export default function edit( {
 				</Panel>
 				) }
 
-				<Panel>
-					<PanelBody
-						title={ __( 'Display Options', 'ramp' ) }
-					>
-						<PanelRow>
-							<PublicationDateToggle
-								onChangeCallback={ ( showPublicationDate ) => setAttributes( { showPublicationDate } ) }
-								showPublicationDate={ showPublicationDate }
-							/>
-						</PanelRow>
-					</PanelBody>
-				</Panel>
+				{ showPublicationDateToggle && (
+					<Panel>
+						<PanelBody
+							title={ __( 'Display Options', 'ramp' ) }
+						>
+							<PanelRow>
+								<PublicationDateToggle
+									onChangeCallback={ ( showPublicationDate ) => setAttributes( { showPublicationDate } ) }
+									showPublicationDate={ showPublicationDate }
+								/>
+							</PanelRow>
+						</PanelBody>
+					</Panel>
+				) }
 			</InspectorControls>
 
-			<BlockControls>
-				<ToolbarGroup>
-					<ToolbarButton
-						icon={ ListIcon }
-						isActive={ 'list' === variationType }
-						label={ __( 'List', 'ramp' ) }
-						onClick={ () => setAttributes( { variationType: 'list' } ) }
-					/>
-					<ToolbarButton
-						icon={ GridIcon }
-						isActive={ 'grid' === variationType }
-						label={ __( 'Grid', 'ramp' ) }
-						onClick={ () => setAttributes( { variationType: 'grid' } ) }
-					/>
-					<ToolbarButton
-						icon={ FeaturedIcon }
-						isActive={ 'featured' === variationType }
-						label={ __( 'Featured', 'ramp' ) }
-						onClick={ () => setAttributes( { variationType: 'featured' } ) }
-					/>
-				</ToolbarGroup>
-			</BlockControls>
+			{ showVariationTypeButtons && (
+				<BlockControls>
+					<ToolbarGroup>
+						<ToolbarButton
+							icon={ ListIcon }
+							isActive={ 'list' === variationType }
+							label={ __( 'List', 'ramp' ) }
+							onClick={ () => setAttributes( { variationType: 'list' } ) }
+						/>
+						<ToolbarButton
+							icon={ GridIcon }
+							isActive={ 'grid' === variationType }
+							label={ __( 'Grid', 'ramp' ) }
+							onClick={ () => setAttributes( { variationType: 'grid' } ) }
+						/>
+						<ToolbarButton
+							icon={ FeaturedIcon }
+							isActive={ 'featured' === variationType }
+							label={ __( 'Featured', 'ramp' ) }
+							onClick={ () => setAttributes( { variationType: 'featured' } ) }
+						/>
+					</ToolbarGroup>
+				</BlockControls>
+			) }
 
 			<div { ...blockProps() }>
 				<ServerSideRender
