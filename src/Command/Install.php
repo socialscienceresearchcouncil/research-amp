@@ -10,10 +10,8 @@ use \WP_CLI_Command;
 class Install extends WP_CLI_Command {
 	public function __invoke( $args, $assoc_args ) {
 		$this->install_default_pages();
-
 		$this->install_default_nav_menus();
-
-		// save nav menu ids
+		$this->install_default_page_for_posts();
 	}
 
 	protected function install_default_pages() {
@@ -108,4 +106,41 @@ class Install extends WP_CLI_Command {
 		update_option( 'ramp_nav_menus', $ramp_nav_menus );
 	}
 
+	protected function install_default_page_for_posts() {
+		$existing_page_for_posts = get_option( 'page_for_posts' );
+		$existing_page_on_front  = get_option( 'page_on_front' );
+		if ( $existing_page_for_posts || $existing_page_on_front ) {
+			return;
+		}
+
+		$page_for_posts = wp_insert_post(
+			[
+				'post_title'   => __( 'News Items', 'ramp' ),
+				'post_type'    => 'page',
+				'post_status'  => 'publish',
+				'post_content' => '',
+			]
+		);
+
+		if ( ! $page_for_posts ) {
+			return;
+		}
+
+		update_option( 'page_for_posts', $page_for_posts );
+
+		$page_on_front = wp_insert_post(
+			[
+				'post_title'   => __( 'Home Page', 'ramp' ),
+				'post_type'    => 'page',
+				'post_status'  => 'publish',
+				'post_content' => '',
+			]
+		);
+
+		if ( ! $page_on_front ) {
+			return;
+		}
+
+		update_option( 'page_on_front', $page_on_front );
+	}
 }
