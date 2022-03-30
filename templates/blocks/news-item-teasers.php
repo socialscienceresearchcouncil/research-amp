@@ -10,6 +10,7 @@ $r = array_merge(
 		'order'                      => 'latest',
 		'showLoadMore'               => false,
 		'showResearchTopics'         => true,
+		'showRowRules'               => true,
 		'showPublicationDate'        => true,
 		'variationType'              => 'grid',
 	],
@@ -83,6 +84,12 @@ $list_classes = [
 if ( 'list' !== $variation_type && 'list-mini' !== $variation_type ) {
 	$list_classes[] = 'item-type-list-flex';
 	$list_classes[] = 'item-type-list-3';
+}
+
+if ( (bool) $r['showRowRules'] ) {
+	$list_classes[] = 'has-row-rules';
+} else {
+	$list_classes[] = 'has-no-row-rules';
 }
 
 ?>

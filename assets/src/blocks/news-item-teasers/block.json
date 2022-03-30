@@ -44,6 +44,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"showRowRules": {
+			"type": "boolean",
+			"default": true
+		},
 		"variationType": {
 			"enum": [ "grid", "list", "list-mini" ],
 			"default": "grid"

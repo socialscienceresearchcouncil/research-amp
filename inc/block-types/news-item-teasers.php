@@ -44,6 +44,10 @@ return [
 			'type'    => 'boolean',
 			'default' => true,
 		],
+		'showRowRules'               => [
+			'type'    => 'boolean',
+			'default' => true,
+		],
 		'showPublicationDate'        => [
 			'type'    => 'boolean',
 			'default' => true,
