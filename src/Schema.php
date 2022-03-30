@@ -38,9 +38,6 @@ class Schema {
 
 		// Set default sort order for certain taxonomies.
 		add_filter( 'get_terms_defaults', [ $this, 'set_get_terms_defaults' ], 10, 2 );
-
-		// Add query vars for blocks that support Load More pagination.
-		add_filter( 'query_vars', [ $this, 'add_offset_query_vars' ] );
 	}
 
 	public function register_scripts() {
@@ -865,14 +862,5 @@ class Schema {
 		$defaults['orderby'] = 'term_order';
 
 		return $defaults;
-	}
-
-	public function add_offset_query_vars( $vars ) {
-		$vars[] = 'article-pag-offset';
-		$vars[] = 'news-item-pag-offset';
-		$vars[] = 'profile-pag-offset';
-		$vars[] = 'review-pag-offset';
-		$vars[] = 'topic-pag-offset';
-		return $vars;
 	}
 }

@@ -47,7 +47,7 @@ switch ( $order_arg ) {
 }
 
 $offset_query_var = 'review-pag-offset';
-$offset           = (int) $wp_query->get( $offset_query_var );
+$offset           = ramp_get_pag_offset( $offset_query_var );
 
 $post_args['offset'] = $offset;
 

@@ -70,7 +70,7 @@ $show_byline           = 'list-mini' !== $variation_type;
 $show_image            = 'list-mini' !== $variation_type;
 
 $offset_query_var = 'article-pag-offset';
-$offset           = (int) $wp_query->get( $offset_query_var );
+$offset           = ramp_get_pag_offset( $offset_query_var );
 
 $query_args['offset'] = $offset;
 

@@ -5,7 +5,7 @@ $is_edit_mode = ! empty( $args['isEditMode'] );
 $number_of_items = isset( $args['numberOfItems'] ) ? (int) $args['numberOfItems'] : 3;
 
 $offset_query_var = 'topic-pag-offset';
-$offset           = (int) $wp_query->get( $offset_query_var );
+$offset           = ramp_get_pag_offset( $offset_query_var );
 
 $selection_type = isset( $args['selectionType'] ) ? $args['selectionType'] : 'random';
 if ( ! in_array( $selection_type, [ 'alphabetical', 'latest', 'random', 'specific' ], true ) ) {

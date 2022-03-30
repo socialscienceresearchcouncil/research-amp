@@ -16,7 +16,7 @@ $r = array_merge(
 $number_of_items = (int) $args['numberOfItems'];
 
 $offset_query_var = 'profile-pag-offset';
-$offset           = (int) $GLOBALS['wp_query']->get( $offset_query_var );
+$offset           = ramp_get_pag_offset( $offset_query_var );
 
 $query_args = [
 	'post_type'      => 'ramp_profile',

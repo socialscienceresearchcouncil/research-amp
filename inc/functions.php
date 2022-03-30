@@ -68,3 +68,11 @@ function ramp_get_placeholder_count( $query_count, $row_count ) {
 
 	return $placeholder_count;
 }
+
+function ramp_get_pag_offset( $query_var ) {
+	if ( ! isset( $_GET[ $query_var ] ) ) {
+		return 0;
+	}
+
+	return (int) $_GET[ $query_var ];
+}
