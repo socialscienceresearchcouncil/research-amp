@@ -45,7 +45,7 @@
 			"default": true
 		},
 		"variationType": {
-			"enum": [ "grid", "list" ],
+			"enum": [ "grid", "list", "list-mini" ],
 			"default": "grid"
 		}
 	}

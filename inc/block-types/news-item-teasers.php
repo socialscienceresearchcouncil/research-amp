@@ -50,7 +50,7 @@ return [
 		],
 		'variationType'              => [
 			'type'    => 'string', /* WP throws PHP notice if this is not set */
-			'enum'    => [ 'grid', 'list' ],
+			'enum'    => [ 'grid', 'list', 'list-mini' ],
 			'default' => 'grid',
 		],
 	],

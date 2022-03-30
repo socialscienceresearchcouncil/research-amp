@@ -6,8 +6,11 @@ $is_edit_mode = ! empty( $args['is_edit_mode'] );
 
 $article_classes = [ 'teaser' ];
 
+$show_byline           = ! empty( $args['show_byline'] );
 $show_publication_date = ! empty( $args['show_publication_date'] );
 $show_research_topics  = ! empty( $args['show_research_topics'] );
+
+$title_size = ! empty( $args['title_size'] ) && in_array( $args['title_size'], [ 'h-4', 'h-5' ], true ) ? $args['title_size'] : 'h-4';
 
 $custom_author = '';
 if ( function_exists( 'pressforward' ) ) {
@@ -44,6 +47,12 @@ if ( $show_publication_date ) {
 	);
 }
 
+$title_classes = [
+	'item-title',
+	'article-item-title',
+	'has-' . $title_size . '-font-size',
+];
+
 ?>
 
 <article class="<?php echo esc_attr( implode( ' ', $article_classes ) ); ?>">
@@ -60,7 +69,7 @@ if ( $show_publication_date ) {
 			?>
 		<?php endif; ?>
 
-		<h3 class="has-h-4-font-size item-title news-item-item-title">
+		<h3 class="<?php echo esc_attr( implode( ' ', $title_classes ) ); ?>">
 			<?php if ( ! $is_edit_mode ) : ?>
 				<a href="<?php echo esc_attr( get_permalink( $news_item_id ) ); ?>">
 			<?php endif; ?>
@@ -72,7 +81,7 @@ if ( $show_publication_date ) {
 			<?php endif; ?>
 		</h3>
 
-		<?php if ( $custom_author ) : ?>
+		<?php if ( $custom_author && $show_byline ) : ?>
 			<div class="article-teaser-byline teaser-byline">
 				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<?php echo $byline; ?>

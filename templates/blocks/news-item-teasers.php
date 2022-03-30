@@ -23,10 +23,14 @@ $content_mode_settings = \SSRC\RAMP\Blocks::get_content_mode_settings_from_templ
 $order_args = [ 'alphabetical', 'latest', 'random' ];
 $order_arg  = in_array( $r['order'], $order_args, true ) ? $r['order'] : 'alphabetical';
 
-$variation_type = 'list' === $r['variationType'] ? 'list' : 'grid';
+$variation_type = in_array( $r['variationType'], [ 'grid', 'list', 'list-mini' ], true ) ? $r['variationType'] : 'grid';
 
 $show_featured_item = ! empty( $args['showFeaturedItem'] );
 $featured_item_id   = ! empty( $args['featuredItemId'] ) ? (int) $args['featuredItemId'] : null;
+
+$show_research_topics  = $r['showResearchTopics'] && 'list-mini' !== $variation_type;
+$show_publication_date = $r['showPublicationDate'] && 'list-mini' !== $variation_type;
+$show_byline           = 'list-mini' !== $variation_type;
 
 $query_args = [
 	'post_type'      => 'post',
@@ -71,12 +75,15 @@ $div_classes = [
 
 $list_classes = [
 	'item-type-list',
-	'item-type-list-flex',
-	'item-type-list-3',
 	'item-type-list-news-items',
 	'load-more-list',
 	'news-items-' . $variation_type,
 ];
+
+if ( 'list' !== $variation_type && 'list-mini' !== $variation_type ) {
+	$list_classes[] = 'item-type-list-flex';
+	$list_classes[] = 'item-type-list-3';
+}
 
 ?>
 
@@ -89,7 +96,7 @@ $list_classes = [
 				[
 					'id'                    => $featured_item_id,
 					'is_edit_mode'          => $r['isEditMode'],
-					'show_publication_date' => (bool) $r['showPublicationDate'],
+					'show_publication_date' => $show_publication_date,
 				]
 			);
 			?>
@@ -100,13 +107,17 @@ $list_classes = [
 		<?php foreach ( $news_item_query->posts as $news_item ) : ?>
 			<li>
 				<?php
+				$title_size = 'list-mini' === $variation_type ? 'h-5' : 'h-4';
+
 				ramp_get_template_part(
 					'teasers/news-item',
 					[
 						'id'                    => $news_item->ID,
 						'is_edit_mode'          => $r['isEditMode'],
-						'show_publication_date' => (bool) $r['showPublicationDate'],
-						'show_research_topics'  => (bool) $r['showResearchTopics'],
+						'show_byline'           => $show_byline,
+						'show_publication_date' => $show_publication_date,
+						'show_research_topics'  => $show_research_topics,
+						'title_size'            => $title_size,
 					]
 				);
 				?>
