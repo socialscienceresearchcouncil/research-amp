@@ -215,7 +215,7 @@ class Blocks {
 				'meta_key' => 'ramp_profile_title_institution',
 				'callback' => [ __CLASS__, 'get_meta_value_from_content_attribute' ],
 			],
-			'ramp/profile-vital-link' => [
+			'ramp/profile-vital-link'        => [
 				'callback' => [ __CLASS__, 'get_meta_value_from_vital_link_attributes' ],
 			],
 		];

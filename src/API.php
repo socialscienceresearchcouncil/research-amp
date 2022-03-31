@@ -73,7 +73,7 @@ class API {
 			'ramp_profile',
 			'alphabetical_name',
 			[
-				'get_callback' => function( $object ) {
+				'get_callback'    => function( $object ) {
 					return get_post_meta( $object['id'], 'alphabetical_name', true );
 				},
 				'update_callback' => function( $value, $object ) {
