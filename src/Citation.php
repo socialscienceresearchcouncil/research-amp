@@ -3,6 +3,7 @@
 namespace SSRC\RAMP;
 
 use SSRC\RAMP\Zotero\Client;
+use SSRC\RAMP\Zotero\Library as ZoteroLibrary;
 use \WP_Query;
 
 class Citation {
@@ -42,7 +43,11 @@ class Citation {
 			return $cached;
 		}
 
-		$client = new Client();
+		$library_id = $this->get_zotero_library_id();
+
+		$library = ZoteroLibrary::get_instance_from_library_id( $library_id );
+
+		$client = new Client( $library_id, $library->get_zotero_api_key() );
 
 		$zotero_id = $this->get_zotero_id();
 		$data      = $client->get_record( $zotero_id );
@@ -308,11 +313,20 @@ class Citation {
 	}
 
 	/**
-	 * Sets the Zotero group ID for an item.
+	 * Gets the Zotero library ID for an item.
 	 *
-	 * @param string $zotero_group_id
+	 * @return string
 	 */
-	public function set_zotero_group_id( $zotero_group_id ) {
-		update_post_meta( $this->get_post_id(), 'zotero_group_id', $zotero_group_id );
+	public function get_zotero_library_id() {
+		return get_post_meta( $this->get_post_id(), 'zotero_library_id', true );
+	}
+
+	/**
+	 * Sets the Zotero library ID for an item.
+	 *
+	 * @param string $zotero_library_id
+	 */
+	public function set_zotero_library_id( $zotero_library_id ) {
+		update_post_meta( $this->get_post_id(), 'zotero_library_id', $zotero_library_id );
 	}
 }

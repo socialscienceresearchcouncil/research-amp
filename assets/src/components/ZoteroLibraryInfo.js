@@ -18,11 +18,12 @@ export default function ZoteroLibraryInfo( {
 		return null;
 	}
 
-	const { apiKey, groupId, groupUrl, libraryInfo, postId } = useSelect( ( select ) => {
+	const { editPost } = dispatch( 'core/editor' )
+
+	const { apiKey, libraryId, libraryInfo, postId } = useSelect( ( select ) => {
 		const {
 			zotero_api_key,
-			zotero_group_id,
-			zotero_group_url
+			zotero_library_id
 		} = select( 'core/editor' ).getEditedPostAttribute( 'meta' )
 
 		const postId = select( 'core/editor' ).getCurrentPostId()
@@ -31,8 +32,7 @@ export default function ZoteroLibraryInfo( {
 
 		return {
 			apiKey: zotero_api_key,
-			groupId: zotero_group_id,
-			groupUrl: zotero_group_url,
+			libraryId: zotero_library_id,
 			libraryInfo,
 			postId
 		}
@@ -49,28 +49,8 @@ export default function ZoteroLibraryInfo( {
 		} )
 	}
 
-	const setGroupId = ( value ) => {
-		dispatch( 'core/editor' ).editPost( {
-			meta: {
-				'zotero_group_id': value
-			}
-		} )
-	}
-
-	const setGroupUrl = ( value ) => {
-		dispatch( 'core/editor' ).editPost( {
-			meta: {
-				'zotero_group_url': value
-			}
-		} )
-	}
-
-	const setApiKey = ( value ) => {
-		dispatch( 'core/editor' ).editPost( {
-			meta: {
-				'zotero_api_key': value
-			}
-		} )
+	const editPostMeta = ( newMeta ) => {
+		editPost( { meta: newMeta } )
 	}
 
 	let nextIngest
@@ -85,21 +65,15 @@ export default function ZoteroLibraryInfo( {
 			>
 
 			<TextControl
-				label={ __( 'Group ID', 'ramp' ) }
-				value={ groupId }
-				onChange={ (value) => setGroupId( value ) }
-			/>
-
-			<TextControl
-				label={ __( 'Group URL', 'ramp' ) }
-				value={ groupUrl }
-				onChange={ (value) => setGroupUrl( value ) }
+				label={ __( 'Library ID', 'ramp' ) }
+				value={ libraryId }
+				onChange={ (value) => { editPostMeta( { zotero_library_id: value } ) } }
 			/>
 
 			<TextControl
 				label={ __( 'API Key', 'ramp' ) }
 				value={ apiKey }
-				onChange={ (value) => setApiKey( value ) }
+				onChange={ (value) => { editPostMeta( { zotero_api_key: value } ) } }
 			/>
 
 			{nextIngest}

@@ -4,9 +4,9 @@ namespace SSRC\RAMP\Zotero;
 
 class Library {
 	protected $data = [
-		'id'              => null,
-		'zotero_group_id' => '',
-		'zotero_api_key'  => '',
+		'id'                => null,
+		'zotero_library_id' => '',
+		'zotero_api_key'    => '',
 	];
 
 	protected static $post_type = 'ramp_zotero_library';
@@ -21,12 +21,14 @@ class Library {
 	}
 
 	/**
-	 * Gets the group ID of the library.
+	 * Gets the Zotero ID of the library.
+	 *
+	 * Of the format groups/1234567 or users/1234567
 	 *
 	 * @return string
 	 */
-	public function get_zotero_group_id() {
-		return $this->data['zotero_group_id'];
+	public function get_zotero_library_id() {
+		return $this->data['zotero_library_id'];
 	}
 
 	/**
@@ -115,10 +117,40 @@ class Library {
 
 		$instance->data['id'] = $id;
 
-		$instance->data['zotero_group_id'] = get_post_meta( $id, 'zotero_group_id', true );
-		$instance->data['zotero_api_key']  = get_post_meta( $id, 'zotero_api_key', true );
+		$instance->data['zotero_library_id'] = get_post_meta( $id, 'zotero_library_id', true );
+		$instance->data['zotero_api_key']    = get_post_meta( $id, 'zotero_api_key', true );
 
 		return $instance;
+	}
+
+	/**
+	 * Get a Library instance from the library ID.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int $library_id
+	 * @return SSRC\RAMP\Zotero\Library
+	 */
+	public static function get_instance_from_library_id( $library_id ) {
+		$posts = get_posts(
+			[
+				'post_type'      => self::$post_type,
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+				'meta_query'     => [
+					[
+						'key'   => 'zotero_library_id',
+						'value' => $library_id,
+					]
+				],
+			]
+		);
+
+		if ( ! $posts ) {
+			return null;
+		}
+
+		return self::get_instance_from_id( $posts[0] );
 	}
 
 	/**

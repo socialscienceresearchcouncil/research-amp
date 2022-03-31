@@ -1,7 +1,13 @@
 import { __ } from '@wordpress/i18n'
+
 import {
+	InspectorControls,
 	useBlockProps
 } from '@wordpress/block-editor'
+
+import {
+	PanelBody
+} from '@wordpress/components'
 
 /**
  * Editor styles.
@@ -25,10 +31,12 @@ export default function edit( props ) {
 	}
 
 	return (
-		<div { ...blockProps() }>
-			<p>{ __( 'Enter the name of your Zotero Library above. This is for your reference only.', 'ramp' ) }</p>
-			<p>{ __( 'In the sidebar, find the "Library Settings" section under the "Zotero Library" tab.', 'ramp' ) }</p>
-			<p>{ __( 'Enter your Zotero group URL, group ID, and API key in the provided fields.', 'ramp' ) }</p>
-		</div>
+		<>
+			<div { ...blockProps() }>
+				<p>{ __( 'Enter the name of your Zotero Library above. This is for your reference only.', 'ramp' ) }</p>
+				<p>{ __( 'In the sidebar, find the "Library Settings" section under the "Zotero Library" tab.', 'ramp' ) }</p>
+				<p>{ __( 'Enter your Zotero group URL, group ID, and API key in the provided fields.', 'ramp' ) }</p>
+			</div>
+		</>
 	);
 }

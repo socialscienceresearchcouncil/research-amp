@@ -490,13 +490,13 @@ class Schema {
 
 		register_meta(
 			'post',
-			'zotero_group_id',
+			'zotero_library_id',
 			[
 				'object_subtype' => 'ramp_zotero_library',
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,
-				'description'    => __( 'Zotero Group ID', 'ramp' ),
+				'description'    => __( 'Zotero Library ID', 'ramp' ),
 			]
 		);
 

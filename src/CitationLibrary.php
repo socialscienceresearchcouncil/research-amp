@@ -171,7 +171,7 @@ class CitationLibrary {
 		}
 	}
 
-	public static function get_post_id_from_zotero_id( $zotero_id, $zotero_group_id ) {
+	public static function get_post_id_from_zotero_id( $zotero_id, $zotero_library_id ) {
 		$existing = new WP_Query(
 			[
 				'post_type'      => 'ramp_citation',
@@ -184,8 +184,8 @@ class CitationLibrary {
 						'value' => $zotero_id,
 					],
 					[
-						'key'   => 'zotero_group_id',
-						'value' => $zotero_group_id,
+						'key'   => 'zotero_library_id',
+						'value' => $zotero_library_id,
 					],
 				],
 			]
@@ -269,7 +269,7 @@ class CitationLibrary {
 	 * @param int                      $since
 	 */
 	public function ingest( ZoteroLibrary $library, $update_existing = true, $since = null ) {
-		$client = new Client( $library->get_zotero_group_id(), $library->get_zotero_api_key() );
+		$client = new Client( $library->get_zotero_library_id(), $library->get_zotero_api_key() );
 
 		$chunk_size = 100;
 		$start      = 0;
@@ -335,15 +335,15 @@ class CitationLibrary {
 			}
 
 			// Avoiding doing a bulk lookup for now - may not scale with large imports.
-			$existing = self::get_post_id_from_zotero_id( $queued_item->key, $library->get_zotero_group_id() );
+			$existing = self::get_post_id_from_zotero_id( $queued_item->key, $library->get_zotero_library_id() );
 			if ( $existing ) {
 				$existing_keys[] = $queued_item->key;
 				if ( $update_existing ) {
-					$this->update_existing_citation( $existing, $queued_item, $library->get_zotero_group_id() );
+					$this->update_existing_citation( $existing, $queued_item, $library->get_zotero_library_id() );
 				}
 			} else {
 				$create_keys[] = $queued_item->key;
-				$this->create_new_citation( $queued_item, $library->get_zotero_group_id() );
+				$this->create_new_citation( $queued_item, $library->get_zotero_library_id() );
 			}
 		}
 
@@ -393,7 +393,7 @@ class CitationLibrary {
 		$this->ingest( $library, false, 0 );
 	}
 
-	protected function update_existing_citation( $citation_id, $zotero_item, $zotero_group_id ) {
+	protected function update_existing_citation( $citation_id, $zotero_item, $zotero_library_id ) {
 		// This is probably a Zotero meta item.
 		if ( empty( $zotero_item->data->collections ) ) {
 			return false;
@@ -427,10 +427,10 @@ class CitationLibrary {
 			$citation->set_focus_tags_from_tags( $zotero_item->data->tags );
 		}
 
-		$citation->set_zotero_group_id( $zotero_library_id );
+		$citation->set_zotero_library_id( $zotero_library_id );
 	}
 
-	protected function create_new_citation( $zotero_item, $zotero_group_id ) {
+	protected function create_new_citation( $zotero_item, $zotero_library_id ) {
 		// This is probably a Zotero meta item.
 		if ( empty( $zotero_item->data->collections ) ) {
 			return false;
@@ -453,7 +453,7 @@ class CitationLibrary {
 
 		$citation->set_research_topics_from_collection_ids( $zotero_item->data->collections );
 		$citation->set_focus_tags_from_tags( $zotero_item->data->tags );
-		$citation->set_zotero_group_id( $zotero_group_id );
+		$citation->set_zotero_library_id( $zotero_library_id );
 
 		// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 		if ( isset( $zotero_item->data->creators ) && is_array( $zotero_item->data->creators ) ) {

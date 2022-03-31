@@ -34,7 +34,7 @@ import './blocks/review-version-selector'
 import './blocks/social-buttons'
 import './blocks/suggested-items'
 import './blocks/table-of-contents'
-import './blocks/zotero-library-info-help'
+import './blocks/zotero-library-info'
 
 /**
  * Shared block styles.

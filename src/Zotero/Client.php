@@ -5,8 +5,8 @@ namespace SSRC\RAMP\Zotero;
 class Client {
 	protected $base = 'https://api.zotero.org';
 	protected $data = [
-		'group_id' => '',
-		'api_key'  => '',
+		'library_id' => '',
+		'api_key'    => '',
 	];
 
 	/**
@@ -14,20 +14,20 @@ class Client {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param string $group_id
+	 * @param string $library_id
 	 * @param string $apk_key
 	 */
-	public function __construct( $group_id, $api_key ) {
-		$this->data['group_id'] = $group_id;
-		$this->data['api_key']  = $api_key;
+	public function __construct( $library_id, $api_key ) {
+		$this->data['library_id'] = $library_id;
+		$this->data['api_key']    = $api_key;
 	}
 
 	protected function get_api_key() {
 		return $this->data['api_key'];
 	}
 
-	protected function get_group_id() {
-		return $this->data['group_id'];
+	protected function get_library_id() {
+		return $this->data['library_id'];
 	}
 
 	protected function get_headers() {
@@ -52,7 +52,7 @@ class Client {
 			$query_args[ $dkey ] = ! empty( $args[ $dkey ] ) ? $args[ $dkey ] : $dvalue;
 		}
 
-		$url = $this->base . '/groups/' . $this->get_group_id() . '/items/';
+		$url = $this->base . '/' . $this->get_library_id() . '/items/';
 		$url = add_query_arg( $query_args, $url );
 
 		$result = wp_remote_get(
@@ -76,7 +76,7 @@ class Client {
 	}
 
 	public function get_record( $item_id ) {
-		$url = $this->base . '/groups/' . $this->get_group_id() . '/items/' . $item_id;
+		$url = $this->base . '/' . $this->get_library_id() . '/items/' . $item_id;
 
 		$result = wp_remote_get(
 			$url,
@@ -95,7 +95,7 @@ class Client {
 	}
 
 	public function post_item( $data ) {
-		$url = $this->base . '/groups/' . $this->get_group_id() . '/items';
+		$url = $this->base . '/' . $this->get_library_id() . '/items';
 
 		$result = wp_remote_post(
 			$url,
@@ -121,7 +121,7 @@ class Client {
 	}
 
 	public function get_collections() {
-		$url = $this->base . '/groups/' . $this->get_group_id() . '/collections/';
+		$url = $this->base . '/' . $this->get_library_id() . '/collections/';
 
 		$result = wp_remote_get(
 			$url,
@@ -140,7 +140,7 @@ class Client {
 	}
 
 	public function get_collection( $collection_id ) {
-		$url = $this->base . '/groups/' . $this->get_group_id() . '/collections/' . $collection_id;
+		$url = $this->base . '/' . $this->get_library_id() . '/collections/' . $collection_id;
 
 		$result = wp_remote_get(
 			$url,
@@ -159,7 +159,7 @@ class Client {
 	}
 
 	public function create_collection( $data ) {
-		$url = $this->base . '/groups/' . $this->get_group_id() . '/collections';
+		$url = $this->base . '/' . $this->get_library_id() . '/collections';
 
 		$result = wp_remote_post(
 			$url,
@@ -185,7 +185,7 @@ class Client {
 	}
 
 	public function update_collection( $collection_id, $data ) {
-		$url = $this->base . '/groups/' . $this->get_group_id() . '/collections/' . $collection_id;
+		$url = $this->base . '/' . $this->get_library_id() . '/collections/' . $collection_id;
 
 		$result = wp_remote_request(
 			$url,
