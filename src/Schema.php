@@ -409,6 +409,18 @@ class Schema {
 			]
 		);
 
+		register_meta(
+			'post',
+			'alphabetical_name',
+			[
+				'object_subtype' => 'ramp_profile',
+				'type'           => 'string',
+				'single'         => true,
+				'show_in_rest'   => true,
+				'description'    => __( 'Name for Alphabetical Sort', 'ramp' ),
+			]
+		);
+
 		// @todo Probably OK to keep but we should use everywhere.
 		add_image_size( 'profile-avatar', 300, 300, true );
 

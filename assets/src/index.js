@@ -46,6 +46,7 @@ import '../css/blocks.css'
  */
 import { registerPlugin } from '@wordpress/plugins';
 
+// Register the Zotero Library Info inspector control.
 import renderZoteroLibraryInfo from './components/ZoteroLibraryInfo';
 registerPlugin(
 	'zotero-library-info',
@@ -53,8 +54,19 @@ registerPlugin(
 		icon: 'book-alt',
 		render: renderZoteroLibraryInfo,
 	}
-);
+)
 
+// Add Profile Inspector controls.
+import ProfileSettingsControls from './components/ProfileSettingsControls'
+registerPlugin(
+	'ramp-profile-settings-controls',
+	{
+		icon: 'users',
+		render: ProfileSettingsControls
+	}
+)
+
+// Swap out the selector control for some custom taxonomies.
 import ReorderableFlatTermSelector from './components/ReorderableFlatTermSelector'
 
 const selectTaxonomySelector = ( OriginalComponent ) => {

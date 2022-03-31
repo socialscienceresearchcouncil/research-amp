@@ -68,6 +68,19 @@ class API {
 				},
 			]
 		);
+
+		register_rest_field(
+			'ramp_profile',
+			'alphabetical_name',
+			[
+				'get_callback' => function( $object ) {
+					return get_post_meta( $object['id'], 'alphabetical_name', true );
+				},
+				'update_callback' => function( $value, $object ) {
+					update_post_meta( $object->ID, 'alphabetical_name', $value );
+				},
+			]
+		);
 	}
 }
 
