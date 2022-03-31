@@ -109,13 +109,15 @@ class Blocks {
 	public function load_empty_block_js() {
 		?>
 		<script type="text/javascript">
-		var itemTypeBlocks = document.querySelectorAll('.item-type-block');
-		itemTypeBlocks.forEach( function( itemTypeBlock ) {
-			var blockHasItems = itemTypeBlock.querySelector('.item-type-list').querySelectorAll('li').length > 0;
-			if ( ! blockHasItems ) {
-				itemTypeBlock.hidden = true;
-			}
-		} );
+		document.addEventListener( 'DOMContentLoaded', (event) => {
+			var itemTypeBlocks = document.querySelectorAll('.item-type-block');
+			itemTypeBlocks.forEach( function( itemTypeBlock ) {
+				var blockHasItems = itemTypeBlock.querySelector('.item-type-list')?.querySelectorAll('li').length > 0;
+				if ( ! blockHasItems ) {
+					itemTypeBlock.hidden = true;
+				}
+			} )
+		} )
 		</script>
 		<?php
 	}
