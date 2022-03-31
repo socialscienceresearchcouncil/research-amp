@@ -260,7 +260,6 @@ class Blocks {
 	}
 
 	public static function get_meta_value_from_vital_link_attributes( $block ) {
-		_b( $block['attrs'] );
 		if ( ! isset( $block['attrs']['vitalType'] ) ) {
 			return null;
 		}

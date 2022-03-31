@@ -21,12 +21,32 @@ export default function save( {
 		} )
 	}
 
+	const getHrefForVitalType = ( vitalType, value ) => {
+		switch ( vitalType ) {
+			case 'email' :
+				return 'mailto:' + value
+
+			// @todo validation
+			case 'twitter' :
+				return 'https://twitter.com/' + value
+
+			// @todo validation
+			case 'orcidId' :
+				return 'https://orcid.org/' + value
+
+			default :
+				return value
+		}
+	}
+
+	const linkHref = getHrefForVitalType( vitalType, value )
+
 	if ( value ) {
 		return (
 			<div { ...blockProps() }>
-				<span className="ramp-profile-vital-link-text">
+				<a href={ linkHref } className="ramp-profile-vital-link-text">
 					{ value }
-				</span>
+				</a>
 			</div>
 		);
 	} else {
