@@ -264,8 +264,8 @@ class Schema {
 		register_post_type(
 			'ramp_profile',
 			[
-				'label'         => __( 'Profiles', 'ramp' ),
-				'labels'        => [
+				'label'        => __( 'Profiles', 'ramp' ),
+				'labels'       => [
 					'name'               => __( 'Profiles', 'ramp' ),
 					'singular_name'      => __( 'Profile', 'ramp' ),
 					'add_new_item'       => __( 'Add New Profile', 'ramp' ),
@@ -279,17 +279,17 @@ class Schema {
 					'all_items'          => __( 'All Profiles', 'ramp' ),
 					'name_admin_bar'     => __( 'Profiles', 'ramp' ),
 				],
-				'public'        => true,
-				'show_ui'       => true,
-				'has_archive'   => true,
-				'rewrite'       => [
+				'public'       => true,
+				'show_ui'      => true,
+				'has_archive'  => true,
+				'rewrite'      => [
 					'slug'       => 'profiles',
 					'with_front' => false,
 				],
-				'menu_icon'     => 'dashicons-welcome-learn-more',
-				'show_in_rest'  => true,
-				'rest_base'     => 'profiles',
-				'template'      => [
+				'menu_icon'    => 'dashicons-welcome-learn-more',
+				'show_in_rest' => true,
+				'rest_base'    => 'profiles',
+				'template'     => [
 					// Top section.
 					[
 						'core/group',
@@ -356,14 +356,13 @@ class Schema {
 								[ 'width' => '66.66%' ],
 								[
 									[ 'ramp/profile-bio' ],
-									[ 'ramp/profile-research-topics' ]
+									[ 'ramp/profile-research-topics' ],
 								],
 							],
 						],
 					],
 				],
-				'template_lock' => 'all',
-				'supports'      => [ 'title', 'thumbnail', 'editor', 'custom-fields' ],
+				'supports'     => [ 'title', 'thumbnail', 'editor', 'custom-fields' ],
 			]
 		);
 
