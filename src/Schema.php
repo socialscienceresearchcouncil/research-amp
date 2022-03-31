@@ -303,7 +303,7 @@ class Schema {
 
 							// Title/institution field.
 							[ 'ramp/profile-title-institution' ],
-						]
+						],
 					],
 
 					// Main body section.
