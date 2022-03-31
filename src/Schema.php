@@ -608,7 +608,6 @@ class Schema {
 					'delete_terms' => 'do_not_allow',
 					'assign_terms' => 'edit_posts',
 				],
-				'meta_box_cb'  => [ $this, 'sp_meta_box_cb' ],
 			]
 		);
 
