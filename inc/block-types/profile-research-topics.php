@@ -1,54 +1,26 @@
 <?php
 
 return [
-	'api_version'     => 1,
-	'attributes'      => [
-		'isEditMode'    => [
-			'type'    => 'boolean',
-			'default' => false,
-		],
-		'researchTopic' => [
-			'type'    => 'string',
-			'default' => 'auto',
-		],
-	],
+	'api_version'     => 2,
 	'render_callback' => function( $atts, $b, $c ) {
-		$tags = array_map(
-			function( $term ) {
-				return sprintf(
-					'<a class="ramp-research-topic-tag" href="%s">%s</a>',
-					esc_url( get_term_link( $term ) ),
-					esc_html( $term->name )
-				);
-			},
-			get_the_terms( get_queried_object(), 'ramp_assoc_topic' )
+		ob_start();
+
+		echo '<div class="wp-block-profile-research-topics">';
+
+		ramp_get_template_part(
+			'research-topic-tags',
+			[
+				'item_id'      => get_queried_object_id(),
+				'display_type '=> 'bubble',
+			]
 		);
 
-		// How is there no way in WP to do this?
-		$style_declarations = [];
-		if ( ! empty( $atts['style']['spacing'] ) ) {
-			$spacing = $atts['style']['spacing'];
-			foreach ( [ 'margin', 'padding' ] as $css_prop ) {
-				if ( ! isset( $spacing[ $css_prop ] ) ) {
-					continue;
-				}
+		echo '</div>';
 
-				if ( is_string( $spacing[ $css_prop ] ) ) {
-					$style_declarations[] = $css_prop . ':' . esc_attr( $spacing[ $css_prop ] );
-				} else {
-					foreach ( [ 'top', 'right', 'bottom', 'left' ] as $type ) {
-						if ( isset( $spacing[ $css_prop ][ $type ] ) ) {
-							$style_declarations[] = $css_prop . '-' . $type . ':' . esc_attr( $spacing[ $css_prop ][ $type ] );
-						}
-					}
-				}
-			}
-		}
 
-		return sprintf(
-			'<div style="%s">%s</div>',
-			implode( ';', $style_declarations ),
-			implode( '', $tags )
-		);
+		$contents = ob_get_contents();
+		ob_end_clean();
+
+		return $contents;
 	},
 ];

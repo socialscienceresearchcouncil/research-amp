@@ -6,25 +6,20 @@ import {
 
 import { useSelect } from '@wordpress/data';
 
-/**
- * Editor styles.
- */
+import classNames from 'classnames'
+
 import './editor.scss';
 
-/**
- * Edit function.
- *
- * @return {WPElement} Element to render.
- */
 export default function edit( {
 	attributes,
 	setAttributes,
 } ) {
 	const blockProps = () => {
-		let classNames = [ 'ramp-profile-research-topics' ]
-
 		return useBlockProps( {
-			className: classNames
+			className: classNames( {
+				'research-topic-tags': true,
+				'wp-block-profile-research-topics': true
+			} )
 		} )
 	}
 
@@ -47,11 +42,10 @@ export default function edit( {
 	const topicTags = matchedTopics.map( topic => {
 		topicIndex++
 		return (
-			<a
-				className="ramp-research-topic-tag"
-				href={topic.link}
+			<span
+				className="ramp-research-topic-tag tag-bubble"
 				key={'research-topic-tag-' + topicIndex}
-			>{topic.title.raw}</a>
+			>{topic.title.raw}</span>
 		)
 	} )
 
