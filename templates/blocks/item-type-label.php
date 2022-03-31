@@ -25,6 +25,14 @@ switch ( $args['block']->context['postType'] ) {
 	case 'post' :
 		$item_type_label = __( 'News Item', 'ramp' );
 	break;
+
+	default :
+		$post_type_object = get_post_type_object( $args['block']->context['postType'] );
+
+		if ( $post_type_object && ! empty( $post_type_object->labels->singular_name ) ) {
+			$item_type_label = $post_type_object->labels->singular_name;
+		}
+	break;
 }
 
 if ( ! $item_type_label ) {
