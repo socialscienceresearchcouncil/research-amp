@@ -322,12 +322,7 @@ class Schema {
 									// Social links.
 									[
 										'core/group',
-										[
-											'lock' => [
-												'remove' => false,
-												'move'   => false,
-											],
-										],
+										[],
 										[
 											[
 												'ramp/profile-vital-link',
