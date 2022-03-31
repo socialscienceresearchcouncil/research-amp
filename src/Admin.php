@@ -35,8 +35,6 @@ class Admin {
 			5
 		);
 
-		add_action( 'save_post', [ $this, 'profile_info_save_cb' ] );
-		add_action( 'save_post', [ $this, 'profile_claim_email_save_cb' ] );
 		add_action( 'save_post', [ $this, 'versions_save_cb' ] );
 		add_action( 'save_post', [ $this, 'version_name_save_cb' ] );
 		add_action( 'save_post', [ $this, 'news_item_author_save_cb' ] );
@@ -55,14 +53,6 @@ class Admin {
 	}
 
 	public function add_meta_boxes() {
-		add_meta_box(
-			'profile-claim-email',
-			__( 'Profile Claim Email', 'ramp' ),
-			[ $this, 'profile_claim_email_cb' ],
-			'ramp_profile',
-			'side'
-		);
-
 		add_meta_box(
 			'zotero-id',
 			__( 'Zotero', 'ramp' ),
@@ -142,21 +132,6 @@ class Admin {
 		);
 	}
 
-	public function profile_claim_email_cb( $post ) {
-		$claim_email = get_post_meta( $post->ID, 'claim_email', true );
-
-		?>
-
-		<label>
-			<input type="text" name="claim-email" value="<?php echo esc_attr( $claim_email ); ?>" />
-		</label>
-
-		<p class="description"><?php esc_html_e( "Enter the user's institutional email here. If a user claims this Profile using this email address, the user's local account will be created automatically.", 'ramp' ); ?></p>
-
-		<?php
-		wp_nonce_field( 'claim-email', 'claim-email-nonce', false );
-	}
-
 	public function zotero_cb( $post ) {
 		$zotero_url = '';
 		$zotero_id  = get_post_meta( $post->ID, 'zotero_id', true );
@@ -197,23 +172,6 @@ class Admin {
 				esc_html_e( 'A Zotero collection will be created when you publish this Research Topic.', 'ramp' );
 			}
 		}
-	}
-
-	public function profile_claim_email_save_cb( $post_id ) {
-		if ( ! isset( $_POST['claim-email-nonce'] ) ) {
-			return;
-		}
-
-		check_admin_referer( 'claim-email', 'claim-email-nonce' );
-
-		$profile = Profile::get_instance( $post_id );
-		if ( ! $profile->exists() ) {
-			return;
-		}
-
-		$claim_email = $_POST['claim-email'] ? wp_unslash( $_POST['claim-email'] ) : '';
-
-		update_post_meta( $post_id, 'claim_email', $claim_email );
 	}
 
 	public function versions_cb( $post ) {
