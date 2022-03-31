@@ -27,6 +27,10 @@
 		"numberOfItems": {
 			"type": "integer",
 			"default": 3
+		},
+		"variationType": {
+			"enum": [ "grid", "list" ],
+			"default": "grid"
 		}
 	}
 }

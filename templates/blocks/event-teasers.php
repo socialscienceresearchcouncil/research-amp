@@ -7,11 +7,14 @@ $r = array_merge(
 		'contentModeResearchTopicId' => 0,
 		'isEditMode'                 => false,
 		'numberOfItems'              => 3,
+		'variationType'              => 'grid',
 	],
 	$args
 );
 
-$number_of_items = (int) $args['numberOfItems'];
+$number_of_items = (int) $r['numberOfItems'];
+
+$variation_type = in_array( $r['variationType'], [ 'grid', 'list' ], true ) ? $r['variationType'] : 'grid';
 
 $event_query_args = [
 	'posts_per_page' => $number_of_items,
@@ -30,9 +33,19 @@ $event_query = tribe_get_events(
 );
 remove_action( 'tribe_events_pre_get_posts', $orderby_cb );
 
+$list_classes = [
+	'item-type-list',
+	'item-type-list-events',
+];
+
+if ( 'grid' === $variation_type ) {
+	$list_classes[] = 'item-type-list-flex';
+	$list_classes[] = 'item-type-list-3';
+};
+
 ?>
 
-<ul class="item-type-list item-type-list-events item-type-list-flex item-type-list-3">
+<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
 	<?php foreach ( $event_query->posts as $event ) : ?>
 		<li>
 			<?php

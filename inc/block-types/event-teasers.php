@@ -24,6 +24,11 @@ return [
 			'type'    => 'integer',
 			'default' => 3,
 		],
+		'variationType'              => [
+			'type'    => 'string',
+			'enum'    => [ 'grid', 'list' ],
+			'default' => 'grid',
+		],
 	],
 	'render_callback' => function( $atts ) {
 		return ramp_render_block( 'event-teasers', $atts );
