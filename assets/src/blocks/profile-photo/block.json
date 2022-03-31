@@ -1,0 +1,11 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/profile-photo",
+	"title": "Profile Photo",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"attributes": {}
+}

@@ -290,27 +290,67 @@ class Schema {
 				'show_in_rest'  => true,
 				'rest_base'     => 'profiles',
 				'template'      => [
-					// Top section
+					// Top section.
 					[
 						'core/group',
 						[],
 						[
-							// "Profile" item type label
+							// "Profile" item type label.
 							[ 'ramp/item-type-label' ],
 
-							// Profile display name
+							// Profile display name.
 							[ 'core/post-title' ],
 
-							// Title/institution field
+							// Title/institution field.
 							[ 'ramp/profile-title-institution' ],
 						]
 					],
 
-					// Main body section
+					// Main body section.
 					[
 						'core/columns',
 						[],
 						[
+							// Column with profile photo and social links
+							[
+								'core/column',
+								[ 'width' => '33.33%' ],
+								[
+									// Profile photo.
+									[ 'ramp/profile-photo' ],
+
+									// Social links.
+									[
+										'core/group',
+										[
+											'lock' => [
+												'remove' => false,
+												'move'   => false,
+											],
+										],
+										[
+											[
+												'ramp/profile-vital-link',
+												[ 'vitalType' => 'email' ],
+											],
+											[
+												'ramp/profile-vital-link',
+												[ 'vitalType' => 'twitter' ],
+											],
+											[
+												'ramp/profile-vital-link',
+												[ 'vitalType' => 'orcidId' ],
+											],
+											[
+												'ramp/profile-vital-link',
+												[ 'vitalType' => 'website' ],
+											],
+										],
+									],
+								],
+							],
+
+							// Column with bio and research topics.
 							[
 								'core/column',
 								[ 'width' => '66.66%' ],
@@ -337,41 +377,6 @@ class Schema {
 														'top'    => '48px',
 													],
 												],
-											],
-										],
-									],
-								],
-							],
-							[
-								'core/column',
-								[ 'width' => '33.33%' ],
-								[
-									[ 'core/post-featured-image' ],
-									[ 'core/separator' ],
-									[
-										'core/group',
-										[
-											'lock' => [
-												'remove' => false,
-												'move'   => false,
-											],
-										],
-										[
-											[
-												'ramp/profile-vital-link',
-												[ 'vitalType' => 'email' ],
-											],
-											[
-												'ramp/profile-vital-link',
-												[ 'vitalType' => 'twitter' ],
-											],
-											[
-												'ramp/profile-vital-link',
-												[ 'vitalType' => 'orcidId' ],
-											],
-											[
-												'ramp/profile-vital-link',
-												[ 'vitalType' => 'website' ],
 											],
 										],
 									],

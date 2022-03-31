@@ -1,0 +1,8 @@
+@import './block.scss';
+
+.wp-block-ramp-profile-photo {
+	.wp-block-post-featured-image {
+		border-radius: 50%;
+		overflow: hidden;
+	}
+}
