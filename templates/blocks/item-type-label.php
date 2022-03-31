@@ -27,10 +27,10 @@ switch ( $args['block']->context['postType'] ) {
 	break;
 
 	default :
-		$post_type_object = get_post_type_object( $args['block']->context['postType'] );
+		$pt_object = get_post_type_object( $args['block']->context['postType'] );
 
-		if ( $post_type_object && ! empty( $post_type_object->labels->singular_name ) ) {
-			$item_type_label = $post_type_object->labels->singular_name;
+		if ( $pt_object && ! empty( $pt_object->labels->singular_name ) ) {
+			$item_type_label = $pt_object->labels->singular_name;
 		}
 	break;
 }

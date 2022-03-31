@@ -407,18 +407,20 @@ class Profile {
 
 		$tax_term_ids = wp_cache_get( $cache_key, $cache_group );
 		if ( false === $tax_term_ids ) {
-			$profile_ids = get_posts( [
-				'post_type'      => 'ramp_profile',
-				'fields'         => 'ids',
-				'posts_per_page' => -1,
-			] );
+			$profile_ids = get_posts(
+				[
+					'post_type'      => 'ramp_profile',
+					'fields'         => 'ids',
+					'posts_per_page' => -1,
+				]
+			);
 
 			$tax_term_ids = wp_get_object_terms(
 				$profile_ids,
 				$taxonomy,
 				[
 					'fields'  => 'ids',
-					'orderby' => 'name'
+					'orderby' => 'name',
 				]
 			);
 

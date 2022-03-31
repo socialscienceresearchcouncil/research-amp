@@ -70,9 +70,11 @@ function ramp_get_placeholder_count( $query_count, $row_count ) {
 }
 
 function ramp_get_pag_offset( $query_var ) {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	if ( ! isset( $_GET[ $query_var ] ) ) {
 		return 0;
 	}
 
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	return (int) $_GET[ $query_var ];
 }
