@@ -24,10 +24,10 @@ export default function edit( {
 
 	const blockProps = useBlockProps()
 
-	const { articleType } = useSelect(
+	const { articleType, postTypeLabel } = useSelect(
 		( select ) => {
 			const { getEditedEntityRecord, getEntityRecords } = select( coreStore )
-			const { getEditedPostAttribute } = select( postStore )
+			const { getEditedPostAttribute, getPostTypeLabel } = select( postStore )
 
 			const _publicationDate = getEditedEntityRecord(
 				'postType',
@@ -45,7 +45,8 @@ export default function edit( {
 			const articleTypeLabel = articleTypeTerms?.length ? articleTypeTerms[0].name : ''
 
 			return {
-				articleType: articleTypeLabel
+				articleType: articleTypeLabel,
+				postTypeLabel: getPostTypeLabel()
 			};
 		},
 		[ postType, postId ]
@@ -70,7 +71,9 @@ export default function edit( {
 
 	const articleTypeFromTemplate = getArticleTypeFromTemplateSlug( templateSlug )
 
-	const articleTypeLabel = articleType.length > 0 ? articleType : articleTypeFromTemplate
+	const itemTypeFromTemplate = articleTypeFromTemplate.length > 0 ? articleTypeFromTemplate : postTypeLabel
+
+	const articleTypeLabel = articleType.length > 0 ? articleType : itemTypeFromTemplate
 
 	return (
 		<>
