@@ -355,31 +355,8 @@ class Schema {
 								'core/column',
 								[ 'width' => '66.66%' ],
 								[
-									[
-										'core/group',
-										[
-											'className' => 'ramp-profile-bio',
-										],
-										[
-											[
-												'core/paragraph',
-												[ 'placeholder' => __( 'Enter profile bio', 'ramp' ) ],
-											],
-										],
-									],
-									[
-										'ramp/profile-research-topics',
-										[
-											'style' => [
-												'spacing' => [
-													'margin' => [
-														'bottom' => '48px',
-														'top'    => '48px',
-													],
-												],
-											],
-										],
-									],
+									[ 'ramp/profile-bio' ],
+									[ 'ramp/profile-research-topics' ]
 								],
 							],
 						],

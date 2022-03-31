@@ -1,0 +1,17 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/profile-bio",
+	"title": "Profile Bio",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"attributes": {
+		"content": {
+			"source": "html",
+			"type": "string",
+			"default": ""
+		}
+	}
+}
