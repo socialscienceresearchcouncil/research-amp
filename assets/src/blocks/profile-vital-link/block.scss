@@ -1,0 +1,37 @@
+.wp-block-ramp-profile-vital-link {
+	align-items: center;
+	display: flex;
+	font-size: var(--wp--preset--font-size--body-text);
+
+	&:before {
+		background-color: var(--wp--preset--color--dark-grey);
+		background-position: center center;
+		background-repeat: no-repeat;
+		border-radius: 50%;
+		content: '';
+		display: inline-block;
+		height: 29px;
+		width: 29px;
+		margin-right: 16px;
+	}
+
+	&.ramp-profile-vital-link-email:before {
+		background-image: url(../../../img/icon-email-white.png);
+	}
+
+	&.ramp-profile-vital-link-twitter:before {
+		background-image: url(../../../img/icon-twitter-white.png);
+	}
+
+	&.ramp-profile-vital-link-orcidId:before {
+		background-image: url(../../../img/icon-orcid-id-white.png);
+	}
+
+	&.ramp-profile-vital-link-website:before {
+		background-image: url(../../../img/icon-link-white.png);
+	}
+
+	.ramp-profile-vital-link-text {
+		text-decoration: underline;
+	}
+}

@@ -21,3 +21,4 @@ import './blocks/suggested-items/block.scss';
 import './blocks/table-of-contents/block.scss';
 
 import './blocks/profile-title-institution/block.scss'
+import './blocks/profile-vital-link/block.scss'

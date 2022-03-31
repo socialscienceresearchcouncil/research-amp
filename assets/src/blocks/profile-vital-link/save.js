@@ -3,17 +3,6 @@ import {
 	useBlockProps
 } from '@wordpress/block-editor';
 
-import {
-	getIconByVitalType,
-} from './variation-utils'
-
-/**
- * Save function.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
- *
- * @return {WPElement} Element to render.
- */
 export default function save( {
 	attributes,
 	className,
@@ -23,24 +12,18 @@ export default function save( {
 		vitalType
 	} = attributes;
 
-	const IconComponent = getIconByVitalType( vitalType )
-
 	const blockProps = () => {
-		const classNames = [
-			'ramp-profile-vital-link'
+		const additionalClassNames = [
 		]
 
-		return useBlockProps( {
-			className: classNames
+		return useBlockProps.save( {
+			className: 'ramp-profile-vital-link-' + vitalType
 		} )
 	}
 
 	if ( value ) {
-		console.log('rendering');
 		return (
-			<div { ...blockProps }>
-				<IconComponent />
-
+			<div { ...blockProps() }>
 				<span className="ramp-profile-vital-link-text">
 					{ value }
 				</span>

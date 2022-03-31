@@ -31,7 +31,6 @@ import { EmailIcon } from './icons/email'
 import './editor.scss';
 
 import {
-	getIconByVitalType,
 	getMetaKeyByVitalType,
 	getPlaceholderByVitalType,
 	getTitleByVitalType,
@@ -51,17 +50,14 @@ export default function edit( {
 		value,
 		vitalType
 	} = attributes
-	console.log(attributes);
 
 	const blockProps = () => {
-		let classNames = [ 'ramp-profile-vital-link' ]
-
 		return useBlockProps( {
-			className: classNames
+			className: [
+				'ramp-profile-vital-link-' + vitalType
+			]
 		} )
 	}
-
-	const IconComponent = getIconByVitalType( vitalType )
 
 	const ref = useRef();
 
@@ -74,11 +70,10 @@ export default function edit( {
 
 	return (
 		<div { ...blockProps() }>
-			<IconComponent />
-
 			{ isSelected && (
 				<div className="profile-vital-link-edit">
 					<TextControl
+						hideLabelFromVision={ true }
 						label={ getTitleByVitalType( vitalType ) }
 						value={ value }
 						onChange={ ( value ) => setAttributes( { value } ) }

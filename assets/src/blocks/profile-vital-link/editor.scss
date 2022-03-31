@@ -1,13 +1,20 @@
 @import './block.scss';
 
-.ramp-profile-vital-link {
-	display: flex;
+.wp-block-ramp-profile-vital-link {
+	.ramp-profile-vital-link-text.has-placeholder {
+		opacity: .7;
+		text-decoration: none;
+	}
+
+	.profile-vital-link-edit {
+		.components-base-control__field {
+			margin-bottom: 0; /* Override an automatic Block Editor style */
+		}
+	}
 }
 
-.ramp-profile-vital-link-text.has-placeholder {
-	opacity: .7;
+.edit-post-visual-editor .wp-block-ramp-profile-vital-link .components-button {
+	font-size: var(--wp--preset--font-size--body-text);
+	padding-left: 0;
 }
 
-.profile-vital-link-edit {
-	padding-left: 8px;
-}
