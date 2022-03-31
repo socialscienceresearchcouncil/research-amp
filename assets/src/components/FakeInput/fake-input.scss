@@ -1,0 +1,16 @@
+.fake-input-container {
+	background: #fff;
+	border: 1px solid #aaa;
+	color: var(--wp--preset--color--dark-grey);
+	height: 51px;
+	line-height: 51px;
+	padding: 0 70px 0 20px;
+	position: relative;
+
+	&.is-search {
+		background-image: url(../../../img/search-magnifying-glass.png);
+		background-position: center left 20px;
+		background-repeat: no-repeat;
+		padding-left: 70px;
+	}
+}

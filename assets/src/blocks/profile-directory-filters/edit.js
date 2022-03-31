@@ -13,6 +13,10 @@ import {
 
 import ServerSideRender from '@wordpress/server-side-render'
 
+import FakeInput from '../../components/FakeInput'
+import FakeSelect from '../../components/FakeSelect'
+import FakeButton from '../../components/FakeButton'
+
 /**
  * Editor styles.
  */
@@ -37,11 +41,25 @@ export default function edit( {
 
 	return (
 		<div { ...blockProps() }>
-			<ServerSideRender
-				attributes={ serverSideAtts }
-				block="ramp/citation-library-filters"
-				httpMethod="GET"
-			/>
+			<div className="directory-filter">
+				<FakeInput isSearch={ true } text={ __( 'Search...', 'ramp' ) } />
+			</div>
+
+			<div className="directory-filter filter-by-legend">
+				{ __( 'Filter by:', 'ramp' ) }
+			</div>
+
+			<div className="directory-filter">
+				<FakeSelect text={ __( 'All Research Topics', 'ramp' ) } />
+			</div>
+
+			<div className="directory-filter">
+				<FakeSelect text={ __( 'All Subtopics', 'ramp' ) } />
+			</div>
+
+			<div className="directory-filter directory-filter-submit">
+				<FakeButton text={ __( 'Apply Filters', 'ramp' ) } />
+			</div>
 		</div>
 	)
 }
