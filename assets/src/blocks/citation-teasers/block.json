@@ -9,17 +9,29 @@
 		"anchor": true
 	},
 	"attributes": {
-		"researchTopic": {
-			"type": "string",
+		"contentMode": {
+			"enum": [ "auto", "all", "advanced" ],
 			"default": "auto"
+		},
+		"contentModeProfileId": {
+			"type": "integer",
+			"default": 0
+		},
+		"contentModeResearchTopicId": {
+			"type": "integer",
+			"default": 0
+		},
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
 		},
 		"numberOfItems": {
 			"type": "number",
 			"default": 3
 		},
-		"isEditMode": {
+		"showRowRules": {
 			"type": "boolean",
-			"default": false
+			"default": true
 		}
 	}
 }

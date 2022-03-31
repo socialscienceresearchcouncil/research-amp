@@ -1,3 +1,13 @@
+.item-type-list-citations {
+	&.has-row-rules {
+		& > li {
+			border-bottom: 1px solid var(--wp--preset--color--medium-grey);
+			padding-bottom: 48px;
+			padding-top: 48px;
+		}
+	}
+}
+
 .citation-teaser {
 	h3 {
 		margin-top: 0;
