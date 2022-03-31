@@ -1,0 +1,16 @@
+@import './block.scss';
+
+.wp-block-ramp-profile-title-institution {
+	input.components-text-control__input[type=text] {
+		border: none;
+		font-family: var(--wp--preset--font-family--inter);
+		font-size: var(--wp--preset--font-size--body-text);
+		font-weight: 700;
+		padding: 0;
+
+		&::placeholder {
+			color: rgba(0,0,0,.62);
+			font-weight: normal;
+		}
+	}
+}

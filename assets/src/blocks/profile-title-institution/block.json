@@ -1,0 +1,16 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/profile-title-institution",
+	"title": "Profile Title/Institution",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"attributes": {
+		"content": {
+			"type": "string",
+			"default": ""
+		}
+	}
+}

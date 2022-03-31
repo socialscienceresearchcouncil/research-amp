@@ -19,3 +19,5 @@ import './blocks/review-version-selector/block.scss';
 import './blocks/social-buttons/block.scss';
 import './blocks/suggested-items/block.scss';
 import './blocks/table-of-contents/block.scss';
+
+import './blocks/profile-title-institution/block.scss'

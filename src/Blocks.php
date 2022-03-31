@@ -211,17 +211,14 @@ class Blocks {
 
 	protected function recurse_cb_for_profile_data( $block, $profile_data = [] ) {
 		$block_map = [
-			'ramp-profile-title-institution' => 'ramp_profile_title_institution',
-			'ramp-profile-bio'               => 'ramp_profile_bio',
+			'ramp/profile-title-institution' => 'ramp_profile_title_institution',
 		];
 
-		if ( ! empty( $block['attrs']['className'] ) ) {
-			$class_name = $block['attrs']['className'];
-			if ( isset( $block_map[ $class_name ] ) ) {
-				$meta_key = $block_map[ $class_name ];
+		$block_name = $block['blockName'];
+		if ( isset( $block_map[ $block_name ] ) ) {
+			$meta_key = $block_map[ $block_name ];
 
-				$profile_data[ $meta_key ] = render_block( $block );
-			}
+			$profile_data[ $meta_key ] = trim( render_block( $block ) );
 		}
 
 		if ( ! empty( $block['innerBlocks'] ) ) {

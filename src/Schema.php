@@ -290,6 +290,23 @@ class Schema {
 				'show_in_rest'  => true,
 				'rest_base'     => 'profiles',
 				'template'      => [
+					// Top section
+					[
+						'core/group',
+						[],
+						[
+							// "Profile" item type label
+							[ 'ramp/item-type-label' ],
+
+							// Profile display name
+							[ 'core/post-title' ],
+
+							// Title/institution field
+							[ 'ramp/profile-title-institution' ],
+						]
+					],
+
+					// Main body section
 					[
 						'core/columns',
 						[],
@@ -298,21 +315,6 @@ class Schema {
 								'core/column',
 								[ 'width' => '66.66%' ],
 								[
-									[
-										'core/paragraph',
-										[
-											'content'   => __( 'Profile', 'ramp' ),
-											'className' => 'ramp-header-tag',
-										],
-									],
-									[ 'core/post-title' ],
-									[
-										'core/paragraph',
-										[
-											'className'   => 'ramp-profile-title-institution',
-											'placeholder' => __( 'Enter title and institution', 'ramp' ),
-										],
-									],
 									[
 										'core/group',
 										[

@@ -18,6 +18,7 @@ import './blocks/research-review-teasers'
 
 // Profile blocks
 import './blocks/profile-research-topics'
+import './blocks/profile-title-institution'
 import './blocks/profile-vital-link'
 
 // Miscellaneous
