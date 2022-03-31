@@ -141,7 +141,7 @@ class Library {
 					[
 						'key'   => 'zotero_library_id',
 						'value' => $library_id,
-					]
+					],
 				],
 			]
 		);
