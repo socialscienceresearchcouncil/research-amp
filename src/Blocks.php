@@ -211,14 +211,29 @@ class Blocks {
 
 	protected function recurse_cb_for_profile_data( $block, $profile_data = [] ) {
 		$block_map = [
-			'ramp/profile-title-institution' => 'ramp_profile_title_institution',
+			'ramp/profile-title-institution' => [
+				'meta_key' => 'ramp_profile_title_institution',
+				'callback' => [ __CLASS__, 'get_meta_value_from_content_attribute' ],
+			],
+			'ramp/profile-vital-link' => [
+				'callback' => [ __CLASS__, 'get_meta_value_from_vital_link_attributes' ],
+			],
 		];
 
 		$block_name = $block['blockName'];
 		if ( isset( $block_map[ $block_name ] ) ) {
-			$meta_key = $block_map[ $block_name ];
+			$processed = call_user_func( $block_map[ $block_name ]['callback'], $block );
+			if ( $processed ) {
+				if ( isset( $processed['key'] ) ) {
+					$meta_key = $processed['key'];
+				} elseif ( isset( $block_map[ $block_name ]['meta_key'] ) ) {
+					$meta_key = $block_map[ $block_name ]['meta_key'];
+				} else {
+					return;
+				}
 
-			$profile_data[ $meta_key ] = trim( render_block( $block ) );
+				$profile_data[ $meta_key ] = $processed['value'];
+			}
 		}
 
 		if ( ! empty( $block['innerBlocks'] ) ) {
@@ -230,6 +245,30 @@ class Blocks {
 		}
 
 		return $profile_data;
+	}
+
+	public static function get_meta_value_from_rendered_block( $block ) {
+		return [
+			'value' => trim( render_block( $block ) ),
+		];
+	}
+
+	public static function get_meta_value_from_content_attribute( $block ) {
+		return [
+			'value' => ! empty( $block['attrs']['content'] ) ? $block['attrs']['content'] : '',
+		];
+	}
+
+	public static function get_meta_value_from_vital_link_attributes( $block ) {
+		_b( $block['attrs'] );
+		if ( ! isset( $block['attrs']['vitalType'] ) ) {
+			return null;
+		}
+
+		return [
+			'key'   => 'ramp_profile_vital_' . $block['attrs']['vitalType'],
+			'value' => ! empty( $block['attrs']['value'] ) ? $block['attrs']['value'] : '',
+		];
 	}
 
 	public static function get_content_mode_settings_from_template_args( $args ) {
