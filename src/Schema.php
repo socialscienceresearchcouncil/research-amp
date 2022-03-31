@@ -44,14 +44,14 @@ class Schema {
 		wp_register_style(
 			'ramp-directory-filters',
 			RAMP_PLUGIN_URL . '/assets/css/directory-filters.css',
-			[],
+			[ 'ramp-select2' ],
 			RAMP_VER
 		);
 
 		wp_register_script(
 			'ramp-directory-filters',
 			RAMP_PLUGIN_URL . '/assets/js/directory-filters.js',
-			[],
+			[ 'jquery', 'ramp-select2' ],
 			RAMP_VER,
 			true
 		);

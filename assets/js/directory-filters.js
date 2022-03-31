@@ -14,8 +14,14 @@ toggles.forEach(function(toggle){
 });
 
 // Enable pretty select
-// @todo Don't use select2 - see https://github.com/Choices-js/Choices
-document.querySelectorAll('.directory-filter.pretty-select').forEach(function(prettySelect){
+(function($){
+	$('.pretty-select').each( (k, v) => {
+		const $prettySelect = $(v);
 
-});
+		$prettySelect.select2({
+			minimumResultsForSearch: Infinity,
+			width: '100%'
+		});
+	});
+}(jQuery))
 

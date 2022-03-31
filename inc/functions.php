@@ -5,14 +5,14 @@
  */
 
 function ramp_get_default_profile_avatar() {
-	return RAMP_PLUGIN_URL . '/assets/img/default-avatar.png';
+	return RAMP_PLUGIN_URL . 'assets/img/default-avatar.png';
 }
 
 function ramp_locate_template( $template ) {
 	$located = locate_template( $template );
 
 	if ( ! $located ) {
-		$located = RAMP_PLUGIN_DIR . '/templates/' . $template;
+		$located = RAMP_PLUGIN_DIR . 'templates/' . $template;
 	}
 
 	return $located;

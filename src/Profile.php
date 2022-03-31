@@ -396,4 +396,39 @@ class Profile {
 			self::get_profiles_for_post( $post_id )
 		);
 	}
+
+	/**
+	 * Gets a list of taxonomy terms associated with profiles.
+	 */
+	public static function get_terms_belonging_to_profiles( $taxonomy ) {
+		$last_changed = wp_cache_get_last_changed( 'posts' );
+		$cache_key    = "$taxonomy-ids-$last_changed";
+		$cache_group  = 'profile_terms';
+
+		$tax_term_ids = wp_cache_get( $cache_key, $cache_group );
+		if ( false === $tax_term_ids ) {
+			$profile_ids = get_posts( [
+				'post_type'      => 'ramp_profile',
+				'fields'         => 'ids',
+				'posts_per_page' => -1,
+			] );
+
+			$tax_term_ids = wp_get_object_terms(
+				$profile_ids,
+				$taxonomy,
+				[
+					'fields'  => 'ids',
+					'orderby' => 'name'
+				]
+			);
+
+			wp_cache_set( $cache_key, $tax_term_ids, $cache_group );
+		} else {
+			$tax_term_ids = array_map( 'intval', $tax_term_ids );
+		}
+
+		$terms = array_map( 'get_term', $tax_term_ids );
+
+		return $terms;
+	}
 }

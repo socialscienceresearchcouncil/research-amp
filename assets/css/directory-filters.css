@@ -1,12 +1,19 @@
 .directory-filters {
-	margin-bottom: 24px;
+	margin-bottom: 48px;
 }
 
 .directory-filter-form {
+	align-items: center;
 	background: var(--wp--preset--color--light-grey);
 	display: flex;
+	flex-wrap: wrap;
 	gap: 24px;
+	justify-content: space-between;
 	padding: 12px 24px;
+}
+
+.directory-filter-form > div {
+	flex: 1;
 }
 
 .directory-filter {
@@ -19,27 +26,27 @@
 .directory-filter select {
 	background: var(--wp--preset--color--white);
 	border: 1px solid #ABB8C3;
-	font-size: var(--wp--preset--font-size--small-text);
-	padding: 12px 20px;
+	font-size: var(--wp--preset--font-size--body-text);
+	padding: 0 20px;
+	height: 51px;
 }
 
 .directory-filter select {
 	padding-left: 16px;
 }
 
-body .directory-filter .select2-container--default .select2-selection--single {
-	height: 32px;
-}
-
-body .directory-filter .select2-container--default .select2-selection--single .select2-selection__rendered {
-	line-height: 32px;
-}
-body .directory-filter .select2-container--default .select2-selection--single .select2-selection__arrow {
-	height: 32px;
-}
-
-.directory-filters-submit  {
+.directory-filter-form > div.directory-filters-submit  {
+	flex: 0;
 	margin-left: auto;
+}
+
+.directory-filter-form > div.filter-by-legend {
+	flex: 0;
+	white-space: nowrap;
+}
+
+.directory-filter-form .select2-container--default .select2-selection--single .select2-selection__rendered {
+	max-width: calc(100% - 60px);
 }
 
 input.search-input {
@@ -134,10 +141,6 @@ input.search-input {
 	.directory-filters label,
 	.directory-filters select {
 		display: block;
-		width: 100% !important;
-	}
-
-	.directory-filters .select2-container {
 		width: 100% !important;
 	}
 

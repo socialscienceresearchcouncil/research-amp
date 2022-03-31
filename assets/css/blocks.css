@@ -351,6 +351,7 @@ body.admin-bar .select2-dropdown--above {
 .select2-container--default .select2-selection--single .select2-selection__rendered {
 	line-height: 51px;
 	padding-left: 20px;
+	text-overflow: ellipsis;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {

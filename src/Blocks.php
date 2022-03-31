@@ -156,6 +156,7 @@ class Blocks {
 			'homepage-slides',
 			'item-byline',
 			'item-type-label',
+			'profile-directory-filters',
 			'profile-research-topics',
 			'review-version-selector',
 			'social-buttons',
