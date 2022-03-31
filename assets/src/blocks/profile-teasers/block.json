@@ -21,8 +21,8 @@
 			"default": false
 		},
 		"numberOfItems": {
-			"type": "string",
-			"default": "4"
+			"type": "integer",
+			"default": 4
 		},
 		"order": {
 			"enum": [ "alphabetical", "latest", "random" ],
