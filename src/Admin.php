@@ -56,14 +56,6 @@ class Admin {
 
 	public function add_meta_boxes() {
 		add_meta_box(
-			'profile-info',
-			__( 'Profile Info', 'ramp' ),
-			[ $this, 'profile_info_cb' ],
-			'ramp_profile',
-			'normal'
-		);
-
-		add_meta_box(
 			'profile-claim-email',
 			__( 'Profile Claim Email', 'ramp' ),
 			[ $this, 'profile_claim_email_cb' ],
@@ -150,10 +142,6 @@ class Admin {
 		);
 	}
 
-	public function profile_info_cb( $post ) {
-		include RAMP_PLUGIN_DIR . '/templates/profile-form.php';
-	}
-
 	public function profile_claim_email_cb( $post ) {
 		$claim_email = get_post_meta( $post->ID, 'claim_email', true );
 
@@ -209,36 +197,6 @@ class Admin {
 				esc_html_e( 'A Zotero collection will be created when you publish this Research Topic.', 'ramp' );
 			}
 		}
-	}
-
-	public function profile_info_save_cb( $post_id ) {
-		if ( ! isset( $_POST['profile-info'] ) ) {
-			return;
-		}
-
-		check_admin_referer( 'profile-info-' . $post_id, 'profile-info-nonce' );
-
-		$profile = Profile::get_instance( $post_id );
-		if ( ! $profile->exists() ) {
-			return;
-		}
-
-		foreach ( $profile->get_meta_keys() as $meta ) {
-			if ( isset( $_POST['profile-info'][ $meta ] ) ) {
-				$profile->set( $meta, $_POST['profile-info'][ $meta ] );
-			}
-		}
-
-		$is_featured = ! empty( $_POST['profile-info']['is_featured'] );
-		$profile->set( 'is_featured', $is_featured );
-
-		$is_advisory = ! empty( $_POST['profile-info']['is_advisory'] );
-		$profile->set( 'is_advisory', $is_advisory );
-
-		// Prevent recursion.
-		remove_action( 'save_post', [ $this, 'profile_info_save_cb' ] );
-		$profile->save();
-		add_action( 'save_post', [ $this, 'profile_info_save_cb' ] );
 	}
 
 	public function profile_claim_email_save_cb( $post_id ) {
