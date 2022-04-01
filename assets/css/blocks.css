@@ -137,6 +137,7 @@
 	display: inline-block;
 	color: #fff;
 	font-size: var(--wp--preset--font-size--small-text);
+	line-height: 25.6px;
 	margin-bottom: 4px;
 	padding: 2px 16px;
 	text-decoration: none;
