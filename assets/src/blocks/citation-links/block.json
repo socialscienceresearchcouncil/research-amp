@@ -1,0 +1,17 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/citation-links",
+	"title": "Citation Links",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"usesContext": [ "postId", "postType", "templateSlug" ],
+	"attributes": {
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

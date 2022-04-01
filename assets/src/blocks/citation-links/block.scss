@@ -1,0 +1,35 @@
+.wp-block-ramp-citation-links {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	font-weight: 700;
+
+	.citation-link-zotero {
+		a {
+			padding-right: 8px;
+			text-decoration: underline;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		&:after {
+			background: url(../../../img/arrow-forward.png) no-repeat right center;
+			content: '';
+			display: inline-block;
+			height: 1em;
+			width: 24px;
+		}
+	}
+
+	.citation-link-source {
+		a {
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}

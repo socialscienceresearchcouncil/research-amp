@@ -154,6 +154,7 @@ class Blocks {
 
 			// Miscellaneous
 			'citation-info',
+			'citation-links',
 			'citation-library-count',
 			'citation-library-filters',
 			'cite-this',

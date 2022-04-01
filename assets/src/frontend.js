@@ -14,6 +14,7 @@ import './blocks/research-topic-teasers/block.scss';
 import './blocks/homepage-slides/block.scss';
 
 import './blocks/citation-library-count/block.scss';
+import './blocks/citation-links/block.scss';
 import './blocks/cite-this/block.scss';
 import './blocks/item-research-topics/block.scss'
 import './blocks/item-type-label/block.scss';
