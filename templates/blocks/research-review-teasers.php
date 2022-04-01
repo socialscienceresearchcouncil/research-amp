@@ -25,7 +25,7 @@ $order_arg  = in_array( $r['order'], $order_args, true ) ? $r['order'] : 'alphab
 
 $variation_type = 'list' === $r['variationType'] ? 'list' : 'grid';
 
-$post_args = [
+$query_args = [
 	'post_type'      => 'ramp_review',
 	'posts_per_page' => $number_of_items,
 	'tax_query'      => \SSRC\RAMP\Blocks::get_content_mode_tax_query_from_template_args( $r ),
@@ -33,25 +33,25 @@ $post_args = [
 
 switch ( $order_arg ) {
 	case 'alphabetical' :
-		$post_args['orderby'] = [ 'title' => 'ASC' ];
+		$query_args['orderby'] = [ 'title' => 'ASC' ];
 	break;
 
 	case 'latest' :
-		$post_args['orderby'] = [ 'date' => 'DESC' ];
+		$query_args['orderby'] = [ 'date' => 'DESC' ];
 	break;
 
 	case 'random' :
 	default :
-		$post_args['orderby'] = 'rand';
+		$query_args['orderby'] = 'rand';
 	break;
 }
 
 $offset_query_var = 'review-pag-offset';
 $offset           = ramp_get_pag_offset( $offset_query_var );
 
-$post_args['offset'] = $offset;
+$query_args['offset'] = $offset;
 
-$research_review_query = new WP_Query( $post_args );
+$research_review_query = new WP_Query( $query_args );
 
 $has_more_pages = ( $offset + $number_of_items ) <= $research_review_query->found_posts;
 

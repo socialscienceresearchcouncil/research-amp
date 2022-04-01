@@ -14,7 +14,7 @@ if ( ! in_array( $selection_type, [ 'alphabetical', 'latest', 'random', 'specifi
 
 $variation_type = isset( $args['variationType'] ) && 'list' === $args['variationType'] ? 'list' : 'grid';
 
-$post_args = [
+$query_args = [
 	'post_type'      => 'ramp_topic',
 	'posts_per_page' => $number_of_items,
 	'offset'         => $offset,
@@ -50,12 +50,12 @@ if ( 'specific' === $selection_type ) {
 }
 
 if ( $post__in ) {
-	$post_args['post__in'] = $post__in;
+	$query_args['post__in'] = $post__in;
 }
 
-$post_args['orderby'] = $post_orderby;
+$query_args['orderby'] = $post_orderby;
 
-$research_topic_query = new WP_Query( $post_args );
+$research_topic_query = new WP_Query( $query_args );
 
 $has_more_pages = ( $offset + $number_of_items ) <= $research_topic_query->found_posts;
 
