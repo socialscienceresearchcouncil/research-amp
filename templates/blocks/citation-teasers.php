@@ -7,6 +7,7 @@ $r = array_merge(
 		'contentModeProfileId'       => 0,
 		'isEditMode'                 => false,
 		'numberOfItems'              => 3,
+		'showLoadMore'               => false,
 		'showRowRules'               => true,
 	],
 	$args
@@ -41,11 +42,19 @@ if ( $requested_search ) {
 	$query_args['s'] = $requested_search;
 }
 
-$citations = get_posts( $query_args );
+$offset_query_var = 'citation-pag-offset';
+$offset           = ramp_get_pag_offset( $offset_query_var );
+
+$query_args['offset'] = $offset;
+
+$citation_query = new WP_Query( $query_args );
+
+$has_more_pages = ( $offset + $number_of_items ) <= $citation_query->found_posts;
 
 $list_classes = [
 	'item-type-list',
 	'item-type-list-citations',
+	'load-more-list',
 ];
 
 if ( $r['showRowRules'] ) {
@@ -54,14 +63,33 @@ if ( $r['showRowRules'] ) {
 	$list_classes[] = 'has-no-row-rules';
 }
 
+$div_classes = [
+	'citation-teasers',
+	'load-more-container',
+	'uses-query-arg-' . $offset_query_var,
+];
+
 ?>
 
-<div class="citation-teasers">
+<div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
 	<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
-		<?php foreach ( $citations as $citation ) : ?>
+		<?php foreach ( $citation_query->posts as $citation ) : ?>
 			<li>
 				<?php ramp_get_template_part( 'teasers/citation', [ 'id' => $citation ] ); ?>
 			</li>
 		<?php endforeach; ?>
 	</ul>
+
+	<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
+		<?php
+		ramp_get_template_part(
+			'load-more-button',
+			[
+				'offset'          => $offset,
+				'query_var'       => $offset_query_var,
+				'number_of_items' => $number_of_items,
+			]
+		);
+		?>
+	<?php endif; ?>
 </div>

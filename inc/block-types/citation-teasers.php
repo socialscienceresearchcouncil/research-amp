@@ -24,6 +24,10 @@ return [
 			'type'    => 'number',
 			'default' => 3,
 		],
+		'showLoadMore'               => [
+			'type'    => 'boolean',
+			'default' => false,
+		],
 		'showRowRules'               => [
 			'type'    => 'boolean',
 			'default' => false,

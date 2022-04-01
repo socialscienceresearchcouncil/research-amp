@@ -60,9 +60,9 @@ $research_topic_query = new WP_Query( $query_args );
 $has_more_pages = ( $offset + $number_of_items ) <= $research_topic_query->found_posts;
 
 $list_classes = [
+	'load-more-list',
 	'item-type-list',
 	'item-type-list-research-topics',
-	'load-more-list',
 	'research-topic-teasers-' . $variation_type,
 ];
 
