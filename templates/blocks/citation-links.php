@@ -8,12 +8,17 @@ if ( 'ramp_citation' !== $args['block']->context['postType'] ) {
 	return '';
 }
 
-$citation = SSRC\RAMP\Citation::get_from_post_id( $args['block']->context['postId'] );
-
-$zotero_url = $citation->get_zotero_url();
-$source_url = $citation->get_source_url();
-
 $is_edit_mode = ! empty( $args['is_edit_mode'] );
+
+if ( $is_edit_mode ) {
+	$citation = SSRC\RAMP\Citation::get_from_post_id( $args['block']->context['postId'] );
+
+	$zotero_url = $citation->get_zotero_url();
+	$source_url = $citation->get_source_url();
+} else {
+	$zotero_url = '#';
+	$source_url = '#';
+}
 
 ?>
 
