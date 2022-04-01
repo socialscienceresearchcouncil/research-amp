@@ -100,7 +100,6 @@ input.search-input {
 	.directory-filter-toggle {
 		display: block;
 		cursor: pointer;
-		background-image: url('assets/mw-icon-arrow-up.svg');
 		background-repeat: no-repeat;
 		background-size: 13px;
 		background-position: right 24px center;
@@ -112,10 +111,6 @@ input.search-input {
 
 	.directory-filters-container.toggle-closed .directory-filters {
 		display: none;
-	}
-
-	.toggle-closed .directory-filter-toggle {
-		background-image: url('assets/mw-icon-arrow-down.svg');
 	}
 
 	.directory-filters label {
