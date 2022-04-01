@@ -1,7 +1,7 @@
 <?php
 $citation_id = $args['id'];
 
-$citation_url  = '';
+$citation_url = '';
 if ( $citation_id ) {
 	$citation_object = SSRC\RAMP\Citation::get_from_post_id( $citation_id );
 	$citation_url    = $citation_object->get_preview_url();

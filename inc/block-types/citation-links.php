@@ -3,7 +3,7 @@
 return [
 	'api_version'     => 2,
 	'attributes'      => [
-		'isEditMode'          => [
+		'isEditMode' => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
