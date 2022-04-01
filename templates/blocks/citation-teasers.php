@@ -85,6 +85,7 @@ $div_classes = [
 		ramp_get_template_part(
 			'load-more-button',
 			[
+				'isEditMode'      => $r['isEditMode'],
 				'offset'          => $offset,
 				'query_var'       => $offset_query_var,
 				'number_of_items' => $number_of_items,

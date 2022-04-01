@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import {
 	Panel,
 	PanelBody,
+	PanelRow,
 	Spinner,
 	ToggleControl
 } from '@wordpress/components'
@@ -14,11 +15,11 @@ import {
 
 import ServerSideRender from '@wordpress/server-side-render'
 
-import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
-
 import { Fragment } from '@wordpress/element'
 
-import ResearchTopicSelector from '../../components/ResearchTopicSelector'
+import ContentModeControl from '../../components/ContentModeControl'
+import LoadMoreToggle from '../../components/LoadMoreToggle'
+import NumberOfItemsControl from '../../components/NumberOfItemsControl'
 
 /**
  * Editor styles.
@@ -35,17 +36,19 @@ export default function edit( {
 	setAttributes,
 } ) {
 	const {
+		contentMode,
+		contentModeProfileId,
+		contentModeResearchTopicId,
 		numberOfItems,
 		researchTopic,
-		showFilters
+		showLoadMore
 	} = attributes
 
 	const blockProps = () => {
 		let classNames = []
 
 		classNames.push( 'number-of-items-' + numberOfItems )
-		classNames.push( 'research-topic-' + researchTopic )
-		classNames.push( 'show-filters-' + ( showFilters ? 'on' : 'off' ) )
+		classNames.push( 'content-mode-' + contentMode )
 
 		return useBlockProps( {
 			className: classNames
@@ -59,40 +62,42 @@ export default function edit( {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Number of Items', 'ramp' ) }
+						title={ __( 'Content Settings', 'ramp' ) }
 					>
-						<NumberControl
-							label={ __( 'Number of Citations to show', 'ramp' ) }
-							value={ numberOfItems }
-							min={ 0 }
-							max={ 5 }
-							step={ 1 }
-							onChange={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+						<ContentModeControl
+							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
+							changeProfileIdCallback={ ( contentModeProfileId ) => setAttributes( { contentModeProfileId } ) }
+							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
+							glossAuto={ __( 'Show Citations relevant to the current Research Topic or Profile context.', 'ramp' ) }
+							glossAll={ __( 'Pull from all Citations.', 'ramp' ) }
+							glossAdvanced={__( 'Show Citations associated with a specific Research Topic or Profile.', 'ramp' )}
+							labelAuto={ __( 'Relevant Citations', 'ramp' ) }
+							labelAll={ __( 'All Citations', 'ramp' ) }
+							legend={ __( 'Determine which Citations will be shown in this block.', 'ramp' ) }
+							selectedMode={ contentMode }
+							selectedProfileId={ contentModeProfileId }
+							selectedResearchTopicId={ contentModeResearchTopicId }
 						/>
 					</PanelBody>
 				</Panel>
 
 				<Panel>
 					<PanelBody
-						title={ __( 'Filters', 'ramp' ) }
+						title={ __( 'Order and Pagination', 'ramp' ) }
 					>
-						<ToggleControl
-							label={ __( 'Show Citation Library directory filters?', 'ramp' ) }
-							checked={ showFilters }
-							onChange={ ( showFilters ) => setAttributes( { showFilters } ) }
-						/>
-					</PanelBody>
-				</Panel>
+						<PanelRow>
+							<NumberOfItemsControl
+								numberOfItems={ numberOfItems }
+								onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+							/>
+						</PanelRow>
 
-				<Panel>
-					<PanelBody
-						title={ __( 'Research Topic', 'ramp' ) }
-					>
-						<ResearchTopicSelector
-							label={ __( 'Select the Research Topic whose Citations will be shown in this block.', 'ramp' ) }
-							selected={ researchTopic }
-							onChangeCallback={ ( researchTopic ) => setAttributes( { researchTopic } ) }
-						/>
+						<PanelRow>
+							<LoadMoreToggle
+								showLoadMore={ showLoadMore }
+								onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+							/>
+						</PanelRow>
 					</PanelBody>
 				</Panel>
 			</InspectorControls>
