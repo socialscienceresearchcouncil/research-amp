@@ -1,7 +1,3 @@
-.directory-filters {
-	margin-bottom: 48px;
-}
-
 .directory-filter-form {
 	align-items: center;
 	background: var(--wp--preset--color--light-grey);
@@ -12,14 +8,18 @@
 	padding: 12px 24px;
 }
 
-.directory-filter-form > div {
-	flex: 1;
-}
-
 .directory-filter {
 	align-items: center;
 	display: flex;
 	gap: 24px;
+}
+
+.directory-filter-research-topic {
+	flex-basis: 250px;
+}
+
+.directory-filter-subtopic {
+	flex-basis: 240px;
 }
 
 .directory-filter input,
