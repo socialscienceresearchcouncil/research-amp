@@ -11,7 +11,7 @@ if ( ! in_array( $requested_subtopic, wp_list_pluck( $subtopics, 'slug' ), true 
 
 ?>
 
-<div class="directory-filter">
+<div class="directory-filter directory-filter-subtopic">
 	<label for="subtopic" class="screen-reader-text"><?php esc_html_e( 'Filter by Subtopic', 'ramp' ); ?></label>
 	<select id="subtopic" class="pretty-select directory-filter-dropdown" name="subtopic" placeholder="<?php esc_attr_e( 'All Subtopics', 'ramp' ); ?>">
 		<option <?php selected( ! $requested_subtopic ); ?> value=""><?php esc_html_e( 'All Subtopics', 'ramp' ); ?></option>

@@ -11,7 +11,7 @@ if ( ! in_array( $requested_rt, wp_list_pluck( $research_topics, 'slug' ), true 
 
 ?>
 
-<div class="directory-filter">
+<div class="directory-filter directory-filter-research-topic">
 	<label for="research-topic" class="screen-reader-text"><?php esc_html_e( 'Filter by Research Topic', 'ramp' ); ?></label>
 	<select id="research-topic" class="pretty-select directory-filter-dropdown" name="research-topic" placeholder="<?php esc_attr_e( 'All Research Topics', 'ramp' ); ?>">
 		<option <?php selected( ! $requested_rt ); ?> value=""><?php esc_html_e( 'All Research Topics', 'ramp' ); ?></option>
