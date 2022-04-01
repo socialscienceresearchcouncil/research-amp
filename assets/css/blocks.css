@@ -283,6 +283,13 @@ a.tag-plain:hover {
 	fill: #fff;
 }
 
+.citation-body-text {
+	border-left: 6px solid var(--wp--preset--color--light-grey);
+	font-size: var(--wp--preset--font-size--large-text);
+	line-height: 1.8em;
+	padding-left: 48px;
+}
+
 .sidebar-section {
 	border-top: 1px solid var(--wp--preset--color--medium-grey);
 	padding: 24px;
