@@ -75,7 +75,15 @@ $div_classes = [
 	<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
 		<?php foreach ( $citation_query->posts as $citation ) : ?>
 			<li>
-				<?php ramp_get_template_part( 'teasers/citation', [ 'id' => $citation ] ); ?>
+				<?php
+				ramp_get_template_part(
+					'teasers/citation',
+					[
+						'id'           => $citation,
+						'is_edit_mode' => $r['isEditMode'],
+					]
+				);
+				?>
 			</li>
 		<?php endforeach; ?>
 	</ul>
