@@ -166,6 +166,7 @@ class Blocks {
 			'review-version-selector',
 			'social-buttons',
 			'suggested-items',
+			'the-events-calendar',
 		];
 
 		if ( defined( 'TRIBE_EVENTS_FILE' ) ) {

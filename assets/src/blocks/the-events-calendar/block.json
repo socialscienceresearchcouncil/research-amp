@@ -1,0 +1,10 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/the-events-calendar",
+	"title": "The Events Calendar",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	}
+}
