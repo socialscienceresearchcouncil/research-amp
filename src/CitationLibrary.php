@@ -316,7 +316,6 @@ class CitationLibrary {
 
 		$post_content = ! empty( $zotero_item->data->abstractNote ) ? $zotero_item->data->abstractNote : '';
 
-		remove_action( 'save_post_ramp_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
 		$post_data = [
 			'post_type'     => 'ramp_citation',
 			'post_status'   => 'publish',
@@ -346,8 +345,6 @@ class CitationLibrary {
 
 		update_post_meta( $post_id, 'zotero_id', $zotero_item->key );
 		update_post_meta( $post_id, 'imported_from_zotero', gmdate( 'Y-m-d H:i:s' ) );
-
-		add_action( 'save_post_ramp_citation', [ $this, 'maybe_send_item_to_zotero' ], 10, 3 );
 
 		// Manually sync to relevanssi.
 		if ( function_exists( 'relevanssi_publish' ) ) {
