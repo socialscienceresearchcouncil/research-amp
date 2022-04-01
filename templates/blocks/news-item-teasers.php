@@ -137,6 +137,7 @@ if ( (bool) $r['showRowRules'] ) {
 		ramp_get_template_part(
 			'load-more-button',
 			[
+				'is_edit_mode'    => $r['isEditMode'],
 				'offset'          => $offset,
 				'query_var'       => $offset_query_var,
 				'number_of_items' => $number_of_items,

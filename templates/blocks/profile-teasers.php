@@ -112,6 +112,7 @@ $placeholder_count = ramp_get_placeholder_count( count( $profile_query->posts ),
 		ramp_get_template_part(
 			'load-more-button',
 			[
+				'is_edit_mode'    => ! empty( $r['isEditMode'] ),
 				'offset'          => $offset,
 				'query_var'       => $offset_query_var,
 				'number_of_items' => $number_of_items,
