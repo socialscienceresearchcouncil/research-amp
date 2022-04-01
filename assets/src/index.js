@@ -24,6 +24,7 @@ import './blocks/profile-title-institution'
 import './blocks/profile-vital-link'
 
 // Miscellaneous
+import './blocks/citation-library-count'
 import './blocks/citation-library-filters'
 import './blocks/cite-this'
 import './blocks/homepage-slides'

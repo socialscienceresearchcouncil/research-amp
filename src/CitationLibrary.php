@@ -351,4 +351,27 @@ class CitationLibrary {
 			relevanssi_publish( $post_id, true );
 		}
 	}
+
+	public static function get_citation_count() {
+		$cache_key = 'citation_count_' . wp_cache_get_last_changed( 'posts' );
+
+		$count = wp_cache_get( $cache_key, 'ramp' );
+
+		if ( false === $count ) {
+			$query = new WP_Query(
+				[
+					'fields'         => 'ids',
+					'post_type'      => 'ramp_citation',
+					'posts_per_page' => 1,
+					'post_status'    => 'publish',
+				]
+			);
+
+			$count = $query->found_posts;
+
+			wp_cache_set( $cache_key, $count, 'ramp' );
+		}
+
+		return (int) $count;
+	}
 }
