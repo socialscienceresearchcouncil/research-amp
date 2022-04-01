@@ -337,6 +337,18 @@ a.tag-plain:hover {
 	display: none;
 }
 
+.citation-info dl > div {
+	display: flex;
+}
+
+.citation-info dl dt {
+	font-weight: 600;
+}
+
+.citation-info dl dd {
+	margin-inline-start: 4px;
+}
+
 /* Select2 overrides */
 body.admin-bar .select2-dropdown--below,
 body.admin-bar .select2-dropdown--above {

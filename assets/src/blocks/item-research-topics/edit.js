@@ -12,13 +12,14 @@ import './editor.scss';
 
 export default function edit( {
 	attributes,
+	context: { templateSlug },
 	setAttributes,
 } ) {
 	const blockProps = () => {
 		return useBlockProps( {
 			className: classNames( {
 				'research-topic-tags': true,
-				'wp-block-profile-research-topics': true
+				'wp-block-item-research-topics': true
 			} )
 		} )
 	}
@@ -26,7 +27,7 @@ export default function edit( {
 	const { associatedIds, researchTopics } = useSelect( ( select ) => {
 		const researchTopics = select( 'ramp' ).getResearchTopics()
 
-		const associatedIds = select( 'core/editor' ).getEditedPostAttribute( 'ramp_assoc_topic' )
+		const associatedIds = ! templateSlug ? select( 'core/editor' ).getEditedPostAttribute( 'ramp_assoc_topic' ) : []
 
 		return {
 			associatedIds,
@@ -34,9 +35,12 @@ export default function edit( {
 		}
 	} )
 
-	const matchedTopics = researchTopics.filter( topic => {
+	const _matchedTopics = associatedIds ? researchTopics.filter( topic => {
 		return -1 !== associatedIds.indexOf( topic.associated_term_id )
-	} )
+	} ) : []
+
+	// Show a placeholder "Research Topic" when editing a template.
+	const matchedTopics = ! templateSlug ? _matchedTopics : [ { title: { raw: __( 'Research Topic', 'ramp' ) } } ]
 
 	let topicIndex = 0
 	const topicTags = matchedTopics.map( topic => {

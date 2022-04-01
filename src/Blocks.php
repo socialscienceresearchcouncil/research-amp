@@ -153,14 +153,15 @@ class Blocks {
 			'research-topic-teasers',
 
 			// Miscellaneous
+			'citation-info',
 			'citation-library-count',
 			'citation-library-filters',
 			'cite-this',
 			'homepage-slides',
 			'item-byline',
+			'item-research-topics',
 			'item-type-label',
 			'profile-directory-filters',
-			'profile-research-topics',
 			'review-version-selector',
 			'social-buttons',
 			'suggested-items',

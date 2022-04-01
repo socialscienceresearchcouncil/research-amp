@@ -5,7 +5,7 @@ return [
 	'render_callback' => function( $atts, $b, $c ) {
 		ob_start();
 
-		echo '<div class="wp-block-profile-research-topics">';
+		echo '<div class="wp-block-item-research-topics">';
 
 		ramp_get_template_part(
 			'research-topic-tags',

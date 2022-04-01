@@ -19,16 +19,17 @@ import './blocks/research-review-teasers'
 // Profile blocks
 import './blocks/profile-bio'
 import './blocks/profile-photo'
-import './blocks/profile-research-topics'
 import './blocks/profile-title-institution'
 import './blocks/profile-vital-link'
 
 // Miscellaneous
+import './blocks/citation-info'
 import './blocks/citation-library-count'
 import './blocks/citation-library-filters'
 import './blocks/cite-this'
 import './blocks/homepage-slides'
 import './blocks/item-byline'
+import './blocks/item-research-topics'
 import './blocks/item-type-label'
 import './blocks/profile-directory-filters'
 import './blocks/review-version-selector'

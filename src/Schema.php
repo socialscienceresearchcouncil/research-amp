@@ -351,7 +351,7 @@ class Schema {
 								[ 'width' => '66.66%' ],
 								[
 									[ 'ramp/profile-bio' ],
-									[ 'ramp/profile-research-topics' ],
+									[ 'ramp/item-research-topics' ],
 								],
 							],
 						],

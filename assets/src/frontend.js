@@ -15,12 +15,12 @@ import './blocks/homepage-slides/block.scss';
 
 import './blocks/citation-library-count/block.scss';
 import './blocks/cite-this/block.scss';
+import './blocks/item-research-topics/block.scss'
 import './blocks/item-type-label/block.scss';
 import './blocks/review-version-selector/block.scss';
 import './blocks/social-buttons/block.scss';
 import './blocks/suggested-items/block.scss';
 import './blocks/table-of-contents/block.scss';
 
-import './blocks/profile-research-topics/block.scss'
 import './blocks/profile-title-institution/block.scss'
 import './blocks/profile-vital-link/block.scss'

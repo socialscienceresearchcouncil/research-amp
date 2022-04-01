@@ -1,12 +1,12 @@
 {
 	"apiVersion": 2,
-	"name": "ramp/profile-research-topics",
-	"title": "Profile Research Topic Tags",
+	"name": "ramp/item-research-topics",
+	"title": "Research Topic Tags",
 	"icon": "lightbulb",
 	"category": "ramp",
 	"style": "file:../../../../build/index.css",
 	"supports": {
 		"anchor": true
 	},
-	"attributes": {}
+	"usesContext": [ "templateSlug" ]
 }
