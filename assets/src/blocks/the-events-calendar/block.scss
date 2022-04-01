@@ -1,76 +1,56 @@
-.article-teasers {
-	display: flex;
-	gap: 28px;
-}
-
-.article-teasers h3 {
-	margin-top: 0;
-}
-
-.article-teasers > div {
-	flex: 0 0 50%;
-}
-
-.non-featured-article-teasers {
-	&.item-type-list-flex {
-		li {
-			border-bottom: 1px solid var(--wp--preset--color--medium-grey);
-			padding: 32px 0;
-		}
-
-		li:first-child {
-			padding-top: 0;
-		}
-
-		li:last-child {
-			border-bottom: none;
-			padding-bottom: 0;
-		}
-
-		.teaser {
-			flex-direction: row;
-			display: flex;
-			gap: 28px;
-		}
+.wp-block-ramp-the-events-calendar {
+	.tribe-common--breakpoint-medium.tribe-events .tribe-events-l-container {
+		padding: 48px 0;
 	}
 
-	.teaser-thumb {
-		flex: 0 0 40%;
-	}
-}
-
-.article-teasers-list {
-	ul.has-row-rules > li {
-		border-bottom: 1px solid var(--wp--preset--color--medium-grey);
-		padding-bottom: 60px;
-		padding-top: 60px;
+	.tribe-events .tribe-events-c-events-bar__search-container {
+		background: transparent;
 	}
 
-	ul.has-row-rules > li:first-of-type {
-		border-top: 1px solid var(--wp--preset--color--medium-grey);
+	.tribe-common--breakpoint-medium.tribe-events .tribe-events-header--has-event-search .tribe-events-c-events-bar {
+		background: var(--wp--preset--color--light-grey);
+		border: none;
+		padding: 0 24px;
+		height: 75px;
 	}
 
-	.teaser {
-		gap: 28px;
-		justify-content: stretch;
+	.tribe-events .tribe-events-c-events-bar .tribe-common-form-control-text__input {
+		background: white;
+		border: 1px solid var(--wp--preset--color--medium-grey);
+		height: 51px;
+		line-height: 51px;
+		padding: 0 20px 0 58px;
+		max-width: 600px;
+
+		background-image: url(../../../img/search-magnifying-glass.png);
+		background-position: left 20px center;
+		background-repeat: no-repeat;
+		background-size: 24px 24px;
 	}
 
-	.teaser-thumb {
-		flex: 0 0 280px;
-		order: 1;
+	.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-search__input-control-icon-svg {
+		display: none;
 	}
 
-	.teaser-content {
-		flex: 1;
+	.tribe-events .tribe-events-c-view-selector--tabs .tribe-events-c-view-selector__content {
+		background: transparent;
 	}
 
-	h3 {
-		margin-bottom: 16px;
-		margin-top: 16px;
+	.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-view-selector__list-item:focus, .tribe-common--breakpoint-medium.tribe-events .tribe-events-c-view-selector__list-item:focus-within, .tribe-common--breakpoint-medium.tribe-events .tribe-events-c-view-selector__list-item:hover {
+		background: var(--wp--preset--color--medium-grey);
 	}
 
-	.research-topic-tags {
-		margin-top: 16px;
+	.tribe-events .tribe-events-c-search__button {
+		background: var(--wp--preset--color--ramp-green);
+		border-radius: 0;
+	}
+
+	.tribe-events .tribe-events-c-search__button:hover {
+		background: var(--wp--preset--color--ramp-green-desaturated);
+	}
+
+	.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-view-selector--tabs .tribe-events-c-view-selector__list-item--active .tribe-events-c-view-selector__list-item-link:after {
+		background-color: var(--wp--preset--color--ramp-green);
+		height: 3px;
 	}
 }
-
