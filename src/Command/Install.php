@@ -11,7 +11,7 @@ class Install extends WP_CLI_Command {
 	public function __invoke( $args, $assoc_args ) {
 		$this->install_default_pages();
 		$this->install_default_nav_menus();
-		$this->install_default_page_for_posts();
+		$this->install_default_page_on_front();
 	}
 
 	protected function install_default_pages() {
