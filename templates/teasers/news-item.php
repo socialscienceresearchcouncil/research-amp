@@ -17,7 +17,7 @@ if ( function_exists( 'pressforward' ) ) {
 	$custom_author = pressforward( 'controller.metas' )->retrieve_meta( $news_item_id, 'item_author' );
 }
 
-if ( $show_publication_date ) {
+if ( $show_publication_date && function_exists( 'pressforward' ) ) {
 	$publication_date = pressforward( 'controller.metas' )->retrieve_meta( $news_item_id, 'publication_date' );
 	if ( $publication_date ) {
 		$formatted_date = gmdate( get_option( 'date_format' ), strtotime( $publication_date ) );
