@@ -44,12 +44,15 @@ class App {
 		$this->schema->init();
 		$this->api->init();
 		$this->citation_library->init();
-		$this->the_events_calendar->init();
 		$this->router->init();
 		$this->user_management->init();
 		$this->blocks->init();
 		$this->homepage_slides->init();
 		$this->toc->init();
+
+		if ( defined( 'TRIBE_EVENTS_FILE' ) ) {
+			$this->the_events_calendar->init();
+		}
 
 		if ( is_admin() ) {
 			$this->admin->init();
