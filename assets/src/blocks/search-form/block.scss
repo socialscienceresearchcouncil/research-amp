@@ -1,0 +1,46 @@
+.wp-block-ramp-search-form {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	& > div {
+		max-width: 758px;
+	}
+
+	.search-type-container-label {
+		font-weight: 700;
+	}
+
+	.search-input {
+		width: 100%;
+	}
+
+	.search-form-top {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	.search-form-bottom {
+		align-items: center;
+		display: flex;
+		gap: 24px;
+
+		.search-type-container-label {
+			font-weight: 700;
+			white-space: nowrap;
+		}
+
+		button {
+			white-space: nowrap;
+		}
+
+		& > * {
+			flex: 0;
+		}
+
+		& > .search-type-select-container {
+			flex: 1;
+		}
+	}
+}

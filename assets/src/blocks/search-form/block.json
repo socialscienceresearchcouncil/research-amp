@@ -1,0 +1,29 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/search-form",
+	"title": "Search Form",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"usesContext": [ "postType", "postId", "templateSlug" ],
+	"attributes": {
+		"buttonText": {
+			"type": "string",
+			"default": "Filter Results"
+		},
+		"label": {
+			"type": "string",
+			"default": "Search Results for"
+		},
+		"placeholder": {
+			"type": "string",
+			"default": "Enter search terms"
+		},
+		"typeSelectorLabel": {
+			"type": "string",
+			"default": "Filter by content type:"
+		}
+	}
+}

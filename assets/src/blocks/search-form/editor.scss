@@ -1,0 +1,15 @@
+@import './block.scss';
+
+.search-type-container-label {
+	flex: 1 0 150px;
+
+	div.rich-text {
+		white-space: nowrap !important;
+	}
+}
+
+.wp-block-button {
+	div.rich-text {
+		white-space: nowrap !important;
+	}
+}

@@ -164,6 +164,7 @@ class Blocks {
 			'item-type-label',
 			'profile-directory-filters',
 			'review-version-selector',
+			'search-form',
 			'social-buttons',
 			'suggested-items',
 			'the-events-calendar',
