@@ -48,14 +48,7 @@ $field_markup = sprintf(
 
 $requested_type = isset( $_GET['search-type'] ) ? wp_unslash( $_GET['search-type'] ) : '';
 
-$types = [
-	'topic'     => __( 'Research Topics', 'ramp' ),
-	'review'    => __( 'Research Reviews', 'ramp' ),
-	'article'   => __( 'Articles', 'ramp' ),
-	'profile'   => __( 'Profiles', 'ramp' ),
-	'news-item' => __( 'News Items', 'ramp' ),
-	'citation'  => __( 'Citations', 'ramp' ),
-];
+$types = ramp_get_search_item_types();
 
 if ( ! isset( $types[ $requested_type ] ) ) {
 	$requested_type = '';

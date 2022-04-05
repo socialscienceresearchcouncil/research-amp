@@ -78,3 +78,14 @@ function ramp_get_pag_offset( $query_var ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	return (int) $_GET[ $query_var ];
 }
+
+function ramp_get_search_item_types() {
+	return [
+		'topic'     => __( 'Research Topics', 'ramp' ),
+		'review'    => __( 'Research Reviews', 'ramp' ),
+		'article'   => __( 'Articles', 'ramp' ),
+		'profile'   => __( 'Profiles', 'ramp' ),
+		'news-item' => __( 'News Items', 'ramp' ),
+		'citation'  => __( 'Citations', 'ramp' ),
+	];
+}
