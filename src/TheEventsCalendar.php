@@ -39,7 +39,7 @@ class TheEventsCalendar {
 		];
 
 		foreach ( $exclude_blocks as $exclude_block ) {
-			$pattern = '|<!-- wp:' . preg_quote( $exclude_block ) . ' [\/]?/-->|';
+			$pattern = '|<!-- wp:' . preg_quote( $exclude_block, '|' ) . ' [\/]?/-->|';
 			$content = preg_replace( $pattern, '', $content );
 		}
 

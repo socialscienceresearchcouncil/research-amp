@@ -15,9 +15,11 @@ $r = array_merge(
 	$args
 );
 
-$input_id         = 'wp-block-search__input-' . ++$instance_id;
-$input_markup     = '';
-$button_markup    = '';
+$instance_id++;
+
+$input_id      = 'wp-block-search__input-' . $instance_id;
+$input_markup  = '';
+$button_markup = '';
 
 $label_inner_html = wp_kses_post( $r['label'] );
 
@@ -27,11 +29,11 @@ $label_markup = sprintf(
 	$label_inner_html
 );
 
-$input_markup  = sprintf(
+$input_markup = sprintf(
 	'<input type="search" id="%s" class="wp-block-search__input search-input" name="s" value="%s" placeholder="%s" />',
 	$input_id,
 	esc_attr( get_search_query() ),
-	esc_attr( $r['placeholder'] ),
+	esc_attr( $r['placeholder'] )
 );
 
 $button_internal_markup = wp_kses_post( $r['buttonText'] );
@@ -46,6 +48,7 @@ $field_markup = sprintf(
 	$input_markup
 );
 
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 $requested_type = isset( $_GET['search-type'] ) ? wp_unslash( $_GET['search-type'] ) : '';
 
 $types = ramp_get_search_item_types();
@@ -64,8 +67,10 @@ $form_classes = [
 
 <form class="<?php echo esc_attr( implode( ' ', $form_classes ) ); ?>" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 	<div class="search-form-top">
+		<?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<?php echo $label_markup; ?>
 		<?php echo $field_markup; ?>
+		<?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</div>
 
 	<div class="search-form-bottom">
@@ -82,6 +87,7 @@ $form_classes = [
 			</select>
 		</div>
 
+		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<?php echo $button_markup; ?>
 	</div>
 </form>

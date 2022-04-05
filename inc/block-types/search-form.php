@@ -1,8 +1,8 @@
 <?php
 
 return [
-	'api_version' => 2,
-	'attributes'  => [
+	'api_version'     => 2,
+	'attributes'      => [
 		'buttonText'        => [
 			'type'    => 'string',
 			'default' => __( 'Filter Results', 'ramp' ),
