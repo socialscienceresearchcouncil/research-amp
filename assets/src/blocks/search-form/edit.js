@@ -42,7 +42,7 @@ export default function edit( {
 		<div { ...blockProps }>
 			<div className="search-form-top">
 				<RichText
-					className="wp-block-search__label primary-label has-h-3-font-size"
+					className="wp-block-search__label search-form-label has-h-3-font-size"
 					aria-label={ __( 'Label text', 'ramp' ) }
 					placeholder={ __( 'Add label…', 'ramp' ) }
 					withoutInteractiveFormatting

@@ -22,7 +22,7 @@ $button_markup    = '';
 $label_inner_html = wp_kses_post( $r['label'] );
 
 $label_markup = sprintf(
-	'<label for="%1$s" class="wp-block-search__label primary-label has-h-3-font-size">%2$s</label>',
+	'<label for="%1$s" class="wp-block-search__label search-form-label has-h-3-font-size">%2$s</label>',
 	esc_attr( $input_id ),
 	$label_inner_html
 );
