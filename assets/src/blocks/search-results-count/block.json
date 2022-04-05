@@ -1,0 +1,17 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/search-results-count",
+	"title": "Search Results Count",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"usesContext": [ "queryId", "query", "templateSlug" ],
+	"attributes": {
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}
