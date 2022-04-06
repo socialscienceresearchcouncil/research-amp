@@ -1,16 +1,30 @@
 <?php
-$news_item_id = $args['id'];
+
+$r = array_merge(
+	[
+		'id'                    => 0,
+		'is_edit_mode'          => false,
+		'show_byline'           => true,
+		'show_item_type_label'  => false,
+		'show_publication_date' => true,
+		'show_research_topics'  => true,
+		'title_size'            => 'h-4',
+	],
+	$args
+);
+
+$news_item_id = $r['id'];
 $news_item    = get_post( $news_item_id );
 
-$is_edit_mode = ! empty( $args['is_edit_mode'] );
+$is_edit_mode = $r['is_edit_mode'];
 
 $article_classes = [ 'teaser' ];
 
-$show_byline           = ! empty( $args['show_byline'] );
-$show_publication_date = ! empty( $args['show_publication_date'] );
-$show_research_topics  = ! empty( $args['show_research_topics'] );
+$show_byline           = $r['show_byline'];
+$show_publication_date = $r['show_publication_date'];
+$show_research_topics  = $r['show_research_topics'];
 
-$title_size = ! empty( $args['title_size'] ) && in_array( $args['title_size'], [ 'h-4', 'h-5' ], true ) ? $args['title_size'] : 'h-4';
+$title_size = in_array( $r['title_size'], [ 'h-4', 'h-5' ], true ) ? $r['title_size'] : 'h-4';
 
 $custom_author = '';
 if ( function_exists( 'pressforward' ) ) {
@@ -53,11 +67,18 @@ $title_classes = [
 	'has-' . $title_size . '-font-size',
 ];
 
+// Avoiding yet another format parameter.
+$research_topics_position = is_search() ? 'bottom' : 'top';
+
 ?>
 
 <article class="<?php echo esc_attr( implode( ' ', $article_classes ) ); ?>">
+	<?php if ( $r['show_item_type_label'] ) : ?>
+		<?php ramp_get_template_part( 'item-type-label', [ 'label' => __( 'News Item', 'ramp' ) ] ); ?>
+	<?php endif; ?>
+
 	<div class="teaser-content news-item-teaser-content">
-		<?php if ( $show_research_topics ) : ?>
+		<?php if ( $show_research_topics && 'top' === $research_topics_position ) : ?>
 			<?php
 			ramp_get_template_part(
 				'research-topic-tags',
@@ -86,6 +107,18 @@ $title_classes = [
 				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<?php echo $byline; ?>
 			</div>
+		<?php endif; ?>
+
+		<?php if ( $show_research_topics && 'bottom' === $research_topics_position ) : ?>
+			<?php
+			ramp_get_template_part(
+				'research-topic-tags',
+				[
+					'is_edit_mode' => $is_edit_mode,
+					'item_id'      => $news_item_id,
+				]
+			);
+			?>
 		<?php endif; ?>
 	</div>
 </article>
