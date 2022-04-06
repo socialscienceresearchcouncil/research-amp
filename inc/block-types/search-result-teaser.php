@@ -7,7 +7,7 @@ return [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'postId'      => [
+		'postId'     => [
 			'type'    => 'integer',
 			'default' => 0,
 		],
