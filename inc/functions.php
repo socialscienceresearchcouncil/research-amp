@@ -97,7 +97,7 @@ function ramp_get_default_nav_search_markup() {
 			</div>
 		</div>
 		<!-- /wp:ramp/nav-search -->',
-		esc_html__( 'Click to search site', 'ramp-theme' ),
-		esc_html__( 'Search terms', 'ramp-theme' )
+		esc_html__( 'Click to search site', 'ramp' ),
+		esc_html__( 'Search terms', 'ramp' )
 	);
 }
