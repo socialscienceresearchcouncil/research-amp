@@ -48,9 +48,12 @@ return [
 			return '';
 		}
 
-		$atts['show_item_type_label'] = true;
-		$atts['show_research_topics'] = true;
-		$atts['title_size']           = 'h-4';
+		$atts['id']                    = get_the_ID();
+		$atts['show_byline']           = true;
+		$atts['show_item_type_label']  = true;
+		$atts['show_publication_date'] = true;
+		$atts['show_research_topics']  = true;
+		$atts['title_size']            = 'h-4';
 
 		$template_args = array_merge(
 			$atts,

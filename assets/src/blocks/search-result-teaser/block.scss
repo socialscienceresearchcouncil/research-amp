@@ -6,14 +6,19 @@ div.wp-block-ramp-search-result-teaser {
 		border-bottom: 1px solid var(--wp--preset--color--medium-grey);
 	}
 
+	h3 {
+		margin-bottom: 16px;
+		margin-top: 0;
+	}
+
+	.research-topic-tags {
+		margin-top: 20px;
+	}
+
 	.profile-teaser {
 		.teaser-content {
 			display: flex;
 			gap: 28px;
-		}
-
-		h3 {
-			margin-top: 0;
 		}
 	}
 }
