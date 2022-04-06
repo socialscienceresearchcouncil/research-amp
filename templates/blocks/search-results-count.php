@@ -2,12 +2,10 @@
 
 $total_count = isset( $GLOBALS['wp_query']->found_posts ) ? $GLOBALS['wp_query']->found_posts : 0;
 
-// phpcs:disable WordPress.Security.NonceVerification.Recommended
-$requested_search_term = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
-$requested_type        = isset( $_GET['search-type'] ) ? sanitize_text_field( wp_unslash( $_GET['search-type'] ) ) : '';
-// phpcs:enable WordPress.Security.NonceVerification.Recommended
+$requested_search_term = \SSRC\RAMP\Search::get_requested_search_type();
+$requested_type        = \SSRC\RAMP\Search::get_requested_search_type();
 
-$types = ramp_get_search_item_types();
+$types = \SSRC\RAMP\Search::get_search_item_types();
 if ( isset( $types[ $requested_type ] ) ) {
 	$type_label = $types[ $requested_type ];
 } else {

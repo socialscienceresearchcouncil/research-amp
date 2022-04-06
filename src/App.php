@@ -13,6 +13,7 @@ class App {
 	protected $blocks;
 	protected $homepage_slides;
 	protected $toc;
+	protected $search;
 
 	protected $cli;
 
@@ -26,7 +27,8 @@ class App {
 		UserManagement $user_management,
 		Blocks $blocks,
 		HomepageSlides $homepage_slides,
-		TOC $toc
+		TOC $toc,
+		Search $search
 	) {
 		$this->schema              = $schema;
 		$this->admin               = $admin;
@@ -38,6 +40,7 @@ class App {
 		$this->blocks              = $blocks;
 		$this->homepage_slides     = $homepage_slides;
 		$this->toc                 = $toc;
+		$this->search              = $search;
 	}
 
 	public function init() {
@@ -49,6 +52,7 @@ class App {
 		$this->blocks->init();
 		$this->homepage_slides->init();
 		$this->toc->init();
+		$this->search->init();
 
 		if ( defined( 'TRIBE_EVENTS_FILE' ) ) {
 			$this->the_events_calendar->init();

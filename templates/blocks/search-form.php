@@ -48,14 +48,8 @@ $field_markup = sprintf(
 	$input_markup
 );
 
-// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-$requested_type = isset( $_GET['search-type'] ) ? wp_unslash( $_GET['search-type'] ) : '';
-
-$types = ramp_get_search_item_types();
-
-if ( ! isset( $types[ $requested_type ] ) ) {
-	$requested_type = '';
-}
+$requested_type = \SSRC\RAMP\Search::get_requested_search_type();
+$all_types      = \SSRC\RAMP\Search::get_search_item_types();
 
 $form_classes = [
 	'wp-block-ramp-search-form',
@@ -81,7 +75,7 @@ $form_classes = [
 			<select id="search-type-selector" class="pretty-select" name="search-type">
 				<option value="" <?php selected( '', $requested_type ); ?>><?php esc_html_e( 'All content types', 'ramp' ); ?></option>
 
-				<?php foreach ( $types as $value => $label ) : ?>
+				<?php foreach ( $all_types as $value => $label ) : ?>
 					<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $requested_type ); ?>><?php echo esc_html( $label ); ?></option>
 				<?php endforeach; ?>
 			</select>

@@ -39,6 +39,7 @@ function ramp_app() {
 		$blocks              = new \SSRC\RAMP\Blocks();
 		$homepage_slides     = new \SSRC\RAMP\HomepageSlides();
 		$toc                 = new \SSRC\RAMP\TOC();
+		$search              = new \SSRC\RAMP\Search();
 
 		$app = new \SSRC\RAMP\App(
 			$schema,
@@ -50,7 +51,8 @@ function ramp_app() {
 			$user_management,
 			$blocks,
 			$homepage_slides,
-			$toc
+			$toc,
+			$search
 		);
 
 		$app->init();
