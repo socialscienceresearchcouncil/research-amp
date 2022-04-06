@@ -1,9 +1,21 @@
 <?php
-$research_topic_id = $args['id'];
 
-$is_edit_mode = ! empty( $args['is_edit_mode'] );
+$r = array_merge(
+	[
+		'id'                   => 0,
+		'is_edit_mode'         => false,
+		'show_item_type_label' => false,
+		'title_size'           => '',
+		'variation_type'       => 'grid',
+	],
+	$args
+);
 
-$variation_type = isset( $args['variation_type'] ) && 'list' === $args['variation_type'] ? 'list' : 'grid';
+$research_topic_id = $r['id'];
+
+$is_edit_mode = $r['is_edit_mode'];
+
+$variation_type = 'list' === $r['variation_type'] ? 'list' : 'grid';
 
 $article_classes = [
 	'research-topic-teaser',
@@ -24,15 +36,28 @@ if ( 'list' === $variation_type ) {
 	}
 }
 
+$title_classes = [
+	'item-title',
+	'research-topic-item-title',
+];
+
+if ( $r['title_size'] ) {
+	$title_classes[] = 'has-' . $r['title_size'] . '-font-size';
+}
+
 ?>
 
 <article class="<?php echo esc_attr( implode( ' ', $article_classes ) ); ?>">
+	<?php if ( $r['show_item_type_label'] ) : ?>
+		<?php ramp_get_template_part( 'item-type-label', [ 'label' => __( 'Research Topic', 'ramp' ) ] ); ?>
+	<?php endif; ?>
+
 	<?php if ( 'list' === $variation_type ) : ?>
 		<div class="research-topic-teaser-image" style="<?php echo esc_attr( $image_div_style ); ?>">&nbsp;</div>
 	<?php endif; ?>
 
 	<div class="research-topic-teaser-contents">
-		<h3 class="item-title research-topic-item-title">
+		<h3 class="<?php echo esc_attr( implode( ' ', $title_classes ) ); ?>">
 
 			<?php if ( ! $is_edit_mode ) : ?>
 				<a href="<?php echo esc_attr( get_permalink( $research_topic_id ) ); ?>">
@@ -45,7 +70,7 @@ if ( 'list' === $variation_type ) {
 			<?php endif; ?>
 		</h3>
 
-		<div class="item-excerpt research-topic-item-excerpt"><?php echo wp_kses_post( get_the_excerpt( $research_topic_id ) ); ?></div>
+		<div class="item-excerpt research-topic-item-excerpt enforce-reading-width"><?php echo wp_kses_post( get_the_excerpt( $research_topic_id ) ); ?></div>
 
 		<?php if ( 'list' === $variation_type ) : ?>
 			<?php if ( $is_edit_mode ) : ?>
