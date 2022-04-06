@@ -91,7 +91,7 @@ $title_classes = [
 
 	<div class="teaser-content article-teaser-content">
 		<?php if ( $article_types ) : ?>
-			<?php ramp_get_template_part( 'item-type-tag', [ 'label' => $article_types[0] ] ); ?>
+			<?php ramp_get_template_part( 'item-type-label', [ 'label' => $article_types[0] ] ); ?>
 		<?php endif; ?>
 
 		<h3 class="<?php echo esc_attr( implode( ' ', $title_classes ) ); ?>">
