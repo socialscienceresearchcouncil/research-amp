@@ -12,6 +12,10 @@
 		"isEditMode": {
 			"type": "boolean",
 			"default": false
+		},
+		"postId": {
+			"type": "integer",
+			"default": 0
 		}
 	}
 }

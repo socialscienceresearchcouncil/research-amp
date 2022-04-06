@@ -4,6 +4,7 @@ $r = array_merge(
 	[
 		'id'                    => 0,
 		'is_edit_mode'          => false,
+		'is_search_result'      => false,
 		'show_excerpt'          => true,
 		'show_image'            => true,
 		'show_item_type_label'  => false,
@@ -58,8 +59,7 @@ if ( $show_publication_date ) {
 	);
 }
 
-// Avoiding yet another format parameter.
-$research_topics_position = is_search() ? 'bottom' : 'top';
+$research_topics_position = $r['is_search_result'] ? 'bottom' : 'top';
 
 ?>
 

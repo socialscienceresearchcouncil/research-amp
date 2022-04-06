@@ -7,15 +7,23 @@ return [
 			'type'    => 'boolean',
 			'default' => false,
 		],
+		'postId'      => [
+			'type'    => 'integer',
+			'default' => 0,
+		],
 	],
 	'render_callback' => function( $atts, $content, $block ) {
-		$post = get_post( get_the_ID() );
+		$post_id = ! empty( $atts['postId'] ) ? $atts['postId'] : get_the_ID();
+
+		$post = get_post( $post_id );
 		if ( ! $post ) {
 			return '';
 		}
 
 		$template_args = [
-			'id'                    => get_the_ID(),
+			'id'                    => $post_id,
+			'is_edit_mode'          => ! empty( $atts['isEditMode'] ),
+			'is_search_result'      => true,
 			'show_byline'           => true,
 			'show_item_type_label'  => true,
 			'show_publication_date' => true,
