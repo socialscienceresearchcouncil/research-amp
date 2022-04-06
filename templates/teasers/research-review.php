@@ -1,7 +1,21 @@
 <?php
-$research_review_id = $args['id'];
 
-$is_edit_mode = ! empty( $args['is_edit_mode'] );
+$r = array_merge(
+	[
+		'id'                    => 0,
+		'is_edit_mode'          => false,
+		'show_excerpt'          => true,
+		'show_image'            => true,
+		'show_item_type_label'  => false,
+		'show_publication_date' => false,
+		'show_research_topics'  => false,
+	],
+	$args
+);
+
+$research_review_id = $r['id'];
+
+$is_edit_mode = $r['is_edit_mode'];
 
 $img_src      = RAMP_PLUGIN_URL . '/assets/img/empty-image.png';
 $img_alt      = '';
@@ -20,8 +34,8 @@ if ( $img_src ) {
 	$article_class .= ' has-featured-image';
 }
 
-$show_publication_date = ! empty( $args['show_publication_date'] );
-$show_research_topics  = ! empty( $args['show_research_topics'] );
+$show_publication_date = $r['show_publication_date'];
+$show_research_topics  = $r['show_research_topics'];
 
 $author_links  = \SSRC\RAMP\Profile::get_profile_links_for_post( $research_review_id );
 $author_string = implode( ', ', $author_links );
@@ -44,27 +58,36 @@ if ( $show_publication_date ) {
 	);
 }
 
+// Avoiding yet another format parameter.
+$research_topics_position = is_search() ? 'bottom' : 'top';
+
 ?>
 
 <article class="<?php echo esc_attr( $article_class ); ?>">
-	<div class="teaser-thumb research-review-teaser-thumb">
-		<?php if ( $img_src ) : ?>
-			<?php if ( ! $is_edit_mode ) : ?>
-				<a href="<?php echo esc_attr( get_permalink( $research_review_id ) ); ?>">
-			<?php endif; ?>
+	<?php if ( $r['show_item_type_label'] ) : ?>
+		<?php ramp_get_template_part( 'item-type-label', [ 'label' => __( 'Research Review', 'ramp' ) ] ); ?>
+	<?php endif; ?>
 
-			<img class="research_review-teaser-thumb-img" src="<?php echo esc_attr( $img_src ); ?>" alt="<?php echo esc_attr( $img_alt ); ?>" />
+	<?php if ( $r['show_image'] ) : ?>
+		<div class="teaser-thumb research-review-teaser-thumb">
+			<?php if ( $img_src ) : ?>
+				<?php if ( ! $is_edit_mode ) : ?>
+					<a href="<?php echo esc_attr( get_permalink( $research_review_id ) ); ?>">
+				<?php endif; ?>
 
-			<?php if ( ! $is_edit_mode ) : ?>
-				</a>
+				<img class="research_review-teaser-thumb-img" src="<?php echo esc_attr( $img_src ); ?>" alt="<?php echo esc_attr( $img_alt ); ?>" />
+
+				<?php if ( ! $is_edit_mode ) : ?>
+					</a>
+				<?php endif; ?>
+			<?php else : ?>
+				&nbsp; <?php /* Force flex to use the available space */ ?>
 			<?php endif; ?>
-		<?php else : ?>
-			&nbsp; <?php /* Force flex to use the available space */ ?>
-		<?php endif; ?>
-	</div>
+		</div>
+	<?php endif; ?>
 
 	<div class="teaser-content research-review-teaser-content">
-		<?php if ( $show_research_topics ) : ?>
+		<?php if ( $show_research_topics && 'top' === $research_topics_position ) : ?>
 			<?php
 			ramp_get_template_part(
 				'research-topic-tags',
@@ -88,11 +111,25 @@ if ( $show_publication_date ) {
 			<?php endif; ?>
 		</h3>
 
-		<div class="item-excerpt research-review-item-excerpt"><?php echo wp_kses_post( get_the_excerpt( $research_review_id ) ); ?></div>
+		<?php if ( $r['show_excerpt'] ) : ?>
+			<div class="item-excerpt research-review-item-excerpt"><?php echo wp_kses_post( get_the_excerpt( $research_review_id ) ); ?></div>
+		<?php endif; ?>
 
 		<div class="teaser-byline research-review-teaser-byline">
 			<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php echo $byline; ?>
 		</div>
+
+		<?php if ( $show_research_topics && 'bottom' === $research_topics_position ) : ?>
+			<?php
+			ramp_get_template_part(
+				'research-topic-tags',
+				[
+					'display_type' => 'bubble',
+					'item_id'      => $research_review_id,
+				]
+			);
+			?>
+		<?php endif; ?>
 	</div>
 </article>

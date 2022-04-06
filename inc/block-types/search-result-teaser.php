@@ -46,6 +46,9 @@ return [
 
 			case 'ramp_review' :
 				$teaser_template = 'research-review';
+
+				$template_args['show_excerpt'] = false;
+				$template_args['show_image']   = false;
 			break;
 
 			case 'ramp_topic' :
