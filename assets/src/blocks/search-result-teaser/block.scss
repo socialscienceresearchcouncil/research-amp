@@ -1,0 +1,19 @@
+div.wp-block-ramp-search-result-teaser {
+	border-top: 1px solid var(--wp--preset--color--medium-grey);
+	padding: 48px 0;
+
+	&.last-of-type {
+		border-bottom: 1px solid var(--wp--preset--color--medium-grey);
+	}
+
+	.profile-teaser {
+		.teaser-content {
+			display: flex;
+			gap: 28px;
+		}
+
+		h3 {
+			margin-top: 0;
+		}
+	}
+}
