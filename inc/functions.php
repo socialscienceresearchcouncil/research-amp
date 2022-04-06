@@ -88,17 +88,16 @@ function ramp_get_default_nav_search_markup() {
 			</button>
 
 			<div class="nav-search-fields">
-				<form action="%s" method="get">
+				<form action="" method="get">
 					<label>
 						<span class="screen-reader-text">%s</span>
-						<input name="s" type="search" class="search-input" name="search-input" />
+						<input name="s" type="search" class="search-input" />
 					</label>
 				</form>
 			</div>
 		</div>
 		<!-- /wp:ramp/nav-search -->',
 		esc_html__( 'Click to search site', 'ramp-theme' ),
-		esc_url( home_url( '/' ) ),
 		esc_html__( 'Search terms', 'ramp-theme' )
 	);
 }

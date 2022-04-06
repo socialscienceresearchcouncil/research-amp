@@ -16,9 +16,19 @@ export default function save( {
 
 	return (
 		<div { ...blockProps() }>
+
 			<button className="nav-search-button">
 				<span className="screen-reader-text">{ __( 'Click to search site', 'ramp' ) }</span>
 			</button>
+
+			<div className="nav-search-fields">
+				<form action="" method="get">
+					<label>
+						<span className="screen-reader-text">{ __( 'Search terms', 'ramp' ) }</span>
+						<input name="s" type="search" className="search-input" />
+					</label>
+				</form>
+			</div>
 		</div>
 	);
 }
