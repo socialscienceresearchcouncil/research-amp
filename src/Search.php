@@ -78,13 +78,13 @@ class Search {
 
 	public static function get_search_item_types() {
 		return [
-			'topic'     => __( 'Research Topics', 'ramp' ),
-			'review'    => __( 'Research Reviews', 'ramp' ),
 			'article'   => __( 'Articles', 'ramp' ),
-			'profile'   => __( 'Profiles', 'ramp' ),
-			'news-item' => __( 'News Items', 'ramp' ),
 			'citation'  => __( 'Citations', 'ramp' ),
 			'event'     => __( 'Events', 'ramp' ),
+			'news-item' => __( 'News Items', 'ramp' ),
+			'profile'   => __( 'Profiles', 'ramp' ),
+			'review'    => __( 'Research Reviews', 'ramp' ),
+			'topic'     => __( 'Research Topics', 'ramp' ),
 		];
 	}
 }
