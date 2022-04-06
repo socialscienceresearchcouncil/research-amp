@@ -14,6 +14,15 @@ return [
 			return '';
 		}
 
+		$template_args = [
+			'id'                    => get_the_ID(),
+			'show_byline'           => true,
+			'show_item_type_label'  => true,
+			'show_publication_date' => true,
+			'show_research_topics'  => true,
+			'title_size'            => 'h-4',
+		];
+
 		switch ( $post->post_type ) {
 			case 'ramp_article' :
 				$teaser_template = 'article';
@@ -47,21 +56,6 @@ return [
 		if ( empty( $teaser_template ) ) {
 			return '';
 		}
-
-		$atts['id']                    = get_the_ID();
-		$atts['show_byline']           = true;
-		$atts['show_item_type_label']  = true;
-		$atts['show_publication_date'] = true;
-		$atts['show_research_topics']  = true;
-		$atts['title_size']            = 'h-4';
-
-		$template_args = array_merge(
-			$atts,
-			[
-				'content' => $content,
-				'block'   => $block,
-			]
-		);
 
 		ob_start();
 
