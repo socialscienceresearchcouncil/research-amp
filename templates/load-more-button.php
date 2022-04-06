@@ -6,7 +6,12 @@ $query_var       = $args['query_var'];
 $is_edit_mode    = ! empty( $args['is_edit_mode'] );
 
 global $wp;
-$load_more_href = trailingslashit( home_url( add_query_arg( [], $wp->request ) ) );
+if ( ! empty( $args['url_base'] ) ) {
+	$load_more_href = $args['url_base'];
+} else {
+	$load_more_href = trailingslashit( home_url( add_query_arg( [], $wp->request ) ) );
+}
+
 $load_more_href = add_query_arg( $query_var, $offset + $number_of_items, $load_more_href );
 
 wp_enqueue_script( 'ramp-load-more' );

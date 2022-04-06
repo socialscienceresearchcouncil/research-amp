@@ -10,16 +10,30 @@
 				var queryArg = $clicked.data('queryArg');
 
 				var href = this.href;
+				console.log(href)
 				$.ajax({
 					url: href,
 					success: function( response ) {
 						var parser = new DOMParser();
 						var doc = parser.parseFromString(response, 'text/html');
-						var newItems = doc.querySelectorAll('.uses-query-arg-' + queryArg + ' .load-more-list li');
-						var newLoadMore = doc.querySelector('.uses-query-arg-' + queryArg + ' .load-more-button a');
+
+						let newItems, newLoadMore
+
+						// Special case for 'paged', which indicates the search page.
+						if ( 'paged' === queryArg ) {
+							newItems = doc.querySelectorAll('.wp-block-post-template li');
+							newLoadMore = doc.querySelector('.wp-block-ramp-search-load-more .load-more-button a');
+						} else {
+							newItems = doc.querySelectorAll('.uses-query-arg-' + queryArg + ' .load-more-list li');
+							newLoadMore = doc.querySelector('.uses-query-arg-' + queryArg + ' .load-more-button a');
+						}
 
 						if ( newItems ) {
-							$clicked.closest('.load-more-container').find('.load-more-list').append(newItems);
+							const parentList = 'paged' === queryArg
+								? $( '.wp-block-post-template' )
+								: $clicked.closest( '.load-more-container' ).find( '.load-more-list' )
+
+							parentList.append(newItems);
 						}
 
 						if ( newLoadMore ) {
