@@ -15,6 +15,14 @@ div.wp-block-ramp-search-result-teaser {
 		margin-top: 20px;
 	}
 
+	.teaser {
+		flex-direction: column;
+
+		.item-type-label {
+			margin-bottom: 0;
+		}
+	}
+
 	.profile-teaser {
 		.teaser-content {
 			display: flex;

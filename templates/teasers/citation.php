@@ -1,5 +1,16 @@
 <?php
-$citation_id = $args['id'];
+
+$r = array_merge(
+	[
+		'id'                   => 0,
+		'is_edit_mode'         => false,
+		'show_item_type_label' => false,
+		'show_research_topics' => false,
+	],
+	$args
+);
+
+$citation_id = $r['id'];
 
 $citation_url = '';
 if ( $citation_id ) {
@@ -9,13 +20,17 @@ if ( $citation_id ) {
 
 $article_classes = [ 'teaser' ];
 
-$is_edit_mode = ! empty( $args['is_edit_mode'] );
+$is_edit_mode = $r['is_edit_mode'];
 
 $article_classes = [ 'citation-teaser', 'teaser' ];
 
 ?>
 
 <article class="<?php echo esc_attr( implode( ' ', $article_classes ) ); ?>">
+	<?php if ( $r['show_item_type_label'] ) : ?>
+		<?php ramp_get_template_part( 'item-type-label', [ 'label' => __( 'Citation', 'ramp' ) ] ); ?>
+	<?php endif; ?>
+
 	<div class="teaser-content citation-teaser-content">
 		<h3 class="has-h-4-font-size item-title citation-item-title enforce-reading-width">
 			<?php if ( ! $is_edit_mode ) : ?>
@@ -30,5 +45,17 @@ $article_classes = [ 'citation-teaser', 'teaser' ];
 		</h3>
 
 		<?php ramp_get_template_part( 'citation-info', [ 'id' => $citation_id ] ); ?>
+
+		<?php if ( $r['show_research_topics'] ) : ?>
+			<?php
+			ramp_get_template_part(
+				'research-topic-tags',
+				[
+					'is_edit_mode' => $is_edit_mode,
+					'item_id'      => $citation_id,
+				]
+			);
+			?>
+		<?php endif; ?>
 	</div>
 </article>
