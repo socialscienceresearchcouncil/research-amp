@@ -1,5 +1,3 @@
-import './editor.scss'
-
 import { __, sprintf } from '@wordpress/i18n'
 
 import {
