@@ -60,7 +60,7 @@ class Search {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$requested_type = isset( $_GET['search-type'] ) ? wp_unslash( $_GET['search-type'] ) : '';
 
-		$types = \SSRC\RAMP\Search::get_search_item_types();
+		$types = self::get_search_item_types();
 
 		if ( ! isset( $types[ $requested_type ] ) ) {
 			$requested_type = '';
