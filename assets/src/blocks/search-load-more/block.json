@@ -1,0 +1,17 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/search-load-more",
+	"title": "Load More Button for Search Results",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"usesContext": [ "postType", "postId", "templateSlug" ],
+	"attributes": {
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

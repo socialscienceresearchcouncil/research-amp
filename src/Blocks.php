@@ -165,6 +165,7 @@ class Blocks {
 			'profile-directory-filters',
 			'review-version-selector',
 			'search-form',
+			'search-load-more',
 			'search-result-teaser',
 			'search-results-count',
 			'social-buttons',
