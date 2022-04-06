@@ -78,3 +78,27 @@ function ramp_get_pag_offset( $query_var ) {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	return (int) $_GET[ $query_var ];
 }
+
+function ramp_get_default_nav_search_markup() {
+	return sprintf(
+		'<!-- wp:ramp/nav-search -->
+		<div class="wp-block-ramp-nav-search">
+			<button class="nav-search-button">
+				<span class="screen-reader-text">%s</span>
+			</button>
+
+			<div class="nav-search-fields">
+				<form action="%s" method="get">
+					<label>
+						<span class="screen-reader-text">%s</span>
+						<input name="s" type="search" class="search-input" name="search-input" />
+					</label>
+				</form>
+			</div>
+		</div>
+		<!-- /wp:ramp/nav-search -->',
+		esc_html__( 'Click to search site', 'ramp-theme' ),
+		esc_url( home_url( '/' ) ),
+		esc_html__( 'Search terms', 'ramp-theme' )
+	);
+}

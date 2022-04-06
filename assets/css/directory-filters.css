@@ -49,14 +49,6 @@
 	max-width: calc(100% - 60px);
 }
 
-input.search-input {
-	background-image: url('../img/search-magnifying-glass.png');
-	background-position: left 20px center;
-	background-repeat: no-repeat;
-	background-size: 24px 24px;
-	padding-left: 58px;
-}
-
 .directory-filters-submit input.mw-button {
 	font-size: 12px;
 	line-height: 28px;

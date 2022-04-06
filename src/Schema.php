@@ -44,7 +44,7 @@ class Schema {
 		wp_register_style(
 			'ramp-directory-filters',
 			RAMP_PLUGIN_URL . '/assets/css/directory-filters.css',
-			[ 'ramp-select2' ],
+			[ 'ramp-select2', 'wp-block-button' ],
 			RAMP_VER
 		);
 
@@ -99,6 +99,15 @@ class Schema {
 		wp_register_script(
 			'ramp-altmetrics',
 			RAMP_PLUGIN_URL . '/assets/js/altmetrics.js',
+			[],
+			RAMP_VER,
+			true
+		);
+
+		// Always enqueue navigation scripts.
+		wp_enqueue_script(
+			'ramp-navigation',
+			RAMP_PLUGIN_URL . '/assets/js/navigation.js',
 			[],
 			RAMP_VER,
 			true

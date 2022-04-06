@@ -18,6 +18,7 @@ import './blocks/citation-links/block.scss';
 import './blocks/cite-this/block.scss';
 import './blocks/item-research-topics/block.scss'
 import './blocks/item-type-label/block.scss';
+import './blocks/nav-search/block.scss';
 import './blocks/review-version-selector/block.scss';
 import './blocks/search-form/block.scss';
 import './blocks/search-result-teaser/block.scss';

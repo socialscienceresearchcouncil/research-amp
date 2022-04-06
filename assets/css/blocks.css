@@ -158,6 +158,29 @@ a.tag-plain:hover {
 	margin-right: 8px;
 }
 
+/** Form elements */
+
+input[type=text],
+select {
+	background: var(--wp--preset--color--white);
+	border: 1px solid #ABB8C3;
+	font-size: var(--wp--preset--font-size--body-text);
+	padding: 0 20px;
+	height: 51px;
+}
+
+.directory-filter select {
+	padding-left: 16px;
+}
+
+input.search-input {
+	background-image: url('../img/search-magnifying-glass.png');
+	background-position: left 20px center;
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	padding-left: 58px;
+}
+
 /** Teasers */
 .teaser {
 	display: flex;

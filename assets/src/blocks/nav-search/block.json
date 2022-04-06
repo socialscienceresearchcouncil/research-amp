@@ -1,0 +1,11 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/nav-search",
+	"title": "Search Button for Header",
+	"icon": "search",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"attributes": {}
+}
