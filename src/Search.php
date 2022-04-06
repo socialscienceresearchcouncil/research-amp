@@ -77,14 +77,21 @@ class Search {
 	}
 
 	public static function get_search_item_types() {
-		return [
+		$types = [
 			'article'   => __( 'Articles', 'ramp' ),
 			'citation'  => __( 'Citations', 'ramp' ),
-			'event'     => __( 'Events', 'ramp' ),
 			'news-item' => __( 'News Items', 'ramp' ),
 			'profile'   => __( 'Profiles', 'ramp' ),
 			'review'    => __( 'Research Reviews', 'ramp' ),
 			'topic'     => __( 'Research Topics', 'ramp' ),
 		];
+
+		if ( defined( 'TRIBE_EVENTS_FILE' ) ) {
+			$types['event'] = __( 'Events', 'ramp' );
+		}
+
+		asort( $types );
+
+		return $types;
 	}
 }
