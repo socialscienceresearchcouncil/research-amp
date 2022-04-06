@@ -2,7 +2,7 @@
 
 $total_count = isset( $GLOBALS['wp_query']->found_posts ) ? $GLOBALS['wp_query']->found_posts : 0;
 
-$requested_search_term = \SSRC\RAMP\Search::get_requested_search_type();
+$requested_search_term = \SSRC\RAMP\Search::get_requested_search_term();
 $requested_type        = \SSRC\RAMP\Search::get_requested_search_type();
 
 $types = \SSRC\RAMP\Search::get_search_item_types();
