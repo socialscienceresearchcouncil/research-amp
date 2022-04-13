@@ -61,6 +61,7 @@ export default function edit( {
 		showFeaturedItem,
 		showLoadMore,
 		showPublicationDate,
+		showVariationTypeButtons,
 		variationType
 	} = attributes
 
@@ -107,6 +108,11 @@ export default function edit( {
 		forceRefresh: featuredItemId !== usePrevious( featuredItemId ) // Addresses race condition with useSelect() and ServerSideRender()
 	} )
 
+	// Use showVariationTypeButtons as a heuristic for showing other toggles
+	const showPublicationDateToggle = !! showVariationTypeButtons
+	const showLoadMoreToggle = !! showVariationTypeButtons
+	const showFeaturedItemToggle = !! showVariationTypeButtons
+
 	return (
 		<Fragment>
 			<InspectorControls>
@@ -131,30 +137,32 @@ export default function edit( {
 					</PanelBody>
 				</Panel>
 
-				<Panel>
-					<PanelBody
-						title={ __( 'Featured News Item', 'ramp' ) }
-					>
-						<ToggleControl
-							label={ __( 'Show a Featured News Item?', 'ramp' ) }
-							checked={ showFeaturedItem }
-							onChange={ ( showFeaturedItem ) => setAttributes( { showFeaturedItem } ) }
-						/>
+				{ showFeaturedItemToggle && (
+					<Panel>
+						<PanelBody
+							title={ __( 'Featured News Item', 'ramp' ) }
+						>
+							<ToggleControl
+								label={ __( 'Show a Featured News Item?', 'ramp' ) }
+								checked={ showFeaturedItem }
+								onChange={ ( showFeaturedItem ) => setAttributes( { showFeaturedItem } ) }
+							/>
 
-						{ showFeaturedItem && (
-							<>
-								{ currentlyFeaturedNotice }
+							{ showFeaturedItem && (
+								<>
+									{ currentlyFeaturedNotice }
 
-								<PostPicker
-									onSelectPost={ ( selectedPost ) => setAttributes( { featuredItemId: selectedPost.id } ) }
-									label={ __( 'Select a Featured News Item', 'ramp' ) }
-									placeholder={ __( 'Start typing to search.', 'ramp' ) }
-									postTypes={ [ 'posts' ] }
-								/>
-							</>
-						) }
-					</PanelBody>
-				</Panel>
+									<PostPicker
+										onSelectPost={ ( selectedPost ) => setAttributes( { featuredItemId: selectedPost.id } ) }
+										label={ __( 'Select a Featured News Item', 'ramp' ) }
+										placeholder={ __( 'Start typing to search.', 'ramp' ) }
+										postTypes={ [ 'posts' ] }
+									/>
+								</>
+							) }
+						</PanelBody>
+					</Panel>
+				) }
 
 				<Panel>
 					<PanelBody
@@ -180,45 +188,51 @@ export default function edit( {
 							/>
 						</PanelRow>
 
-						<PanelRow>
-							<LoadMoreToggle
-								showLoadMore={ showLoadMore }
-								onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
-							/>
-						</PanelRow>
+						{ showLoadMoreToggle && (
+							<PanelRow>
+								<LoadMoreToggle
+									showLoadMore={ showLoadMore }
+									onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+								/>
+							</PanelRow>
+						) }
 					</PanelBody>
 				</Panel>
 
-				<Panel>
-					<PanelBody
-						title={ __( 'Display Options', 'ramp' ) }
-					>
-						<PanelRow>
-							<PublicationDateToggle
-								onChangeCallback={ ( showPublicationDate ) => setAttributes( { showPublicationDate } ) }
-								showPublicationDate={ showPublicationDate }
-							/>
-						</PanelRow>
-					</PanelBody>
-				</Panel>
+				{ showPublicationDateToggle && (
+					<Panel>
+						<PanelBody
+							title={ __( 'Display Options', 'ramp' ) }
+						>
+							<PanelRow>
+								<PublicationDateToggle
+									onChangeCallback={ ( showPublicationDate ) => setAttributes( { showPublicationDate } ) }
+									showPublicationDate={ showPublicationDate }
+								/>
+							</PanelRow>
+						</PanelBody>
+					</Panel>
+				) }
 			</InspectorControls>
 
-			<BlockControls>
-				<ToolbarGroup>
-					<ToolbarButton
-						icon={ ListIcon }
-						isActive={ 'list' === variationType }
-						label={ __( 'List', 'ramp' ) }
-						onClick={ () => setAttributes( { variationType: 'list' } ) }
-					/>
-					<ToolbarButton
-						icon={ GridIcon }
-						isActive={ 'grid' === variationType }
-						label={ __( 'Grid', 'ramp' ) }
-						onClick={ () => setAttributes( { variationType: 'grid' } ) }
-					/>
-				</ToolbarGroup>
-			</BlockControls>
+			{ showVariationTypeButtons && (
+				<BlockControls>
+					<ToolbarGroup>
+						<ToolbarButton
+							icon={ ListIcon }
+							isActive={ 'list' === variationType }
+							label={ __( 'List', 'ramp' ) }
+							onClick={ () => setAttributes( { variationType: 'list' } ) }
+						/>
+						<ToolbarButton
+							icon={ GridIcon }
+							isActive={ 'grid' === variationType }
+							label={ __( 'Grid', 'ramp' ) }
+							onClick={ () => setAttributes( { variationType: 'grid' } ) }
+						/>
+					</ToolbarGroup>
+				</BlockControls>
+			) }
 
 			<div { ...blockProps() }>
 				<ServerSideRender

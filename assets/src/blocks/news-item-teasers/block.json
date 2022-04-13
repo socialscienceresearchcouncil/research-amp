@@ -36,6 +36,14 @@
 			"enum": [ "alphabetical", "latest", "random" ],
 			"default": "latest"
 		},
+		"showByline": {
+			"type": "boolean",
+			"default": true
+		},
+		"showImage": {
+			"type": "boolean",
+			"default": true
+		},
 		"showLoadMore": {
 			"type": "boolean",
 			"default": false
@@ -44,12 +52,24 @@
 			"type": "boolean",
 			"default": true
 		},
+		"showResearchTopics": {
+			"type": "boolean",
+			"default": true
+		},
 		"showRowRules": {
 			"type": "boolean",
 			"default": true
 		},
+		"showVariationTypeButtons": {
+			"type": "boolean",
+			"default": true
+		},
+		"titleSize": {
+			"enum": [ "h-1", "h-2", "h-3", "h-4", "h-5", "h-6" ],
+			"default": "h-4"
+		},
 		"variationType": {
-			"enum": [ "grid", "list", "list-mini" ],
+			"enum": [ "grid", "list" ],
 			"default": "grid"
 		}
 	}

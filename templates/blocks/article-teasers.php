@@ -97,7 +97,7 @@ $list_classes = [
 	'load-more-list',
 ];
 
-if ( 'list' !== $variation_type && 'list-mini' !== $variation_type ) {
+if ( 'list' !== $variation_type ) {
 	$list_classes[] = 'item-type-list-flex';
 }
 

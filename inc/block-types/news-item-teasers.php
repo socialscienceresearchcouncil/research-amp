@@ -32,13 +32,25 @@ return [
 			'type'    => 'string',
 			'default' => 'latest',
 		],
+		'showByline'                 => [
+			'type'    => 'boolean',
+			'default' => true,
+		],
 		'showFeaturedItem'           => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
+		'showImage'                  => [
+			'type'    => 'boolean',
+			'default' => true,
+		],
 		'showLoadMore'               => [
 			'type'    => 'boolean',
 			'default' => false,
+		],
+		'showPublicationDate'        => [
+			'type'    => 'boolean',
+			'default' => true,
 		],
 		'showResearchTopics'         => [
 			'type'    => 'boolean',
@@ -48,13 +60,18 @@ return [
 			'type'    => 'boolean',
 			'default' => true,
 		],
-		'showPublicationDate'        => [
+		'showVariationTypeButtons'   => [
 			'type'    => 'boolean',
 			'default' => true,
 		],
+		'titleSize'                  => [
+			'type'    => 'string',
+			'enum'    => [ 'h-1', 'h-2', 'h-3', 'h-4', 'h-5', 'h-6' ],
+			'default' => 'h-4',
+		],
 		'variationType'              => [
-			'type'    => 'string', /* WP throws PHP notice if this is not set */
-			'enum'    => [ 'grid', 'list', 'list-mini' ],
+			'type'    => 'string',
+			'enum'    => [ 'grid', 'list' ],
 			'default' => 'grid',
 		],
 	],
