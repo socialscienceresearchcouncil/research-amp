@@ -162,6 +162,7 @@ class Blocks {
 			'item-byline',
 			'item-research-topics',
 			'item-type-label',
+			'nav-search',
 			'profile-directory-filters',
 			'review-version-selector',
 			'search-form',

@@ -2,8 +2,23 @@
 	let navSearchContainers
 
 	const handleToggleClick = ( event ) => {
-		const clicked = event.target
-		clicked.closest( '.wp-block-ramp-nav-search' ).classList.toggle( 'search-open' )
+		const navSearch = event.target.closest( '.wp-block-ramp-nav-search' )
+		navSearch.classList.toggle( 'search-open' )
+		navSearch.querySelector( '.nav-search-input' ).focus()
+
+		setNavSearchWidth( navSearch )
+	}
+
+	const setNavSearchWidth = ( navSearch ) => {
+		// Grow to the size of the nav-and-search parent
+		const navAndSearch = navSearch.closest( '.nav-and-search' )
+		if ( ! navAndSearch ) {
+			return
+		}
+
+		const navAndSearchRect = navAndSearch.getBoundingClientRect()
+
+		navSearch.querySelector( '.nav-search-fields' ).style.maxWidth = navAndSearchRect.width + 'px'
 	}
 
 	const handleDocumentClick = ( event ) => {
@@ -37,7 +52,7 @@
 
 		for ( const navSearchContainer of navSearchContainers ) {
 			navSearchContainer.querySelector( 'button' ).addEventListener( 'click', handleToggleClick )
-			navSearchContainer.querySelector( 'input[type=search]' ).addEventListener( 'keydown', handleKeydown )
+			navSearchContainer.querySelector( 'input[type=text]' ).addEventListener( 'keydown', handleKeydown )
 		}
 
 		document.addEventListener( 'click', handleDocumentClick )

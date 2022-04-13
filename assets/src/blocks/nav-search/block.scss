@@ -7,6 +7,7 @@
 	.nav-search-button {
 		background-color: transparent;
 		background-image: url(../../../img/search-magnifying-glass.png);
+		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: 18px;
 		border: none;
@@ -23,22 +24,51 @@
 
 	&.search-open {
 		.nav-search-fields {
+			background: white;
+			border: 1px solid var(--wp--preset--color--almost-black);
 			display: block;
+			padding: 0 12px;
 			top: -16px;
-			right: -22px;
+			right: 32px;
+			max-width: 700px;
 			visibility: visible;
 
-			input {
-				height: 51px;
-				width: 300px;
+			form {
+				display: flex;
 			}
 		}
-	}
 
-	.search-input {
-		background-position: right 20px center;
-		background-size: 18px;
-		padding-left: 20px;
-		padding-right: 56px;
+		.nav-search-input {
+			border: none;
+			height: 51px;
+			padding: 0 12px;
+			font-size: var(--wp--preset--font-size--body-text);
+			width: 1000px;
+
+			&:focus-visible {
+				outline: none;
+			}
+		}
+
+		.search-submit {
+			background-color: transparent;
+			background-image: url(../../../img/search-magnifying-glass.png);
+			background-size: 18px;
+			background-position: center center;
+			background-repeat: no-repeat;
+			border: 0;
+			cursor: pointer;
+			text-indent: -999em;
+			width: 36px;
+			height: 51px;
+		}
+
+		.nav-search-button {
+			background-image: url(../../../img/search-close.png);
+			background-size: 22px;
+			background-position: top;
+			height: 24px;
+			width: 22px;
+		}
 	}
 }
