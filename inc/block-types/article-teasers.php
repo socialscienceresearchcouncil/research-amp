@@ -32,10 +32,6 @@ return [
 			'type'    => 'string',
 			'default' => 'alphabetical',
 		],
-		'researchTopic'              => [
-			'type'    => 'string',
-			'default' => 'auto',
-		],
 		'showByline'                 => [
 			'type'    => 'boolean',
 			'default' => true,
@@ -48,17 +44,21 @@ return [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'showResearchTopics'         => [
+		'showPublicationDate'        => [
 			'type'    => 'boolean',
 			'default' => true,
 		],
-		'showPublicationDate'        => [
+		'showResearchTopics'         => [
 			'type'    => 'boolean',
 			'default' => true,
 		],
 		'showRowRules'               => [
 			'type'    => 'boolean',
 			'default' => false,
+		],
+		'showVariationTypeButtons'   => [
+			'type'    => 'boolean',
+			'default' => true,
 		],
 		'titleSize'                  => [
 			'type'    => 'string',
