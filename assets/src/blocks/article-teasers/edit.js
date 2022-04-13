@@ -57,6 +57,7 @@ export default function edit( {
 		order,
 		showLoadMore,
 		showPublicationDate,
+		showVariationTypeButtons,
 		variationType
 	} = attributes
 
@@ -103,9 +104,9 @@ export default function edit( {
 		forceRefresh: featuredItemId !== usePrevious( featuredItemId ) // Addresses race condition with useSelect() and ServerSideRender()
 	} )
 
-	const showVariationTypeButtons = 'list-mini' !== variationType
-	const showPublicationDateToggle = 'list-mini' !== variationType
-	const showLoadMoreToggle = 'list-mini' !== variationType
+	// Use showVariationTypeButtons as a heuristic for showing other toggles
+	const showPublicationDateToggle = !! showVariationTypeButtons
+	const showLoadMoreToggle = !! showVariationTypeButtons
 
 	return (
 		<>

@@ -36,25 +36,38 @@ return [
 			'type'    => 'string',
 			'default' => 'auto',
 		],
-		'showFeaturedItem'           => [
+		'showByline'                 => [
 			'type'    => 'boolean',
-			'default' => false,
+			'default' => true,
+		],
+		'showImage'                  => [
+			'type'    => 'boolean',
+			'default' => true,
 		],
 		'showLoadMore'               => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'showRowRules'               => [
+		'showResearchTopics'         => [
 			'type'    => 'boolean',
-			'default' => false,
+			'default' => true,
 		],
 		'showPublicationDate'        => [
 			'type'    => 'boolean',
 			'default' => true,
 		],
+		'showRowRules'               => [
+			'type'    => 'boolean',
+			'default' => false,
+		],
+		'titleSize'                  => [
+			'type'    => 'string',
+			'enum'    => [ 'h-1', 'h-2', 'h-3', 'h-4', 'h-5', 'h-6' ],
+			'default' => 'h-4',
+		],
 		'variationType'              => [
 			'type'    => 'string',
-			'enum'    => [ 'grid', 'list', 'list-mini', 'featured' ],
+			'enum'    => [ 'grid', 'list', 'featured' ],
 			'default' => 'grid',
 		],
 	],

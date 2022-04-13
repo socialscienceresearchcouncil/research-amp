@@ -9,9 +9,13 @@ $r = array_merge(
 		'isEditMode'                 => false,
 		'numberOfItems'              => 3,
 		'order'                      => 'latest',
+		'showByline'                 => true,
+		'showImage'                  => false,
 		'showLoadMore'               => false,
 		'showPublicationDate'        => true,
+		'showResearchTopics'         => true,
 		'showRowRules'               => true,
+		'titleSize'                  => 'h-4',
 		'variationType'              => 'grid',
 	],
 	$args
@@ -19,11 +23,14 @@ $r = array_merge(
 
 $is_edit_mode = (bool) $r['isEditMode'];
 
-if ( in_array( $r['variationType'], [ 'grid', 'list', 'list-mini', 'featured' ], true ) ) {
+if ( in_array( $r['variationType'], [ 'grid', 'list', 'featured' ], true ) ) {
 	$variation_type = $r['variationType'];
 } else {
 	$variation_type = 'grid';
 }
+
+// We currently only support the display of research topics in List view.
+$show_research_topics = $r['showResearchTopics'] && 'list' === $variation_type;
 
 $query_args = [
 	'post_type'   => 'ramp_article',
@@ -64,10 +71,6 @@ if ( 'featured' === $variation_type ) {
 
 // Load More doesn't work with the Featured variation type.
 $show_load_more = $r['showLoadMore'] && 'featured' !== $variation_type;
-
-$show_publication_date = $r['showPublicationDate'] && 'list-mini' !== $variation_type;
-$show_byline           = 'list-mini' !== $variation_type;
-$show_image            = 'list-mini' !== $variation_type;
 
 $offset_query_var = 'article-pag-offset';
 $offset           = ramp_get_pag_offset( $offset_query_var );
@@ -124,9 +127,9 @@ if ( (bool) $r['showRowRules'] ) {
 							'id'                    => $featured_item_id,
 							'is_edit_mode'          => $is_edit_mode,
 							'is_featured'           => true,
-							'show_byline'           => $show_byline,
+							'show_byline'           => true,
 							'show_image'            => true,
-							'show_publication_date' => $show_publication_date,
+							'show_publication_date' => $r['showPublicationDate'],
 						]
 					);
 				} elseif ( $is_edit_mode ) {
@@ -143,18 +146,16 @@ if ( (bool) $r['showRowRules'] ) {
 			<?php foreach ( $articles_query->posts as $article ) : ?>
 				<li>
 					<?php
-					$title_size = 'list-mini' === $variation_type ? 'h-5' : 'h-4';
-
 					ramp_get_template_part(
 						'teasers/article',
 						[
 							'id'                    => $article->ID,
 							'is_edit_mode'          => $is_edit_mode,
-							'show_byline'           => $show_byline,
-							'show_image'            => $show_image,
-							'show_publication_date' => $show_publication_date,
-							'show_research_topics'  => 'list' === $variation_type,
-							'title_size'            => $title_size,
+							'show_byline'           => $r['showByline'],
+							'show_image'            => $r['showImage'],
+							'show_publication_date' => $r['showPublicationDate'],
+							'show_research_topics'  => $show_research_topics,
+							'title_size'            => $r['titleSize'],
 						]
 					);
 					?>

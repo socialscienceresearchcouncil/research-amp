@@ -60,7 +60,13 @@ export default function edit( {
 		contentMode: 'all',
 		numberOfItems,
 		order: 'recent',
-		variationType: 'list-mini'
+		showByline: false,
+		showImage: false,
+		showResearchTopics: false,
+		showRowRules: false,
+		showVariationTypeButtons: false,
+		titleSize: 'h-5',
+		variationType: 'list'
 	}
 
 	const innerBlocksTemplate = [

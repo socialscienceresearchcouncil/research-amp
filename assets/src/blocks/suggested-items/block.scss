@@ -2,4 +2,12 @@
 	.tag-plain.item-type-label {
 		color: var(--wp--preset--color--almost-black);
 	}
+
+	.item-type-list > li {
+		margin-bottom: 16px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 }
