@@ -158,6 +158,11 @@ a.tag-plain:hover {
 	margin-right: 8px;
 }
 
+.has-ramp-green-background-color .tag-bubble {
+	background: var(--wp--preset--color--white);
+	color: var(--wp--preset--color--ramp-blue);
+}
+
 /** Form elements */
 
 input[type=text],
