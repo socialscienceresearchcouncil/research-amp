@@ -67,6 +67,10 @@
 	h3 {
 		margin-bottom: 16px;
 		margin-top: 16px;
+
+		&:first-child {
+			margin-top: 0;
+		}
 	}
 
 	.research-topic-tags {
