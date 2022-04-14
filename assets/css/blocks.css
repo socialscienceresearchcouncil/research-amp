@@ -104,6 +104,21 @@
 	margin-top: 16px;
 }
 
+@media screen and (max-width: 600px) {
+	.item-type-list-container-grid {
+		overflow-x: scroll;
+		width: 100%;
+	}
+
+	.item-type-list-container-grid .item-type-list-flex {
+		display: flex;
+	}
+
+	.item-type-list-container-grid .item-type-list-flex > li {
+		flex: 0 0 80%;
+	}
+}
+
 /** Buttons, tags, etc */
 .editor-styles-wrapper a.wp-block-button__link {
 	color: var(--wp--preset--color--white);

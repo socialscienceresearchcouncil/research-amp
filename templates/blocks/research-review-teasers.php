@@ -74,6 +74,7 @@ if ( (bool) $r['showRowRules'] ) {
 }
 
 $div_classes = [
+	'item-type-list-container-' . $variation_type,
 	'research-review-teasers',
 	'load-more-container',
 	'uses-query-arg-' . $offset_query_var,
