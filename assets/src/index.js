@@ -23,6 +23,7 @@ import './blocks/profile-title-institution'
 import './blocks/profile-vital-link'
 
 // Miscellaneous
+import './blocks/changelog'
 import './blocks/citation-info'
 import './blocks/citation-links'
 import './blocks/citation-library-count'

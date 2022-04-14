@@ -1,0 +1,30 @@
+{
+	"apiVersion": 2,
+	"name": "ramp/changelog",
+	"title": "Changelog",
+	"icon": "lightbulb",
+	"category": "ramp",
+	"supports": {
+		"anchor": true
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"attributes": {
+		"headingText": {
+			"source": "html",
+			"type": "string",
+			"default": "Changelog"
+		},
+		"changelogText": {
+			"source": "html",
+			"type": "string",
+			"default": ""
+		},
+		"isEditMode": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

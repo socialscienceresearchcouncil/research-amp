@@ -150,6 +150,18 @@ class Schema {
 			]
 		);
 
+		register_meta(
+			'ramp_review',
+			'ramp_changelog',
+			[
+				'object_subtype' => 'ramp_review',
+				'type'           => 'string',
+				'single'         => true,
+				'show_in_rest'   => true,
+				'description'    => __( 'Changelog', 'ramp' ),
+			]
+		);
+
 		// Research Review Versions.
 		register_post_type(
 			'ramp_review_version',

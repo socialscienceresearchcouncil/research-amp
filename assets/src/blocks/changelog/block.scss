@@ -1,0 +1,13 @@
+.wp-block-ramp-cite-this {
+	&.section-open {
+		background: var( --wp--preset--color--light-grey );
+	}
+
+	.cite-this-citation {
+		background: #fff;
+		border: 1px solid var( --wp--preset--color--medium-grey );
+		font-size: var( --wp--preset--font-size--small-text );
+		line-height: 22.4px;
+		padding: 16px;
+	}
+}
