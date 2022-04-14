@@ -87,6 +87,7 @@ $teasers_classes = [
 ];
 
 $div_classes = [
+	'item-type-list-container-' . $variation_type,
 	'load-more-container',
 	'uses-query-arg-' . $offset_query_var,
 ];

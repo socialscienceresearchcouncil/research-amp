@@ -1,6 +1,12 @@
 .article-teasers {
 	display: flex;
 	gap: 28px;
+
+	&.article-teasers-featured {
+		@media screen and (max-width: 600px) {
+			flex-direction: column;
+		}
+	}
 }
 
 .article-teasers h3 {
