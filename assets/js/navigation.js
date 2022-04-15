@@ -19,7 +19,7 @@
 		const navAndSearchRect = navAndSearch.getBoundingClientRect()
 
 		const isMobile = window.matchMedia( '(max-width: 600px)' ).matches
-		const newWidth = isMobile ? ( navAndSearchRect.width + 150 ) + 'px' : navAndSearchRect.width + 'px'
+		const newWidth = isMobile ? ( navAndSearchRect.width + 150 ) + 'px' : ( navAndSearchRect.width - 60 ) + 'px'
 
 		navSearch.querySelector( '.nav-search-fields' ).style.maxWidth = newWidth
 	}
