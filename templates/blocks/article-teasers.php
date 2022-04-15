@@ -1,5 +1,8 @@
 <?php
 
+wp_enqueue_style( 'wp-block-button' );
+wp_enqueue_style( 'wp-block-buttons' );
+
 $r = array_merge(
 	[
 		'contentMode'                => 'auto',
