@@ -30,7 +30,7 @@ return [
 		],
 		'showRowRules'               => [
 			'type'    => 'boolean',
-			'default' => true,
+			'default' => false,
 		],
 	],
 	'render_callback' => function( $atts ) {

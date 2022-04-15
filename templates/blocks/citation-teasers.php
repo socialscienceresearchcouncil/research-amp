@@ -8,7 +8,7 @@ $r = array_merge(
 		'isEditMode'                 => false,
 		'numberOfItems'              => 3,
 		'showLoadMore'               => false,
-		'showRowRules'               => true,
+		'showRowRules'               => false,
 	],
 	$args
 );

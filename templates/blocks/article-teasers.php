@@ -14,7 +14,7 @@ $r = array_merge(
 		'showLoadMore'               => false,
 		'showPublicationDate'        => true,
 		'showResearchTopics'         => true,
-		'showRowRules'               => true,
+		'showRowRules'               => false,
 		'titleSize'                  => 'h-4',
 		'variationType'              => 'grid',
 	],

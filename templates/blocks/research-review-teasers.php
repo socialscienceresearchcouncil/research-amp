@@ -10,7 +10,7 @@ $r = array_merge(
 		'order'                      => 'alphabetical',
 		'showLoadMore'               => false,
 		'showPublicationDate'        => true,
-		'showRowRules'               => true,
+		'showRowRules'               => false,
 		'variationType'              => 'grid',
 	],
 	$args

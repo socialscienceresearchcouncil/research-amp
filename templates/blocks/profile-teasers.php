@@ -8,7 +8,7 @@ $r = array_merge(
 		'numberOfItems'              => 4,
 		'order'                      => 'latest',
 		'showLoadMore'               => false,
-		'showRowRules'               => true,
+		'showRowRules'               => false,
 	],
 	$args
 );

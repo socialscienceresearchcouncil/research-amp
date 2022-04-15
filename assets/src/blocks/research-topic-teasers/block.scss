@@ -13,12 +13,8 @@
 
 	&.research-topic-teasers-list {
 		li {
-			border-top: 1px solid var(--wp--preset--color--medium-grey);
-			padding: 48px 0;
-		}
-
-		li:last-child {
-			border-bottom: 1px solid var(--wp--preset--color--medium-grey);
+			margin-bottom: 0;
+			padding: 24px 0;
 		}
 
 		article {
