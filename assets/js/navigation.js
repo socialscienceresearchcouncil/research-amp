@@ -18,7 +18,10 @@
 
 		const navAndSearchRect = navAndSearch.getBoundingClientRect()
 
-		navSearch.querySelector( '.nav-search-fields' ).style.maxWidth = navAndSearchRect.width + 'px'
+		const isMobile = window.matchMedia( '(max-width: 600px)' ).matches
+		const newWidth = isMobile ? ( navAndSearchRect.width + 150 ) + 'px' : navAndSearchRect.width + 'px'
+
+		navSearch.querySelector( '.nav-search-fields' ).style.maxWidth = newWidth
 	}
 
 	const handleDocumentClick = ( event ) => {
@@ -56,5 +59,13 @@
 		}
 
 		document.addEventListener( 'click', handleDocumentClick )
+
+		const subnavToggles = document.querySelectorAll( '.wp-block-navigation-submenu__toggle' )
+		for ( const subnavToggle of subnavToggles ) {
+			subnavToggle.addEventListener( 'click', (event) => {
+				const parentNavItem = event.target.closest( '.has-child' )
+				parentNavItem.classList.toggle( 'subnav-is-expanded' )
+			} )
+		}
 	} )
 })()

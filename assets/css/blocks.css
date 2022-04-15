@@ -230,6 +230,34 @@ input.search-input {
 	flex: 0 0 30%;
 }
 
+/* Navigation */
+@media screen and (max-width: 600px) {
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+		align-items: flex-start;
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-navigation-item, .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-navigation__container, .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-page-list {
+		align-items: flex-start;
+		position: relative;
+		width: 100%;
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-navigation__submenu-icon {
+		display: inline-block;
+		position: absolute;
+		right: 0;
+		top: 5px;
+	}
+
+	.wp-block-navigation .has-child :where(.wp-block-navigation__submenu-container) {
+		display: none;
+	}
+
+	.wp-block-navigation .subnav-is-expanded.has-child :where(.wp-block-navigation__submenu-container) {
+		display: flex;
+	}
+}
+
 /* Profiles */
 .profile-teaser-avatar {
 	background-color: var(--wp--preset--color--light-grey);
