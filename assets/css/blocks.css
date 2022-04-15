@@ -167,6 +167,7 @@
 	white-space: nowrap;
 }
 
+a.tag-bubble:hover,
 a.tag-plain:hover {
 	text-decoration: underline;
 }
