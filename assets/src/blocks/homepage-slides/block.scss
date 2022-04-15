@@ -100,3 +100,11 @@
 	border-color: transparent;
 }
 
+.homepage-slide-button a {
+	font-weight: 700;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
