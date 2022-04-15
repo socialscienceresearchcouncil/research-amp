@@ -84,3 +84,12 @@
 	}
 }
 
+.featured-article-teaser {
+	position: relative;
+
+	.featured-tag {
+		left: 16px;
+		top: 16px;
+		position: absolute;
+	}
+}
