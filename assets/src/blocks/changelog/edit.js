@@ -9,9 +9,15 @@ import { store } from '@wordpress/editor'
 
 import { PluginDocumentSettingPanel } from '@wordpress/edit-post'
 
-import { CheckboxControl } from '@wordpress/components'
+import { useEntityProp } from '@wordpress/core-data';
 
 import {
+	dateI18n,
+	__experimentalGetSettings as getDateSettings,
+} from '@wordpress/date';
+
+import {
+	InnerBlocks,
 	RichText,
 	useBlockProps
 } from '@wordpress/block-editor'
@@ -34,11 +40,9 @@ export default function edit( {
 		changelogIsDirty
 	} = useSelect(
 		( select ) => {
-			const changelogDirtyBypass = select( 'ramp' ).getChangelogDirtyBypass()
 			const changelogIsDirty = select( 'ramp' ).getChangelogIsDirty()
 
 			return {
-				changelogDirtyBypass,
 				changelogIsDirty
 			};
 		},
@@ -49,31 +53,40 @@ export default function edit( {
 
 	const headingTextValue = headingText ?? __( 'Changelog', 'ramp' )
 
-	const { lockPostSaving, unlockPostSaving } = dispatch( 'core/editor' )
 	const { createWarningNotice, removeNotice } = dispatch( 'core/notices' )
 
-	if ( changelogIsDirty || changelogDirtyBypass ) {
-		unlockPostSaving( 'ramp-changelog-lock' )
+	/*
+	if ( changelogIsDirty ) {
 		removeNotice( 'ramp-changelog-lock' )
 
 	} else {
-		lockPostSaving( 'ramp-changelog-lock' )
-		createWarningNotice( 'You have not added a Changelog entry',
+		createWarningNotice( __( 'You have not added a Changelog entry', 'ramp' ),
 			{
-				id: 'ramp-changelog-lock',
-				onDismiss: () => {
-					unlockPostSaving( 'ramp-changelog-lock' )
-				}
+				id: 'ramp-changelog-lock'
 			}
 		)
 	}
+	*/
 
-	const { setChangelogDirtyBypass, setChangelogIsDirty } = dispatch( 'ramp' )
+	const { setChangelogIsDirty } = dispatch( 'ramp' )
 
 	const handleChangelogContentChange = (changelogText ) => {
 		setChangelogIsDirty( true )
 		setAttributes( { changelogText } )
 	}
+
+	const dateSettings = getDateSettings();
+	const [ siteFormat = dateSettings.formats.date ] = useEntityProp(
+		'root',
+		'site',
+		'date_format'
+	);
+
+	const defaultDateText = dateI18n( siteFormat, Date.now() )
+
+	const defaultBlocks = [
+		[ 'ramp/changelog-entry', { 'dateText': defaultDateText, 'entryText': '<li>' + __( 'Initial publication', 'ramp' ) + '</li>' } ]
+	]
 
 	return (
 		<>
@@ -81,15 +94,15 @@ export default function edit( {
 				<RichText
 					className="changelog-title"
 					onChange={ (headingText) => setAttributes( { headingText } ) }
-					tagName="h3"
+					tagName="h5"
 					value={ headingTextValue }
 				/>
 
-				<RichText
-					className="changelog-content"
-					onChange={ handleChangelogContentChange }
-					value={ changelogText }
-					placeholder={ __( 'Enter changelog text', 'ramp' ) }
+				<InnerBlocks
+					allowedBlocks={ [ 'ramp/changelog-entry' ] }
+					orientation="vertical"
+					renderAppender={ InnerBlocks.ButtonBlockAppender }
+					template={ defaultBlocks }
 				/>
 			</div>
 		</>

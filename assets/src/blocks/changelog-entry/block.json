@@ -1,25 +1,27 @@
 {
 	"apiVersion": 2,
-	"name": "ramp/changelog",
-	"title": "Changelog",
+	"name": "ramp/changelog-entry",
+	"title": "Changelog Entry",
 	"icon": "lightbulb",
 	"category": "ramp",
 	"supports": {
 		"anchor": true
 	},
+	"parent": [ "ramp/changelog" ],
 	"usesContext": [
 		"postId",
 		"postType"
 	],
 	"attributes": {
-		"headingText": {
-			"type": "string",
-			"default": "Changelog"
-		},
-		"changelogText": {
-			"source": "html",
+		"dateText": {
 			"type": "string",
 			"default": ""
+		},
+		"entryText": {
+			"source": "html",
+			"type": "string",
+			"default": "",
+			"selector": "ul"
 		},
 		"isEditMode": {
 			"type": "boolean",

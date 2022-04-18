@@ -24,6 +24,7 @@ import './blocks/profile-vital-link'
 
 // Miscellaneous
 import './blocks/changelog'
+import './blocks/changelog-entry'
 import './blocks/citation-info'
 import './blocks/citation-links'
 import './blocks/citation-library-count'
