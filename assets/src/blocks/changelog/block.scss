@@ -1,5 +1,10 @@
 .wp-block-ramp-changelog {
 	color: var(--wp--preset--color--dark-grey);
+	padding-top: 24px;
+
+	h3 {
+		margin-top: 0;
+	}
 
 	h4 {
 		font-weight: normal;
