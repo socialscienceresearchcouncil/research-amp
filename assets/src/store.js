@@ -3,8 +3,6 @@ import { registerStore } from '@wordpress/data'
 
 const DEFAULT_STATE = {
 	articles: [],
-	changelogDirtyBypass: false,
-	changelogIsDirty: false,
 	libraries: {},
 	profiles: [],
 	rampPosts: {},
@@ -18,20 +16,6 @@ const actions = {
 		return {
 			type: 'FETCH_FROM_API',
 			path
-		}
-	},
-
-	setChangelogIsDirty( value ) {
-		return {
-			type: 'SET_CHANGELOG_IS_DIRTY',
-			value
-		}
-	},
-
-	setChangelogDirtyBypass( value ) {
-		return {
-			type: 'SET_CHANGELOG_DIRTY_BYPASS',
-			value
 		}
 	},
 
@@ -75,18 +59,6 @@ const actions = {
 
 const reducer = ( state = DEFAULT_STATE, action ) => {
 	switch ( action.type ) {
-		case 'SET_CHANGELOG_DIRTY_BYPASS' :
-			return {
-				...state,
-				changelogDirtyBypass: action.value
-			}
-
-		case 'SET_CHANGELOG_IS_DIRTY' :
-			return {
-				...state,
-				changelogIsDirty: action.value
-			}
-
 		case 'SET_LIBRARY_INFO' :
 			return {
 				...state,
@@ -138,14 +110,6 @@ const selectors = {
 	getArticles( state ) {
 		const { articles } = state
 		return articles
-	},
-
-	getChangelogIsDirty( state ) {
-		return state.changelogIsDirty
-	},
-
-	getChangelogDirtyBypass( state ) {
-		return state.changelogDirtyBypass
 	},
 
 	getLibraryInfo( state, libraryId ) {
