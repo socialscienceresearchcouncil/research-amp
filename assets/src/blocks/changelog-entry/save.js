@@ -10,7 +10,7 @@ export default function save( { attributes } ) {
 
 	return (
 		<div { ...blockProps }>
-			<h4 className="has-body-text-font-size">{ dateText }</h4>
+			<p className="changelog-entry-date">{ dateText }</p>
 			<RichText.Content
 				tagName="ul"
 				value={ entryText }

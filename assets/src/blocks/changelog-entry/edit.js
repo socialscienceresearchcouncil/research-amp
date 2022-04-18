@@ -37,7 +37,7 @@ export default function edit( {
 				<RichText
 					className="changelog-entry-date"
 					onChange={ (dateText) => setAttributes( { dateText } ) }
-					tagName="h6"
+					tagName="p"
 					value={ dateText }
 					placeholder={ __( 'Date', 'ramp' ) }
 				/>
