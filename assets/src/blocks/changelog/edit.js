@@ -25,6 +25,7 @@ import {
 import { useSelect, useDispatch } from '@wordpress/data'
 
 export default function edit( {
+	clientId,
 	context: { postType, postId },
 	props,
 	attributes,
@@ -36,7 +37,6 @@ export default function edit( {
 	} = attributes
 
 	const {
-		changelogDirtyBypass,
 		changelogIsDirty
 	} = useSelect(
 		( select ) => {
@@ -53,9 +53,8 @@ export default function edit( {
 
 	const headingTextValue = headingText ?? __( 'Changelog', 'ramp' )
 
-	const { createWarningNotice, removeNotice } = dispatch( 'core/notices' )
+	const { createWarningNotice, removeNotice } = useDispatch( 'core/notices' )
 
-	/*
 	if ( changelogIsDirty ) {
 		removeNotice( 'ramp-changelog-lock' )
 
@@ -66,9 +65,8 @@ export default function edit( {
 			}
 		)
 	}
-	*/
 
-	const { setChangelogIsDirty } = dispatch( 'ramp' )
+	const { setChangelogIsDirty } = useDispatch( 'ramp' )
 
 	const handleChangelogContentChange = (changelogText ) => {
 		setChangelogIsDirty( true )

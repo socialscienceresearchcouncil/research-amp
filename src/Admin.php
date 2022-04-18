@@ -70,6 +70,7 @@ class Admin {
 		);
 
 		// Lit Reviews Version system.
+		/*
 		add_meta_box(
 			'research-review-versions',
 			__( 'Versions', 'ramp' ),
@@ -85,6 +86,7 @@ class Admin {
 			'ramp_review_version',
 			'side'
 		);
+		*/
 
 		// Author attribution for news items.
 		add_meta_box(
