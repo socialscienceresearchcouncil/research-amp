@@ -22,6 +22,8 @@ import {
 	useBlockProps
 } from '@wordpress/block-editor'
 
+import { parse, getSaveContent } from '@wordpress/blocks'
+
 import { useSelect, useDispatch } from '@wordpress/data'
 
 export default function edit( {
@@ -40,10 +42,14 @@ export default function edit( {
 		changelogIsDirty
 	} = useSelect(
 		( select ) => {
-			const changelogIsDirty = select( 'ramp' ).getChangelogIsDirty()
+
+			const originalPost = select( 'core/editor' ).getCurrentPost().content
+
+			const block = select( 'core/block-editor' ).getBlock( clientId )
+			const currentChangelogContent = getSaveContent(block.name, block.attributes,block.innerBlocks)
 
 			return {
-				changelogIsDirty
+				changelogIsDirty: -1 === originalPost.indexOf( currentChangelogContent )
 			};
 		},
 		[]
