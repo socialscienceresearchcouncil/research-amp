@@ -34,7 +34,7 @@ return [
 		],
 		'showRowRules'               => [
 			'type'    => 'boolean',
-			'default' => true,
+			'default' => false,
 		],
 		'showPublicationDate'        => [
 			'type'    => 'boolean',

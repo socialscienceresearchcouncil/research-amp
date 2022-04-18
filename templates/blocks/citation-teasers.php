@@ -1,5 +1,8 @@
 <?php
 
+wp_enqueue_style( 'wp-block-button' );
+wp_enqueue_style( 'wp-block-buttons' );
+
 $r = array_merge(
 	[
 		'contentMode'                => 'auto',
@@ -8,7 +11,7 @@ $r = array_merge(
 		'isEditMode'                 => false,
 		'numberOfItems'              => 3,
 		'showLoadMore'               => false,
-		'showRowRules'               => true,
+		'showRowRules'               => false,
 	],
 	$args
 );

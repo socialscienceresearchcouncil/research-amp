@@ -6,6 +6,11 @@
 
 		a {
 			color: var( --wp--preset--color--almost-black );
+			text-decoration: underline;
+
+			&:hover {
+				text-decoration: none;
+			}
 		}
 
 		ul {

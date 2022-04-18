@@ -10,8 +10,16 @@
 	padding: 0;
 }
 
+.item-type-list-container-list .item-type-list {
+	width: 100%;
+}
+
 .item-type-list > li {
 	margin-bottom: 16px;
+}
+
+.item-type-list-container-list .item-type-list > li {
+	margin-bottom: 60px;
 }
 
 .item-type-list > li:last-child {
@@ -104,6 +112,21 @@
 	margin-top: 16px;
 }
 
+@media screen and (max-width: 600px) {
+	.item-type-list-container-grid {
+		overflow-x: scroll;
+		width: 100%;
+	}
+
+	.item-type-list-container-grid .item-type-list-flex {
+		display: flex;
+	}
+
+	.item-type-list-container-grid .item-type-list-flex > li {
+		flex: 0 0 80%;
+	}
+}
+
 /** Buttons, tags, etc */
 .editor-styles-wrapper a.wp-block-button__link {
 	color: var(--wp--preset--color--white);
@@ -144,6 +167,7 @@
 	white-space: nowrap;
 }
 
+a.tag-bubble:hover,
 a.tag-plain:hover {
 	text-decoration: underline;
 }
@@ -213,6 +237,34 @@ input.search-input {
 
 .research-review-teaser-thumb {
 	flex: 0 0 30%;
+}
+
+/* Navigation */
+@media screen and (max-width: 600px) {
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+		align-items: flex-start;
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-navigation-item, .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-navigation__container, .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-page-list {
+		align-items: flex-start;
+		position: relative;
+		width: 100%;
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-navigation__submenu-icon {
+		display: inline-block;
+		position: absolute;
+		right: 0;
+		top: 5px;
+	}
+
+	.wp-block-navigation .has-child :where(.wp-block-navigation__submenu-container) {
+		display: none;
+	}
+
+	.wp-block-navigation .subnav-is-expanded.has-child :where(.wp-block-navigation__submenu-container) {
+		display: flex;
+	}
 }
 
 /* Profiles */
@@ -433,4 +485,11 @@ body.admin-bar .select2-dropdown--above {
 
 .select2-container--default .select2-results__option[aria-selected=true] {
 	background: #fff;
+}
+
+/** Site Editor */
+
+.editor-styles-wrapper .item-type-block {
+	padding-left: 24px;
+	padding-right: 24px;
 }

@@ -58,7 +58,7 @@ return [
 		],
 		'showRowRules'               => [
 			'type'    => 'boolean',
-			'default' => true,
+			'default' => false,
 		],
 		'showVariationTypeButtons'   => [
 			'type'    => 'boolean',

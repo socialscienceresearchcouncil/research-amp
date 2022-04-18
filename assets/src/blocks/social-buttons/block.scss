@@ -26,15 +26,19 @@
 		width: 29px;
 
 		&.social-button-twitter {
-			background-image: url(../../../img/icon-twitter-white.png);
+			background-image: url(../../../img/icon-twitter-white.svg);
 		}
 
 		&.social-button-facebook {
-			background-image: url(../../../img/icon-facebook-white.png);
+			background-image: url(../../../img/icon-facebook-white.svg);
 		}
 
 		&.social-button-download {
-			background-image: url(../../../img/icon-download-white.png);
+			background-image: url(../../../img/icon-download-white.svg);
+		}
+
+		&:hover {
+			transform: scale(1.1);
 		}
 	}
 }

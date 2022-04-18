@@ -1,5 +1,8 @@
 <?php
 
+wp_enqueue_style( 'wp-block-button' );
+wp_enqueue_style( 'wp-block-buttons' );
+
 $r = array_merge(
 	[
 		'contentMode'                => 'auto',
@@ -10,7 +13,7 @@ $r = array_merge(
 		'order'                      => 'alphabetical',
 		'showLoadMore'               => false,
 		'showPublicationDate'        => true,
-		'showRowRules'               => true,
+		'showRowRules'               => false,
 		'variationType'              => 'grid',
 	],
 	$args
@@ -74,6 +77,7 @@ if ( (bool) $r['showRowRules'] ) {
 }
 
 $div_classes = [
+	'item-type-list-container-' . $variation_type,
 	'research-review-teasers',
 	'load-more-container',
 	'uses-query-arg-' . $offset_query_var,

@@ -68,6 +68,7 @@ $news_item_query = new WP_Query( $query_args );
 $has_more_pages = ( $offset + $number_of_items ) <= $news_item_query->found_posts;
 
 $div_classes = [
+	'item-type-list-container-' . $variation_type,
 	'news-item-teasers',
 	'load-more-container',
 	'uses-query-arg-' . $offset_query_var,

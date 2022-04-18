@@ -3,11 +3,17 @@
 		color: var(--wp--preset--color--almost-black);
 	}
 
-	.item-type-list > li {
-		margin-bottom: 16px;
+	.item-type-list {
+		& > li {
+			margin-bottom: 32px;
 
-		&:last-child {
-			margin-bottom: 0;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		h3:first-child {
+			margin-top: 0;
 		}
 	}
 }

@@ -1,5 +1,8 @@
 <?php
 
+wp_enqueue_style( 'wp-block-button' );
+wp_enqueue_style( 'wp-block-buttons' );
+
 $r = array_merge(
 	[
 		'contentMode'                => 'auto',
@@ -8,7 +11,7 @@ $r = array_merge(
 		'numberOfItems'              => 4,
 		'order'                      => 'latest',
 		'showLoadMore'               => false,
-		'showRowRules'               => true,
+		'showRowRules'               => false,
 	],
 	$args
 );
@@ -62,6 +65,7 @@ $profile_query = new WP_Query( $query_args );
 $has_more_pages = ( $offset + $number_of_items ) <= $profile_query->found_posts;
 
 $div_classes = [
+	'item-type-list-container-grid',
 	'profile-teasers',
 	'load-more-container',
 	'uses-query-arg-' . $offset_query_var,

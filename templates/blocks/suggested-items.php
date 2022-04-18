@@ -33,15 +33,16 @@ switch ( $item_type ) {
 $heading_text = $r['headingText'] ? $r['headingText'] : $default_heading_text;
 
 $teaser_block_atts = [
-	'contentMode'        => 'all',
-	'numberOfItems'      => $r['numberOfItems'],
-	'order'              => 'recent',
-	'showByline'         => false,
-	'showImage'          => false,
-	'showResearchTopics' => false,
-	'showRowRules'       => false,
-	'titleSize'          => 'h-5',
-	'variationType'      => 'list',
+	'contentMode'         => 'all',
+	'numberOfItems'       => $r['numberOfItems'],
+	'order'               => 'recent',
+	'showByline'          => true,
+	'showPublicationDate' => false,
+	'showImage'           => false,
+	'showResearchTopics'  => false,
+	'showRowRules'        => false,
+	'titleSize'           => 'h-5',
+	'variationType'       => 'list',
 ];
 
 $classnames = [

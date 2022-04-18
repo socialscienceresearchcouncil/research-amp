@@ -1,5 +1,8 @@
 <?php
 
+wp_enqueue_style( 'wp-block-button' );
+wp_enqueue_style( 'wp-block-buttons' );
+
 $is_edit_mode = ! empty( $args['isEditMode'] );
 
 $number_of_items = isset( $args['numberOfItems'] ) ? (int) $args['numberOfItems'] : 3;
@@ -72,6 +75,7 @@ if ( 'grid' === $variation_type ) {
 }
 
 $div_classes = [
+	'item-type-list-container-' . $variation_type,
 	'research-topic-teasers',
 	'load-more-container',
 	'uses-query-arg-' . $offset_query_var,
