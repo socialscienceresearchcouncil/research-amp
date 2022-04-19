@@ -149,18 +149,18 @@ export default function edit( {
 							/>
 						</PanelRow>
 
-						<PanelRow>
-							<NumberOfItemsControl
-								disabled={ 'featured' === variationType }
-								numberOfItems={ numberOfItems }
-								onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
-							/>
-						</PanelRow>
+						{ 'featured' !== variationType && (
+							<PanelRow>
+								<NumberOfItemsControl
+									numberOfItems={ numberOfItems }
+									onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+								/>
+							</PanelRow>
+						) }
 
-						{ showLoadMoreToggle && (
+						{ 'featured' !== variationType && showLoadMoreToggle && (
 							<PanelRow>
 								<LoadMoreToggle
-									disabled={ 'featured' === variationType }
 									numberOfItems={ numberOfItems }
 									showLoadMore={ 'featured' === variationType ? false : showLoadMore }
 									onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
