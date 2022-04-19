@@ -34,7 +34,6 @@ function ramp_app() {
 		$api                 = new \SSRC\RAMP\API();
 		$citation_library    = new \SSRC\RAMP\CitationLibrary();
 		$the_events_calendar = new \SSRC\RAMP\TheEventsCalendar();
-		$router              = new \SSRC\RAMP\Router();
 		$user_management     = new \SSRC\RAMP\UserManagement();
 		$blocks              = new \SSRC\RAMP\Blocks();
 		$homepage_slides     = new \SSRC\RAMP\HomepageSlides();
@@ -47,7 +46,6 @@ function ramp_app() {
 			$api,
 			$citation_library,
 			$the_events_calendar,
-			$router,
 			$user_management,
 			$blocks,
 			$homepage_slides,

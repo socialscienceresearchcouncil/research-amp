@@ -8,7 +8,6 @@ class App {
 	protected $api;
 	protected $citation_library;
 	protected $the_events_calendar;
-	protected $router;
 	protected $user_management;
 	protected $blocks;
 	protected $homepage_slides;
@@ -23,7 +22,6 @@ class App {
 		API $api,
 		CitationLibrary $citation_library,
 		TheEventsCalendar $the_events_calendar,
-		Router $router,
 		UserManagement $user_management,
 		Blocks $blocks,
 		HomepageSlides $homepage_slides,
@@ -35,7 +33,6 @@ class App {
 		$this->api                 = $api;
 		$this->citation_library    = $citation_library;
 		$this->the_events_calendar = $the_events_calendar;
-		$this->router              = $router;
 		$this->user_management     = $user_management;
 		$this->blocks              = $blocks;
 		$this->homepage_slides     = $homepage_slides;
@@ -47,7 +44,6 @@ class App {
 		$this->schema->init();
 		$this->api->init();
 		$this->citation_library->init();
-		$this->router->init();
 		$this->user_management->init();
 		$this->blocks->init();
 		$this->homepage_slides->init();
