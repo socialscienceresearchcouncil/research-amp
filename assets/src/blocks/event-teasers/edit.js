@@ -87,7 +87,7 @@ export default function edit( {
 
 				<Panel>
 					<PanelBody
-						title={ __( 'Number of Items', 'ramp' ) }
+						title={ __( 'Pagination', 'ramp' ) }
 					>
 						<PanelRow>
 							<NumberOfItemsControl
