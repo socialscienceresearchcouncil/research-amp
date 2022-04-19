@@ -119,7 +119,12 @@ export default function edit( {
 							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
 							changeProfileIdCallback={ ( profileObj ) => setAttributes( { contentModeProfileId: profileObj.id } ) }
 							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
-							legend={ __( 'Determine which Research Reviews will be shown in this block.', 'ramp' ) }
+							glossAuto={ __( 'Show Articles relevant to the current Research Topic or Profile context.', 'ramp' ) }
+							glossAll={ __( 'Pull from all Articles.', 'ramp' ) }
+							glossAdvanced={__( 'Show Articles associated with a specific Research Topic or Profile.', 'ramp' )}
+							labelAuto={ __( 'Relevant Articles', 'ramp' ) }
+							labelAll={ __( 'All Articles', 'ramp' ) }
+							legend={ __( 'Determine which Articles will be shown in this block.', 'ramp' ) }
 							selectedMode={ contentMode }
 							selectedProfileId={ contentModeProfileId }
 							selectedResearchTopicId={ contentModeResearchTopicId }

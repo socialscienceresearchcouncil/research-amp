@@ -66,6 +66,11 @@ export default function edit( {
 							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
 							disabledTypes={ { 'profile': true } }
 							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
+							glossAuto={ __( 'Show Profiles relevant to the current Research Topic or Profile context.', 'ramp' ) }
+							glossAll={ __( 'Pull from all Profiles.', 'ramp' ) }
+							glossAdvanced={__( 'Show Profiles associated with a specific Research Topic or Profile.', 'ramp' )}
+							labelAuto={ __( 'Relevant Profiles', 'ramp' ) }
+							labelAll={ __( 'All Profiles', 'ramp' ) }
 							legend={ __( 'Determine which Profiles will be shown in this block.', 'ramp' ) }
 							selectedMode={ contentMode }
 							selectedResearchTopicId={ contentModeResearchTopicId }
