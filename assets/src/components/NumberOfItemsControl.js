@@ -12,7 +12,7 @@ const NumberOfItemsControl = ( props ) => {
 	return (
 		<NumberControl
 			disabled={ disabled }
-			label={ __( 'Number of items to show', 'ramp' ) }
+			label={ __( 'Number of items', 'ramp' ) }
 			value={ numberOfItems }
 			min={ 1 }
 			step={ 1 }
