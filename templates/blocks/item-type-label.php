@@ -7,10 +7,6 @@ if ( ! isset( $args['block']->context['postId'] ) ) {
 $item_id = $args['block']->context['postId'];
 
 switch ( $args['block']->context['postType'] ) {
-	case 'ramp_review_version' :
-		$item_type_label = __( 'Research Review', 'ramp' );
-	break;
-
 	case 'ramp_article' :
 		$article_types = array_map(
 			function( $term ) {

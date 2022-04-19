@@ -164,7 +164,6 @@ class Blocks {
 			'item-type-label',
 			'nav-search',
 			'profile-directory-filters',
-			'review-version-selector',
 			'search-form',
 			'search-load-more',
 			'search-result-teaser',

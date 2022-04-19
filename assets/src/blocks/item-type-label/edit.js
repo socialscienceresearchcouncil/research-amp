@@ -55,9 +55,6 @@ export default function edit( {
 	const getArticleTypeFromTemplateSlug = ( templateSlug ) => {
 		if ( templateSlug ) {
 			switch ( templateSlug ) {
-				case 'single-ramp_review_version' :
-					return __( 'Research Review', 'ramp' )
-
 				case 'single-ramp_article' :
 					return __( 'Article Type', 'ramp' )
 

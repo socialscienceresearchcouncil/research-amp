@@ -6,14 +6,7 @@ if ( ! isset( $args['block']->context['postId'] ) ) {
 
 $item_id = $args['block']->context['postId'];
 
-if ( 'ramp_review_version' === $args['block']->context['postType'] ) {
-	$review_version = new \SSRC\RAMP\LitReviews\Version( $item_id );
-	$parent_item_id = $review_version->get_parent()->ID;
-} else {
-	$parent_item_id = $item_id;
-}
-
-$author_links  = \SSRC\RAMP\Profile::get_profile_links_for_post( $parent_item_id );
+$author_links  = \SSRC\RAMP\Profile::get_profile_links_for_post( $item_id );
 $author_string = implode( ', ', $author_links );
 
 if ( ! empty( $args['showPublicationDate'] ) ) {

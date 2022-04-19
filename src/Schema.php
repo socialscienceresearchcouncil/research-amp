@@ -27,14 +27,8 @@ class Schema {
 		// Sync Citation RTs to associated SPs.
 		add_action( 'set_object_terms', [ $this, 'sync_citation_rts_to_sps' ], 10, 4 );
 
-		// Filter post_type_link for LR versions.
-		add_filter( 'post_type_link', [ $this, 'filter_review_version_link' ], 10, 2 );
-
 		// Include postmeta fields in Relevanssi.
 		add_filter( 'relevanssi_index_custom_fields', [ $this, 'add_fields_to_index' ], 10, 2 );
-
-		// Loosen restrictions on LR Version slug uniqueness.
-		add_filter( 'pre_wp_unique_post_slug', [ $this, 'check_review_version_post_slug' ], 10, 6 );
 
 		// Set default sort order for certain taxonomies.
 		add_filter( 'get_terms_defaults', [ $this, 'set_get_terms_defaults' ], 10, 2 );
@@ -160,53 +154,6 @@ class Schema {
 				'show_in_rest'   => true,
 				'description'    => __( 'Changelog', 'ramp' ),
 			]
-		);
-
-		// Research Review Versions.
-		register_post_type(
-			'ramp_review_version',
-			[
-				'label'             => __( 'Research Review Versions', 'ramp' ),
-				'labels'            => [
-					'name'               => __( 'Research Review Versions', 'ramp' ),
-					'singular_name'      => __( 'Research Review Version', 'ramp' ),
-					'add_new_item'       => __( 'Add New Research Review Version', 'ramp' ),
-					'edit_item'          => __( 'Edit Research Review Version', 'ramp' ),
-					'new_item'           => __( 'New Research Review Version', 'ramp' ),
-					'view_item'          => __( 'View Research Review Version', 'ramp' ),
-					'view_items'         => __( 'View Research Review Version', 'ramp' ),
-					'search_items'       => __( 'Search Research Review Versions', 'ramp' ),
-					'not_found'          => __( 'No Research Review Versions found', 'ramp' ),
-					'not_found_in_trash' => __( 'No Research Review Versions found in Trash', 'ramp' ),
-					'all_items'          => __( 'All Research Review Versions', 'ramp' ),
-					'name_admin_bar'     => __( 'Research Review Versions', 'ramp' ),
-				],
-				'public'            => true,
-				'show_ui'           => true,
-				'rewrite'           => [
-					'slug'       => 'research-reviews/%lrslug%/versions',
-					'with_front' => false,
-				],
-				'has_archive'       => false,
-				'menu_icon'         => 'dashicons-book',
-				'show_in_rest'      => true,
-				'show_in_nav_menus' => true,
-				'supports'          => [ 'title', 'editor', 'excerpt', 'thumbnail', 'author' ],
-			]
-		);
-
-		add_rewrite_rule(
-			'^research-reviews/([^/]+)/versions/([^/]+)/?',
-			'index.php?post_type=ramp_review_version&lr_slug=$matches[1]&name=$matches[2]',
-			'top'
-		);
-
-		add_filter(
-			'query_vars',
-			function( $vars ) {
-				$vars[] = 'lr_slug';
-				return $vars;
-			}
 		);
 
 		// Articles
@@ -716,16 +663,6 @@ class Schema {
 		return $this->cpttaxonomies[ $key ];
 	}
 
-	public function filter_review_version_link( $permalink, $post ) {
-		$lr_post = get_post( $post->post_parent );
-
-		if ( ! $lr_post || 'ramp_review' !== $lr_post->post_type ) {
-			return $permalink;
-		}
-
-		return str_replace( '%lrslug%', $lr_post->post_name, $permalink );
-	}
-
 	public function sync_citation_rts_to_sps( $object_id, $terms, $tt_ids, $taxonomy ) {
 		$citation_post = get_post( $object_id );
 		if ( ! $citation_post || 'ramp_citation' !== $citation_post->post_type ) {
@@ -833,34 +770,6 @@ class Schema {
 			<?php endforeach; ?>
 		</select>
 		<?php
-	}
-
-	public function check_review_version_post_slug( $retval, $slug, $post_id, $post_status, $post_type, $post_parent ) {
-		if ( 'ramp_review_version' !== $post_type ) {
-			return $retval;
-		}
-
-		$lr_version = new LitReviews\Version( $post_id );
-		$parent     = $lr_version->get_parent();
-
-		$siblings = LitReviews\Version::get( $parent->ID );
-		$conflict = false;
-		foreach ( $siblings as $sibling ) {
-			if ( $sibling->ID === $post_id ) {
-				continue;
-			}
-
-			if ( $sibling->post_name === $slug ) {
-				// Let this fall through. WP will append a suffix.
-				$conflict = true;
-			}
-		}
-
-		if ( ! $conflict ) {
-			return $slug;
-		} else {
-			return $retval;
-		}
 	}
 
 	public function set_get_terms_defaults( $defaults, $taxonomies ) {

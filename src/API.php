@@ -2,8 +2,6 @@
 
 namespace SSRC\RAMP;
 
-use \SSRC\RAMP\LitReviews\Version as LitReviewVersion;
-
 class API {
 	public $endpoints = [];
 
@@ -38,19 +36,7 @@ class API {
 		);
 
 		register_rest_field(
-			[ 'ramp_review_version' ],
-			'review_id',
-			[
-				'get_callback' => function( $object ) {
-					$version = new LitReviewVersion( $object['id'] );
-					$parent  = $version->get_parent();
-					return $parent ? $parent->ID : 0;
-				},
-			]
-		);
-
-		register_rest_field(
-			[ 'ramp_topic', 'ramp_review', 'ramp_review_version', 'ramp_article', 'post' ],
+			[ 'ramp_topic', 'ramp_review', 'ramp_article', 'post' ],
 			'formatted_date',
 			[
 				'get_callback' => function( $object ) {
@@ -60,7 +46,7 @@ class API {
 		);
 
 		register_rest_field(
-			[ 'ramp_topic', 'ramp_review', 'ramp_review_version', 'ramp_article', 'post' ],
+			[ 'ramp_topic', 'ramp_review', 'ramp_article', 'post' ],
 			'formatted_citation',
 			[
 				'get_callback' => function( $object ) {

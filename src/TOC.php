@@ -27,7 +27,6 @@ class TOC {
 	public function filter_the_content( $content ) {
 		$post_types = [
 			'ramp_review',
-			'ramp_review_version',
 			'ramp_article',
 		];
 

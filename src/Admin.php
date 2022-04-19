@@ -2,7 +2,6 @@
 
 namespace SSRC\RAMP;
 
-use SSRC\RAMP\LitReviews\Version;
 use \WP_User;
 
 class Admin {
@@ -15,7 +14,6 @@ class Admin {
 	public function init() {
 		add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
 
-		add_action( 'admin_init', [ $this, 'catch_review_version_delete' ] );
 		add_action( 'admin_init', [ $this, 'catch_feature_request' ] );
 		add_action( 'admin_init', [ $this, 'catch_unfeature_request' ] );
 
@@ -35,8 +33,6 @@ class Admin {
 			5
 		);
 
-		add_action( 'save_post', [ $this, 'versions_save_cb' ] );
-		add_action( 'save_post', [ $this, 'version_name_save_cb' ] );
 		add_action( 'save_post', [ $this, 'news_item_author_save_cb' ] );
 		add_action( 'save_post', [ $this, 'formatted_citation_save_cb' ] );
 		add_action( 'save_post', [ $this, 'doi_save_cb' ] );
@@ -69,25 +65,6 @@ class Admin {
 			'normal'
 		);
 
-		// Lit Reviews Version system.
-		/*
-		add_meta_box(
-			'research-review-versions',
-			__( 'Versions', 'ramp' ),
-			[ $this, 'versions_cb' ],
-			'ramp_review',
-			'advanced'
-		);
-
-		add_meta_box(
-			'research-review-version-name',
-			__( 'Version Name', 'ramp' ),
-			[ $this, 'version_name_cb' ],
-			'ramp_review_version',
-			'side'
-		);
-		*/
-
 		// Author attribution for news items.
 		add_meta_box(
 			'news-item-author',
@@ -102,7 +79,7 @@ class Admin {
 			'formatted-citation',
 			__( 'Formatted Citation', 'ramp' ),
 			[ $this, 'formatted_citation_cb' ],
-			[ 'ramp_review', 'ramp_article', 'ramp_review_version' ],
+			[ 'ramp_review', 'ramp_article' ],
 			'normal'
 		);
 
@@ -176,63 +153,6 @@ class Admin {
 		}
 	}
 
-	public function versions_cb( $post ) {
-		wp_enqueue_style(
-			'ramp-versions-admin',
-			RAMP_PLUGIN_URL . '/assets/css/versions-admin.css',
-			[],
-			RAMP_VER
-		);
-
-		$versions = Version::get( $post->ID );
-
-		$delete_base = admin_url( 'post.php?action=edit&post=' . $post->ID );
-
-		?>
-
-		<h3><?php esc_html_e( 'Existing versions', 'ramp' ); ?></h3>
-
-		<?php if ( $versions ) : ?>
-			<table class="lr-versions-admin">
-				<thead>
-					<th scope="col"><?php esc_html_e( 'Name', 'ramp' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Date', 'ramp' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Actions', 'ramp' ); ?></th>
-				</thead>
-
-				<tbody>
-					<?php foreach ( $versions as $version ) : ?>
-						<?php
-						$delete_link = add_query_arg( 'delete-version', $version->ID );
-						$delete_link = wp_nonce_url( $delete_link, 'delete_review_version_' . $version->ID );
-						?>
-						<tr>
-							<td><?php printf( '<a href="%s">%s</a>', esc_attr( get_permalink( $version ) ), esc_html( get_post_meta( $version->ID, 'version_name', true ) ) ); ?></td>
-							<td><?php echo esc_html( $version->post_date ); ?></td>
-							<td><?php printf( '<a href="%s">Delete</a>', esc_attr( $delete_link ) ); ?></td>
-						</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
-
-		<?php else : ?>
-			<p><?php esc_html_e( 'You have not yet created any Versions.', 'ramp' ); ?>', 'ramp' ); ?></p>
-		<?php endif; ?>
-
-		<h3><?php esc_html_e( 'Create new version', 'ramp' ); ?></h3>
-
-		<p><?php esc_html_e( "To create a new version, enter a name and then click 'Update' in the 'Publish' box above.", 'ramp' ); ?></p>
-
-		<label for="version-name"><?php esc_html_e( 'Name', 'ramp' ); ?></label>
-		<input id="version-name" name="version-name" type="text" value="" />
-
-		<button type="button" onclick="document.getElementById('version-name').value = '<?php echo esc_js( gmdate( 'Ymd' ) ); ?>'"><?php esc_html_e( 'Use current date', 'ramp' ); ?></button>
-
-		<?php wp_nonce_field( 'version-name', 'version-name-nonce', false ); ?>
-
-		<?php
-	}
-
 	public function catch_feature_request() {
 		if ( ! current_user_can( 'delete_posts' ) ) {
 			return;
@@ -279,73 +199,6 @@ class Admin {
 			wp_safe_redirect( $redirect_to );
 			die;
 		}
-	}
-
-	public function catch_review_version_delete() {
-		global $pagenow;
-
-		if ( ! current_user_can( 'delete_posts' ) ) {
-			return;
-		}
-
-		if ( 'post.php' !== $pagenow ) {
-			return;
-		}
-
-		if ( ! isset( $_GET['action'] ) || 'edit' !== $_GET['action'] ) {
-			return;
-		}
-
-		if ( empty( $_GET['delete-version'] ) ) {
-			return;
-		}
-
-		$version_id = intval( $_GET['delete-version'] );
-
-		check_admin_referer( 'delete_review_version_' . $version_id );
-
-		$version = get_post( $version_id );
-		$parent  = $version->post_parent;
-
-		wp_delete_post( $version_id );
-
-		$redirect = admin_url( 'post.php?action=edit&post_type=ramp_review&post=' . $parent );
-		wp_safe_redirect( $redirect );
-		die;
-	}
-
-	public function versions_save_cb( $post_id ) {
-		if ( empty( $_POST['version-name'] ) ) {
-			return;
-		}
-
-		check_admin_referer( 'version-name', 'version-name-nonce' );
-
-		$version_name = wp_unslash( $_POST['version-name'] );
-
-		// Prevent recursion.
-		unset( $_POST['version-name'] );
-
-		$source_post = get_post( $post_id );
-
-		$version_id = wp_insert_post(
-			[
-				'post_type'    => 'ramp_review_version',
-				/* translators: 1. Research review version title; 2. Version name */
-				'post_title'   => sprintf( __( '%1$s - Version %2$s', 'ramp' ), $source_post->post_title, $version_name ),
-				'post_name'    => sanitize_title( $version_name ),
-				'post_content' => $source_post->post_content,
-				'post_status'  => 'publish',
-				'post_parent'  => $source_post->ID,
-				'post_author'  => get_current_user_id(),
-			]
-		);
-
-		update_post_meta( $version_id, 'version_name', $version_name );
-
-		// Copy citation from LR.
-		$citation = get_post_meta( $source_post->ID, 'formatted_citation', true );
-		update_post_meta( $version_id, 'formatted_citation', $citation );
 	}
 
 	public function news_item_author_cb( $post ) {
@@ -458,31 +311,6 @@ class Admin {
 		$publication_date = wp_unslash( $_POST['publication-date'] );
 
 		update_post_meta( $post_id, 'publication_date', $publication_date );
-	}
-
-	public function version_name_cb( $post ) {
-		$version_name = get_post_meta( $post->ID, 'version_name', true );
-
-		?>
-
-		<label>
-			<input name="version-name-edit" value="<?php echo esc_attr( $version_name ); ?>" />
-		</label>
-
-		<?php
-		wp_nonce_field( 'version-name-edit', 'version-name-edit-nonce', false );
-	}
-
-	public function version_name_save_cb( $post_id ) {
-		if ( ! isset( $_POST['version-name-edit-nonce'] ) ) {
-			return;
-		}
-
-		check_admin_referer( 'version-name-edit', 'version-name-edit-nonce' );
-
-		$version_name = wp_unslash( $_POST['version-name-edit'] );
-
-		update_post_meta( $post_id, 'version_name', $version_name );
 	}
 
 	public function featured_status_date_cb( $current_post ) {
