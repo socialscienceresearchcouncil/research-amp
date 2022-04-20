@@ -493,3 +493,11 @@ body.admin-bar .select2-dropdown--above {
 	padding-left: 24px;
 	padding-right: 24px;
 }
+
+.teasers-no-content {
+    height: 200px;
+    text-align: center;
+    line-height: 200px;
+    background: var(--wp--preset--color--light-grey);
+    border: 10px solid white;
+}

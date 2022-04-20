@@ -49,17 +49,21 @@ if ( 'grid' === $variation_type ) {
 ?>
 
 <ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
-	<?php foreach ( $event_query->posts as $event ) : ?>
-		<li>
-			<?php
-			ramp_get_template_part(
-				'teasers/event',
-				[
-					'id'           => $event->ID,
-					'is_edit_mode' => ! empty( $r['isEditMode'] ),
-				]
-			);
-			?>
-		</li>
-	<?php endforeach; ?>
+	<?php if ( ! empty( $event_query->posts ) || ! $r['isEditMode'] ) : ?>
+		<?php foreach ( $event_query->posts as $event ) : ?>
+			<li>
+				<?php
+				ramp_get_template_part(
+					'teasers/event',
+					[
+						'id'           => $event->ID,
+						'is_edit_mode' => ! empty( $r['isEditMode'] ),
+					]
+				);
+				?>
+			</li>
+		<?php endforeach; ?>
+	<?php else : ?>
+		<?php ramp_get_template_part( 'teasers-no-content' ); ?>
+	<?php endif; ?>
 </ul>

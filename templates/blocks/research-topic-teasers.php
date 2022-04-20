@@ -84,34 +84,38 @@ $div_classes = [
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
-	<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
-		<?php foreach ( $research_topic_query->posts as $research_topic ) : ?>
-			<li>
-				<?php
-				ramp_get_template_part(
-					'teasers/research-topic',
-					[
-						'id'             => $research_topic,
-						'is_edit_mode'   => $is_edit_mode,
-						'variation_type' => $variation_type,
-					]
-				);
-				?>
-			</li>
-		<?php endforeach; ?>
-	</ul>
+	<?php if ( ! empty( $research_topic_query->posts ) || ! $r['isEditMode'] ) : ?>
+		<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
+			<?php foreach ( $research_topic_query->posts as $research_topic ) : ?>
+				<li>
+					<?php
+					ramp_get_template_part(
+						'teasers/research-topic',
+						[
+							'id'             => $research_topic,
+							'is_edit_mode'   => $is_edit_mode,
+							'variation_type' => $variation_type,
+						]
+					);
+					?>
+				</li>
+			<?php endforeach; ?>
+		</ul>
 
-	<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
-		<?php
-		ramp_get_template_part(
-			'load-more-button',
-			[
-				'is_edit_mode'    => $is_edit_mode,
-				'offset'          => $offset,
-				'query_var'       => $offset_query_var,
-				'number_of_items' => $number_of_items,
-			]
-		);
-		?>
+		<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
+			<?php
+			ramp_get_template_part(
+				'load-more-button',
+				[
+					'is_edit_mode'    => $is_edit_mode,
+					'offset'          => $offset,
+					'query_var'       => $offset_query_var,
+					'number_of_items' => $number_of_items,
+				]
+			);
+			?>
+		<?php endif; ?>
+	<?php else : ?>
+		<?php ramp_get_template_part( 'teasers-no-content' ); ?>
 	<?php endif; ?>
 </div>

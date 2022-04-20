@@ -91,37 +91,41 @@ $placeholder_count = ramp_get_placeholder_count( count( $profile_query->posts ),
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
-	<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
-		<?php foreach ( $profile_query->posts as $profile_post ) : ?>
-			<li>
-				<?php
-				ramp_get_template_part(
-					'teasers/profile',
-					[
-						'id'           => $profile_post->ID,
-						'is_edit_mode' => ! empty( $r['isEditMode'] ),
-					]
-				);
-				?>
-			</li>
-		<?php endforeach; ?>
+	<?php if ( ! empty( $profile_query->posts ) || ! $r['isEditMode'] ) : ?>
+		<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
+			<?php foreach ( $profile_query->posts as $profile_post ) : ?>
+				<li>
+					<?php
+					ramp_get_template_part(
+						'teasers/profile',
+						[
+							'id'           => $profile_post->ID,
+							'is_edit_mode' => ! empty( $r['isEditMode'] ),
+						]
+					);
+					?>
+				</li>
+			<?php endforeach; ?>
 
-		<?php for ( $i = 0; $i < $placeholder_count; $i++ ) : ?>
-			<li aria-hidden=true"></li>
-		<?php endfor; ?>
-	</ul>
+			<?php for ( $i = 0; $i < $placeholder_count; $i++ ) : ?>
+				<li aria-hidden=true"></li>
+			<?php endfor; ?>
+		</ul>
 
-	<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
-		<?php
-		ramp_get_template_part(
-			'load-more-button',
-			[
-				'is_edit_mode'    => ! empty( $r['isEditMode'] ),
-				'offset'          => $offset,
-				'query_var'       => $offset_query_var,
-				'number_of_items' => $number_of_items,
-			]
-		);
-		?>
+		<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
+			<?php
+			ramp_get_template_part(
+				'load-more-button',
+				[
+					'is_edit_mode'    => ! empty( $r['isEditMode'] ),
+					'offset'          => $offset,
+					'query_var'       => $offset_query_var,
+					'number_of_items' => $number_of_items,
+				]
+			);
+			?>
+		<?php endif; ?>
+	<?php else : ?>
+		<?php ramp_get_template_part( 'teasers-no-content' ); ?>
 	<?php endif; ?>
 </div>

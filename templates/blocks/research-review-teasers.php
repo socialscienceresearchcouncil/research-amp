@@ -89,41 +89,45 @@ $placeholder_count = ramp_get_placeholder_count( count( $research_review_query->
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
-	<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
-		<?php foreach ( $research_review_query->posts as $research_review ) : ?>
-			<li>
-				<?php
-				ramp_get_template_part(
-					'teasers/research-review',
-					[
-						'id'                    => $research_review->ID,
-						'is_edit_mode'          => $r['isEditMode'],
-						'show_publication_date' => (bool) $r['showPublicationDate'],
-						'show_research_topics'  => ! $content_mode_settings['research_topic_id'],
-					]
-				);
-				?>
-			</li>
-		<?php endforeach; ?>
+	<?php if ( ! empty( $research_review_query->posts ) || ! $r['isEditMode'] ) : ?>
+		<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
+			<?php foreach ( $research_review_query->posts as $research_review ) : ?>
+				<li>
+					<?php
+					ramp_get_template_part(
+						'teasers/research-review',
+						[
+							'id'                    => $research_review->ID,
+							'is_edit_mode'          => $r['isEditMode'],
+							'show_publication_date' => (bool) $r['showPublicationDate'],
+							'show_research_topics'  => ! $content_mode_settings['research_topic_id'],
+						]
+					);
+					?>
+				</li>
+			<?php endforeach; ?>
 
-		<?php if ( 'list' !== $variation_type ) : ?>
-			<?php for ( $i = 0; $i < $placeholder_count; $i++ ) : ?>
-				<li aria-hidden=true"></li>
-			<?php endfor; ?>
+			<?php if ( 'list' !== $variation_type ) : ?>
+				<?php for ( $i = 0; $i < $placeholder_count; $i++ ) : ?>
+					<li aria-hidden=true"></li>
+				<?php endfor; ?>
+			<?php endif; ?>
+		</ul>
+
+		<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
+			<?php
+			ramp_get_template_part(
+				'load-more-button',
+				[
+					'is_edit_mode'    => $r['isEditMode'],
+					'offset'          => $offset,
+					'query_var'       => $offset_query_var,
+					'number_of_items' => $number_of_items,
+				]
+			);
+			?>
 		<?php endif; ?>
-	</ul>
-
-	<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
-		<?php
-		ramp_get_template_part(
-			'load-more-button',
-			[
-				'is_edit_mode'    => $r['isEditMode'],
-				'offset'          => $offset,
-				'query_var'       => $offset_query_var,
-				'number_of_items' => $number_of_items,
-			]
-		);
-		?>
+	<?php else : ?>
+		<?php ramp_get_template_part( 'teasers-no-content' ); ?>
 	<?php endif; ?>
 </div>

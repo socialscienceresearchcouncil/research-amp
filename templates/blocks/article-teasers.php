@@ -120,65 +120,69 @@ if ( (bool) $r['showRowRules'] ) {
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
-	<div class="<?php echo esc_attr( implode( ' ', $teasers_classes ) ); ?>">
-		<?php if ( 'featured' === $variation_type ) : ?>
-			<div class="featured-article-teaser">
-				<?php
-				if ( $featured_item_id ) {
-					ramp_get_template_part(
-						'teasers/article',
-						[
-							'id'                    => $featured_item_id,
-							'is_edit_mode'          => $is_edit_mode,
-							'is_featured'           => true,
-							'show_byline'           => true,
-							'show_image'            => true,
-							'show_publication_date' => $r['showPublicationDate'],
-						]
-					);
-				} elseif ( $is_edit_mode ) {
-					printf(
-						'<p class="featured-article-notice">%s</p>',
-						esc_html__( 'Use the "Featured Article" setting in the right-hand panel to select the item that will appear in this space.', 'ramp' )
-					);
-				}
-				?>
-			</div>
-		<?php endif; ?>
-
-		<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
-			<?php foreach ( $articles_query->posts as $article ) : ?>
-				<li>
+	<?php if ( ! empty( $article_query->posts ) || ! $r['isEditMode'] ) : ?>
+		<div class="<?php echo esc_attr( implode( ' ', $teasers_classes ) ); ?>">
+			<?php if ( 'featured' === $variation_type ) : ?>
+				<div class="featured-article-teaser">
 					<?php
-					ramp_get_template_part(
-						'teasers/article',
-						[
-							'id'                    => $article->ID,
-							'is_edit_mode'          => $is_edit_mode,
-							'show_byline'           => $r['showByline'],
-							'show_image'            => $r['showImage'],
-							'show_publication_date' => $r['showPublicationDate'],
-							'show_research_topics'  => $show_research_topics,
-							'title_size'            => $r['titleSize'],
-						]
-					);
+					if ( $featured_item_id ) {
+						ramp_get_template_part(
+							'teasers/article',
+							[
+								'id'                    => $featured_item_id,
+								'is_edit_mode'          => $is_edit_mode,
+								'is_featured'           => true,
+								'show_byline'           => true,
+								'show_image'            => true,
+								'show_publication_date' => $r['showPublicationDate'],
+							]
+						);
+					} elseif ( $is_edit_mode ) {
+						printf(
+							'<p class="featured-article-notice">%s</p>',
+							esc_html__( 'Use the "Featured Article" setting in the right-hand panel to select the item that will appear in this space.', 'ramp' )
+						);
+					}
 					?>
-				</li>
-			<?php endforeach; ?>
-		</ul>
-	</div>
+				</div>
+			<?php endif; ?>
 
-	<?php if ( $show_load_more && $has_more_pages ) : ?>
-		<?php
-		ramp_get_template_part(
-			'load-more-button',
-			[
-				'is_edit_mode'    => $is_edit_mode,
-				'offset'          => $offset,
-				'query_var'       => $offset_query_var,
-				'number_of_items' => $number_of_items,
-			]
-		);
-		?>
+			<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
+				<?php foreach ( $articles_query->posts as $article ) : ?>
+					<li>
+						<?php
+						ramp_get_template_part(
+							'teasers/article',
+							[
+								'id'                    => $article->ID,
+								'is_edit_mode'          => $is_edit_mode,
+								'show_byline'           => $r['showByline'],
+								'show_image'            => $r['showImage'],
+								'show_publication_date' => $r['showPublicationDate'],
+								'show_research_topics'  => $show_research_topics,
+								'title_size'            => $r['titleSize'],
+							]
+						);
+						?>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+
+		<?php if ( $show_load_more && $has_more_pages ) : ?>
+			<?php
+			ramp_get_template_part(
+				'load-more-button',
+				[
+					'is_edit_mode'    => $is_edit_mode,
+					'offset'          => $offset,
+					'query_var'       => $offset_query_var,
+					'number_of_items' => $number_of_items,
+				]
+			);
+			?>
+		<?php endif; ?>
+	<?php else : ?>
+		<?php ramp_get_template_part( 'teasers-no-content' ); ?>
 	<?php endif; ?>
 </div>

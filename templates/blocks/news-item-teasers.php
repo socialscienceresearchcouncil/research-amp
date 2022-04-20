@@ -95,52 +95,56 @@ if ( (bool) $r['showRowRules'] ) {
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
-	<?php if ( $show_featured_item && $featured_item_id ) : ?>
-		<div class="featured-news-item">
-			<?php
-			ramp_get_template_part(
-				'teasers/news-item-featured',
-				[
-					'id'                    => $featured_item_id,
-					'is_edit_mode'          => $r['isEditMode'],
-					'show_publication_date' => $r['showPublicationDate'],
-				]
-			);
-			?>
-		</div>
-	<?php endif; ?>
-
-	<ul class="<?php echo esc_html( implode( ' ', $list_classes ) ); ?>">
-		<?php foreach ( $news_item_query->posts as $news_item ) : ?>
-			<li>
+	<?php if ( ! empty( $news_item_query->posts ) || ! $r['isEditMode'] ) : ?>
+		<?php if ( $show_featured_item && $featured_item_id ) : ?>
+			<div class="featured-news-item">
 				<?php
 				ramp_get_template_part(
-					'teasers/news-item',
+					'teasers/news-item-featured',
 					[
-						'id'                    => $news_item->ID,
+						'id'                    => $featured_item_id,
 						'is_edit_mode'          => $r['isEditMode'],
-						'show_byline'           => $r['showByline'],
 						'show_publication_date' => $r['showPublicationDate'],
-						'show_research_topics'  => $r['showResearchTopics'],
-						'title_size'            => $r['titleSize'],
 					]
 				);
 				?>
-			</li>
-		<?php endforeach; ?>
-	</ul>
+			</div>
+		<?php endif; ?>
 
-	<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
-		<?php
-		ramp_get_template_part(
-			'load-more-button',
-			[
-				'is_edit_mode'    => $r['isEditMode'],
-				'offset'          => $offset,
-				'query_var'       => $offset_query_var,
-				'number_of_items' => $number_of_items,
-			]
-		);
-		?>
+		<ul class="<?php echo esc_html( implode( ' ', $list_classes ) ); ?>">
+			<?php foreach ( $news_item_query->posts as $news_item ) : ?>
+				<li>
+					<?php
+					ramp_get_template_part(
+						'teasers/news-item',
+						[
+							'id'                    => $news_item->ID,
+							'is_edit_mode'          => $r['isEditMode'],
+							'show_byline'           => $r['showByline'],
+							'show_publication_date' => $r['showPublicationDate'],
+							'show_research_topics'  => $r['showResearchTopics'],
+							'title_size'            => $r['titleSize'],
+						]
+					);
+					?>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+
+		<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
+			<?php
+			ramp_get_template_part(
+				'load-more-button',
+				[
+					'is_edit_mode'    => $r['isEditMode'],
+					'offset'          => $offset,
+					'query_var'       => $offset_query_var,
+					'number_of_items' => $number_of_items,
+				]
+			);
+			?>
+		<?php endif; ?>
+	<?php else : ?>
+		<?php ramp_get_template_part( 'teasers-no-content' ); ?>
 	<?php endif; ?>
 </div>
