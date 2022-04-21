@@ -130,6 +130,32 @@
 	.item-type-list-container-grid .item-type-list-flex > li {
 		flex: 0 0 80%;
 	}
+
+	.item-type-list-flex.has-no-row-rules.item-type-list-3 > li:nth-child( 1 ),
+	.item-type-list-flex.has-no-row-rules.item-type-list-3 > li:nth-child( 2 ),
+	.item-type-list-flex.has-no-row-rules.item-type-list-3 > li:nth-child( 3 ) {
+		padding-bottom: 0;
+	}
+
+	.item-type-list-flex.has-no-row-rules.item-type-list-3 > li:nth-last-child( 1 ),
+	.item-type-list-flex.has-no-row-rules.item-type-list-3 > li:nth-last-child( 2 ),
+	.item-type-list-flex.has-no-row-rules.item-type-list-3 > li:nth-last-child( 3 ) {
+		padding-top: 0;
+	}
+
+	.item-type-list-flex.item-type-list-4 > li:nth-child( 1 ),
+	.item-type-list-flex.item-type-list-4 > li:nth-child( 2 ),
+	.item-type-list-flex.item-type-list-4 > li:nth-child( 3 ),
+	.item-type-list-flex.item-type-list-4 > li:nth-child( 4 ) {
+		padding-bottom: 0;
+	}
+
+	.item-type-list-flex.has-no-row-rules.item-type-list-4 > li:nth-last-child( 1 ),
+	.item-type-list-flex.has-no-row-rules.item-type-list-4 > li:nth-last-child( 2 ),
+	.item-type-list-flex.has-no-row-rules.item-type-list-4 > li:nth-last-child( 3 ),
+	.item-type-list-flex.has-no-row-rules.item-type-list-4 > li:nth-last-child( 4 ) {
+		padding-top: 0;
+	}
 }
 
 /** Buttons, tags, etc */
