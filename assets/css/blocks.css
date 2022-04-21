@@ -3,6 +3,11 @@
 	--ramp-light-grey: #eee;
 }
 
+.ramp-container {
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
 /** Lists */
 .item-type-list {
 	list-style: none;
