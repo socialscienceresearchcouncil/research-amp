@@ -8,6 +8,31 @@
 	padding-right: 16px;
 }
 
+@media screen and (max-width: 600px) {
+	.contains-swipeable.ramp-container {
+		overflow-x: visible;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.contains-swipeable .item-type-block-header {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	.contains-swipeable .item-type-block-all-link {
+		margin-right: 16px !important;
+	}
+
+	.contains-swipeable .allow-horizontal-swipe ul li:first-child {
+		border-left: 16px solid white;
+	}
+
+	.contains-swipeable .allow-horizontal-swipe ul li:last-child {
+		border-right: 16px solid white;
+	}
+}
+
 /** Lists */
 .item-type-list {
 	list-style: none;
