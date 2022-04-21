@@ -36,6 +36,11 @@
 			flex-direction: row;
 			display: flex;
 			gap: 28px;
+
+			@media screen and (max-width: 600px) {
+				flex-direction: column;
+				gap: 16px;
+			}
 		}
 	}
 

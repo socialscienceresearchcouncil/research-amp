@@ -120,7 +120,7 @@ if ( (bool) $r['showRowRules'] ) {
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
-	<?php if ( ! empty( $article_query->posts ) || ! $r['isEditMode'] ) : ?>
+	<?php if ( ! empty( $articles_query->posts ) || ! $r['isEditMode'] ) : ?>
 		<div class="<?php echo esc_attr( implode( ' ', $teasers_classes ) ); ?>">
 			<?php if ( 'featured' === $variation_type ) : ?>
 				<div class="featured-article-teaser">
