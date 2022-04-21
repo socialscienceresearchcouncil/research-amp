@@ -1,4 +1,13 @@
 .item-type-list-research-topics {
+	@media screen and (max-width: 600px) {
+		/* Prevents overflow-y due to 100% height hack */
+		padding-bottom: 16px;
+
+		& > li {
+			padding-top: 0;
+		}
+	}
+
 	h3 {
 		margin-top: 0;
 	}
