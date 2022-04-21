@@ -50,6 +50,53 @@
 		}
 	}
 
+	const positionSecondaryNav = () => {
+		const secondaryNav = document.querySelector( '.secondary-nav' )
+
+		if ( ! secondaryNav ) {
+			return
+		}
+
+		const secondaryNavContents = secondaryNav.querySelector( '.wp-block-navigation__responsive-container-content' )
+
+		if ( ! secondaryNav ) {
+			return
+		}
+
+		const primaryNavResponsiveContents = document.querySelector( '.nav-and-search .wp-block-navigation__responsive-container-content' )
+
+		if ( ! primaryNavResponsiveContents ) {
+			return
+		}
+
+		secondaryNavContents.classList.add( 'secondary-nav-contents' )
+		primaryNavResponsiveContents.classList.add( 'primary-nav-responsive-contents' )
+		primaryNavResponsiveContents.after( secondaryNavContents )
+	}
+
+	const addLogoToMobileNav = () => {
+		const siteLogoImg = document.querySelector( '.wp-block-site-logo img' )
+		const primaryNavResponsiveContainer = document.querySelector( '.nav-and-search .wp-block-navigation__responsive-container' )
+
+		if ( ! siteLogoImg || ! primaryNavResponsiveContainer ) {
+			return
+		}
+
+		const wpadminbar = document.querySelector( '#wpadminbar' )
+		if ( wpadminbar ) {
+			wpadminbarRect = wpadminbar.getBoundingClientRect()
+			primaryNavResponsiveContainer.style.top = wpadminbarRect.height + 'px'
+		}
+
+		primaryNavResponsiveContainer.style.backgroundImage = 'url(' + siteLogoImg.src + ')'
+
+		const logoRect = siteLogoImg.getBoundingClientRect()
+		primaryNavResponsiveContainer.style.backgroundSize = logoRect.width + 'px ' + logoRect.height + 'px'
+
+		const logoTop = wpadminbar ? logoRect.y - wpadminbarRect.height : logoRect.y
+		primaryNavResponsiveContainer.style.backgroundPosition = 'top ' + logoTop + 'px left ' + logoRect.x + 'px'
+	}
+
 	document.addEventListener( 'DOMContentLoaded', () => {
 		navSearchContainers = document.querySelectorAll( '.wp-block-ramp-nav-search' )
 
@@ -67,5 +114,9 @@
 				parentNavItem.classList.toggle( 'subnav-is-expanded' )
 			} )
 		}
+
+		// Mobile workarounds
+		positionSecondaryNav()
+		addLogoToMobileNav()
 	} )
 })()
