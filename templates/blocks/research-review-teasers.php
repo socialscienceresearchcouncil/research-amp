@@ -77,6 +77,7 @@ if ( (bool) $r['showRowRules'] ) {
 }
 
 $div_classes = [
+	'allow-horizontal-swipe',
 	'item-type-list-container-' . $variation_type,
 	'research-review-teasers',
 	'load-more-container',

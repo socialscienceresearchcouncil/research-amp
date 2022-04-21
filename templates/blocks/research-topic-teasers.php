@@ -75,6 +75,7 @@ if ( 'grid' === $variation_type ) {
 }
 
 $div_classes = [
+	'allow-horizontal-swipe',
 	'item-type-list-container-' . $variation_type,
 	'research-topic-teasers',
 	'load-more-container',
