@@ -36,6 +36,11 @@ $event_query = tribe_get_events(
 );
 remove_action( 'tribe_events_pre_get_posts', $orderby_cb );
 
+$div_classes = [
+	'item-type-list-container-grid',
+	'event-teasers',
+];
+
 $list_classes = [
 	'item-type-list',
 	'item-type-list-events',
@@ -48,22 +53,24 @@ if ( 'grid' === $variation_type ) {
 
 ?>
 
-<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
-	<?php if ( ! empty( $event_query->posts ) || ! $r['isEditMode'] ) : ?>
-		<?php foreach ( $event_query->posts as $event ) : ?>
-			<li>
-				<?php
-				ramp_get_template_part(
-					'teasers/event',
-					[
-						'id'           => $event->ID,
-						'is_edit_mode' => ! empty( $r['isEditMode'] ),
-					]
-				);
-				?>
-			</li>
-		<?php endforeach; ?>
-	<?php else : ?>
-		<?php ramp_get_template_part( 'teasers-no-content' ); ?>
-	<?php endif; ?>
-</ul>
+<div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
+	<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
+		<?php if ( ! empty( $event_query->posts ) || ! $r['isEditMode'] ) : ?>
+			<?php foreach ( $event_query->posts as $event ) : ?>
+				<li>
+					<?php
+					ramp_get_template_part(
+						'teasers/event',
+						[
+							'id'           => $event->ID,
+							'is_edit_mode' => ! empty( $r['isEditMode'] ),
+						]
+					);
+					?>
+				</li>
+			<?php endforeach; ?>
+		<?php else : ?>
+			<?php ramp_get_template_part( 'teasers-no-content' ); ?>
+		<?php endif; ?>
+	</ul>
+</div>
