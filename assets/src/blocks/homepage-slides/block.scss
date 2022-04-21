@@ -88,6 +88,10 @@
 	left: auto;
 	right: 0;
 	text-align: right;
+
+	@media screen and (max-width: 600px) {
+		display: none;
+	}
 }
 
 .homepage-slider-bullets .glide__bullets {
