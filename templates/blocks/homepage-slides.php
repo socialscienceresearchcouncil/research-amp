@@ -25,7 +25,7 @@ $slide_count = count( $slides );
 				<?php
 				$slide_title   = $slide->post_title;
 				$slide_text    = $slide->post_content;
-				$slide_img     = get_the_post_thumbnail_url( $slide, 'x-large' );
+				$slide_img     = get_the_post_thumbnail_url( $slide, 'ramp-thumbnail' );
 				$slide_img_alt = trim( wp_strip_all_tags( get_post_meta( $slide->ID, '_wp_attachment_image_alt', true ) ) );
 
 				$slide_meta_text   = get_post_meta( $slide->ID, 'ramp_slide_meta_text', true );

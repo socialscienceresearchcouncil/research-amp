@@ -30,18 +30,44 @@
 	justify-content: center;
 	position: relative;
 	z-index: 3;
+
+	@media screen and (max-width: 600px) {
+		position: relative;
+
+		&:after {
+			content: '';
+			background-color: var(--wp--preset--color--ramp-green);
+			background-image: url(../../../img/caret-forward.png);
+			background-repeat: no-repeat;
+			background-position: center center;
+			border-radius: 50%;
+			height: 56px;
+			width: 56px;
+			position: absolute;
+			right: 28px;
+			bottom: -28px;
+		}
+	}
 }
 
 .homepage-slide-img {
 	height: 430px;
 	max-width: 100%;
 	object-fit: cover;
+
+	@media screen and (max-width: 600px) {
+		height: auto;
+	}
 }
 
 .homepage-slide-right {
 	padding-top: 48px;
 	margin-bottom: 48px;
 	z-index: 3;
+
+	@media screen and (max-width: 600px) {
+		padding: 0 16px;
+	}
 }
 
 .homepage-slide-meta-text {
