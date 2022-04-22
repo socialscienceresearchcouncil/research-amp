@@ -7,6 +7,7 @@ $r = array_merge(
 	[
 		'contentMode'                => 'auto',
 		'contentModeResearchTopicId' => 0,
+		'horizontalSwipe'            => true,
 		'isEditMode'                 => false,
 		'numberOfItems'              => 4,
 		'order'                      => 'latest',
@@ -65,12 +66,15 @@ $profile_query = new WP_Query( $query_args );
 $has_more_pages = ( $offset + $number_of_items ) <= $profile_query->found_posts;
 
 $div_classes = [
-	'allow-horizontal-swipe',
 	'item-type-list-container-grid',
 	'profile-teasers',
 	'load-more-container',
 	'uses-query-arg-' . $offset_query_var,
 ];
+
+if ( $r['horizontalSwipe'] ) {
+	$div_classes[] = 'allow-horizontal-swipe';
+}
 
 $list_classes = [
 	'item-type-list',
