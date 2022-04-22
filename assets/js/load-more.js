@@ -10,7 +10,6 @@
 				var queryArg = $clicked.data('queryArg');
 
 				var href = this.href;
-				console.log(href)
 				$.ajax({
 					url: href,
 					success: function( response ) {

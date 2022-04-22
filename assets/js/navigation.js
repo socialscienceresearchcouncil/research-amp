@@ -75,7 +75,6 @@
 
 		mobileSecondaryNav.id += '-mobile'
 		mobileSecondaryNav.classList.add( 'secondary-nav-contents' )
-		console.log(mobileSecondaryNav)
 		primaryNavResponsiveContents.classList.add( 'primary-nav-responsive-contents' )
 		primaryNavResponsiveContents.after( mobileSecondaryNav )
 	}
