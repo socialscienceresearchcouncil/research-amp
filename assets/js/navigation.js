@@ -81,25 +81,42 @@
 
 	const addLogoToMobileNav = () => {
 		const siteLogoImg = document.querySelector( '.wp-block-site-logo img' )
-		const primaryNavResponsiveContainer = document.querySelector( '.nav-and-search .wp-block-navigation__responsive-container' )
+		const headerContainer = siteLogoImg.closest( '.wp-block-columns' )
 
-		if ( ! siteLogoImg || ! primaryNavResponsiveContainer ) {
+		if ( ! siteLogoImg || ! headerContainer ) {
 			return
 		}
 
+		// Duplicate the header for the outer markup, but delete the navigation contents.
+		const newHeader = headerContainer.cloneNode( true )
+		const newHeaderNavColumn = newHeader.querySelector( '.header-nav-column' )
+
+		newHeaderNavColumn.querySelector( '.wp-block-columns' ).remove()
+		newHeaderNavColumn.style.textAlign = 'right'
+		newHeaderNavColumn.style.paddingRight = '46px'
+
+		const primaryNavCloseButton = document.querySelector( '.nav-and-search .wp-block-navigation__responsive-container-close' )
+		const primaryNavOpenButton = document.querySelector( '.nav-and-search .wp-block-navigation__responsive-container-open' )
+
+		const primaryNavOpenButtonRect = primaryNavOpenButton.getBoundingClientRect()
+		console.log(primaryNavOpenButtonRect)
+
+		newHeaderNavColumn.append( primaryNavCloseButton )
+
+		newHeader.style.width = "calc(100% + 32px)"
+		newHeader.style.paddingLeft = 0
+		newHeader.style.paddingRight = 0
+		newHeader.style.paddingTop = "16px"
+		newHeader.style.marginLeft = "-16px"
+
+		document.querySelector( '.nav-and-search .primary-nav-responsive-contents' ).before( newHeader )
+
 		const wpadminbar = document.querySelector( '#wpadminbar' )
 		if ( wpadminbar ) {
+			const primaryNavResponsiveContainer = document.querySelector( '.nav-and-search .wp-block-navigation__responsive-container' )
 			wpadminbarRect = wpadminbar.getBoundingClientRect()
 			primaryNavResponsiveContainer.style.top = wpadminbarRect.height + 'px'
 		}
-
-		primaryNavResponsiveContainer.style.backgroundImage = 'url(' + siteLogoImg.src + ')'
-
-		const logoRect = siteLogoImg.getBoundingClientRect()
-		primaryNavResponsiveContainer.style.backgroundSize = logoRect.width + 'px ' + logoRect.height + 'px'
-
-		const logoTop = wpadminbar ? logoRect.y - wpadminbarRect.height : logoRect.y
-		primaryNavResponsiveContainer.style.backgroundPosition = 'top ' + logoTop + 'px left ' + logoRect.x + 'px'
 	}
 
 	document.addEventListener( 'DOMContentLoaded', () => {
