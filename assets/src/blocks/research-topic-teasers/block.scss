@@ -24,21 +24,43 @@
 		li {
 			margin-bottom: 0;
 			padding: 24px 0;
+
+			@media screen and (max-width: 600px) {
+				margin-bottom: 24px;
+			}
 		}
 
 		article {
 			align-items: flex-start;
 			display: flex;
 			gap: 28px;
+
+			@media screen and (max-width: 600px) {
+				flex-direction: column;
+			}
 		}
 
 		.research-topic-teaser-image {
 			flex: 0 0 534px;
 			height: 356px;
+
+			@media screen and (max-width: 600px) {
+				background-size: cover;
+				flex-basis: 200px;
+				width: 100%;
+			}
 		}
 
 		.research-topic-item-excerpt {
 			margin-bottom: 24px;
+		}
+	}
+}
+
+body.post-type-archive-ramp_topic {
+	.item-type-list-research-topics {
+		@media screen and (max-width: 600px) {
+			padding-bottom: 0;
 		}
 	}
 }
