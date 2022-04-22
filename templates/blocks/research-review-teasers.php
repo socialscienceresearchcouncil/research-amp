@@ -8,6 +8,7 @@ $r = array_merge(
 		'contentMode'                => 'auto',
 		'contentModeResearchTopicId' => 0,
 		'contentModeProfileId'       => 0,
+		'horizontalSwipe'            => false,
 		'isEditMode'                 => false,
 		'numberOfItems'              => 3,
 		'order'                      => 'alphabetical',
@@ -77,12 +78,15 @@ if ( (bool) $r['showRowRules'] ) {
 }
 
 $div_classes = [
-	'allow-horizontal-swipe',
 	'item-type-list-container-' . $variation_type,
 	'research-review-teasers',
 	'load-more-container',
 	'uses-query-arg-' . $offset_query_var,
 ];
+
+if ( $r['horizontalSwipe'] ) {
+	$div_classes[] = 'allow-horizontal-swipe';
+}
 
 // For display reasons, the grid must always contain 3n items.
 $placeholder_count = ramp_get_placeholder_count( count( $research_review_query->posts ), 3 );

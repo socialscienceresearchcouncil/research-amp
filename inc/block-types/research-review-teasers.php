@@ -16,6 +16,10 @@ return [
 			'type'    => 'integer',
 			'default' => 0,
 		],
+		'horizontalSwipe'            => [
+			'type'    => 'boolean',
+			'default' => false,
+		],
 		'isEditMode'                 => [
 			'type'    => 'boolean',
 			'default' => false,
