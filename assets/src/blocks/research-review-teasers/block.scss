@@ -11,6 +11,12 @@
 			margin-top: 0;
 		}
 	}
+
+	@media screen and (max-width: 600px) {
+		.teaser {
+			flex-direction: column;
+		}
+	}
 }
 
 .item-type-list-research-reviews.item-type-list-flex {
