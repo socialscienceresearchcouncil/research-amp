@@ -166,12 +166,13 @@
 		gap: 48px;
 	}
 
-	.item-type-list-container-grid.allow-horizontal-swipe .item-type-list-flex {
+	.allow-horizontal-swipe .item-type-list {
 		flex-direction: row;
 		gap: 28px;
+		max-width: 100%;
 	}
 
-	.item-type-list-container-grid.allow-horizontal-swipe .item-type-list-flex > li {
+	.allow-horizontal-swipe .item-type-list > li {
 		flex: 0 0 75%;
 	}
 

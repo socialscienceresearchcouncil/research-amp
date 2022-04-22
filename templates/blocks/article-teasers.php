@@ -9,6 +9,7 @@ $r = array_merge(
 		'contentModeResearchTopicId' => 0,
 		'contentModeProfileId'       => 0,
 		'featuredItemId'             => 0,
+		'horizontalSwipe'            => false,
 		'isEditMode'                 => false,
 		'numberOfItems'              => 3,
 		'order'                      => 'latest',
@@ -94,6 +95,10 @@ $div_classes = [
 	'load-more-container',
 	'uses-query-arg-' . $offset_query_var,
 ];
+
+if ( $r['horizontalSwipe'] ) {
+	$div_classes[] = 'allow-horizontal-swipe';
+}
 
 $list_classes = [
 	'item-type-list',
