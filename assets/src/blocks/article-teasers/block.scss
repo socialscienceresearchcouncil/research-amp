@@ -7,6 +7,32 @@
 			flex-direction: column;
 		}
 	}
+
+	.teaser {
+		@media screen and (max-width: 600px) {
+			flex-direction: column;
+
+			.teaser-thumb {
+				flex-basis: 200px;
+				width: 100%;
+				order: 0;
+
+				& > a {
+					position: relative;
+				}
+
+				img {
+					height: 100%;
+					object-fit: cover;
+					width: 100%;
+				}
+			}
+
+			.teaser-content {
+				order: 1;
+			}
+		}
+	}
 }
 
 .article-teasers h3 {
