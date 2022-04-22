@@ -9,6 +9,8 @@
 		setNavSearchWidth( navSearch )
 	}
 
+	const isMobile = () => !! window.matchMedia( '(max-width: 600px)' ).matches
+
 	const setNavSearchWidth = ( navSearch ) => {
 		// Grow to the size of the nav-and-search parent
 		const navAndSearch = navSearch.closest( '.nav-and-search' )
@@ -18,8 +20,7 @@
 
 		const navAndSearchRect = navAndSearch.getBoundingClientRect()
 
-		const isMobile = window.matchMedia( '(max-width: 600px)' ).matches
-		const newWidth = isMobile ? ( navAndSearchRect.width + 150 ) + 'px' : ( navAndSearchRect.width - 60 ) + 'px'
+		const newWidth = isMobile() ? ( navAndSearchRect.width + 150 ) + 'px' : ( navAndSearchRect.width - 60 ) + 'px'
 
 		navSearch.querySelector( '.nav-search-fields' ).style.maxWidth = newWidth
 	}
@@ -51,6 +52,12 @@
 	}
 
 	const positionSecondaryNav = () => {
+		const primaryNavResponsiveContents = document.querySelector( '.nav-and-search .wp-block-navigation__responsive-container-content' )
+
+		if ( ! primaryNavResponsiveContents ) {
+			return
+		}
+
 		const secondaryNav = document.querySelector( '.secondary-nav' )
 
 		if ( ! secondaryNav ) {
@@ -59,19 +66,18 @@
 
 		const secondaryNavContents = secondaryNav.querySelector( '.wp-block-navigation__responsive-container-content' )
 
+		// Nothing to do.
 		if ( ! secondaryNav ) {
 			return
 		}
 
-		const primaryNavResponsiveContents = document.querySelector( '.nav-and-search .wp-block-navigation__responsive-container-content' )
+		const mobileSecondaryNav = secondaryNavContents.cloneNode( true )
 
-		if ( ! primaryNavResponsiveContents ) {
-			return
-		}
-
-		secondaryNavContents.classList.add( 'secondary-nav-contents' )
+		mobileSecondaryNav.id += '-mobile'
+		mobileSecondaryNav.classList.add( 'secondary-nav-contents' )
+		console.log(mobileSecondaryNav)
 		primaryNavResponsiveContents.classList.add( 'primary-nav-responsive-contents' )
-		primaryNavResponsiveContents.after( secondaryNavContents )
+		primaryNavResponsiveContents.after( mobileSecondaryNav )
 	}
 
 	const addLogoToMobileNav = () => {
