@@ -81,9 +81,12 @@
 
 	const addLogoToMobileNav = () => {
 		const siteLogoImg = document.querySelector( '.wp-block-site-logo img' )
-		const headerContainer = siteLogoImg.closest( '.wp-block-columns' )
+		if ( ! siteLogoImg ) {
+			return
+		}
 
-		if ( ! siteLogoImg || ! headerContainer ) {
+		const headerContainer = siteLogoImg.closest( '.wp-block-columns' )
+		if ( ! headerContainer ) {
 			return
 		}
 
@@ -119,26 +122,38 @@
 		}
 	}
 
-	document.addEventListener( 'DOMContentLoaded', () => {
-		navSearchContainers = document.querySelectorAll( '.wp-block-ramp-nav-search' )
+	const isAdmin = document.body.classList.contains( 'wp-admin' )
 
-		for ( const navSearchContainer of navSearchContainers ) {
-			navSearchContainer.querySelector( 'button' ).addEventListener( 'click', handleToggleClick )
-			navSearchContainer.querySelector( 'input[type=text]' ).addEventListener( 'keydown', handleKeydown )
-		}
+	if ( isAdmin ) {
+		wp.domReady( () => {
+			positionSecondaryNav()
+			addLogoToMobileNav()
+		} )
 
-		document.addEventListener( 'click', handleDocumentClick )
+	} else {
+		document.addEventListener( 'DOMContentLoaded', () => {
 
-		const subnavToggles = document.querySelectorAll( '.wp-block-navigation-submenu__toggle' )
-		for ( const subnavToggle of subnavToggles ) {
-			subnavToggle.addEventListener( 'click', (event) => {
-				const parentNavItem = event.target.closest( '.has-child' )
-				parentNavItem.classList.toggle( 'subnav-is-expanded' )
-			} )
-		}
+			navSearchContainers = document.querySelectorAll( '.wp-block-ramp-nav-search' )
 
-		// Mobile workarounds
-		positionSecondaryNav()
-		addLogoToMobileNav()
-	} )
+			for ( const navSearchContainer of navSearchContainers ) {
+				navSearchContainer.querySelector( 'button' ).addEventListener( 'click', handleToggleClick )
+				navSearchContainer.querySelector( 'input[type=text]' ).addEventListener( 'keydown', handleKeydown )
+			}
+
+			document.addEventListener( 'click', handleDocumentClick )
+
+			const subnavToggles = document.querySelectorAll( '.wp-block-navigation-submenu__toggle' )
+			for ( const subnavToggle of subnavToggles ) {
+				subnavToggle.addEventListener( 'click', (event) => {
+					const parentNavItem = event.target.closest( '.has-child' )
+					parentNavItem.classList.toggle( 'subnav-is-expanded' )
+				} )
+			}
+
+			// Mobile workarounds
+			positionSecondaryNav()
+			addLogoToMobileNav()
+		} )
+
+	}
 })()
