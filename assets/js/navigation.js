@@ -102,7 +102,6 @@
 		const primaryNavOpenButton = document.querySelector( '.nav-and-search .wp-block-navigation__responsive-container-open' )
 
 		const primaryNavOpenButtonRect = primaryNavOpenButton.getBoundingClientRect()
-		console.log(primaryNavOpenButtonRect)
 
 		newHeaderNavColumn.append( primaryNavCloseButton )
 
@@ -111,6 +110,8 @@
 		newHeader.style.paddingRight = 0
 		newHeader.style.paddingTop = "16px"
 		newHeader.style.marginLeft = "-16px"
+
+		newHeader.classList.add( 'mobile-nav-header' )
 
 		document.querySelector( '.nav-and-search .primary-nav-responsive-contents' ).before( newHeader )
 
@@ -154,6 +155,5 @@
 			positionSecondaryNav()
 			addLogoToMobileNav()
 		} )
-
 	}
 })()

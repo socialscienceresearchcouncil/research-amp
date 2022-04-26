@@ -316,7 +316,15 @@ input.search-input {
 }
 
 /* Navigation */
+body .mobile-nav-header {
+	display: none;
+}
+
 @media screen and (max-width: 600px) {
+	body .mobile-nav-header {
+		display: flex;
+	}
+
 	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
 		align-items: flex-start;
 	}
