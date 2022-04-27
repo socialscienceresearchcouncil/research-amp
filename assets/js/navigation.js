@@ -125,7 +125,7 @@
 
 	const isAdmin = document.body.classList.contains( 'wp-admin' )
 
-	if ( isAdmin ) {
+	if ( isAdmin && !! wp && wp.hasOwnProperty( 'domReady' ) ) {
 		wp.domReady( () => {
 			positionSecondaryNav()
 			addLogoToMobileNav()
