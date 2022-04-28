@@ -96,6 +96,25 @@ class Blocks {
 			[],
 			$blocks_asset_file['version']
 		);
+
+		// @todo - Can't get viewScript to work properly for targeted enqueuing.
+		wp_enqueue_script(
+			'ramp-changelog',
+			RAMP_PLUGIN_URL . '/assets/js/changelog.js',
+			[],
+			RAMP_VER,
+			true
+		);
+
+		wp_localize_script(
+			'ramp-changelog',
+			'RAMPChangelog',
+			[
+				// translators: Changelog last updated date
+				'lastUpdated' => __( '(Last Updated: %s)', 'ramp' ),
+				'showFullLog' => __( 'Show full log', 'ramp' ),
+			],
+		);
 	}
 
 	/**
