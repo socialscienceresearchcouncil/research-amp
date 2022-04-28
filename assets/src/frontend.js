@@ -21,6 +21,7 @@ import './blocks/item-research-topics/block.scss'
 import './blocks/item-type-label/block.scss';
 import './blocks/nav-search/block.scss';
 import './blocks/search-form/block.scss';
+import './blocks/search-load-more/block.scss';
 import './blocks/search-result-teaser/block.scss';
 import './blocks/search-results-count/block.scss';
 import './blocks/social-buttons/block.scss';

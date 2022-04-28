@@ -1,5 +1,7 @@
 import { __, sprintf } from '@wordpress/i18n'
 
+import './block.scss'
+
 import {
 	useBlockProps
 } from '@wordpress/block-editor'
