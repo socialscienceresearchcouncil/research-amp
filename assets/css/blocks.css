@@ -169,6 +169,10 @@
 		grid-template-columns: repeat( 1, 1fr );
 	}
 
+	.item-type-list-4 {
+		grid-template-columns: repeat( 2, 1fr );
+	}
+
 	.allow-horizontal-swipe.profile-teasers .item-type-list > li {
 		flex: 0 0 30%;
 	}
