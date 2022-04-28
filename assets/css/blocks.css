@@ -526,16 +526,14 @@ body .mobile-nav-header {
 	display: none;
 }
 
-.citation-info dl > div {
-	display: flex;
-}
-
 .citation-info dl dt {
 	font-weight: 600;
+	display: inline;
 }
 
 .citation-info dl dd {
 	margin-inline-start: 4px;
+	display: inline;
 }
 
 /* Select2 overrides */
