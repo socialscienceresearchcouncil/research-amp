@@ -136,6 +136,23 @@ class Blocks {
 					itemTypeBlock.hidden = true;
 				}
 			} )
+
+			// Also hide empty Funders.
+			const fundersBlock = document.querySelector( '.footer-funders > .wp-block-group' )
+			if ( fundersBlock ) {
+				const fundersBlockChildren = fundersBlock.childNodes
+
+				let hideFundersBlock = false
+				if ( ! fundersBlockChildren.length ) {
+					hideFundersBlock = true
+				} else if ( 1 === fundersBlockChildren.length ) {
+					hideFundersBlock = 0 === fundersBlockChildren[0].innerHTML.length
+				}
+
+				if ( hideFundersBlock ) {
+					fundersBlock.closest( '.footer-funders' ).hidden = true
+				}
+			}
 		} )
 		</script>
 		<?php
