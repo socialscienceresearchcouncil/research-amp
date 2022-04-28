@@ -43,11 +43,20 @@
 		.research-topic-teaser-image {
 			flex: 0 0 534px;
 			height: 356px;
+			line-height: 0;
 
 			@media screen and (max-width: 600px) {
 				background-size: cover;
-				flex-basis: 200px;
+				flex-basis: 0;
 				width: 100%;
+			}
+
+			&::after {
+				@media screen and (max-width: 600px) {
+					display: block;
+					content: '';
+					padding-top: 66.66%;
+				}
 			}
 		}
 
