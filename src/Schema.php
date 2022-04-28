@@ -267,7 +267,7 @@ class Schema {
 							[ 'ramp/item-type-label' ],
 
 							// Profile display name.
-							[ 'core/post-title' ],
+							[ 'core/post-title', [ 'level' => 1 ] ],
 
 							// Title/institution field.
 							[ 'ramp/profile-title-institution' ],

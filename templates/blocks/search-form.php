@@ -57,7 +57,7 @@ $form_classes = [
 
 ?>
 
-<h2 class="screen-reader-text"><?php echo esc_html( $r['label'] ); ?></h2>
+<h1 class="screen-reader-text"><?php echo esc_html( $r['label'] ); ?></h1>
 
 <form class="<?php echo esc_attr( implode( ' ', $form_classes ) ); ?>" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 	<div class="search-form-top">
