@@ -397,6 +397,22 @@ body .mobile-nav-header {
 	margin-bottom: 8px;
 }
 
+@media screen and (max-width: 600px) {
+	.post-type-archive-ramp_profile .profile-teaser .teaser-content {
+		display: flex;
+		gap: 24px;
+	}
+
+	.post-type-archive-ramp_profile .profile-teaser .profile-teaser-avatar {
+		height: 120px;
+		width: 120px;
+	}
+
+	.post-type-archive-ramp_profile .profile-teaser .profile-teaser-name h3 {
+		margin-top: 0;
+	}
+}
+
 .sortable-multi-select-selected-items {
 	margin-top: 10px;
 }
