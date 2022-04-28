@@ -113,7 +113,7 @@ class Blocks {
 				// translators: Changelog last updated date
 				'lastUpdated' => __( '(Last Updated: %s)', 'ramp' ),
 				'showFullLog' => __( 'Show full log', 'ramp' ),
-			],
+			]
 		);
 	}
 
