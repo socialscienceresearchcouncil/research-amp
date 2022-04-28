@@ -25,6 +25,7 @@ import { useSelect } from '@wordpress/data'
 
 import ContentModeControl from '../../components/ContentModeControl'
 import PublicationDateToggle from '../../components/PublicationDateToggle'
+import HorizontalSwipeToggle from '../../components/HorizontalSwipeToggle'
 import LoadMoreToggle from '../../components/LoadMoreToggle'
 import NumberOfItemsControl from '../../components/NumberOfItemsControl'
 
@@ -49,6 +50,7 @@ export default function edit( {
 		contentMode,
 		contentModeProfileId,
 		contentModeResearchTopicId,
+		horizontalSwipe,
 		numberOfItems,
 		order,
 		showLoadMore,
@@ -140,6 +142,15 @@ export default function edit( {
 								showPublicationDate={ showPublicationDate }
 							/>
 						</PanelRow>
+
+						{ 'grid' === variationType && (
+							<PanelRow>
+								<HorizontalSwipeToggle
+									onChangeCallback={ ( horizontalSwipe ) => setAttributes( { horizontalSwipe } ) }
+									horizontalSwipe={ horizontalSwipe }
+								/>
+							</PanelRow>
+						) }
 					</PanelBody>
 				</Panel>
 			</InspectorControls>

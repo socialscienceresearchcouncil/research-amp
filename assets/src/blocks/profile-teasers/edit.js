@@ -20,6 +20,7 @@ import { Fragment } from '@wordpress/element'
 import ContentModeControl from '../../components/ContentModeControl'
 import LoadMoreToggle from '../../components/LoadMoreToggle'
 import NumberOfItemsControl from '../../components/NumberOfItemsControl'
+import HorizontalSwipeToggle from '../../components/HorizontalSwipeToggle'
 
 /**
  * Editor styles.
@@ -38,6 +39,7 @@ export default function edit( {
 	const {
 		contentMode,
 		contentModeResearchTopicId,
+		horizontalSwipe,
 		numberOfItems,
 		order,
 		showLoadMore
@@ -106,6 +108,19 @@ export default function edit( {
 							<LoadMoreToggle
 								showLoadMore={ showLoadMore }
 								onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+							/>
+						</PanelRow>
+					</PanelBody>
+				</Panel>
+
+				<Panel>
+					<PanelBody
+						title={ __( 'Display Options', 'ramp' ) }
+					>
+						<PanelRow>
+							<HorizontalSwipeToggle
+								onChangeCallback={ ( horizontalSwipe ) => setAttributes( { horizontalSwipe } ) }
+								horizontalSwipe={ horizontalSwipe }
 							/>
 						</PanelRow>
 					</PanelBody>

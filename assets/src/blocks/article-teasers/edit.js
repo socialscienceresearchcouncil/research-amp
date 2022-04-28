@@ -27,6 +27,7 @@ import { useSelect } from '@wordpress/data'
 import { PostPicker } from '../../components/PostPicker'
 import ContentModeControl from '../../components/ContentModeControl'
 import PublicationDateToggle from '../../components/PublicationDateToggle'
+import HorizontalSwipeToggle from '../../components/HorizontalSwipeToggle'
 import LoadMoreToggle from '../../components/LoadMoreToggle'
 import NumberOfItemsControl from '../../components/NumberOfItemsControl'
 
@@ -53,6 +54,7 @@ export default function edit( {
 		contentModeProfileId,
 		contentModeResearchTopicId,
 		featuredItemId,
+		horizontalSwipe,
 		numberOfItems,
 		order,
 		showLoadMore,
@@ -198,6 +200,15 @@ export default function edit( {
 									showPublicationDate={ showPublicationDate }
 								/>
 							</PanelRow>
+
+							{ 'grid' === variationType && (
+								<PanelRow>
+									<HorizontalSwipeToggle
+										onChangeCallback={ ( horizontalSwipe ) => setAttributes( { horizontalSwipe } ) }
+										horizontalSwipe={ horizontalSwipe }
+									/>
+								</PanelRow>
+							) }
 						</PanelBody>
 					</Panel>
 				) }

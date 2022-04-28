@@ -21,6 +21,7 @@ import { Fragment } from '@wordpress/element'
 
 import LoadMoreToggle from '../../components/LoadMoreToggle'
 import NumberOfItemsControl from '../../components/NumberOfItemsControl'
+import HorizontalSwipeToggle from '../../components/HorizontalSwipeToggle'
 
 import ServerSideRender from '@wordpress/server-side-render'
 
@@ -44,6 +45,7 @@ export default function edit( {
 	setAttributes,
 } ) {
 	const {
+		horizontalSwipe,
 		numberOfItems,
 		selectionType,
 		showLoadMore,
@@ -165,6 +167,21 @@ export default function edit( {
 					</PanelBody>
 
 				</Panel>
+
+				{ 'grid' === variationType && (
+					<Panel>
+						<PanelBody
+							title={ __( 'Display Options', 'ramp' ) }
+						>
+								<PanelRow>
+									<HorizontalSwipeToggle
+										onChangeCallback={ ( horizontalSwipe ) => setAttributes( { horizontalSwipe } ) }
+										horizontalSwipe={ horizontalSwipe }
+									/>
+								</PanelRow>
+						</PanelBody>
+					</Panel>
+				) }
 			</InspectorControls>
 
 			<BlockControls>
