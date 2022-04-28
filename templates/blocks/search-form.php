@@ -39,7 +39,7 @@ $input_markup = sprintf(
 $button_internal_markup = wp_kses_post( $r['buttonText'] );
 
 $button_markup = sprintf(
-	'<div class="wp-block-button is-style-primary"><button type="submit" class="wp-block-button__link">%s</button>',
+	'<div class="wp-block-button is-style-primary"><button type="submit" class="wp-block-button__link">%s</button></div>',
 	$button_internal_markup
 );
 
