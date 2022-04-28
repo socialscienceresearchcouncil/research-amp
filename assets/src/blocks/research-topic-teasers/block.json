@@ -9,6 +9,10 @@
 		"anchor": true
 	},
 	"attributes": {
+		"horizontalSwipe": {
+			"type": "boolean",
+			"default": false
+		},
 		"isEditMode": {
 			"type": "boolean",
 			"default": false

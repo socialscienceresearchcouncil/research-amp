@@ -3,35 +3,39 @@
 return [
 	'api_version'     => 1,
 	'attributes'      => [
-		'isEditMode'    => [
+		'horizontalSwipe' => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'numberOfItems' => [
+		'isEditMode'      => [
+			'type'    => 'boolean',
+			'default' => false,
+		],
+		'numberOfItems'   => [
 			'type'    => 'number',
 			'default' => 3,
 		],
-		'selectionType' => [
+		'selectionType'   => [
 			'type'    => 'string',
 			'default' => 'random',
 		],
-		'showLoadMore'  => [
+		'showLoadMore'    => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'slot1'         => [
+		'slot1'           => [
 			'type'    => 'integer',
 			'default' => 0,
 		],
-		'slot2'         => [
+		'slot2'           => [
 			'type'    => 'integer',
 			'default' => 0,
 		],
-		'slot3'         => [
+		'slot3'           => [
 			'type'    => 'integer',
 			'default' => 0,
 		],
-		'variationType' => [
+		'variationType'   => [
 			'type'    => 'string',
 			'default' => 'grid',
 			'enum'    => [ 'grid', 'list' ],

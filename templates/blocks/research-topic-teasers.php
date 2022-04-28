@@ -1,21 +1,36 @@
 <?php
 
+$r = array_merge(
+	[
+		'horizontalSwipe' => false,
+		'isEditMode'      => false,
+		'numberOfItems'   => 3,
+		'selectionType'   => 'random',
+		'showLoadMore'    => false,
+		'slot1'           => 0,
+		'slot2'           => 0,
+		'slot3'           => 0,
+		'variationType'   => 'grid',
+	],
+	$args
+);
+
 wp_enqueue_style( 'wp-block-button' );
 wp_enqueue_style( 'wp-block-buttons' );
 
-$is_edit_mode = ! empty( $args['isEditMode'] );
+$is_edit_mode = $r['isEditMode'];
 
-$number_of_items = isset( $args['numberOfItems'] ) ? (int) $args['numberOfItems'] : 3;
+$number_of_items = (int) $r['numberOfItems'];
 
 $offset_query_var = 'topic-pag-offset';
 $offset           = ramp_get_pag_offset( $offset_query_var );
 
-$selection_type = isset( $args['selectionType'] ) ? $args['selectionType'] : 'random';
+$selection_type = $r['selectionType'];
 if ( ! in_array( $selection_type, [ 'alphabetical', 'latest', 'random', 'specific' ], true ) ) {
 	$selection_type = 'random';
 }
 
-$variation_type = isset( $args['variationType'] ) && 'list' === $args['variationType'] ? 'list' : 'grid';
+$variation_type = 'list' === $r['variationType'] ? 'list' : 'grid';
 
 $query_args = [
 	'post_type'      => 'ramp_topic',
@@ -46,9 +61,9 @@ switch ( $selection_type ) {
 $post__in = null;
 if ( 'specific' === $selection_type ) {
 	$post__in = [
-		(int) $args['slot1'],
-		(int) $args['slot2'],
-		(int) $args['slot3'],
+		(int) $r['slot1'],
+		(int) $r['slot2'],
+		(int) $r['slot3'],
 	];
 }
 
@@ -75,12 +90,15 @@ if ( 'grid' === $variation_type ) {
 }
 
 $div_classes = [
-	'allow-horizontal-swipe',
 	'item-type-list-container-' . $variation_type,
 	'research-topic-teasers',
 	'load-more-container',
 	'uses-query-arg-' . $offset_query_var,
 ];
+
+if ( $r['horizontalSwipe'] ) {
+	$div_classes[] = 'allow-horizontal-swipe';
+}
 
 ?>
 
@@ -103,7 +121,7 @@ $div_classes = [
 			<?php endforeach; ?>
 		</ul>
 
-		<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
+		<?php if ( ! empty( $r['showLoadMore'] ) && $has_more_pages ) : ?>
 			<?php
 			ramp_get_template_part(
 				'load-more-button',
