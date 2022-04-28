@@ -23,12 +23,22 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
+
+		@media screen and (max-width: 600px) {
+			gap: 12px;
+		}
 	}
 
 	.search-form-bottom {
 		align-items: center;
 		display: flex;
 		gap: 24px;
+
+		@media screen and (max-width: 600px) {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 12px;
+		}
 
 		.search-type-container-label {
 			font-weight: 700;
@@ -45,6 +55,9 @@
 
 		& > .search-type-select-container {
 			flex: 1;
+			@media screen and (max-width: 600px) {
+				width: 100%;
+			}
 		}
 	}
 }
