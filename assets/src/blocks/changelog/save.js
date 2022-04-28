@@ -9,7 +9,7 @@ export default function save( { attributes } ) {
 
 	return (
 		<div { ...blockProps }>
-			<h3 className="has-h-5-font-size">{ headingText }</h3>
+			<h2 className="has-h-5-font-size">{ headingText }</h2>
 			<InnerBlocks.Content />
 		</div>
 	)
