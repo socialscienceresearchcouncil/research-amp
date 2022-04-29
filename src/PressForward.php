@@ -58,7 +58,8 @@ class PressForward {
 
 		add_meta_box(
 			'ramp-nomthis-submit',
-			__( 'Send to MediaWell', 'ramp' ),
+			// translators: Name of site
+			sprintf( __( 'Send to %s', 'ramp' ), get_option( 'blogname' ) ),
 			array( $this, 'submit_meta_box' ),
 			'nomthis',
 			'side',
@@ -237,13 +238,6 @@ class PressForward {
 		#site-heading #site-title {
 			display: none;
 		}
-
-		/*
-		#site-heading:after {
-			content: 'wtf';
-			display: block;
-		}
-		*/
 		</style>
 
 		<?php
