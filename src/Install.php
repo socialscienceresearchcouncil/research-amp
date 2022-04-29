@@ -142,6 +142,11 @@ class Install {
 	}
 
 	public function install_default_logo() {
+		// Run only in the Dashboard.
+		if ( ! function_exists( 'media_sideload_image' ) ) {
+			return;
+		}
+
 		$attachment_id = media_sideload_image( RAMP_PLUGIN_URL . '/assets/img/research-amp-logo.png', 0, __( 'Research AMP Logo', 'ramp' ), 'id' );
 
 		if ( $attachment_id ) {
