@@ -96,7 +96,7 @@ class Install {
 					'post_status'  => 'publish',
 					'post_name'    => $menu_slug,
 					'post_title'   => $menu_data['post_title'],
-					'post_content' => $menu_data['post_content'],
+					'post_content' => wp_slash( $menu_data['post_content'] ),
 				]
 			);
 

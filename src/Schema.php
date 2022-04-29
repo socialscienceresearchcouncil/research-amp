@@ -27,6 +27,9 @@ class Schema {
 		// Sync Citation RTs to associated SPs.
 		add_action( 'set_object_terms', [ $this, 'sync_citation_rts_to_sps' ], 10, 4 );
 
+		// Sync Research Topics to nav menu.
+		add_action( 'save_post', [ $this, 'sync_rts_to_nav_menu' ], 10, 2 );
+
 		// Include postmeta fields in Relevanssi.
 		add_filter( 'relevanssi_index_custom_fields', [ $this, 'add_fields_to_index' ], 10, 2 );
 
@@ -685,6 +688,14 @@ class Schema {
 			// Never overwrite - these can be managed manually by SSRC team.
 			wp_set_object_terms( $sp_id, wp_list_pluck( $citation_rts, 'term_id' ), 'ramp_assoc_topic', true );
 		}
+	}
+
+	public function sync_rts_to_nav_menu( $post_id, $post ) {
+		if ( 'ramp_topic' !== $post->post_type ) {
+			return;
+		}
+
+		Util\Navigation::replace_research_topics_subnav();
 	}
 
 	public function add_fields_to_index( $fields, $post_id ) {

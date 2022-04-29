@@ -51,7 +51,7 @@ class Navigation {
 			$citations_link,
 		];
 
-		return join( "\n", $items );
+		return implode( '', $items );
 	}
 
 	/**
@@ -92,7 +92,7 @@ class Navigation {
 			esc_url( wp_login_url() )
 		);
 
-		return implode( "\n", $nav_links );
+		return implode( '', $nav_links );
 	}
 
 	/**
@@ -144,7 +144,7 @@ class Navigation {
 			$news_items_link,
 		];
 
-		return join( "\n", $items );
+		return join( '', $items );
 	}
 
 	/**
@@ -164,18 +164,24 @@ class Navigation {
 		// This should probably be its own block.
 		$research_topics_submenu_items = '';
 		foreach ( $rts as $rt ) {
-			$rt_item = sprintf(
-				'<!-- wp:navigation-link {"label":"%s","url":"%s","id":"%d","type":"ramp_theme","kind":"post-type","isTopLevelLink":false} /-->',
-				esc_attr( $rt->post_title ),
-				esc_attr( get_permalink( $rt ) ),
-				esc_attr( $rt->ID )
+			$rt_item = get_comment_delimited_block_content(
+				'core/navigation-link',
+				[
+					'label'          => esc_attr( $rt->post_title ),
+					'url'            => esc_attr( get_permalink( $rt ) ),
+					'id'             => esc_attr( $rt->ID ),
+					'type'           => 'ramp_theme',
+					'kind'           => 'post-type',
+					'isTopLevelLink' => false,
+				],
+				''
 			);
 
 			$research_topics_submenu_items .= $rt_item;
 		}
 
 		$research_topics_submenu = sprintf(
-			'<!-- wp:navigation-submenu {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} -->' .
+			'<!-- wp:navigation-submenu {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true,"className":"research-topic-subnav"} -->' .
 			'%s' .
 			'<!-- /wp:navigation-submenu -->',
 			esc_attr( __( 'Research Topics', 'ramp' ) ),
@@ -186,4 +192,51 @@ class Navigation {
 		return $research_topics_submenu;
 	}
 
+	public static function replace_research_topics_subnav() {
+		$nav_menus = get_option( 'ramp_nav_menus' );
+		if ( ! $nav_menus ) {
+			return;
+		}
+
+		foreach ( $nav_menus as $nav_menu_id ) {
+			$nav_post = get_post( $nav_menu_id );
+			if ( ! $nav_post ) {
+				continue;
+			}
+
+			$post_content     = $nav_post->post_content;
+			$post_is_modified = false;
+
+			$nav_blocks = parse_blocks( $post_content );
+			foreach ( $nav_blocks as $nav_block ) {
+				if ( 'core/navigation-submenu' !== $nav_block['blockName'] ) {
+					continue;
+				}
+
+				if ( empty( $nav_block['attrs']['className'] ) || 'research-topic-subnav' !== $nav_block['attrs']['className'] ) {
+					continue;
+				}
+
+				$old_block = serialize_block( $nav_block );
+				$new_block = self::get_research_topics_submenu_block();
+
+				if ( $old_block === $new_block ) {
+					continue;
+				}
+
+				$post_content = str_replace( $old_block, $new_block, $post_content );
+
+				$post_is_modified = true;
+			}
+
+			if ( $post_is_modified ) {
+				$updated = wp_update_post(
+					[
+						'ID'           => $nav_post->ID,
+						'post_content' => wp_slash( $post_content ),
+					]
+				);
+			}
+		}
+	}
 }
