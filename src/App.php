@@ -64,9 +64,23 @@ class App {
 		}
 
 		require RAMP_PLUGIN_DIR . '/inc/functions.php';
+
+		add_action( 'wp', [ $this, 'maybe_install_update' ] );
 	}
 
 	public function get_cpttax_map( $key ) {
 		return $this->schema->get_cpttax_map( $key );
+	}
+
+	public function maybe_install_update() {
+		$version = get_option( 'ramp_version' );
+
+		// @todo Updates
+		if ( $version ) {
+			return;
+		}
+
+		$installer = new Install();
+		$installer->install();
 	}
 }

@@ -9,6 +9,11 @@ class Install {
 		$this->install_default_pages();
 		$this->install_default_nav_menus();
 		$this->install_default_page_on_front();
+		$this->set_installed_version();
+	}
+
+	protected function set_installed_version() {
+		update_option( 'ramp_version', RAMP_VER );
 	}
 
 	protected function install_default_pages() {
