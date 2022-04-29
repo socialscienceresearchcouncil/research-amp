@@ -221,25 +221,6 @@ class PressForward {
 				</ul>
 			</div>
 		</div>
-
-		<style type="text/css">
-		#site-heading {
-			margin-top: 0;
-		}
-
-		#site-heading a {
-			background-image: url('<?php echo esc_html( get_stylesheet_directory_uri() ); ?>/assets/MediaWell-logo.svg');
-			background-repeat: no-repeat;
-			display: inline-block;
-			height: 50px;
-			width: 200px;
-		}
-
-		#site-heading #site-title {
-			display: none;
-		}
-		</style>
-
 		<?php
 	}
 
