@@ -9,6 +9,7 @@ class Install {
 		$this->install_default_pages();
 		$this->install_default_nav_menus();
 		$this->install_default_page_on_front();
+		$this->install_default_logo();
 		$this->set_installed_version();
 	}
 
@@ -138,6 +139,19 @@ class Install {
 			update_option( 'page_on_front', $page_on_front );
 			update_post_meta( $page_on_front, '_wp_page_template', 'page-home-page' );
 		}
+	}
 
+	public function install_default_logo() {
+		$attachment_id = media_sideload_image( RAMP_PLUGIN_URL . '/assets/img/research-amp-logo.png', 0, __( 'Research AMP Logo', 'ramp' ), 'id' );
+
+		if ( $attachment_id ) {
+			update_option( 'ramp_default_logo', $attachment_id );
+		}
+
+		// Don't overwrite an existing logo.
+		$site_logo = get_option( 'site_logo' );
+		if ( ! $site_logo && $attachment_id ) {
+			update_option( 'site_logo', $attachment_id );
+		}
 	}
 }
