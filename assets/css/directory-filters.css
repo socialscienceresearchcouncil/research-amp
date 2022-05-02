@@ -81,8 +81,7 @@
 		width: 100%;
 	}
 
-	.directory-filter input,
-	.directory-filter select {
+	.directory-filter input {
 		width: 100%;
 	}
 
@@ -100,13 +99,9 @@
 		display: none;
 	}
 
-	.directory-filters label,
-	.directory-filters select {
-		display: block;
-		width: 100% !important;
-	}
-
 	.directory-filters label {
+		display: block;
+		width: 100%;
 		line-height: 1em;
 		margin-bottom: 12px;
 		display: none;
