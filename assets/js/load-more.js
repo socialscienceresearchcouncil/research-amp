@@ -40,6 +40,10 @@
 						} else {
 							$clicked.remove();
 						}
+					},
+					error: () => {
+						// Miscellaneous failures may mean there's no more items to show. Hide button.
+						$clicked.remove()
 					}
 				});
 

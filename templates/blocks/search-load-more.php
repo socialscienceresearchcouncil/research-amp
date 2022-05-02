@@ -11,19 +11,23 @@ if ( $requested_search_type ) {
 	$url_base = add_query_arg( 'search-type', $requested_search_type, $url_base );
 }
 
+$has_more_pages = $new_page < $GLOBALS['wp_query']->found_posts;
+
 ?>
 
-<div class="wp-block-ramp-search-load-more">
-	<?php
-	ramp_get_template_part(
-		'load-more-button',
-		[
-			'url_base'        => $url_base,
-			'is_edit_mode'    => ! empty( $args['is_edit_mode'] ),
-			'offset'          => $new_page,
-			'query_var'       => 'paged',
-			'number_of_items' => 1,
-		]
-	);
-	?>
-</div>
+<?php if ( $has_more_pages ) : ?>
+	<div class="wp-block-ramp-search-load-more">
+		<?php
+		ramp_get_template_part(
+			'load-more-button',
+			[
+				'url_base'        => $url_base,
+				'is_edit_mode'    => ! empty( $args['is_edit_mode'] ),
+				'offset'          => $new_page,
+				'query_var'       => 'paged',
+				'number_of_items' => 1,
+			]
+		);
+		?>
+	</div>
+<?php endif; ?>
