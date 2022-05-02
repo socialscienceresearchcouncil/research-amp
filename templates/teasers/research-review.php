@@ -60,6 +60,7 @@ if ( $show_publication_date ) {
 }
 
 $research_topics_position = $r['is_search_result'] ? 'bottom' : 'top';
+$title_font_size          = $r['is_search_result'] ? 'h-4' : 'h-3';
 
 ?>
 
@@ -99,7 +100,7 @@ $research_topics_position = $r['is_search_result'] ? 'bottom' : 'top';
 			?>
 		<?php endif; ?>
 
-		<h3 class="item-title research-review-item-title">
+		<h3 class="item-title research-review-item-title has-<?php echo esc_attr( $title_font_size ); ?>-font-size">
 			<?php if ( ! $is_edit_mode ) : ?>
 				<a href="<?php echo esc_attr( get_permalink( $research_review_id ) ); ?>">
 			<?php endif; ?>
