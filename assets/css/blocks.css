@@ -412,6 +412,10 @@ body .mobile-nav-header {
 		width: 120px;
 	}
 
+	.post-type-archive-ramp_profile .profile-teaser .profile-teaser-avatar img {
+		width: 120px;
+	}
+
 	.post-type-archive-ramp_profile .profile-teaser .profile-teaser-name h3 {
 		margin-top: 0;
 	}
