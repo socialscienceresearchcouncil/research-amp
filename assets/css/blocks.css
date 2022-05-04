@@ -560,6 +560,11 @@ body .mobile-nav-header {
 	display: inline;
 }
 
+.no-results-message {
+    color: var(--wp--preset--color--dark-grey);
+	margin-top: 0;
+}
+
 /* Select2 overrides */
 body.admin-bar .select2-dropdown--below,
 body.admin-bar .select2-dropdown--above {

@@ -75,33 +75,37 @@ $div_classes = [
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
-	<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
-		<?php foreach ( $citation_query->posts as $citation ) : ?>
-			<li>
-				<?php
-				ramp_get_template_part(
-					'teasers/citation',
-					[
-						'id'           => $citation,
-						'is_edit_mode' => $r['isEditMode'],
-					]
-				);
-				?>
-			</li>
-		<?php endforeach; ?>
-	</ul>
+	<?php if ( is_post_type_archive( 'ramp_citation' ) && empty( $citation_query->posts ) ) : ?>
+		<p class="no-results-message"><?php esc_html_e( 'No results. Try a different search term or filter.', 'ramp' ); ?></p>
+	<?php else : ?>
+		<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
+			<?php foreach ( $citation_query->posts as $citation ) : ?>
+				<li>
+					<?php
+					ramp_get_template_part(
+						'teasers/citation',
+						[
+							'id'           => $citation,
+							'is_edit_mode' => $r['isEditMode'],
+						]
+					);
+					?>
+				</li>
+			<?php endforeach; ?>
+		</ul>
 
-	<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
-		<?php
-		ramp_get_template_part(
-			'load-more-button',
-			[
-				'isEditMode'      => $r['isEditMode'],
-				'offset'          => $offset,
-				'query_var'       => $offset_query_var,
-				'number_of_items' => $number_of_items,
-			]
-		);
-		?>
+		<?php if ( ! empty( $args['showLoadMore'] ) && $has_more_pages ) : ?>
+			<?php
+			ramp_get_template_part(
+				'load-more-button',
+				[
+					'isEditMode'      => $r['isEditMode'],
+					'offset'          => $offset,
+					'query_var'       => $offset_query_var,
+					'number_of_items' => $number_of_items,
+				]
+			);
+			?>
+		<?php endif; ?>
 	<?php endif; ?>
 </div>
