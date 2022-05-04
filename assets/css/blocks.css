@@ -57,6 +57,12 @@
 	margin-bottom: 60px;
 }
 
+@media screen and (max-width: 600px) {
+	.item-type-list-container-list .item-type-list > li {
+		margin-bottom: 16px;
+	}
+}
+
 .item-type-list > li:last-child {
 	margin-bottom: 0;
 }
