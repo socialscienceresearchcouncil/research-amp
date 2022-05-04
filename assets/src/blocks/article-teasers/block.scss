@@ -93,6 +93,10 @@
 	.teaser {
 		gap: 28px;
 		justify-content: stretch;
+
+		@media screen and (max-width: 700px) {
+			gap: 16px;
+		}
 	}
 
 	.teaser-thumb {
