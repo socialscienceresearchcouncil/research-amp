@@ -45,7 +45,7 @@ export default function edit( {
 				: []
 
 			// Iterate over profile IDs to maintain sort order.
-			const authorNames = assocProfileTerms.length
+			const authorNames = null !== assocProfileTerms && assocProfileTerms.length
 				? assocProfileIds.map( (termId) => {
 						const profileTerm = assocProfileTerms.find( (term) => termId === term.id )
 						return profileTerm?.name || ''
