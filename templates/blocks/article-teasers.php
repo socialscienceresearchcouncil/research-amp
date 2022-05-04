@@ -122,13 +122,21 @@ if ( (bool) $r['showRowRules'] ) {
 	$list_classes[] = 'has-no-row-rules';
 }
 
+$featured_article_teaser_classes = [
+	'featured-article-teaser',
+];
+
+if ( ! $featured_item_id ) {
+	$featured_article_teaser_classes[] = 'featured-article-not-set';
+}
+
 ?>
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
 	<?php if ( ! empty( $articles_query->posts ) || ! $r['isEditMode'] ) : ?>
 		<div class="<?php echo esc_attr( implode( ' ', $teasers_classes ) ); ?>">
 			<?php if ( 'featured' === $variation_type ) : ?>
-				<div class="featured-article-teaser">
+				<div class="<?php echo esc_attr( implode( ' ', $featured_article_teaser_classes ) ); ?>">
 					<?php
 					if ( $featured_item_id ) {
 						ramp_get_template_part(

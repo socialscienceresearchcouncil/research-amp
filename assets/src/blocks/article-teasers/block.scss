@@ -132,6 +132,12 @@
 .featured-article-teaser {
 	position: relative;
 
+	&.featured-article-not-set {
+		@media screen and (max-width: 700px) {
+			display: none;
+		}
+	}
+
 	.featured-tag {
 		left: 16px;
 		top: 16px;
