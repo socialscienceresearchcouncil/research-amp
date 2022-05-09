@@ -19,6 +19,8 @@ if ( $is_edit_mode ) {
 $zotero_url = $citation->get_zotero_url();
 $source_url = $citation->get_source_url();
 
+$zotero_library = $citation->get_zotero_library();
+
 ?>
 
 <div class="wp-block-ramp-citation-links">
@@ -28,7 +30,19 @@ $source_url = $citation->get_source_url();
 				<a href="<?php echo esc_url( $zotero_url ); ?>">
 			<?php endif; ?>
 
-			<?php esc_html_e( 'See citation in Zotero library', 'ramp' ); ?>
+			<?php if ( $zotero_library ) : ?>
+				<?php
+				echo esc_html(
+					sprintf(
+						// translators: Zotero library name
+						__( 'See citation in &lsquo;%s&rsquo; Zotero library', 'ramp' ),
+						$zotero_library->get_name()
+					)
+				);
+				?>
+			<?php else : ?>
+				<?php esc_html_e( 'See citation in Zotero library', 'ramp' ); ?>
+			<?php endif; ?>
 
 			<?php if ( ! $is_edit_mode ) : ?>
 				</a>

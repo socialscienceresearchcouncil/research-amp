@@ -43,9 +43,7 @@ class Citation {
 			return $cached;
 		}
 
-		$library_id = $this->get_zotero_library_id();
-
-		$library = ZoteroLibrary::get_instance_from_library_id( $library_id );
+		$library = $this->get_zotero_library( $library_id );
 
 		$client = new Client( $library_id, $library->get_zotero_api_key() );
 
@@ -70,13 +68,18 @@ class Citation {
 	 */
 	public function get_zotero_url() {
 		// @todo This will need adjustment for multiple libraries.
-		$library_url = 'https://www.zotero.org/groups/' . RAMP_ZOTERO_GROUP_ID . '/items/';
+		$library = $this->get_zotero_library();
+		if ( ! $library ) {
+			return '';
+		}
+
+		$library_url = $library->get_url();
 
 		$collection_ids = $this->get_collections_for_zotero();
 		if ( $collection_ids ) {
-			$zotero_url = $library_url . 'collectionKey/' . reset( $collection_ids ) . '/itemKey/' . $this->get_zotero_id();
+			$zotero_url = $library_url . '/collectionKey/' . reset( $collection_ids ) . '/itemKey/' . $this->get_zotero_id();
 		} else {
-			$zotero_url = $library_url . 'itemKey/' . $this->get_zotero_id();
+			$zotero_url = $library_url . '/itemKey/' . $this->get_zotero_id();
 		}
 
 		return $zotero_url;
@@ -328,5 +331,21 @@ class Citation {
 	 */
 	public function set_zotero_library_id( $zotero_library_id ) {
 		update_post_meta( $this->get_post_id(), 'zotero_library_id', $zotero_library_id );
+	}
+
+	/**
+	 * Gets the Zotero library object for an item.
+	 *
+	 * @return \SSRC\RAMP\Zotero\Library|null
+	 */
+	public function get_zotero_library() {
+		$library_id = $this->get_zotero_library_id();
+		if ( ! $library_id ) {
+			return null;
+		}
+
+		$library = ZoteroLibrary::get_instance_from_library_id( $library_id );
+
+		return $library;
 	}
 }

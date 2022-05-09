@@ -21,6 +21,27 @@ class Library {
 	}
 
 	/**
+	 * Gets the name of a library.
+	 *
+	 * @return string
+	 */
+	public function get_name() {
+		return get_the_title( $this->get_id() );
+	}
+
+	/**
+	 * Gets the URL of a library.
+	 *
+	 * @return string
+	 */
+	public function get_url() {
+		return sprintf(
+			'https://www.zotero.org/%s/items',
+			$this->get_zotero_library_id()
+		);
+	}
+
+	/**
 	 * Gets the Zotero ID of the library.
 	 *
 	 * Of the format groups/1234567 or users/1234567
