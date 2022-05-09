@@ -343,6 +343,9 @@ class CitationLibrary {
 		}
 		// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 
+		$zotero_data = (array) $zotero_item->data;
+		$citation->set_cached_zotero_data( $zotero_data );
+
 		update_post_meta( $post_id, 'zotero_id', $zotero_item->key );
 		update_post_meta( $post_id, 'imported_from_zotero', gmdate( 'Y-m-d H:i:s' ) );
 

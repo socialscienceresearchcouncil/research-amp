@@ -43,7 +43,8 @@ class Citation {
 			return $cached;
 		}
 
-		$library = $this->get_zotero_library( $library_id );
+		$library_id = $this->get_zotero_library_id();
+		$library    = $this->get_zotero_library( $library_id );
 
 		$client = new Client( $library_id, $library->get_zotero_api_key() );
 
