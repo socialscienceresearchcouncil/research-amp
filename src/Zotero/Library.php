@@ -85,7 +85,7 @@ class Library {
 	 * @return string
 	 */
 	public function get_ingest_cron_hook_name() {
-		return 'ramp_ingest_zotero_library-' . $this->get_id();
+		return 'ramp_ingest_zotero_library_' . $this->get_id();
 	}
 
 	/**

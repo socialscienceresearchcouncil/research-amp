@@ -239,7 +239,7 @@ class CitationLibrary {
 	 */
 	public function start_ingest() {
 		// Identify the currently processed library based on the hook name.
-		preg_match_all( '/ramp_ingest_zotero_library-([0-9]+)/', current_action(), $matches );
+		preg_match_all( '/ramp_ingest_zotero_library_([0-9]+)/', current_action(), $matches );
 		if ( empty( $matches[1] ) ) {
 			return;
 		}

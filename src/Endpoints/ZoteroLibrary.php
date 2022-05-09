@@ -134,8 +134,8 @@ class ZoteroLibrary extends WP_REST_Controller {
 
 		switch ( $action ) {
 			case 'sync' :
-				do_action( 'ramp_ingest_zotero_library-' . $library_id );
-				do_action( 'ramp_ingest_full_zotero_library-' . $library_id );
+				do_action( 'ramp_ingest_zotero_library_' . $library_id );
+				do_action( 'ramp_ingest_full_zotero_library_' . $library_id );
 			break;
 		}
 
