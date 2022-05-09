@@ -92,59 +92,59 @@ export default function edit( {
 	return (
 		<>
 			<div { ...blockProps() }>
-				<Panel>
-					<PanelBody title={ __( 'Library Settings', 'ramp' ) }>
-						<TextControl
-							label={ __( 'Library Name', 'ramp' ) }
-							value={ postTitle }
-							onChange={ (postTitle) => { editPostTitle( postTitle ) } }
-							help={ __( 'Displayed on individual Citation pages, to indicate the source library for that item.', 'ramp' ) }
-						/>
+				<fieldset>
+					<legend>{ __( 'Library Settings', 'ramp' ) }</legend>
 
-						<TextControl
-							label={ __( 'Library ID', 'ramp' ) }
-							value={ libraryId }
-							onChange={ (value) => { editPostMeta( { zotero_library_id: value } ) } }
-						/>
+					<TextControl
+						label={ __( 'Library Name', 'ramp' ) }
+						value={ postTitle }
+						onChange={ (postTitle) => { editPostTitle( postTitle ) } }
+						help={ __( 'Displayed on individual Citation pages, to indicate the source library for that item.', 'ramp' ) }
+					/>
 
-						<TextControl
-							label={ __( 'API Key', 'ramp' ) }
-							type="password"
-							value={ apiKey }
-							onChange={ (value) => { editPostMeta( { zotero_api_key: value } ) } }
-						/>
-					</PanelBody>
-				</Panel>
+					<TextControl
+						label={ __( 'Library ID', 'ramp' ) }
+						value={ libraryId }
+						onChange={ (value) => { editPostMeta( { zotero_library_id: value } ) } }
+					/>
 
-				<Panel>
-					<PanelBody title={ __( 'Sync', 'ramp' ) }>
-						<p>
-							{ sprintf(
-								/* translators: 1. Timestamp for last sync; 2. Relative time since last sync */
-								__( 'Last library sync: %1$s (%2$s)', 'ramp' ),
-								lastIngest,
-								lastIngestRelative
-							) }
-						</p>
+					<TextControl
+						label={ __( 'API Key', 'ramp' ) }
+						type="password"
+						value={ apiKey }
+						onChange={ (value) => { editPostMeta( { zotero_api_key: value } ) } }
+					/>
+				</fieldset>
 
-						<p>
-							{ sprintf(
-								/* translators: 1. Timestamp for next sync; 2. Relative time until next sync */
-								__( 'Next library sync: %1$s (%2$s)', 'ramp' ),
-								nextIngest,
-								nextIngestRelative
-							) }
-						</p>
+				<fieldset>
+					<legend>{ __( 'Sync', 'ramp' ) }</legend>
 
-						<p>{ __( 'You may trigger an immediate sync by clicking the button below. (New sync timestamps may not appear for a few minutes.)', 'ramp' ) }</p>
+					<p>
+						{ sprintf(
+							/* translators: 1. Timestamp for last sync; 2. Relative time since last sync */
+							__( 'Last library sync: %1$s (%2$s)', 'ramp' ),
+							lastIngest,
+							lastIngestRelative
+						) }
+					</p>
 
-						<Button
-							variant="primary"
-							onClick={ triggerIngest }
-						>{ __( 'Trigger Zotero sync', 'ramp' ) }</Button>
+					<p>
+						{ sprintf(
+							/* translators: 1. Timestamp for next sync; 2. Relative time until next sync */
+							__( 'Next library sync: %1$s (%2$s)', 'ramp' ),
+							nextIngest,
+							nextIngestRelative
+						) }
+					</p>
 
-					</PanelBody>
-				</Panel>
+					<p>{ __( 'You may trigger an immediate sync by clicking the button below. (New sync timestamps may not appear for a few minutes.)', 'ramp' ) }</p>
+
+					<Button
+						variant="primary"
+						onClick={ triggerIngest }
+					>{ __( 'Trigger Zotero sync', 'ramp' ) }</Button>
+
+				</fieldset>
 			</div>
 		</>
 	);
