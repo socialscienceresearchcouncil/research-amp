@@ -75,7 +75,7 @@ class ZoteroLibrary extends WP_REST_Controller {
 			'lastIngestRelative' => '',
 			'nextIngest'         => '',
 			'nextIngestRelative' => '',
-			'nextIngestFull' => '',
+			'nextIngestFull'     => '',
 		];
 
 		if ( $library_id ) {
@@ -83,7 +83,7 @@ class ZoteroLibrary extends WP_REST_Controller {
 
 			$next_ingest = $library->get_next_scheduled_ingest_event();
 			if ( $next_ingest ) {
-				$retval['nextIngest'] = date( 'Y-m-d H:i:s', $next_ingest );
+				$retval['nextIngest'] = gmdate( 'Y-m-d H:i:s', $next_ingest );
 
 				$retval['nextIngestRelative'] = sprintf(
 					/* translators: %s: Human-readable time difference */
@@ -94,12 +94,12 @@ class ZoteroLibrary extends WP_REST_Controller {
 
 			$next_ingest_full = $library->get_next_scheduled_ingest_full_event();
 			if ( $next_ingest ) {
-				$retval['nextIngestFull'] = date( 'Y-m-d H:i:s', $next_ingest_full );
+				$retval['nextIngestFull'] = gmdate( 'Y-m-d H:i:s', $next_ingest_full );
 			}
 
 			$last_ingest = $library->get_last_ingest_timestamp();
 			if ( $last_ingest ) {
-				$retval['lastIngest'] = date( 'Y-m-d H:i:s', $last_ingest );
+				$retval['lastIngest'] = gmdate( 'Y-m-d H:i:s', $last_ingest );
 
 				$retval['lastIngestRelative'] = sprintf(
 					/* translators: %s: Human-readable time difference */
