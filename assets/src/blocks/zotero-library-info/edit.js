@@ -45,7 +45,7 @@ export default function edit( {
 
 		const postId = select( 'core/editor' ).getCurrentPostId()
 
-		const libraryInfo = select( 'ramp' ).getLibraryInfo( postId )
+		const libraryInfo = select( 'research-amp' ).getLibraryInfo( postId )
 
 		return {
 			apiKey: zotero_api_key,
@@ -93,23 +93,23 @@ export default function edit( {
 		<>
 			<div { ...blockProps() }>
 				<fieldset>
-					<legend>{ __( 'Library Settings', 'ramp' ) }</legend>
+					<legend>{ __( 'Library Settings', 'research-amp' ) }</legend>
 
 					<TextControl
-						label={ __( 'Library Name', 'ramp' ) }
+						label={ __( 'Library Name', 'research-amp' ) }
 						value={ postTitle }
 						onChange={ (postTitle) => { editPostTitle( postTitle ) } }
-						help={ __( 'Displayed on individual Citation pages, to indicate the source library for that item.', 'ramp' ) }
+						help={ __( 'Displayed on individual Citation pages, to indicate the source library for that item.', 'research-amp' ) }
 					/>
 
 					<TextControl
-						label={ __( 'Library ID', 'ramp' ) }
+						label={ __( 'Library ID', 'research-amp' ) }
 						value={ libraryId }
 						onChange={ (value) => { editPostMeta( { zotero_library_id: value } ) } }
 					/>
 
 					<TextControl
-						label={ __( 'API Key', 'ramp' ) }
+						label={ __( 'API Key', 'research-amp' ) }
 						type="password"
 						value={ apiKey }
 						onChange={ (value) => { editPostMeta( { zotero_api_key: value } ) } }
@@ -117,12 +117,12 @@ export default function edit( {
 				</fieldset>
 
 				<fieldset>
-					<legend>{ __( 'Sync', 'ramp' ) }</legend>
+					<legend>{ __( 'Sync', 'research-amp' ) }</legend>
 
 					<p>
 						{ sprintf(
 							/* translators: 1. Timestamp for last sync; 2. Relative time since last sync */
-							__( 'Last library sync: %1$s (%2$s)', 'ramp' ),
+							__( 'Last library sync: %1$s (%2$s)', 'research-amp' ),
 							lastIngest,
 							lastIngestRelative
 						) }
@@ -131,18 +131,18 @@ export default function edit( {
 					<p>
 						{ sprintf(
 							/* translators: 1. Timestamp for next sync; 2. Relative time until next sync */
-							__( 'Next library sync: %1$s (%2$s)', 'ramp' ),
+							__( 'Next library sync: %1$s (%2$s)', 'research-amp' ),
 							nextIngest,
 							nextIngestRelative
 						) }
 					</p>
 
-					<p>{ __( 'You may trigger an immediate sync by clicking the button below. (New sync timestamps may not appear for a few minutes.)', 'ramp' ) }</p>
+					<p>{ __( 'You may trigger an immediate sync by clicking the button below. (New sync timestamps may not appear for a few minutes.)', 'research-amp' ) }</p>
 
 					<Button
 						variant="primary"
 						onClick={ triggerIngest }
-					>{ __( 'Trigger Zotero sync', 'ramp' ) }</Button>
+					>{ __( 'Trigger Zotero sync', 'research-amp' ) }</Button>
 
 				</fieldset>
 			</div>

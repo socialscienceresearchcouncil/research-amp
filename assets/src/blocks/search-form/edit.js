@@ -43,8 +43,8 @@ export default function edit( {
 			<div className="search-form-top">
 				<RichText
 					className="wp-block-search__label search-form-label has-h-3-font-size"
-					aria-label={ __( 'Label text', 'ramp' ) }
-					placeholder={ __( 'Add label…', 'ramp' ) }
+					aria-label={ __( 'Label text', 'research-amp' ) }
+					placeholder={ __( 'Add label…', 'research-amp' ) }
 					withoutInteractiveFormatting
 					value={ label }
 					onChange={ ( html ) => setAttributes( { label: html } ) }
@@ -52,9 +52,9 @@ export default function edit( {
 
 				<input
 					className={ inputClassnames }
-					aria-label={ __( 'Optional placeholder text', 'ramp' ) }
+					aria-label={ __( 'Optional placeholder text', 'research-amp' ) }
 					placeholder={
-						placeholder ? undefined : __( 'Optional placeholder…', 'ramp' )
+						placeholder ? undefined : __( 'Optional placeholder…', 'research-amp' )
 					}
 					value={ placeholder }
 					onChange={ ( event ) =>
@@ -66,8 +66,8 @@ export default function edit( {
 			<div className="search-form-bottom">
 				<div className="search-type-container-label">
 					<RichText
-						aria-label={ __( 'Label text', 'ramp' ) }
-						placeholder={ __( 'Add label…', 'ramp' ) }
+						aria-label={ __( 'Label text', 'research-amp' ) }
+						placeholder={ __( 'Add label…', 'research-amp' ) }
 						withoutInteractiveFormatting
 						value={ typeSelectorLabel }
 						onChange={ ( typeSelectorLabel ) => setAttributes( { typeSelectorLabel } ) }
@@ -76,14 +76,14 @@ export default function edit( {
 				</div>
 
 				<div className="search-type-select-container">
-					<FakeSelect text={ __( 'All content types', 'ramp' ) } />
+					<FakeSelect text={ __( 'All content types', 'research-amp' ) } />
 				</div>
 
 				<div className="wp-block-button is-style-primary">
 					<RichText
-						aria-label={ __( 'Button text', 'ramp' ) }
+						aria-label={ __( 'Button text', 'research-amp' ) }
 						className="wp-block-button__link"
-						placeholder={ __( 'Add label…', 'ramp' ) }
+						placeholder={ __( 'Add label…', 'research-amp' ) }
 						withoutInteractiveFormatting
 						value={ buttonText }
 						onChange={ ( buttonText ) => setAttributes( { buttonText } ) }

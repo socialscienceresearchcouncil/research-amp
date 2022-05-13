@@ -111,8 +111,8 @@ class Blocks {
 			'RAMPChangelog',
 			[
 				// translators: Changelog last updated date
-				'lastUpdated' => __( '(Last Updated: %s)', 'ramp' ),
-				'showFullLog' => __( 'Show full log', 'ramp' ),
+				'lastUpdated' => __( '(Last Updated: %s)', 'research-amp' ),
+				'showFullLog' => __( 'Show full log', 'research-amp' ),
 			]
 		);
 	}
@@ -171,8 +171,8 @@ class Blocks {
 			$categories,
 			[
 				[
-					'slug'  => 'ramp',
-					'title' => esc_html__( 'RAMP', 'ramp' ),
+					'slug'  => 'research-amp',
+					'title' => esc_html__( 'RAMP', 'research-amp' ),
 				],
 			]
 		);

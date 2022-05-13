@@ -93,7 +93,7 @@ export const PostPicker = (props) => {
                         {isLoading && <Spinner />}
                         {!isLoading && !searchResults.length && (
                             <li className={namespace + '-grid-item'}>
-                                <Button disabled>{__('No Items found', 'ramp')}</Button>
+                                <Button disabled>{__('No Items found', 'research-amp')}</Button>
                             </li>
                         )}
                         {searchResults.map((post, index) => {

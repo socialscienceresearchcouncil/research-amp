@@ -3,7 +3,7 @@
 	"name": "ramp/profile-bio",
 	"title": "Profile Bio",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	},

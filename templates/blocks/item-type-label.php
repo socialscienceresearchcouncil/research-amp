@@ -19,7 +19,7 @@ switch ( $args['block']->context['postType'] ) {
 	break;
 
 	case 'post' :
-		$item_type_label = __( 'News Item', 'ramp' );
+		$item_type_label = __( 'News Item', 'research-amp' );
 	break;
 
 	default :

@@ -25,11 +25,11 @@ $doi = get_post_meta( $r['postId'], 'doi', true );
 
 <div class="<?php echo esc_attr( implode( ' ', $classnames ) ); ?>">
 	<div class="social-buttons-links" data-title="<?php echo esc_attr( $post_title ); ?>" data-url="<?php echo esc_attr( $post_url ); ?>">
-		<a class="social-button social-button-facebook"><span class="screen-reader-text"><?php esc_html_e( 'Send to Facebook', 'ramp' ); ?></span></a>
-		<a class="social-button social-button-twitter"><span class="screen-reader-text"><?php esc_html_e( 'Send to Twitter', 'ramp' ); ?></span></a>
+		<a class="social-button social-button-facebook"><span class="screen-reader-text"><?php esc_html_e( 'Send to Facebook', 'research-amp' ); ?></span></a>
+		<a class="social-button social-button-twitter"><span class="screen-reader-text"><?php esc_html_e( 'Send to Twitter', 'research-amp' ); ?></span></a>
 
 		<?php if ( class_exists( 'DKPDF' ) ) : ?>
-			<a class="social-button social-button-download" href="<?php echo esc_url( $pdf_url ); ?>"><span class="screen-reader-text"><?php esc_html_e( 'Download as PDF', 'ramp' ); ?></span></a>
+			<a class="social-button social-button-download" href="<?php echo esc_url( $pdf_url ); ?>"><span class="screen-reader-text"><?php esc_html_e( 'Download as PDF', 'research-amp' ); ?></span></a>
 		<?php endif; ?>
 	</div>
 

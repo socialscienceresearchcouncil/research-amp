@@ -358,7 +358,7 @@ class CitationLibrary {
 	public static function get_citation_count() {
 		$cache_key = 'citation_count_' . wp_cache_get_last_changed( 'posts' );
 
-		$count = wp_cache_get( $cache_key, 'ramp' );
+		$count = wp_cache_get( $cache_key, 'research-amp' );
 
 		if ( false === $count ) {
 			$query = new WP_Query(
@@ -372,7 +372,7 @@ class CitationLibrary {
 
 			$count = $query->found_posts;
 
-			wp_cache_set( $cache_key, $count, 'ramp' );
+			wp_cache_set( $cache_key, $count, 'research-amp' );
 		}
 
 		return (int) $count;

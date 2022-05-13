@@ -10,8 +10,8 @@ class Admin {
 	public static function add_admin_menu() {
 		add_submenu_page(
 			'edit.php?post_type=ramp_citation',
-			__( 'Zotero Settings', 'ramp' ),
-			__( 'Zotero Settings', 'ramp' ),
+			__( 'Zotero Settings', 'research-amp' ),
+			__( 'Zotero Settings', 'research-amp' ),
 			'manage_options',
 			'zotero-settings',
 			[ __CLASS__, 'admin_page_cb' ]

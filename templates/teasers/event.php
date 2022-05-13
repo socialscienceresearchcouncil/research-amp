@@ -28,7 +28,7 @@ $article_classes = [ 'teaser' ];
 
 <article class="<?php echo esc_attr( implode( ' ', $article_classes ) ); ?>">
 	<?php if ( $r['show_item_type_label'] ) : ?>
-		<?php ramp_get_template_part( 'item-type-label', [ 'label' => __( 'Event', 'ramp' ) ] ); ?>
+		<?php ramp_get_template_part( 'item-type-label', [ 'label' => __( 'Event', 'research-amp' ) ] ); ?>
 	<?php endif; ?>
 
 	<div class="teaser-content event-teaser-content">

@@ -47,14 +47,14 @@ if ( $is_edit_mode ) {
 if ( $show_publication_date ) {
 	$byline = sprintf(
 		/* translators: 1. author link, 2. publication date */
-		esc_html__( 'By %1$s on %2$s', 'ramp' ),
+		esc_html__( 'By %1$s on %2$s', 'research-amp' ),
 		'<span class="byline-author">' . $author_string . '</span>',
 		'<span class="byline-publication-date">' . esc_html( get_the_date( '', $research_review_id ) ) . '</span>'
 	);
 } else {
 	$byline = sprintf(
 		/* translators: author link */
-		esc_html__( 'By %s', 'ramp' ),
+		esc_html__( 'By %s', 'research-amp' ),
 		'<span class="byline-author">' . $author_string . '</span>'
 	);
 }
@@ -66,7 +66,7 @@ $title_font_size          = $r['is_search_result'] ? 'h-4' : 'h-3';
 
 <article class="<?php echo esc_attr( $article_class ); ?>">
 	<?php if ( $r['show_item_type_label'] ) : ?>
-		<?php ramp_get_template_part( 'item-type-label', [ 'label' => __( 'Research Review', 'ramp' ) ] ); ?>
+		<?php ramp_get_template_part( 'item-type-label', [ 'label' => __( 'Research Review', 'research-amp' ) ] ); ?>
 	<?php endif; ?>
 
 	<?php if ( $r['show_image'] ) : ?>

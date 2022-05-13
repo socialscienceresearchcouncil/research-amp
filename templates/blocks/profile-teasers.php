@@ -97,7 +97,7 @@ $placeholder_count = ramp_get_placeholder_count( count( $profile_query->posts ),
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
 	<?php if ( is_post_type_archive( 'ramp_profile' ) && empty( $profile_query->posts ) ) : ?>
-		<p class="no-results-message"><?php esc_html_e( 'No results. Try a different search term or filter.', 'ramp' ); ?></p>
+		<p class="no-results-message"><?php esc_html_e( 'No results. Try a different search term or filter.', 'research-amp' ); ?></p>
 
 	<?php elseif ( ! empty( $profile_query->posts ) || ! $r['isEditMode'] ) : ?>
 		<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">

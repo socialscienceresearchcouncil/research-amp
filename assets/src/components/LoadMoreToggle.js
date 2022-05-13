@@ -12,10 +12,10 @@ const LoadMoreToggle = ( props ) => {
 	return (
 		<ToggleControl
 			disabled={ disabled }
-			label={ __( 'Show Load More button?', 'ramp' ) }
+			label={ __( 'Show Load More button?', 'research-amp' ) }
 			checked={ showLoadMore }
 			onChange={ onChangeCallback }
-			help={ __( 'Show a "Load More" button, which users can click to load another page of results. Useful primarily for archive pages.', 'ramp' ) }
+			help={ __( 'Show a "Load More" button, which users can click to load another page of results. Useful primarily for archive pages.', 'research-amp' ) }
 		/>
 	)
 }

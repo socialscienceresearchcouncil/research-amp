@@ -59,7 +59,7 @@ class PressForward {
 		add_meta_box(
 			'ramp-nomthis-submit',
 			// translators: Name of site
-			sprintf( __( 'Send to %s', 'ramp' ), get_option( 'blogname' ) ),
+			sprintf( __( 'Send to %s', 'research-amp' ), get_option( 'blogname' ) ),
 			array( $this, 'submit_meta_box' ),
 			'nomthis',
 			'side',
@@ -69,7 +69,7 @@ class PressForward {
 		$rt_post_type = get_post_type( 'ramp_topic' );
 		add_meta_box(
 			'ramp-nomthis-rts',
-			__( 'Research Fields', 'ramp' ),
+			__( 'Research Fields', 'research-amp' ),
 			array( $this, 'rts_meta_box' ),
 			'nomthis',
 			'side'
@@ -77,7 +77,7 @@ class PressForward {
 
 		add_meta_box(
 			'ramp-nomthis-focus-tags',
-			__( 'Tags', 'ramp' ),
+			__( 'Tags', 'research-amp' ),
 			array( $this, 'focus_tags_meta_box' ),
 			'nomthis',
 			'side'
@@ -85,7 +85,7 @@ class PressForward {
 
 		add_meta_box(
 			'ramp-nomthis-date',
-			__( 'Publication Date', 'ramp' ),
+			__( 'Publication Date', 'research-amp' ),
 			array( $this, 'date_meta_box' ),
 			'nomthis',
 			'side'
@@ -170,10 +170,10 @@ class PressForward {
 		} else {
 			$cap = 'publish_posts';
 		}
-			submit_button( __( 'Nominate', 'ramp' ), 'button button-primary', 'draft', false, array( 'id' => 'save' ) );
+			submit_button( __( 'Nominate', 'research-amp' ), 'button button-primary', 'draft', false, array( 'id' => 'save' ) );
 
 		if ( current_user_can( 'edit_others_posts' ) ) {
-			submit_button( __( 'Send to Draft', 'ramp' ), 'secondary', 'publish', false );
+			submit_button( __( 'Send to Draft', 'research-amp' ), 'secondary', 'publish', false );
 		}
 		?>
 				<span class="spinner" style="display: none;"></span>
@@ -186,7 +186,7 @@ class PressForward {
 					$author_value = $author_retrieved;
 				}
 				?>
-			<label for="item_author"><input type="text" id="item_author" name="item_author" value="<?php echo esc_attr( $author_value ); ?>" /><br />&nbsp;<?php echo esc_html( apply_filters( 'pf_author_nominate_this_prompt', __( 'Enter Authors', 'ramp' ) ) ); ?></label>
+			<label for="item_author"><input type="text" id="item_author" name="item_author" value="<?php echo esc_attr( $author_value ); ?>" /><br />&nbsp;<?php echo esc_html( apply_filters( 'pf_author_nominate_this_prompt', __( 'Enter Authors', 'research-amp' ) ) ); ?></label>
 			</p>
 			<?php
 			do_action( 'nominate_this_sidebar_head' );
@@ -249,7 +249,7 @@ class PressForward {
 					<option value="<?php echo esc_attr( $tag->term_id ); ?>"><?php echo esc_html( $tag->name ); ?></option>
 				<?php endforeach; ?>
 			</select>
-			<p class="description"><?php esc_html_e( 'Begin typing to select from a list of tags.', 'ramp' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Begin typing to select from a list of tags.', 'research-amp' ); ?></p>
 		</div>
 
 		<?php
@@ -258,9 +258,9 @@ class PressForward {
 	public function date_meta_box( $post ) {
 		?>
 <input type="date" name="publication-date" id="publication-date" />
-<p class="description"><?php esc_html_e( 'Enter the original publication date of the article', 'ramp' ); ?></p>
+<p class="description"><?php esc_html_e( 'Enter the original publication date of the article', 'research-amp' ); ?></p>
 		<?php
-		wp_nonce_field( 'ramp-publication-date', 'ramp', false );
+		wp_nonce_field( 'ramp-publication-date', 'research-amp', false );
 	}
 
 	public function save_publication_date( $post_id ) {

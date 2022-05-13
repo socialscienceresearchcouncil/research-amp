@@ -13,7 +13,7 @@ const ProfileSelector = ( props ) => {
 	} = props
 
 	const { profiles } = useSelect( ( select ) => {
-		const profiles = select( 'ramp' ).getProfiles()
+		const profiles = select( 'research-amp' ).getProfiles()
 
 		return {
 			profiles
@@ -38,7 +38,7 @@ const ProfileSelector = ( props ) => {
 		<>
 			<label
 				className="screen-reader-text"
-			>{ __( 'Select a Profile', 'ramp' ) }</label>
+			>{ __( 'Select a Profile', 'research-amp' ) }</label>
 
 			<Select
 				controlShouldRenderValue={ true }
@@ -47,7 +47,7 @@ const ProfileSelector = ( props ) => {
 				menuPortalTarget={document.querySelector('body')}
 				onChange={ handleChange }
 				options={ profilesOptions }
-				placeholder={ __( 'Select a Profile', 'ramp' ) }
+				placeholder={ __( 'Select a Profile', 'research-amp' ) }
 				value={ selectedOption }
 			/>
 		</>

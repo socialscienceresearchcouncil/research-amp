@@ -3,7 +3,7 @@
 	"name": "ramp/changelog",
 	"title": "Changelog",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	},

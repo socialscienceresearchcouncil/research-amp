@@ -3,7 +3,7 @@
 	"name": "ramp/profile-title-institution",
 	"title": "Profile Title/Institution",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	},

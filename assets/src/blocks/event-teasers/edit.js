@@ -66,18 +66,18 @@ export default function edit( {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Content Settings', 'ramp' ) }
+						title={ __( 'Content Settings', 'research-amp' ) }
 					>
 						<ContentModeControl
 							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
 							changeProfileIdCallback={ ( contentModeProfileId ) => setAttributes( { contentModeProfileId } ) }
 							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
-							glossAuto={ __( 'Show Events relevant to the current Research Topic or Profile context.', 'ramp' ) }
-							glossAll={ __( 'Pull from all Events.', 'ramp' ) }
-							glossAdvanced={__( 'Show Events associated with a specific Research Topic or Profile.', 'ramp' )}
-							labelAuto={ __( 'Relevant Events', 'ramp' ) }
-							labelAll={ __( 'All Events', 'ramp' ) }
-							legend={ __( 'Determine which Events will be shown in this block.', 'ramp' ) }
+							glossAuto={ __( 'Show Events relevant to the current Research Topic or Profile context.', 'research-amp' ) }
+							glossAll={ __( 'Pull from all Events.', 'research-amp' ) }
+							glossAdvanced={__( 'Show Events associated with a specific Research Topic or Profile.', 'research-amp' )}
+							labelAuto={ __( 'Relevant Events', 'research-amp' ) }
+							labelAll={ __( 'All Events', 'research-amp' ) }
+							legend={ __( 'Determine which Events will be shown in this block.', 'research-amp' ) }
 							selectedMode={ contentMode }
 							selectedProfileId={ contentModeProfileId }
 							selectedResearchTopicId={ contentModeResearchTopicId }
@@ -87,7 +87,7 @@ export default function edit( {
 
 				<Panel>
 					<PanelBody
-						title={ __( 'Pagination', 'ramp' ) }
+						title={ __( 'Pagination', 'research-amp' ) }
 					>
 						<PanelRow>
 							<NumberOfItemsControl

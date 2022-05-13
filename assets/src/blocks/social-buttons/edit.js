@@ -40,7 +40,7 @@ export default function edit( {
 		className: [ 'sidebar-section' ]
 	})
 
-	const headingTextValue = headingText ?? __( 'Version', 'ramp' )
+	const headingTextValue = headingText ?? __( 'Version', 'research-amp' )
 
 	const { dkpdfIsEnabled } = RAMPBlocks
 
@@ -50,12 +50,12 @@ export default function edit( {
 		<>
 			<InspectorControls>
 				<PanelBody
-					title={ __( 'Altmetrics Settings', 'ramp' ) }
+					title={ __( 'Altmetrics Settings', 'research-amp' ) }
 				>
 					<PanelRow>
 						<ToggleControl
-							label={ __( 'Enable Altmetrics?', 'ramp' ) }
-							help={ __( 'Almetrics badges will appear only on those posts that have a DOI.', 'ramp' ) }
+							label={ __( 'Enable Altmetrics?', 'research-amp' ) }
+							help={ __( 'Almetrics badges will appear only on those posts that have a DOI.', 'research-amp' ) }
 							checked={ altmetricsEnabled }
 							onChange={ ( altmetricsEnabled ) => setAttributes( { altmetricsEnabled } ) }
 						/>
@@ -63,7 +63,7 @@ export default function edit( {
 
 					<PanelRow>
 						<NumberControl
-							label={ __( 'Display Threshold', 'ramp' ) }
+							label={ __( 'Display Threshold', 'research-amp' ) }
 							value={ altmetricsThreshold }
 							min={ 1 }
 							step={ 1 }
@@ -73,7 +73,7 @@ export default function edit( {
 
 					<PanelRow>
 						<p className="description">
-							{ __( 'Items with an Altmetrics score lower than this threshold will not display a badge.', 'ramp' ) }
+							{ __( 'Items with an Altmetrics score lower than this threshold will not display a badge.', 'research-amp' ) }
 						</p>
 					</PanelRow>
 
@@ -83,16 +83,16 @@ export default function edit( {
 			<div { ...blockProps }>
 				<div className="social-buttons-links">
 					<span className="social-button social-button-facebook">
-						<span className="screen-reader-text">{ __( 'Send to Facebook', 'ramp' ) }</span>
+						<span className="screen-reader-text">{ __( 'Send to Facebook', 'research-amp' ) }</span>
 					</span>
 
 					<span className="social-button social-button-twitter">
-						<span className="screen-reader-text">{ __( 'Send to Twitter', 'ramp' ) }</span>
+						<span className="screen-reader-text">{ __( 'Send to Twitter', 'research-amp' ) }</span>
 					</span>
 
 					{ dkpdfIsEnabled && (
 						<span className="social-button social-button-download">
-							<span className="screen-reader-text">{ __( 'Download as PDF', 'ramp' ) }</span>
+							<span className="screen-reader-text">{ __( 'Download as PDF', 'research-amp' ) }</span>
 						</span>
 					) }
 				</div>

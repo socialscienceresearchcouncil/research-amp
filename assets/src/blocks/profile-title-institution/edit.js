@@ -18,9 +18,9 @@ export default function edit( {
 		<div { ...blockProps }>
 			<TextControl
 				hideLabelFromVision={ true }
-				label={ __( 'Title and institution', 'ramp' ) }
+				label={ __( 'Title and institution', 'research-amp' ) }
 				onChange={ ( content ) => setAttributes( { content } ) }
-				placeholder={ __( 'Enter title and institution', 'ramp' ) }
+				placeholder={ __( 'Enter title and institution', 'research-amp' ) }
 				value={ content }
 			/>
 		</div>

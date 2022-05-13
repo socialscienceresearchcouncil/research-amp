@@ -9,7 +9,7 @@ const DEFAULT_STATE = {
 	researchTopics: []
 }
 
-const STORE_NAME = 'ramp'
+const STORE_NAME = 'research-amp'
 
 const actions = {
 	fetchFromAPI( path ) {

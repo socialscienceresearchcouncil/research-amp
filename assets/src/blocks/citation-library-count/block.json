@@ -3,7 +3,7 @@
 	"name": "ramp/citation-library-count",
 	"title": "Citation Library Count",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	}

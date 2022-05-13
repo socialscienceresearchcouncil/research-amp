@@ -14,7 +14,7 @@ const ResearchTopicSelector = ( props ) => {
 	} = props
 
 	const { researchTopics } = useSelect( ( select ) => {
-		const researchTopics = select( 'ramp' ).getResearchTopics()
+		const researchTopics = select( 'research-amp' ).getResearchTopics()
 
 		return {
 			researchTopics
@@ -39,7 +39,7 @@ const ResearchTopicSelector = ( props ) => {
 		<>
 			<label
 				className="screen-reader-text"
-			>{ __( 'Select a Research Topic', 'ramp' ) }</label>
+			>{ __( 'Select a Research Topic', 'research-amp' ) }</label>
 
 			<Select
 				isDisabled={ disabled }
@@ -48,7 +48,7 @@ const ResearchTopicSelector = ( props ) => {
 				menuPortalTarget={document.querySelector('body')}
 				options={ researchTopicsOptions }
 				onChange={ handleChange }
-				placeholder={ __( 'Select a Research Topic', 'ramp' ) }
+				placeholder={ __( 'Select a Research Topic', 'research-amp' ) }
 				value={ selectedOption }
 			/>
 		</>

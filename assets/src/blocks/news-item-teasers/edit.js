@@ -68,7 +68,7 @@ export default function edit( {
 	const { post } = useSelect( ( select ) => {
 		let post = {}
 		if ( featuredItemId ) {
-			post = select( 'ramp' ).getPost( featuredItemId, 'posts' )
+			post = select( 'research-amp' ).getPost( featuredItemId, 'posts' )
 		}
 
 		return {
@@ -97,7 +97,7 @@ export default function edit( {
 	const currentlyFeaturedNotice =
 		postUrl
 		? ( <div className="currently-featured-notice">
-					<span>{ __( 'Currently Featured News Item: ', 'ramp' ) }</span>
+					<span>{ __( 'Currently Featured News Item: ', 'research-amp' ) }</span>
 					<div><a href={ postUrl }>{ postTitle }</a></div>
 				</div>
 			)
@@ -118,18 +118,18 @@ export default function edit( {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Content Settings', 'ramp' ) }
+						title={ __( 'Content Settings', 'research-amp' ) }
 					>
 						<ContentModeControl
 							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
 							changeProfileIdCallback={ ( contentModeProfileId ) => setAttributes( { contentModeProfileId } ) }
 							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
-							glossAuto={ __( 'Show News Items relevant to the current Research Topic or Profile context.', 'ramp' ) }
-							glossAll={ __( 'Pull from all News Items.', 'ramp' ) }
-							glossAdvanced={__( 'Show News Items associated with a specific Research Topic or Profile.', 'ramp' )}
-							labelAuto={ __( 'Relevant News Items', 'ramp' ) }
-							labelAll={ __( 'All News Items', 'ramp' ) }
-							legend={ __( 'Determine which News Items will be shown in this block.', 'ramp' ) }
+							glossAuto={ __( 'Show News Items relevant to the current Research Topic or Profile context.', 'research-amp' ) }
+							glossAll={ __( 'Pull from all News Items.', 'research-amp' ) }
+							glossAdvanced={__( 'Show News Items associated with a specific Research Topic or Profile.', 'research-amp' )}
+							labelAuto={ __( 'Relevant News Items', 'research-amp' ) }
+							labelAll={ __( 'All News Items', 'research-amp' ) }
+							legend={ __( 'Determine which News Items will be shown in this block.', 'research-amp' ) }
 							selectedMode={ contentMode }
 							selectedProfileId={ contentModeProfileId }
 							selectedResearchTopicId={ contentModeResearchTopicId }
@@ -140,10 +140,10 @@ export default function edit( {
 				{ showFeaturedItemToggle && (
 					<Panel>
 						<PanelBody
-							title={ __( 'Featured News Item', 'ramp' ) }
+							title={ __( 'Featured News Item', 'research-amp' ) }
 						>
 							<ToggleControl
-								label={ __( 'Show a Featured News Item?', 'ramp' ) }
+								label={ __( 'Show a Featured News Item?', 'research-amp' ) }
 								checked={ showFeaturedItem }
 								onChange={ ( showFeaturedItem ) => setAttributes( { showFeaturedItem } ) }
 							/>
@@ -154,8 +154,8 @@ export default function edit( {
 
 									<PostPicker
 										onSelectPost={ ( selectedPost ) => setAttributes( { featuredItemId: selectedPost.id } ) }
-										label={ __( 'Select a Featured News Item', 'ramp' ) }
-										placeholder={ __( 'Start typing to search.', 'ramp' ) }
+										label={ __( 'Select a Featured News Item', 'research-amp' ) }
+										placeholder={ __( 'Start typing to search.', 'research-amp' ) }
 										postTypes={ [ 'posts' ] }
 									/>
 								</>
@@ -166,15 +166,15 @@ export default function edit( {
 
 				<Panel>
 					<PanelBody
-						title={ __( 'Order and Pagination', 'ramp' ) }
+						title={ __( 'Order and Pagination', 'research-amp' ) }
 					>
 						<PanelRow>
 							<SelectControl
-								label={ __( 'Order', 'ramp' ) }
+								label={ __( 'Order', 'research-amp' ) }
 								options={ [
-									{ label: __( 'Alphabetical', 'ramp' ), value: 'alphabetical' },
-									{ label: __( 'Recently Added', 'ramp' ), value: 'latest' },
-									{ label: __( 'Random', 'ramp' ), value: 'random' }
+									{ label: __( 'Alphabetical', 'research-amp' ), value: 'alphabetical' },
+									{ label: __( 'Recently Added', 'research-amp' ), value: 'latest' },
+									{ label: __( 'Random', 'research-amp' ), value: 'random' }
 								] }
 								value={ order }
 								onChange={ ( order ) => setAttributes( { order } ) }
@@ -202,7 +202,7 @@ export default function edit( {
 				{ showPublicationDateToggle && (
 					<Panel>
 						<PanelBody
-							title={ __( 'Display Options', 'ramp' ) }
+							title={ __( 'Display Options', 'research-amp' ) }
 						>
 							<PanelRow>
 								<PublicationDateToggle
@@ -221,13 +221,13 @@ export default function edit( {
 						<ToolbarButton
 							icon={ ListIcon }
 							isActive={ 'list' === variationType }
-							label={ __( 'List', 'ramp' ) }
+							label={ __( 'List', 'research-amp' ) }
 							onClick={ () => setAttributes( { variationType: 'list' } ) }
 						/>
 						<ToolbarButton
 							icon={ GridIcon }
 							isActive={ 'grid' === variationType }
-							label={ __( 'Grid', 'ramp' ) }
+							label={ __( 'Grid', 'research-amp' ) }
 							onClick={ () => setAttributes( { variationType: 'grid' } ) }
 						/>
 					</ToolbarGroup>

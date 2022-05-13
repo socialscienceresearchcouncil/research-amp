@@ -87,7 +87,7 @@ class ZoteroLibrary extends WP_REST_Controller {
 
 				$retval['nextIngestRelative'] = sprintf(
 					/* translators: %s: Human-readable time difference */
-					__( '%s from now', 'ramp' ),
+					__( '%s from now', 'research-amp' ),
 					human_time_diff( $next_ingest )
 				);
 			}
@@ -103,7 +103,7 @@ class ZoteroLibrary extends WP_REST_Controller {
 
 				$retval['lastIngestRelative'] = sprintf(
 					/* translators: %s: Human-readable time difference */
-					__( '%s ago', 'ramp' ),
+					__( '%s ago', 'research-amp' ),
 					human_time_diff( $last_ingest )
 				);
 			}

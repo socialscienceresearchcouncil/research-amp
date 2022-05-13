@@ -62,18 +62,18 @@ export default function edit( {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Content Settings', 'ramp' ) }
+						title={ __( 'Content Settings', 'research-amp' ) }
 					>
 						<ContentModeControl
 							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
 							changeProfileIdCallback={ ( contentModeProfileId ) => setAttributes( { contentModeProfileId } ) }
 							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
-							glossAuto={ __( 'Show Citations relevant to the current Research Topic or Profile context.', 'ramp' ) }
-							glossAll={ __( 'Pull from all Citations.', 'ramp' ) }
-							glossAdvanced={__( 'Show Citations associated with a specific Research Topic or Profile.', 'ramp' )}
-							labelAuto={ __( 'Relevant Citations', 'ramp' ) }
-							labelAll={ __( 'All Citations', 'ramp' ) }
-							legend={ __( 'Determine which Citations will be shown in this block.', 'ramp' ) }
+							glossAuto={ __( 'Show Citations relevant to the current Research Topic or Profile context.', 'research-amp' ) }
+							glossAll={ __( 'Pull from all Citations.', 'research-amp' ) }
+							glossAdvanced={__( 'Show Citations associated with a specific Research Topic or Profile.', 'research-amp' )}
+							labelAuto={ __( 'Relevant Citations', 'research-amp' ) }
+							labelAll={ __( 'All Citations', 'research-amp' ) }
+							legend={ __( 'Determine which Citations will be shown in this block.', 'research-amp' ) }
 							selectedMode={ contentMode }
 							selectedProfileId={ contentModeProfileId }
 							selectedResearchTopicId={ contentModeResearchTopicId }
@@ -83,7 +83,7 @@ export default function edit( {
 
 				<Panel>
 					<PanelBody
-						title={ __( 'Order and Pagination', 'ramp' ) }
+						title={ __( 'Order and Pagination', 'research-amp' ) }
 					>
 						<PanelRow>
 							<NumberOfItemsControl

@@ -22,7 +22,7 @@ export default function edit( {
 	return (
 		<>
 			<div { ...blockProps() }>
-				{ __( 'The interface for The Events Calendar will appear here.', 'ramp' ) }
+				{ __( 'The interface for The Events Calendar will appear here.', 'research-amp' ) }
 			</div>
 		</>
 	)

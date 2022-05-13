@@ -3,7 +3,7 @@
 	"name": "ramp/nav-search",
 	"title": "Search Button for Header",
 	"icon": "search",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	},

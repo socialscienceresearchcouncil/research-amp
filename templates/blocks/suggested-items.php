@@ -19,13 +19,13 @@ if ( $r['isEditMode'] ) {
 $item_type = 'news-item' === $r['itemType'] ? 'news-item' : 'article';
 switch ( $item_type ) {
 	case 'news-item' :
-		$default_heading_text = __( 'Suggested News Items', 'ramp' );
+		$default_heading_text = __( 'Suggested News Items', 'research-amp' );
 		$teaser_block         = 'news-item-teasers';
 	break;
 
 	case 'article' :
 	default :
-		$default_heading_text = __( 'Suggested Articles', 'ramp' );
+		$default_heading_text = __( 'Suggested Articles', 'research-amp' );
 		$teaser_block         = 'article-teasers';
 	break;
 }

@@ -57,7 +57,7 @@ export default function edit( {
 
 	const blockProps = useBlockProps()
 
-	const headingTextValue = headingText ?? __( 'Changelog', 'ramp' )
+	const headingTextValue = headingText ?? __( 'Changelog', 'research-amp' )
 
 	const { createWarningNotice, removeNotice } = useDispatch( 'core/notices' )
 
@@ -65,14 +65,14 @@ export default function edit( {
 		removeNotice( 'ramp-changelog-lock' )
 
 	} else {
-		createWarningNotice( __( 'You have not added a Changelog entry', 'ramp' ),
+		createWarningNotice( __( 'You have not added a Changelog entry', 'research-amp' ),
 			{
 				id: 'ramp-changelog-lock'
 			}
 		)
 	}
 
-	const { setChangelogIsDirty } = useDispatch( 'ramp' )
+	const { setChangelogIsDirty } = useDispatch( 'research-amp' )
 
 	const handleChangelogContentChange = (changelogText ) => {
 		setChangelogIsDirty( true )
@@ -89,7 +89,7 @@ export default function edit( {
 	const defaultDateText = dateI18n( siteFormat, Date.now() )
 
 	const defaultBlocks = [
-		[ 'ramp/changelog-entry', { 'dateText': defaultDateText, 'entryText': '<li>' + __( 'Initial publication', 'ramp' ) + '</li>' } ]
+		[ 'ramp/changelog-entry', { 'dateText': defaultDateText, 'entryText': '<li>' + __( 'Initial publication', 'research-amp' ) + '</li>' } ]
 	]
 
 	return (

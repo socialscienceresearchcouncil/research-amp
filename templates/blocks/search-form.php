@@ -7,10 +7,10 @@ static $instance_id = 0;
 
 $r = array_merge(
 	[
-		'buttonText'        => __( 'Filter Results', 'ramp' ),
-		'label'             => __( 'Search Results for', 'ramp' ),
-		'placeholder'       => __( 'Enter search terms', 'ramp' ),
-		'typeSelectorLabel' => __( 'Filter by content type', 'ramp' ),
+		'buttonText'        => __( 'Filter Results', 'research-amp' ),
+		'label'             => __( 'Search Results for', 'research-amp' ),
+		'placeholder'       => __( 'Enter search terms', 'research-amp' ),
+		'typeSelectorLabel' => __( 'Filter by content type', 'research-amp' ),
 	],
 	$args
 );
@@ -73,7 +73,7 @@ $form_classes = [
 
 		<div class="search-type-select-container">
 			<select id="search-type-selector" class="pretty-select" name="search-type">
-				<option value="" <?php selected( '', $requested_type ); ?>><?php esc_html_e( 'All content types', 'ramp' ); ?></option>
+				<option value="" <?php selected( '', $requested_type ); ?>><?php esc_html_e( 'All content types', 'research-amp' ); ?></option>
 
 				<?php foreach ( $all_types as $value => $label ) : ?>
 					<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $requested_type ); ?>><?php echo esc_html( $label ); ?></option>

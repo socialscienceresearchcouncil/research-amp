@@ -17,7 +17,7 @@ export default function edit( {
 		<div { ...blockProps }>
 			<div className="wp-block-buttons">
 				<div className="wp-block-button nav-search-button">
-					<span className="screen-reader-text">{ __( 'Click to search site', 'ramp' ) }</span>
+					<span className="screen-reader-text">{ __( 'Click to search site', 'research-amp' ) }</span>
 				</div>
 			</div>
 		</div>

@@ -153,7 +153,7 @@ if ( ! $featured_item_id ) {
 					} elseif ( $is_edit_mode ) {
 						printf(
 							'<p class="featured-article-notice">%s</p>',
-							esc_html__( 'Use the "Featured Article" setting in the right-hand panel to select the item that will appear in this space.', 'ramp' )
+							esc_html__( 'Use the "Featured Article" setting in the right-hand panel to select the item that will appear in this space.', 'research-amp' )
 						);
 					}
 					?>

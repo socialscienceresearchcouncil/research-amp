@@ -44,13 +44,13 @@ export default function ProfileSettingsControls( {
 	return (
 		<PluginDocumentSettingPanel
 			name="ramp-profile-settings"
-			title={ __( 'Profile Settings', 'ramp' ) }
+			title={ __( 'Profile Settings', 'research-amp' ) }
 			>
 
 			<PanelRow>
 				<TextControl
-					label={ __( 'Name for Alphabetical Sorting', 'ramp' ) }
-					help={ __( "To order by last name, enter the individual's last name, followed by the first.", 'ramp' ) }
+					label={ __( 'Name for Alphabetical Sorting', 'research-amp' ) }
+					help={ __( "To order by last name, enter the individual's last name, followed by the first.", 'research-amp' ) }
 					onChange={ ( alphabeticalName ) => editPostMeta( { 'alphabetical_name': alphabeticalName } ) }
 					value={ alphabeticalName }
 				/>

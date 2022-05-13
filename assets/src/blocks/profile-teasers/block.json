@@ -3,7 +3,7 @@
 	"name": "ramp/profile-teasers",
 	"title": "Profile Teasers",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	},

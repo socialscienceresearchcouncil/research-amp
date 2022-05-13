@@ -3,7 +3,7 @@
 	"name": "ramp/suggested-items",
 	"title": "Suggested Items",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	},

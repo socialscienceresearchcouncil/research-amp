@@ -39,7 +39,7 @@ export default function edit( {
 					onChange={ (dateText) => setAttributes( { dateText } ) }
 					tagName="p"
 					value={ dateText }
-					placeholder={ __( 'Date', 'ramp' ) }
+					placeholder={ __( 'Date', 'research-amp' ) }
 				/>
 
 				<RichText

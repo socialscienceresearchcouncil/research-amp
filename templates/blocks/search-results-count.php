@@ -9,7 +9,7 @@ $types = \SSRC\RAMP\Search::get_search_item_types();
 if ( isset( $types[ $requested_type ] ) ) {
 	$type_label = $types[ $requested_type ];
 } else {
-	$type_label = __( 'All content types', 'ramp' );
+	$type_label = __( 'All content types', 'research-amp' );
 }
 
 if ( $requested_search_term ) {
@@ -19,7 +19,7 @@ if ( $requested_search_term ) {
 			'%1$s Result for "%2$s" in "%3$s"',
 			'%1$s Results for "%2$s" in "%3$s"',
 			$total_count,
-			'ramp'
+			'research-amp'
 		),
 		number_format_i18n( $total_count ),
 		$requested_search_term,
@@ -32,7 +32,7 @@ if ( $requested_search_term ) {
 			'%1$s Result in "%2$s"',
 			'%1$s Results in "%2$s"',
 			$total_count,
-			'ramp'
+			'research-amp'
 		),
 		number_format_i18n( $total_count ),
 		$type_label

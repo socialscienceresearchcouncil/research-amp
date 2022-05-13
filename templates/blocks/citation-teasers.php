@@ -76,7 +76,7 @@ $div_classes = [
 
 <div class="<?php echo esc_attr( implode( ' ', $div_classes ) ); ?>">
 	<?php if ( is_post_type_archive( 'ramp_citation' ) && empty( $citation_query->posts ) ) : ?>
-		<p class="no-results-message"><?php esc_html_e( 'No results. Try a different search term or filter.', 'ramp' ); ?></p>
+		<p class="no-results-message"><?php esc_html_e( 'No results. Try a different search term or filter.', 'research-amp' ); ?></p>
 	<?php else : ?>
 		<ul class="<?php echo esc_attr( implode( ' ', $list_classes ) ); ?>">
 			<?php foreach ( $citation_query->posts as $citation ) : ?>

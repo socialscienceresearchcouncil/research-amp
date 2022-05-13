@@ -8,7 +8,7 @@
 				'%s Citation in the linked library on Zotero',
 				'%s Citations in the linked library on Zotero',
 				$citation_count,
-				'ramp'
+				'research-amp'
 			)
 		),
 		esc_html( number_format_i18n( $citation_count ) )

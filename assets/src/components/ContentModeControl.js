@@ -42,15 +42,15 @@ const ContentModeControl = ( props ) => {
 	const disabledItemTypes = { ...{ profile: false, researchTopic: false }, ...disabledTypes }
 
 	const labels = {
-		auto: labelAuto ?? __( 'Relevant Items', 'ramp' ),
-		all: labelAll ?? __( 'All Items', 'ramp' ),
-		advanced: labelAdvanced ?? __( 'Advanced', 'ramp' )
+		auto: labelAuto ?? __( 'Relevant Items', 'research-amp' ),
+		all: labelAll ?? __( 'All Items', 'research-amp' ),
+		advanced: labelAdvanced ?? __( 'Advanced', 'research-amp' )
 	}
 
 	const glosses = {
-		auto: glossAuto ?? __( 'Show items relevant to the current Research Topic or Profile context.', 'ramp' ),
-		all: glossAll ?? __( 'Items will be shown regardless of associated Research Topic or Profile', 'ramp' ),
-		advanced: glossAdvanced ?? __( 'Show items associated with a specific Research Topic or Profile', 'ramp' )
+		auto: glossAuto ?? __( 'Show items relevant to the current Research Topic or Profile context.', 'research-amp' ),
+		all: glossAll ?? __( 'Items will be shown regardless of associated Research Topic or Profile', 'research-amp' ),
+		advanced: glossAdvanced ?? __( 'Show items associated with a specific Research Topic or Profile', 'research-amp' )
 	}
 
 	const contentModeOpts = [
@@ -119,13 +119,13 @@ const ContentModeControl = ( props ) => {
 						className="content-mode-selector-advanced-options"
 						key="content-mode-selector-advanced-options"
 					>
-						<legend>{ __( 'Filtered by', 'ramp' ) }</legend>
+						<legend>{ __( 'Filtered by', 'research-amp' ) }</legend>
 
 						{ ! disabledItemTypes.researchTopic && (
 							<div className="option-row">
 								<ResearchTopicSelector
 									disabled={ !! selectedProfileId }
-									label={ __( 'Research Topic', 'ramp' ) }
+									label={ __( 'Research Topic', 'research-amp' ) }
 									selected={ selectedResearchTopicId }
 									onChangeCallback={ changeResearchTopicIdCallback }
 								/>

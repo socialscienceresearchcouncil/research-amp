@@ -49,7 +49,7 @@ if ( $r['title_size'] ) {
 
 <article class="<?php echo esc_attr( implode( ' ', $article_classes ) ); ?>">
 	<?php if ( $r['show_item_type_label'] ) : ?>
-		<?php ramp_get_template_part( 'item-type-label', [ 'label' => __( 'Research Topic', 'ramp' ) ] ); ?>
+		<?php ramp_get_template_part( 'item-type-label', [ 'label' => __( 'Research Topic', 'research-amp' ) ] ); ?>
 	<?php endif; ?>
 
 	<?php if ( 'list' === $variation_type ) : ?>
@@ -74,9 +74,9 @@ if ( $r['title_size'] ) {
 
 		<?php if ( 'list' === $variation_type ) : ?>
 			<?php if ( $is_edit_mode ) : ?>
-				<span class="ramp-arrow-more-link"><?php esc_html_e( 'Learn more', 'ramp' ); ?></span>
+				<span class="ramp-arrow-more-link"><?php esc_html_e( 'Learn more', 'research-amp' ); ?></span>
 			<?php else : ?>
-				<a class="ramp-arrow-more-link" href="<?php echo esc_attr( get_permalink( $research_topic_id ) ); ?>"><?php esc_html_e( 'Learn more', 'ramp' ); ?></a>
+				<a class="ramp-arrow-more-link" href="<?php echo esc_attr( get_permalink( $research_topic_id ) ); ?>"><?php esc_html_e( 'Learn more', 'research-amp' ); ?></a>
 			<?php endif; ?>
 		<?php endif; ?>
 	</div>

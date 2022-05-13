@@ -56,10 +56,10 @@ export default function edit( {
 		if ( templateSlug ) {
 			switch ( templateSlug ) {
 				case 'single-ramp_article' :
-					return __( 'Article Type', 'ramp' )
+					return __( 'Article Type', 'research-amp' )
 
 				case 'single' :
-					return __( 'News Item', 'ramp' )
+					return __( 'News Item', 'research-amp' )
 			}
 		}
 

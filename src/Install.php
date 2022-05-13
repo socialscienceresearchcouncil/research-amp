@@ -20,20 +20,20 @@ class Install {
 	protected function install_default_pages() {
 		$pages_data = [
 			'get-started'          => [
-				'post_title'   => __( 'Get Started', 'ramp' ),
-				'post_content' => __( 'Use this page to provide information on how readers can get involved in contributing to your project.', 'ramp' ),
+				'post_title'   => __( 'Get Started', 'research-amp' ),
+				'post_content' => __( 'Use this page to provide information on how readers can get involved in contributing to your project.', 'research-amp' ),
 			],
 			'about'                => [
-				'post_title'   => __( 'About', 'ramp' ),
-				'post_content' => __( 'Use this page to provide background information on your project.', 'ramp' ),
+				'post_title'   => __( 'About', 'research-amp' ),
+				'post_content' => __( 'Use this page to provide background information on your project.', 'research-amp' ),
 			],
 			'contact'              => [
-				'post_title'   => __( 'Contact', 'ramp' ),
-				'post_content' => __( 'Use this page to contact information for your project or organization. You may decide to use a WordPress plugin to provide a contact form.', 'ramp' ),
+				'post_title'   => __( 'Contact', 'research-amp' ),
+				'post_content' => __( 'Use this page to contact information for your project or organization. You may decide to use a WordPress plugin to provide a contact form.', 'research-amp' ),
 			],
 			'terms-and-conditions' => [
-				'post_title'   => __( 'Terms and Conditions', 'ramp' ),
-				'post_content' => __( 'Use this page for the Terms and Conditions of your project.', 'ramp' ),
+				'post_title'   => __( 'Terms and Conditions', 'research-amp' ),
+				'post_content' => __( 'Use this page for the Terms and Conditions of your project.', 'research-amp' ),
 			],
 		];
 
@@ -75,15 +75,15 @@ class Install {
 	protected function install_default_nav_menus() {
 		$nav_menus = [
 			'primary-nav'   => [
-				'post_title'   => __( 'Primary navigation', 'ramp' ),
+				'post_title'   => __( 'Primary navigation', 'research-amp' ),
 				'post_content' => Navigation::get_default_primary_nav_items(),
 			],
 			'secondary-nav' => [
-				'post_title'   => __( 'Secondary navigation', 'ramp' ),
+				'post_title'   => __( 'Secondary navigation', 'research-amp' ),
 				'post_content' => Navigation::get_default_secondary_nav_items(),
 			],
 			'footer-nav'    => [
-				'post_title'   => __( 'Footer navigation', 'ramp' ),
+				'post_title'   => __( 'Footer navigation', 'research-amp' ),
 				'post_content' => Navigation::get_default_footer_nav_items(),
 			],
 		];
@@ -112,7 +112,7 @@ class Install {
 	protected function install_default_page_on_front() {
 		$news_items_page = wp_insert_post(
 			[
-				'post_title'   => __( 'News Items', 'ramp' ),
+				'post_title'   => __( 'News Items', 'research-amp' ),
 				'post_name'    => 'news-items',
 				'post_type'    => 'page',
 				'post_status'  => 'publish',
@@ -126,7 +126,7 @@ class Install {
 
 		$page_on_front = wp_insert_post(
 			[
-				'post_title'   => __( 'Home Page', 'ramp' ),
+				'post_title'   => __( 'Home Page', 'research-amp' ),
 				'post_name'    => 'home-page',
 				'post_type'    => 'page',
 				'post_status'  => 'publish',
@@ -147,7 +147,7 @@ class Install {
 			return;
 		}
 
-		$attachment_id = media_sideload_image( RAMP_PLUGIN_URL . '/assets/img/research-amp-logo.png', 0, __( 'Research AMP Logo', 'ramp' ), 'id' );
+		$attachment_id = media_sideload_image( RAMP_PLUGIN_URL . '/assets/img/research-amp-logo.png', 0, __( 'Research AMP Logo', 'research-amp' ), 'id' );
 
 		if ( $attachment_id ) {
 			update_option( 'ramp_default_logo', $attachment_id );

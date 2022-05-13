@@ -62,18 +62,18 @@ export default function edit( {
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Content Settings', 'ramp' ) }
+						title={ __( 'Content Settings', 'research-amp' ) }
 					>
 						<ContentModeControl
 							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
 							disabledTypes={ { 'profile': true } }
 							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
-							glossAuto={ __( 'Show Profiles relevant to the current Research Topic or Profile context.', 'ramp' ) }
-							glossAll={ __( 'Pull from all Profiles.', 'ramp' ) }
-							glossAdvanced={__( 'Show Profiles associated with a specific Research Topic or Profile.', 'ramp' )}
-							labelAuto={ __( 'Relevant Profiles', 'ramp' ) }
-							labelAll={ __( 'All Profiles', 'ramp' ) }
-							legend={ __( 'Determine which Profiles will be shown in this block.', 'ramp' ) }
+							glossAuto={ __( 'Show Profiles relevant to the current Research Topic or Profile context.', 'research-amp' ) }
+							glossAll={ __( 'Pull from all Profiles.', 'research-amp' ) }
+							glossAdvanced={__( 'Show Profiles associated with a specific Research Topic or Profile.', 'research-amp' )}
+							labelAuto={ __( 'Relevant Profiles', 'research-amp' ) }
+							labelAll={ __( 'All Profiles', 'research-amp' ) }
+							legend={ __( 'Determine which Profiles will be shown in this block.', 'research-amp' ) }
 							selectedMode={ contentMode }
 							selectedResearchTopicId={ contentModeResearchTopicId }
 						/>
@@ -82,15 +82,15 @@ export default function edit( {
 
 				<Panel>
 					<PanelBody
-						title={ __( 'Order and Pagination', 'ramp' ) }
+						title={ __( 'Order and Pagination', 'research-amp' ) }
 					>
 						<PanelRow>
 							<SelectControl
-								label={ __( 'Order', 'ramp' ) }
+								label={ __( 'Order', 'research-amp' ) }
 								options={ [
-									{ label: __( 'Alphabetical', 'ramp' ), value: 'alphabetical' },
-									{ label: __( 'Recently Added', 'ramp' ), value: 'latest' },
-									{ label: __( 'Random', 'ramp' ), value: 'random' }
+									{ label: __( 'Alphabetical', 'research-amp' ), value: 'alphabetical' },
+									{ label: __( 'Recently Added', 'research-amp' ), value: 'latest' },
+									{ label: __( 'Random', 'research-amp' ), value: 'random' }
 								] }
 								value={ order }
 								onChange={ ( order ) => setAttributes( { order } ) }
@@ -115,7 +115,7 @@ export default function edit( {
 
 				<Panel>
 					<PanelBody
-						title={ __( 'Display Options', 'ramp' ) }
+						title={ __( 'Display Options', 'research-amp' ) }
 					>
 						<PanelRow>
 							<HorizontalSwipeToggle

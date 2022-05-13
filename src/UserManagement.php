@@ -36,7 +36,7 @@ class UserManagement {
 	public function add_meta_boxes() {
 		add_meta_box(
 			'associated-account',
-			__( 'Associated Account', 'ramp' ),
+			__( 'Associated Account', 'research-amp' ),
 			[ $this, 'meta_box_cb' ],
 			'ramp_profile',
 			'side'
@@ -78,9 +78,9 @@ class UserManagement {
 		wp_localize_script( 'ramp-profile-admin', 'RAMPProfileUsers', $data );
 
 		?>
-		<label for="associated-user" class="screen-reader-text"><?php esc_html_e( 'Associated user', 'ramp' ); ?></label>
+		<label for="associated-user" class="screen-reader-text"><?php esc_html_e( 'Associated user', 'research-amp' ); ?></label>
 		<select id="associated-user" name="associated-user"></select>
-		<p class="description"><?php esc_html_e( 'Select the WordPress user account associated with this Profile.', 'ramp' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Select the WordPress user account associated with this Profile.', 'research-amp' ); ?></p>
 		<?php wp_nonce_field( 'ramp-associated-user', 'ramp-associated-user-nonce' ); ?>
 		<?php
 	}

@@ -3,7 +3,7 @@
 	"name": "ramp/research-review-teasers",
 	"title": "Research Review Teasers",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	},

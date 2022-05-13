@@ -16,7 +16,7 @@ export default function edit() {
 			<FakeButton
 				alignClass="aligncenter"
 				buttonStyle="secondary"
-				text={ __( 'Load More', 'ramp' ) }
+				text={ __( 'Load More', 'research-amp' ) }
 			/>
 		</div>
 	)

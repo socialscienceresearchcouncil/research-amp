@@ -5,7 +5,7 @@ return [
 	'attributes'      => [
 		'headingText' => [
 			'type'    => 'string',
-			'default' => __( 'Cite This', 'ramp' ),
+			'default' => __( 'Cite This', 'research-amp' ),
 		],
 		'helpText'    => [
 			'type'    => 'string',

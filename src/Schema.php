@@ -88,8 +88,8 @@ class Schema {
 			'ramp-sidebar',
 			'RAMPSidebar',
 			[
-				'buttonTextShowMore' => __( 'Show More', 'ramp' ),
-				'buttonTextShowLess' => __( 'Show Less', 'ramp' ),
+				'buttonTextShowMore' => __( 'Show More', 'research-amp' ),
+				'buttonTextShowLess' => __( 'Show Less', 'research-amp' ),
 			]
 		);
 
@@ -118,20 +118,20 @@ class Schema {
 		register_post_type(
 			'ramp_review',
 			[
-				'label'             => __( 'Research Reviews', 'ramp' ),
+				'label'             => __( 'Research Reviews', 'research-amp' ),
 				'labels'            => [
-					'name'               => __( 'Research Reviews', 'ramp' ),
-					'singular_name'      => __( 'Research Review', 'ramp' ),
-					'add_new_item'       => __( 'Add New Research Review', 'ramp' ),
-					'edit_item'          => __( 'Edit Research Review', 'ramp' ),
-					'new_item'           => __( 'New Research Review', 'ramp' ),
-					'view_item'          => __( 'View Research Review', 'ramp' ),
-					'view_items'         => __( 'View Research Reviews', 'ramp' ),
-					'search_items'       => __( 'Search Research Reviews', 'ramp' ),
-					'not_found'          => __( 'No Research Reviews found', 'ramp' ),
-					'not_found_in_trash' => __( 'No Research Reviews found in Trash', 'ramp' ),
-					'all_items'          => __( 'All Research Reviews', 'ramp' ),
-					'name_admin_bar'     => __( 'Research Reviews', 'ramp' ),
+					'name'               => __( 'Research Reviews', 'research-amp' ),
+					'singular_name'      => __( 'Research Review', 'research-amp' ),
+					'add_new_item'       => __( 'Add New Research Review', 'research-amp' ),
+					'edit_item'          => __( 'Edit Research Review', 'research-amp' ),
+					'new_item'           => __( 'New Research Review', 'research-amp' ),
+					'view_item'          => __( 'View Research Review', 'research-amp' ),
+					'view_items'         => __( 'View Research Reviews', 'research-amp' ),
+					'search_items'       => __( 'Search Research Reviews', 'research-amp' ),
+					'not_found'          => __( 'No Research Reviews found', 'research-amp' ),
+					'not_found_in_trash' => __( 'No Research Reviews found in Trash', 'research-amp' ),
+					'all_items'          => __( 'All Research Reviews', 'research-amp' ),
+					'name_admin_bar'     => __( 'Research Reviews', 'research-amp' ),
 				],
 				'public'            => true,
 				'has_archive'       => true,
@@ -155,7 +155,7 @@ class Schema {
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,
-				'description'    => __( 'Changelog', 'ramp' ),
+				'description'    => __( 'Changelog', 'research-amp' ),
 			]
 		);
 
@@ -163,20 +163,20 @@ class Schema {
 		register_post_type(
 			'ramp_article',
 			[
-				'label'             => __( 'Articles', 'ramp' ),
+				'label'             => __( 'Articles', 'research-amp' ),
 				'labels'            => [
-					'name'               => __( 'Articles', 'ramp' ),
-					'singular_name'      => __( 'Article', 'ramp' ),
-					'add_new_item'       => __( 'Add New Article', 'ramp' ),
-					'edit_item'          => __( 'Edit Article', 'ramp' ),
-					'new_item'           => __( 'New Article', 'ramp' ),
-					'view_item'          => __( 'View Article', 'ramp' ),
-					'view_items'         => __( 'View Articles', 'ramp' ),
-					'search_items'       => __( 'Search Articles', 'ramp' ),
-					'not_found'          => __( 'No Articles found', 'ramp' ),
-					'not_found_in_trash' => __( 'No Articles found in Trash', 'ramp' ),
-					'all_items'          => __( 'All Articles', 'ramp' ),
-					'name_admin_bar'     => __( 'Articles', 'ramp' ),
+					'name'               => __( 'Articles', 'research-amp' ),
+					'singular_name'      => __( 'Article', 'research-amp' ),
+					'add_new_item'       => __( 'Add New Article', 'research-amp' ),
+					'edit_item'          => __( 'Edit Article', 'research-amp' ),
+					'new_item'           => __( 'New Article', 'research-amp' ),
+					'view_item'          => __( 'View Article', 'research-amp' ),
+					'view_items'         => __( 'View Articles', 'research-amp' ),
+					'search_items'       => __( 'Search Articles', 'research-amp' ),
+					'not_found'          => __( 'No Articles found', 'research-amp' ),
+					'not_found_in_trash' => __( 'No Articles found in Trash', 'research-amp' ),
+					'all_items'          => __( 'All Articles', 'research-amp' ),
+					'name_admin_bar'     => __( 'Articles', 'research-amp' ),
 				],
 				'public'            => true,
 				'has_archive'       => true,
@@ -199,20 +199,20 @@ class Schema {
 		register_post_type(
 			'ramp_topic',
 			[
-				'label'             => __( 'Research Topics', 'ramp' ),
+				'label'             => __( 'Research Topics', 'research-amp' ),
 				'labels'            => [
-					'name'               => __( 'Research Topics', 'ramp' ),
-					'singular_name'      => __( 'Research Topic', 'ramp' ),
-					'add_new_item'       => __( 'Add New Research Topic', 'ramp' ),
-					'edit_item'          => __( 'Edit Research Topic', 'ramp' ),
-					'new_item'           => __( 'New Research Topic', 'ramp' ),
-					'view_item'          => __( 'View Research Topic', 'ramp' ),
-					'view_items'         => __( 'View Research Topics', 'ramp' ),
-					'search_items'       => __( 'Search Research Topics', 'ramp' ),
-					'not_found'          => __( 'No Research Topics found', 'ramp' ),
-					'not_found_in_trash' => __( 'No Research Topics found in Trash', 'ramp' ),
-					'all_items'          => __( 'All Research Topics', 'ramp' ),
-					'name_admin_bar'     => __( 'Research Topics', 'ramp' ),
+					'name'               => __( 'Research Topics', 'research-amp' ),
+					'singular_name'      => __( 'Research Topic', 'research-amp' ),
+					'add_new_item'       => __( 'Add New Research Topic', 'research-amp' ),
+					'edit_item'          => __( 'Edit Research Topic', 'research-amp' ),
+					'new_item'           => __( 'New Research Topic', 'research-amp' ),
+					'view_item'          => __( 'View Research Topic', 'research-amp' ),
+					'view_items'         => __( 'View Research Topics', 'research-amp' ),
+					'search_items'       => __( 'Search Research Topics', 'research-amp' ),
+					'not_found'          => __( 'No Research Topics found', 'research-amp' ),
+					'not_found_in_trash' => __( 'No Research Topics found in Trash', 'research-amp' ),
+					'all_items'          => __( 'All Research Topics', 'research-amp' ),
+					'name_admin_bar'     => __( 'Research Topics', 'research-amp' ),
 				],
 				'public'            => true,
 				'has_archive'       => 'research-topics',
@@ -235,20 +235,20 @@ class Schema {
 		register_post_type(
 			'ramp_profile',
 			[
-				'label'        => __( 'Profiles', 'ramp' ),
+				'label'        => __( 'Profiles', 'research-amp' ),
 				'labels'       => [
-					'name'               => __( 'Profiles', 'ramp' ),
-					'singular_name'      => __( 'Profile', 'ramp' ),
-					'add_new_item'       => __( 'Add New Profile', 'ramp' ),
-					'edit_item'          => __( 'Edit Profile', 'ramp' ),
-					'new_item'           => __( 'New Profile', 'ramp' ),
-					'view_item'          => __( 'View Profile', 'ramp' ),
-					'view_items'         => __( 'View Profiles', 'ramp' ),
-					'search_items'       => __( 'Search Profiles', 'ramp' ),
-					'not_found'          => __( 'No Profiles found', 'ramp' ),
-					'not_found_in_trash' => __( 'No Profiles found in Trash', 'ramp' ),
-					'all_items'          => __( 'All Profiles', 'ramp' ),
-					'name_admin_bar'     => __( 'Profiles', 'ramp' ),
+					'name'               => __( 'Profiles', 'research-amp' ),
+					'singular_name'      => __( 'Profile', 'research-amp' ),
+					'add_new_item'       => __( 'Add New Profile', 'research-amp' ),
+					'edit_item'          => __( 'Edit Profile', 'research-amp' ),
+					'new_item'           => __( 'New Profile', 'research-amp' ),
+					'view_item'          => __( 'View Profile', 'research-amp' ),
+					'view_items'         => __( 'View Profiles', 'research-amp' ),
+					'search_items'       => __( 'Search Profiles', 'research-amp' ),
+					'not_found'          => __( 'No Profiles found', 'research-amp' ),
+					'not_found_in_trash' => __( 'No Profiles found in Trash', 'research-amp' ),
+					'all_items'          => __( 'All Profiles', 'research-amp' ),
+					'name_admin_bar'     => __( 'Profiles', 'research-amp' ),
 				],
 				'public'       => true,
 				'show_ui'      => true,
@@ -340,7 +340,7 @@ class Schema {
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,
-				'description'    => __( 'Profile Email Address', 'ramp' ),
+				'description'    => __( 'Profile Email Address', 'research-amp' ),
 			]
 		);
 
@@ -352,7 +352,7 @@ class Schema {
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,
-				'description'    => __( 'Profile Twitter Handle', 'ramp' ),
+				'description'    => __( 'Profile Twitter Handle', 'research-amp' ),
 			]
 		);
 
@@ -364,7 +364,7 @@ class Schema {
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,
-				'description'    => __( 'Profile ORCID ID', 'ramp' ),
+				'description'    => __( 'Profile ORCID ID', 'research-amp' ),
 			]
 		);
 
@@ -376,7 +376,7 @@ class Schema {
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,
-				'description'    => __( 'Profile Website', 'ramp' ),
+				'description'    => __( 'Profile Website', 'research-amp' ),
 			]
 		);
 
@@ -388,7 +388,7 @@ class Schema {
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,
-				'description'    => __( 'Name for Alphabetical Sort', 'ramp' ),
+				'description'    => __( 'Name for Alphabetical Sort', 'research-amp' ),
 			]
 		);
 
@@ -399,20 +399,20 @@ class Schema {
 		register_post_type(
 			'ramp_citation',
 			[
-				'label'        => __( 'Citations', 'ramp' ),
+				'label'        => __( 'Citations', 'research-amp' ),
 				'labels'       => [
-					'name'               => __( 'Citations', 'ramp' ),
-					'singular_name'      => __( 'Citation', 'ramp' ),
-					'add_new_item'       => __( 'Add New Citation', 'ramp' ),
-					'edit_item'          => __( 'Edit Citation', 'ramp' ),
-					'new_item'           => __( 'New Citation', 'ramp' ),
-					'view_item'          => __( 'View Citation', 'ramp' ),
-					'view_items'         => __( 'View Citations', 'ramp' ),
-					'search_items'       => __( 'Search Citations', 'ramp' ),
-					'not_found'          => __( 'No Citations found', 'ramp' ),
-					'not_found_in_trash' => __( 'No Citations found in Trash', 'ramp' ),
-					'all_items'          => __( 'All Citations', 'ramp' ),
-					'name_admin_bar'     => __( 'Citations', 'ramp' ),
+					'name'               => __( 'Citations', 'research-amp' ),
+					'singular_name'      => __( 'Citation', 'research-amp' ),
+					'add_new_item'       => __( 'Add New Citation', 'research-amp' ),
+					'edit_item'          => __( 'Edit Citation', 'research-amp' ),
+					'new_item'           => __( 'New Citation', 'research-amp' ),
+					'view_item'          => __( 'View Citation', 'research-amp' ),
+					'view_items'         => __( 'View Citations', 'research-amp' ),
+					'search_items'       => __( 'Search Citations', 'research-amp' ),
+					'not_found'          => __( 'No Citations found', 'research-amp' ),
+					'not_found_in_trash' => __( 'No Citations found in Trash', 'research-amp' ),
+					'all_items'          => __( 'All Citations', 'research-amp' ),
+					'name_admin_bar'     => __( 'Citations', 'research-amp' ),
 				],
 				'public'       => true,
 				'has_archive'  => true,
@@ -432,20 +432,20 @@ class Schema {
 		register_post_type(
 			'ramp_zotero_library',
 			[
-				'label'         => __( 'Zotero Libraries', 'ramp' ),
+				'label'         => __( 'Zotero Libraries', 'research-amp' ),
 				'labels'        => [
-					'name'               => __( 'Zotero Libraries', 'ramp' ),
-					'singular_name'      => __( 'Zotero Library', 'ramp' ),
-					'add_new_item'       => __( 'Add New Zotero Library', 'ramp' ),
-					'edit_item'          => __( 'Edit Zotero Library', 'ramp' ),
-					'new_item'           => __( 'New Zotero Library', 'ramp' ),
-					'view_item'          => __( 'View Zotero Library', 'ramp' ),
-					'view_items'         => __( 'View Zotero Library', 'ramp' ),
-					'search_items'       => __( 'Search Zotero Libraries', 'ramp' ),
-					'not_found'          => __( 'No Zotero Libraries found', 'ramp' ),
-					'not_found_in_trash' => __( 'No Zotero Libraries found in Trash', 'ramp' ),
-					'all_items'          => __( 'All Zotero Libraries', 'ramp' ),
-					'name_admin_bar'     => __( 'Zotero Libraries', 'ramp' ),
+					'name'               => __( 'Zotero Libraries', 'research-amp' ),
+					'singular_name'      => __( 'Zotero Library', 'research-amp' ),
+					'add_new_item'       => __( 'Add New Zotero Library', 'research-amp' ),
+					'edit_item'          => __( 'Edit Zotero Library', 'research-amp' ),
+					'new_item'           => __( 'New Zotero Library', 'research-amp' ),
+					'view_item'          => __( 'View Zotero Library', 'research-amp' ),
+					'view_items'         => __( 'View Zotero Library', 'research-amp' ),
+					'search_items'       => __( 'Search Zotero Libraries', 'research-amp' ),
+					'not_found'          => __( 'No Zotero Libraries found', 'research-amp' ),
+					'not_found_in_trash' => __( 'No Zotero Libraries found in Trash', 'research-amp' ),
+					'all_items'          => __( 'All Zotero Libraries', 'research-amp' ),
+					'name_admin_bar'     => __( 'Zotero Libraries', 'research-amp' ),
 				],
 				'public'        => false,
 				'has_archive'   => false,
@@ -467,7 +467,7 @@ class Schema {
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,
-				'description'    => __( 'Zotero Library ID', 'ramp' ),
+				'description'    => __( 'Zotero Library ID', 'research-amp' ),
 			]
 		);
 
@@ -479,7 +479,7 @@ class Schema {
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,
-				'description'    => __( 'Zotero Group URL', 'ramp' ),
+				'description'    => __( 'Zotero Group URL', 'research-amp' ),
 			]
 		);
 
@@ -491,7 +491,7 @@ class Schema {
 				'type'           => 'string',
 				'single'         => true,
 				'show_in_rest'   => true,
-				'description'    => __( 'Zotero API Key', 'ramp' ),
+				'description'    => __( 'Zotero API Key', 'research-amp' ),
 			]
 		);
 	}
@@ -508,12 +508,12 @@ class Schema {
 			'ramp_assoc_topic',
 			array_merge( $post_types, [ 'nomination' ] ),
 			[
-				'label'        => __( 'Research Fields', 'ramp' ),
+				'label'        => __( 'Research Fields', 'research-amp' ),
 				'labels'       => [
-					'name'          => __( 'Research Fields', 'ramp' ),
-					'singular_name' => __( 'Research Field', 'ramp' ),
-					'add_new_item'  => __( 'Add New Research Field', 'ramp' ),
-					'not_found'     => __( 'No Research Fields found', 'ramp' ),
+					'name'          => __( 'Research Fields', 'research-amp' ),
+					'singular_name' => __( 'Research Field', 'research-amp' ),
+					'add_new_item'  => __( 'Add New Research Field', 'research-amp' ),
+					'not_found'     => __( 'No Research Fields found', 'research-amp' ),
 				],
 				'hierarchical' => true,
 				'public'       => true,
@@ -535,12 +535,12 @@ class Schema {
 			'ramp_focus_tag',
 			array_merge( $post_types, [ 'nomination' ] ),
 			[
-				'label'        => __( 'Focus Tags', 'ramp' ),
+				'label'        => __( 'Focus Tags', 'research-amp' ),
 				'labels'       => [
-					'name'          => __( 'Focus Tags', 'ramp' ),
-					'singular_name' => __( 'Focus Tag', 'ramp' ),
-					'add_new_item'  => __( 'Add New Focus Tag', 'ramp' ),
-					'not_found'     => __( 'No Focus Tags found', 'ramp' ),
+					'name'          => __( 'Focus Tags', 'research-amp' ),
+					'singular_name' => __( 'Focus Tag', 'research-amp' ),
+					'add_new_item'  => __( 'Add New Focus Tag', 'research-amp' ),
+					'not_found'     => __( 'No Focus Tags found', 'research-amp' ),
 				],
 				'hierarchical' => true,
 				'public'       => true,
@@ -561,12 +561,12 @@ class Schema {
 			'ramp_assoc_profile',
 			array_diff( $post_types, [ 'ramp_profile' ] ),
 			[
-				'label'        => __( 'Profiles', 'ramp' ),
+				'label'        => __( 'Profiles', 'research-amp' ),
 				'labels'       => [
-					'name'          => __( 'Profiles', 'ramp' ),
-					'singular_name' => __( 'Profile', 'ramp' ),
-					'add_new_item'  => __( 'Add New Profile', 'ramp' ),
-					'not_found'     => __( 'No Profiles found', 'ramp' ),
+					'name'          => __( 'Profiles', 'research-amp' ),
+					'singular_name' => __( 'Profile', 'research-amp' ),
+					'add_new_item'  => __( 'Add New Profile', 'research-amp' ),
+					'not_found'     => __( 'No Profiles found', 'research-amp' ),
 				],
 				'hierarchical' => true,
 				'public'       => false,
@@ -586,12 +586,12 @@ class Schema {
 			'ramp_article_type',
 			[ 'ramp_article' ],
 			[
-				'label'        => __( 'Article Type', 'ramp' ),
+				'label'        => __( 'Article Type', 'research-amp' ),
 				'labels'       => [
-					'name'          => __( 'Article Type', 'ramp' ),
-					'singular_name' => __( 'Article Types', 'ramp' ),
-					'add_new_item'  => __( 'Add New Article Type', 'ramp' ),
-					'not_found'     => __( 'No Article Types found', 'ramp' ),
+					'name'          => __( 'Article Type', 'research-amp' ),
+					'singular_name' => __( 'Article Types', 'research-amp' ),
+					'add_new_item'  => __( 'Add New Article Type', 'research-amp' ),
+					'not_found'     => __( 'No Article Types found', 'research-amp' ),
 				],
 				'hierarchical' => true, // Just to get the checkboxes.
 				'public'       => true,
@@ -608,12 +608,12 @@ class Schema {
 			'ramp_item_type',
 			[ 'post' ],
 			[
-				'label'        => __( 'Item Type', 'ramp' ),
+				'label'        => __( 'Item Type', 'research-amp' ),
 				'labels'       => [
-					'name'          => __( 'Item Type', 'ramp' ),
-					'singular_name' => __( 'Item Types', 'ramp' ),
-					'add_new_item'  => __( 'Add New Item Type', 'ramp' ),
-					'not_found'     => __( 'No Item Types found', 'ramp' ),
+					'name'          => __( 'Item Type', 'research-amp' ),
+					'singular_name' => __( 'Item Types', 'research-amp' ),
+					'add_new_item'  => __( 'Add New Item Type', 'research-amp' ),
+					'not_found'     => __( 'No Item Types found', 'research-amp' ),
 				],
 				'hierarchical' => true, // Just to get the checkboxes.
 				'public'       => true,
@@ -628,12 +628,12 @@ class Schema {
 			'ramp_profile_tag',
 			[ 'ramp_profile' ],
 			[
-				'label'        => __( 'Profile Tag', 'ramp' ),
+				'label'        => __( 'Profile Tag', 'research-amp' ),
 				'labels'       => [
-					'name'          => __( 'Profile Tag', 'ramp' ),
-					'singular_name' => __( 'Profile Tags', 'ramp' ),
-					'add_new_item'  => __( 'Add New Profile Tag', 'ramp' ),
-					'not_found'     => __( 'No Profile Tags found', 'ramp' ),
+					'name'          => __( 'Profile Tag', 'research-amp' ),
+					'singular_name' => __( 'Profile Tags', 'research-amp' ),
+					'add_new_item'  => __( 'Add New Profile Tag', 'research-amp' ),
+					'not_found'     => __( 'No Profile Tags found', 'research-amp' ),
 				],
 				'hierarchical' => true, // Just to get the checkboxes.
 				'public'       => true,
@@ -774,7 +774,7 @@ class Schema {
 		$terms_of_post = wp_get_object_terms( $post->ID, 'ramp_assoc_profile', [ 'fields' => 'ids' ] );
 
 		?>
-		<label for="sp-selector" class="screen-reader-text"><?php esc_html_e( 'Select Profiles', 'ramp' ); ?></label>
+		<label for="sp-selector" class="screen-reader-text"><?php esc_html_e( 'Select Profiles', 'research-amp' ); ?></label>
 		<select id="sp-selector" name="tax_input[ramp_assoc_profile][]" multiple>
 			<?php foreach ( $terms as $term ) : ?>
 				<option value="<?php echo esc_attr( $term['id'] ); ?>" <?php selected( in_array( $term['id'], $terms_of_post, true ) ); ?>><?php echo esc_html( $term['name'] ); ?></option>

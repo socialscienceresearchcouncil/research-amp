@@ -10,10 +10,10 @@ const HorizontalSwipeToggle = ( props ) => {
 
 	return (
 		<ToggleControl
-			label={ __( 'Swipe on mobile?', 'ramp' ) }
+			label={ __( 'Swipe on mobile?', 'research-amp' ) }
 			checked={ horizontalSwipe }
 			onChange={ onChangeCallback }
-			help={ __( 'On mobile devices, items will be shown horizontally, and users can swipe to see items that are off-screen.', 'ramp' ) }
+			help={ __( 'On mobile devices, items will be shown horizontally, and users can swipe to see items that are off-screen.', 'research-amp' ) }
 		/>
 	)
 }

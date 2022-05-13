@@ -63,7 +63,7 @@ class HomepageSlides {
 	public function register_meta_boxes( $post ) {
 		add_meta_box(
 			'ramp_slide_info',
-			__( 'Slide Info', 'ramp' ),
+			__( 'Slide Info', 'research-amp' ),
 			[ $this, 'slide_info_cb' ],
 			$this->post_type,
 			'normal',

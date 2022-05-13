@@ -38,14 +38,14 @@ export default function edit( {
 			)?.formatted_citation;
 
 			return {
-				citation: _citation ?? __( 'Author, Sample. "Example of a citation." March 3, 2005. Your Site. https://example.com/sample-citation', 'ramp' )
+				citation: _citation ?? __( 'Author, Sample. "Example of a citation." March 3, 2005. Your Site. https://example.com/sample-citation', 'research-amp' )
 			};
 		},
 		[ postType, postId ]
 	);
 
-	const headingTextValue = headingText ?? __( 'Cite This', 'ramp' )
-	const helpTextValue = helpText ?? __( 'Copy and paste the text below to cite this item.', 'ramp' )
+	const headingTextValue = headingText ?? __( 'Cite This', 'research-amp' )
+	const helpTextValue = helpText ?? __( 'Copy and paste the text below to cite this item.', 'research-amp' )
 
 	return (
 		<>

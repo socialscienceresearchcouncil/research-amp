@@ -5,7 +5,7 @@ return [
 	'attributes'      => [
 		'headingText' => [
 			'type'    => 'string',
-			'default' => __( 'Table of Contents', 'ramp' ),
+			'default' => __( 'Table of Contents', 'research-amp' ),
 		],
 		'isEditMode'  => [
 			'type'    => 'boolean',

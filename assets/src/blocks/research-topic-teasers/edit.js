@@ -71,7 +71,7 @@ export default function edit( {
 	const spinner = <Spinner />
 
 	const { researchTopics } = useSelect( ( select ) => {
-		const researchTopics = select( 'ramp' ).getResearchTopics()
+		const researchTopics = select( 'research-amp' ).getResearchTopics()
 
 		return {
 			researchTopics
@@ -89,34 +89,34 @@ export default function edit( {
 		isEditMode: true,
 	} )
 
-	researchTopicsOptions.unshift( { label: __( 'Select a Research Topic', 'ramp' ), value: 0 } )
+	researchTopicsOptions.unshift( { label: __( 'Select a Research Topic', 'research-amp' ), value: 0 } )
 
 	return (
 		<Fragment>
 			<InspectorControls>
 				<Panel>
 					<PanelBody
-						title={ __( 'Order and Pagination', 'ramp' ) }
+						title={ __( 'Order and Pagination', 'research-amp' ) }
 					>
 						<SelectControl
-							label={ __( 'Order', 'ramp' ) }
+							label={ __( 'Order', 'research-amp' ) }
 							value={ selectionType }
 							options={ [
-								{ label: __( 'Alphabetical', 'ramp' ), value: 'alphabetical' },
-								{ label: __( 'Recently Added', 'ramp' ), value: 'latest' },
-								{ label: __( 'Random', 'ramp' ), value: 'random' },
-								{ label: __( 'Specific', 'ramp' ), value: 'specific' },
+								{ label: __( 'Alphabetical', 'research-amp' ), value: 'alphabetical' },
+								{ label: __( 'Recently Added', 'research-amp' ), value: 'latest' },
+								{ label: __( 'Random', 'research-amp' ), value: 'random' },
+								{ label: __( 'Specific', 'research-amp' ), value: 'specific' },
 							] }
 							onChange={ ( selectionType ) => setAttributes( { selectionType } ) }
 						/>
 
 						{ 'specific' === selectionType &&
 							<fieldset>
-								<legend>{ __( 'Select a Research Topic for each slot.', 'ramp' ) }</legend>
+								<legend>{ __( 'Select a Research Topic for each slot.', 'research-amp' ) }</legend>
 								<ul>
 									<li>
 										<SelectControl
-											label={ __( 'Slot 1', 'ramp' ) }
+											label={ __( 'Slot 1', 'research-amp' ) }
 											labelPosition="side"
 											value={ slot1 }
 											options={ researchTopicsOptions }
@@ -126,7 +126,7 @@ export default function edit( {
 
 									<li>
 										<SelectControl
-											label={ __( 'Slot 2', 'ramp' ) }
+											label={ __( 'Slot 2', 'research-amp' ) }
 											labelPosition="side"
 											value={ slot2 }
 											options={ researchTopicsOptions }
@@ -136,7 +136,7 @@ export default function edit( {
 
 									<li>
 										<SelectControl
-											label={ __( 'Slot 3', 'ramp' ) }
+											label={ __( 'Slot 3', 'research-amp' ) }
 											labelPosition="side"
 											value={ slot3 }
 											options={ researchTopicsOptions }
@@ -171,7 +171,7 @@ export default function edit( {
 				{ 'grid' === variationType && (
 					<Panel>
 						<PanelBody
-							title={ __( 'Display Options', 'ramp' ) }
+							title={ __( 'Display Options', 'research-amp' ) }
 						>
 								<PanelRow>
 									<HorizontalSwipeToggle
@@ -189,13 +189,13 @@ export default function edit( {
 					<ToolbarButton
 						icon={ ListIcon }
 						isActive={ 'list' === variationType }
-						label={ __( 'List', 'ramp' ) }
+						label={ __( 'List', 'research-amp' ) }
 						onClick={ () => setAttributes( { variationType: 'list' } ) }
 					/>
 					<ToolbarButton
 						icon={ GridIcon }
 						isActive={ 'grid' === variationType }
-						label={ __( 'Grid', 'ramp' ) }
+						label={ __( 'Grid', 'research-amp' ) }
 						onClick={ () => setAttributes( { variationType: 'grid' } ) }
 					/>
 				</ToolbarGroup>

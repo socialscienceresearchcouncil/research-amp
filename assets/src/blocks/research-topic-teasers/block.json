@@ -3,7 +3,7 @@
 	"name": "ramp/research-topic-teasers",
 	"title": "Research Topic Teasers",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"editorStyle": "file:../../../../build/index.css",
 	"supports": {
 		"anchor": true

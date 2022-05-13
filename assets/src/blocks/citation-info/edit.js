@@ -17,7 +17,7 @@ import { PanelBody } from '@wordpress/components'
 import PublicationDateToggle from '../../components/PublicationDateToggle'
 
 export default function edit( {
-	context: { postType, postId },
+	context: { postId, postType, templateSlug },
 	attributes,
 	setAttributes
 } ) {
@@ -60,16 +60,16 @@ export default function edit( {
 		[ postType, postId ]
 	);
 
-	const displayName = authorName ?? __( 'Author Name', 'ramp' )
-	const publicationDate = postDate ?? __( 'Publication Date', 'ramp' )
+	const displayName = authorName ?? __( 'Author Name', 'research-amp' )
+	const publicationDate = postDate ?? __( 'Publication Date', 'research-amp' )
 
 	const byline = showPublicationDate
-		? sprintf( __( 'By %1$s on %2$s', 'ramp' ),
+		? sprintf( __( 'By %1$s on %2$s', 'research-amp' ),
 				displayName,
 				publicationDate
 			)
 		: sprintf(
-				__( 'By %1$s', 'ramp' ),
+				__( 'By %1$s', 'research-amp' ),
 				displayName
 			)
 

@@ -1,7 +1,7 @@
 <?php
 $r = array_merge(
 	[
-		'headingText' => __( 'Table of Contents', 'ramp' ),
+		'headingText' => __( 'Table of Contents', 'research-amp' ),
 		'isEditMode'  => false,
 		'postId'      => get_queried_object_id(),
 	],

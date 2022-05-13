@@ -3,7 +3,7 @@
 	"name": "ramp/table-of-contents",
 	"title": "Table of Contents",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	},

@@ -18,7 +18,7 @@ export default function edit( {
 		[
 			'core/paragraph',
 			{
-				'placeholder': __( 'Enter the profile biography', 'ramp' )
+				'placeholder': __( 'Enter the profile biography', 'research-amp' )
 			}
 		]
 	]

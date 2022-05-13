@@ -3,7 +3,7 @@
 	"name": "ramp/profile-directory-filters",
 	"title": "Profile Directory Filters",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"color": true
 		},

@@ -35,7 +35,7 @@ class Admin {
 	public function add_meta_boxes() {
 		add_meta_box(
 			'zotero-id',
-			__( 'Zotero', 'ramp' ),
+			__( 'Zotero', 'research-amp' ),
 			[ $this, 'zotero_cb' ],
 			'ramp_citation',
 			'normal'
@@ -43,7 +43,7 @@ class Admin {
 
 		add_meta_box(
 			'zotero-collection-id',
-			__( 'Zotero', 'ramp' ),
+			__( 'Zotero', 'research-amp' ),
 			[ $this, 'zotero_collection_cb' ],
 			'ramp_topic',
 			'normal'
@@ -52,7 +52,7 @@ class Admin {
 		// Author attribution for news items.
 		add_meta_box(
 			'news-item-author',
-			__( 'Public-Facing Author Attribution', 'ramp' ),
+			__( 'Public-Facing Author Attribution', 'research-amp' ),
 			[ $this, 'news_item_author_cb' ],
 			'post',
 			'normal'
@@ -61,7 +61,7 @@ class Admin {
 		// Formatted citation.
 		add_meta_box(
 			'formatted-citation',
-			__( 'Formatted Citation', 'ramp' ),
+			__( 'Formatted Citation', 'research-amp' ),
 			[ $this, 'formatted_citation_cb' ],
 			[ 'ramp_review', 'ramp_article' ],
 			'normal'
@@ -70,7 +70,7 @@ class Admin {
 		// DOI
 		add_meta_box(
 			'doi',
-			__( 'DOI', 'ramp' ),
+			__( 'DOI', 'research-amp' ),
 			[ $this, 'doi_cb' ],
 			[ 'ramp_review', 'ramp_article' ],
 			'normal'
@@ -79,7 +79,7 @@ class Admin {
 		// Publication date
 		add_meta_box(
 			'publication_date',
-			__( 'Publication Date', 'ramp' ),
+			__( 'Publication Date', 'research-amp' ),
 			[ $this, 'publication_date_cb' ],
 			[ 'post' ],
 			'normal'
@@ -88,7 +88,7 @@ class Admin {
 		// Featured status
 		add_meta_box(
 			'featured_status',
-			__( 'Featured', 'ramp' ),
+			__( 'Featured', 'research-amp' ),
 			[ $this, 'featured_status_date_cb' ],
 			[ 'post', 'ramp_article' ],
 			'side'
@@ -104,14 +104,14 @@ class Admin {
 
 		if ( $zotero_id ) {
 			?>
-<strong><?php esc_html_e( 'Zotero ID:', 'ramp' ); ?></strong> <?php echo esc_html( $zotero_id ); ?><br />
-<strong><?php esc_html_e( 'Zotero URL:', 'ramp' ); ?></strong> <a href="<?php echo esc_attr( $zotero_url ); ?>"><?php echo esc_html( $zotero_url ); ?></a>
+<strong><?php esc_html_e( 'Zotero ID:', 'research-amp' ); ?></strong> <?php echo esc_html( $zotero_id ); ?><br />
+<strong><?php esc_html_e( 'Zotero URL:', 'research-amp' ); ?></strong> <a href="<?php echo esc_attr( $zotero_url ); ?>"><?php echo esc_html( $zotero_url ); ?></a>
 			<?php
 		} else {
 			if ( 'publish' === $post->post_status ) {
-				esc_html_e( 'No Zotero entry for this citation. Save this post to create the Zotero entry.', 'ramp' );
+				esc_html_e( 'No Zotero entry for this citation. Save this post to create the Zotero entry.', 'research-amp' );
 			} else {
-				esc_html_e( 'A Zotero entry will be created when you publish this citation.', 'ramp' );
+				esc_html_e( 'A Zotero entry will be created when you publish this citation.', 'research-amp' );
 			}
 		}
 	}
@@ -125,14 +125,14 @@ class Admin {
 
 		if ( $zotero_id ) {
 			?>
-<strong><?php esc_html_e( 'Zotero Collection ID:', 'ramp' ); ?></strong> <?php echo esc_html( $zotero_id ); ?><br />
-<strong><?php esc_html_e( 'Zotero Collection URL:', 'ramp' ); ?></strong> <a href="<?php echo esc_attr( $zotero_url ); ?>"><?php echo esc_html( $zotero_url ); ?></a>
+<strong><?php esc_html_e( 'Zotero Collection ID:', 'research-amp' ); ?></strong> <?php echo esc_html( $zotero_id ); ?><br />
+<strong><?php esc_html_e( 'Zotero Collection URL:', 'research-amp' ); ?></strong> <a href="<?php echo esc_attr( $zotero_url ); ?>"><?php echo esc_html( $zotero_url ); ?></a>
 			<?php
 		} else {
 			if ( 'publish' === $post->post_status ) {
-				esc_html_e( 'There is no Zotero collection corresponding to this Research Topic. Save this post and a Zotero collection should be created automatically.', 'ramp' );
+				esc_html_e( 'There is no Zotero collection corresponding to this Research Topic. Save this post and a Zotero collection should be created automatically.', 'research-amp' );
 			} else {
-				esc_html_e( 'A Zotero collection will be created when you publish this Research Topic.', 'ramp' );
+				esc_html_e( 'A Zotero collection will be created when you publish this Research Topic.', 'research-amp' );
 			}
 		}
 	}
@@ -190,7 +190,7 @@ class Admin {
 
 		?>
 		<label>
-			<?php esc_html_e( 'Source author', 'ramp' ); ?> <input type="text" name="item-author" value="<?php echo esc_attr( $custom_author ); ?>" />
+			<?php esc_html_e( 'Source author', 'research-amp' ); ?> <input type="text" name="item-author" value="<?php echo esc_attr( $custom_author ); ?>" />
 		</label>
 
 		<?php
@@ -227,9 +227,9 @@ class Admin {
 		</style>
 
 
-			<label class="screen-reader-text" for="formatted-citation-textarea"><?php esc_html_e( 'Formatted citation', 'ramp' ); ?></label>
+			<label class="screen-reader-text" for="formatted-citation-textarea"><?php esc_html_e( 'Formatted citation', 'research-amp' ); ?></label>
 			<textarea name="formatted-citation" id="formatted-citation-textarea"><?php echo esc_textarea( $citation ); ?></textarea>
-			<p><?php esc_html_e( 'For use in Cite This.', 'ramp' ); ?></p>
+			<p><?php esc_html_e( 'For use in Cite This.', 'research-amp' ); ?></p>
 
 		<?php
 		wp_nonce_field( 'formatted-citation', 'formatted-citation-nonce', false );
@@ -313,7 +313,7 @@ class Admin {
 			echo '<p>';
 			printf(
 				/* translators: 1. Post type name; 2. Date on which item was featured; 3. time at which item was featured */
-				esc_html__( 'This %1$s was initially featured on %2$s at %4$s.', 'ramp' ),
+				esc_html__( 'This %1$s was initially featured on %2$s at %4$s.', 'research-amp' ),
 				esc_html( $label ),
 				esc_html( $featured_date->format( 'Y-m-d' ) ),
 				// @todo This should not be hardcoded to NYC.
@@ -325,7 +325,7 @@ class Admin {
 				echo '<p><strong>';
 				printf(
 					/* translators: Post type name */
-					esc_html__( 'This is the currently featured %s.', 'ramp' ),
+					esc_html__( 'This is the currently featured %s.', 'research-amp' ),
 					esc_html( $label )
 				);
 				echo '</strong></p>';
@@ -334,7 +334,7 @@ class Admin {
 				echo '<p>';
 				printf(
 					/* translators: 1. Post type name; 2. Link to currently featured post */
-					esc_html__( 'The currently featured %1$s is %2$s.', 'ramp' ),
+					esc_html__( 'The currently featured %1$s is %2$s.', 'research-amp' ),
 					esc_html( $label ),
 					sprintf(
 						'<a href="%s">%s</a>',
@@ -351,7 +351,7 @@ class Admin {
 				esc_attr( $featured_post->get_unfeature_link( $_SERVER['REQUEST_URI'] ) ),
 				sprintf(
 					/* translators: Unfeatured item type */
-					esc_html__( 'Unfeature this %s', 'ramp' ),
+					esc_html__( 'Unfeature this %s', 'research-amp' ),
 					esc_html( $label )
 				)
 			);
@@ -363,7 +363,7 @@ class Admin {
 				esc_attr( $featured_post->get_feature_link( $_SERVER['REQUEST_URI'] ) ),
 				sprintf(
 					/* translators: Featured item type */
-					esc_html__( 'Feature this %s', 'ramp' ),
+					esc_html__( 'Feature this %s', 'research-amp' ),
 					esc_html( $label )
 				)
 			);
@@ -398,7 +398,7 @@ class Admin {
 	public function add_schprof_featured_view( $views ) {
 		$views['featured'] = sprintf(
 			'<a href="%s">%s <span class="count">(%s)</span></a>',
-			esc_html__( 'Featured', 'ramp' ),
+			esc_html__( 'Featured', 'research-amp' ),
 			esc_attr( admin_url( 'edit.php?post_type=ramp_profile&is_featured=1' ) ),
 			count( Profile::get_featured_ids() )
 		);

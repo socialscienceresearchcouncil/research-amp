@@ -42,23 +42,23 @@ export default function edit( {
 	return (
 		<div { ...blockProps() }>
 			<div className="directory-filter">
-				<FakeInput isSearch={ true } text={ __( 'Search...', 'ramp' ) } />
+				<FakeInput isSearch={ true } text={ __( 'Search...', 'research-amp' ) } />
 			</div>
 
 			<div className="directory-filter filter-by-legend">
-				{ __( 'Filter by:', 'ramp' ) }
+				{ __( 'Filter by:', 'research-amp' ) }
 			</div>
 
 			<div className="directory-filter">
-				<FakeSelect text={ __( 'All Research Topics', 'ramp' ) } />
+				<FakeSelect text={ __( 'All Research Topics', 'research-amp' ) } />
 			</div>
 
 			<div className="directory-filter">
-				<FakeSelect text={ __( 'All Subtopics', 'ramp' ) } />
+				<FakeSelect text={ __( 'All Subtopics', 'research-amp' ) } />
 			</div>
 
 			<div className="directory-filter directory-filter-submit">
-				<FakeButton text={ __( 'Apply Filters', 'ramp' ) } />
+				<FakeButton text={ __( 'Apply Filters', 'research-amp' ) } />
 			</div>
 		</div>
 	)

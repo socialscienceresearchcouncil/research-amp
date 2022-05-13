@@ -21,25 +21,25 @@ class Navigation {
 	public static function get_default_primary_nav_items() {
 		$research_reviews_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
-			esc_attr( __( 'Research Reviews', 'ramp' ) ),
+			esc_attr( __( 'Research Reviews', 'research-amp' ) ),
 			esc_url( get_post_type_archive_link( 'ramp_review' ) )
 		);
 
 		$articles_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
-			esc_attr( __( 'Articles', 'ramp' ) ),
+			esc_attr( __( 'Articles', 'research-amp' ) ),
 			esc_url( get_post_type_archive_link( 'ramp_article' ) )
 		);
 
 		$profiles_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
-			esc_attr( __( 'Profiles', 'ramp' ) ),
+			esc_attr( __( 'Profiles', 'research-amp' ) ),
 			esc_url( get_post_type_archive_link( 'ramp_profile' ) )
 		);
 
 		$citations_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
-			esc_attr( __( 'Citations', 'ramp' ) ),
+			esc_attr( __( 'Citations', 'research-amp' ) ),
 			esc_url( get_post_type_archive_link( 'ramp_citation' ) )
 		);
 
@@ -88,7 +88,7 @@ class Navigation {
 
 		$nav_links[] = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"page","url":"%s","kind":"post-type","isTopLevelLink":true} /-->',
-			esc_attr__( 'Log In', 'ramp' ),
+			esc_attr__( 'Log In', 'research-amp' ),
 			esc_url( wp_login_url() )
 		);
 
@@ -101,37 +101,37 @@ class Navigation {
 	public static function get_default_footer_nav_items() {
 		$research_topics_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
-			esc_attr( __( 'Research Topics', 'ramp' ) ),
+			esc_attr( __( 'Research Topics', 'research-amp' ) ),
 			esc_url( get_post_type_archive_link( 'ramp_topic' ) )
 		);
 
 		$research_reviews_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
-			esc_attr( __( 'Research Reviews', 'ramp' ) ),
+			esc_attr( __( 'Research Reviews', 'research-amp' ) ),
 			esc_url( get_post_type_archive_link( 'ramp_review' ) )
 		);
 
 		$articles_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
-			esc_attr( __( 'Articles', 'ramp' ) ),
+			esc_attr( __( 'Articles', 'research-amp' ) ),
 			esc_url( get_post_type_archive_link( 'ramp_article' ) )
 		);
 
 		$profiles_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
-			esc_attr( __( 'Profiles', 'ramp' ) ),
+			esc_attr( __( 'Profiles', 'research-amp' ) ),
 			esc_url( get_post_type_archive_link( 'ramp_profile' ) )
 		);
 
 		$citations_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
-			esc_attr( __( 'Citations', 'ramp' ) ),
+			esc_attr( __( 'Citations', 'research-amp' ) ),
 			esc_url( get_post_type_archive_link( 'ramp_citation' ) )
 		);
 
 		$news_items_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
-			esc_attr( __( 'News Items', 'ramp' ) ),
+			esc_attr( __( 'News Items', 'research-amp' ) ),
 			esc_url( get_post_type_archive_link( 'post' ) )
 		);
 
@@ -184,7 +184,7 @@ class Navigation {
 			'<!-- wp:navigation-submenu {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true,"className":"research-topic-subnav"} -->' .
 			'%s' .
 			'<!-- /wp:navigation-submenu -->',
-			esc_attr( __( 'Research Topics', 'ramp' ) ),
+			esc_attr( __( 'Research Topics', 'research-amp' ) ),
 			esc_url( get_post_type_archive_link( 'ramp_topic' ) ),
 			$research_topics_submenu_items
 		);

@@ -4,7 +4,7 @@
 	"description": "Dynamically generated links to the Zotero entry and the source URL of a Citation.",
 	"title": "Citation Links",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	},

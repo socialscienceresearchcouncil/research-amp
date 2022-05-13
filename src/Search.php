@@ -78,16 +78,16 @@ class Search {
 
 	public static function get_search_item_types() {
 		$types = [
-			'article'   => __( 'Articles', 'ramp' ),
-			'citation'  => __( 'Citations', 'ramp' ),
-			'news-item' => __( 'News Items', 'ramp' ),
-			'profile'   => __( 'Profiles', 'ramp' ),
-			'review'    => __( 'Research Reviews', 'ramp' ),
-			'topic'     => __( 'Research Topics', 'ramp' ),
+			'article'   => __( 'Articles', 'research-amp' ),
+			'citation'  => __( 'Citations', 'research-amp' ),
+			'news-item' => __( 'News Items', 'research-amp' ),
+			'profile'   => __( 'Profiles', 'research-amp' ),
+			'review'    => __( 'Research Reviews', 'research-amp' ),
+			'topic'     => __( 'Research Topics', 'research-amp' ),
 		];
 
 		if ( defined( 'TRIBE_EVENTS_FILE' ) ) {
-			$types['event'] = __( 'Events', 'ramp' );
+			$types['event'] = __( 'Events', 'research-amp' );
 		}
 
 		asort( $types );

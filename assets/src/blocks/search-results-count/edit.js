@@ -10,7 +10,7 @@ export default function edit() {
 	const blockProps = useBlockProps()
 	return (
 		<div { ...blockProps }>
-			{ __( '1,234 Results for "search terms" in "All content types"', 'ramp' ) }
+			{ __( '1,234 Results for "search terms" in "All content types"', 'research-amp' ) }
 		</div>
 	)
 }

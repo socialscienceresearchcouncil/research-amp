@@ -3,7 +3,7 @@
 	"name": "ramp/cite-this",
 	"title": "Cite This",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	},

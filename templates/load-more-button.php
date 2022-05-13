@@ -25,7 +25,7 @@ wp_enqueue_script( 'ramp-load-more' );
 		<span class="wp-block-button__link">
 	<?php endif; ?>
 
-	<?php esc_html_e( 'Load More', 'ramp' ); ?>
+	<?php esc_html_e( 'Load More', 'research-amp' ); ?>
 
 	<?php if ( ! $is_edit_mode ) : ?>
 		</a>

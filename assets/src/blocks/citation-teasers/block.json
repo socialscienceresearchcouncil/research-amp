@@ -3,7 +3,7 @@
 	"name": "ramp/citation-teasers",
 	"title": "Citation Teasers",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"style": "file:../../../../build/index.css",
 	"supports": {
 		"anchor": true

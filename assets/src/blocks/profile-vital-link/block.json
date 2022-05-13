@@ -3,7 +3,7 @@
 	"name": "ramp/profile-vital-link",
 	"title": "Profile Vital Link",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true,
 		"spacing": {

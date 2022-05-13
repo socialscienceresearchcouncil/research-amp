@@ -37,7 +37,7 @@ $title_class = 'has-' . $r['title_size'] . '-font-size';
 <article>
 	<div class="profile-teaser">
 		<?php if ( $r['show_item_type_label'] ) : ?>
-			<?php ramp_get_template_part( 'item-type-label', [ 'label' => __( 'Profile', 'ramp' ) ] ); ?>
+			<?php ramp_get_template_part( 'item-type-label', [ 'label' => __( 'Profile', 'research-amp' ) ] ); ?>
 		<?php endif; ?>
 
 		<div class="teaser-content">
@@ -51,7 +51,7 @@ $title_class = 'has-' . $r['title_size'] . '-font-size';
 				<div class="<?php echo esc_attr( $avatar_class ); ?>" <?php echo $background_style; ?>>
 					<?php if ( $img_src ) : ?>
 						<?php // translators: Profile name ?>
-						<img class="profile-avatar" alt="<?php echo esc_attr( sprintf( __( 'Profile picture of %s', 'ramp' ), $profile_obj->get_display_name() ) ); ?>" src="<?php echo esc_attr( $img_src ); ?>" />
+						<img class="profile-avatar" alt="<?php echo esc_attr( sprintf( __( 'Profile picture of %s', 'research-amp' ), $profile_obj->get_display_name() ) ); ?>" src="<?php echo esc_attr( $img_src ); ?>" />
 					<?php endif; ?>
 				</div>
 

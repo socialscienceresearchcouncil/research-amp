@@ -34,21 +34,21 @@ if ( $show_publication_date ) {
 	if ( $custom_author ) {
 		$byline = sprintf(
 			/* translators: 1. author link, 2. publication date */
-			esc_html__( 'By %1$s on %2$s', 'ramp' ),
+			esc_html__( 'By %1$s on %2$s', 'research-amp' ),
 			'<span class="byline-author">' . $custom_author . '</span>',
 			'<span class="byline-publication-date">' . $formatted_date . '</span>'
 		);
 	} else {
 		$byline = sprintf(
 			/* translators: publication date */
-			esc_html__( 'On %s', 'ramp' ),
+			esc_html__( 'On %s', 'research-amp' ),
 			'<span class="byline-publication-date">' . $formatted_date . '</span>'
 		);
 	}
 } elseif ( $custom_author ) {
 	$byline = sprintf(
 		/* translators: author link */
-		esc_html__( 'By %s', 'ramp' ),
+		esc_html__( 'By %s', 'research-amp' ),
 		'<span class="byline-author">' . $custom_author . '</span>'
 	);
 }

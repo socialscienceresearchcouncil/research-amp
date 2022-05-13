@@ -3,7 +3,7 @@
 	"name": "ramp/item-research-topics",
 	"title": "Research Topic Tags",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"style": "file:../../../../build/index.css",
 	"supports": {
 		"anchor": true

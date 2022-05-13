@@ -35,7 +35,7 @@ export default function edit( {
 		className: [ 'sidebar-section' ]
 	})
 
-	const headingTextValue = headingText ?? __( 'Version', 'ramp' )
+	const headingTextValue = headingText ?? __( 'Version', 'research-amp' )
 
 	const fakeTOC = (
 		<div id="ez-toc-container" className="ez-toc-v2_0_17 counter-hierarchy ez-toc-grey">

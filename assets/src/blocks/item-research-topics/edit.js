@@ -25,7 +25,7 @@ export default function edit( {
 	}
 
 	const { associatedIds, researchTopics } = useSelect( ( select ) => {
-		const researchTopics = select( 'ramp' ).getResearchTopics()
+		const researchTopics = select( 'research-amp' ).getResearchTopics()
 
 		const associatedIds = ! templateSlug ? select( 'core/editor' ).getEditedPostAttribute( 'ramp_assoc_topic' ) : []
 
@@ -40,7 +40,7 @@ export default function edit( {
 	} ) : []
 
 	// Show a placeholder "Research Topic" when editing a template.
-	const matchedTopics = ! templateSlug ? _matchedTopics : [ { title: { raw: __( 'Research Topic', 'ramp' ) } } ]
+	const matchedTopics = ! templateSlug ? _matchedTopics : [ { title: { raw: __( 'Research Topic', 'research-amp' ) } } ]
 
 	let topicIndex = 0
 	const topicTags = matchedTopics.map( topic => {

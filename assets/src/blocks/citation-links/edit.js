@@ -10,11 +10,11 @@ export default function edit( {
 	return (
 		<div { ...useBlockProps() }>
 			<div className="citation-link-zotero">
-				{ __( 'See citation in Zotero library', 'ramp' ) }
+				{ __( 'See citation in Zotero library', 'research-amp' ) }
 			</div>
 
 			<div className="citation-link-source">
-				{ __( 'Go to citation source.', 'ramp' ) }
+				{ __( 'Go to citation source.', 'research-amp' ) }
 			</div>
 		</div>
 	)

@@ -43,11 +43,11 @@ export default function edit( {
 	const getDefaultHeadingText = ( itemType ) => {
 		switch ( itemType ) {
 			case 'news-item' :
-				return __( 'Suggested News Items', 'ramp' )
+				return __( 'Suggested News Items', 'research-amp' )
 
 			case 'article' :
 			default :
-				return __( 'Suggested Articles', 'ramp' )
+				return __( 'Suggested Articles', 'research-amp' )
 		}
 	}
 

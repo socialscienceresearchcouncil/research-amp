@@ -39,7 +39,7 @@ const SortableItem = (props) => {
 				className='sortable-multi-select-item-remove'
 				onClick={() => handleRemoveClick(id)}
 			>
-				<span className="screen-reader-text">{ __( 'Remove item', 'ramp' ) }</span>
+				<span className="screen-reader-text">{ __( 'Remove item', 'research-amp' ) }</span>
 			</button>
 
 			<div

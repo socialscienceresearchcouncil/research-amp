@@ -4,7 +4,7 @@
 	"title": "Zotero Library info help",
 	"icon": "book-alt",
 	"style": "file:../../../../build/index.css",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	}

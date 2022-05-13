@@ -10,7 +10,7 @@ wp_enqueue_script( 'ramp-directory-filters' );
 		<?php ramp_get_template_part( 'filters/search' ); ?>
 
 		<div class="filter-by-legend">
-			<?php esc_html_e( 'Filter by:', 'ramp' ); ?>
+			<?php esc_html_e( 'Filter by:', 'research-amp' ); ?>
 		</div>
 
 		<?php ramp_get_template_part( 'filters/research-topic' ); ?>

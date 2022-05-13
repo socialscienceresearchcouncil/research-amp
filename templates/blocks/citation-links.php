@@ -35,13 +35,13 @@ $zotero_library = $citation->get_zotero_library();
 				echo esc_html(
 					sprintf(
 						// translators: Zotero library name
-						__( 'See citation in &lsquo;%s&rsquo; Zotero library', 'ramp' ),
+						__( 'See citation in &lsquo;%s&rsquo; Zotero library', 'research-amp' ),
 						$zotero_library->get_name()
 					)
 				);
 				?>
 			<?php else : ?>
-				<?php esc_html_e( 'See citation in Zotero library', 'ramp' ); ?>
+				<?php esc_html_e( 'See citation in Zotero library', 'research-amp' ); ?>
 			<?php endif; ?>
 
 			<?php if ( ! $is_edit_mode ) : ?>
@@ -56,7 +56,7 @@ $zotero_library = $citation->get_zotero_library();
 				<a href="<?php echo esc_url( $source_url ); ?>">
 			<?php endif; ?>
 
-			<?php esc_html_e( 'Go to citation source', 'ramp' ); ?>
+			<?php esc_html_e( 'Go to citation source', 'research-amp' ); ?>
 
 			<?php if ( ! $is_edit_mode ) : ?>
 				</a>

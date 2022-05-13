@@ -2,8 +2,8 @@
 $r = array_merge(
 	[
 		'citationText' => '',
-		'headingText'  => __( 'Cite This', 'ramp' ),
-		'helpText'     => __( 'Copy and paste the text below to cite this item.', 'ramp' ),
+		'headingText'  => __( 'Cite This', 'research-amp' ),
+		'helpText'     => __( 'Copy and paste the text below to cite this item.', 'research-amp' ),
 		'isEditMode'   => false,
 		'postId'       => get_queried_object_id(),
 	],

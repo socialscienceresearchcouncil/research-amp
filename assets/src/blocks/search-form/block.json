@@ -3,7 +3,7 @@
 	"name": "ramp/search-form",
 	"title": "Search Form",
 	"icon": "lightbulb",
-	"category": "ramp",
+	"category": "research-amp",
 	"supports": {
 		"anchor": true
 	},

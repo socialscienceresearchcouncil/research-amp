@@ -35,21 +35,21 @@ if ( $citation_id ) {
 		<dl>
 			<?php if ( $author ) : ?>
 				<div>
-					<dt><?php esc_html_e( 'Author:', 'ramp' ); ?></dt>
+					<dt><?php esc_html_e( 'Author:', 'research-amp' ); ?></dt>
 					<dd><?php echo esc_html( $author ); ?></dd>
 				</div>
 			<?php endif; ?>
 
 			<?php if ( $publication ) : ?>
 				<div>
-					<dt><?php esc_html_e( 'Publication:', 'ramp' ); ?></dt>
+					<dt><?php esc_html_e( 'Publication:', 'research-amp' ); ?></dt>
 					<dd><?php echo esc_html( $publication ); ?></dd>
 				</div>
 			<?php endif; ?>
 
 			<?php if ( $citation_year ) : ?>
 				<div>
-					<dt><?php esc_html_e( 'Year:', 'ramp' ); ?></dt>
+					<dt><?php esc_html_e( 'Year:', 'research-amp' ); ?></dt>
 					<dd><?php echo esc_html( $citation_year ); ?></dd>
 				</div>
 			<?php endif; ?>
