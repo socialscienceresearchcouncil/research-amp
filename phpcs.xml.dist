@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="RAMP">
-	<description>A custom set of rules for RAMP PHP files.</description>
+<ruleset name="ResearchAMP">
+	<description>A custom set of rules for Research AMP PHP files.</description>
 
 	<!-- Exclude the Composer Vendor directory. -->
 	<exclude-pattern>/vendor/*</exclude-pattern>
@@ -59,7 +59,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="ramp" />
+				<element value="research-amp" />
 			</property>
 		</properties>
 	</rule>
