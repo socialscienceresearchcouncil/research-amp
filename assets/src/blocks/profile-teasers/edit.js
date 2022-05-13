@@ -130,7 +130,7 @@ export default function edit( {
 			<div { ...blockProps() }>
 				<ServerSideRender
 					attributes={ serverSideAtts }
-					block="ramp/profile-teasers"
+					block="research-amp/profile-teasers"
 					httpMethod="GET"
 				/>
 			</div>

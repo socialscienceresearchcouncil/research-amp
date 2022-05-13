@@ -141,7 +141,7 @@ const selectors = {
 
 const resolvers = {
 	*getLibraryInfo( libraryId ) {
-		const path = '/ramp/v1/zotero-library/' + libraryId
+		const path = '/research-amp/v1/zotero-library/' + libraryId
 		const libraryInfo = yield actions.fetchFromAPI( path )
 		return actions.setLibraryInfo( libraryId, libraryInfo )
 	},

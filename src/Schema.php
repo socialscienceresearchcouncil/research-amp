@@ -267,13 +267,13 @@ class Schema {
 						[],
 						[
 							// "Profile" item type label.
-							[ 'ramp/item-type-label' ],
+							[ 'research-amp/item-type-label' ],
 
 							// Profile display name.
 							[ 'core/post-title', [ 'level' => 1 ] ],
 
 							// Title/institution field.
-							[ 'ramp/profile-title-institution' ],
+							[ 'research-amp/profile-title-institution' ],
 						],
 					],
 
@@ -288,7 +288,7 @@ class Schema {
 								[ 'width' => '33.33%' ],
 								[
 									// Profile photo.
-									[ 'ramp/profile-photo' ],
+									[ 'research-amp/profile-photo' ],
 
 									// Social links.
 									[
@@ -296,19 +296,19 @@ class Schema {
 										[],
 										[
 											[
-												'ramp/profile-vital-link',
+												'research-amp/profile-vital-link',
 												[ 'vitalType' => 'email' ],
 											],
 											[
-												'ramp/profile-vital-link',
+												'research-amp/profile-vital-link',
 												[ 'vitalType' => 'twitter' ],
 											],
 											[
-												'ramp/profile-vital-link',
+												'research-amp/profile-vital-link',
 												[ 'vitalType' => 'orcidId' ],
 											],
 											[
-												'ramp/profile-vital-link',
+												'research-amp/profile-vital-link',
 												[ 'vitalType' => 'website' ],
 											],
 										],
@@ -321,8 +321,8 @@ class Schema {
 								'core/column',
 								[ 'width' => '66.66%' ],
 								[
-									[ 'ramp/profile-bio' ],
-									[ 'ramp/item-research-topics' ],
+									[ 'research-amp/profile-bio' ],
+									[ 'research-amp/item-research-topics' ],
 								],
 							],
 						],
@@ -454,7 +454,7 @@ class Schema {
 				'show_in_rest'  => true,
 				'rest_base'     => 'zotero-library',
 				'supports'      => [ 'title', 'editor', 'custom-fields' ],
-				'template'      => [ [ 'ramp/zotero-library-info-help' ] ],
+				'template'      => [ [ 'research-amp/zotero-library-info-help' ] ],
 				'template_lock' => 'all',
 			]
 		);

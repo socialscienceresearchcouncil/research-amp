@@ -41,7 +41,7 @@ export default function edit( {
 			<div { ...blockProps() }>
 				<ServerSideRender
 					attributes={ serverSideAtts }
-					block="ramp/homepage-slides"
+					block="research-amp/homepage-slides"
 					httpMethod="GET"
 				/>
 			</div>

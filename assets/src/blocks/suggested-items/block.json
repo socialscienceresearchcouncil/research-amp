@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "ramp/suggested-items",
+	"name": "research-amp/suggested-items",
 	"title": "Suggested Items",
 	"icon": "lightbulb",
 	"category": "research-amp",

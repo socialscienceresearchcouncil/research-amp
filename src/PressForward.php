@@ -113,7 +113,7 @@ class PressForward {
 			'RAMPPressForward',
 			[
 				'eventsIsActive' => defined( 'TRIBE_EVENTS_FILE' ),
-				'restBase'       => esc_url_raw( rest_url( 'ramp/v1' ) ),
+				'restBase'       => esc_url_raw( rest_url( 'research-amp/v1' ) ),
 				'restNonce'      => wp_create_nonce( 'wp_rest' ),
 			]
 		);

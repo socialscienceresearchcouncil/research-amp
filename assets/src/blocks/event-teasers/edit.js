@@ -102,7 +102,7 @@ export default function edit( {
 			<div { ...blockProps() }>
 				<ServerSideRender
 					attributes={ serverSideAtts }
-					block="ramp/event-teasers"
+					block="research-amp/event-teasers"
 					httpMethod="GET"
 					LoadingResponsePlaceholder={ Spinner }
 				/>

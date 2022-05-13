@@ -105,7 +105,7 @@ export default function edit( {
 			<div { ...blockProps() }>
 				<ServerSideRender
 					attributes={ serverSideAtts }
-					block="ramp/citation-teasers"
+					block="research-amp/citation-teasers"
 					httpMethod="GET"
 				/>
 			</div>

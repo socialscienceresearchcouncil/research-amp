@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "ramp/citation-library-filters",
+	"name": "research-amp/citation-library-filters",
 	"title": "Citation Library Filters",
 	"icon": "lightbulb",
 	"category": "research-amp",

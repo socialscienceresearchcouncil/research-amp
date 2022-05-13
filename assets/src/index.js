@@ -81,6 +81,6 @@ const selectTaxonomySelector = ( OriginalComponent ) => {
 
 wp.hooks.addFilter(
 	'editor.PostTaxonomyType',
-	'ramp/select-taxonomy-selector',
+	'research-amp/select-taxonomy-selector',
 	selectTaxonomySelector
 )

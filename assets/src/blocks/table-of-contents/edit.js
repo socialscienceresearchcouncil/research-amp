@@ -96,7 +96,7 @@ export default function edit( {
 				{ ! showFakeTOC && (
 					<ServerSideRender
 						attributes={ serverSideAtts }
-						block="ramp/table-of-contents"
+						block="research-amp/table-of-contents"
 						httpMethod="GET"
 					/>
 				) }

@@ -257,11 +257,11 @@ class Blocks {
 
 	protected function recurse_cb_for_profile_data( $block, $profile_data = [] ) {
 		$block_map = [
-			'ramp/profile-title-institution' => [
+			'research-amp/profile-title-institution' => [
 				'meta_key' => 'ramp_profile_title_institution',
 				'callback' => [ __CLASS__, 'get_meta_value_from_content_attribute' ],
 			],
-			'ramp/profile-vital-link'        => [
+			'research-amp/profile-vital-link'        => [
 				'callback' => [ __CLASS__, 'get_meta_value_from_vital_link_attributes' ],
 			],
 		];
@@ -433,7 +433,7 @@ class Blocks {
 		$vitals = [];
 
 		foreach ( $blocks as $block ) {
-			if ( 'ramp/profile-vital-link' !== $block['blockName'] ) {
+			if ( 'research-amp/profile-vital-link' !== $block['blockName'] ) {
 				continue;
 			}
 

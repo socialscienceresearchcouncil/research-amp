@@ -23,7 +23,7 @@ export default function edit( {
 		<div { ...blockProps }>
 			<ServerSideRender
 				attributes={ serverSideAtts }
-				block="ramp/search-result-teaser"
+				block="research-amp/search-result-teaser"
 				httpMethod="GET"
 			/>
 		</div>

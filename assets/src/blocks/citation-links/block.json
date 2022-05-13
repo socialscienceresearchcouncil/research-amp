@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "ramp/citation-links",
+	"name": "research-amp/citation-links",
 	"description": "Dynamically generated links to the Zotero entry and the source URL of a Citation.",
 	"title": "Citation Links",
 	"icon": "lightbulb",

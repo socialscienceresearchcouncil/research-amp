@@ -11,7 +11,7 @@ use SSRC\RAMP\Zotero\Library;
 class ZoteroLibrary extends WP_REST_Controller {
 	public function register_routes() {
 		$version   = '1';
-		$namespace = 'ramp/v' . $version;
+		$namespace = 'research-amp/v' . $version;
 
 		register_rest_route(
 			$namespace,

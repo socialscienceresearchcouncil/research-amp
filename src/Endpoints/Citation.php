@@ -9,7 +9,7 @@ use \WP_REST_Server;
 class Citation extends WP_REST_Controller {
 	public function register_routes() {
 		$version   = '1';
-		$namespace = 'ramp/v' . $version;
+		$namespace = 'research-amp/v' . $version;
 
 		register_rest_route(
 			$namespace,
@@ -49,7 +49,7 @@ class Citation extends WP_REST_Controller {
 		];
 
 		$posted = wp_remote_post(
-			home_url( '/wp-json/ramp/v1/ztfetch' ),
+			home_url( '/wp-json/research-amp/v1/ztfetch' ),
 			[
 				'body'        => $data,
 				'timeout'     => 10,

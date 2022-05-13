@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "ramp/item-byline",
+	"name": "research-amp/item-byline",
 	"title": "Byline",
 	"icon": "lightbulb",
 	"category": "research-amp",

@@ -242,7 +242,7 @@ export default function edit( {
 			<div { ...blockProps() }>
 				<ServerSideRender
 					attributes={ serverSideAtts }
-					block="ramp/article-teasers"
+					block="research-amp/article-teasers"
 					className={"featured-item-id-" + featuredItemId}
 					httpMethod="GET"
 				/>

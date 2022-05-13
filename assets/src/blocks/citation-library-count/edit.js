@@ -24,7 +24,7 @@ export default function edit( {
 		<div { ...blockProps() }>
 			<ServerSideRender
 				attributes={ attributes }
-				block="ramp/citation-library-count"
+				block="research-amp/citation-library-count"
 				httpMethod="GET"
 			/>
 		</div>

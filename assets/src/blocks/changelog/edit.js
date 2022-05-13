@@ -89,7 +89,7 @@ export default function edit( {
 	const defaultDateText = dateI18n( siteFormat, Date.now() )
 
 	const defaultBlocks = [
-		[ 'ramp/changelog-entry', { 'dateText': defaultDateText, 'entryText': '<li>' + __( 'Initial publication', 'research-amp' ) + '</li>' } ]
+		[ 'research-amp/changelog-entry', { 'dateText': defaultDateText, 'entryText': '<li>' + __( 'Initial publication', 'research-amp' ) + '</li>' } ]
 	]
 
 	return (
@@ -103,7 +103,7 @@ export default function edit( {
 				/>
 
 				<InnerBlocks
-					allowedBlocks={ [ 'ramp/changelog-entry' ] }
+					allowedBlocks={ [ 'research-amp/changelog-entry' ] }
 					orientation="vertical"
 					renderAppender={ InnerBlocks.ButtonBlockAppender }
 					template={ defaultBlocks }

@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "ramp/search-results-count",
+	"name": "research-amp/search-results-count",
 	"title": "Search Results Count",
 	"icon": "lightbulb",
 	"category": "research-amp",

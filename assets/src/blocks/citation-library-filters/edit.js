@@ -39,7 +39,7 @@ export default function edit( {
 		<div { ...blockProps() }>
 			<ServerSideRender
 				attributes={ serverSideAtts }
-				block="ramp/citation-library-filters"
+				block="research-amp/citation-library-filters"
 				httpMethod="GET"
 			/>
 		</div>

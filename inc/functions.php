@@ -81,7 +81,7 @@ function ramp_get_pag_offset( $query_var ) {
 
 function ramp_get_default_nav_search_markup() {
 	return sprintf(
-		'<!-- wp:ramp/nav-search -->
+		'<!-- wp:research-amp/nav-search -->
 		<div class="wp-block-ramp-nav-search">
 			<button class="nav-search-button">
 				<span class="screen-reader-text">%s</span>
@@ -96,7 +96,7 @@ function ramp_get_default_nav_search_markup() {
 				</form>
 			</div>
 		</div>
-		<!-- /wp:ramp/nav-search -->',
+		<!-- /wp:research-amp/nav-search -->',
 		esc_html__( 'Click to search site', 'research-amp' ),
 		esc_url( home_url( '/' ) ),
 		esc_html__( 'Search terms', 'research-amp' ),

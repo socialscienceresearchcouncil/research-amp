@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "ramp/item-type-label",
+	"name": "research-amp/item-type-label",
 	"title": "Item Type Label",
 	"icon": "lightbulb",
 	"category": "research-amp",

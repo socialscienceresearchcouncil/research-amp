@@ -32,11 +32,11 @@ export default function edit( {
 	const getTeaserBlockType = ( itemType ) => {
 		switch ( itemType ) {
 			case 'news-item' :
-				return 'ramp/news-item-teasers'
+				return 'research-amp/news-item-teasers'
 
 			case 'article' :
 			default :
-				return 'ramp/article-teasers'
+				return 'research-amp/article-teasers'
 		}
 	}
 

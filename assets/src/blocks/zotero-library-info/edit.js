@@ -58,7 +58,7 @@ export default function edit( {
 
 	const triggerIngest = () => {
 		apiFetch( {
-			path: addQueryArgs( 'ramp/v1/zotero-library', {
+			path: addQueryArgs( 'research-amp/v1/zotero-library', {
 				libraryId: postId,
 				action: 'sync'
 			} ),

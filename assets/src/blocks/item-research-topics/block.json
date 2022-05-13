@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "ramp/item-research-topics",
+	"name": "research-amp/item-research-topics",
 	"title": "Research Topic Tags",
 	"icon": "lightbulb",
 	"category": "research-amp",

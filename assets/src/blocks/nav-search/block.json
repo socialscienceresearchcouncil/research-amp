@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "ramp/nav-search",
+	"name": "research-amp/nav-search",
 	"title": "Search Button for Header",
 	"icon": "search",
 	"category": "research-amp",

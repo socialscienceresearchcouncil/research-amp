@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "ramp/search-load-more",
+	"name": "research-amp/search-load-more",
 	"title": "Load More Button for Search Results",
 	"icon": "lightbulb",
 	"category": "research-amp",
