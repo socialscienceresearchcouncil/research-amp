@@ -37,6 +37,6 @@ if ( ! $item_type_label ) {
 
 ?>
 
-<div class="wp-block-ramp-item-type-label">
+<div class="wp-block-research-amp-item-type-label">
 	<?php echo esc_html( $item_type_label ); ?>
 </div>

@@ -43,6 +43,6 @@ if ( $requested_search_term ) {
 
 ?>
 
-<div class="wp-block-ramp-search-results-count">
+<div class="wp-block-research-amp-search-results-count">
 	<?php echo esc_html( $count_text ); ?>
 </div>

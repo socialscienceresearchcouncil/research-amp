@@ -70,7 +70,7 @@ return [
 
 		ob_start();
 
-		echo '<div class="wp-block-ramp-search-result-teaser">';
+		echo '<div class="wp-block-research-amp-search-result-teaser">';
 		ramp_get_template_part( 'teasers/' . $teaser_template, $template_args );
 		echo '</div>';
 

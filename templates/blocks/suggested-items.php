@@ -46,7 +46,7 @@ $teaser_block_atts = [
 ];
 
 $classnames = [
-	'wp-block-ramp-suggested-items',
+	'wp-block-research-amp-suggested-items',
 	'sidebar-section',
 ];
 

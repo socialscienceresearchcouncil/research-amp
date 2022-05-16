@@ -16,7 +16,7 @@ $has_more_pages = $new_page < $GLOBALS['wp_query']->found_posts;
 ?>
 
 <?php if ( $has_more_pages ) : ?>
-	<div class="wp-block-ramp-search-load-more">
+	<div class="wp-block-research-amp-search-load-more">
 		<?php
 		ramp_get_template_part(
 			'load-more-button',

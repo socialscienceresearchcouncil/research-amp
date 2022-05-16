@@ -21,7 +21,7 @@ if ( ! $citation ) {
 }
 
 $classnames = [
-	'wp-block-ramp-cite-this',
+	'wp-block-research-amp-cite-this',
 	'sidebar-section',
 	'sidebar-section-collapsible',
 	'section-open',

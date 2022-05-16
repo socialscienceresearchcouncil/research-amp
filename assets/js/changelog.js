@@ -1,6 +1,6 @@
 (function(){
 	const initChangelog = (changelog) => {
-		const entries = changelog.querySelectorAll( '.wp-block-ramp-changelog-entry' )
+		const entries = changelog.querySelectorAll( '.wp-block-research-amp-changelog-entry' )
 
 		// Get last entry for "last updated" timestamp
 		const lastEntry = entries[ entries.length - 1 ]
@@ -38,7 +38,7 @@
 	}
 
 	window.addEventListener( 'DOMContentLoaded', () => {
-		const changelogs = document.querySelectorAll( '.wp-block-ramp-changelog' )
+		const changelogs = document.querySelectorAll( '.wp-block-research-amp-changelog' )
 		for ( const changelog of changelogs ) {
 			initChangelog( changelog )
 		}

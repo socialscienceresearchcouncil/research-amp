@@ -21,7 +21,7 @@
 						// Special case for 'paged', which indicates the search page.
 						if ( 'paged' === queryArg ) {
 							newItems = doc.querySelectorAll('.wp-block-post-template li');
-							newLoadMore = doc.querySelector('.wp-block-ramp-search-load-more .load-more-button a');
+							newLoadMore = doc.querySelector('.wp-block-research-amp-search-load-more .load-more-button a');
 						} else {
 							newItems = doc.querySelectorAll('.uses-query-arg-' + queryArg + ' .load-more-list li');
 							newLoadMore = doc.querySelector('.uses-query-arg-' + queryArg + ' .load-more-button a');

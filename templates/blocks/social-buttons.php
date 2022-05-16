@@ -15,7 +15,7 @@ $post_title = get_the_title( $r['postId'] );
 $post_url   = get_permalink( $r['postId'] );
 
 $classnames = [
-	'wp-block-ramp-social-buttons',
+	'wp-block-research-amp-social-buttons',
 	'sidebar-section',
 ];
 

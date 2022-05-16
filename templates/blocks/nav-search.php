@@ -1,4 +1,4 @@
-<div class="wp-block-ramp-nav-search">
+<div class="wp-block-research-amp-nav-search">
 	<button class="nav-search-button">
 		<span class="screen-reader-text"><?php esc_html_e( 'Click to search site', 'research-amp' ); ?></span>
 	</button>

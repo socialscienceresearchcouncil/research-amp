@@ -2,7 +2,7 @@
 	let navSearchContainers
 
 	const handleToggleClick = ( event ) => {
-		const navSearch = event.target.closest( '.wp-block-ramp-nav-search' )
+		const navSearch = event.target.closest( '.wp-block-research-amp-nav-search' )
 		navSearch.classList.toggle( 'search-open' )
 		navSearch.querySelector( '.nav-search-input' ).focus()
 
@@ -47,7 +47,7 @@
 		}
 
 		if ( isEscape ) {
-			event.target.closest( '.wp-block-ramp-nav-search' ).classList.remove( 'search-open' );
+			event.target.closest( '.wp-block-research-amp-nav-search' ).classList.remove( 'search-open' );
 		}
 	}
 
@@ -134,7 +134,7 @@
 	} else {
 		document.addEventListener( 'DOMContentLoaded', () => {
 
-			navSearchContainers = document.querySelectorAll( '.wp-block-ramp-nav-search' )
+			navSearchContainers = document.querySelectorAll( '.wp-block-research-amp-nav-search' )
 
 			for ( const navSearchContainer of navSearchContainers ) {
 				navSearchContainer.querySelector( 'button' ).addEventListener( 'click', handleToggleClick )

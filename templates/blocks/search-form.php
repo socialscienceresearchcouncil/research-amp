@@ -52,7 +52,7 @@ $requested_type = \SSRC\RAMP\Search::get_requested_search_type();
 $all_types      = \SSRC\RAMP\Search::get_search_item_types();
 
 $form_classes = [
-	'wp-block-ramp-search-form',
+	'wp-block-research-amp-search-form',
 ];
 
 ?>

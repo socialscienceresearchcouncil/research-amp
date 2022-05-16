@@ -26,7 +26,7 @@ if ( ! empty( $args['showPublicationDate'] ) ) {
 
 ?>
 
-<div class="wp-block-ramp-item-byline">
+<div class="wp-block-research-amp-item-byline">
 	<?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>
 	<?php echo $byline; ?>
 </div>

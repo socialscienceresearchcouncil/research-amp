@@ -23,7 +23,7 @@ $zotero_library = $citation->get_zotero_library();
 
 ?>
 
-<div class="wp-block-ramp-citation-links">
+<div class="wp-block-research-amp-citation-links">
 	<?php if ( $zotero_url ) : ?>
 		<div class="citation-link-zotero">
 			<?php if ( ! $is_edit_mode ) : ?>

@@ -22,7 +22,7 @@ if ( ! $toc ) {
 }
 
 $classnames = [
-	'wp-block-ramp-table-of-contents',
+	'wp-block-research-amp-table-of-contents',
 	'sidebar-section',
 	'sidebar-section-collapsible',
 	'section-open',
