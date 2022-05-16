@@ -33,7 +33,7 @@ export default function edit( {
 } ) {
 	const blockProps = () => {
 		return useBlockProps( {
-			className: []
+			className: [ 'directory-filter-form' ]
 		} )
 	}
 
@@ -57,7 +57,7 @@ export default function edit( {
 				<FakeSelect text={ __( 'All Subtopics', 'research-amp' ) } />
 			</div>
 
-			<div className="directory-filter directory-filter-submit">
+			<div className="directory-filter directory-filters-submit">
 				<FakeButton text={ __( 'Apply Filters', 'research-amp' ) } />
 			</div>
 		</div>
