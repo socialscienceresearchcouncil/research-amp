@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/suggested-items",
 	"title": "Suggested Items",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true
