@@ -24,7 +24,6 @@ class Admin {
 
 		add_filter( 'manage_edit-ramp_profile_columns', [ $this, 'add_schprof_featured_column' ] );
 		add_action( 'manage_ramp_profile_posts_custom_column', [ $this, 'schprof_featured_column_content' ], 10, 2 );
-		add_filter( 'views_edit-ramp_profile', [ $this, 'add_schprof_featured_view' ] );
 		add_filter( 'pre_get_posts', [ $this, 'schprof_featured_query' ] );
 
 		$this->pressforward->init();
@@ -393,16 +392,6 @@ class Admin {
 		if ( $profile_profile->get_is_featured() ) {
 			echo 'Yes';
 		}
-	}
-
-	public function add_schprof_featured_view( $views ) {
-		$views['featured'] = sprintf(
-			'<a href="%s">%s <span class="count">(%s)</span></a>',
-			esc_html__( 'Featured', 'research-amp' ),
-			esc_attr( admin_url( 'edit.php?post_type=ramp_profile&is_featured=1' ) ),
-			count( Profile::get_featured_ids() )
-		);
-		return $views;
 	}
 
 	public function schprof_featured_query( $query ) {
