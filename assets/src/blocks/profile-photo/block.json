@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/profile-photo",
 	"title": "Profile Photo",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true

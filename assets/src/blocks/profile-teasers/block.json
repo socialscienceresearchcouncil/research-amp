@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/profile-teasers",
 	"title": "Profile Teasers",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true

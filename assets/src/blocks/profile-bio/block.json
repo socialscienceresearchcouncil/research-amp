@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/profile-bio",
 	"title": "Profile Bio",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true
