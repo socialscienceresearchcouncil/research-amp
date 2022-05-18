@@ -21,6 +21,8 @@ class PressForward {
 
 		add_action( 'add_meta_boxes_nomthis', [ $this, 'metaboxes' ], 100 );
 
+		add_filter( 'option_' . PF_SLUG . '_draft_post_type', [ __CLASS__, 'news_item_post_type' ] );
+
 		add_filter(
 			'pf_valid_post_taxonomies',
 			function() {
@@ -40,6 +42,10 @@ class PressForward {
 			'pre_update_option_pf_last_nominated_feed',
 			'__return_empty_string'
 		);
+	}
+
+	public static function news_item_post_type() {
+		return 'ramp_news_item';
 	}
 
 	/**

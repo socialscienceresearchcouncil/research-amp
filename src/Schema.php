@@ -114,7 +114,7 @@ class Schema {
 	public function register_post_types() {
 		add_post_type_support( 'page', 'excerpt' );
 
-		// Research Review (formerly Lit Review)
+		// Research Review.
 		register_post_type(
 			'ramp_review',
 			[
@@ -428,6 +428,39 @@ class Schema {
 			]
 		);
 
+		// News Item.
+		register_post_type(
+			'ramp_news_item',
+			[
+				'label'             => __( 'News Items', 'research-amp' ),
+				'labels'            => [
+					'name'               => __( 'News Items', 'research-amp' ),
+					'singular_name'      => __( 'News Item', 'research-amp' ),
+					'add_new_item'       => __( 'Add New News Item', 'research-amp' ),
+					'edit_item'          => __( 'Edit News Item', 'research-amp' ),
+					'new_item'           => __( 'New News Item', 'research-amp' ),
+					'view_item'          => __( 'View News Item', 'research-amp' ),
+					'view_items'         => __( 'View News Items', 'research-amp' ),
+					'search_items'       => __( 'Search News Items', 'research-amp' ),
+					'not_found'          => __( 'No News Items found', 'research-amp' ),
+					'not_found_in_trash' => __( 'No News Items found in Trash', 'research-amp' ),
+					'all_items'          => __( 'All News Items', 'research-amp' ),
+					'name_admin_bar'     => __( 'News Items', 'research-amp' ),
+				],
+				'public'            => true,
+				'has_archive'       => true,
+				'rewrite'           => [
+					'slug'       => 'news-items',
+					'with_front' => false,
+				],
+				'menu_icon'         => 'data:image/svg+xml;base64,' . base64_encode( '<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path fill="black" d="M5 21Q4.175 21 3.587 20.413Q3 19.825 3 19V5Q3 4.175 3.587 3.587Q4.175 3 5 3H16L21 8V19Q21 19.825 20.413 20.413Q19.825 21 19 21ZM15 9H19L15 5ZM7 9H12V7H7ZM7 13H17V11H7ZM7 17H17V15H7Z"/></svg>' ),
+				'rest_base'         => 'news-items',
+				'show_in_rest'      => true,
+				'show_in_nav_menus' => true,
+				'supports'          => [ 'title', 'editor', 'excerpt', 'thumbnail', 'author' ],
+			]
+		);
+
 		// Zotero libraries.
 		register_post_type(
 			'ramp_zotero_library',
@@ -502,6 +535,7 @@ class Schema {
 			'ramp_citation',
 			'ramp_review',
 			'ramp_article',
+			'ramp_news_item',
 		];
 
 		register_taxonomy(
@@ -606,7 +640,7 @@ class Schema {
 
 		register_taxonomy(
 			'ramp_item_type',
-			[ 'post' ],
+			[ 'ramp_news_item' ],
 			[
 				'label'        => __( 'Item Type', 'research-amp' ),
 				'labels'       => [
@@ -643,12 +677,6 @@ class Schema {
 				],
 			]
 		);
-
-		register_taxonomy_for_object_type( 'ramp_focus_tag', 'post' );
-		register_taxonomy_for_object_type( 'ramp_assoc_topic', 'post' );
-		register_taxonomy_for_object_type( 'ramp_assoc_profile', 'post' );
-
-		unregister_taxonomy_for_object_type( 'post_tag', 'post' );
 
 		// Set up taxonomy sync.
 		new Libraries\TaxonomyOrder(

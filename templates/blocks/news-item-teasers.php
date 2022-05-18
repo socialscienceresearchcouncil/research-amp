@@ -33,7 +33,7 @@ $show_featured_item = ! empty( $args['showFeaturedItem'] );
 $featured_item_id   = ! empty( $args['featuredItemId'] ) ? (int) $args['featuredItemId'] : null;
 
 $query_args = [
-	'post_type'      => 'post',
+	'post_type'      => 'ramp_news_item',
 	'post_status'    => 'publish',
 	'posts_per_page' => $number_of_items,
 	'tax_query'      => \SSRC\RAMP\Blocks::get_content_mode_tax_query_from_template_args( $r ),

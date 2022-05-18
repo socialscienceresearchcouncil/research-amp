@@ -14,9 +14,6 @@ class Admin {
 	public function init() {
 		add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
 
-		add_action( 'admin_init', [ $this, 'catch_feature_request' ] );
-		add_action( 'admin_init', [ $this, 'catch_unfeature_request' ] );
-
 		add_action( 'save_post', [ $this, 'news_item_author_save_cb' ] );
 		add_action( 'save_post', [ $this, 'formatted_citation_save_cb' ] );
 		add_action( 'save_post', [ $this, 'doi_save_cb' ] );
@@ -52,7 +49,7 @@ class Admin {
 			'news-item-author',
 			__( 'Public-Facing Author Attribution', 'research-amp' ),
 			[ $this, 'news_item_author_cb' ],
-			'post',
+			'ramp_news_item',
 			'normal'
 		);
 
@@ -79,7 +76,7 @@ class Admin {
 			'publication_date',
 			__( 'Publication Date', 'research-amp' ),
 			[ $this, 'publication_date_cb' ],
-			[ 'post' ],
+			[ 'ramp_news_item' ],
 			'normal'
 		);
 	}
@@ -140,7 +137,7 @@ class Admin {
 
 	public function news_item_author_save_cb( $post_id ) {
 		$post = get_post( $post_id );
-		if ( ! $post || 'post' !== $post->post_type ) {
+		if ( ! $post || 'ramp_news_item' !== $post->post_type ) {
 			return;
 		}
 

@@ -36,7 +36,7 @@ class API {
 		);
 
 		register_rest_field(
-			[ 'ramp_topic', 'ramp_review', 'ramp_article', 'post' ],
+			[ 'ramp_topic', 'ramp_review', 'ramp_article', 'ramp_news_item' ],
 			'formatted_date',
 			[
 				'get_callback' => function( $object ) {
@@ -46,7 +46,7 @@ class API {
 		);
 
 		register_rest_field(
-			[ 'ramp_topic', 'ramp_review', 'ramp_article', 'post' ],
+			[ 'ramp_topic', 'ramp_review', 'ramp_article', 'ramp_news_item' ],
 			'formatted_citation',
 			[
 				'get_callback' => function( $object ) {

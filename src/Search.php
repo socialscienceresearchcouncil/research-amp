@@ -39,7 +39,7 @@ class Search {
 						return 'ramp_profile';
 
 					case 'news-item' :
-						return 'post';
+						return 'ramp_news_item';
 
 					case 'citation' :
 						return 'ramp_citation';

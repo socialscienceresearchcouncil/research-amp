@@ -44,7 +44,7 @@ return [
 				$teaser_template = 'event';
 			break;
 
-			case 'post' :
+			case 'ramp_news_item' :
 				$teaser_template = 'news-item';
 			break;
 

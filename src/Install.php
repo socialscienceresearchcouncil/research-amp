@@ -110,20 +110,6 @@ class Install {
 	}
 
 	protected function install_default_page_on_front() {
-		$news_items_page = wp_insert_post(
-			[
-				'post_title'   => __( 'News Items', 'research-amp' ),
-				'post_name'    => 'news-items',
-				'post_type'    => 'page',
-				'post_status'  => 'publish',
-				'post_content' => '',
-			]
-		);
-
-		if ( $news_items_page ) {
-			update_post_meta( $news_items_page, '_wp_page_template', 'page-news-items' );
-		}
-
 		$page_on_front = wp_insert_post(
 			[
 				'post_title'   => __( 'Home Page', 'research-amp' ),

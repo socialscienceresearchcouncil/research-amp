@@ -132,7 +132,7 @@ class Navigation {
 		$news_items_link = sprintf(
 			'<!-- wp:navigation-link {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true} /-->',
 			esc_attr( __( 'News Items', 'research-amp' ) ),
-			esc_url( get_post_type_archive_link( 'post' ) )
+			esc_url( get_post_type_archive_link( 'ramp_news_item' ) )
 		);
 
 		$items = [
