@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/table-of-contents",
 	"title": "Table of Contents",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true
