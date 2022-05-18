@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/item-byline",
 	"title": "Byline",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true

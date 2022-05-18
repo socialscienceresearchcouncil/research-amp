@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/item-type-label",
 	"title": "Item Type Label",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true

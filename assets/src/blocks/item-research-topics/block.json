@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/item-research-topics",
 	"title": "Research Topic Tags",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"style": "file:../../../../build/index.css",
 	"supports": {

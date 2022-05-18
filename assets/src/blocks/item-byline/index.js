@@ -10,18 +10,13 @@ import { registerBlockType } from '@wordpress/blocks';
  */
 import edit from './edit';
 import metadata from './block.json';
+import { info as icon } from '../../icons' 
 
 /**
  * Block definition.
  */
 registerBlockType( metadata, {
-	/**
-	 * @see ./edit.js
-	 */
+	icon,
 	edit,
-
-	/**
-	 * Rendered in PHP.
-	 */
-	save: () => { return null },
-} );
+	save: () => { return null }
+} )
