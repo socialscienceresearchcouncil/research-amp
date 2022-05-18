@@ -1,8 +1,7 @@
 {
 	"apiVersion": 2,
-	"name": "research-amp/zotero-library-info-help",
+	"name": "research-amp/zotero-library-info",
 	"title": "Zotero Library info help",
-	"icon": "book-alt",
 	"style": "file:../../../../build/index.css",
 	"category": "research-amp",
 	"supports": {
