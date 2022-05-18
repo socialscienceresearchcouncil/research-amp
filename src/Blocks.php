@@ -172,7 +172,7 @@ class Blocks {
 			[
 				[
 					'slug'  => 'research-amp',
-					'title' => esc_html__( 'RAMP', 'research-amp' ),
+					'title' => esc_html__( 'Research AMP', 'research-amp' ),
 				],
 			]
 		);
