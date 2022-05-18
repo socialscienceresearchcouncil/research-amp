@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/search-form",
 	"title": "Search Form",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true

@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/search-results-count",
 	"title": "Search Results Count",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true

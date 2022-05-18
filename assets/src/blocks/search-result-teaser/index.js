@@ -1,5 +1,5 @@
 /**
- * Item Byline block
+ * Search Result Teaser block.
  */
 
 import { __ } from '@wordpress/i18n';
@@ -10,18 +10,13 @@ import { registerBlockType } from '@wordpress/blocks';
  */
 import edit from './edit';
 import metadata from './block.json';
+import { search as icon } from '../../icons'
 
 /**
  * Block definition.
  */
 registerBlockType( metadata, {
-	/**
-	 * @see ./edit.js
-	 */
+	icon,
 	edit,
-
-	/**
-	 * Rendered in PHP.
-	 */
-	save: () => { return null },
-} );
+	save: () => { return null }
+} )
