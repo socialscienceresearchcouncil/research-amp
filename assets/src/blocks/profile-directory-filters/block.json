@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/profile-directory-filters",
 	"title": "Profile Directory Filters",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"color": true
