@@ -1,8 +1,7 @@
 {
 	"apiVersion": 2,
 	"name": "research-amp/news-item-teasers",
-	"title": "News Teasers",
-	"icon": "lightbulb",
+	"title": "News Item Teasers",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true
