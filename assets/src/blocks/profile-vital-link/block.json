@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/profile-vital-link",
 	"title": "Profile Vital Link",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true,

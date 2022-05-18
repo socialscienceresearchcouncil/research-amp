@@ -23,8 +23,6 @@ import {
 	useRef
 } from '@wordpress/element'
 
-import { EmailIcon } from './icons/email'
-
 /**
  * Editor styles.
  */

@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n'
 
-import { EmailIcon } from './icons/email'
+import { email as emailIcon } from '../../icons'
 
 const variations = [
 	{
@@ -10,7 +10,7 @@ const variations = [
 		attributes: { vitalType: 'emailAddress' },
 		title: __( 'Email Address', 'research-amp' ),
 		placeholder: __( 'Enter email address', 'research-amp' ),
-		icon: EmailIcon
+		icon: 'email'
 	},
 	{
 		name: 'twitter',
@@ -18,7 +18,7 @@ const variations = [
 		attributes: { vitalType: 'twitterHandle' },
 		title: __( 'Twitter Handle', 'research-amp' ),
 		placeholder: __( 'Enter Twitter handle', 'research-amp' ),
-		icon: EmailIcon
+		icon: 'twitter'
 	},
 	{
 		name: 'orcidId',
@@ -26,7 +26,7 @@ const variations = [
 		attributes: { vitalType: 'orcidId' },
 		title: __( 'ORCID ID', 'research-amp' ),
 		placeholder: __( 'Enter ORCID ID', 'research-amp' ),
-		icon: EmailIcon
+		icon: 'welcome-learn-more'
 	},
 	{
 		name: 'website',
@@ -34,7 +34,7 @@ const variations = [
 		attributes: { vitalType: 'website' },
 		title: __( 'Website URL', 'research-amp' ),
 		placeholder: __( 'Enter Website URL', 'research-amp' ),
-		icon: EmailIcon
+		icon: 'facebook'
 	}
 ]
 

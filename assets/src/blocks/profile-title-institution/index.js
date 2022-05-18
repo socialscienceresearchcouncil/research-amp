@@ -1,5 +1,5 @@
 /**
- * Item Byline block
+ * Profile Title/Institution block.
  */
 
 import { __ } from '@wordpress/i18n';
