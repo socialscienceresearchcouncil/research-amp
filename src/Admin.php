@@ -24,7 +24,6 @@ class Admin {
 
 		add_filter( 'manage_edit-ramp_profile_columns', [ $this, 'add_schprof_featured_column' ] );
 		add_action( 'manage_ramp_profile_posts_custom_column', [ $this, 'schprof_featured_column_content' ], 10, 2 );
-		add_filter( 'pre_get_posts', [ $this, 'schprof_featured_query' ] );
 
 		$this->pressforward->init();
 
@@ -83,15 +82,6 @@ class Admin {
 			[ 'post' ],
 			'normal'
 		);
-
-		// Featured status
-		add_meta_box(
-			'featured_status',
-			__( 'Featured', 'research-amp' ),
-			[ $this, 'featured_status_date_cb' ],
-			[ 'post', 'ramp_article' ],
-			'side'
-		);
 	}
 
 	public function zotero_cb( $post ) {
@@ -133,54 +123,6 @@ class Admin {
 			} else {
 				esc_html_e( 'A Zotero collection will be created when you publish this Research Topic.', 'research-amp' );
 			}
-		}
-	}
-
-	public function catch_feature_request() {
-		if ( ! current_user_can( 'delete_posts' ) ) {
-			return;
-		}
-
-		if ( empty( $_GET['ramp-feature'] ) ) {
-			return;
-		}
-
-		$post_id = intval( $_GET['ramp-feature'] );
-
-		check_admin_referer( 'ramp-feature-' . $post_id );
-
-		$featured_post = Featured\FeaturedItem::get_instance( $post_id );
-		$featured_post->mark_featured();
-
-		if ( ! empty( $_GET['redirect_to'] ) ) {
-			$redirect_to = wp_unslash( $_GET['redirect_to'] );
-			$redirect_to = add_query_arg( 'feature-success', 1, $redirect_to );
-			wp_safe_redirect( $redirect_to );
-			die;
-		}
-	}
-
-	public function catch_unfeature_request() {
-		if ( ! current_user_can( 'delete_posts' ) ) {
-			return;
-		}
-
-		if ( empty( $_GET['ramp-unfeature'] ) ) {
-			return;
-		}
-
-		$post_id = intval( $_GET['ramp-unfeature'] );
-
-		check_admin_referer( 'ramp-unfeature-' . $post_id );
-
-		$featured_post = Featured\FeaturedItem::get_instance( $post_id );
-		$featured_post->mark_unfeatured();
-
-		if ( ! empty( $_GET['redirect_to'] ) ) {
-			$redirect_to = wp_unslash( $_GET['redirect_to'] );
-			$redirect_to = add_query_arg( 'unfeature-success', 1, $redirect_to );
-			wp_safe_redirect( $redirect_to );
-			die;
 		}
 	}
 
@@ -392,26 +334,5 @@ class Admin {
 		if ( $profile_profile->get_is_featured() ) {
 			echo 'Yes';
 		}
-	}
-
-	public function schprof_featured_query( $query ) {
-		global $pagenow;
-
-		if ( ! is_admin() ) {
-			return;
-		}
-
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( 'edit.php' !== $pagenow || empty( $_GET['post_type'] ) || 'ramp_profile' !== $_GET['post_type'] ) {
-			return;
-		}
-
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( empty( $_GET['is_featured'] ) || '1' !== $_GET['is_featured'] ) {
-			return;
-		}
-
-		$query->set( 'meta_key', 'is_featured' );
-		$query->set( 'meta_value', '1' );
 	}
 }
