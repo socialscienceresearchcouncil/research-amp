@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/the-events-calendar",
 	"title": "The Events Calendar",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true
