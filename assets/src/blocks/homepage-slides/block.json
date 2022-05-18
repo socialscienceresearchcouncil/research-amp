@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/homepage-slides",
 	"title": "Homepage Slides",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"editorStyle": "file:../../../../build/index.css",
 	"supports": {
