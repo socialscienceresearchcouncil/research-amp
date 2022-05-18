@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/citation-teasers",
 	"title": "Citation Teasers",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"style": "file:../../../../build/index.css",
 	"supports": {
