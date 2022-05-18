@@ -2,7 +2,6 @@
 	"apiVersion": 2,
 	"name": "research-amp/cite-this",
 	"title": "Cite This",
-	"icon": "lightbulb",
 	"category": "research-amp",
 	"supports": {
 		"anchor": true
