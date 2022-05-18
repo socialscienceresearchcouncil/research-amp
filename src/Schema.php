@@ -454,7 +454,7 @@ class Schema {
 				'show_in_rest'  => true,
 				'rest_base'     => 'zotero-library',
 				'supports'      => [ 'title', 'editor', 'custom-fields' ],
-				'template'      => [ [ 'research-amp/zotero-library-info-help' ] ],
+				'template'      => [ [ 'research-amp/zotero-library-info' ] ],
 				'template_lock' => 'all',
 			]
 		);
