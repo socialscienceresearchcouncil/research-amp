@@ -43,7 +43,7 @@ class CitationLibrary {
 		if ( ! $next_ingest_full ) {
 			wp_schedule_event(
 				time(),
-				'weekly',
+				'daily',
 				$library->get_ingest_full_cron_hook_name()
 			);
 		}
