@@ -542,12 +542,12 @@ class Schema {
 			'ramp_assoc_topic',
 			array_merge( $post_types, [ 'nomination' ] ),
 			[
-				'label'        => __( 'Research Fields', 'research-amp' ),
+				'label'        => __( 'Research Topics', 'research-amp' ),
 				'labels'       => [
-					'name'          => __( 'Research Fields', 'research-amp' ),
-					'singular_name' => __( 'Research Field', 'research-amp' ),
-					'add_new_item'  => __( 'Add New Research Field', 'research-amp' ),
-					'not_found'     => __( 'No Research Fields found', 'research-amp' ),
+					'name'          => __( 'Research Topics', 'research-amp' ),
+					'singular_name' => __( 'Research Topic', 'research-amp' ),
+					'add_new_item'  => __( 'Add New Research Topic', 'research-amp' ),
+					'not_found'     => __( 'No Research Topics found', 'research-amp' ),
 				],
 				'hierarchical' => true,
 				'public'       => true,
