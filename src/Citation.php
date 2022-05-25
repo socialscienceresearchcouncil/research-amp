@@ -74,13 +74,13 @@ class Citation {
 			return '';
 		}
 
-		$library_url = $library->get_url();
+		$base_url = $library->get_base_url();
 
 		$collection_ids = $this->get_collections_for_zotero();
 		if ( $collection_ids ) {
-			$zotero_url = $library_url . '/collectionKey/' . reset( $collection_ids ) . '/itemKey/' . $this->get_zotero_id();
+			$zotero_url = $base_url . '/collections/' . reset( $collection_ids ) . '/items/' . $this->get_zotero_id();
 		} else {
-			$zotero_url = $library_url . '/itemKey/' . $this->get_zotero_id();
+			$zotero_url = $base_url . '/items/' . $this->get_zotero_id();
 		}
 
 		return $zotero_url;
