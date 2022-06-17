@@ -87,7 +87,7 @@ class Navigation {
 		}
 
 		$nav_links[] = sprintf(
-			'<!-- wp:navigation-link {"label":"%s","type":"page","url":"%s","kind":"post-type","isTopLevelLink":true} /-->',
+			'<!-- wp:navigation-link {"label":"%s","url":"%s","kind":"custom","isTopLevelLink":true} /-->',
 			esc_attr__( 'Log In', 'research-amp' ),
 			esc_url( wp_login_url() )
 		);
