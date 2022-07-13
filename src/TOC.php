@@ -50,7 +50,7 @@ class TOC {
 
 		// Bail if no headings found.
 		if ( ! $post->hasTOCItems() ) {
-			return Easy_Plugins\Table_Of_Contents\Debug::log()->appendTo( $content );
+			return \Easy_Plugins\Table_Of_Contents\Debug::log()->appendTo( $content );
 		}
 
 		$find    = $post->getHeadings();
