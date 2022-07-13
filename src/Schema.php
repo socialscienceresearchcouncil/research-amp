@@ -658,26 +658,6 @@ class Schema {
 			]
 		);
 
-		register_taxonomy(
-			'ramp_profile_tag',
-			[ 'ramp_profile' ],
-			[
-				'label'        => __( 'Profile Tag', 'research-amp' ),
-				'labels'       => [
-					'name'          => __( 'Profile Tag', 'research-amp' ),
-					'singular_name' => __( 'Profile Tags', 'research-amp' ),
-					'add_new_item'  => __( 'Add New Profile Tag', 'research-amp' ),
-					'not_found'     => __( 'No Profile Tags found', 'research-amp' ),
-				],
-				'hierarchical' => true, // Just to get the checkboxes.
-				'public'       => true,
-				'show_ui'      => true,
-				'rewrite'      => [
-					'slug' => 'profile-tag',
-				],
-			]
-		);
-
 		// Set up taxonomy sync.
 		new Libraries\TaxonomyOrder(
 			$this->post_types_for_sortable_taxonomies,

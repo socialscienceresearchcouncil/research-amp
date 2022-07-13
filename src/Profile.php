@@ -156,10 +156,6 @@ class Profile {
 		return implode( ', ', $links );
 	}
 
-	public function get_profile_tags() {
-		return wp_get_object_terms( $this->get_post_id(), 'ramp_profile_tag' );
-	}
-
 	public function get_sp_term_id() {
 		$sp_map = ramp_app()->get_cpttax_map( 'profile' );
 		return $sp_map->get_term_id_for_post_id( $this->get_post_id() );
