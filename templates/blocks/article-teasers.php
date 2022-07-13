@@ -126,7 +126,7 @@ $featured_article_teaser_classes = [
 	'featured-article-teaser',
 ];
 
-if ( ! $featured_item_id ) {
+if ( ! empty( $featured_item_id ) ) {
 	$featured_article_teaser_classes[] = 'featured-article-not-set';
 }
 

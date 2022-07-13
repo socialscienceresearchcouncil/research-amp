@@ -8,12 +8,16 @@ $item_id = $args['block']->context['postId'];
 
 switch ( $args['block']->context['postType'] ) {
 	case 'ramp_article' :
-		$article_types = array_map(
-			function( $term ) {
-				return $term->name;
-			},
-			get_the_terms( $item_id, 'ramp_article_type' )
-		);
+		$article_types = get_the_terms( $item_id, 'ramp_article_type' );
+
+		if ( is_array( $article_types ) ) {
+			$article_types = array_map(
+				function( $term ) {
+					return $term->name;
+				},
+				$article_types
+			);
+		}
 
 		$item_type_label = $article_types ? $article_types[0] : '';
 	break;
