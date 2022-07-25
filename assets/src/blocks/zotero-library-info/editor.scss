@@ -4,4 +4,23 @@
 		padding: 12px 24px;
 		margin-bottom: 24px;
 	}
+
+	ul.collection-mapper {
+		padding: 0;
+	}
+
+	.collection-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 8px;
+
+		&:nth-child(2n-1) {
+			background: #eaeaea;
+		}
+
+		.components-base-control__field {
+			margin-bottom: 0;
+		}
+	}
 }

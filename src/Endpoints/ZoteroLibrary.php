@@ -15,7 +15,7 @@ class ZoteroLibrary extends WP_REST_Controller {
 
 		register_rest_route(
 			$namespace,
-			'/zotero-library',
+			'/zotero-library-info',
 			[
 				[
 					'methods'             => WP_REST_Server::EDITABLE,
@@ -27,7 +27,7 @@ class ZoteroLibrary extends WP_REST_Controller {
 
 		register_rest_route(
 			$namespace,
-			'/zotero-library/(?P<library_id>\d+)',
+			'/zotero-library-info/(?P<library_id>\d+)',
 			[
 				[
 					'methods'             => WP_REST_Server::READABLE,
@@ -71,6 +71,8 @@ class ZoteroLibrary extends WP_REST_Controller {
 		$now = time();
 
 		$retval = [
+			'collectionList'     => [],
+			'collectionMap'      => [],
 			'lastIngest'         => '',
 			'lastIngestRelative' => '',
 			'nextIngest'         => '',
@@ -80,6 +82,9 @@ class ZoteroLibrary extends WP_REST_Controller {
 
 		if ( $library_id ) {
 			$library = Library::get_instance_from_id( $library_id );
+
+			$retval['collectionList'] = $library->get_collection_list_from_zotero();
+			$retval['collectionMap']  = $library->get_collection_map();
 
 			$next_ingest = $library->get_next_scheduled_ingest_event();
 			if ( $next_ingest ) {
@@ -132,10 +137,12 @@ class ZoteroLibrary extends WP_REST_Controller {
 		$library_id = $request->get_param( 'libraryId' );
 		$action     = $request->get_param( 'action' );
 
+		$library = Library::get_instance_from_id( $library_id );
+
 		switch ( $action ) {
 			case 'sync' :
-				do_action( 'ramp_ingest_zotero_library_' . $library_id );
-				do_action( 'ramp_ingest_full_zotero_library_' . $library_id );
+				do_action( $library->get_ingest_cron_hook_name() );
+				do_action( $library->get_ingest_full_cron_hook_name() );
 			break;
 		}
 
