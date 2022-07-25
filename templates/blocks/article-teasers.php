@@ -65,6 +65,22 @@ if ( 'featured' === $variation_type ) {
 	$featured_item_id = (int) $r['featuredItemId'];
 	$number_of_items  = 3;
 
+	// If the admin has not yet configured a featured item, use the latest item to preserve layout.
+	if ( ! $featured_item_id ) {
+		$featured_query = new WP_Query(
+			[
+				'post_type'      => 'ramp_article',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+				'orderby'        => [ 'post_date' => 'DESC' ],
+			]
+		);
+
+		if ( $featured_query->posts ) {
+			$featured_item_id = $featured_query->posts[0];
+		}
+	}
+
 	$query_args['posts_per_page'] = $number_of_items;
 	$query_args['post__not_in']   = [ $featured_item_id ];
 } else {
