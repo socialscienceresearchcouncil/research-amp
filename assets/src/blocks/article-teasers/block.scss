@@ -142,9 +142,11 @@
 		}
 	}
 
-	.featured-tag {
-		left: 16px;
-		top: 16px;
-		position: absolute;
+	&.featured-article-teaser-has-image {
+		.featured-tag {
+			left: 16px;
+			top: 16px;
+			position: absolute;
+		}
 	}
 }

@@ -142,7 +142,7 @@ $featured_article_teaser_classes = [
 	'featured-article-teaser',
 ];
 
-if ( ! empty( $featured_item_id ) ) {
+if ( 'featured' === $variation_type && ! empty( $featured_item_id ) ) {
 	$featured_article_teaser_classes[] = 'featured-article-not-set';
 }
 
@@ -154,7 +154,7 @@ if ( ! empty( $featured_item_id ) ) {
 			<?php if ( 'featured' === $variation_type ) : ?>
 				<div class="<?php echo esc_attr( implode( ' ', $featured_article_teaser_classes ) ); ?>">
 					<?php
-					if ( $featured_item_id ) {
+					if ( 'featured' === $variation_type && $featured_item_id ) {
 						ramp_get_template_part(
 							'teasers/article',
 							[

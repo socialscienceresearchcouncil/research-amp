@@ -60,6 +60,10 @@ if ( $show_byline ) {
 $article_classes = [ 'teaser' ];
 if ( $is_featured ) {
 	$article_classes[] = 'featured-article-teaser';
+
+	if ( $show_image && $img_src ) {
+		$article_classes[] = 'featured-article-teaser-has-image';
+	}
 }
 
 $title_classes = [
