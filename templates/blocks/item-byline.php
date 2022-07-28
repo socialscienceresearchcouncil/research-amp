@@ -16,6 +16,8 @@ if ( $author_string ) {
 
 if ( ! empty( $args['showPublicationDate'] ) ) {
 	$byline_args['date'] = get_the_date( '', $item_id );
+}
+
 ?>
 
 <div class="wp-block-research-amp-item-byline">

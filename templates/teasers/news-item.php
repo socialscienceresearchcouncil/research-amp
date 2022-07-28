@@ -30,7 +30,7 @@ $title_size = in_array( $r['title_size'], [ 'h-4', 'h-5' ], true ) ? $r['title_s
 $byline_args = [];
 
 if ( function_exists( 'pressforward' ) ) {
-	$byline_args['author]' = pressforward( 'controller.metas' )->retrieve_meta( $news_item_id, 'item_author' );
+	$byline_args['author'] = pressforward( 'controller.metas' )->retrieve_meta( $news_item_id, 'item_author' );
 }
 
 if ( $show_publication_date && function_exists( 'pressforward' ) ) {
