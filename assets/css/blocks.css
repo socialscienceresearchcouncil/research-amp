@@ -1,6 +1,7 @@
 /** Shared vars */
 :root {
 	--ramp-background-light: #eee;
+	--ramp-dark-grey: #62656d;
 }
 
 .ramp-container {
@@ -561,7 +562,7 @@ body .mobile-nav-header {
 }
 
 .no-results-message {
-    color: var(--wp--preset--color--dark-grey);
+    color: var(--ramp-dark-grey);
 	margin-top: 0;
 }
 
