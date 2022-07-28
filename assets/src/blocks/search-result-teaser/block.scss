@@ -1,11 +1,11 @@
 li.wp-block-post:last-of-type {
 	.wp-block-research-amp-search-result-teaser {
-		border-bottom: 1px solid var(--wp--preset--color--medium-grey);
+		border-bottom: 1px solid var(--wp--preset--color--neutral);
 	}
 }
 
 div.wp-block-research-amp-search-result-teaser {
-	border-top: 1px solid var(--wp--preset--color--medium-grey);
+	border-top: 1px solid var(--wp--preset--color--neutral);
 	padding: 48px 0;
 
 	@media screen and (max-width: 600px) {
