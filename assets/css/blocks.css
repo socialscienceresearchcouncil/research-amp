@@ -522,7 +522,7 @@ body .mobile-nav-header {
 }
 
 .sidebar-section-collapsible.section-closed h3.sidebar-section-title {
-	color: var(--wp--preset--color--almost-black);
+	color: var(--wp--preset--color--text-color);
 	margin-bottom: 0;
 }
 
