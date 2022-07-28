@@ -45,9 +45,9 @@
 			flex: 0 0 534px;
 			height: 356px;
 			line-height: 0;
+			background-size: cover;
 
 			@media screen and (max-width: 600px) {
-				background-size: cover;
 				flex-basis: 0;
 				width: 100%;
 			}
