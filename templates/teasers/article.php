@@ -40,20 +40,14 @@ if ( $is_edit_mode ) {
 	$author_string = wp_strip_all_tags( $author_string );
 }
 
+$byline_args = [];
 if ( $show_byline ) {
+	if ( $author_string ) {
+		$byline_args['author'] = $author_string;
+	}
+
 	if ( $show_publication_date ) {
-		$byline = sprintf(
-			/* translators: 1. author link, 2. publication date */
-			esc_html__( 'By %1$s on %2$s', 'research-amp' ),
-			'<span class="byline-author">' . $author_string . '</span>',
-			'<span class="byline-publication-date">' . esc_html( get_the_date( '', $article_id ) ) . '</span>'
-		);
-	} else {
-		$byline = sprintf(
-			/* translators: author link */
-			esc_html__( 'By %s', 'research-amp' ),
-			'<span class="byline-author">' . $author_string . '</span>'
-		);
+		$byline_args['date'] = get_the_date( '', $article_id );
 	}
 }
 
@@ -112,8 +106,7 @@ $title_classes = [
 
 		<?php if ( $show_byline ) : ?>
 			<div class="article-teaser-byline teaser-byline">
-				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				<?php echo $byline; ?>
+				<?php ramp_get_template_part( 'byline', $byline_args ); ?>
 			</div>
 		<?php endif; ?>
 

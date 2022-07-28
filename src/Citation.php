@@ -74,7 +74,7 @@ class Citation {
 			return '';
 		}
 
-		$base_url = $library->get_base_url();
+		$base_url = $library->get_url();
 
 		$collection_ids = $this->get_collections_for_zotero();
 		if ( $collection_ids ) {

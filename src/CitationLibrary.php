@@ -183,6 +183,11 @@ class CitationLibrary {
 				break;
 			}
 
+			if ( ! is_array( $items ) ) {
+				_b( $items );
+				break;
+			}
+
 			foreach ( $items as $item ) {
 				$the_key = $item->key;
 
