@@ -1,6 +1,6 @@
 /** Shared vars */
 :root {
-	--ramp-light-grey: #eee;
+	--ramp-background-light: #eee;
 }
 
 .ramp-container {
@@ -377,7 +377,7 @@ body .mobile-nav-header {
 
 /* Profiles */
 .profile-teaser-avatar {
-	background-color: var(--wp--preset--color--light-grey);
+	background-color: var(--wp--preset--color--background-light);
 	background-repeat: no-repeat;
 	background-size: cover;
 	border-radius: 50%;
@@ -633,6 +633,6 @@ body.admin-bar .select2-dropdown--above {
     height: 200px;
     text-align: center;
     line-height: 200px;
-    background: var(--wp--preset--color--light-grey);
+    background: var(--wp--preset--color--background-light);
     border: 10px solid white;
 }

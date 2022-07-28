@@ -1,6 +1,6 @@
 .directory-filter-form {
 	align-items: center;
-	background: var(--wp--preset--color--light-grey);
+	background: var(--wp--preset--color--background-light);
 	display: flex;
 	flex-wrap: wrap;
 	gap: 24px;
