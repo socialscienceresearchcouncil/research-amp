@@ -43,6 +43,7 @@ class HomepageSlides {
 				'public'              => true,
 				'supports'            => [ 'title', 'editor', 'thumbnail', 'page-attributes' ],
 				'exclude_from_search' => true,
+				// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 				'menu_icon'           => 'data:image/svg+xml;base64,' . base64_encode( '<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path fill="black" d="M2 7H6V17H2ZM7 5H17V19H7ZM18 7H22V17H18Z"/></svg>' ),
 			]
 		);
