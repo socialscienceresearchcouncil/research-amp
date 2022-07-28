@@ -246,7 +246,7 @@
 
 .tag-plain,
 .editor-styles-wrapper a.tag-plain { /* specificity required in editor */
-	color: var(--wp--preset--color--ramp-green);
+	color: var(--wp--preset--color--ramp-primary);
 	font-size: var(--wp--preset--font-size--body-text);
 	font-weight: 700;
 	text-decoration: none;
@@ -255,7 +255,7 @@
 
 .tag-bubble,
 .editor-styles-wrapper a.tag-bubble {
-	background: var(--wp--preset--color--ramp-blue);
+	background: var(--wp--preset--color--ramp-secondary);
 	border-radius: 1em;
 	display: inline-block;
 	color: #fff;
@@ -273,7 +273,7 @@ a.tag-plain:hover {
 }
 
 .tag-bubble.featured-tag {
-	background: var(--wp--preset--color--ramp-green);
+	background: var(--wp--preset--color--ramp-primary);
 	font-size: var(--wp--preset--font-size--small-text);
 	text-transform: uppercase;
 }
@@ -282,9 +282,9 @@ a.tag-plain:hover {
 	margin-right: 8px;
 }
 
-.has-ramp-green-background-color .tag-bubble {
+.has-ramp-primary-background-color .tag-bubble {
 	background: var(--wp--preset--color--white);
-	color: var(--wp--preset--color--ramp-blue);
+	color: var(--wp--preset--color--ramp-secondary);
 }
 
 /** Form elements */
@@ -506,7 +506,7 @@ body .mobile-nav-header {
 
 .editor-styles-wrapper h3.sidebar-section-title,
 .sidebar-section-title {
-	color: var(--wp--preset--color--ramp-green);
+	color: var(--wp--preset--color--ramp-primary);
 	font-size: var(--wp--preset--font-size--h-6);
 	margin-top: 0;
 	text-transform: uppercase;
@@ -615,7 +615,7 @@ body.admin-bar .select2-dropdown--above {
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
 	background: #fff;
-	color: var(--wp--preset--color--ramp-green);
+	color: var(--wp--preset--color--ramp-primary);
 }
 
 .select2-container--default .select2-results__option[aria-selected=true] {

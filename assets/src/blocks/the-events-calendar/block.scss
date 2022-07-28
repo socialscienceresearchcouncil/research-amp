@@ -41,16 +41,16 @@
 	}
 
 	.tribe-events .tribe-events-c-search__button {
-		background: var(--wp--preset--color--ramp-green);
+		background: var(--wp--preset--color--ramp-primary);
 		border-radius: 0;
 	}
 
 	.tribe-events .tribe-events-c-search__button:hover {
-		background: var(--wp--preset--color--ramp-green-desaturated);
+		background: var(--wp--preset--color--ramp-primary-desaturated);
 	}
 
 	.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-view-selector--tabs .tribe-events-c-view-selector__list-item--active .tribe-events-c-view-selector__list-item-link:after {
-		background-color: var(--wp--preset--color--ramp-green);
+		background-color: var(--wp--preset--color--ramp-primary);
 		height: 3px;
 	}
 }
