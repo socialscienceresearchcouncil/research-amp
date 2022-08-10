@@ -283,6 +283,14 @@ a.tag-plain:hover {
 	margin-right: 8px;
 }
 
+a.research-topic-tag {
+	text-decoration: none;
+}
+
+a.research-topic-tag:hover {
+	text-decoration: underline;
+}
+
 .has-ramp-primary-background-color .tag-bubble {
 	background: var(--wp--preset--color--white);
 	color: var(--wp--preset--color--ramp-secondary);
