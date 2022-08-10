@@ -256,14 +256,14 @@
 
 .tag-bubble,
 .editor-styles-wrapper a.tag-bubble {
-	background: var(--wp--preset--color--ramp-secondary);
+	border: 2px solid var(--wp--preset--color--ramp-secondary);
 	border-radius: 1em;
 	display: inline-block;
-	color: #fff;
+	color: var(--wp--preset--color--ramp-secondary);
 	font-size: var(--wp--preset--font-size--small-text);
 	line-height: 25.6px;
 	margin-bottom: 4px;
-	padding: 2px 16px;
+	padding: 2px 16px 0;
 	text-decoration: none;
 	white-space: nowrap;
 }
@@ -274,8 +274,11 @@ a.tag-plain:hover {
 }
 
 .tag-bubble.featured-tag {
-	background: var(--wp--preset--color--ramp-primary);
+	background: white;
+	border-color: var(--wp--preset--color--ramp-primary);
+	color: var(--wp--preset--color--ramp-primary);
 	font-size: var(--wp--preset--font-size--small-text);
+	font-weight: 700;
 	text-transform: uppercase;
 }
 
