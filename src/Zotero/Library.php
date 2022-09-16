@@ -30,15 +30,24 @@ class Library {
 	}
 
 	/**
+	 * Gets the base for zotero.org URLs related to this library.
+	 *
+	 * @return string
+	 */
+	public function get_base_url() {
+		return sprintf(
+			'https://www.zotero.org/%s',
+			$this->get_zotero_library_id()
+		);
+	}
+
+	/**
 	 * Gets the URL of a library.
 	 *
 	 * @return string
 	 */
 	public function get_url() {
-		return sprintf(
-			'https://www.zotero.org/%s/items',
-			$this->get_zotero_library_id()
-		);
+		return $this->get_base_url() . '/library';
 	}
 
 	/**
@@ -117,6 +126,83 @@ class Library {
 		}
 
 		update_post_meta( $this->get_id(), 'ramp_last_zotero_ingest', $timestamp );
+	}
+
+	public function get_collection_list() {
+		$list = get_transient( 'ramp_collection_list_' . $this->get_id() );
+
+		if ( false === $list ) {
+			$list = $this->get_collection_list_from_zotero();
+			set_transient( 'ramp_collection_list_' . $this->get_id(), $list, 5 * MINUTE_IN_SECONDS );
+		}
+
+		return $list;
+	}
+
+	public function get_collection_list_from_zotero() {
+		$client = new Client( $this->get_zotero_library_id(), $this->get_zotero_api_key() );
+
+		$collections_raw = $client->get_collections();
+		$collection_list = [];
+		foreach ( $collections_raw as $collection ) {
+			$key  = $collection->data->key;
+			$name = $collection->data->name;
+			$url  = $this->get_base_url() . '/collections/' . $key;
+
+			$collection_list[ $key ] = [
+				'name' => $name,
+				'url'  => $url,
+			];
+		}
+
+		set_transient( 'ramp_collection_list_' . $this->get_id(), $collection_list, 5 * MINUTE_IN_SECONDS );
+
+		return $collection_list;
+	}
+
+	public function get_collection_map() {
+		$collection_list = $this->get_collection_list();
+
+		$topic_posts = get_posts(
+			[
+				'post_type'      => 'ramp_topic',
+				'posts_per_page' => -1,
+				'meta_query'     => [
+					[
+						'key'     => 'zotero_collection_id',
+						'value'   => array_keys( $collection_list ),
+						'compare' => 'IN',
+					]
+				],
+			]
+		);
+
+		$map = [];
+		foreach ( $topic_posts as $topic_post ) {
+			$collection_ids = get_post_meta( $topic_post->ID, 'zotero_collection_id', false );
+			foreach ( $collection_ids as $collection_id ) {
+				$map[ $collection_id ] = $topic_post->ID;
+			}
+		}
+
+		return $map;
+	}
+
+	public function update_collection_map( $map ) {
+		$topic_posts = get_posts(
+			[
+				'post_type'      => 'ramp_topic',
+				'posts_per_page' => -1,
+			]
+		);
+
+		foreach ( $topic_posts as $topic_post ) {
+			delete_post_meta( $topic_post->ID, 'zotero_collection_id' );
+		}
+
+		foreach ( $map as $collection_key => $post_id ) {
+			add_post_meta( $post_id, 'zotero_collection_id', $collection_key );
+		}
 	}
 
 	/**

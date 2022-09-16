@@ -67,6 +67,21 @@ class API {
 				},
 			]
 		);
+
+		register_rest_field(
+			'ramp_zotero_library',
+			'collection_map',
+			[
+				'get_callback'    => function( $object ) {
+					$library = \SSRC\RAMP\Zotero\Library::get_instance_from_id( $object['id'] );
+					return $library->get_collection_map();
+				},
+				'update_callback' => function( $value, $object ) {
+					$library = \SSRC\RAMP\Zotero\Library::get_instance_from_id( $object->ID );
+					$library->update_collection_map( $value );
+				},
+			]
+		);
 	}
 }
 
