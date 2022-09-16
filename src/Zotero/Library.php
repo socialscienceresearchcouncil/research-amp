@@ -185,7 +185,7 @@ class Library {
 						'key'     => 'zotero_collection_id',
 						'value'   => array_keys( $collection_list ),
 						'compare' => 'IN',
-					]
+					],
 				],
 			]
 		);
