@@ -39,6 +39,25 @@ class Client {
 		];
 	}
 
+	public function get_key_permissions() {
+		$url = $this->base . '/keys/' . $this->get_api_key();
+
+		$result = wp_remote_get(
+			$url,
+			[
+				'headers' => $this->get_headers(),
+				'timeout' => 10,
+			]
+		);
+
+		$response_code = wp_remote_retrieve_response_code( $result );
+		if ( 200 !== $response_code ) {
+			return null;
+		}
+
+		return wp_remote_retrieve_body( $result );
+	}
+
 	public function get_items( $args = [] ) {
 		$defaults = [
 			'sort'      => 'dateAdded',

@@ -128,6 +128,19 @@ class Library {
 		update_post_meta( $this->get_id(), 'ramp_last_zotero_ingest', $timestamp );
 	}
 
+	/**
+	 * Checks to see whether the credentials for the library are correct.
+	 *
+	 * @return bool True if the credentials are valid.
+	 */
+	public function check_zotero_credentials() {
+		$client = new Client( $this->get_zotero_library_id(), $this->get_zotero_api_key() );
+
+		$permissions = $client->get_key_permissions();
+
+		return ! empty( $permissions );
+	}
+
 	public function get_collection_list() {
 		$list = get_transient( 'ramp_collection_list_' . $this->get_id() );
 

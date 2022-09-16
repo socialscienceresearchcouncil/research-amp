@@ -73,6 +73,7 @@ class ZoteroLibrary extends WP_REST_Controller {
 		$retval = [
 			'collectionList'     => [],
 			'collectionMap'      => [],
+			'isConnected'        => false,
 			'lastIngest'         => '',
 			'lastIngestRelative' => '',
 			'nextIngest'         => '',
@@ -82,6 +83,8 @@ class ZoteroLibrary extends WP_REST_Controller {
 
 		if ( $library_id ) {
 			$library = Library::get_instance_from_id( $library_id );
+
+			$retval['isConnected'] = $library->check_zotero_credentials();
 
 			$retval['collectionList'] = $library->get_collection_list_from_zotero();
 			$retval['collectionMap']  = $library->get_collection_map();

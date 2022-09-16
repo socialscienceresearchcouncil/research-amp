@@ -9,6 +9,12 @@
 		padding: 0;
 	}
 
+	.connection-error {
+		background-color: #fcf0f1;
+		border: 1px solid #d63638;
+		padding: 12px 24px;
+	}
+
 	.collection-row {
 		display: flex;
 		align-items: center;

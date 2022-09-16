@@ -41,6 +41,7 @@ export default function edit( {
 	const {
 		apiKey,
 		collectionMap,
+		isConnected,
 		isNew,
 		libraryId,
 		libraryInfo,
@@ -64,9 +65,12 @@ export default function edit( {
 		const libraryInfo = select( 'research-amp' ).getLibraryInfo( postId )
 		const researchTopics = select( 'research-amp' ).getResearchTopics()
 
+		const isConnected = 'undefined' !== typeof libraryInfo && libraryInfo.hasOwnProperty( 'isConnected' ) ? libraryInfo.isConnected : null
+
 		return {
 			apiKey: zotero_api_key,
 			collectionMap,
+			isConnected,
 			isNew,
 			libraryId: zotero_library_id,
 			libraryInfo,
@@ -148,6 +152,10 @@ export default function edit( {
 			<div { ...blockProps() }>
 				<fieldset>
 					<legend>{ __( 'Library Settings', 'research-amp' ) }</legend>
+
+					{ ( ! isNew && false === isConnected ) && (
+						<p className="connection-error">{ __( 'Could not connect to your Zotero library. Please check your Library ID and API key.', 'research-amp' ) }</p>
+					) }
 
 					<TextControl
 						label={ __( 'Library Name', 'research-amp' ) }
