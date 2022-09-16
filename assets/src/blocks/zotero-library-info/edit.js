@@ -84,7 +84,6 @@ export default function edit( {
 			} ),
 			method: 'POST'
 		} ).then( ( res ) => {
-			console.log( 'I heard back' )
 		} )
 	}
 
@@ -209,29 +208,35 @@ export default function edit( {
 
 						<p>{ __( 'When importing from the Zotero library, a new Citation is associated with Research Topics according to the Collections in which the item appears in the library. Use this interface to associate Zotero Collections with Research Topics.', 'research-amp' ) }</p>
 
-						<ul className="collection-mapper">
-							{sortedCollectionKeys.map(collectionKey => (
-								<li key={'collection-' + collectionKey} className="collection-row">
-									<div className="collection-map-name">
-										<a
-											href={ collectionList[ collectionKey ].url }
-											target="_blank"
-										>{ collectionList[ collectionKey ].name }</a>
-									</div>
+						{ sortedCollectionKeys.length > 0 && (
+							<ul className="collection-mapper">
+								{sortedCollectionKeys.map(collectionKey => (
+									<li key={'collection-' + collectionKey} className="collection-row">
+										<div className="collection-map-name">
+											<a
+												href={ collectionList[ collectionKey ].url }
+												target="_blank"
+											>{ collectionList[ collectionKey ].name }</a>
+										</div>
 
-									<div className="collection-map-selector">
-										<SelectControl
-											hideLabelFromVision={ true }
-											label={ __( 'Select a Research Topic', 'ramp' ) }
-											onChange={ (selected) => { setCollectionMap( collectionKey, selected ) } }
-											options={ allOptions }
-											value={ collectionMap.hasOwnProperty( collectionKey ) !== -1 ? collectionMap[ collectionKey ] : 0 }
-											__nextHasNoMarginBottom={ true }
-										/>
-									</div>
-								</li>
-							))}
-						</ul>
+										<div className="collection-map-selector">
+											<SelectControl
+												hideLabelFromVision={ true }
+												label={ __( 'Select a Research Topic', 'ramp' ) }
+												onChange={ (selected) => { setCollectionMap( collectionKey, selected ) } }
+												options={ allOptions }
+												value={ collectionMap.hasOwnProperty( collectionKey ) !== -1 ? collectionMap[ collectionKey ] : 0 }
+												__nextHasNoMarginBottom={ true }
+											/>
+										</div>
+									</li>
+								))}
+							</ul>
+						) }
+
+						{ sortedCollectionKeys.length === 0 && (
+							<p>{ __( 'No Collections have been found for this Zotero Library. If you think you should be seeing Collections here, try refreshing the page.', 'research-amp' ) }</p>
+						) }
 					</fieldset>
 				) }
 			</div>
