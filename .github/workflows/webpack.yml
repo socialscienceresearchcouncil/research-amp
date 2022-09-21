@@ -32,6 +32,7 @@ jobs:
         type: 'zip'
         filename: 'research-amp.zip'
         exclusions: '*.git* /*node_modules/*'
+        path: '../research-amp'
 
     - name: Upload Release
       uses: ncipollo/release-action@v1
