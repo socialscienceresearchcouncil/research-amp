@@ -28,6 +28,6 @@ jobs:
         npm run build
     
     - name: Zip
-        uses: byteever/action-build-zip@master
-        with:
-          filename: 'research-amp.zip'
+      uses: byteever/action-build-zip@master
+      with:
+        filename: 'research-amp.zip'
