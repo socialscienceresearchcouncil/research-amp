@@ -32,7 +32,6 @@ jobs:
         type: 'zip'
         filename: 'research-amp.zip'
         exclusions: '*.git* /*node_modules/* composer.* package.json package-lock.json phpcs.xml.dist src .distignore'
-        path: '../research-amp'
 
     - name: Upload Release
       uses: ncipollo/release-action@v1
