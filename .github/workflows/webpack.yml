@@ -2,9 +2,8 @@ name: NodeJS with Webpack
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    tags: 
+    - '*'
 
 jobs:
   build:
@@ -31,3 +30,9 @@ jobs:
       uses: byteever/action-build-zip@master
       with:
         filename: 'research-amp.zip'
+
+    - name: Upload Release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "research-amp.zip"
+        token: ${{ secrets.GITHUB_TOKEN }}
