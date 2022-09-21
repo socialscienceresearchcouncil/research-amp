@@ -30,5 +30,4 @@ jobs:
     
     - name: Zip
       run: |
-        dir-archiver --src . --dest ./research-amp.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json comp
-oser.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map
+        dir-archiver --src . --dest ./research-amp.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map
