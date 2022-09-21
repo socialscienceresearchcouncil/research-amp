@@ -27,9 +27,11 @@ jobs:
         npm run build
     
     - name: Zip
-      uses: byteever/action-build-zip@master
+      uses: thedoctor0/zip-release@main
       with:
+	type: 'zip'
         filename: 'research-amp.zip'
+	exclusions: '*.git* /*node_modules/*'
 
     - name: Upload Release
       uses: ncipollo/release-action@v1
