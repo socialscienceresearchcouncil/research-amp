@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: Packaging a release + zip
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
       with:
         type: 'zip'
         filename: 'research-amp.zip'
-        exclusions: '*.git* /*node_modules/*'
+        exclusions: '*.git* /*node_modules/* composer.* package.json package-lock.json phpcs.xml.dist src .distignore'
         path: '../research-amp'
 
     - name: Upload Release
