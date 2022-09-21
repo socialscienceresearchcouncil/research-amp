@@ -29,9 +29,9 @@ jobs:
     - name: Zip
       uses: thedoctor0/zip-release@main
       with:
-	type: 'zip'
+        type: 'zip'
         filename: 'research-amp.zip'
-	exclusions: '*.git* /*node_modules/*'
+        exclusions: '*.git* /*node_modules/*'
 
     - name: Upload Release
       uses: ncipollo/release-action@v1
