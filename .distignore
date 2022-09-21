@@ -1,0 +1,12 @@
+.git
+.gitattributes
+.github
+.gitignore
+README.md
+composer.json
+composer.lock
+node_modules
+vendor
+package-lock.json
+package.json
+phpcs.xml.dist
