@@ -2,6 +2,8 @@
 
 This is the alpha version of the Research AMP plugin.
 
+The plugin is currently in testing with SSRC partners. If you are not one of these partners, we don't recommend that you use this plugin for now. Please follow SSRC for more information about releases. 
+
 ## Installation and upgrades
 
 This plugin may be downloaded from GitHub and installed to WordPress using the WP zip uploader.
