@@ -800,7 +800,7 @@ class Schema {
 
 	public function set_get_terms_defaults( $defaults, $taxonomies ) {
 		// Err on the side of caution.
-		if ( array_diff( $taxonomies, $this->sortable_taxonomies ) ) {
+		if ( is_array( $taxonomies ) && array_diff( $taxonomies, $this->sortable_taxonomies ) ) {
 			return $defaults;
 		}
 
