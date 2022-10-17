@@ -172,7 +172,6 @@ class CitationLibrary {
 			$query_args          = $default_args;
 			$query_args['start'] = $batch_start;
 			$items               = $client->get_items( $query_args );
-			_b( $items );
 
 			if ( defined( 'WP_CLI' ) ) {
 				$item_count = count( $items );
@@ -185,7 +184,6 @@ class CitationLibrary {
 			}
 
 			if ( ! is_array( $items ) ) {
-				_b( $items );
 				break;
 			}
 
@@ -273,7 +271,6 @@ class CitationLibrary {
 
 		$library_id = (int) $matches[1][0];
 		$library    = ZoteroLibrary::get_instance_from_id( $library_id );
-		_b( $library );
 
 		$this->ingest( $library, false, 0 );
 	}
