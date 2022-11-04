@@ -15,7 +15,7 @@ const variations = [
 	{
 		name: 'twitter',
 		metaKey: 'ramp_vital_twitter',
-		attributes: { vitalType: 'twitterHandle' },
+		attributes: { vitalType: 'twitter' },
 		title: __( 'Twitter Handle', 'research-amp' ),
 		placeholder: __( 'Enter Twitter handle', 'research-amp' ),
 		icon: 'twitter'
