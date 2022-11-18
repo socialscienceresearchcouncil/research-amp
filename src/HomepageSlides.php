@@ -50,12 +50,7 @@ class HomepageSlides {
 	}
 
 	public function register_assets() {
-		// RAMP-specific themes are loaded in the compiled frontend block styles.
-		wp_register_style( 'ramp-glide', RAMP_PLUGIN_URL . '/node_modules/@glidejs/glide/dist/css/glide.core.css', [], RAMP_VER );
-		wp_register_style( 'ramp-glide-theme', RAMP_PLUGIN_URL . '/node_modules/@glidejs/glide/dist/css/glide.theme.css', [ 'ramp-glide' ], RAMP_VER );
-
-		wp_register_script( 'ramp-glide', RAMP_PLUGIN_URL . '/node_modules/@glidejs/glide/dist/glide.js', [], RAMP_VER, true );
-		wp_register_script( 'ramp-homepage-slides', RAMP_PLUGIN_URL . '/assets/js/homepage-slides.js', [ 'ramp-glide' ], RAMP_VER, true );
+		wp_register_script( 'ramp-homepage-slides', RAMP_PLUGIN_URL . '/build/homepage-slides.js', RAMP_VER, true );
 	}
 
 	public function enqueue_block_assets() {
