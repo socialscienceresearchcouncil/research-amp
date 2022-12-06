@@ -47,13 +47,15 @@ class Admin {
 		);
 
 		// Author attribution for news items.
-		add_meta_box(
-			'news-item-author',
-			__( 'Public-Facing Author Attribution', 'research-amp' ),
-			[ $this, 'news_item_author_cb' ],
-			'ramp_news_item',
-			'normal'
-		);
+		if ( function_exists( 'pressforward' ) ) {
+			add_meta_box(
+				'news-item-author',
+				__( 'Public-Facing Author Attribution', 'research-amp' ),
+				[ $this, 'news_item_author_cb' ],
+				'ramp_news_item',
+				'normal'
+			);
+		}
 
 		// Formatted citation.
 		add_meta_box(
