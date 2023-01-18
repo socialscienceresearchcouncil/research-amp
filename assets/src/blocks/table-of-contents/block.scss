@@ -48,4 +48,10 @@
 	.ez-toc-heading-level-3 {
 		font-weight: normal;
 	}
+
+	.ez-toc-title,
+	.ez-toc-title-toggle {
+		display: none;
+		visibility: hidden;
+	}
 }
