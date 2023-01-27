@@ -5,6 +5,7 @@ namespace SSRC\RAMP;
 use \WP_User;
 
 use \SSRC\RAMP\Citation;
+use \SSRC\RAMP\Zotero\Library as ZoteroLibrary;
 
 class Admin {
 	protected $pressforward;
@@ -106,10 +107,25 @@ class Admin {
 	}
 
 	public function zotero_collection_cb( $post ) {
-		$citation = Citation::get_from_post_id( $post->ID );
+		$zotero_id  = '';
+		$zotero_url = '';
 
-		$zotero_url = $citation->get_zotero_url();
-		$zotero_id  = $citation->get_zotero_id();
+		// There's got to be a better way to do this.
+		$collection_id = get_post_meta( $post->ID, 'zotero_collection_id', true );
+		if ( $collection_id ) {
+			$libraries = ZoteroLibrary::get_libraries();
+			foreach ( $libraries as $library ) {
+				$lib_collections = $library->get_collection_list();
+				if ( isset( $lib_collections[ $collection_id ] ) ) {
+					$zotero_url = $lib_collections[ $collection_id ]['url'];
+					break;
+				}
+			}
+
+			if ( $zotero_url ) {
+				$zotero_id = $collection_id;
+			}
+		}
 
 		if ( $zotero_id ) {
 			?>
