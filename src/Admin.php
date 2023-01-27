@@ -106,11 +106,10 @@ class Admin {
 	}
 
 	public function zotero_collection_cb( $post ) {
-		$zotero_url = '';
-		$zotero_id  = get_post_meta( $post->ID, 'zotero_collection_id', true );
-		if ( $zotero_id ) {
-			$zotero_url = 'https://www.zotero.org/groups/' . RAMP_ZOTERO_GROUP_ID . '/collections/' . $zotero_id;
-		}
+		$citation = Citation::get_from_post_id( $post->ID );
+
+		$zotero_url = $citation->get_zotero_url();
+		$zotero_id  = $citation->get_zotero_id();
 
 		if ( $zotero_id ) {
 			?>
