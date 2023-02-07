@@ -239,4 +239,43 @@ class Navigation {
 			}
 		}
 	}
+
+	/**
+	 * Adds current-menu-item class to navigation links.
+	 *
+	 * See https://github.com/WordPress/gutenberg/issues/39644.
+	 *
+	 * @param string $block_content Block markup.
+	 * @param array  $block         Block data.
+	 * @return string
+	 */
+	public static function add_current_classes_to_nav_links( $block_content, $block ) {
+		$is_current = false;
+
+		switch ( $block['attrs']['kind'] ) {
+			case 'post-type-archive' :
+				$archives = [
+					'ramp_topic'     => get_post_type_archive_link( 'ramp_topic' ),
+					'ramp_review'    => get_post_type_archive_link( 'ramp_review' ),
+					'ramp_article'   => get_post_type_archive_link( 'ramp_article' ),
+					'ramp_profile'   => get_post_type_archive_link( 'ramp_profile' ),
+					'ramp_citation'  => get_post_type_archive_link( 'ramp_citation' ),
+					'ramp_news_item' => get_post_type_archive_link( 'ramp_news_item' ),
+				];
+
+				$post_type = array_search( $block['attrs']['url'], $archives, true );
+
+				if ( $post_type ) {
+					$is_current = is_post_type_archive( $post_type ) || is_singular( $post_type );
+				}
+
+				break;
+		}
+
+		if ( $is_current ) {
+			$block_content = preg_replace( '/^<li class="/', '<li class="current-menu-item ', $block_content );
+		}
+
+		return $block_content;
+	}
 }

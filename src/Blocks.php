@@ -25,6 +25,9 @@ class Blocks {
 		add_filter( 'save_post', [ $this, 'save_profile_data_from_blocks' ] );
 
 		add_action( 'save_post', [ __CLASS__, 'mirror_profile_vital_link_to_postmeta' ] );
+
+		add_filter( 'render_block_core/navigation-link', [ '\SSRC\RAMP\Util\Navigation', 'add_current_classes_to_nav_links' ], 10, 2 );
+		add_filter( 'render_block_core/navigation-submenu', [ '\SSRC\RAMP\Util\Navigation', 'add_current_classes_to_nav_links' ], 10, 2 );
 	}
 
 	public function add_image_sizes() {
