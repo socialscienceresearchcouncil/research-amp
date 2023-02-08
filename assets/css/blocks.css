@@ -399,7 +399,6 @@ body .mobile-nav-header {
 }
 
 .has-default-avatar {
-	background-image: url(../img/default-avatar.png);
 	background-position: center center;
 	background-size: 48px 48px;
 }

@@ -28,6 +28,7 @@ if ( $img_src ) {
 	$avatar_class    .= ' has-avatar';
 } else {
 	$avatar_class .= ' has-default-avatar';
+	$background_style = 'style="background-image:url(' . esc_attr( ramp_get_default_profile_avatar() ) . ');"';
 }
 
 $title_class = 'has-' . $r['title_size'] . '-font-size';

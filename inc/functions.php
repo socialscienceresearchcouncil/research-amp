@@ -4,8 +4,18 @@
  * Miscellaneous functions for use in templates.
  */
 
+/**
+ * Gets the default profile avatar image URL.
+ *
+ * @return string
+ */
 function ramp_get_default_profile_avatar() {
-	return RAMP_PLUGIN_URL . 'assets/img/default-avatar.png';
+	/**
+	 * Filters the URL of the default user avatar.
+	 *
+	 * @return string
+	 */
+	return apply_filters( 'ramp_default_profile_avatar', RAMP_PLUGIN_URL . 'assets/img/default-avatar.png' );
 }
 
 function ramp_locate_template( $template ) {

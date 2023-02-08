@@ -477,7 +477,10 @@ class Blocks {
 			return $html;
 		}
 
-		$html = '<figure style="width:300px;" class="wp-block-post-featured-image has-default-avatar"></figure>';
+		$html = sprintf(
+			'<figure style="width:300px;background-image:url(%s);" class="wp-block-post-featured-image has-default-avatar"></figure>',
+			esc_url( ramp_get_default_profile_avatar() )
+		);
 
 		return $html;
 	}
