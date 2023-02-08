@@ -411,6 +411,7 @@ body .mobile-nav-header {
 
 .profile-teaser-avatar > img {
 	object-fit: cover;
+	height: 196px;
 	width: 196px;
 }
 
