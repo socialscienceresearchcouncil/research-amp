@@ -32,9 +32,26 @@ $query_args = [
 	'post_type'      => 'ramp_profile',
 	'offset'         => $offset,
 	'posts_per_page' => $number_of_items,
-	'orderby'        => 'RAND',
 	'tax_query'      => \SSRC\RAMP\Blocks::get_content_mode_tax_query_from_template_args( $r ),
 ];
+
+$order_args = [ 'alphabetical', 'latest', 'random' ];
+$order_arg  = in_array( $r['order'], $order_args, true ) ? $r['order'] : 'alphabetical';
+
+switch ( $order_arg ) {
+	case 'alphabetical' :
+		$query_args['orderby'] = [ 'title' => 'ASC' ];
+	break;
+
+	case 'latest' :
+		$query_args['orderby'] = [ 'date' => 'DESC' ];
+	break;
+
+	case 'random' :
+	default :
+		$query_args['orderby'] = 'rand';
+	break;
+}
 
 if ( $requested_topic ) {
 	$requested_topic_term = get_term_by( 'slug', $requested_topic, 'ramp_assoc_topic' );
