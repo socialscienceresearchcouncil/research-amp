@@ -398,10 +398,16 @@ body .mobile-nav-header {
 	width: 196px;
 }
 
-.profile-teaser-avatar.has-default-avatar {
+.has-default-avatar {
 	background-image: url(../img/default-avatar.png);
-	background-size: 48px 48px;
 	background-position: center center;
+	background-size: 48px 48px;
+}
+
+.wp-block-post-featured-image.has-default-avatar {
+	background-repeat: no-repeat;
+	background-color: var(--wp--preset--color--background-light);
+	height: 300px;
 }
 
 .profile-teaser-avatar > img {

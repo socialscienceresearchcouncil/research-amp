@@ -28,6 +28,8 @@ class Blocks {
 
 		add_filter( 'render_block_core/navigation-link', [ '\SSRC\RAMP\Util\Navigation', 'add_current_classes_to_nav_links' ], 10, 2 );
 		add_filter( 'render_block_core/navigation-submenu', [ '\SSRC\RAMP\Util\Navigation', 'add_current_classes_to_nav_links' ], 10, 2 );
+
+		add_filter( 'render_block_core/post-featured-image', [ __CLASS__, 'set_profile_fallback_image' ], 10, 2 );
 	}
 
 	public function add_image_sizes() {
@@ -464,5 +466,19 @@ class Blocks {
 
 			update_post_meta( $post->ID, $map[ $vital_key ], $vital_value );
 		}
+	}
+
+	public static function set_profile_fallback_image( $html, $block ) {
+		if ( $html ) {
+			return $html;
+		}
+
+		if ( ! is_singular( 'ramp_profile' ) ) {
+			return $html;
+		}
+
+		$html = '<figure style="width:300px;" class="wp-block-post-featured-image has-default-avatar"></figure>';
+
+		return $html;
 	}
 }
