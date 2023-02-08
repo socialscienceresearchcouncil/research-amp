@@ -142,7 +142,7 @@ $featured_article_teaser_classes = [
 	'featured-article-teaser',
 ];
 
-if ( 'featured' === $variation_type && ! empty( $featured_item_id ) ) {
+if ( 'featured' === $variation_type && empty( $featured_item_id ) ) {
 	$featured_article_teaser_classes[] = 'featured-article-not-set';
 }
 
