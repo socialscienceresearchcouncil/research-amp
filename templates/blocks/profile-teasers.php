@@ -40,7 +40,8 @@ $order_arg  = in_array( $r['order'], $order_args, true ) ? $r['order'] : 'alphab
 
 switch ( $order_arg ) {
 	case 'alphabetical' :
-		$query_args['orderby'] = [ 'title' => 'ASC' ];
+		$query_args['meta_key'] = 'alphabetical_name';
+		$query_args['orderby']  = [ 'meta_value' => 'ASC' ];
 	break;
 
 	case 'latest' :
