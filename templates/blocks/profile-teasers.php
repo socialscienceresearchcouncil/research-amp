@@ -56,10 +56,19 @@ if ( $requested_subtopic ) {
 	];
 }
 
+// If we're on a singular item, try to use the profiles associated with the item.
+if ( 'auto' === $r['contentMode'] && is_singular() && empty( $query_args['tax_query'] ) ) {
+	$profile_terms = get_the_terms( get_queried_object(), 'ramp_assoc_profile' );
+	if ( $profile_terms ) {
+		$p_map = ramp_app()->get_cpttax_map( 'profile' );
+
+		$query_args['post__in'] = array_map( [ $p_map, 'get_post_id_for_term_id' ], wp_list_pluck( $profile_terms, 'term_id' ) );
+	}
+}
+
 if ( $requested_search ) {
 	$query_args['s'] = $requested_search;
 }
-
 
 $profile_query = new WP_Query( $query_args );
 
