@@ -1,0 +1,11 @@
+{
+	"apiVersion": 2,
+	"name": "research-amp/item-focus-tags",
+	"title": "Focus Tags",
+	"category": "research-amp",
+	"style": "file:../../../../build/index.css",
+	"supports": {
+		"anchor": true
+	},
+	"usesContext": [ "templateSlug" ]
+}
