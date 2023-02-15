@@ -50,7 +50,13 @@ class HomepageSlides {
 	}
 
 	public function register_assets() {
-		wp_register_script( 'ramp-homepage-slides', RAMP_PLUGIN_URL . '/build/homepage-slides.js', RAMP_VER, true );
+		wp_register_script(
+			'ramp-homepage-slides',
+			RAMP_PLUGIN_URL . '/build/homepage-slides.js',
+			[],
+			RAMP_VER,
+			true
+		);
 	}
 
 	public function enqueue_block_assets() {
