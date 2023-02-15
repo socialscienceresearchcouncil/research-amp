@@ -109,11 +109,15 @@ class Citation {
 			if ( preg_match( '/^[0-9]{4}$/', $data['date'] ) ) {
 				$year = $data['date'];
 
-				// Here's another helpful citation format from Zotero.
-			} elseif ( preg_match( '/^[0-9]{4}\/[0-9]{2}$/', $data['date'] ) ) {
+			// Here's another helpful citation format from Zotero.
+			} elseif ( preg_match( '/^[0-9]{4}\/[0-9]{1,2}$/', $data['date'] ) ) {
 				$year = substr( $data['date'], 0, 4 );
+
 			} else {
-				$year = gmdate( 'Y', strtotime( $data['date'] ) );
+				$detected_timestamp = strtotime( $data['date'] );
+				if ( $detected_timestamp ) {
+					$year = gmdate( 'Y', $detected_timestamp );
+				}
 			}
 		}
 
