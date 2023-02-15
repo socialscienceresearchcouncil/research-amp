@@ -27,7 +27,7 @@ if ( $img_src ) {
 	$background_style = 'style="background-image:url(' . esc_attr( $img_src ) . ');"';
 	$avatar_class    .= ' has-avatar';
 } else {
-	$avatar_class .= ' has-default-avatar';
+	$avatar_class    .= ' has-default-avatar';
 	$background_style = 'style="background-image:url(' . esc_attr( ramp_get_default_profile_avatar() ) . ');"';
 }
 
