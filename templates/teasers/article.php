@@ -28,7 +28,10 @@ $article_types      = [];
 if ( $article_type_terms ) {
 	$article_types = array_map(
 		function( $type ) {
-			return $type->name;
+			return [
+				'label' => $type->name,
+				'url'   => get_term_link( $type, 'ramp_article_type' )
+			];
 		},
 		$article_type_terms
 	);
@@ -89,7 +92,16 @@ $title_classes = [
 
 	<div class="teaser-content article-teaser-content">
 		<?php if ( $article_types ) : ?>
-			<?php ramp_get_template_part( 'item-type-label', [ 'label' => $article_types[0] ] ); ?>
+			<?php
+			ramp_get_template_part(
+				'item-type-label',
+				[
+					'is_edit_mode' => $is_edit_mode,
+					'label'        => $article_types[0]['label'],
+					'url'          => $article_types[0]['url'],
+				]
+			);
+			?>
 		<?php endif; ?>
 
 		<h3 class="<?php echo esc_attr( implode( ' ', $title_classes ) ); ?>">
