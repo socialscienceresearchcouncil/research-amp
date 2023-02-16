@@ -640,7 +640,7 @@ class Schema {
 				'show_ui'      => true,
 				'show_in_rest' => true,
 				'rewrite'      => [
-					'slug' => 'item-type',
+					'slug' => 'article-type',
 				],
 			]
 		);
