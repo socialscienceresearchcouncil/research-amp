@@ -30,7 +30,7 @@ if ( $article_type_terms ) {
 		function( $type ) {
 			return [
 				'label' => $type->name,
-				'url'   => get_term_link( $type, 'ramp_article_type' )
+				'url'   => get_term_link( $type, 'ramp_article_type' ),
 			];
 		},
 		$article_type_terms
