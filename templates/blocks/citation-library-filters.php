@@ -13,7 +13,15 @@ wp_enqueue_script( 'ramp-directory-filters' );
 			<?php esc_html_e( 'Filter by:', 'research-amp' ); ?>
 		</div>
 
-		<?php ramp_get_template_part( 'filters/research-topic' ); ?>
+		<?php
+		ramp_get_template_part(
+			'filters/research-topic',
+			[
+				'research_topics' => \SSRC\RAMP\Schema::get_terms_belonging_to_post_type( 'ramp_assoc_topic', 'ramp_citation' ),
+			]
+		);
+
+		?>
 		<?php ramp_get_template_part( 'filters/submit' ); ?>
 	</form>
 </div>

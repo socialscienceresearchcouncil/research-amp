@@ -808,4 +808,45 @@ class Schema {
 
 		return $defaults;
 	}
+
+	/**
+	 * Gets a list of taxonomy terms associated with a post type.
+	 *
+	 * @param string $taxonomy  Taxonomy name.
+	 * @param string $post_type Post type name.
+	 * @return array
+	 */
+	public static function get_terms_belonging_to_post_type( $taxonomy, $post_type ) {
+		$last_changed = wp_cache_get_last_changed( 'posts' );
+		$cache_key    = "$taxonomy-ids-$last_changed";
+		$cache_group  = $post_type . '-terms';
+
+		$tax_term_ids = wp_cache_get( $cache_key, $cache_group );
+		if ( false === $tax_term_ids ) {
+			$post_ids = get_posts(
+				[
+					'post_type'      => $post_type,
+					'fields'         => 'ids',
+					'posts_per_page' => -1,
+				]
+			);
+
+			$tax_term_ids = wp_get_object_terms(
+				$post_ids,
+				$taxonomy,
+				[
+					'fields'  => 'ids',
+					'orderby' => 'name',
+				]
+			);
+
+			wp_cache_set( $cache_key, $tax_term_ids, $cache_group );
+		} else {
+			$tax_term_ids = array_map( 'intval', $tax_term_ids );
+		}
+
+		$terms = array_map( 'get_term', $tax_term_ids );
+
+		return $terms;
+	}
 }
