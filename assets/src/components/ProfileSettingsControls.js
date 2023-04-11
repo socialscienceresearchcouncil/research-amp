@@ -11,7 +11,7 @@ import { PluginDocumentSettingPanel } from '@wordpress/edit-post'
 
 import { usePrevious } from '@wordpress/compose'
 
-import { dispatch, select } from '@wordpress/data'
+import { select } from '@wordpress/data'
 import { store } from '@wordpress/editor'
 
 export default function ProfileSettingsControls( {
@@ -22,7 +22,8 @@ export default function ProfileSettingsControls( {
 		return null;
 	}
 
-	const { editPost } = useDispatch( 'core/editor' )
+	const { editPost, lockPostSaving, unlockPostSaving } = useDispatch( 'core/editor' )
+	const { removeNotice, createNotice } = useDispatch( 'core/notices' )
 
 	const {
 		alphabeticalName
@@ -36,6 +37,22 @@ export default function ProfileSettingsControls( {
 		},
 		[]
 	);
+
+	if ( alphabeticalName.length > 0 ) {
+		setTimeout( () => {
+			unlockPostSaving( 'ramp_profile' )
+			removeNotice( 'ramp_profile' )
+		}, 500 )
+	} else {
+		setTimeout( () => {
+			lockPostSaving( 'ramp_profile' )
+			createNotice(
+				'error',
+				__( 'You must enter an Alphabetical Name for this profile.', 'research-amp' ),
+				{ id: 'ramp_profile', isDismissable: false }
+			)
+		}, 500 )
+	}
 
 	const editPostMeta = ( metaToUpdate ) => {
 		editPost( { meta: metaToUpdate } )
