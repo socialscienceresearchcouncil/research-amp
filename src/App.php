@@ -65,6 +65,9 @@ class App {
 
 		require RAMP_PLUGIN_DIR . '/inc/functions.php';
 
+		// Must be loaded early in order to register 'block-templates' support.
+		$this->register_theme_directory();
+
 		add_action( 'wp', [ $this, 'maybe_install_update' ] );
 	}
 
@@ -82,5 +85,14 @@ class App {
 
 		$installer = new Install();
 		$installer->install();
+	}
+
+	/**
+	 * Registers theme directory.
+	 *
+	 * @since 1.0.0
+	 */
+	public function register_theme_directory() {
+		register_theme_directory( RAMP_PLUGIN_DIR . '/themes' );
 	}
 }
