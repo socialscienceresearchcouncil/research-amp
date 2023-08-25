@@ -6,6 +6,7 @@ use SSRC\RAMP\Util\Navigation;
 
 class Install {
 	public function install() {
+		$this->install_default_research_topics();
 		$this->install_default_pages();
 		$this->install_default_nav_menus();
 		$this->install_default_page_on_front();
@@ -15,6 +16,76 @@ class Install {
 
 	protected function set_installed_version() {
 		update_option( 'ramp_version', RAMP_VER );
+	}
+
+	/**
+	 * Installs three default research topics.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	protected function install_default_research_topics() {
+		$research_topics_data = [
+			'renewable-energy-technology' => [
+				'post_title'   => __( 'Renewable Energy Technology', 'research-amp' ),
+				'post_content' => __( 'Climate change mitigation will depend, in part, on the development and deployment of renewable energy technologies. This topic comprises research related to new technologies, as well as the debates surrounding the deployment and utility of existing tools.', 'research-amp' ),
+			],
+			'climate-change-policy'       => [
+				'post_title'   => __( 'Climate Change Policy', 'research-amp' ),
+				'post_content' => __( 'Governments have a central role to play in the development and implementation of policies that shape consumer and industrial policy related to climate change. This topic will includes such subjects as the Paris Agreement, carbon pricing, and the role of international organizations.', 'research-amp' ),
+			],
+			'migration-and-climate'       => [
+				'post_title'   => __( 'Migration and Climate', 'research-amp' ),
+				'post_content' => __( 'Climate change is expected to have a significant impact on human migration patterns.', 'research-amp' ),
+			],
+		];
+
+		foreach ( $research_topics_data as $research_topic_slug => $research_topic_data ) {
+			$existing_query = get_posts(
+				[
+					'post_type' => 'ramp_topic',
+					'slug'      => sanitize_title( $research_topic_data['post_title'] ),
+				]
+			);
+
+			if ( ! empty( $existing_query->posts ) ) {
+				continue;
+			}
+
+			$research_topic_id = wp_insert_post(
+				[
+					'post_type'    => 'ramp_topic',
+					'post_name'    => $research_topic_slug,
+					'post_status'  => 'publish',
+					'post_title'   => $research_topic_data['post_title'],
+					'post_content' => '<!-- wp:paragraph --><p>' . $research_topic_data['post_content'] . '</p><!-- /wp:paragraph -->',
+				]
+			);
+
+			if ( ! $research_topic_id ) {
+				continue;
+			}
+
+			// Set the featured image.
+			if ( ! function_exists( 'media_sideload_image' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/media.php';
+			}
+
+			if ( ! function_exists( 'download_url' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/file.php';
+			}
+
+			if ( ! function_exists( 'wp_read_image_metadata' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/image.php';
+			}
+
+			$attachment_id = media_sideload_image( RAMP_PLUGIN_URL . '/assets/img/default-data/' . $research_topic_slug . '.jpg', $research_topic_id, '', 'id' );
+
+			if ( $attachment_id ) {
+				set_post_thumbnail( $research_topic_id, $attachment_id );
+			}
+		}
 	}
 
 	protected function install_default_pages() {
