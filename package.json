@@ -14,6 +14,8 @@
   },
   "devDependencies": {
     "@wordpress/scripts": "^24.0.0",
+    "fs-extra": "^11.1.1",
+    "git": "^0.1.5",
     "rtlcss": "^3.5.0",
     "sass": "^1.42.1"
   },
@@ -32,6 +34,7 @@
   },
   "scripts": {
     "build": "wp-scripts build assets/src/index.js assets/src/frontend.js assets/src/homepage-slides.js",
+		"build-theme": "node scripts/build-theme.js",
     "check-engines": "wp-scripts check-engines",
     "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
     "compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",

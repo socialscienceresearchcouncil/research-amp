@@ -4,6 +4,8 @@ vendor/
 
 # ignore build files
 /build
+/themes
+!/themes/index.php
 
 # ignore log files and databases
 *.log
