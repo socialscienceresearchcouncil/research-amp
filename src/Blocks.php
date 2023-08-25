@@ -16,7 +16,7 @@ class Blocks {
 
 		add_action( 'wp_footer', [ $this, 'load_empty_block_js' ] );
 
-		add_filter( 'block_categories_all', [ $this, 'register_block_category' ], 10, 2 );
+		add_filter( 'block_categories_all', [ $this, 'register_block_category' ] );
 
 		add_action( 'after_setup_theme', [ $this, 'add_image_sizes' ] );
 
@@ -29,7 +29,7 @@ class Blocks {
 		add_filter( 'render_block_core/navigation-link', [ '\SSRC\RAMP\Util\Navigation', 'add_current_classes_to_nav_links' ], 10, 2 );
 		add_filter( 'render_block_core/navigation-submenu', [ '\SSRC\RAMP\Util\Navigation', 'add_current_classes_to_nav_links' ], 10, 2 );
 
-		add_filter( 'render_block_core/post-featured-image', [ __CLASS__, 'set_profile_fallback_image' ], 10, 2 );
+		add_filter( 'render_block_core/post-featured-image', [ __CLASS__, 'set_profile_fallback_image' ] );
 	}
 
 	public function add_image_sizes() {
@@ -171,7 +171,7 @@ class Blocks {
 	 * @param array   $categories
 	 * @param WP_Post $post       Current post object.
 	 */
-	public function register_block_category( $categories, $post ) {
+	public function register_block_category( $categories ) {
 		return array_merge(
 			$categories,
 			[
@@ -468,7 +468,7 @@ class Blocks {
 		}
 	}
 
-	public static function set_profile_fallback_image( $html, $block ) {
+	public static function set_profile_fallback_image( $html ) {
 		if ( $html ) {
 			return $html;
 		}

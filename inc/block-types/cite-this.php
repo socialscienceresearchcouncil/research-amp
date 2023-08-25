@@ -16,7 +16,7 @@ return [
 			'default' => false,
 		],
 	],
-	'render_callback' => function( $atts, $content, $block ) {
+	'render_callback' => function ( $atts, $content, $block ) {
 		wp_enqueue_script( 'ramp-sidebar' );
 		return ramp_render_block( 'cite-this', $atts, $content, $block );
 	},

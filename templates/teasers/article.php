@@ -27,7 +27,7 @@ $article_type_terms = get_the_terms( $article_id, 'ramp_article_type' );
 $article_types      = [];
 if ( $article_type_terms ) {
 	$article_types = array_map(
-		function( $type ) {
+		function ( $type ) {
 			return [
 				'label' => $type->name,
 				'url'   => get_term_link( $type, 'ramp_article_type' ),

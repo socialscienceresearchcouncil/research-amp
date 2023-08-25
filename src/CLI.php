@@ -2,7 +2,7 @@
 
 namespace SSRC\RAMP;
 
-use \WP_CLI;
+use WP_CLI;
 
 class CLI {
 	public function init() {

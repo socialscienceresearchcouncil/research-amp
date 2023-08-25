@@ -25,14 +25,14 @@ class PressForward {
 
 		add_filter(
 			'pf_valid_post_taxonomies',
-			function() {
+			function () {
 				return [ 'ramp_assoc_topic', 'ramp_focus_tag' ];
 			}
 		);
 
 		add_action(
 			'media_buttons',
-			function() {
+			function () {
 				remove_action( 'media_buttons', 'nominate_this_media_buttons' );
 			},
 			0
@@ -201,7 +201,7 @@ class PressForward {
 		<?php
 	}
 
-	public function rts_meta_box( $post, $box ) {
+	public function rts_meta_box( $post ) {
 		wp_enqueue_style( 'ramp-research-topics-metabox', RAMP_PLUGIN_URL . '/assets/css/research-topics-metabox.css', [], RAMP_VER );
 
 		$tax_name = 'ramp_assoc_topic';
@@ -230,7 +230,7 @@ class PressForward {
 		<?php
 	}
 
-	public function focus_tags_meta_box( $post ) {
+	public function focus_tags_meta_box() {
 		wp_enqueue_script( 'ramp-focus-tags', RAMP_PLUGIN_URL . '/assets/js/focus-tags.js', [ 'jquery', 'ramp-select2' ], RAMP_VER, true );
 		wp_enqueue_style( 'ramp-select2' );
 		wp_enqueue_style( 'ramp-focus-tags-metabox', RAMP_PLUGIN_URL . '/assets/css/focus-tags-metabox.css', [], RAMP_VER );
@@ -261,7 +261,7 @@ class PressForward {
 		<?php
 	}
 
-	public function date_meta_box( $post ) {
+	public function date_meta_box() {
 		?>
 <input type="date" name="publication-date" id="publication-date" />
 <p class="description"><?php esc_html_e( 'Enter the original publication date of the article', 'research-amp' ); ?></p>

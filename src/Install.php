@@ -2,7 +2,7 @@
 
 namespace SSRC\RAMP;
 
-use \SSRC\RAMP\Util\Navigation;
+use SSRC\RAMP\Util\Navigation;
 
 class Install {
 	public function install() {

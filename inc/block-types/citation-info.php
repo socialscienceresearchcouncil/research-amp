@@ -8,7 +8,7 @@ return [
 			'default' => false,
 		],
 	],
-	'render_callback' => function( $atts, $content, $block ) {
+	'render_callback' => function ( $atts, $content, $block ) {
 		return ramp_render_block( 'citation-info', $atts, $content, $block );
 	},
 ];

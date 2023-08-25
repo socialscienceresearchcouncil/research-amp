@@ -4,7 +4,7 @@ namespace SSRC\RAMP;
 
 use SSRC\RAMP\Zotero\Client;
 use SSRC\RAMP\Zotero\Library as ZoteroLibrary;
-use \WP_Query;
+use WP_Query;
 
 class Citation {
 	protected $data = [
@@ -214,12 +214,14 @@ class Citation {
 
 	/**
 	 * Update abstract as stored in WordPress.
+	 *
+	 * @param string $abstract_text Text of the abstract.
 	 */
-	public function set_abstract( $abstract ) {
+	public function set_abstract( $abstract_text ) {
 		return wp_update_post(
 			[
 				'ID'           => $this->get_post_id(),
-				'post_content' => $abstract,
+				'post_content' => $abstract_text,
 			]
 		);
 	}

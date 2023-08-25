@@ -2,10 +2,10 @@
 
 namespace SSRC\RAMP;
 
-use \WP_User;
+use WP_User;
 
-use \SSRC\RAMP\Citation;
-use \SSRC\RAMP\Zotero\Library as ZoteroLibrary;
+use SSRC\RAMP\Citation;
+use SSRC\RAMP\Zotero\Library as ZoteroLibrary;
 
 class Admin {
 	protected $pressforward;
@@ -97,12 +97,10 @@ class Admin {
 <strong><?php esc_html_e( 'Zotero ID:', 'research-amp' ); ?></strong> <?php echo esc_html( $zotero_id ); ?><br />
 <strong><?php esc_html_e( 'Zotero URL:', 'research-amp' ); ?></strong> <a href="<?php echo esc_attr( $zotero_url ); ?>"><?php echo esc_html( $zotero_url ); ?></a>
 			<?php
+		} elseif ( 'publish' === $post->post_status ) {
+			esc_html_e( 'No Zotero entry for this citation. Save this post to create the Zotero entry.', 'research-amp' );
 		} else {
-			if ( 'publish' === $post->post_status ) {
-				esc_html_e( 'No Zotero entry for this citation. Save this post to create the Zotero entry.', 'research-amp' );
-			} else {
-				esc_html_e( 'A Zotero entry will be created when you publish this citation.', 'research-amp' );
-			}
+			esc_html_e( 'A Zotero entry will be created when you publish this citation.', 'research-amp' );
 		}
 	}
 
@@ -132,12 +130,10 @@ class Admin {
 <strong><?php esc_html_e( 'Zotero Collection ID:', 'research-amp' ); ?></strong> <?php echo esc_html( $zotero_id ); ?><br />
 <strong><?php esc_html_e( 'Zotero Collection URL:', 'research-amp' ); ?></strong> <a href="<?php echo esc_attr( $zotero_url ); ?>"><?php echo esc_html( $zotero_url ); ?></a>
 			<?php
+		} elseif ( 'publish' === $post->post_status ) {
+			esc_html_e( 'There is no Zotero collection corresponding to this Research Topic. Save this post and a Zotero collection should be created automatically.', 'research-amp' );
 		} else {
-			if ( 'publish' === $post->post_status ) {
-				esc_html_e( 'There is no Zotero collection corresponding to this Research Topic. Save this post and a Zotero collection should be created automatically.', 'research-amp' );
-			} else {
-				esc_html_e( 'A Zotero collection will be created when you publish this Research Topic.', 'research-amp' );
-			}
+			esc_html_e( 'A Zotero collection will be created when you publish this Research Topic.', 'research-amp' );
 		}
 	}
 

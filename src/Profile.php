@@ -143,7 +143,7 @@ class Profile {
 		$base = get_post_type_archive_link( 'ramp_profile' );
 
 		$links = array_map(
-			function( $tag ) use ( $base ) {
+			function ( $tag ) use ( $base ) {
 				return sprintf(
 					'<a href="%s">%s</a>',
 					esc_attr( add_query_arg( 'research-interest', $tag->slug, $base ) ),
@@ -268,7 +268,7 @@ class Profile {
 	 */
 	public static function get_profile_links_for_post( $post_id ) {
 		return array_map(
-			function( $profile ) {
+			function ( $profile ) {
 				return sprintf(
 					'<a href="%s">%s</a>',
 					esc_url( get_permalink( $profile->get_post_id() ) ),
@@ -282,7 +282,7 @@ class Profile {
 	/**
 	 * Gets a list of taxonomy terms associated with profiles.
 	 */
-	public static function get_terms_belonging_to_profiles( $taxonomy ) {
+	public static function get_terms_belonging_to_profiles() {
 		return Schema::get_terms_belonging_to_post_type( 'ramp_assoc_topic', 'ramp_profile' );
 	}
 }

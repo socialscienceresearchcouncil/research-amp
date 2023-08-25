@@ -16,7 +16,7 @@ return [
 			'default' => false,
 		],
 	],
-	'render_callback' => function( $atts, $content, $block ) {
+	'render_callback' => function ( $atts, $content, $block ) {
 		wp_enqueue_script( 'ramp-altmetrics' );
 		wp_enqueue_script( 'ramp-sidebar' );
 		return ramp_render_block( 'social-buttons', $atts, $content, $block );

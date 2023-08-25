@@ -2,7 +2,7 @@
 
 namespace SSRC\RAMP;
 
-use \ezTOC;
+use ezTOC;
 
 /**
  * Helper methods for easy-table-of-contents integration.
@@ -18,7 +18,7 @@ class TOC {
 		add_filter( 'ez_toc_get_option_show_heading_text', '__return_false' );
 		add_filter(
 			'ez_toc_get_option_counter',
-			function() {
+			function () {
 				return 'none';
 			}
 		);

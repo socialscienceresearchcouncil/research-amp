@@ -2,9 +2,9 @@
 
 namespace SSRC\RAMP\Endpoints;
 
-use \WP_REST_Controller;
-use \WP_REST_Request;
-use \WP_REST_Server;
+use WP_REST_Controller;
+use WP_REST_Request;
+use WP_REST_Server;
 
 use SSRC\RAMP\Zotero\Library;
 
@@ -35,7 +35,7 @@ class ZoteroLibrary extends WP_REST_Controller {
 					'permission_callback' => [ $this, 'get_item_permissions_check' ],
 					'args'                => [
 						'library_id' => [
-							'validate_callback' => function( $param, $request, $key ) {
+							'validate_callback' => function ( $param, $request, $key ) {
 								return is_numeric( $param );
 							},
 						],

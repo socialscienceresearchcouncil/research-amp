@@ -2,7 +2,7 @@
 
 namespace SSRC\RAMP;
 
-use \Tribe__Events__Main;
+use Tribe__Events__Main;
 
 class TheEventsCalendar {
 	public function init() {
@@ -54,7 +54,7 @@ class TheEventsCalendar {
 
 		$new_template = array_filter(
 			$template,
-			function( $block ) use ( $exclude_blocks ) {
+			function ( $block ) use ( $exclude_blocks ) {
 				return ! in_array( $block[0], $exclude_blocks, true );
 			}
 		);

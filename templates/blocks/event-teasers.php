@@ -26,7 +26,7 @@ $event_query_args = [
 ];
 
 // This is how we customize the orderby.
-$orderby_cb = function() {
+$orderby_cb = function () {
 	remove_filter( 'posts_orderby', array( 'Tribe__Events__Query', 'posts_orderby' ), 10, 2 );
 };
 add_action( 'tribe_events_pre_get_posts', $orderby_cb );
@@ -49,7 +49,7 @@ $list_classes = [
 if ( 'grid' === $variation_type ) {
 	$list_classes[] = 'item-type-list-flex';
 	$list_classes[] = 'item-type-list-3';
-};
+}
 
 ?>
 

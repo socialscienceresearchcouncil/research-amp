@@ -21,7 +21,7 @@ return [
 			'default' => 3,
 		],
 	],
-	'render_callback' => function( $atts, $content, $block ) {
+	'render_callback' => function ( $atts, $content, $block ) {
 		return ramp_render_block( 'suggested-items', $atts, $content, $block );
 	},
 ];

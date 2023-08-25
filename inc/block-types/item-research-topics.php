@@ -2,7 +2,7 @@
 
 return [
 	'api_version'     => 2,
-	'render_callback' => function( $atts, $b, $c ) {
+	'render_callback' => function () {
 		ob_start();
 
 		echo '<div class="wp-block-item-research-topics">';

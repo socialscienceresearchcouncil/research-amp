@@ -294,7 +294,7 @@ class Library {
 		}
 
 		$libraries = array_map(
-			function( $id ) {
+			function ( $id ) {
 				return self::get_instance_from_id( $id );
 			},
 			$posts

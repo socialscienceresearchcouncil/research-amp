@@ -37,7 +37,7 @@ return [
 			'default' => false,
 		],
 	],
-	'render_callback' => function( $atts ) {
+	'render_callback' => function ( $atts ) {
 		return ramp_render_block( 'profile-teasers', $atts );
 	},
 ];

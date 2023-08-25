@@ -1,17 +1,17 @@
 <?php
-
-namespace SSRC\RAMP\Endpoints;
-
 /**
  * Zotero Translation fetch.
  */
-use \WP_REST_Controller;
-use \WP_REST_Request;
-use \WP_REST_Server;
-use \WP_Error;
 
-use \SSRC\RAMP\Zotero\TranslationFetcher;
-use \SSRC\RAMP\Zotero\Client;
+namespace SSRC\RAMP\Endpoints;
+
+use WP_REST_Controller;
+use WP_REST_Request;
+use WP_REST_Server;
+use WP_Error;
+
+use SSRC\RAMP\Zotero\TranslationFetcher;
+use SSRC\RAMP\Zotero\Client;
 
 class ZTFetch extends WP_REST_Controller {
 	public function register_routes() {

@@ -20,7 +20,7 @@ return [
 			'default' => __( 'Filter by content type:', 'research-amp' ),
 		],
 	],
-	'render_callback' => function( $atts, $content, $block ) {
+	'render_callback' => function ( $atts, $content, $block ) {
 		return ramp_render_block( 'search-form', $atts, $content, $block );
 	},
 ];

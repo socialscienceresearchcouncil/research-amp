@@ -63,7 +63,7 @@ class HomepageSlides {
 		wp_enqueue_style( 'ramp-glide-theme' );
 	}
 
-	public function register_meta_boxes( $post ) {
+	public function register_meta_boxes() {
 		add_meta_box(
 			'ramp_slide_info',
 			__( 'Slide Info', 'research-amp' ),
@@ -72,7 +72,6 @@ class HomepageSlides {
 			'normal',
 			'default'
 		);
-
 	}
 
 	public function slide_info_cb( $post ) {

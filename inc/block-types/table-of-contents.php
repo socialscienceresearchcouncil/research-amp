@@ -12,7 +12,7 @@ return [
 			'default' => false,
 		],
 	],
-	'render_callback' => function( $atts, $content, $block ) {
+	'render_callback' => function ( $atts, $content, $block ) {
 		wp_enqueue_script( 'ramp-sidebar' );
 		return ramp_render_block( 'table-of-contents', $atts, $content, $block );
 	},

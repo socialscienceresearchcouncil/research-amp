@@ -6,13 +6,13 @@ use SSRC\RAMP\Citation;
 use SSRC\RAMP\Zotero\Client;
 use SSRC\RAMP\Zotero\Library as ZoteroLibrary;
 
-use \WP_Query;
+use WP_Query;
 
 class CitationLibrary {
 	public function init() {
 		$libraries = ZoteroLibrary::get_libraries();
 
-		add_action( 'save_post_ramp_zotero_library', [ $this, 'maybe_schedule_ingest_events' ], 10, 3 );
+		add_action( 'save_post_ramp_zotero_library', [ $this, 'maybe_schedule_ingest_events' ] );
 
 		foreach ( $libraries as $library ) {
 			add_action( $library->get_ingest_cron_hook_name(), [ $this, 'start_ingest' ] );
@@ -23,11 +23,9 @@ class CitationLibrary {
 	/**
 	 * Schedules 'ingest' cron events for a Zotero library, if necessary.
 	 *
-	 * @param int     $post_id
-	 * @param WP_Post $post
-	 * @param bool    $update
+	 * @param int $post_id
 	 */
-	public function maybe_schedule_ingest_events( $post_id, $post, $update ) {
+	public function maybe_schedule_ingest_events( $post_id ) {
 		$library = ZoteroLibrary::get_instance_from_id( $post_id );
 
 		$next_ingest = $library->get_next_scheduled_ingest_event();

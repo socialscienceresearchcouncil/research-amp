@@ -12,7 +12,7 @@ return [
 			'default' => true,
 		],
 	],
-	'render_callback' => function( $atts, $content, $block ) {
+	'render_callback' => function ( $atts, $content, $block ) {
 		return ramp_render_block( 'item-byline', $atts, $content, $block );
 	},
 ];

@@ -30,7 +30,7 @@ return [
 			'default' => 'grid',
 		],
 	],
-	'render_callback' => function( $atts ) {
+	'render_callback' => function ( $atts ) {
 		return ramp_render_block( 'event-teasers', $atts );
 	},
 ];

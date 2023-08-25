@@ -2,9 +2,9 @@
 
 namespace SSRC\RAMP\Endpoints;
 
-use \WP_REST_Controller;
-use \WP_REST_Request;
-use \WP_REST_Server;
+use WP_REST_Controller;
+use WP_REST_Request;
+use WP_REST_Server;
 
 class Event extends WP_REST_Controller {
 	public function register_routes() {

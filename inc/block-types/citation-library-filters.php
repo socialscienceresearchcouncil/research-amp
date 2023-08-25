@@ -10,7 +10,7 @@ return [
 			'type' => 'string',
 		],
 	],
-	'render_callback' => function( $atts, $content, $block ) {
+	'render_callback' => function ( $atts ) {
 		return ramp_render_block( 'citation-library-filters', $atts );
 	},
 ];

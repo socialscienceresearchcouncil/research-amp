@@ -2,11 +2,11 @@
 
 namespace SSRC\RAMP\Endpoints;
 
-use \WP_REST_Controller;
-use \WP_REST_Request;
-use \WP_REST_Server;
+use WP_REST_Controller;
+use WP_REST_Request;
+use WP_REST_Server;
 
-use \WP_Query;
+use WP_Query;
 
 class NominationStatus extends WP_REST_Controller {
 	public function register_routes() {

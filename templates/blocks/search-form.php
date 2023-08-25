@@ -15,7 +15,7 @@ $r = array_merge(
 	$args
 );
 
-$instance_id++;
+++$instance_id;
 
 $input_id      = 'wp-block-search__input-' . $instance_id;
 $input_markup  = '';

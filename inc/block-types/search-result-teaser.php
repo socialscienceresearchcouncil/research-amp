@@ -12,7 +12,7 @@ return [
 			'default' => 0,
 		],
 	],
-	'render_callback' => function( $atts, $content, $block ) {
+	'render_callback' => function ( $atts ) {
 		$post_id = ! empty( $atts['postId'] ) ? $atts['postId'] : get_the_ID();
 
 		$post = get_post( $post_id );

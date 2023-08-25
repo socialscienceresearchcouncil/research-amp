@@ -12,7 +12,7 @@ switch ( $args['block']->context['postType'] ) {
 
 		if ( is_array( $article_types ) ) {
 			$article_types = array_map(
-				function( $term ) {
+				function ( $term ) {
 					return $term->name;
 				},
 				$article_types

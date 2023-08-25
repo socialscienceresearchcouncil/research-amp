@@ -24,7 +24,7 @@ class Search {
 		}
 
 		$post_types = array_map(
-			function( $type ) {
+			function ( $type ) {
 				switch ( $type ) {
 					case 'topic' :
 						return 'ramp_topic';
