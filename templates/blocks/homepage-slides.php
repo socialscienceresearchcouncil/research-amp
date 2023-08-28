@@ -18,7 +18,7 @@ $slides = get_posts(
 $slide_count = count( $slides );
 ?>
 
-<div class="glide homepage-slider">
+<div class="glide homepage-slider homepage-slider-slide-count-<?php echo esc_attr( $slide_count ); ?>">
 	<div class="glide__track" data-glide-el="track">
 		<div class="glide__slides">
 			<?php foreach ( $slides as $slide ) : ?>
