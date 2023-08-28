@@ -13,6 +13,7 @@ if ( ! empty( $args['date'] ) ) {
 	$date_html = '<span class="byline-publication-date">' . esc_html( $args['date'] ) . '</span>';
 }
 
+$byline = '';
 if ( $author_html && $date_html ) {
 	$byline = sprintf(
 		/* translators: 1. author link, 2. publication date */
