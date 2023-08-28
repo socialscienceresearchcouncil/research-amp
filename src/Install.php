@@ -213,7 +213,16 @@ class Install {
 			]
 		);
 
+		$profiles = get_posts(
+			[
+				'post_type' => 'ramp_profile',
+			]
+		);
+
+		$counter = 0;
 		foreach ( $research_topics as $research_topic ) {
+			++$counter;
+
 			$review_slug = $research_topic->post_name . '-review';
 
 			// translators: Research topic name.
@@ -265,6 +274,13 @@ class Install {
 			wp_set_post_terms( $research_review_id, [ $rt_term_id ], 'ramp_assoc_topic' );
 
 			$this->set_featured_image( $research_review_id, RAMP_PLUGIN_URL . '/assets/img/default-data/research-reviews/' . $review_slug . '.jpg' );
+
+			// Odd numbered reviews should be associated with Jane Doe.
+			$profile_id      = $profiles[ $counter % 2 ]->ID;
+			$profile_map     = ramp_app()->get_cpttax_map( 'profile' );
+			$profile_term_id = $profile_map->get_term_id_for_post_id( $profile_id );
+
+			wp_set_post_terms( $research_review_id, [ $profile_term_id ], 'ramp_assoc_profile' );
 		}
 	}
 
@@ -279,6 +295,12 @@ class Install {
 		$research_topics = get_posts(
 			[
 				'post_type' => 'ramp_topic',
+			]
+		);
+
+		$profiles = get_posts(
+			[
+				'post_type' => 'ramp_profile',
 			]
 		);
 
@@ -305,7 +327,10 @@ class Install {
 			],
 		];
 
+		$counter = 0;
 		foreach ( $articles as $article ) {
+			++$counter;
+
 			$article_id = wp_insert_post(
 				[
 					'post_type'    => 'ramp_article',
@@ -332,6 +357,13 @@ class Install {
 			wp_set_post_terms( $article_id, $rt_term_ids, 'ramp_assoc_topic' );
 
 			$this->set_featured_image( $article_id, $article['featured_image'] );
+
+			// Odd numbered reviews should be associated with Jane Doe.
+			$profile_id      = $profiles[ $counter % 2 ]->ID;
+			$profile_map     = ramp_app()->get_cpttax_map( 'profile' );
+			$profile_term_id = $profile_map->get_term_id_for_post_id( $profile_id );
+
+			wp_set_post_terms( $article_id, [ $profile_term_id ], 'ramp_assoc_profile' );
 		}
 	}
 
