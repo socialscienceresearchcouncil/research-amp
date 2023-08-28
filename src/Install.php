@@ -307,6 +307,25 @@ class Install {
 	 * @return void
 	 */
 	protected function install_default_articles() {
+		// Create default ramp_article_type terms.
+		$article_types = [
+			'Interview',
+			'Video',
+			'Essay Series',
+		];
+
+		$article_type_term_ids = [];
+		foreach ( $article_types as $article_type ) {
+			$article_type_term = wp_insert_term(
+				$article_type,
+				'ramp_article_type'
+			);
+
+			if ( ! is_wp_error( $article_type_term ) ) {
+				$article_type_term_ids[] = $article_type_term['term_id'];
+			}
+		}
+
 		$research_topics = get_posts(
 			[
 				'post_type' => 'ramp_topic',
@@ -324,21 +343,25 @@ class Install {
 				'post_title'      => __( 'Advancements in Solar Panel Efficiency: Illuminating the Path for Sustainable Energy', 'research-amp' ),
 				'research_topics' => [ $research_topics[2]->ID ],
 				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/articles/solar.jpg',
+				'article_types'   => [ $article_type_term_ids[0] ],
 			],
 			[
 				'post_title'      => __( 'Analyzing the Paris Agreement: International Cooperation in Combating Climate Crisis', 'research-amp' ),
 				'research_topics' => [ $research_topics[1]->ID ],
 				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/articles/paris.jpg',
+				'article_types'   => [ $article_type_term_ids[1] ],
 			],
 			[
 				'post_title'      => __( 'Climate Refugees: Navigating the Complexities of Forced Migration due to Environmental Factors', 'research-amp' ),
 				'research_topics' => [ $research_topics[0]->ID, $research_topics[1]->ID ],
 				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/articles/forced.jpg',
+				'article_types'   => [ $article_type_term_ids[2] ],
 			],
 			[
 				'post_title'      => __( 'Migration Patterns in the Era of Climate Change: Interplay Between Environmental and Policy Factors', 'research-amp' ),
 				'research_topics' => [ $research_topics[0]->ID, $research_topics[1]->ID ],
 				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/articles/patterns.jpg',
+				'article_types'   => [ $article_type_term_ids[1], $article_type_term_ids[2] ],
 			],
 		];
 
@@ -379,6 +402,8 @@ class Install {
 			$profile_term_id = $profile_map->get_term_id_for_post_id( $profile_id );
 
 			wp_set_post_terms( $article_id, [ $profile_term_id ], 'ramp_assoc_profile' );
+
+			wp_set_post_terms( $article_id, $article['article_types'], 'ramp_article_type' );
 		}
 	}
 
