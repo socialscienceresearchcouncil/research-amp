@@ -92,13 +92,38 @@ class Install {
 			// translators: Research topic name.
 			$review_title = sprintf( __( '%s Review', 'research-amp' ), $research_topic->post_title );
 
+			$review_text = $this->get_lorem_ipsum( 1 );
+
+			$headings = [
+				__( 'Overview', 'research-amp' ),
+				__( 'Section One', 'research-amp' ),
+				__( 'Section Two', 'research-amp' ),
+				__( 'Works Cited', 'research-amp' ),
+			];
+
+			foreach ( $headings as $heading ) {
+				$review_text .= '<!-- wp:heading {"level":2} --><h2>' . $heading . '</h2><!-- /wp:heading -->' . "\n" . $this->get_lorem_ipsum( 1 );
+			}
+
+			$review_text .= sprintf(
+				'<!-- wp:research-amp/changelog -->
+<div class="wp-block-research-amp-changelog"><div class="changelog-header"><h2 class="has-h-5-font-size">%1$s</h2></div><!-- wp:research-amp/changelog-entry {"dateText":"%2$s"} -->
+<div class="wp-block-research-amp-changelog-entry"><p class="changelog-entry-date">%3$s</p><ul><li>%4$s</li></ul></div>
+<!-- /wp:research-amp/changelog-entry --></div>
+<!-- /wp:research-amp/changelog -->',
+				__( 'Changelog', 'research-amp' ),
+				gmdate( 'F j, Y' ),
+				gmdate( 'F j, Y' ),
+				__( 'Initial release.', 'research-amp' )
+			);
+
 			$research_review_id = wp_insert_post(
 				[
 					'post_type'    => 'ramp_review',
 					'post_name'    => $review_slug,
 					'post_status'  => 'publish',
 					'post_title'   => $review_title,
-					'post_content' => $this->get_lorem_ipsum( 10 ),
+					'post_content' => $review_text,
 				]
 			);
 
@@ -319,6 +344,9 @@ class Install {
 			'At tempor commodo ullamcorper a lacus vestibulum sed arcu non. Purus in mollis nunc sed id. Id faucibus nisl tincidunt eget nullam non nisi. Praesent semper feugiat nibh sed pulvinar proin gravida hendrerit. Turpis egestas pretium aenean pharetra magna ac placerat. Et sollicitudin ac orci phasellus. Praesent tristique magna sit amet. Ultrices mi tempus imperdiet nulla malesuada pellentesque. Vulputate odio ut enim blandit volutpat maecenas. Nulla porttitor massa id neque.',
 			'Urna porttitor rhoncus dolor purus non enim. Nullam ac tortor vitae purus faucibus ornare suspendisse. At augue eget arcu dictum varius. Egestas maecenas pharetra convallis posuere. Diam sollicitudin tempor id eu nisl nunc mi. Tempus imperdiet nulla malesuada pellentesque elit eget. Eu ultrices vitae auctor eu augue ut lectus arcu bibendum. Dolor purus non enim praesent elementum facilisis leo. Accumsan sit amet nulla facilisi morbi tempus iaculis. Ullamcorper morbi tincidunt ornare massa eget egestas.',
 		];
+
+		// Rearrange the paragraphs so that they're not always the same.
+		shuffle( $paragraphs );
 
 		$text = implode( "\n\n", array_slice( $paragraphs, 0, $number_of_paragraphs ) );
 
