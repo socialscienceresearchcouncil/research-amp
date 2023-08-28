@@ -548,6 +548,7 @@ class Install {
 	 */
 	protected function install_default_homepage_slide() {
 		$post_content = sprintf(
+			// translators: URL of the Get Started page.
 			__( 'Welcome to Research AMP! Visit the <a href="%s">Get Started</a> page to learn more about how to use this theme.', 'research-amp' ),
 			home_url( 'get-started' )
 		);
