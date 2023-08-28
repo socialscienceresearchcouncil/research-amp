@@ -7,6 +7,7 @@ use SSRC\RAMP\Util\Navigation;
 class Install {
 	public function install() {
 		$this->install_default_research_topics();
+		$this->install_default_profiles();
 		$this->install_default_research_reviews();
 		$this->install_default_articles();
 		$this->install_default_pages();
@@ -70,6 +71,131 @@ class Install {
 			}
 
 			$this->set_featured_image( $research_topic_id, RAMP_PLUGIN_URL . '/assets/img/default-data/research-topics/' . $research_topic_slug . '.jpg' );
+		}
+	}
+
+	/**
+	 * Create some default profiles.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	protected function install_default_profiles() {
+		$research_topics = get_posts(
+			[
+				'post_type' => 'ramp_topic',
+			]
+		);
+
+		$profiles = [
+			[
+				'name'            => __( 'Jane Doe', 'research-amp' ),
+				'sortable_name'   => __( 'Doe, Jane', 'research-amp' ),
+				'title'           => __( 'Researcher, University of Research', 'research-amp' ),
+				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/profiles/jane-doe.png',
+				'biography'       => $this->get_lorem_ipsum( 1 ),
+				'twitter'         => 'janedoe',
+				'website'         => 'https://example.com',
+				'research_topics' => [ $research_topics[0]->ID ],
+			],
+			[
+				'name'            => __( 'John Doe', 'research-amp' ),
+				'sortable_name'   => __( 'Doe, John', 'research-amp' ),
+				'title'           => __( 'President, Cultural Institution', 'research-amp' ),
+				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/profiles/john-doe.png',
+				'biography'       => $this->get_lorem_ipsum( 1 ),
+				'twitter'         => 'johndoe',
+				'website'         => 'https://example.com',
+				'research_topics' => [ $research_topics[1]->ID, $research_topics[2]->ID ],
+			],
+		];
+
+		foreach ( $profiles as $profile ) {
+			$content = sprintf(
+				'<!-- wp:group -->
+  <div class="wp-block-group"><!-- wp:research-amp/item-type-label /-->
+
+  <!-- wp:post-title {"level":1} /-->
+
+  <!-- wp:research-amp/profile-title-institution {"content":"%s"} -->
+  <div class="wp-block-research-amp-profile-title-institution">%s</div>
+  <!-- /wp:research-amp/profile-title-institution --></div>
+  <!-- /wp:group -->
+
+  <!-- wp:columns -->
+  <div class="wp-block-columns"><!-- wp:column {"width":"33.33%%"} -->
+  <div class="wp-block-column" style="flex-basis:33.33%%"><!-- wp:research-amp/profile-photo -->
+  <div class="wp-block-research-amp-profile-photo"><!-- wp:post-featured-image {"width":"300px","height":"300px"} /--></div>
+  <!-- /wp:research-amp/profile-photo -->
+
+  <!-- wp:group -->
+  <div class="wp-block-group"><!-- wp:research-amp/profile-vital-link {"vitalType":"email"} -->
+  <div></div>
+  <!-- /wp:research-amp/profile-vital-link -->
+
+  <!-- wp:research-amp/profile-vital-link {"value":"%s","vitalType":"twitter"} -->
+  <div class="wp-block-research-amp-profile-vital-link ramp-profile-vital-link-twitter"><a href="https://twitter.com/%s" class="ramp-profile-vital-link-text">%s</a></div>
+  <!-- /wp:research-amp/profile-vital-link -->
+
+  <!-- wp:research-amp/profile-vital-link {"vitalType":"orcidId"} -->
+  <div></div>
+  <!-- /wp:research-amp/profile-vital-link -->
+
+  <!-- wp:research-amp/profile-vital-link {"value":"%s","vitalType":"website"} -->
+  <div class="wp-block-research-amp-profile-vital-link ramp-profile-vital-link-website"><a href="%s" class="ramp-profile-vital-link-text">%s</a></div>
+  <!-- /wp:research-amp/profile-vital-link --></div>
+  <!-- /wp:group --></div>
+  <!-- /wp:column -->
+
+  <!-- wp:column {"width":"66.66%%"} -->
+  <div class="wp-block-column" style="flex-basis:66.66%%"><!-- wp:research-amp/profile-bio -->
+  <div class="wp-block-research-amp-profile-bio">
+  %s
+  </div>
+  <!-- /wp:research-amp/profile-bio -->
+
+  <!-- wp:research-amp/item-research-topics /--></div>
+  <!-- /wp:column --></div>
+  <!-- /wp:columns -->',
+				$profile['title'],
+				$profile['title'],
+				$profile['twitter'],
+				$profile['twitter'],
+				$profile['twitter'],
+				$profile['website'],
+				$profile['website'],
+				$profile['website'],
+				$profile['biography']
+			);
+
+			$profile_id = wp_insert_post(
+				[
+					'post_type'    => 'ramp_profile',
+					'post_name'    => sanitize_title_with_dashes( $profile['name'] ),
+					'post_title'   => $profile['name'],
+					'post_status'  => 'publish',
+					'post_content' => $content,
+				]
+			);
+
+			if ( ! $profile_id ) {
+				continue;
+			}
+
+			$this->set_featured_image( $profile_id, $profile['featured_image'] );
+
+			add_post_meta( $profile_id, 'alphabetical_name', $profile['sortable_name'] );
+
+			$rt_map      = ramp_app()->get_cpttax_map( 'research_topic' );
+			$rt_term_ids = array_map(
+				function ( $rt_id ) use ( $rt_map ) {
+					return $rt_map->get_term_id_for_post_id( $rt_id );
+				},
+				$profile['research_topics']
+			);
+
+			wp_set_post_terms( $profile_id, $rt_term_ids, 'ramp_assoc_topic' );
 		}
 	}
 
