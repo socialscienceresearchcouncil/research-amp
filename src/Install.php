@@ -59,7 +59,7 @@ class Install {
 					'post_name'    => $research_topic_slug,
 					'post_status'  => 'publish',
 					'post_title'   => $research_topic_data['post_title'],
-					'post_content' => '<!-- wp:paragraph --><p>' . $research_topic_data['post_content'] . '</p><!-- /wp:paragraph -->',
+					'post_content' => $this->convert_text_to_paragraph_blocks( $research_topic_data['post_content'] ),
 				]
 			);
 
@@ -116,13 +116,15 @@ class Install {
 				continue;
 			}
 
+			$page_content = $this->convert_text_to_paragraph_blocks( $page_data['post_content'] ) . $this->get_lorem_ipsum( 3 );
+
 			$page_id = wp_insert_post(
 				[
 					'post_type'    => 'page',
 					'post_name'    => $page_slug,
 					'post_status'  => 'publish',
 					'post_title'   => $page_data['post_title'],
-					'post_content' => $page_data['post_content'],
+					'post_content' => $page_content,
 				]
 			);
 
@@ -215,5 +217,53 @@ class Install {
 		if ( ! $site_logo && $attachment_id ) {
 			update_option( 'site_logo', $attachment_id );
 		}
+	}
+
+	/**
+	 * Converts multiline text block to a string containing wp:paragraph blocks.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $text The text to convert.
+	 * @return string
+	 */
+	protected function convert_text_to_paragraph_blocks( $text ) {
+		$paragraphs = explode( "\n\n", $text );
+
+		$paragraph_blocks = array_map(
+			function ( $p ) {
+				return '<!-- wp:paragraph --><p>' . $p . '</p><!-- /wp:paragraph -->';
+			},
+			$paragraphs
+		);
+
+		return implode( '', $paragraph_blocks );
+	}
+
+	/**
+	 * Gets 10 paragraphs of lorem ipsum text.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int $number_of_paragraphs The number of paragraphs to return.
+	 * @return string
+	 */
+	protected function get_lorem_ipsum( $number_of_paragraphs = 10 ) {
+		$paragraphs = [
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In hac habitasse platea dictumst vestibulum. At in tellus integer feugiat scelerisque varius morbi. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est. Consectetur adipiscing elit ut aliquam purus sit amet. Auctor urna nunc id cursus metus. Gravida arcu ac tortor dignissim convallis aenean et. Neque volutpat ac tincidunt vitae semper quis lectus nulla. Non pulvinar neque laoreet suspendisse interdum consectetur libero id. Et odio pellentesque diam volutpat commodo sed egestas egestas fringilla. Tellus elementum sagittis vitae et leo duis ut diam.',
+			'Lobortis elementum nibh tellus molestie nunc. Ultrices neque ornare aenean euismod elementum nisi. Mi eget mauris pharetra et ultrices neque ornare aenean euismod. Elementum curabitur vitae nunc sed velit. Enim eu turpis egestas pretium aenean pharetra magna ac. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Tellus orci ac auctor augue mauris. Semper auctor neque vitae tempus quam. Proin sagittis nisl rhoncus mattis rhoncus urna neque viverra justo. Sed enim ut sem viverra aliquet. Facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum. Habitant morbi tristique senectus et netus. Praesent semper feugiat nibh sed pulvinar proin. Sit amet dictum sit amet justo. Turpis tincidunt id aliquet risus feugiat in. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Ut lectus arcu bibendum at varius vel pharetra vel turpis. Dignissim convallis aenean et tortor at risus viverra adipiscing at. Ut sem nulla pharetra diam sit amet nisl suscipit. Fusce ut placerat orci nulla pellentesque.',
+			'Mauris augue neque gravida in fermentum et sollicitudin ac orci. Ut consequat semper viverra nam libero justo laoreet sit amet. Porttitor rhoncus dolor purus non enim praesent elementum facilisis. Nunc id cursus metus aliquam eleifend mi. Viverra vitae congue eu consequat ac felis donec et odio. Turpis nunc eget lorem dolor. Nisi quis eleifend quam adipiscing vitae proin. Eu sem integer vitae justo eget magna fermentum. Placerat vestibulum lectus mauris ultrices eros in. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Eros in cursus turpis massa tincidunt dui ut. Aliquet lectus proin nibh nisl. Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Maecenas pharetra convallis posuere morbi leo urna molestie at. Augue neque gravida in fermentum et sollicitudin ac. Felis imperdiet proin fermentum leo vel orci porta.',
+			'At tempor commodo ullamcorper a. Scelerisque in dictum non consectetur a erat nam at lectus. Amet consectetur adipiscing elit duis. Et tortor consequat id porta nibh venenatis cras. Ut morbi tincidunt augue interdum velit. Ullamcorper a lacus vestibulum sed arcu non odio. Lacus sed turpis tincidunt id aliquet risus feugiat. Mollis nunc sed id semper. Amet volutpat consequat mauris nunc congue. Interdum consectetur libero id faucibus nisl. Vitae nunc sed velit dignissim sodales ut eu sem. Ornare lectus sit amet est. Tincidunt vitae semper quis lectus nulla at volutpat diam. Consequat ac felis donec et odio pellentesque diam volutpat. Quam elementum pulvinar etiam non quam. Aliquam purus sit amet luctus venenatis lectus magna.',
+			'Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Vitae aliquet nec ullamcorper sit amet risus nullam. At tellus at urna condimentum mattis pellentesque. Integer malesuada nunc vel risus. Feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam. Gravida cum sociis natoque penatibus et magnis dis. Maecenas ultricies mi eget mauris pharetra et ultrices. Morbi quis commodo odio aenean sed adipiscing. Gravida quis blandit turpis cursus. Augue interdum velit euismod in pellentesque massa placerat duis. In eu mi bibendum neque egestas congue quisque egestas diam. Ultrices mi tempus imperdiet nulla malesuada pellentesque.',
+			'Mus mauris vitae ultricies leo integer malesuada. Tellus elementum sagittis vitae et leo duis ut diam. Egestas quis ipsum suspendisse ultrices. Purus ut faucibus pulvinar elementum. Enim blandit volutpat maecenas volutpat blandit aliquam etiam erat. Quis blandit turpis cursus in hac habitasse platea. Nec dui nunc mattis enim ut tellus elementum. Habitant morbi tristique senectus et. Malesuada nunc vel risus commodo viverra maecenas accumsan lacus. Sed turpis tincidunt id aliquet risus feugiat. Nulla porttitor massa id neque aliquam vestibulum morbi blandit.',
+			'Tincidunt arcu non sodales neque. Molestie at elementum eu facilisis sed odio morbi quis. Luctus venenatis lectus magna fringilla urna. Id faucibus nisl tincidunt eget. Nunc sed id semper risus. Tortor id aliquet lectus proin nibh nisl condimentum. Tincidunt praesent semper feugiat nibh sed pulvinar. Consequat nisl vel pretium lectus quam id. Elementum pulvinar etiam non quam. Tincidunt praesent semper feugiat nibh sed. Eu ultrices vitae auctor eu. In massa tempor nec feugiat nisl pretium fusce id. Arcu risus quis varius quam quisque id diam vel. Auctor urna nunc id cursus metus aliquam eleifend mi in. Id volutpat lacus laoreet non curabitur gravida arcu ac tortor. Id aliquet risus feugiat in ante metus dictum at tempor. Aliquam faucibus purus in massa tempor nec.',
+			'Tincidunt eget nullam non nisi est sit amet facilisis. Aliquam faucibus purus in massa tempor nec feugiat nisl pretium. Malesuada fames ac turpis egestas sed tempus urna. Nulla facilisi nullam vehicula ipsum. Sed adipiscing diam donec adipiscing tristique risus nec. Massa sed elementum tempus egestas sed sed risus pretium. Est ante in nibh mauris cursus mattis molestie a iaculis. Magna eget est lorem ipsum dolor sit amet. Scelerisque eu ultrices vitae auctor eu augue ut. Sed sed risus pretium quam vulputate dignissim. Egestas diam in arcu cursus euismod quis viverra nibh.',
+			'At tempor commodo ullamcorper a lacus vestibulum sed arcu non. Purus in mollis nunc sed id. Id faucibus nisl tincidunt eget nullam non nisi. Praesent semper feugiat nibh sed pulvinar proin gravida hendrerit. Turpis egestas pretium aenean pharetra magna ac placerat. Et sollicitudin ac orci phasellus. Praesent tristique magna sit amet. Ultrices mi tempus imperdiet nulla malesuada pellentesque. Vulputate odio ut enim blandit volutpat maecenas. Nulla porttitor massa id neque.',
+			'Urna porttitor rhoncus dolor purus non enim. Nullam ac tortor vitae purus faucibus ornare suspendisse. At augue eget arcu dictum varius. Egestas maecenas pharetra convallis posuere. Diam sollicitudin tempor id eu nisl nunc mi. Tempus imperdiet nulla malesuada pellentesque elit eget. Eu ultrices vitae auctor eu augue ut lectus arcu bibendum. Dolor purus non enim praesent elementum facilisis leo. Accumsan sit amet nulla facilisi morbi tempus iaculis. Ullamcorper morbi tincidunt ornare massa eget egestas.',
+		];
+
+		$text = implode( "\n\n", array_slice( $paragraphs, 0, $number_of_paragraphs ) );
+
+		return $this->convert_text_to_paragraph_blocks( $text );
 	}
 }
