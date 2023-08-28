@@ -8,6 +8,7 @@ class Install {
 	public function install() {
 		$this->install_default_research_topics();
 		$this->install_default_research_reviews();
+		$this->install_default_articles();
 		$this->install_default_pages();
 		$this->install_default_nav_menus();
 		$this->install_default_page_on_front();
@@ -102,7 +103,7 @@ class Install {
 			];
 
 			foreach ( $headings as $heading ) {
-				$review_text .= '<!-- wp:heading {"level":2} --><h2>' . $heading . '</h2><!-- /wp:heading -->' . "\n" . $this->get_lorem_ipsum( 1 );
+				$review_text .= '<!-- wp:heading {"level":2} --><h2 class="wp-block-heading">' . $heading . '</h2><!-- /wp:heading -->' . "\n" . $this->get_lorem_ipsum( 1 );
 			}
 
 			$review_text .= sprintf(
@@ -138,6 +139,73 @@ class Install {
 			wp_set_post_terms( $research_review_id, [ $rt_term_id ], 'ramp_assoc_topic' );
 
 			$this->set_featured_image( $research_review_id, RAMP_PLUGIN_URL . '/assets/img/default-data/research-reviews/' . $review_slug . '.jpg' );
+		}
+	}
+
+	/**
+	 * Create some default articles.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	protected function install_default_articles() {
+		$research_topics = get_posts(
+			[
+				'post_type' => 'ramp_topic',
+			]
+		);
+
+		$articles = [
+			[
+				'post_title'      => __( 'Advancements in Solar Panel Efficiency: Illuminating the Path for Sustainable Energy', 'research-amp' ),
+				'research_topics' => [ $research_topics[2]->ID ],
+				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/articles/solar.jpg',
+			],
+			[
+				'post_title'      => __( 'Analyzing the Paris Agreement: International Cooperation in Combating Climate Crisis', 'research-amp' ),
+				'research_topics' => [ $research_topics[1]->ID ],
+				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/articles/paris.jpg',
+			],
+			[
+				'post_title'      => __( 'Climate Refugees: Navigating the Complexities of Forced Migration due to Environmental Factors', 'research-amp' ),
+				'research_topics' => [ $research_topics[0]->ID, $research_topics[1]->ID ],
+				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/articles/forced.jpg',
+			],
+			[
+				'post_title'      => __( 'Migration Patterns in the Era of Climate Change: Interplay Between Environmental and Policy Factors', 'research-amp' ),
+				'research_topics' => [ $research_topics[0]->ID, $research_topics[1]->ID ],
+				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/articles/patterns.jpg',
+			],
+		];
+
+		foreach ( $articles as $article ) {
+			$article_id = wp_insert_post(
+				[
+					'post_type'    => 'ramp_article',
+					'post_name'    => sanitize_title_with_dashes( $article['post_title'] ),
+					'post_status'  => 'publish',
+					'post_title'   => $article['post_title'],
+					'post_content' => $this->generate_article_content(),
+				]
+			);
+
+			if ( ! $article_id ) {
+				continue;
+			}
+
+			// Associate with the necessary research topics.
+			$rt_map      = ramp_app()->get_cpttax_map( 'research_topic' );
+			$rt_term_ids = array_map(
+				function ( $rt_id ) use ( $rt_map ) {
+					return $rt_map->get_term_id_for_post_id( $rt_id );
+				},
+				$article['research_topics']
+			);
+
+			wp_set_post_terms( $article_id, $rt_term_ids, 'ramp_assoc_topic' );
+
+			$this->set_featured_image( $article_id, $article['featured_image'] );
 		}
 	}
 
@@ -351,5 +419,29 @@ class Install {
 		$text = implode( "\n\n", array_slice( $paragraphs, 0, $number_of_paragraphs ) );
 
 		return $this->convert_text_to_paragraph_blocks( $text );
+	}
+
+	/**
+	 * Generates some random article content.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string
+	 */
+	protected function generate_article_content() {
+		$article_content = '';
+
+		$number_of_sections = wp_rand( 3, 5 );
+
+		for ( $i = 0; $i < $number_of_sections; $i++ ) {
+			// Section heading should be 3-5 words of lorem ipsum.
+			$ipsum_words     = explode( ' ', wp_strip_all_tags( $this->get_lorem_ipsum( 1 ) ) );
+			$heading_count   = wp_rand( 3, 5 );
+			$section_heading = implode( ' ', array_slice( $ipsum_words, 0, $heading_count ) );
+
+			$article_content .= '<!-- wp:heading {"level":2} --><h2 class="wp-block-heading">' . $section_heading . '</h2><!-- /wp:heading -->' . "\n" . $this->get_lorem_ipsum( 3 );
+		}
+
+		return $article_content;
 	}
 }
