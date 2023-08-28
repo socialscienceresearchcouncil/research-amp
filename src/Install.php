@@ -94,6 +94,25 @@ class Install {
 	 * @return void
 	 */
 	protected function install_default_profiles() {
+		// Create default ramp_profile_type terms.
+		$profile_types = [
+			__( 'Contributor', 'research-amp' ),
+			__( 'Staff', 'research-amp' ),
+			__( 'Advisory Board Member', 'research-amp' ),
+		];
+
+		$profile_type_term_ids = [];
+		foreach ( $profile_types as $profile_type ) {
+			$profile_type_term = wp_insert_term(
+				$profile_type,
+				'ramp_profile_type'
+			);
+
+			if ( ! is_wp_error( $profile_type_term ) ) {
+				$profile_type_term_ids[] = $profile_type_term['term_id'];
+			}
+		}
+
 		$research_topics = get_posts(
 			[
 				'post_type' => 'ramp_topic',
@@ -111,6 +130,7 @@ class Install {
 				'website'         => 'https://example.com',
 				'research_topics' => [ $research_topics[0]->ID ],
 				'focus_tags'      => [ $this->default_focus_tags[0], $this->default_focus_tags[1] ],
+				'profile_types'   => [ $profile_type_term_ids[0] ],
 			],
 			[
 				'name'            => __( 'John Doe', 'research-amp' ),
@@ -122,6 +142,7 @@ class Install {
 				'website'         => 'https://example.com',
 				'research_topics' => [ $research_topics[1]->ID, $research_topics[2]->ID ],
 				'focus_tags'      => [ $this->default_focus_tags[1], $this->default_focus_tags[2] ],
+				'profile_types'   => [ $profile_type_term_ids[1] ],
 			],
 		];
 
@@ -135,6 +156,11 @@ class Install {
   <!-- wp:research-amp/profile-title-institution {"content":"%s"} -->
   <div class="wp-block-research-amp-profile-title-institution">%s</div>
   <!-- /wp:research-amp/profile-title-institution --></div>
+
+  <!-- wp:research-amp/profile-types -->
+  <div class="wp-block-research-amp-profile-types profile-types"><div class="tag-bubble profile-type-label">%s</div></div>
+  <!-- /wp:research-amp/profile-types -->
+
   <!-- /wp:group -->
 
   <!-- wp:columns -->
@@ -174,6 +200,7 @@ class Install {
   <!-- /wp:columns -->',
 				$profile['title'],
 				$profile['title'],
+				$profile['profile_types'][0],
 				$profile['twitter'],
 				$profile['twitter'],
 				$profile['twitter'],
@@ -211,7 +238,9 @@ class Install {
 
 			wp_set_post_terms( $profile_id, $rt_term_ids, 'ramp_assoc_topic' );
 
-			$set = wp_set_post_terms( $profile_id, $profile['focus_tags'], 'ramp_focus_tag' );
+			wp_set_post_terms( $profile_id, $profile['focus_tags'], 'ramp_focus_tag' );
+
+			wp_set_post_terms( $profile_id, $profile['profile_types'], 'ramp_profile_type' );
 		}
 	}
 

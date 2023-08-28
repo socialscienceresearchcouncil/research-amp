@@ -278,6 +278,9 @@ class Schema {
 
 							// Title/institution field.
 							[ 'research-amp/profile-title-institution' ],
+
+							// Profile types.
+							[ 'research-amp/profile-types' ],
 						],
 					],
 
@@ -646,21 +649,22 @@ class Schema {
 		);
 
 		register_taxonomy(
-			'ramp_item_type',
-			[ 'ramp_news_item' ],
+			'ramp_profile_type',
+			[ 'ramp_profile' ],
 			[
-				'label'        => __( 'Item Type', 'research-amp' ),
+				'label'        => __( 'Profile Type', 'research-amp' ),
 				'labels'       => [
-					'name'          => __( 'Item Type', 'research-amp' ),
-					'singular_name' => __( 'Item Types', 'research-amp' ),
-					'add_new_item'  => __( 'Add New Item Type', 'research-amp' ),
-					'not_found'     => __( 'No Item Types found', 'research-amp' ),
+					'name'          => __( 'Profile Type', 'research-amp' ),
+					'singular_name' => __( 'Profile Types', 'research-amp' ),
+					'add_new_item'  => __( 'Add New Profile Type', 'research-amp' ),
+					'not_found'     => __( 'No Profile Types found', 'research-amp' ),
 				],
 				'hierarchical' => true, // Just to get the checkboxes.
 				'public'       => true,
 				'show_ui'      => true,
+				'show_in_rest' => true,
 				'rewrite'      => [
-					'slug' => 'item-type',
+					'slug' => 'profile-type',
 				],
 			]
 		);

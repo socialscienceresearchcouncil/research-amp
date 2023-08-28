@@ -205,6 +205,7 @@ class Blocks {
 			'item-type-label',
 			'nav-search',
 			'profile-directory-filters',
+			'profile-types',
 			'search-form',
 			'search-load-more',
 			'search-result-teaser',

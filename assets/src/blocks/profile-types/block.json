@@ -1,0 +1,11 @@
+{
+	"apiVersion": 2,
+	"name": "research-amp/profile-types",
+	"title": "Profile Types",
+	"category": "research-amp",
+	"supports": {
+		"anchor": true
+	},
+	"usesContext": [ "postId", "templateSlug" ],
+	"attributes": {}
+}

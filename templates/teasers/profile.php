@@ -6,6 +6,7 @@ $r = array_merge(
 		'is_edit_mode'         => false,
 		'is_featured'          => false,
 		'show_item_type_label' => false,
+		'show_profile_types'   => true,
 		'title_size'           => 'h-5',
 	],
 	$args
@@ -32,6 +33,8 @@ if ( $img_src ) {
 }
 
 $title_class = 'has-' . $r['title_size'] . '-font-size';
+
+$profile_types = $profile_obj->get_profile_types();
 
 ?>
 
@@ -80,6 +83,14 @@ $title_class = 'has-' . $r['title_size'] . '-font-size';
 					<?php echo esc_html( $profile_obj->get_title() ); ?>
 				</div>
 			</div>
+
+			<?php if ( $r['show_profile_types'] && $profile_types ) : ?>
+				<div class="profile-types">
+					<?php foreach ( $profile_types as $profile_type ) : ?>
+						<?php ramp_get_template_part( 'profile-type-label', [ 'label' => $profile_type ] ); ?>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
 		</div>
 	</div>
 </article>

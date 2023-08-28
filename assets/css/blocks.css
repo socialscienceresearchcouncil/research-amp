@@ -229,6 +229,10 @@
 }
 
 /** Buttons, tags, etc */
+.profile-types {
+	margin-top: 1em;
+}
+
 .editor-styles-wrapper a.wp-block-button__link {
 	color: var(--wp--preset--color--white);
 	text-decoration: none;

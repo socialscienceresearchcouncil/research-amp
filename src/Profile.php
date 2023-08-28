@@ -156,6 +156,16 @@ class Profile {
 		return implode( ', ', $links );
 	}
 
+	/**
+	 * Gets a list of profile types associated with this profile.
+	 *
+	 * @return array
+	 */
+	public function get_profile_types() {
+		$profile_types = wp_get_object_terms( $this->get_post_id(), 'ramp_profile_type' );
+		return wp_list_pluck( $profile_types, 'name' );
+	}
+
 	public function get_sp_term_id() {
 		$sp_map = ramp_app()->get_cpttax_map( 'profile' );
 		return $sp_map->get_term_id_for_post_id( $this->get_post_id() );
