@@ -7,6 +7,7 @@ use SSRC\RAMP\Util\Navigation;
 class Install {
 	public function install() {
 		$this->install_default_research_topics();
+		$this->install_default_research_reviews();
 		$this->install_default_pages();
 		$this->install_default_nav_menus();
 		$this->install_default_page_on_front();
@@ -67,24 +68,51 @@ class Install {
 				continue;
 			}
 
-			// Set the featured image.
-			if ( ! function_exists( 'media_sideload_image' ) ) {
-				require_once ABSPATH . 'wp-admin/includes/media.php';
+			$this->set_featured_image( $research_topic_id, RAMP_PLUGIN_URL . '/assets/img/default-data/research-topics/' . $research_topic_slug . '.jpg' );
+		}
+	}
+
+	/**
+	 * For each default research topic, create a corresponding research review.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	protected function install_default_research_reviews() {
+		$research_topics = get_posts(
+			[
+				'post_type' => 'ramp_topic',
+			]
+		);
+
+		foreach ( $research_topics as $research_topic ) {
+			$review_slug = $research_topic->post_name . '-review';
+
+			// translators: Research topic name.
+			$review_title = sprintf( __( '%s Review', 'research-amp' ), $research_topic->post_title );
+
+			$research_review_id = wp_insert_post(
+				[
+					'post_type'    => 'ramp_review',
+					'post_name'    => $review_slug,
+					'post_status'  => 'publish',
+					'post_title'   => $review_title,
+					'post_content' => $this->get_lorem_ipsum( 10 ),
+				]
+			);
+
+			if ( ! $research_review_id ) {
+				continue;
 			}
 
-			if ( ! function_exists( 'download_url' ) ) {
-				require_once ABSPATH . 'wp-admin/includes/file.php';
-			}
+			// Associate with the research topic.
+			$rt_map     = ramp_app()->get_cpttax_map( 'research_topic' );
+			$rt_term_id = $rt_map->get_term_id_for_post_id( $research_topic->ID );
 
-			if ( ! function_exists( 'wp_read_image_metadata' ) ) {
-				require_once ABSPATH . 'wp-admin/includes/image.php';
-			}
+			wp_set_post_terms( $research_review_id, [ $rt_term_id ], 'ramp_assoc_topic' );
 
-			$attachment_id = media_sideload_image( RAMP_PLUGIN_URL . '/assets/img/default-data/' . $research_topic_slug . '.jpg', $research_topic_id, '', 'id' );
-
-			if ( $attachment_id ) {
-				set_post_thumbnail( $research_topic_id, $attachment_id );
-			}
+			$this->set_featured_image( $research_review_id, RAMP_PLUGIN_URL . '/assets/img/default-data/research-reviews/' . $review_slug . '.jpg' );
 		}
 	}
 
@@ -216,6 +244,36 @@ class Install {
 		$site_logo = get_option( 'site_logo' );
 		if ( ! $site_logo && $attachment_id ) {
 			update_option( 'site_logo', $attachment_id );
+		}
+	}
+
+	/**
+	 * Saves a featured image to a post.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int    $post_id The post ID.
+	 * @param string $image_url The URL of the image to save.
+	 * @return void
+	 */
+	protected function set_featured_image( $post_id, $image_url ) {
+		// Set the featured image.
+		if ( ! function_exists( 'media_sideload_image' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/media.php';
+		}
+
+		if ( ! function_exists( 'download_url' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+
+		if ( ! function_exists( 'wp_read_image_metadata' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/image.php';
+		}
+
+		$attachment_id = media_sideload_image( $image_url, $post_id, '', 'id' );
+
+		if ( $attachment_id ) {
+			set_post_thumbnail( $post_id, $attachment_id );
 		}
 	}
 
