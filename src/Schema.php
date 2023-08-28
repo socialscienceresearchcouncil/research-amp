@@ -583,7 +583,7 @@ class Schema {
 					'add_new_item'  => __( 'Add New Focus Tag', 'research-amp' ),
 					'not_found'     => __( 'No Focus Tags found', 'research-amp' ),
 				],
-				'hierarchical' => true,
+				'hierarchical' => false,
 				'public'       => true,
 				'rewrite'      => [
 					'slug' => 'tag',

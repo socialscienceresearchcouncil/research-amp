@@ -5,6 +5,17 @@ namespace SSRC\RAMP;
 use SSRC\RAMP\Util\Navigation;
 
 class Install {
+	/**
+	 * Default focus tags.
+	 *
+	 * @var array
+	 */
+	protected $default_focus_tags = [
+		'solar energy',
+		'Paris Agreement',
+		'US Government Policy',
+	];
+
 	public function install() {
 		$this->install_default_research_topics();
 		$this->install_default_profiles();
@@ -98,6 +109,7 @@ class Install {
 				'twitter'         => 'janedoe',
 				'website'         => 'https://example.com',
 				'research_topics' => [ $research_topics[0]->ID ],
+				'focus_tags'      => [ $this->default_focus_tags[0], $this->default_focus_tags[1] ],
 			],
 			[
 				'name'            => __( 'John Doe', 'research-amp' ),
@@ -108,6 +120,7 @@ class Install {
 				'twitter'         => 'johndoe',
 				'website'         => 'https://example.com',
 				'research_topics' => [ $research_topics[1]->ID, $research_topics[2]->ID ],
+				'focus_tags'      => [ $this->default_focus_tags[1], $this->default_focus_tags[2] ],
 			],
 		];
 
@@ -196,6 +209,8 @@ class Install {
 			);
 
 			wp_set_post_terms( $profile_id, $rt_term_ids, 'ramp_assoc_topic' );
+
+			$set = wp_set_post_terms( $profile_id, $profile['focus_tags'], 'ramp_focus_tag' );
 		}
 	}
 
