@@ -25,6 +25,7 @@ class Install {
 		$this->install_default_nav_menus();
 		$this->install_default_page_on_front();
 		$this->install_default_logo();
+		$this->install_default_homepage_slide();
 		$this->set_installed_version();
 	}
 
@@ -536,6 +537,40 @@ class Install {
 		if ( ! $site_logo && $attachment_id ) {
 			update_option( 'site_logo', $attachment_id );
 		}
+	}
+
+	/**
+	 * Installs a default homepage slide.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	protected function install_default_homepage_slide() {
+		$post_content = sprintf(
+			__( 'Welcome to Research AMP! Visit the <a href="%s">Get Started</a> page to learn more about how to use this theme.', 'research-amp' ),
+			home_url( 'get-started' )
+		);
+
+		$homepage_slide_id = wp_insert_post(
+			[
+				'post_type'    => 'ramp_homepage_slide',
+				'post_name'    => 'welcome-to-research-amp',
+				'post_title'   => __( 'Welcome to Research AMP', 'research-amp' ),
+				'post_content' => $post_content,
+				'post_status'  => 'publish',
+			]
+		);
+
+		if ( ! $homepage_slide_id ) {
+			return;
+		}
+
+		add_post_meta( $homepage_slide_id, 'ramp_slide_meta_text', __( 'Getting Started', 'research-amp' ) );
+		add_post_meta( $homepage_slide_id, 'ramp_slide_button_text', __( 'Learn More', 'research-amp' ) );
+		add_post_meta( $homepage_slide_id, 'ramp_slide_button_url', home_url( 'get-started' ) );
+
+		$this->set_featured_image( $homepage_slide_id, RAMP_PLUGIN_URL . '/assets/img/default-data/homepage-slide.jpg' );
 	}
 
 	/**
