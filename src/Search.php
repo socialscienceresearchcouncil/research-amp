@@ -3,9 +3,24 @@
 namespace SSRC\RAMP;
 
 class Search {
+	/**
+	 * The search clause captured from the 'posts_search' filter.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var string
+	 */
+	protected $current_search_clause = '';
+
 	public function init() {
 		// Modify query for search.
 		add_action( 'pre_get_posts', [ $this, 'modify_query_for_search' ] );
+
+		// Capture the 'posts_search' clause so that we can use it in the 'posts_clauses' filter
+		add_filter( 'posts_search', [ $this, 'capture_posts_search_clause' ] );
+
+		// Modify Citations query to match search term against Author postmeta field.
+		add_filter( 'posts_clauses', [ $this, 'modify_citations_query_for_search' ], 10, 2 );
 	}
 
 	public function modify_query_for_search( $query ) {
@@ -93,5 +108,55 @@ class Search {
 		asort( $types );
 
 		return $types;
+	}
+
+	/**
+	 * Captures the current search clause so that we can use it in the 'posts_clauses' filter.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $search The search clause.
+	 * @return string
+	 */
+	public function capture_posts_search_clause( $search ) {
+		$this->current_search_clause = $search;
+		return $search;
+	}
+
+	/**
+	 * Modify query clauses when searching Citations to match against Author postmeta field.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array     $clauses The query clauses.
+	 * @param \WP_Query $query   The WP_Query instance.
+	 * @return array
+	 */
+	public function modify_citations_query_for_search( $clauses, $query ) {
+		global $wpdb;
+
+		if ( ! $query->is_search() ) {
+			return $clauses;
+		}
+
+		// If this is not a Citations query, return.
+		if ( ! isset( $query->query_vars['post_type'] ) || 'ramp_citation' !== $query->query_vars['post_type'] ) {
+			return $clauses;
+		}
+
+		$search_term = $query->get( 's' );
+
+		$postmeta_join_clause = " LEFT JOIN {$wpdb->postmeta} author_pm ON {$wpdb->posts}.ID = author_pm.post_id";
+
+		$search_term_like      = '%' . $wpdb->esc_like( $search_term ) . '%';
+		$postmeta_where_clause = $wpdb->prepare( "author_pm.meta_key = 'zotero_author' AND author_pm.meta_value LIKE %s", $search_term_like );
+
+		$new_search_clause = preg_replace( '/AND \((.*)\)\s*$/', "AND ($1 OR ( $postmeta_where_clause )) ", $this->current_search_clause );
+		$new_where_clause  = str_replace( $this->current_search_clause, $new_search_clause, $clauses['where'] );
+
+		$clauses['join'] .= $postmeta_join_clause;
+		$clauses['where'] = $new_where_clause;
+
+		return $clauses;
 	}
 }
