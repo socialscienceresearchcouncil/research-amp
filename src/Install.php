@@ -1,12 +1,24 @@
 <?php
+/**
+ * Installation routines.
+ *
+ * @package SSRC\RAMP
+ */
 
 namespace SSRC\RAMP;
 
 use SSRC\RAMP\Util\Navigation;
 
+/**
+ * Installation class.
+ *
+ * @since 1.0.0
+ */
 class Install {
 	/**
 	 * Default focus tags.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @var array
 	 */
@@ -16,6 +28,13 @@ class Install {
 		'US Government Policy',
 	];
 
+	/**
+	 * Main installation method.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function install() {
 		$this->install_default_research_topics();
 		$this->install_default_profiles();
@@ -29,6 +48,13 @@ class Install {
 		$this->set_installed_version();
 	}
 
+	/**
+	 * Saves the current installed version to the database.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	protected function set_installed_version() {
 		update_option( 'ramp_version', RAMP_VER );
 	}
@@ -437,6 +463,13 @@ class Install {
 		}
 	}
 
+	/**
+	 * Installs default pages.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	protected function install_default_pages() {
 		$pages_data = [
 			'get-started'          => [
@@ -494,6 +527,13 @@ class Install {
 		}
 	}
 
+	/**
+	 * Install default navigation menus.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	protected function install_default_nav_menus() {
 		$nav_menus = [
 			'primary-nav'   => [
@@ -531,6 +571,13 @@ class Install {
 		update_option( 'ramp_nav_menus', $ramp_nav_menus );
 	}
 
+	/**
+	 * Sets up the Home page and sets it to the "page on front".
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	protected function install_default_page_on_front() {
 		$page_on_front = wp_insert_post(
 			[
@@ -549,6 +596,13 @@ class Install {
 		}
 	}
 
+	/**
+	 * Installs a default logo.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function install_default_logo() {
 		// Run only in the Dashboard.
 		if ( ! function_exists( 'media_sideload_image' ) ) {
