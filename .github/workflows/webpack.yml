@@ -2,7 +2,7 @@ name: Packaging a release + zip
 
 on:
   push:
-    tags: 
+    tags:
     - '*'
 
 jobs:
@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-    
+
     steps:
     - uses: actions/checkout@v3
 
@@ -25,13 +25,18 @@ jobs:
       run: |
         npm install
         npm run build
-    
+
+    - Name: Composer install
+      uses: "ramsey/composer-install@v2"
+      with:
+        composer-options: "--no-dev"
+
     - name: Zip
       uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
         filename: 'research-amp.zip'
-        exclusions: '*.git* /*node_modules/* composer.* package.json package-lock.json phpcs.xml.dist src .distignore'
+        exclusions: '*.git* /*node_modules/* composer.* package.json package-lock.json phpcs.xml.dist .distignore'
 
     - name: Upload Release
       uses: ncipollo/release-action@v1
