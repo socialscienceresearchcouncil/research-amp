@@ -221,7 +221,9 @@ class Install {
   </div>
   <!-- /wp:research-amp/profile-bio -->
 
-  <!-- wp:research-amp/item-research-topics /--></div>
+  <!-- wp:research-amp/item-research-topics /-->
+  <!-- wp:post-terms {"term":"ramp_focus_tag","prefix":"%s"} /-->
+  </div>
   <!-- /wp:column --></div>
   <!-- /wp:columns -->',
 				$profile['title'],
@@ -233,7 +235,8 @@ class Install {
 				$profile['website'],
 				$profile['website'],
 				$profile['website'],
-				$profile['biography']
+				$profile['biography'],
+				__( 'Tags: ', 'research-amp' )
 			);
 
 			$profile_id = wp_insert_post(
