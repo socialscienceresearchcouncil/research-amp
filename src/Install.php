@@ -403,24 +403,28 @@ class Install {
 				'research_topics' => [ $research_topics[2]->ID ],
 				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/articles/solar.jpg',
 				'article_types'   => [ $article_type_term_ids[0] ],
+				'focus_tags'      => [ $this->default_focus_tags[2] ],
 			],
 			[
 				'post_title'      => __( 'Analyzing the Paris Agreement: International Cooperation in Combating Climate Crisis', 'research-amp' ),
 				'research_topics' => [ $research_topics[1]->ID ],
 				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/articles/paris.jpg',
 				'article_types'   => [ $article_type_term_ids[1] ],
+				'focus_tags'      => [ $this->default_focus_tags[0], $this->default_focus_tags[2] ],
 			],
 			[
 				'post_title'      => __( 'Climate Refugees: Navigating the Complexities of Forced Migration due to Environmental Factors', 'research-amp' ),
 				'research_topics' => [ $research_topics[0]->ID, $research_topics[1]->ID ],
 				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/articles/forced.jpg',
 				'article_types'   => [ $article_type_term_ids[2] ],
+				'focus_tags'      => [ $this->default_focus_tags[0], $this->default_focus_tags[1] ],
 			],
 			[
 				'post_title'      => __( 'Migration Patterns in the Era of Climate Change: Interplay Between Environmental and Policy Factors', 'research-amp' ),
 				'research_topics' => [ $research_topics[0]->ID, $research_topics[1]->ID ],
 				'featured_image'  => RAMP_PLUGIN_URL . '/assets/img/default-data/articles/patterns.jpg',
 				'article_types'   => [ $article_type_term_ids[1], $article_type_term_ids[2] ],
+				'focus_tags'      => [ $this->default_focus_tags[2], $this->default_focus_tags[1] ],
 			],
 		];
 
@@ -463,6 +467,8 @@ class Install {
 			wp_set_post_terms( $article_id, [ $profile_term_id ], 'ramp_assoc_profile' );
 
 			wp_set_post_terms( $article_id, $article['article_types'], 'ramp_article_type' );
+
+			wp_set_post_terms( $article_id, $article['focus_tags'], 'ramp_focus_tag' );
 		}
 	}
 
