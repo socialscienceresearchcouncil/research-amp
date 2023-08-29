@@ -7,13 +7,41 @@ use WP_User;
 use SSRC\RAMP\Citation;
 use SSRC\RAMP\Zotero\Library as ZoteroLibrary;
 
+/**
+ * Admin class.
+ *
+ * @since 1.0.0
+ */
 class Admin {
+	/**
+	 * PressForward instance.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var PressForward
+	 */
 	protected $pressforward;
 
+	/**
+	 * Constructor.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param PressForward $pressforward PressForward instance.
+	 *
+	 * @return void
+	 */
 	public function __construct( PressForward $pressforward ) {
 		$this->pressforward = $pressforward;
 	}
 
+	/**
+	 * Initialize.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function init() {
 		add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
 
@@ -30,6 +58,13 @@ class Admin {
 		Zotero\Admin::init();
 	}
 
+	/**
+	 * Add meta boxes.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function add_meta_boxes() {
 		add_meta_box(
 			'zotero-id',
@@ -86,6 +121,15 @@ class Admin {
 		);
 	}
 
+	/**
+	 * Zotero meta box callback.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param WP_Post $post Post object.
+	 *
+	 * @return void
+	 */
 	public function zotero_cb( $post ) {
 		$citation = Citation::get_from_post_id( $post->ID );
 
@@ -104,6 +148,15 @@ class Admin {
 		}
 	}
 
+	/**
+	 * Zotero collection meta box callback.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param WP_Post $post Post object.
+	 *
+	 * @return void
+	 */
 	public function zotero_collection_cb( $post ) {
 		$zotero_id  = '';
 		$zotero_url = '';
@@ -137,6 +190,15 @@ class Admin {
 		}
 	}
 
+	/**
+	 * News item author meta box callback.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param WP_Post $post Post object.
+	 *
+	 * @return void
+	 */
 	public function news_item_author_cb( $post ) {
 		$custom_author = pressforward( 'controller.metas' )->retrieve_meta( $post->ID, 'item_author' );
 
@@ -149,6 +211,15 @@ class Admin {
 		wp_nonce_field( 'news-item-author', 'news-item-author-nonce', false );
 	}
 
+	/**
+	 * Save news item author.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int $post_id Post ID.
+	 *
+	 * @return void
+	 */
 	public function news_item_author_save_cb( $post_id ) {
 		$post = get_post( $post_id );
 		if ( ! $post || 'ramp_news_item' !== $post->post_type ) {
@@ -166,6 +237,15 @@ class Admin {
 		update_post_meta( $post_id, 'item_author', $item_author );
 	}
 
+	/**
+	 * Formatted citation meta box callback.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param WP_Post $post Post object.
+	 *
+	 * @return void
+	 */
 	public function formatted_citation_cb( $post ) {
 		$citation = get_post_meta( $post->ID, 'formatted_citation', true );
 
@@ -187,6 +267,15 @@ class Admin {
 		wp_nonce_field( 'formatted-citation', 'formatted-citation-nonce', false );
 	}
 
+	/**
+	 * Save formatted citation.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int $post_id Post ID.
+	 *
+	 * @return void
+	 */
 	public function formatted_citation_save_cb( $post_id ) {
 		if ( ! isset( $_POST['formatted-citation-nonce'] ) ) {
 			return;
@@ -199,6 +288,15 @@ class Admin {
 		update_post_meta( $post_id, 'formatted_citation', $citation );
 	}
 
+	/**
+	 * DOI meta box callback.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param WP_Post $post Post object.
+	 *
+	 * @return void
+	 */
 	public function doi_cb( $post ) {
 		$doi = get_post_meta( $post->ID, 'doi', true );
 
@@ -212,6 +310,15 @@ class Admin {
 		wp_nonce_field( 'doi', 'doi-nonce', false );
 	}
 
+	/**
+	 * Save DOI.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int $post_id Post ID.
+	 *
+	 * @return void
+	 */
 	public function doi_save_cb( $post_id ) {
 		if ( ! isset( $_POST['doi-nonce'] ) ) {
 			return;
@@ -224,6 +331,15 @@ class Admin {
 		update_post_meta( $post_id, 'doi', $doi );
 	}
 
+	/**
+	 * Publication date meta box callback.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param WP_Post $post Post object.
+	 *
+	 * @return void
+	 */
 	public function publication_date_cb( $post ) {
 		$publication_date = get_post_meta( $post->ID, 'publication_date', true );
 
@@ -237,6 +353,15 @@ class Admin {
 		wp_nonce_field( 'publication-date', 'publication-date-nonce', false );
 	}
 
+	/**
+	 * Save publication date.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int $post_id Post ID.
+	 *
+	 * @return void
+	 */
 	public function publication_date_save_cb( $post_id ) {
 		if ( ! isset( $_POST['publication-date-nonce'] ) ) {
 			return;
@@ -249,6 +374,13 @@ class Admin {
 		update_post_meta( $post_id, 'publication_date', $publication_date );
 	}
 
+	/**
+	 * Add featured status meta box.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function featured_status_date_cb( $current_post ) {
 		// Don't show on non-published posts, which can't be featured.
 		if ( 'publish' !== $current_post->post_status ) {
@@ -330,11 +462,28 @@ class Admin {
 		}
 	}
 
+	/**
+	 * Add the 'Featured' column to the Profiles list table.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $columns Columns.
+	 * @return array
+	 */
 	public function add_schprof_featured_column( $columns ) {
 		$last = array_pop( $columns );
 		return array_merge( $columns, [ 'featured' => 'Featured?' ], [ $last ] );
 	}
 
+	/**
+	 * Add content to the 'Featured' column in the Profiles list table.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $column Column name.
+	 * @param int    $post_id Post ID.
+	 * @return void
+	 */
 	public function schprof_featured_column_content( $column, $post_id ) {
 		if ( 'featured' !== $column ) {
 			return;
