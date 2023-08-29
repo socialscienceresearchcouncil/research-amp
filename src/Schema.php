@@ -1,15 +1,46 @@
 <?php
+/**
+ * Schema.
+ *
+ * @package SSRC\RAMP
+ */
 
 namespace SSRC\RAMP;
 
+/**
+ * Schema definition.
+ *
+ * @since 1.0.0
+ */
 class Schema {
+	/**
+	 * CPT-taxonomy mappings.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
 	protected $cpttaxonomies = [];
 
+	/**
+	 * Sortable taxonomies.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
 	protected $sortable_taxonomies = [
 		'ramp_assoc_profile',
 		'ramp_assoc_topic',
 	];
 
+	/**
+	 * Post types for sortable taxonomies.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
 	protected $post_types_for_sortable_taxonomies = [
 		'ramp_review',
 		'ramp_article',
@@ -18,6 +49,13 @@ class Schema {
 		'ramp_citation',
 	];
 
+	/**
+	 * Initializes the schema setup.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function init() {
 		add_action( 'init', [ $this, 'register_post_types' ], 5 );
 		add_action( 'init', [ $this, 'register_taxonomies' ], 20 );
@@ -37,6 +75,13 @@ class Schema {
 		add_filter( 'get_terms_defaults', [ $this, 'set_get_terms_defaults' ], 10, 2 );
 	}
 
+	/**
+	 * Registers scripts used by the plugin.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function register_scripts() {
 		wp_register_style(
 			'ramp-directory-filters',
@@ -111,6 +156,13 @@ class Schema {
 		);
 	}
 
+	/**
+	 * Registers post types.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function register_post_types() {
 		add_post_type_support( 'page', 'excerpt' );
 
@@ -546,6 +598,13 @@ class Schema {
 		);
 	}
 
+	/**
+	 * Register taxonomies.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function register_taxonomies() {
 		$post_types = [
 			'ramp_profile',
@@ -683,15 +742,41 @@ class Schema {
 		);
 	}
 
+	/**
+	 * Sets up mappings between CPTs and taxonomies.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
 	public function link_cpts_and_taxonomies() {
 		$this->cpttaxonomies['research_topic'] = new CPTTax( 'ramp_topic', 'ramp_assoc_topic' );
 		$this->cpttaxonomies['profile']        = new CPTTax( 'ramp_profile', 'ramp_assoc_profile' );
 	}
 
+	/**
+	 * Utility method for fetching a CPT-taxonomy mapping.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $key The key for the mapping to fetch.
+	 * @return CPTTax
+	 */
 	public function get_cpttax_map( $key ) {
 		return $this->cpttaxonomies[ $key ];
 	}
 
+	/**
+	 * Syncs research topics from citations to corresponding profiles.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int    $object_id ID of the object being updated.
+	 * @param array  $terms     An array of term IDs to update the object with.
+	 * @param array  $tt_ids    An array of term taxonomy IDs.
+	 * @param string $taxonomy  Taxonomy slug.
+	 * @return void
+	 */
 	public function sync_citation_rts_to_sps( $object_id, $terms, $tt_ids, $taxonomy ) {
 		$citation_post = get_post( $object_id );
 		if ( ! $citation_post || 'ramp_citation' !== $citation_post->post_type ) {
@@ -716,6 +801,15 @@ class Schema {
 		}
 	}
 
+	/**
+	 * Syncs newly created or edited research topics to the corresponding nav menu.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int     $post_id ID of the post being saved.
+	 * @param WP_Post $post    The post object.
+	 * @return void
+	 */
 	public function sync_rts_to_nav_menu( $post_id, $post ) {
 		if ( 'ramp_topic' !== $post->post_type ) {
 			return;
@@ -724,6 +818,15 @@ class Schema {
 		Util\Navigation::replace_research_topics_subnav();
 	}
 
+	/**
+	 * Adds custom fields to Relevannsi index.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $fields  Array of fields to index.
+	 * @param int   $post_id ID of the post being indexed.
+	 * @return array
+	 */
 	public function add_fields_to_index( $fields, $post_id ) {
 		$post = get_post( $post_id );
 		if ( ! $post ) {
@@ -809,6 +912,15 @@ class Schema {
 		<?php
 	}
 
+	/**
+	 * Sets the default sort order for our sortable taxonomies.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $defaults   Array of default query vars.
+	 * @param array $taxonomies Array of taxonomies.
+	 * @return array
+	 */
 	public function set_get_terms_defaults( $defaults, $taxonomies ) {
 		// Err on the side of caution.
 		if ( is_array( $taxonomies ) && array_diff( $taxonomies, $this->sortable_taxonomies ) ) {
