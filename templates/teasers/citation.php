@@ -32,6 +32,18 @@ $article_classes = [ 'citation-teaser', 'teaser' ];
 	<?php endif; ?>
 
 	<div class="teaser-content citation-teaser-content">
+		<?php if ( $r['show_research_topics'] ) : ?>
+			<?php
+			ramp_get_template_part(
+				'research-topic-tags',
+				[
+					'is_edit_mode' => $is_edit_mode,
+					'item_id'      => $citation_id,
+				]
+			);
+			?>
+		<?php endif; ?>
+
 		<h3 class="has-h-4-font-size item-title citation-item-title enforce-reading-width">
 			<?php if ( ! $is_edit_mode ) : ?>
 				<a href="<?php echo esc_url( $citation_url ); ?>">
@@ -45,17 +57,5 @@ $article_classes = [ 'citation-teaser', 'teaser' ];
 		</h3>
 
 		<?php ramp_get_template_part( 'citation-info', [ 'id' => $citation_id ] ); ?>
-
-		<?php if ( $r['show_research_topics'] ) : ?>
-			<?php
-			ramp_get_template_part(
-				'research-topic-tags',
-				[
-					'is_edit_mode' => $is_edit_mode,
-					'item_id'      => $citation_id,
-				]
-			);
-			?>
-		<?php endif; ?>
 	</div>
 </article>

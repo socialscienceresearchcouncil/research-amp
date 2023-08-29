@@ -85,8 +85,9 @@ $div_classes = [
 					ramp_get_template_part(
 						'teasers/citation',
 						[
-							'id'           => $citation,
-							'is_edit_mode' => $r['isEditMode'],
+							'id'                   => $citation,
+							'is_edit_mode'         => $r['isEditMode'],
+							'show_research_topics' => true,
 						]
 					);
 					?>
