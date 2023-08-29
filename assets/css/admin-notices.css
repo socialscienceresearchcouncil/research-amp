@@ -1,0 +1,18 @@
+.ramp-plugin-notice {
+	padding-left: 20px;
+}
+
+.ramp-plugin-notice .ramp-plugin-notice__header {
+	margin-bottom: 2em;
+}
+
+.ramp-plugin-notice .ramp-plugin-notice__list {
+	background-color: #f1f1f1;
+	border-left: 3px solid #0073aa;
+	padding: 10px 0 10px 30px;
+	margin: 16px 0;
+}
+
+.ramp-plugin-notice .ramp-plugin-notice__list p {
+	margin-top: 0;
+}

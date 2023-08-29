@@ -4,8 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "147be0dfed342d89f4092c9a4ce6e3ca",
-    "packages": [],
+    "content-hash": "ee3d481b3c9b99f7c05026fc1f3c0623",
+    "packages": [
+        {
+            "name": "collizo4sky/persist-admin-notices-dismissal",
+            "version": "1.4.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/w3guy/persist-admin-notices-dismissal.git",
+                "reference": "900739eb6b0ec0210465f5983a6d4e0e420289e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/w3guy/persist-admin-notices-dismissal/zipball/900739eb6b0ec0210465f5983a6d4e0e420289e4",
+                "reference": "900739eb6b0ec0210465f5983a6d4e0e420289e4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "persist-admin-notices-dismissal.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Collins Agbonghama",
+                    "email": "me@w3guy.com",
+                    "role": "developer"
+                }
+            ],
+            "description": "Simple library to persist dismissal of admin notices across pages in WordPress dashboard.",
+            "support": {
+                "issues": "https://github.com/w3guy/persist-admin-notices-dismissal/issues",
+                "source": "https://github.com/w3guy/persist-admin-notices-dismissal"
+            },
+            "time": "2020-12-31T17:12:37+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",

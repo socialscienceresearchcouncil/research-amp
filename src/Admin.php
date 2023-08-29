@@ -3,6 +3,7 @@
 namespace SSRC\RAMP;
 
 use WP_User;
+use PAnD;
 
 use SSRC\RAMP\Citation;
 use SSRC\RAMP\Zotero\Library as ZoteroLibrary;
@@ -52,6 +53,11 @@ class Admin {
 
 		add_filter( 'manage_edit-ramp_profile_columns', [ $this, 'add_schprof_featured_column' ] );
 		add_action( 'manage_ramp_profile_posts_custom_column', [ $this, 'schprof_featured_column_content' ], 10, 2 );
+
+		add_action( 'admin_notices', [ $this, 'add_companion_plugin_admin_notice' ] );
+
+		// Necessary to load scripts for persistent dismissible admin notices.
+		add_action( 'admin_init', array( 'PAnD', 'init' ) );
 
 		$this->pressforward->init();
 
@@ -494,5 +500,127 @@ class Admin {
 		if ( $profile_profile->get_is_featured() ) {
 			echo 'Yes';
 		}
+	}
+
+	/**
+	 * Add admin notice about companion plugins.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	public function add_companion_plugin_admin_notice() {
+		if ( ! current_user_can( 'install_plugins' ) ) {
+			return;
+		}
+
+		// Only display on the main Dashboard page or on the Plugins page.
+		if ( ! ( is_admin() && ( 'plugins.php' === $GLOBALS['pagenow'] || 'index.php' === $GLOBALS['pagenow'] ) ) ) {
+			return;
+		}
+
+		if ( ! PAnD::is_admin_notice_active( 'ramp-plugin-notice' ) ) {
+			return;
+		}
+
+		$plugins = [
+			[
+				'name'        => 'DK PDF',
+				'plugin_dir'  => 'dk-pdf',
+				'plugin_file' => 'dk-pdf/dk-pdf.php',
+				'url'         => 'https://wordpress.org/plugins/dk-pdf/',
+			],
+			[
+				'name'        => 'Easy Table of Contents',
+				'plugin_dir'  => 'easy-table-of-contents',
+				'plugin_file' => 'easy-table-of-contents/easy-table-of-contents.php',
+				'url'         => 'https://wordpress.org/plugins/easy-table-of-contents/',
+			],
+			[
+				'name'        => 'PressForward',
+				'plugin_dir'  => 'pressforward',
+				'plugin_file' => 'pressforward/pressforward.php',
+				'url'         => 'https://wordpress.org/plugins/pressforward/',
+			],
+			[
+				'name'        => 'The Events Calendar',
+				'plugin_dir'  => 'the-events-calendar',
+				'plugin_file' => 'the-events-calendar/the-events-calendar.php',
+				'url'         => 'https://wordpress.org/plugins/the-events-calendar/',
+			],
+		];
+
+		// Plugins that are not installed.
+		$missing_plugins = array_filter(
+			$plugins,
+			function ( $plugin ) {
+				return is_wp_error( validate_plugin( $plugin['plugin_file'] ) );
+			}
+		);
+
+		// Plugins that are installed but not active.
+		$inactive_plugins = array_filter(
+			$plugins,
+			function ( $plugin ) {
+				return 0 === validate_plugin( $plugin['plugin_file'] ) && ! is_plugin_active( $plugin['plugin_file'] );
+			}
+		);
+
+		if ( ! $missing_plugins && ! $inactive_plugins ) {
+			return;
+		}
+
+		$missing_plugins_lis = array_map(
+			function ( $plugin ) {
+				return sprintf(
+					'<li><a href="%s">%s</a></li>',
+					esc_attr( $plugin['url'] ),
+					esc_html( $plugin['name'] )
+				);
+			},
+			$missing_plugins
+		);
+
+		$inactive_plugins_lis = array_map(
+			function ( $plugin ) {
+				return sprintf(
+					'<li><a href="%s">%s</a></li>',
+					esc_attr( $plugin['url'] ),
+					esc_html( $plugin['name'] )
+				);
+			},
+			$inactive_plugins
+		);
+
+		$notice_text  = '<div class="ramp-plugin-notice__header">';
+		$notice_text .= '<img class="ramp-plugin-notice__header-logo" src="' . esc_url( RAMP_PLUGIN_URL . 'assets/img/research-amp-logo.png' ) . '" alt="' . esc_attr__( 'Research AMP logo', 'research-amp' ) . '" />';
+		$notice_text .= '</div>';
+
+		$notice_text .= '<p><strong>' . esc_html__( 'Research AMP works best with a number of companion plugins.', 'research-amp' ) . '</strong></p>';
+
+		if ( $missing_plugins_lis ) {
+			$notice_text .= '<div class="ramp-plugin-notice__list">';
+			$notice_text .= '<p>' . esc_html__( 'The following plugins are not installed:', 'research-amp' ) . '</p>';
+			$notice_text .= '<ul>' . implode( '', $missing_plugins_lis ) . '</ul>';
+			$notice_text .= '</div>';
+		}
+
+		if ( $inactive_plugins_lis ) {
+			$notice_text .= '<div class="ramp-plugin-notice__list">';
+			$notice_text .= '<p>' . esc_html__( 'The following plugins are installed but not active:', 'research-amp' ) . '</p>';
+			$notice_text .= '<ul>' . implode( '', $inactive_plugins_lis ) . '</ul>';
+			$notice_text .= '</div>';
+		}
+
+		// translators: Link to Plugins panel.
+		$notice_text .= '<p><strong>' . sprintf( esc_html__( 'Visit %s to install and activate these plugins.', 'research-amp' ), '<a href="' . esc_url( admin_url( 'plugins.php' ) ) . '">' . esc_html__( 'Plugins', 'research-amp' ) . '</a>' ) . '</strong></p>';
+
+		wp_enqueue_style( 'research-amp-admin', RAMP_PLUGIN_URL . 'assets/css/admin-notices.css', [], RAMP_VER );
+
+		printf(
+			'<div data-dismissible="ramp-plugin-notice" class="notice is-dismissible ramp-plugin-notice"><p>%s</p></div>',
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			$notice_text
+		);
 	}
 }
