@@ -330,6 +330,13 @@ class Schema {
 								[
 									[ 'research-amp/profile-bio' ],
 									[ 'research-amp/item-research-topics' ],
+									[
+										'core/post-terms',
+										[
+											'term'   => 'ramp_focus_tag',
+											'prefix' => __( 'Tags: ', 'research-amp' ),
+										],
+									],
 								],
 							],
 						],
