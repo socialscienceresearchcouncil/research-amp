@@ -15,7 +15,6 @@ wp_enqueue_script( 'ramp-directory-filters' );
 		</div>
 
 		<?php ramp_get_template_part( 'filters/research-topic' ); ?>
-		<?php ramp_get_template_part( 'filters/subtopic' ); ?>
 		<?php ramp_get_template_part( 'filters/submit' ); ?>
 
 	</form>

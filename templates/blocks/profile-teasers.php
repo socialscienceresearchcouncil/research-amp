@@ -18,9 +18,8 @@ $r = array_merge(
 );
 
 // phpcs:disable WordPress.Security.NonceVerification.Recommended
-$requested_topic    = isset( $_GET['research-topic'] ) ? wp_unslash( $_GET['research-topic'] ) : null;
-$requested_subtopic = isset( $_GET['subtopic'] ) ? wp_unslash( $_GET['subtopic'] ) : null;
-$requested_search   = isset( $_GET['search-term'] ) ? wp_unslash( $_GET['search-term'] ) : null;
+$requested_topic  = isset( $_GET['research-topic'] ) ? wp_unslash( $_GET['research-topic'] ) : null;
+$requested_search = isset( $_GET['search-term'] ) ? wp_unslash( $_GET['search-term'] ) : null;
 // phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 $number_of_items = (int) $args['numberOfItems'];
@@ -60,16 +59,6 @@ if ( $requested_topic ) {
 	$query_args['tax_query']['assoc_topic'] = [
 		'taxonomy' => 'ramp_assoc_topic',
 		'terms'    => $requested_topic_term->term_id,
-		'field'    => 'term_id',
-	];
-}
-
-if ( $requested_subtopic ) {
-	$requested_subtopic_term = get_term_by( 'slug', $requested_subtopic, 'ramp_focus_tag' );
-
-	$query_args['tax_query']['focus_tag'] = [
-		'taxonomy' => 'ramp_focus_tag',
-		'terms'    => $requested_subtopic_term->term_id,
 		'field'    => 'term_id',
 	];
 }
