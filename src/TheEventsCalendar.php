@@ -15,6 +15,8 @@ class TheEventsCalendar {
 		add_filter( 'tribe_events_editor_default_template', [ $this, 'filter_default_event_template' ] );
 
 		add_filter( 'the_content', [ $this, 'remove_blocks_from_post_content' ], 0 );
+
+		add_action( 'admin_init', [ $this, 'check_for_nav_item' ] );
 	}
 
 	public function register_taxonomies_for_events() {
@@ -60,5 +62,71 @@ class TheEventsCalendar {
 		);
 
 		return $new_template;
+	}
+
+	/**
+	 * Check for the existence of the "Events" nav item and add it if it doesn't exist.
+	 *
+	 * Intended to run only once on an installation. If the navigation item is deleted
+	 * by the administrator, a flag will be left in the database and the nav item
+	 * will not be re-added.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	public function check_for_nav_item() {
+		$added = get_option( 'ramp_events_nav_item_added', false );
+		if ( $added ) {
+			return;
+		}
+
+		$nav_menu_id = Util\Navigation::get_nav_id( 'primary-nav' );
+		if ( ! $nav_menu_id ) {
+			return;
+		}
+
+		$nav_menu = get_post( $nav_menu_id );
+		if ( ! $nav_menu ) {
+			return;
+		}
+
+		$nav_blocks = parse_blocks( $nav_menu->post_content );
+
+		// If the Events archive is already in the menu, we're done.
+		$events_archive_url = get_post_type_archive_link( 'tribe_events' );
+		foreach ( $nav_blocks as $nav_block ) {
+			if ( isset( $nav_block['attrs']['url'] ) && $nav_block['attrs']['url'] === $events_archive_url ) {
+				update_option( 'ramp_events_nav_item_added', '1' );
+				return;
+			}
+		}
+
+		$events_block = [
+			'blockName'    => 'core/navigation-link',
+			'attrs'        => [
+				'label'          => __( 'Events', 'research-amp' ),
+				'type'           => '',
+				'url'            => $events_archive_url,
+				'kind'           => 'post-type-archive',
+				'isTopLevelItem' => 1,
+			],
+			'innerBlocks'  => [],
+			'innerHTML'    => '',
+			'innerContent' => [],
+		];
+
+		$nav_blocks[] = $events_block;
+
+		$new_post_content = serialize_blocks( $nav_blocks );
+
+		wp_update_post(
+			[
+				'ID'           => $nav_menu_id,
+				'post_content' => $new_post_content,
+			]
+		);
+
+		update_option( 'ramp_events_nav_item_added', '1' );
 	}
 }
