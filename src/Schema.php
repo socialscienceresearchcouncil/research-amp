@@ -867,51 +867,6 @@ class Schema {
 		return array_merge( $fields, $addl_fields );
 	}
 
-	public function sp_meta_box_cb( $post ) {
-		wp_enqueue_style( 'ramp-select2' );
-		wp_enqueue_script( 'ramp-sp-meta-box', RAMP_PLUGIN_URL . '/assets/js/sp-meta-box.js', [ 'jquery', 'ramp-select2' ], RAMP_VER, true );
-
-		$sps = get_posts(
-			[
-				'post_type'      => 'ramp_profile',
-				'posts_per_page' => -1,
-				'fields'         => 'ids',
-				'orderby'        => [ 'meta_value' => 'ASC' ],
-				'meta_key'       => 'last_name',
-			]
-		);
-
-		$sp_map = ramp_app()->get_cpttax_map( 'profile' );
-
-		$terms = [];
-		foreach ( $sps as $sp_id ) {
-			$profile   = Profile::get_instance( $sp_id );
-			$term_name = sprintf(
-				'%s, %s',
-				$profile->get_last_name(),
-				$profile->get_first_name()
-			);
-
-			$term_id = $sp_map->get_term_id_for_post_id( $sp_id );
-
-			$terms[] = [
-				'id'   => $term_id,
-				'name' => $term_name,
-			];
-		}
-
-		$terms_of_post = wp_get_object_terms( $post->ID, 'ramp_assoc_profile', [ 'fields' => 'ids' ] );
-
-		?>
-		<label for="sp-selector" class="screen-reader-text"><?php esc_html_e( 'Select Profiles', 'research-amp' ); ?></label>
-		<select id="sp-selector" name="tax_input[ramp_assoc_profile][]" multiple>
-			<?php foreach ( $terms as $term ) : ?>
-				<option value="<?php echo esc_attr( $term['id'] ); ?>" <?php selected( in_array( $term['id'], $terms_of_post, true ) ); ?>><?php echo esc_html( $term['name'] ); ?></option>
-			<?php endforeach; ?>
-		</select>
-		<?php
-	}
-
 	/**
 	 * Sets the default sort order for our sortable taxonomies.
 	 *
