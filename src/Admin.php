@@ -60,8 +60,6 @@ class Admin {
 		add_action( 'admin_init', array( 'PAnD', 'init' ) );
 
 		$this->pressforward->init();
-
-		Zotero\Admin::init();
 	}
 
 	/**
