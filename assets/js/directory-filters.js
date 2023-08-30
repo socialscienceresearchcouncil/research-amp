@@ -1,27 +1,23 @@
-var toggles = document.querySelectorAll('.directory-filter-toggle');
+const toggles = document.querySelectorAll( '.directory-filter-toggle' );
 
-toggles.forEach(function(toggle){
-	var toggleContainer =	toggle.closest( '.directory-filters-container' );
+toggles.forEach( function ( toggle ) {
+	const toggleContainer = toggle.closest( '.directory-filters-container' );
 	toggleContainer.classList.remove( 'no-js' );
 
 	// Mobile toggle.
-	toggle.addEventListener(
-		'click',
-		function() {
-			toggleContainer.classList.toggle( 'toggle-closed' );
-		}
-	);
-});
+	toggle.addEventListener( 'click', function () {
+		toggleContainer.classList.toggle( 'toggle-closed' );
+	} );
+} );
 
 // Enable pretty select
-(function($){
-	$('.pretty-select').each( (k, v) => {
-		const $prettySelect = $(v);
+( function ( $ ) {
+	$( '.pretty-select' ).each( ( k, v ) => {
+		const $prettySelect = $( v );
 
-		$prettySelect.select2({
+		$prettySelect.select2( {
 			minimumResultsForSearch: Infinity,
-			width: '100%'
-		});
-	});
-}(jQuery))
-
+			width: '100%',
+		} );
+	} );
+} )( jQuery );
