@@ -12,8 +12,8 @@ import { store as editorStore } from '@wordpress/editor';
 import { store as coreStore } from '@wordpress/core-data';
 import { speak } from '@wordpress/a11y';
 
-import { unescapeString } from './utils'
-import SortableMultiSelect from '../SortableMultiSelect'
+import { unescapeString } from './utils';
+import SortableMultiSelect from '../SortableMultiSelect';
 
 const EMPTY_ARRAY = [];
 
@@ -51,14 +51,10 @@ function ReorderableFlatTermSelector( { slug } ) {
 		hasResolvedTerms,
 	} = useSelect(
 		( select ) => {
-			const { getCurrentPost, getEditedPostAttribute } = select(
-				editorStore
-			);
-			const {
-				getEntityRecords,
-				getTaxonomy,
-				hasFinishedResolution,
-			} = select( coreStore );
+			const { getCurrentPost, getEditedPostAttribute } =
+				select( editorStore );
+			const { getEntityRecords, getTaxonomy, hasFinishedResolution } =
+				select( coreStore );
 			const post = getCurrentPost();
 
 			const _taxonomy = getTaxonomy( slug );
@@ -92,42 +88,40 @@ function ReorderableFlatTermSelector( { slug } ) {
 		( select ) => {
 			const { getEntityRecords } = select( coreStore );
 
-			const allTerms = getEntityRecords(
-				'taxonomy',
-				slug,
-				{
-					per_page: -1,
-					orderby: 'name',
-					order: 'asc',
-					_fields: 'id,name',
-					context: 'view',
-				}
-			);
+			const allTerms = getEntityRecords( 'taxonomy', slug, {
+				per_page: -1,
+				orderby: 'name',
+				order: 'asc',
+				_fields: 'id,name',
+				context: 'view',
+			} );
 
 			// Transform to match format expected by react-select
-			let availableTerms = EMPTY_ARRAY
+			let availableTerms = EMPTY_ARRAY;
 			if ( allTerms !== null ) {
-				availableTerms = allTerms.map( (result) => {
+				availableTerms = allTerms.map( ( result ) => {
 					return {
 						label: unescapeString( result.name ),
-						value: result.id
-					}
-				} )
+						value: result.id,
+					};
+				} );
 			}
 
 			return {
-				availableTerms
-			}
+				availableTerms,
+			};
 		},
 		[ hasResolvedTerms ]
 	);
 
 	const selectedTerms =
-		( !! availableTerms && !! termIds && availableTerms.length > 0 )
-		? termIds.map( (termId) => {
-				return availableTerms.find( term => termId === term.value )
-			} )
-		: EMPTY_ARRAY
+		!! availableTerms && !! termIds && availableTerms.length > 0
+			? termIds.map( ( termId ) => {
+					return availableTerms.find(
+						( term ) => termId === term.value
+					);
+			  } )
+			: EMPTY_ARRAY;
 
 	// Update terms state only after the selectors are resolved.
 	// We're using this to avoid terms temporarily disappearing on slow networks
@@ -148,20 +142,20 @@ function ReorderableFlatTermSelector( { slug } ) {
 		editPost( { [ taxonomy.rest_base ]: newTermIds } );
 	}
 
-	const onChange = (changed) => {
-		const newTermIds = changed.map( (item) => item.value )
-		onUpdateTerms( newTermIds )
-	}
+	const onChange = ( changed ) => {
+		const newTermIds = changed.map( ( item ) => item.value );
+		onUpdateTerms( newTermIds );
+	};
 
 	return (
 		<>
 			<SortableMultiSelect
-				options={availableTerms}
-				selectedOptions={selectedTerms}
-				onChange={onChange}
+				options={ availableTerms }
+				selectedOptions={ selectedTerms }
+				onChange={ onChange }
 			/>
 		</>
 	);
 }
 
-export default ReorderableFlatTermSelector
+export default ReorderableFlatTermSelector;

@@ -1,21 +1,16 @@
-import './fake-input.scss'
+import './fake-input.scss';
 
-import classNames from 'classnames'
+import classNames from 'classnames';
 
-const FakeInput = (props) => {
-	const {
-		isSearch,
-		text
-	} = props
+const FakeInput = ( props ) => {
+	const { isSearch, text } = props;
 
 	const divClassnames = classNames( {
 		'fake-input-container': true,
-		'is-search': isSearch
-	} )
+		'is-search': isSearch,
+	} );
 
-	return (
-		<div className={ divClassnames }>{ text }</div>
-	)
-}
+	return <div className={ divClassnames }>{ text }</div>;
+};
 
-export default FakeInput
+export default FakeInput;

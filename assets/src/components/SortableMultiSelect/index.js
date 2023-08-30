@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import Select, { components } from 'react-select'
+import React, { useState } from 'react';
+import Select, { components } from 'react-select';
 
 import {
 	closestCenter,
@@ -8,133 +8,138 @@ import {
 	KeyboardSensor,
 	PointerSensor,
 	useSensor,
-	useSensors
-} from '@dnd-kit/core'
+	useSensors,
+} from '@dnd-kit/core';
 
 import {
 	SortableContext,
-  sortableKeyboardCoordinates,
-	verticalListSortingStrategy
+	sortableKeyboardCoordinates,
+	verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 
-import SortableItem from './SortableItem'
+import SortableItem from './SortableItem';
 
-const SortableMultiSelect = (props) => {
-	const {
-		onChange,
-		options,
-		selectedOptions
-	} = props
+const SortableMultiSelect = ( props ) => {
+	const { onChange, options, selectedOptions } = props;
 
-	const [ activeId, setActiveId ] = useState( null )
+	const [ activeId, setActiveId ] = useState( null );
 
 	const sensors = useSensors(
-		useSensor(PointerSensor),
-		useSensor(KeyboardSensor, {
-			coordinateGetter: sortableKeyboardCoordinates
-		})
-	)
+		useSensor( PointerSensor ),
+		useSensor( KeyboardSensor, {
+			coordinateGetter: sortableKeyboardCoordinates,
+		} )
+	);
 
-	const handleDragStart = (event) => {
-		const { active } = event
-		setActiveId( active.id )
-	}
+	const handleDragStart = ( event ) => {
+		const { active } = event;
+		setActiveId( active.id );
+	};
 
-	const handleDragEnd = (event) => {
-		const { active, over } = event
+	const handleDragEnd = ( event ) => {
+		const { active, over } = event;
 
 		if ( active.id !== over.id ) {
-			const oldValue = Number( active.id.substr( 9 ) )
-			const newValue = Number( over.id.substr( 9 ) )
+			const oldValue = Number( active.id.substr( 9 ) );
+			const newValue = Number( over.id.substr( 9 ) );
 
-			const oldIndex = findSelectedOptionIndexByValue( oldValue )
-			const newIndex = findSelectedOptionIndexByValue( newValue )
+			const oldIndex = findSelectedOptionIndexByValue( oldValue );
+			const newIndex = findSelectedOptionIndexByValue( newValue );
 
-			const sorted = arrayMove( selectedOptions, oldIndex, newIndex )
+			const sorted = arrayMove( selectedOptions, oldIndex, newIndex );
 
-			onChange( sorted )
+			onChange( sorted );
 
-			setActiveId( null )
+			setActiveId( null );
 
-			return sorted
+			return sorted;
 		}
-	}
+	};
 
-	const arrayMove = (arr, from, to) => {
-		const clone = [...arr];
-		Array.prototype.splice.call(clone, to, 0,
-			Array.prototype.splice.call(clone, from, 1)[0]
+	const arrayMove = ( arr, from, to ) => {
+		const clone = [ ...arr ];
+		Array.prototype.splice.call(
+			clone,
+			to,
+			0,
+			Array.prototype.splice.call( clone, from, 1 )[ 0 ]
 		);
 		return clone;
 	};
 
-	const findSelectedOptionIndexByValue = (value) => {
-		for ( var k in selectedOptions ) {
-			if ( value === selectedOptions[k].value ) {
-				return k
-			} else {
-				continue
+	const findSelectedOptionIndexByValue = ( value ) => {
+		for ( const k in selectedOptions ) {
+			if ( value === selectedOptions[ k ].value ) {
+				return k;
 			}
+			continue;
 		}
 
-		return -1
-	}
+		return -1;
+	};
 
-	const onSelect = (newSelectedOption) => {
-		const newSelectedOptions = [...selectedOptions, newSelectedOption ]
-		onChange( newSelectedOptions )
-	}
+	const onSelect = ( newSelectedOption ) => {
+		const newSelectedOptions = [ ...selectedOptions, newSelectedOption ];
+		onChange( newSelectedOptions );
+	};
 
-	const handleRemoveClick = (itemHandle) => {
-		const itemId = Number( itemHandle.substr( 9 ) )
-		const itemIndex = findSelectedOptionIndexByValue( itemId )
+	const handleRemoveClick = ( itemHandle ) => {
+		const itemId = Number( itemHandle.substr( 9 ) );
+		const itemIndex = findSelectedOptionIndexByValue( itemId );
 
-		const newSelectedOptions = [...selectedOptions.slice(0, itemIndex), ...selectedOptions.slice(itemIndex + 1 )]
-		onChange( newSelectedOptions )
-	}
+		const newSelectedOptions = [
+			...selectedOptions.slice( 0, itemIndex ),
+			...selectedOptions.slice( itemIndex + 1 ),
+		];
+		onChange( newSelectedOptions );
+	};
 
-	const availableOptions = options.filter( option => selectedOptions.indexOf( option ) === -1 )
+	const availableOptions = options.filter(
+		( option ) => selectedOptions.indexOf( option ) === -1
+	);
 
-	const items = selectedOptions.map( option => 'sortable-' + option.value )
+	const items = selectedOptions.map(
+		( option ) => 'sortable-' + option.value
+	);
 
 	return (
 		<div className="sortable-multi-select">
 			<Select
-				onChange={onSelect}
-				options={availableOptions}
-				value={null}
+				onChange={ onSelect }
+				options={ availableOptions }
+				value={ null }
 			/>
 
 			<div className="sortable-multi-select-selected-items">
 				<DndContext
-					collisionDetection={closestCenter}
-					onDragEnd={handleDragEnd}
-					sensors={sensors}
+					collisionDetection={ closestCenter }
+					onDragEnd={ handleDragEnd }
+					sensors={ sensors }
 				>
 					<SortableContext
-						items={items}
-						strategy={verticalListSortingStrategy}
+						items={ items }
+						strategy={ verticalListSortingStrategy }
 					>
 						{ selectedOptions.map( ( { value, label } ) => {
 							return (
 								<SortableItem
-									id={'sortable-' + value}
-									key={'sortable-' + value}
-									value={value}
-									label={label}
-									handleRemoveClick={handleRemoveClick}
+									id={ 'sortable-' + value }
+									key={ 'sortable-' + value }
+									value={ value }
+									label={ label }
+									handleRemoveClick={ handleRemoveClick }
 								/>
-							)
+							);
 						} ) }
 					</SortableContext>
 
 					<DragOverlay>
-						{activeId ? <Item id={activeId} /> : null}
+						{ activeId ? <Item id={ activeId } /> : null }
 					</DragOverlay>
 				</DndContext>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default SortableMultiSelect
+export default SortableMultiSelect;

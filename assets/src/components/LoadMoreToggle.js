@@ -1,13 +1,9 @@
-import { __ } from '@wordpress/i18n'
+import { __ } from '@wordpress/i18n';
 
-import { ToggleControl } from '@wordpress/components'
+import { ToggleControl } from '@wordpress/components';
 
 const LoadMoreToggle = ( props ) => {
-	const {
-		disabled,
-		onChangeCallback,
-		showLoadMore
-	} = props
+	const { disabled, onChangeCallback, showLoadMore } = props;
 
 	return (
 		<ToggleControl
@@ -15,9 +11,12 @@ const LoadMoreToggle = ( props ) => {
 			label={ __( 'Show Load More button?', 'research-amp' ) }
 			checked={ showLoadMore }
 			onChange={ onChangeCallback }
-			help={ __( 'Show a "Load More" button, which users can click to load another page of results. Useful primarily for archive pages.', 'research-amp' ) }
+			help={ __(
+				'Show a "Load More" button, which users can click to load another page of results. Useful primarily for archive pages.',
+				'research-amp'
+			) }
 		/>
-	)
-}
+	);
+};
 
-export default LoadMoreToggle
+export default LoadMoreToggle;

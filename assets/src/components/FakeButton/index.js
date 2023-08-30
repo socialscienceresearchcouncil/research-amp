@@ -1,28 +1,22 @@
-import './fake-button.scss'
+import './fake-button.scss';
 
-import classNames from 'classnames'
+import classNames from 'classnames';
 
-const FakeButton = (props) => {
-	const {
-		alignClass = '',
-		buttonStyle = 'primary',
-		text
-	} = props
+const FakeButton = ( props ) => {
+	const { alignClass = '', buttonStyle = 'primary', text } = props;
 
 	const divClassnames = classNames( {
-		[`${alignClass}`]: true,
+		[ `${ alignClass }` ]: true,
 		'fake-button-container': true,
-		[`is-style-${buttonStyle}`]: true,
-		'wp-block-button': true
-	} )
+		[ `is-style-${ buttonStyle }` ]: true,
+		'wp-block-button': true,
+	} );
 
 	return (
 		<div className={ divClassnames }>
-			<div className="wp-block-button__link">
-				{ text }
-			</div>
+			<div className="wp-block-button__link">{ text }</div>
 		</div>
-	)
-}
+	);
+};
 
-export default FakeButton
+export default FakeButton;

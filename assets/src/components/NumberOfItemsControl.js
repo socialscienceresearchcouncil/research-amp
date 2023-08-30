@@ -1,13 +1,9 @@
-import { __ } from '@wordpress/i18n'
+import { __ } from '@wordpress/i18n';
 
 import { __experimentalNumberControl as NumberControl } from '@wordpress/components';
 
 const NumberOfItemsControl = ( props ) => {
-	const {
-		disabled,
-		onChangeCallback,
-		numberOfItems
-	} = props
+	const { disabled, onChangeCallback, numberOfItems } = props;
 
 	return (
 		<NumberControl
@@ -18,7 +14,7 @@ const NumberOfItemsControl = ( props ) => {
 			step={ 1 }
 			onChange={ onChangeCallback }
 		/>
-	)
-}
+	);
+};
 
-export default NumberOfItemsControl
+export default NumberOfItemsControl;
