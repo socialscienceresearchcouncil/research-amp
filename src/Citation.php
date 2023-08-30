@@ -227,6 +227,30 @@ class Citation {
 	}
 
 	/**
+	 * Sets the publication date for an item.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $publication_date Publication date.
+	 *
+	 * @return bool
+	 */
+	public function set_publication_date( $publication_date ) {
+		return (bool) update_post_meta( $this->get_post_id(), 'publication_date', $publication_date );
+	}
+
+	/**
+	 * Gets the publication date for an item.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string
+	 */
+	public function get_publication_date() {
+		return get_post_meta( $this->get_post_id(), 'publication_date', true );
+	}
+
+	/**
 	 * Get the Zotero Collection IDs belonging to an item, based on its WP Research Topics.
 	 */
 	public function get_collections_for_zotero() {

@@ -172,7 +172,7 @@ class CitationLibrary {
 			$items               = $client->get_items( $query_args );
 
 			if ( defined( 'WP_CLI' ) ) {
-				$item_count = count( $items );
+				$item_count = is_countable( $items ) ? count( $items ) : 0;
 				\WP_CLI::log( 'Fetched ' . $item_count . ' from Zotero using "start" value of ' . $batch_start );
 			}
 
@@ -348,6 +348,12 @@ class CitationLibrary {
 		$zotero_data = (array) $zotero_item->data;
 		$citation->set_cached_zotero_data( $zotero_data );
 
+		$publication_date = $this->calculate_record_publication_date( $zotero_item );
+		_b( $publication_date );
+		if ( $publication_date ) {
+			$citation->set_publication_date( $publication_date );
+		}
+
 		update_post_meta( $post_id, 'zotero_id', $zotero_item->key );
 		update_post_meta( $post_id, 'imported_from_zotero', gmdate( 'Y-m-d H:i:s' ) );
 
@@ -355,6 +361,39 @@ class CitationLibrary {
 		if ( function_exists( 'relevanssi_publish' ) ) {
 			relevanssi_publish( $post_id, true );
 		}
+	}
+
+	/**
+	 * Attempt to determine a standardized publication date, to be used for sorting.
+	 *
+	 * @param object $zotero_item
+	 * @return string
+	 */
+	protected function calculate_record_publication_date( $zotero_item ) {
+		// Zotero claims that this is "parsed", but it's not always a sortable date.
+		$raw_date = isset( $zotero_item->meta->parsedDate ) ? $zotero_item->meta->parsedDate : null;
+		if ( ! $raw_date && isset( $zotero_item->data->date ) ) {
+			$raw_date = $zotero_item->data->date;
+		}
+
+		$date = '';
+
+		// Four-digit numbers are years, and shouldn't be put through strtotime().
+		if ( preg_match( '/^[0-9]{4}$/', $raw_date ) ) {
+			$date = $raw_date . '-01-01';
+
+		} elseif ( preg_match( '/^[0-9]{4}\/[0-9]{1,2}$/', $raw_date ) ) {
+			// Here's another helpful citation format from Zotero.
+			$date = $raw_date . '-01';
+
+		} else {
+			$detected_timestamp = strtotime( $raw_date );
+			if ( $detected_timestamp ) {
+				$date = gmdate( 'Y-m-d', $detected_timestamp );
+			}
+		}
+
+		return $date;
 	}
 
 	public static function get_citation_count() {
