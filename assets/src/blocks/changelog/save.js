@@ -1,11 +1,9 @@
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor'
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
-	const {
-		headingText
-	} = attributes
+	const { headingText } = attributes;
 
-	const blockProps = useBlockProps.save()
+	const blockProps = useBlockProps.save();
 
 	return (
 		<div { ...blockProps }>
@@ -15,5 +13,5 @@ export default function save( { attributes } ) {
 
 			<InnerBlocks.Content />
 		</div>
-	)
+	);
 }

@@ -1,2 +1,1 @@
-console.log('fine')
-
+console.log( 'fine' );

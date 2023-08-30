@@ -5,22 +5,19 @@ import {
 	PanelBody,
 	PanelRow,
 	SelectControl,
-	Spinner
-} from '@wordpress/components'
+	Spinner,
+} from '@wordpress/components';
 
-import {
-	InspectorControls,
-	useBlockProps
-} from '@wordpress/block-editor';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 
-import ServerSideRender from '@wordpress/server-side-render'
+import ServerSideRender from '@wordpress/server-side-render';
 
-import { Fragment } from '@wordpress/element'
+import { Fragment } from '@wordpress/element';
 
-import ContentModeControl from '../../components/ContentModeControl'
-import LoadMoreToggle from '../../components/LoadMoreToggle'
-import NumberOfItemsControl from '../../components/NumberOfItemsControl'
-import HorizontalSwipeToggle from '../../components/HorizontalSwipeToggle'
+import ContentModeControl from '../../components/ContentModeControl';
+import LoadMoreToggle from '../../components/LoadMoreToggle';
+import NumberOfItemsControl from '../../components/NumberOfItemsControl';
+import HorizontalSwipeToggle from '../../components/HorizontalSwipeToggle';
 
 /**
  * Editor styles.
@@ -30,32 +27,34 @@ import './editor.scss';
 /**
  * Edit function.
  *
+ * @param  root0
+ * @param  root0.attributes
+ * @param  root0.setAttributes
  * @return {WPElement} Element to render.
  */
-export default function edit( {
-	attributes,
-	setAttributes,
-} ) {
+export default function edit( { attributes, setAttributes } ) {
 	const {
 		contentMode,
 		contentModeResearchTopicId,
 		horizontalSwipe,
 		numberOfItems,
 		order,
-		showLoadMore
-	} = attributes
+		showLoadMore,
+	} = attributes;
 
 	const blockProps = () => {
-		let classNames = []
+		const classNames = [];
 
-		classNames.push( 'content-mode-' + contentMode )
+		classNames.push( 'content-mode-' + contentMode );
 
 		return useBlockProps( {
-			className: classNames
-		} )
-	}
+			className: classNames,
+		} );
+	};
 
-	const serverSideAtts = Object.assign( {}, attributes, { isEditMode: true } )
+	const serverSideAtts = Object.assign( {}, attributes, {
+		isEditMode: true,
+	} );
 
 	return (
 		<Fragment>
@@ -65,17 +64,40 @@ export default function edit( {
 						title={ __( 'Content Settings', 'research-amp' ) }
 					>
 						<ContentModeControl
-							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
-							disabledTypes={ { 'profile': true } }
-							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
-							glossAuto={ __( 'Show Profiles relevant to the current Research Topic or Profile context.', 'research-amp' ) }
-							glossAll={ __( 'Pull from all Profiles.', 'research-amp' ) }
-							glossAdvanced={__( 'Show Profiles associated with a specific Research Topic or Profile.', 'research-amp' )}
-							labelAuto={ __( 'Relevant Profiles', 'research-amp' ) }
+							changeCallback={ ( contentMode ) =>
+								setAttributes( { contentMode } )
+							}
+							disabledTypes={ { profile: true } }
+							changeResearchTopicIdCallback={ (
+								contentModeResearchTopicId
+							) =>
+								setAttributes( { contentModeResearchTopicId } )
+							}
+							glossAuto={ __(
+								'Show Profiles relevant to the current Research Topic or Profile context.',
+								'research-amp'
+							) }
+							glossAll={ __(
+								'Pull from all Profiles.',
+								'research-amp'
+							) }
+							glossAdvanced={ __(
+								'Show Profiles associated with a specific Research Topic or Profile.',
+								'research-amp'
+							) }
+							labelAuto={ __(
+								'Relevant Profiles',
+								'research-amp'
+							) }
 							labelAll={ __( 'All Profiles', 'research-amp' ) }
-							legend={ __( 'Determine which Profiles will be shown in this block.', 'research-amp' ) }
+							legend={ __(
+								'Determine which Profiles will be shown in this block.',
+								'research-amp'
+							) }
 							selectedMode={ contentMode }
-							selectedResearchTopicId={ contentModeResearchTopicId }
+							selectedResearchTopicId={
+								contentModeResearchTopicId
+							}
 						/>
 					</PanelBody>
 				</Panel>
@@ -88,26 +110,47 @@ export default function edit( {
 							<SelectControl
 								label={ __( 'Order', 'research-amp' ) }
 								options={ [
-									{ label: __( 'Alphabetical', 'research-amp' ), value: 'alphabetical' },
-									{ label: __( 'Recently Added', 'research-amp' ), value: 'latest' },
-									{ label: __( 'Random', 'research-amp' ), value: 'random' }
+									{
+										label: __(
+											'Alphabetical',
+											'research-amp'
+										),
+										value: 'alphabetical',
+									},
+									{
+										label: __(
+											'Recently Added',
+											'research-amp'
+										),
+										value: 'latest',
+									},
+									{
+										label: __( 'Random', 'research-amp' ),
+										value: 'random',
+									},
 								] }
 								value={ order }
-								onChange={ ( order ) => setAttributes( { order } ) }
+								onChange={ ( order ) =>
+									setAttributes( { order } )
+								}
 							/>
 						</PanelRow>
 
 						<PanelRow>
 							<NumberOfItemsControl
 								numberOfItems={ numberOfItems }
-								onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+								onChangeCallback={ ( numberOfItems ) =>
+									setAttributes( { numberOfItems } )
+								}
 							/>
 						</PanelRow>
 
 						<PanelRow>
 							<LoadMoreToggle
 								showLoadMore={ showLoadMore }
-								onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+								onChangeCallback={ ( showLoadMore ) =>
+									setAttributes( { showLoadMore } )
+								}
 							/>
 						</PanelRow>
 					</PanelBody>
@@ -119,7 +162,9 @@ export default function edit( {
 					>
 						<PanelRow>
 							<HorizontalSwipeToggle
-								onChangeCallback={ ( horizontalSwipe ) => setAttributes( { horizontalSwipe } ) }
+								onChangeCallback={ ( horizontalSwipe ) =>
+									setAttributes( { horizontalSwipe } )
+								}
 								horizontalSwipe={ horizontalSwipe }
 							/>
 						</PanelRow>
@@ -135,5 +180,5 @@ export default function edit( {
 				/>
 			</div>
 		</Fragment>
-	)
+	);
 }

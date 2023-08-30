@@ -1,13 +1,13 @@
-import './editor.scss'
+import './editor.scss';
 
-import { __, sprintf } from '@wordpress/i18n'
+import { __, sprintf } from '@wordpress/i18n';
 
-import classNames from 'classnames'
+import classNames from 'classnames';
 
-import { dispatch, select } from '@wordpress/data'
-import { store } from '@wordpress/editor'
+import { dispatch, select } from '@wordpress/data';
+import { store } from '@wordpress/editor';
 
-import { PluginDocumentSettingPanel } from '@wordpress/edit-post'
+import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
 
 import { useEntityProp } from '@wordpress/core-data';
 
@@ -16,68 +16,60 @@ import {
 	__experimentalGetSettings as getDateSettings,
 } from '@wordpress/date';
 
-import {
-	InnerBlocks,
-	RichText,
-	useBlockProps
-} from '@wordpress/block-editor'
+import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
 
-import { parse, getSaveContent } from '@wordpress/blocks'
+import { parse, getSaveContent } from '@wordpress/blocks';
 
-import { useSelect, useDispatch } from '@wordpress/data'
+import { useSelect, useDispatch } from '@wordpress/data';
 
 export default function edit( {
 	clientId,
 	context: { postType, postId },
 	props,
 	attributes,
-	setAttributes
+	setAttributes,
 } ) {
-	const {
-		changelogText,
-		headingText
-	} = attributes
+	const { changelogText, headingText } = attributes;
 
-	const {
-		changelogIsDirty
-	} = useSelect(
-		( select ) => {
+	const { changelogIsDirty } = useSelect( ( select ) => {
+		const originalPost = select( 'core/editor' ).getCurrentPost().content;
 
-			const originalPost = select( 'core/editor' ).getCurrentPost().content
+		const block = select( 'core/block-editor' ).getBlock( clientId );
+		const currentChangelogContent = getSaveContent(
+			block.name,
+			block.attributes,
+			block.innerBlocks
+		);
 
-			const block = select( 'core/block-editor' ).getBlock( clientId )
-			const currentChangelogContent = getSaveContent(block.name, block.attributes,block.innerBlocks)
+		return {
+			changelogIsDirty:
+				-1 === originalPost.indexOf( currentChangelogContent ),
+		};
+	}, [] );
 
-			return {
-				changelogIsDirty: -1 === originalPost.indexOf( currentChangelogContent )
-			};
-		},
-		[]
-	);
+	const blockProps = useBlockProps();
 
-	const blockProps = useBlockProps()
+	const headingTextValue = headingText ?? __( 'Changelog', 'research-amp' );
 
-	const headingTextValue = headingText ?? __( 'Changelog', 'research-amp' )
-
-	const { createWarningNotice, removeNotice } = useDispatch( 'core/notices' )
+	const { createWarningNotice, removeNotice } = useDispatch( 'core/notices' );
 
 	if ( changelogIsDirty ) {
-		removeNotice( 'ramp-changelog-lock' )
-
+		removeNotice( 'ramp-changelog-lock' );
 	} else {
-		createWarningNotice( __( 'You have not added a Changelog entry', 'research-amp' ),
+		createWarningNotice(
+			__( 'You have not added a Changelog entry', 'research-amp' ),
 			{
-				id: 'ramp-changelog-lock'
+				id: 'ramp-changelog-lock',
 			}
-		)
+		);
 	}
 
-	const { setChangelogIsDirty } = useDispatch( 'research-amp' )
+	const { setChangelogIsDirty } = useDispatch( 'research-amp' );
 
-	const handleChangelogContentChange = (changelogText ) => {
-		setChangelogIsDirty( true )
-		setAttributes( { changelogText } )
-	}
+	const handleChangelogContentChange = ( changelogText ) => {
+		setChangelogIsDirty( true );
+		setAttributes( { changelogText } );
+	};
 
 	const dateSettings = getDateSettings();
 	const [ siteFormat = dateSettings.formats.date ] = useEntityProp(
@@ -86,18 +78,29 @@ export default function edit( {
 		'date_format'
 	);
 
-	const defaultDateText = dateI18n( siteFormat, Date.now() )
+	const defaultDateText = dateI18n( siteFormat, Date.now() );
 
 	const defaultBlocks = [
-		[ 'research-amp/changelog-entry', { 'dateText': defaultDateText, 'entryText': '<li>' + __( 'Initial publication', 'research-amp' ) + '</li>' } ]
-	]
+		[
+			'research-amp/changelog-entry',
+			{
+				dateText: defaultDateText,
+				entryText:
+					'<li>' +
+					__( 'Initial publication', 'research-amp' ) +
+					'</li>',
+			},
+		],
+	];
 
 	return (
 		<>
 			<div { ...blockProps }>
 				<RichText
 					className="changelog-title"
-					onChange={ (headingText) => setAttributes( { headingText } ) }
+					onChange={ ( headingText ) =>
+						setAttributes( { headingText } )
+					}
 					tagName="h5"
 					value={ headingTextValue }
 				/>
@@ -110,5 +113,5 @@ export default function edit( {
 				/>
 			</div>
 		</>
-	)
+	);
 }

@@ -1,15 +1,13 @@
-import { __, sprintf } from '@wordpress/i18n'
+import { __, sprintf } from '@wordpress/i18n';
 
-import './block.scss'
+import './block.scss';
 
-import {
-	useBlockProps
-} from '@wordpress/block-editor'
+import { useBlockProps } from '@wordpress/block-editor';
 
-import FakeButton from '../../components/FakeButton'
+import FakeButton from '../../components/FakeButton';
 
 export default function edit() {
-	const blockProps = useBlockProps()
+	const blockProps = useBlockProps();
 
 	return (
 		<div { ...blockProps }>
@@ -19,5 +17,5 @@ export default function edit() {
 				text={ __( 'Load More', 'research-amp' ) }
 			/>
 		</div>
-	)
+	);
 }

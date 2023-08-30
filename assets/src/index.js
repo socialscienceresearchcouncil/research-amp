@@ -58,30 +58,29 @@ import '../css/blocks.css'
 import { registerPlugin } from '@wordpress/plugins';
 
 // Add Profile Inspector controls.
-import ProfileSettingsControls from './components/ProfileSettingsControls'
-registerPlugin(
-	'ramp-profile-settings-controls',
-	{
-		icon: 'users',
-		render: ProfileSettingsControls
-	}
-)
+import ProfileSettingsControls from './components/ProfileSettingsControls';
+registerPlugin( 'ramp-profile-settings-controls', {
+	icon: 'users',
+	render: ProfileSettingsControls,
+} );
 
 // Swap out the selector control for some custom taxonomies.
-import ReorderableFlatTermSelector from './components/ReorderableFlatTermSelector'
+import ReorderableFlatTermSelector from './components/ReorderableFlatTermSelector';
 
 const selectTaxonomySelector = ( OriginalComponent ) => {
 	return ( props ) => {
-		if ( 'ramp_assoc_profile' === props.slug || 'ramp_assoc_topic' === props.slug ) {
-			return <ReorderableFlatTermSelector {...props} />
-		} else {
-			return <OriginalComponent {...props} />
+		if (
+			'ramp_assoc_profile' === props.slug ||
+			'ramp_assoc_topic' === props.slug
+		) {
+			return <ReorderableFlatTermSelector { ...props } />;
 		}
-	}
-}
+		return <OriginalComponent { ...props } />;
+	};
+};
 
 wp.hooks.addFilter(
 	'editor.PostTaxonomyType',
 	'research-amp/select-taxonomy-selector',
 	selectTaxonomySelector
-)
+);

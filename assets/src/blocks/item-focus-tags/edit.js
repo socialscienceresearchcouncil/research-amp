@@ -1,13 +1,10 @@
 import { __ } from '@wordpress/i18n';
 
-import {
-	innerBlocks,
-	useBlockProps
-} from '@wordpress/block-editor';
+import { innerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 import { useSelect } from '@wordpress/data';
 
-import classNames from 'classnames'
+import classNames from 'classnames';
 
 import './editor.scss';
 
@@ -20,49 +17,55 @@ export default function edit( {
 		return useBlockProps( {
 			className: classNames( {
 				'item-focus-tags': true,
-				'wp-block-item-focus-tags': true
-			} )
-		} )
-	}
+				'wp-block-item-focus-tags': true,
+			} ),
+		} );
+	};
 
 	const { associatedIds, researchTopics } = useSelect( ( select ) => {
-		const researchTopics = select( 'research-amp' ).getResearchTopics()
+		const researchTopics = select( 'research-amp' ).getResearchTopics();
 
-		const associatedIds = ! templateSlug ? select( 'core/editor' ).getEditedPostAttribute( 'ramp_assoc_topic' ) : []
+		const associatedIds = ! templateSlug
+			? select( 'core/editor' ).getEditedPostAttribute(
+					'ramp_assoc_topic'
+			  )
+			: [];
 
 		return {
 			associatedIds,
-			researchTopics
-		}
-	} )
+			researchTopics,
+		};
+	} );
 
-	const _matchedTopics = associatedIds ? researchTopics.filter( topic => {
-		return -1 !== associatedIds.indexOf( topic.associated_term_id )
-	} ) : []
+	const _matchedTopics = associatedIds
+		? researchTopics.filter( ( topic ) => {
+				return -1 !== associatedIds.indexOf( topic.associated_term_id );
+		  } )
+		: [];
 
 	// Show a placeholder "Research Topic" when editing a template.
-	const matchedTopics = ! templateSlug ? _matchedTopics : [ { title: { raw: __( 'Research Topic', 'research-amp' ) } } ]
+	const matchedTopics = ! templateSlug
+		? _matchedTopics
+		: [ { title: { raw: __( 'Research Topic', 'research-amp' ) } } ];
 
-	let topicIndex = 0
-	const topicTags = matchedTopics.map( topic => {
-		topicIndex++
+	let topicIndex = 0;
+	const topicTags = matchedTopics.map( ( topic ) => {
+		topicIndex++;
 		return (
 			<span
 				className="ramp-research-topic-tag tag-bubble"
-				key={'research-topic-tag-' + topicIndex}
-			>{topic.title.raw}</span>
-		)
-	} )
+				key={ 'research-topic-tag-' + topicIndex }
+			>
+				{ topic.title.raw }
+			</span>
+		);
+	} );
 
-	const template = [
-		[ 'core/post-tags' ]
-	]
+	const template = [ [ 'core/post-tags' ] ];
 
 	return (
 		<div { ...blockProps() }>
-			<InnerBlocks
-				template={ template }
-			/>
+			<InnerBlocks template={ template } />
 		</div>
-	)
+	);
 }

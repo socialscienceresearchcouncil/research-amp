@@ -1,18 +1,13 @@
-import './editor.scss'
+import './editor.scss';
 
-import { __, sprintf } from '@wordpress/i18n'
-import { useBlockProps } from '@wordpress/block-editor'
-import { TextControl } from '@wordpress/components'
+import { __, sprintf } from '@wordpress/i18n';
+import { useBlockProps } from '@wordpress/block-editor';
+import { TextControl } from '@wordpress/components';
 
-export default function edit( {
-	attributes,
-	setAttributes
-} ) {
-	const {
-		content
-	} = attributes
+export default function edit( { attributes, setAttributes } ) {
+	const { content } = attributes;
 
-	const blockProps = useBlockProps()
+	const blockProps = useBlockProps();
 
 	return (
 		<div { ...blockProps }>
@@ -20,9 +15,12 @@ export default function edit( {
 				hideLabelFromVision={ true }
 				label={ __( 'Title and institution', 'research-amp' ) }
 				onChange={ ( content ) => setAttributes( { content } ) }
-				placeholder={ __( 'Enter title and institution', 'research-amp' ) }
+				placeholder={ __(
+					'Enter title and institution',
+					'research-amp'
+				) }
 				value={ content }
 			/>
 		</div>
-	)
+	);
 }

@@ -2,21 +2,23 @@
  * Article Teasers block.
  */
 
-import { __ } from '@wordpress/i18n'
-import { registerBlockType } from '@wordpress/blocks'
+import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
 
 /**
  * Internal dependencies
  */
-import edit from './edit'
-import metadata from './block.json'
-import { articleTeasers as icon } from '../../icons'
+import edit from './edit';
+import metadata from './block.json';
+import { articleTeasers as icon } from '../../icons';
 
 /**
  * Block definition.
  */
 registerBlockType( metadata, {
-	icon, 
+	icon,
 	edit,
-	save: () => { return null },
-} )
+	save: () => {
+		return null;
+	},
+} );

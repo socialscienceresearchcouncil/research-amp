@@ -1,4 +1,4 @@
-import { __ } from '@wordpress/i18n'
+import { __ } from '@wordpress/i18n';
 
 import {
 	Panel,
@@ -8,34 +8,32 @@ import {
 	ToggleControl,
 	Toolbar,
 	ToolbarButton,
-	ToolbarGroup
-} from '@wordpress/components'
+	ToolbarGroup,
+} from '@wordpress/components';
 
-import { usePrevious } from '@wordpress/compose'
+import { usePrevious } from '@wordpress/compose';
 
 import {
 	BlockControls,
 	InspectorControls,
-	useBlockProps
+	useBlockProps,
 } from '@wordpress/block-editor';
 
-import ServerSideRender from '@wordpress/server-side-render'
+import ServerSideRender from '@wordpress/server-side-render';
 
-import { useSelect } from '@wordpress/data'
+import { useSelect } from '@wordpress/data';
 
-import {
-	Fragment
-} from '@wordpress/element'
+import { Fragment } from '@wordpress/element';
 
-import { PostPicker } from '../../components/PostPicker'
+import { PostPicker } from '../../components/PostPicker';
 
-import ContentModeControl from '../../components/ContentModeControl'
-import PublicationDateToggle from '../../components/PublicationDateToggle'
-import LoadMoreToggle from '../../components/LoadMoreToggle'
-import NumberOfItemsControl from '../../components/NumberOfItemsControl'
+import ContentModeControl from '../../components/ContentModeControl';
+import PublicationDateToggle from '../../components/PublicationDateToggle';
+import LoadMoreToggle from '../../components/LoadMoreToggle';
+import NumberOfItemsControl from '../../components/NumberOfItemsControl';
 
-import { GridIcon } from '../../icons/Grid'
-import { ListIcon } from '../../icons/List'
+import { GridIcon } from '../../icons/Grid';
+import { ListIcon } from '../../icons/List';
 
 /**
  * Editor styles.
@@ -45,12 +43,12 @@ import './editor.scss';
 /**
  * Edit function.
  *
+ * @param  root0
+ * @param  root0.attributes
+ * @param  root0.setAttributes
  * @return {WPElement} Element to render.
  */
-export default function edit( {
-	attributes,
-	setAttributes,
-} ) {
+export default function edit( { attributes, setAttributes } ) {
 	const {
 		contentMode,
 		contentModeProfileId,
@@ -62,56 +60,66 @@ export default function edit( {
 		showLoadMore,
 		showPublicationDate,
 		showVariationTypeButtons,
-		variationType
-	} = attributes
+		variationType,
+	} = attributes;
 
-	const { post } = useSelect( ( select ) => {
-		let post = {}
-		if ( featuredItemId ) {
-			post = select( 'research-amp' ).getPost( featuredItemId, 'posts' )
-		}
+	const { post } = useSelect(
+		( select ) => {
+			let post = {};
+			if ( featuredItemId ) {
+				post = select( 'research-amp' ).getPost(
+					featuredItemId,
+					'posts'
+				);
+			}
 
-		return {
-			post
-		}
-	}, [ featuredItemId ] )
+			return {
+				post,
+			};
+		},
+		[ featuredItemId ]
+	);
 
-	let postUrl, postTitle
+	let postUrl, postTitle;
 	if ( post && post.hasOwnProperty( 'title' ) ) {
-		postTitle = post.title.rendered
-		postUrl = post.link
+		postTitle = post.title.rendered;
+		postUrl = post.link;
 	}
 
 	const blockProps = () => {
-		let classNames = []
+		const classNames = [];
 
-		classNames.push( 'featured-item-id-' + featuredItemId )
-		classNames.push( 'content-mode-' + contentMode )
-		classNames.push( 'variation-type-' + variationType )
+		classNames.push( 'featured-item-id-' + featuredItemId );
+		classNames.push( 'content-mode-' + contentMode );
+		classNames.push( 'variation-type-' + variationType );
 
 		return useBlockProps( {
-			className: classNames
-		} )
-	}
+			className: classNames,
+		} );
+	};
 
-	const currentlyFeaturedNotice =
-		postUrl
-		? ( <div className="currently-featured-notice">
-					<span>{ __( 'Currently Featured News Item: ', 'research-amp' ) }</span>
-					<div><a href={ postUrl }>{ postTitle }</a></div>
-				</div>
-			)
-		: <div />
+	const currentlyFeaturedNotice = postUrl ? (
+		<div className="currently-featured-notice">
+			<span>
+				{ __( 'Currently Featured News Item: ', 'research-amp' ) }
+			</span>
+			<div>
+				<a href={ postUrl }>{ postTitle }</a>
+			</div>
+		</div>
+	) : (
+		<div />
+	);
 
 	const serverSideAtts = Object.assign( {}, attributes, {
 		isEditMode: true,
-		forceRefresh: featuredItemId !== usePrevious( featuredItemId ) // Addresses race condition with useSelect() and ServerSideRender()
-	} )
+		forceRefresh: featuredItemId !== usePrevious( featuredItemId ), // Addresses race condition with useSelect() and ServerSideRender()
+	} );
 
 	// Use showVariationTypeButtons as a heuristic for showing other toggles
-	const showPublicationDateToggle = !! showVariationTypeButtons
-	const showLoadMoreToggle = !! showVariationTypeButtons
-	const showFeaturedItemToggle = !! showVariationTypeButtons
+	const showPublicationDateToggle = !! showVariationTypeButtons;
+	const showLoadMoreToggle = !! showVariationTypeButtons;
+	const showFeaturedItemToggle = !! showVariationTypeButtons;
 
 	return (
 		<Fragment>
@@ -121,18 +129,43 @@ export default function edit( {
 						title={ __( 'Content Settings', 'research-amp' ) }
 					>
 						<ContentModeControl
-							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
-							changeProfileIdCallback={ ( contentModeProfileId ) => setAttributes( { contentModeProfileId } ) }
-							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
-							glossAuto={ __( 'Show News Items relevant to the current Research Topic or Profile context.', 'research-amp' ) }
-							glossAll={ __( 'Pull from all News Items.', 'research-amp' ) }
-							glossAdvanced={__( 'Show News Items associated with a specific Research Topic or Profile.', 'research-amp' )}
-							labelAuto={ __( 'Relevant News Items', 'research-amp' ) }
+							changeCallback={ ( contentMode ) =>
+								setAttributes( { contentMode } )
+							}
+							changeProfileIdCallback={ (
+								contentModeProfileId
+							) => setAttributes( { contentModeProfileId } ) }
+							changeResearchTopicIdCallback={ (
+								contentModeResearchTopicId
+							) =>
+								setAttributes( { contentModeResearchTopicId } )
+							}
+							glossAuto={ __(
+								'Show News Items relevant to the current Research Topic or Profile context.',
+								'research-amp'
+							) }
+							glossAll={ __(
+								'Pull from all News Items.',
+								'research-amp'
+							) }
+							glossAdvanced={ __(
+								'Show News Items associated with a specific Research Topic or Profile.',
+								'research-amp'
+							) }
+							labelAuto={ __(
+								'Relevant News Items',
+								'research-amp'
+							) }
 							labelAll={ __( 'All News Items', 'research-amp' ) }
-							legend={ __( 'Determine which News Items will be shown in this block.', 'research-amp' ) }
+							legend={ __(
+								'Determine which News Items will be shown in this block.',
+								'research-amp'
+							) }
 							selectedMode={ contentMode }
 							selectedProfileId={ contentModeProfileId }
-							selectedResearchTopicId={ contentModeResearchTopicId }
+							selectedResearchTopicId={
+								contentModeResearchTopicId
+							}
 						/>
 					</PanelBody>
 				</Panel>
@@ -143,9 +176,14 @@ export default function edit( {
 							title={ __( 'Featured News Item', 'research-amp' ) }
 						>
 							<ToggleControl
-								label={ __( 'Show a Featured News Item?', 'research-amp' ) }
+								label={ __(
+									'Show a Featured News Item?',
+									'research-amp'
+								) }
 								checked={ showFeaturedItem }
-								onChange={ ( showFeaturedItem ) => setAttributes( { showFeaturedItem } ) }
+								onChange={ ( showFeaturedItem ) =>
+									setAttributes( { showFeaturedItem } )
+								}
 							/>
 
 							{ showFeaturedItem && (
@@ -153,9 +191,19 @@ export default function edit( {
 									{ currentlyFeaturedNotice }
 
 									<PostPicker
-										onSelectPost={ ( selectedPost ) => setAttributes( { featuredItemId: selectedPost.id } ) }
-										label={ __( 'Select a Featured News Item', 'research-amp' ) }
-										placeholder={ __( 'Start typing to search.', 'research-amp' ) }
+										onSelectPost={ ( selectedPost ) =>
+											setAttributes( {
+												featuredItemId: selectedPost.id,
+											} )
+										}
+										label={ __(
+											'Select a Featured News Item',
+											'research-amp'
+										) }
+										placeholder={ __(
+											'Start typing to search.',
+											'research-amp'
+										) }
 										postTypes={ [ 'posts' ] }
 									/>
 								</>
@@ -172,19 +220,38 @@ export default function edit( {
 							<SelectControl
 								label={ __( 'Order', 'research-amp' ) }
 								options={ [
-									{ label: __( 'Alphabetical', 'research-amp' ), value: 'alphabetical' },
-									{ label: __( 'Recently Added', 'research-amp' ), value: 'latest' },
-									{ label: __( 'Random', 'research-amp' ), value: 'random' }
+									{
+										label: __(
+											'Alphabetical',
+											'research-amp'
+										),
+										value: 'alphabetical',
+									},
+									{
+										label: __(
+											'Recently Added',
+											'research-amp'
+										),
+										value: 'latest',
+									},
+									{
+										label: __( 'Random', 'research-amp' ),
+										value: 'random',
+									},
 								] }
 								value={ order }
-								onChange={ ( order ) => setAttributes( { order } ) }
+								onChange={ ( order ) =>
+									setAttributes( { order } )
+								}
 							/>
 						</PanelRow>
 
 						<PanelRow>
 							<NumberOfItemsControl
 								numberOfItems={ numberOfItems }
-								onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+								onChangeCallback={ ( numberOfItems ) =>
+									setAttributes( { numberOfItems } )
+								}
 							/>
 						</PanelRow>
 
@@ -192,7 +259,9 @@ export default function edit( {
 							<PanelRow>
 								<LoadMoreToggle
 									showLoadMore={ showLoadMore }
-									onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+									onChangeCallback={ ( showLoadMore ) =>
+										setAttributes( { showLoadMore } )
+									}
 								/>
 							</PanelRow>
 						) }
@@ -206,7 +275,11 @@ export default function edit( {
 						>
 							<PanelRow>
 								<PublicationDateToggle
-									onChangeCallback={ ( showPublicationDate ) => setAttributes( { showPublicationDate } ) }
+									onChangeCallback={ (
+										showPublicationDate
+									) =>
+										setAttributes( { showPublicationDate } )
+									}
 									showPublicationDate={ showPublicationDate }
 								/>
 							</PanelRow>
@@ -222,13 +295,17 @@ export default function edit( {
 							icon={ ListIcon }
 							isActive={ 'list' === variationType }
 							label={ __( 'List', 'research-amp' ) }
-							onClick={ () => setAttributes( { variationType: 'list' } ) }
+							onClick={ () =>
+								setAttributes( { variationType: 'list' } )
+							}
 						/>
 						<ToolbarButton
 							icon={ GridIcon }
 							isActive={ 'grid' === variationType }
 							label={ __( 'Grid', 'research-amp' ) }
-							onClick={ () => setAttributes( { variationType: 'grid' } ) }
+							onClick={ () =>
+								setAttributes( { variationType: 'grid' } )
+							}
 						/>
 					</ToolbarGroup>
 				</BlockControls>
@@ -242,5 +319,5 @@ export default function edit( {
 				/>
 			</div>
 		</Fragment>
-	)
+	);
 }

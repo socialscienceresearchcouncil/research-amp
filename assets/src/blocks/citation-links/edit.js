@@ -1,12 +1,9 @@
-import { __ } from '@wordpress/i18n'
-import { useBlockProps } from '@wordpress/block-editor'
+import { __ } from '@wordpress/i18n';
+import { useBlockProps } from '@wordpress/block-editor';
 
-import './editor.scss'
+import './editor.scss';
 
-export default function edit( {
-	attributes,
-	setAttributes
-} ) {
+export default function edit( { attributes, setAttributes } ) {
 	return (
 		<div { ...useBlockProps() }>
 			<div className="citation-link-zotero">
@@ -17,5 +14,5 @@ export default function edit( {
 				{ __( 'Go to citation source.', 'research-amp' ) }
 			</div>
 		</div>
-	)
+	);
 }

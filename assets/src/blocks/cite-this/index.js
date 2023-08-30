@@ -10,7 +10,7 @@ import { registerBlockType } from '@wordpress/blocks';
  */
 import edit from './edit';
 import metadata from './block.json';
-import { citeThis as icon } from '../../icons'
+import { citeThis as icon } from '../../icons';
 
 /**
  * Block definition.
@@ -18,5 +18,7 @@ import { citeThis as icon } from '../../icons'
 registerBlockType( metadata, {
 	icon,
 	edit,
-	save: () => { return null }
+	save: () => {
+		return null;
+	},
 } );

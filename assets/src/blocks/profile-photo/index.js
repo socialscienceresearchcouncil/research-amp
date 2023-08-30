@@ -11,7 +11,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import edit from './edit';
 import save from './save';
 import metadata from './block.json';
-import { person as icon } from '../../icons'
+import { person as icon } from '../../icons';
 
 /**
  * Block definition.
@@ -19,5 +19,5 @@ import { person as icon } from '../../icons'
 registerBlockType( metadata, {
 	icon,
 	edit,
-	save
-} )
+	save,
+} );

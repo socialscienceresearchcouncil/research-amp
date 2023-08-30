@@ -10,8 +10,7 @@ import { registerBlockType } from '@wordpress/blocks';
  */
 import edit from './edit';
 import metadata from './block.json';
-import { calendar as icon } from '../../icons'
-
+import { calendar as icon } from '../../icons';
 
 /**
  * Block definition.
@@ -19,5 +18,7 @@ import { calendar as icon } from '../../icons'
 registerBlockType( metadata, {
 	icon,
 	edit,
-	save: () => { return null }
-} )
+	save: () => {
+		return null;
+	},
+} );
