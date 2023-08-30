@@ -1,60 +1,54 @@
-import './editor.scss'
+import './editor.scss';
 
-import { __, sprintf } from '@wordpress/i18n'
+import { __, sprintf } from '@wordpress/i18n';
 
-import classNames from 'classnames'
+import classNames from 'classnames';
 
-import {
-	InnerBlocks,
-	RichText,
-	useBlockProps
-} from '@wordpress/block-editor'
+import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
 
-import { useSelect } from '@wordpress/data'
+import { useSelect } from '@wordpress/data';
 
-import { store as coreStore } from '@wordpress/core-data'
+import { store as coreStore } from '@wordpress/core-data';
 
 export default function edit( {
 	context: { postType, postId },
 	attributes,
-	setAttributes
+	setAttributes,
 } ) {
-	const {
-		headingText,
-		itemType,
-		numberOfItems
-	} = attributes
+	const { headingText, itemType, numberOfItems } = attributes;
 
-	const blockProps = useBlockProps({
-		className: [ 'sidebar-section' ]
-	})
+	const blockProps = useBlockProps( {
+		className: [ 'sidebar-section' ],
+	} );
 
 	const getTeaserBlockType = ( itemType ) => {
 		switch ( itemType ) {
-			case 'news-item' :
-				return 'research-amp/news-item-teasers'
+			case 'news-item':
+				return 'research-amp/news-item-teasers';
 
-			case 'article' :
-			default :
-				return 'research-amp/article-teasers'
+			case 'article':
+			default:
+				return 'research-amp/article-teasers';
 		}
-	}
+	};
 
 	const getDefaultHeadingText = ( itemType ) => {
 		switch ( itemType ) {
-			case 'news-item' :
-				return __( 'Suggested News Items', 'research-amp' )
+			case 'news-item':
+				return __( 'Suggested News Items', 'research-amp' );
 
-			case 'article' :
-			default :
-				return __( 'Suggested Articles', 'research-amp' )
+			case 'article':
+			default:
+				return __( 'Suggested Articles', 'research-amp' );
 		}
-	}
+	};
 
-	const teaserBlockType = getTeaserBlockType( itemType )
+	const teaserBlockType = getTeaserBlockType( itemType );
 
-	const defaultHeadingText = getDefaultHeadingText( itemType )
-	const headingTextValue = headingText.length ? headingText : defaultHeadingText
+	const defaultHeadingText = getDefaultHeadingText( itemType );
+	const headingTextValue = headingText.length
+		? headingText
+		: defaultHeadingText;
 
 	const teaserBlockAtts = {
 		contentMode: 'all',
@@ -67,12 +61,10 @@ export default function edit( {
 		showRowRules: false,
 		showVariationTypeButtons: false,
 		titleSize: 'h-5',
-		variationType: 'list'
-	}
+		variationType: 'list',
+	};
 
-	const innerBlocksTemplate = [
-		[ teaserBlockType, teaserBlockAtts ]
-	]
+	const innerBlocksTemplate = [ [ teaserBlockType, teaserBlockAtts ] ];
 
 	return (
 		<>
@@ -80,7 +72,9 @@ export default function edit( {
 				<>
 					<RichText
 						className="sidebar-section-title"
-						onChange={ (headingText) => setAttributes( { headingText } ) }
+						onChange={ ( headingText ) =>
+							setAttributes( { headingText } )
+						}
 						tagName="h3"
 						value={ headingTextValue }
 					/>
@@ -91,5 +85,5 @@ export default function edit( {
 				</>
 			</div>
 		</>
-	)
+	);
 }

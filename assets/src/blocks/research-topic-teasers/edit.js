@@ -8,27 +8,27 @@ import {
 	Spinner,
 	Toolbar,
 	ToolbarButton,
-	ToolbarGroup
-} from '@wordpress/components'
+	ToolbarGroup,
+} from '@wordpress/components';
 
 import {
 	BlockControls,
 	InspectorControls,
-	useBlockProps
+	useBlockProps,
 } from '@wordpress/block-editor';
 
-import { Fragment } from '@wordpress/element'
+import { Fragment } from '@wordpress/element';
 
-import LoadMoreToggle from '../../components/LoadMoreToggle'
-import NumberOfItemsControl from '../../components/NumberOfItemsControl'
-import HorizontalSwipeToggle from '../../components/HorizontalSwipeToggle'
+import LoadMoreToggle from '../../components/LoadMoreToggle';
+import NumberOfItemsControl from '../../components/NumberOfItemsControl';
+import HorizontalSwipeToggle from '../../components/HorizontalSwipeToggle';
 
-import ServerSideRender from '@wordpress/server-side-render'
+import ServerSideRender from '@wordpress/server-side-render';
 
-import { useSelect } from '@wordpress/data'
+import { useSelect } from '@wordpress/data';
 
-import { GridIcon } from '../../icons/Grid'
-import { ListIcon } from '../../icons/List'
+import { GridIcon } from '../../icons/Grid';
+import { ListIcon } from '../../icons/List';
 
 /**
  * Editor styles.
@@ -38,12 +38,12 @@ import './editor.scss';
 /**
  * Edit function.
  *
+ * @param  root0
+ * @param  root0.attributes
+ * @param  root0.setAttributes
  * @return {WPElement} Element to render.
  */
-export default function edit( {
-	attributes,
-	setAttributes,
-} ) {
+export default function edit( { attributes, setAttributes } ) {
 	const {
 		horizontalSwipe,
 		numberOfItems,
@@ -52,44 +52,47 @@ export default function edit( {
 		slot1,
 		slot2,
 		slot3,
-		variationType
-	} = attributes
+		variationType,
+	} = attributes;
 
 	const blockProps = () => {
-		let classNames = []
+		const classNames = [];
 
 		// This is here to force the 'dirty' state.
-		classNames.push( 'number-of-items-' + numberOfItems )
-		classNames.push( 'selection-type-' + selectionType )
-		classNames.push( 'slots-' + slot1 + '-' + slot2 + '-' + slot3 )
+		classNames.push( 'number-of-items-' + numberOfItems );
+		classNames.push( 'selection-type-' + selectionType );
+		classNames.push( 'slots-' + slot1 + '-' + slot2 + '-' + slot3 );
 
 		return useBlockProps( {
-			className: classNames
-		} )
-	}
+			className: classNames,
+		} );
+	};
 
-	const spinner = <Spinner />
+	const spinner = <Spinner />;
 
 	const { researchTopics } = useSelect( ( select ) => {
-		const researchTopics = select( 'research-amp' ).getResearchTopics()
+		const researchTopics = select( 'research-amp' ).getResearchTopics();
 
 		return {
-			researchTopics
-		}
-	} )
+			researchTopics,
+		};
+	} );
 
-	let researchTopicsOptions = researchTopics.map( ( topic ) => {
+	const researchTopicsOptions = researchTopics.map( ( topic ) => {
 		return {
 			label: topic.title.rendered,
-			value: topic.id
-		}
-	} )
+			value: topic.id,
+		};
+	} );
 
 	const serverSideAtts = Object.assign( {}, attributes, {
 		isEditMode: true,
-	} )
+	} );
 
-	researchTopicsOptions.unshift( { label: __( 'Select a Research Topic', 'research-amp' ), value: 0 } )
+	researchTopicsOptions.unshift( {
+		label: __( 'Select a Research Topic', 'research-amp' ),
+		value: 0,
+	} );
 
 	return (
 		<Fragment>
@@ -102,70 +105,110 @@ export default function edit( {
 							label={ __( 'Order', 'research-amp' ) }
 							value={ selectionType }
 							options={ [
-								{ label: __( 'Alphabetical', 'research-amp' ), value: 'alphabetical' },
-								{ label: __( 'Recently Added', 'research-amp' ), value: 'latest' },
-								{ label: __( 'Random', 'research-amp' ), value: 'random' },
-								{ label: __( 'Specific', 'research-amp' ), value: 'specific' },
+								{
+									label: __( 'Alphabetical', 'research-amp' ),
+									value: 'alphabetical',
+								},
+								{
+									label: __(
+										'Recently Added',
+										'research-amp'
+									),
+									value: 'latest',
+								},
+								{
+									label: __( 'Random', 'research-amp' ),
+									value: 'random',
+								},
+								{
+									label: __( 'Specific', 'research-amp' ),
+									value: 'specific',
+								},
 							] }
-							onChange={ ( selectionType ) => setAttributes( { selectionType } ) }
+							onChange={ ( selectionType ) =>
+								setAttributes( { selectionType } )
+							}
 						/>
 
-						{ 'specific' === selectionType &&
+						{ 'specific' === selectionType && (
 							<fieldset>
-								<legend>{ __( 'Select a Research Topic for each slot.', 'research-amp' ) }</legend>
+								<legend>
+									{ __(
+										'Select a Research Topic for each slot.',
+										'research-amp'
+									) }
+								</legend>
 								<ul>
 									<li>
 										<SelectControl
-											label={ __( 'Slot 1', 'research-amp' ) }
+											label={ __(
+												'Slot 1',
+												'research-amp'
+											) }
 											labelPosition="side"
 											value={ slot1 }
 											options={ researchTopicsOptions }
-											onChange={ ( slot1 ) => setAttributes( { slot1 } ) }
+											onChange={ ( slot1 ) =>
+												setAttributes( { slot1 } )
+											}
 										/>
 									</li>
 
 									<li>
 										<SelectControl
-											label={ __( 'Slot 2', 'research-amp' ) }
+											label={ __(
+												'Slot 2',
+												'research-amp'
+											) }
 											labelPosition="side"
 											value={ slot2 }
 											options={ researchTopicsOptions }
-											onChange={ ( slot2 ) => setAttributes( { slot2 } ) }
+											onChange={ ( slot2 ) =>
+												setAttributes( { slot2 } )
+											}
 										/>
 									</li>
 
 									<li>
 										<SelectControl
-											label={ __( 'Slot 3', 'research-amp' ) }
+											label={ __(
+												'Slot 3',
+												'research-amp'
+											) }
 											labelPosition="side"
 											value={ slot3 }
 											options={ researchTopicsOptions }
-											onChange={ ( slot3 ) => setAttributes( { slot3 } ) }
+											onChange={ ( slot3 ) =>
+												setAttributes( { slot3 } )
+											}
 										/>
 									</li>
 								</ul>
 							</fieldset>
-						}
+						) }
 
-						{ 'specific' !== selectionType &&
+						{ 'specific' !== selectionType && (
 							<>
 								<PanelRow>
 									<NumberOfItemsControl
 										numberOfItems={ numberOfItems }
-										onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+										onChangeCallback={ ( numberOfItems ) =>
+											setAttributes( { numberOfItems } )
+										}
 									/>
 								</PanelRow>
 
 								<PanelRow>
 									<LoadMoreToggle
 										showLoadMore={ showLoadMore }
-										onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+										onChangeCallback={ ( showLoadMore ) =>
+											setAttributes( { showLoadMore } )
+										}
 									/>
 								</PanelRow>
 							</>
-						}
+						) }
 					</PanelBody>
-
 				</Panel>
 
 				{ 'grid' === variationType && (
@@ -173,12 +216,14 @@ export default function edit( {
 						<PanelBody
 							title={ __( 'Display Options', 'research-amp' ) }
 						>
-								<PanelRow>
-									<HorizontalSwipeToggle
-										onChangeCallback={ ( horizontalSwipe ) => setAttributes( { horizontalSwipe } ) }
-										horizontalSwipe={ horizontalSwipe }
-									/>
-								</PanelRow>
+							<PanelRow>
+								<HorizontalSwipeToggle
+									onChangeCallback={ ( horizontalSwipe ) =>
+										setAttributes( { horizontalSwipe } )
+									}
+									horizontalSwipe={ horizontalSwipe }
+								/>
+							</PanelRow>
 						</PanelBody>
 					</Panel>
 				) }
@@ -190,13 +235,17 @@ export default function edit( {
 						icon={ ListIcon }
 						isActive={ 'list' === variationType }
 						label={ __( 'List', 'research-amp' ) }
-						onClick={ () => setAttributes( { variationType: 'list' } ) }
+						onClick={ () =>
+							setAttributes( { variationType: 'list' } )
+						}
 					/>
 					<ToolbarButton
 						icon={ GridIcon }
 						isActive={ 'grid' === variationType }
 						label={ __( 'Grid', 'research-amp' ) }
-						onClick={ () => setAttributes( { variationType: 'grid' } ) }
+						onClick={ () =>
+							setAttributes( { variationType: 'grid' } )
+						}
 					/>
 				</ToolbarGroup>
 			</BlockControls>
@@ -210,5 +259,5 @@ export default function edit( {
 				/>
 			</div>
 		</Fragment>
-	)
+	);
 }

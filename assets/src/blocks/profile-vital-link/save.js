@@ -1,45 +1,36 @@
 import { __ } from '@wordpress/i18n';
-import {
-	useBlockProps
-} from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 
-export default function save( {
-	attributes,
-	className,
-} ) {
-	const {
-		value,
-		vitalType
-	} = attributes;
+export default function save( { attributes, className } ) {
+	const { value, vitalType } = attributes;
 
 	const blockProps = () => {
-		const additionalClassNames = [
-		]
+		const additionalClassNames = [];
 
 		return useBlockProps.save( {
-			className: 'ramp-profile-vital-link-' + vitalType
-		} )
-	}
+			className: 'ramp-profile-vital-link-' + vitalType,
+		} );
+	};
 
 	const getHrefForVitalType = ( vitalType, value ) => {
 		switch ( vitalType ) {
-			case 'email' :
-				return 'mailto:' + value
+			case 'email':
+				return 'mailto:' + value;
 
 			// @todo validation
-			case 'twitter' :
-				return 'https://twitter.com/' + value
+			case 'twitter':
+				return 'https://twitter.com/' + value;
 
 			// @todo validation
-			case 'orcidId' :
-				return 'https://orcid.org/' + value
+			case 'orcidId':
+				return 'https://orcid.org/' + value;
 
-			default :
-				return value
+			default:
+				return value;
 		}
-	}
+	};
 
-	const linkHref = getHrefForVitalType( vitalType, value )
+	const linkHref = getHrefForVitalType( vitalType, value );
 
 	if ( value ) {
 		return (
@@ -49,7 +40,6 @@ export default function save( {
 				</a>
 			</div>
 		);
-	} else {
-		return ( <div></div> )
 	}
+	return <div></div>;
 }

@@ -19,5 +19,5 @@ import metadata from './block.json';
 registerBlockType( metadata, {
 	edit,
 	save,
-	variations
+	variations,
 } );

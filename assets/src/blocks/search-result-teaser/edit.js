@@ -1,23 +1,18 @@
-import './editor.scss'
+import './editor.scss';
 
-import { __ } from '@wordpress/i18n'
+import { __ } from '@wordpress/i18n';
 
-import ServerSideRender from '@wordpress/server-side-render'
+import ServerSideRender from '@wordpress/server-side-render';
 
-import {
-	useBlockProps
-} from '@wordpress/block-editor'
+import { useBlockProps } from '@wordpress/block-editor';
 
-export default function edit( {
-	attributes,
-	context: { postType, postId }
-} ) {
-	const blockProps = useBlockProps()
+export default function edit( { attributes, context: { postType, postId } } ) {
+	const blockProps = useBlockProps();
 
 	const serverSideAtts = Object.assign( {}, attributes, {
 		isEditMode: true,
-		postId
-	} )
+		postId,
+	} );
 
 	return (
 		<div { ...blockProps }>
@@ -27,5 +22,5 @@ export default function edit( {
 				httpMethod="GET"
 			/>
 		</div>
-	)
+	);
 }

@@ -8,29 +8,29 @@ import {
 	Spinner,
 	Toolbar,
 	ToolbarButton,
-	ToolbarGroup
-} from '@wordpress/components'
+	ToolbarGroup,
+} from '@wordpress/components';
 
 import {
 	BlockControls,
 	InspectorControls,
-	useBlockProps
+	useBlockProps,
 } from '@wordpress/block-editor';
 
-import { Fragment } from '@wordpress/element'
+import { Fragment } from '@wordpress/element';
 
-import ServerSideRender from '@wordpress/server-side-render'
+import ServerSideRender from '@wordpress/server-side-render';
 
-import { useSelect } from '@wordpress/data'
+import { useSelect } from '@wordpress/data';
 
-import ContentModeControl from '../../components/ContentModeControl'
-import PublicationDateToggle from '../../components/PublicationDateToggle'
-import HorizontalSwipeToggle from '../../components/HorizontalSwipeToggle'
-import LoadMoreToggle from '../../components/LoadMoreToggle'
-import NumberOfItemsControl from '../../components/NumberOfItemsControl'
+import ContentModeControl from '../../components/ContentModeControl';
+import PublicationDateToggle from '../../components/PublicationDateToggle';
+import HorizontalSwipeToggle from '../../components/HorizontalSwipeToggle';
+import LoadMoreToggle from '../../components/LoadMoreToggle';
+import NumberOfItemsControl from '../../components/NumberOfItemsControl';
 
-import { GridIcon } from '../../icons/Grid'
-import { ListIcon } from '../../icons/List'
+import { GridIcon } from '../../icons/Grid';
+import { ListIcon } from '../../icons/List';
 
 /**
  * Editor styles.
@@ -40,12 +40,12 @@ import './editor.scss';
 /**
  * Edit function.
  *
+ * @param  root0
+ * @param  root0.attributes
+ * @param  root0.setAttributes
  * @return {WPElement} Element to render.
  */
-export default function edit( {
-	attributes,
-	setAttributes,
-} ) {
+export default function edit( { attributes, setAttributes } ) {
 	const {
 		contentMode,
 		contentModeProfileId,
@@ -55,25 +55,27 @@ export default function edit( {
 		order,
 		showLoadMore,
 		showPublicationDate,
-		variationType
-	} = attributes
+		variationType,
+	} = attributes;
 
 	const blockProps = () => {
-		let classNames = []
+		const classNames = [];
 
 		// This is here to force the 'dirty' state.
-		classNames.push( 'variation-type-' + variationType )
-		classNames.push( 'order-' + order )
-		classNames.push( 'content-mode-' + contentMode )
+		classNames.push( 'variation-type-' + variationType );
+		classNames.push( 'order-' + order );
+		classNames.push( 'content-mode-' + contentMode );
 
 		return useBlockProps( {
-			className: classNames
-		} )
-	}
+			className: classNames,
+		} );
+	};
 
-	const spinner = <Spinner />
+	const spinner = <Spinner />;
 
-	const serverSideAtts = Object.assign( {}, attributes, { isEditMode: true } )
+	const serverSideAtts = Object.assign( {}, attributes, {
+		isEditMode: true,
+	} );
 
 	return (
 		<Fragment>
@@ -83,18 +85,46 @@ export default function edit( {
 						title={ __( 'Content Settings', 'research-amp' ) }
 					>
 						<ContentModeControl
-							changeCallback={ ( contentMode ) => setAttributes( { contentMode } ) }
-							changeProfileIdCallback={ ( contentModeProfileId ) => setAttributes( { contentModeProfileId } ) }
-							changeResearchTopicIdCallback={ ( contentModeResearchTopicId ) => setAttributes( { contentModeResearchTopicId } ) }
-							glossAuto={ __( 'Show Research Reviews relevant to the current Research Topic or Profile context.', 'research-amp' ) }
-							glossAll={ __( 'Pull from all Research Reviews.', 'research-amp' ) }
-							glossAdvanced={__( 'Show Research Reviews associated with a specific Research Topic or Profile.', 'research-amp' )}
-							labelAuto={ __( 'Relevant Research Reviews', 'research-amp' ) }
-							labelAll={ __( 'All Research Reviews', 'research-amp' ) }
-							legend={ __( 'Determine which Research Reviews will be shown in this block.', 'research-amp' ) }
+							changeCallback={ ( contentMode ) =>
+								setAttributes( { contentMode } )
+							}
+							changeProfileIdCallback={ (
+								contentModeProfileId
+							) => setAttributes( { contentModeProfileId } ) }
+							changeResearchTopicIdCallback={ (
+								contentModeResearchTopicId
+							) =>
+								setAttributes( { contentModeResearchTopicId } )
+							}
+							glossAuto={ __(
+								'Show Research Reviews relevant to the current Research Topic or Profile context.',
+								'research-amp'
+							) }
+							glossAll={ __(
+								'Pull from all Research Reviews.',
+								'research-amp'
+							) }
+							glossAdvanced={ __(
+								'Show Research Reviews associated with a specific Research Topic or Profile.',
+								'research-amp'
+							) }
+							labelAuto={ __(
+								'Relevant Research Reviews',
+								'research-amp'
+							) }
+							labelAll={ __(
+								'All Research Reviews',
+								'research-amp'
+							) }
+							legend={ __(
+								'Determine which Research Reviews will be shown in this block.',
+								'research-amp'
+							) }
 							selectedMode={ contentMode }
 							selectedProfileId={ contentModeProfileId }
-							selectedResearchTopicId={ contentModeResearchTopicId }
+							selectedResearchTopicId={
+								contentModeResearchTopicId
+							}
 						/>
 					</PanelBody>
 				</Panel>
@@ -107,26 +137,47 @@ export default function edit( {
 							<SelectControl
 								label={ __( 'Order', 'research-amp' ) }
 								options={ [
-									{ label: __( 'Alphabetical', 'research-amp' ), value: 'alphabetical' },
-									{ label: __( 'Recently Added', 'research-amp' ), value: 'latest' },
-									{ label: __( 'Random', 'research-amp' ), value: 'random' }
+									{
+										label: __(
+											'Alphabetical',
+											'research-amp'
+										),
+										value: 'alphabetical',
+									},
+									{
+										label: __(
+											'Recently Added',
+											'research-amp'
+										),
+										value: 'latest',
+									},
+									{
+										label: __( 'Random', 'research-amp' ),
+										value: 'random',
+									},
 								] }
 								value={ order }
-								onChange={ ( order ) => setAttributes( { order } ) }
+								onChange={ ( order ) =>
+									setAttributes( { order } )
+								}
 							/>
 						</PanelRow>
 
 						<PanelRow>
 							<NumberOfItemsControl
 								numberOfItems={ numberOfItems }
-								onChangeCallback={ ( numberOfItems ) => setAttributes( { numberOfItems } ) }
+								onChangeCallback={ ( numberOfItems ) =>
+									setAttributes( { numberOfItems } )
+								}
 							/>
 						</PanelRow>
 
 						<PanelRow>
 							<LoadMoreToggle
 								showLoadMore={ showLoadMore }
-								onChangeCallback={ ( showLoadMore ) => setAttributes( { showLoadMore } ) }
+								onChangeCallback={ ( showLoadMore ) =>
+									setAttributes( { showLoadMore } )
+								}
 							/>
 						</PanelRow>
 					</PanelBody>
@@ -138,7 +189,9 @@ export default function edit( {
 					>
 						<PanelRow>
 							<PublicationDateToggle
-								onChangeCallback={ ( showPublicationDate ) => setAttributes( { showPublicationDate } ) }
+								onChangeCallback={ ( showPublicationDate ) =>
+									setAttributes( { showPublicationDate } )
+								}
 								showPublicationDate={ showPublicationDate }
 							/>
 						</PanelRow>
@@ -146,7 +199,9 @@ export default function edit( {
 						{ 'grid' === variationType && (
 							<PanelRow>
 								<HorizontalSwipeToggle
-									onChangeCallback={ ( horizontalSwipe ) => setAttributes( { horizontalSwipe } ) }
+									onChangeCallback={ ( horizontalSwipe ) =>
+										setAttributes( { horizontalSwipe } )
+									}
 									horizontalSwipe={ horizontalSwipe }
 								/>
 							</PanelRow>
@@ -161,13 +216,17 @@ export default function edit( {
 						icon={ ListIcon }
 						isActive={ 'list' === variationType }
 						label={ __( 'List', 'research-amp' ) }
-						onClick={ () => setAttributes( { variationType: 'list' } ) }
+						onClick={ () =>
+							setAttributes( { variationType: 'list' } )
+						}
 					/>
 					<ToolbarButton
 						icon={ GridIcon }
 						isActive={ 'grid' === variationType }
 						label={ __( 'Grid', 'research-amp' ) }
-						onClick={ () => setAttributes( { variationType: 'grid' } ) }
+						onClick={ () =>
+							setAttributes( { variationType: 'grid' } )
+						}
 					/>
 				</ToolbarGroup>
 			</BlockControls>
@@ -181,5 +240,5 @@ export default function edit( {
 				/>
 			</div>
 		</Fragment>
-	)
+	);
 }

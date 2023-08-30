@@ -1,27 +1,15 @@
 import { __ } from '@wordpress/i18n';
 
-import {
-	URLInput,
-	URLPopover,
-	useBlockProps
-} from '@wordpress/block-editor';
+import { URLInput, URLPopover, useBlockProps } from '@wordpress/block-editor';
 
-import {
-	dispatch,
-	useSelect
-} from '@wordpress/data';
+import { dispatch, useSelect } from '@wordpress/data';
 
 import { find } from 'lodash';
 import variations from './variations';
 
-import {
-	Button,
-	TextControl
-} from '@wordpress/components'
+import { Button, TextControl } from '@wordpress/components';
 
-import {
-	useRef
-} from '@wordpress/element'
+import { useRef } from '@wordpress/element';
 
 /**
  * Editor styles.
@@ -32,38 +20,33 @@ import {
 	getMetaKeyByVitalType,
 	getPlaceholderByVitalType,
 	getTitleByVitalType,
-} from './variation-utils'
+} from './variation-utils';
 
 /**
  * Edit function.
  *
+ * @param  root0
+ * @param  root0.attributes
+ * @param  root0.isSelected
+ * @param  root0.setAttributes
  * @return {WPElement} Element to render.
  */
-export default function edit( {
-	attributes,
-	isSelected,
-	setAttributes,
-} ) {
-	const {
-		value,
-		vitalType
-	} = attributes
+export default function edit( { attributes, isSelected, setAttributes } ) {
+	const { value, vitalType } = attributes;
 
 	const blockProps = () => {
 		return useBlockProps( {
-			className: [
-				'ramp-profile-vital-link-' + vitalType
-			]
-		} )
-	}
+			className: [ 'ramp-profile-vital-link-' + vitalType ],
+		} );
+	};
 
 	const ref = useRef();
 
-	const notSelectedText = !! value ? value : getTitleByVitalType( vitalType )
+	const notSelectedText = !! value ? value : getTitleByVitalType( vitalType );
 
-	let notSelectedClassNames = 'ramp-profile-vital-link-text'
+	let notSelectedClassNames = 'ramp-profile-vital-link-text';
 	if ( ! value ) {
-		notSelectedClassNames += ' has-placeholder'
+		notSelectedClassNames += ' has-placeholder';
 	}
 
 	return (
@@ -81,12 +64,12 @@ export default function edit( {
 			) }
 
 			{ ! isSelected && (
-				<Button ref={ref}>
-					<span className={notSelectedClassNames}>
-						{notSelectedText}
+				<Button ref={ ref }>
+					<span className={ notSelectedClassNames }>
+						{ notSelectedText }
 					</span>
 				</Button>
 			) }
 		</div>
-	)
+	);
 }
