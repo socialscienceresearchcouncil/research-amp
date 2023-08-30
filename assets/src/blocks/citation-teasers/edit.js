@@ -4,6 +4,7 @@ import {
 	Panel,
 	PanelBody,
 	PanelRow,
+	SelectControl,
 	Spinner,
 	ToggleControl
 } from '@wordpress/components'
@@ -40,6 +41,7 @@ export default function edit( {
 		contentModeProfileId,
 		contentModeResearchTopicId,
 		numberOfItems,
+		order,
 		researchTopic,
 		showLoadMore
 	} = attributes
@@ -85,6 +87,18 @@ export default function edit( {
 					<PanelBody
 						title={ __( 'Order and Pagination', 'research-amp' ) }
 					>
+						<PanelRow>
+							<SelectControl
+								label={ __( 'Order', 'research-amp' ) }
+								options={ [
+									{ label: __( 'Date Added', 'research-amp' ), value: 'addedDate' },
+									{ label: __( 'Publication Date', 'research-amp' ), value: 'publicationDate' }
+								] }
+								value={ order }
+								onChange={ ( order ) => setAttributes( { order } ) }
+							/>
+						</PanelRow>
+
 						<PanelRow>
 							<NumberOfItemsControl
 								numberOfItems={ numberOfItems }

@@ -24,6 +24,10 @@ return [
 			'type'    => 'number',
 			'default' => 3,
 		],
+		'order'                      => [
+			'type'    => 'string',
+			'default' => 'addedDate',
+		],
 		'showLoadMore'               => [
 			'type'    => 'boolean',
 			'default' => false,

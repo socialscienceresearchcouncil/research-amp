@@ -28,6 +28,10 @@
 			"type": "number",
 			"default": 3
 		},
+		"order": {
+			"enum": [ "addedDate", "publicationDate" ],
+			"default": "addedDate"
+		},
 		"showLoadMore": {
 			"type": "boolean",
 			"default": false

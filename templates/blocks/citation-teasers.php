@@ -10,6 +10,7 @@ $r = array_merge(
 		'contentModeProfileId'       => 0,
 		'isEditMode'                 => false,
 		'numberOfItems'              => 3,
+		'order'                      => 'addedDate',
 		'showLoadMore'               => false,
 		'showRowRules'               => false,
 	],
@@ -25,6 +26,15 @@ $query_args = [
 	'fields'         => 'ids',
 	'tax_query'      => \SSRC\RAMP\Blocks::get_content_mode_tax_query_from_template_args( $r ),
 ];
+
+if ( 'publicationDate' === $r['order'] ) {
+	$query_args['orderby']  = 'meta_value';
+	$query_args['meta_key'] = 'publication_date';
+	$query_args['order']    = 'DESC';
+} else {
+	$query_args['orderby'] = 'date';
+	$query_args['order']   = 'DESC';
+}
 
 // phpcs:disable WordPress.Security.NonceVerification.Recommended
 $requested_topic  = isset( $_GET['research-topic'] ) ? wp_unslash( $_GET['research-topic'] ) : null;
