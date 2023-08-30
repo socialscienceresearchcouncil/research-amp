@@ -143,10 +143,17 @@ class Citation {
 					continue;
 				}
 
+				$first_name = isset( $creator->firstName ) ? $creator->firstName : '';
+				$last_name  = isset( $creator->lastName ) ? $creator->lastName : '';
+
+				if ( ! $first_name && ! $last_name ) {
+					continue;
+				}
+
 				$author_names[] = sprintf(
 					'%s, %s',
-					$creator->lastName,
-					$creator->firstName
+					$last_name,
+					$first_name
 				);
 				// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 
