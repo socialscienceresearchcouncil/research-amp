@@ -1,38 +1,33 @@
 import {
-	Button,
 	PanelRow,
 	TextControl,
 	ToggleControl,
 } from '@wordpress/components';
 
 import { __ } from '@wordpress/i18n';
-import { useDispatch, useSelect } from '@wordpress/data';
+import { select, useDispatch, useSelect } from '@wordpress/data';
 import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
 
-import { usePrevious } from '@wordpress/compose';
-
-import { select } from '@wordpress/data';
 import { store } from '@wordpress/editor';
 
-export default function ProfileSettingsControls( { isSelected } ) {
+export default function ProfileSettingsControls( {} ) {
 	const postType = select( 'core/editor' ).getCurrentPostType();
+
+	const { editPost, lockPostSaving, unlockPostSaving } = useDispatch( 'core/editor' );
+
+	const { removeNotice, createNotice } = useDispatch( 'core/notices' );
+
+	const { alphabeticalName } = useSelect( ( dataSelect ) => {
+		const { getEditedPostAttribute } = dataSelect( store );
+
+		return {
+			alphabeticalName: getEditedPostAttribute( 'meta' ).alphabetical_name,
+		};
+	}, [] );
+
 	if ( 'ramp_profile' !== postType ) {
 		return null;
 	}
-
-	const { editPost, lockPostSaving, unlockPostSaving } =
-		useDispatch( 'core/editor' );
-	const { removeNotice, createNotice } = useDispatch( 'core/notices' );
-
-	const { alphabeticalName } = useSelect( ( select ) => {
-		const { getCurrentPostAttribute, getEditedPostAttribute } =
-			select( store );
-
-		return {
-			alphabeticalName:
-				getEditedPostAttribute( 'meta' ).alphabetical_name,
-		};
-	}, [] );
 
 	if ( alphabeticalName.length > 0 ) {
 		setTimeout( () => {
@@ -44,10 +39,7 @@ export default function ProfileSettingsControls( { isSelected } ) {
 			lockPostSaving( 'ramp_profile' );
 			createNotice(
 				'error',
-				__(
-					'You must enter an Alphabetical Name for this profile.',
-					'research-amp'
-				),
+				__( 'You must enter an Alphabetical Name for this profile.', 'research-amp' ),
 				{ id: 'ramp_profile', isDismissable: false }
 			);
 		}, 500 );
@@ -64,16 +56,10 @@ export default function ProfileSettingsControls( { isSelected } ) {
 		>
 			<PanelRow>
 				<TextControl
-					label={ __(
-						'Name for Alphabetical Sorting',
-						'research-amp'
-					) }
-					help={ __(
-						"To order by last name, enter the individual's last name, followed by the first.",
-						'research-amp'
-					) }
-					onChange={ ( alphabeticalName ) =>
-						editPostMeta( { alphabetical_name: alphabeticalName } )
+					label={ __( 'Name for Alphabetical Sorting', 'research-amp' ) }
+					help={ __( "To order by last name, enter the individual's last name, followed by the first.", 'research-amp') }
+					onChange={ ( newAlphabeticalName ) =>
+						editPostMeta( { alphabetical_name: newAlphabeticalName } )
 					}
 					value={ alphabeticalName }
 				/>
