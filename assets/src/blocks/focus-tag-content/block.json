@@ -1,0 +1,20 @@
+{
+	"apiVersion": 2,
+	"name": "research-amp/focus-tag-content",
+	"title": "Focus Tag Browser",
+	"category": "research-amp",
+	"icon": "tag",
+	"supports": {
+		"anchor": true
+	},
+	"attributes": {
+		"focusTag": {
+			"type": "string",
+			"default": ""
+		},
+		"showLoadMore": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

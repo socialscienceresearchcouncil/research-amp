@@ -3,16 +3,16 @@
 return [
 	'api_version'     => 2,
 	'attributes'      => [
-		'isEditMode' => [
+		'focusTag'     => [
+			'type'    => 'string',
+			'default' => '',
+		],
+		'showLoadMore' => [
 			'type'    => 'boolean',
 			'default' => false,
 		],
-		'postId'     => [
-			'type'    => 'integer',
-			'default' => 0,
-		],
 	],
 	'render_callback' => function ( $atts ) {
-		return ramp_render_block( 'search-result-teaser', $atts );
+		return ramp_render_block( 'focus-tag-content', $atts );
 	},
 ];

@@ -1,0 +1,35 @@
+.editor-styles-wrapper {
+	.wp-block-research-amp-focus-tag-content {
+		h3 {
+			font-weight: normal;
+		}
+
+		.focus-tag-selector {
+			border: 1px solid #ddd;
+			padding: 10px;
+
+			p {
+				max-width: 600px;
+			}
+		}
+
+		.focus-tag-selector-input {
+			align-items: center;
+			display: flex;
+			gap: 20px;
+			max-width: 600px;
+
+			& > * {
+				flex: 1;
+			}
+
+			.focus-tag-selector-input__button {
+				flex-grow: 0;
+			}
+		}
+
+		.focus-tag-display {
+			pointer-events: none;
+		}
+	}
+}

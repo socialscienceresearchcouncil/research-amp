@@ -199,6 +199,7 @@ class Blocks {
 			'citation-library-count',
 			'citation-library-filters',
 			'cite-this',
+			'focus-tag-content',
 			'homepage-slides',
 			'item-byline',
 			'item-research-topics',
