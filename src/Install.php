@@ -157,6 +157,7 @@ class Install {
 				'research_topics' => [ $research_topics[0]->ID ],
 				'focus_tags'      => [ $this->default_focus_tags[0], $this->default_focus_tags[1] ],
 				'profile_types'   => [ $profile_type_term_ids[0] ],
+				'is_featured'     => true,
 			],
 			[
 				'name'            => __( 'John Doe', 'research-amp' ),
@@ -169,6 +170,7 @@ class Install {
 				'research_topics' => [ $research_topics[1]->ID, $research_topics[2]->ID ],
 				'focus_tags'      => [ $this->default_focus_tags[1], $this->default_focus_tags[2] ],
 				'profile_types'   => [ $profile_type_term_ids[1] ],
+				'is_featured'     => false,
 			],
 		];
 
@@ -264,6 +266,10 @@ class Install {
 				},
 				$profile['research_topics']
 			);
+
+			if ( $profile['is_featured'] ) {
+				add_post_meta( $profile_id, 'is_featured', '1' );
+			}
 
 			wp_set_post_terms( $profile_id, $rt_term_ids, 'ramp_assoc_topic' );
 
