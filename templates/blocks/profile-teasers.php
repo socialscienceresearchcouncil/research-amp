@@ -71,6 +71,14 @@ if ( 'auto' === $r['contentMode'] && is_singular() && empty( $query_args['tax_qu
 
 		$query_args['post__in'] = array_map( [ $p_map, 'get_post_id_for_term_id' ], wp_list_pluck( $profile_terms, 'term_id' ) );
 	}
+} elseif ( 'featured' === $r['contentMode'] ) {
+	$query_args['meta_query'] = [
+		[
+			'key'     => 'is_featured',
+			'value'   => '1',
+			'compare' => '=',
+		],
+	];
 }
 
 if ( $requested_search ) {

@@ -26,9 +26,9 @@ import './editor.scss';
 /**
  * Edit function.
  *
- * @param {Object}   props Component props.
- * @param {Object}   props.attributes Block attributes.
- * @param {Function} props.setAttributes Block attributes setter.
+ * @param {Object}     props Component     props.
+ * @param {Object}     props.attributes    Block attributes.
+ * @param {Function}   props.setAttributes Block attributes setter.
  * @return {WPElement} Element to render.
  */
 export default function edit( { attributes, setAttributes } ) {
@@ -57,22 +57,22 @@ export default function edit( { attributes, setAttributes } ) {
 					>
 						<ContentModeControl
 							changeCallback={ ( newContentMode ) =>
-								setAttributes( { newContentMode } )
+								setAttributes( { contentMode: newContentMode } )
 							}
 							disabledTypes={ { profile: true } }
 							changeResearchTopicIdCallback={ ( newContentModeResearchTopicId ) =>
-								setAttributes( { newContentModeResearchTopicId } )
+								setAttributes( { contentModeResearchTopicId: newContentModeResearchTopicId } )
 							}
+							enabledModes={ [ 'auto', 'all', 'advanced', 'featured' ] }
 							glossAuto={ __( 'Show Profiles relevant to the current Research Topic or Profile context.', 'research-amp' ) }
 							glossAll={ __( 'Pull from all Profiles.', 'research-amp' ) }
 							glossAdvanced={ __( 'Show Profiles associated with a specific Research Topic or Profile.', 'research-amp' ) }
+							glossFeatured={ __( 'Show Profiles marked as Featured.', 'research-amp' ) }
 							labelAuto={ __( 'Relevant Profiles', 'research-amp' ) }
 							labelAll={ __( 'All Profiles', 'research-amp' ) }
 							legend={ __( 'Determine which Profiles will be shown in this block.', 'research-amp' ) }
 							selectedMode={ contentMode }
-							selectedResearchTopicId={
-								contentModeResearchTopicId
-							}
+							selectedResearchTopicId={ contentModeResearchTopicId }
 						/>
 					</PanelBody>
 				</Panel>
@@ -100,7 +100,7 @@ export default function edit( { attributes, setAttributes } ) {
 								] }
 								value={ order }
 								onChange={ ( newOrder ) =>
-									setAttributes( { newOrder } )
+									setAttributes( { order: newOrder } )
 								}
 							/>
 						</PanelRow>
@@ -109,7 +109,7 @@ export default function edit( { attributes, setAttributes } ) {
 							<NumberOfItemsControl
 								numberOfItems={ numberOfItems }
 								onChangeCallback={ ( newNumberOfItems ) =>
-									setAttributes( { newNumberOfItems } )
+									setAttributes( { numberOfItems: newNumberOfItems } )
 								}
 							/>
 						</PanelRow>
@@ -118,7 +118,7 @@ export default function edit( { attributes, setAttributes } ) {
 							<LoadMoreToggle
 								showLoadMore={ showLoadMore }
 								onChangeCallback={ ( newShowLoadMore ) =>
-									setAttributes( { newShowLoadMore } )
+									setAttributes( { showLoadMore: newShowLoadMore } )
 								}
 							/>
 						</PanelRow>
@@ -132,7 +132,7 @@ export default function edit( { attributes, setAttributes } ) {
 						<PanelRow>
 							<HorizontalSwipeToggle
 								onChangeCallback={ ( newHorizontalSwipe ) =>
-									setAttributes( { newHorizontalSwipe } )
+									setAttributes( { horizontalSwipe: newHorizontalSwipe } )
 								}
 								horizontalSwipe={ horizontalSwipe }
 							/>

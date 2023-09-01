@@ -17,11 +17,16 @@ export default function ProfileSettingsControls( {} ) {
 
 	const { removeNotice, createNotice } = useDispatch( 'core/notices' );
 
-	const { alphabeticalName } = useSelect( ( dataSelect ) => {
+	const { alphabeticalName, isFeatured } = useSelect( ( dataSelect ) => {
 		const { getEditedPostAttribute } = dataSelect( store );
 
+		// getEditedPostTypeAttribute is not available in the Site Editor.
+		const savedAlphabeticalName = postType ? getEditedPostAttribute( 'meta' ).alphabetical_name : '';
+		const savedIsFeatured = postType ? getEditedPostAttribute( 'meta' ).is_featured : false;
+
 		return {
-			alphabeticalName: getEditedPostAttribute( 'meta' ).alphabetical_name,
+			alphabeticalName: savedAlphabeticalName,
+			isFeatured: savedIsFeatured,
 		};
 	}, [] );
 
@@ -54,6 +59,17 @@ export default function ProfileSettingsControls( {} ) {
 			name="ramp-profile-settings"
 			title={ __( 'Profile Settings', 'research-amp' ) }
 		>
+			<PanelRow>
+				<ToggleControl
+					label={ __( 'Featured Profile', 'research-amp' ) }
+					help={ __( 'Show this profile in the Featured Profiles section.', 'research-amp' ) }
+					checked={ !! isFeatured }
+					onChange={ ( newIsFeatured ) => {
+						editPostMeta( { is_featured: newIsFeatured } );
+					} }
+				/>
+			</PanelRow>
+
 			<PanelRow>
 				<TextControl
 					label={ __( 'Name for Alphabetical Sorting', 'research-amp' ) }

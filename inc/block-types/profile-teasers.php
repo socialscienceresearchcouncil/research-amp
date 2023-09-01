@@ -5,7 +5,7 @@ return [
 	'attributes'      => [
 		'contentMode'                => [
 			'type'    => 'string',
-			'enum'    => [ 'auto', 'all', 'advanced' ],
+			'enum'    => [ 'auto', 'all', 'advanced', 'featured' ],
 			'default' => 'auto',
 		],
 		'contentModeResearchTopicId' => [

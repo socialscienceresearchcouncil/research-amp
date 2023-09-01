@@ -458,6 +458,18 @@ class Schema {
 			]
 		);
 
+		register_meta(
+			'post',
+			'is_featured',
+			[
+				'object_subtype' => 'ramp_profile',
+				'type'           => 'boolean',
+				'single'         => true,
+				'show_in_rest'   => true,
+				'description'    => __( 'Profile is Featured', 'research-amp' ),
+			]
+		);
+
 		// @todo Probably OK to keep but we should use everywhere.
 		add_image_size( 'profile-avatar', 300, 300, true );
 

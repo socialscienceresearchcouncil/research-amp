@@ -15,17 +15,22 @@ const ContentModeControl = ( props ) => {
 		changeProfileIdCallback,
 		changeResearchTopicIdCallback,
 		disabledTypes,
+		enabledModes,
 		glossAdvanced,
 		glossAll,
 		glossAuto,
+		glossFeatured,
 		labelAdvanced,
 		labelAll,
 		labelAuto,
+		labelFeatured,
 		legend,
 		selectedMode,
 		selectedProfileId,
 		selectedResearchTopicId,
 	} = props;
+
+	const modesToEnable = enabledModes ?? [ 'auto', 'all', 'advanced' ];
 
 	const changeCallbacks = {
 		auto: () => {
@@ -36,6 +41,9 @@ const ContentModeControl = ( props ) => {
 		},
 		advanced: () => {
 			changeCallback( 'advanced' );
+		},
+		featured: () => {
+			changeCallback( 'featured' );
 		},
 	};
 
@@ -48,6 +56,7 @@ const ContentModeControl = ( props ) => {
 		auto: labelAuto ?? __( 'Relevant Items', 'research-amp' ),
 		all: labelAll ?? __( 'All Items', 'research-amp' ),
 		advanced: labelAdvanced ?? __( 'Advanced', 'research-amp' ),
+		featured: labelFeatured ?? __( 'Featured', 'research-amp' ),
 	};
 
 	const glosses = {
@@ -69,25 +78,22 @@ const ContentModeControl = ( props ) => {
 				'Show items associated with a specific Research Topic or Profile',
 				'research-amp'
 			),
+		featured:
+			glossFeatured ??
+			__(
+				'Show featured items only',
+				'research-amp'
+			),
 	};
 
-	const contentModeOpts = [
-		{
-			value: 'auto',
-			label: labels.auto,
-			gloss: glosses.auto,
-		},
-		{
-			value: 'all',
-			label: labels.all,
-			gloss: glosses.all,
-		},
-		{
-			value: 'advanced',
-			label: labels.advanced,
-			gloss: glosses.advanced,
-		},
-	];
+	// Assemble contentModeOpts based on the enabled modes.
+	const contentModeOpts = modesToEnable.map( ( mode ) => {
+		return {
+			value: mode,
+			label: labels[ mode ],
+			gloss: glosses[ mode ],
+		};
+	} );
 
 	return (
 		<>
