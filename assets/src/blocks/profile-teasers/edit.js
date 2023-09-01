@@ -4,8 +4,7 @@ import {
 	Panel,
 	PanelBody,
 	PanelRow,
-	SelectControl,
-	Spinner,
+	SelectControl
 } from '@wordpress/components';
 
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
@@ -27,9 +26,9 @@ import './editor.scss';
 /**
  * Edit function.
  *
- * @param  root0
- * @param  root0.attributes
- * @param  root0.setAttributes
+ * @param {Object}   props Component props.
+ * @param {Object}   props.attributes Block attributes.
+ * @param {Function} props.setAttributes Block attributes setter.
  * @return {WPElement} Element to render.
  */
 export default function edit( { attributes, setAttributes } ) {
@@ -42,15 +41,8 @@ export default function edit( { attributes, setAttributes } ) {
 		showLoadMore,
 	} = attributes;
 
-	const blockProps = () => {
-		const classNames = [];
-
-		classNames.push( 'content-mode-' + contentMode );
-
-		return useBlockProps( {
-			className: classNames,
-		} );
-	};
+	const classNames = [ 'content-mode-' + contentMode ];
+	const blockProps = useBlockProps( { className: classNames } );
 
 	const serverSideAtts = Object.assign( {}, attributes, {
 		isEditMode: true,
@@ -64,36 +56,19 @@ export default function edit( { attributes, setAttributes } ) {
 						title={ __( 'Content Settings', 'research-amp' ) }
 					>
 						<ContentModeControl
-							changeCallback={ ( contentMode ) =>
-								setAttributes( { contentMode } )
+							changeCallback={ ( newContentMode ) =>
+								setAttributes( { newContentMode } )
 							}
 							disabledTypes={ { profile: true } }
-							changeResearchTopicIdCallback={ (
-								contentModeResearchTopicId
-							) =>
-								setAttributes( { contentModeResearchTopicId } )
+							changeResearchTopicIdCallback={ ( newContentModeResearchTopicId ) =>
+								setAttributes( { newContentModeResearchTopicId } )
 							}
-							glossAuto={ __(
-								'Show Profiles relevant to the current Research Topic or Profile context.',
-								'research-amp'
-							) }
-							glossAll={ __(
-								'Pull from all Profiles.',
-								'research-amp'
-							) }
-							glossAdvanced={ __(
-								'Show Profiles associated with a specific Research Topic or Profile.',
-								'research-amp'
-							) }
-							labelAuto={ __(
-								'Relevant Profiles',
-								'research-amp'
-							) }
+							glossAuto={ __( 'Show Profiles relevant to the current Research Topic or Profile context.', 'research-amp' ) }
+							glossAll={ __( 'Pull from all Profiles.', 'research-amp' ) }
+							glossAdvanced={ __( 'Show Profiles associated with a specific Research Topic or Profile.', 'research-amp' ) }
+							labelAuto={ __( 'Relevant Profiles', 'research-amp' ) }
 							labelAll={ __( 'All Profiles', 'research-amp' ) }
-							legend={ __(
-								'Determine which Profiles will be shown in this block.',
-								'research-amp'
-							) }
+							legend={ __( 'Determine which Profiles will be shown in this block.', 'research-amp' ) }
 							selectedMode={ contentMode }
 							selectedResearchTopicId={
 								contentModeResearchTopicId
@@ -111,17 +86,11 @@ export default function edit( { attributes, setAttributes } ) {
 								label={ __( 'Order', 'research-amp' ) }
 								options={ [
 									{
-										label: __(
-											'Alphabetical',
-											'research-amp'
-										),
+										label: __( 'Alphabetical', 'research-amp' ),
 										value: 'alphabetical',
 									},
 									{
-										label: __(
-											'Recently Added',
-											'research-amp'
-										),
+										label: __( 'Recently Added', 'research-amp' ),
 										value: 'latest',
 									},
 									{
@@ -130,8 +99,8 @@ export default function edit( { attributes, setAttributes } ) {
 									},
 								] }
 								value={ order }
-								onChange={ ( order ) =>
-									setAttributes( { order } )
+								onChange={ ( newOrder ) =>
+									setAttributes( { newOrder } )
 								}
 							/>
 						</PanelRow>
@@ -139,8 +108,8 @@ export default function edit( { attributes, setAttributes } ) {
 						<PanelRow>
 							<NumberOfItemsControl
 								numberOfItems={ numberOfItems }
-								onChangeCallback={ ( numberOfItems ) =>
-									setAttributes( { numberOfItems } )
+								onChangeCallback={ ( newNumberOfItems ) =>
+									setAttributes( { newNumberOfItems } )
 								}
 							/>
 						</PanelRow>
@@ -148,8 +117,8 @@ export default function edit( { attributes, setAttributes } ) {
 						<PanelRow>
 							<LoadMoreToggle
 								showLoadMore={ showLoadMore }
-								onChangeCallback={ ( showLoadMore ) =>
-									setAttributes( { showLoadMore } )
+								onChangeCallback={ ( newShowLoadMore ) =>
+									setAttributes( { newShowLoadMore } )
 								}
 							/>
 						</PanelRow>
@@ -162,8 +131,8 @@ export default function edit( { attributes, setAttributes } ) {
 					>
 						<PanelRow>
 							<HorizontalSwipeToggle
-								onChangeCallback={ ( horizontalSwipe ) =>
-									setAttributes( { horizontalSwipe } )
+								onChangeCallback={ ( newHorizontalSwipe ) =>
+									setAttributes( { newHorizontalSwipe } )
 								}
 								horizontalSwipe={ horizontalSwipe }
 							/>
@@ -172,7 +141,7 @@ export default function edit( { attributes, setAttributes } ) {
 				</Panel>
 			</InspectorControls>
 
-			<div { ...blockProps() }>
+			<div { ...blockProps }>
 				<ServerSideRender
 					attributes={ serverSideAtts }
 					block="research-amp/profile-teasers"
