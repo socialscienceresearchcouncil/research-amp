@@ -1,4 +1,9 @@
 <?php
+/**
+ * Citation class.
+ *
+ * @package RAMP
+ */
 
 namespace SSRC\RAMP;
 
@@ -6,17 +11,37 @@ use SSRC\RAMP\Zotero\Client;
 use SSRC\RAMP\Zotero\Library as ZoteroLibrary;
 use WP_Query;
 
+/**
+ * Citation class.
+ */
 class Citation {
+	/**
+	 * Citation data.
+	 *
+	 * @var array
+	 */
 	protected $data = [
 		'post_id' => null,
 	];
 
+	/**
+	 * Citation constructor.
+	 *
+	 * @param int|null $post_id Post ID.
+	 * @return void
+	 */
 	public function __construct( $post_id = null ) {
 		if ( $post_id ) {
 			$this->data['post_id'] = (int) $post_id;
 		}
 	}
 
+	/**
+	 * Gets a Citation object from a Zotero ID.
+	 *
+	 * @param string $zotero_id Zotero ID.
+	 * @return Citation|null
+	 */
 	public static function get_from_post_id( $post_id ) {
 		$post = get_post( $post_id );
 		if ( ! $post || 'ramp_citation' !== $post->post_type ) {
@@ -26,6 +51,11 @@ class Citation {
 		return new self( $post_id );
 	}
 
+	/**
+	 * Gets Zotero data for the current citation.
+	 *
+	 * @return null|array
+	 */
 	public function get_zotero_data() {
 		$post_id = $this->get_post_id();
 
@@ -60,12 +90,19 @@ class Citation {
 		return $data;
 	}
 
+	/**
+	 * Gets a Zotero ID for an item.
+	 *
+	 * @return string
+	 */
 	public function get_zotero_id() {
 		return get_post_meta( $this->get_post_id(), 'zotero_id', true );
 	}
 
 	/**
 	 * Gets a Zotero URL for an item, as situated under a Collection.
+	 *
+	 * @return string
 	 */
 	public function get_zotero_url() {
 		// @todo This will need adjustment for multiple libraries.
@@ -86,10 +123,20 @@ class Citation {
 		return $zotero_url;
 	}
 
+	/**
+	 * Gets the local URL ("preview") for a citation.
+	 *
+	 * @return string
+	 */
 	public function get_preview_url() {
 		return get_permalink( $this->get_post_id() );
 	}
 
+	/**
+	 * Gets the URL for a citation's source item.
+	 *
+	 * @return string
+	 */
 	public function get_source_url() {
 		$data = $this->get_zotero_data();
 
@@ -100,6 +147,11 @@ class Citation {
 		return '';
 	}
 
+	/**
+	 * Gets the publication year for a citation.
+	 *
+	 * @return string
+	 */
 	public function get_publication_year() {
 		$data = $this->get_zotero_data();
 
@@ -124,6 +176,11 @@ class Citation {
 		return $year;
 	}
 
+	/**
+	 * Gets the author names for a citation.
+	 *
+	 * @return array
+	 */
 	public function get_author_names() {
 		$data = $this->get_zotero_data();
 
@@ -163,28 +220,58 @@ class Citation {
 		return $author_names;
 	}
 
+	/**
+	 * Sets the post ID for a citation.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return void
+	 */
 	public function set_post_id( $post_id ) {
 		$this->data['post_id'] = (int) $post_id;
 	}
 
+	/**
+	 * Sets the Zotero ID for a citation.
+	 *
+	 * @param string $zotero_id Zotero ID.
+	 * @return void
+	 */
 	public function set_zotero_id( $zotero_id ) {
 		update_post_meta( $this->get_post_id(), 'zotero_id', $zotero_id );
 	}
 
+	/**
+	 * Sets the Zotero data for a citation.
+	 *
+	 * @param array $data Zotero data.
+	 * @return void
+	 */
 	public function set_cached_zotero_data( $data ) {
 		update_post_meta( $this->get_post_id(), 'zotero_data', $data );
 	}
 
+	/**
+	 * Deletes the Zotero data for a citation.
+	 *
+	 * @return void
+	 */
 	public function delete_cached_zotero_data() {
 		delete_post_meta( $this->get_post_id(), 'zotero_data' );
 	}
 
+	/**
+	 * Gets the post ID for a citation.
+	 *
+	 * @return int
+	 */
 	public function get_post_id() {
 		return (int) $this->data['post_id'];
 	}
 
 	/**
 	 * Get title as stored in WordPress.
+	 *
+	 * @return string
 	 */
 	public function get_title() {
 		$post = get_post( $this->get_post_id() );
@@ -197,6 +284,8 @@ class Citation {
 
 	/**
 	 * Get abstract as stored in WordPress.
+	 *
+	 * @return string
 	 */
 	public function get_abstract() {
 		$post = get_post( $this->get_post_id() );
@@ -209,6 +298,9 @@ class Citation {
 
 	/**
 	 * Update title as stored in WordPress.
+	 *
+	 * @param string $title Title.
+	 * @return int|WP_Error
 	 */
 	public function set_title( $title ) {
 		return wp_update_post(
@@ -223,6 +315,7 @@ class Citation {
 	 * Update abstract as stored in WordPress.
 	 *
 	 * @param string $abstract_text Text of the abstract.
+	 * @return int|WP_Error
 	 */
 	public function set_abstract( $abstract_text ) {
 		return wp_update_post(
@@ -259,6 +352,8 @@ class Citation {
 
 	/**
 	 * Get the Zotero Collection IDs belonging to an item, based on its WP Research Topics.
+	 *
+	 * @return array
 	 */
 	public function get_collections_for_zotero() {
 		$rt_map = ramp_app()->get_cpttax_map( 'research_topic' );
@@ -279,6 +374,8 @@ class Citation {
 
 	/**
 	 * Get the Zotero Tags belonging to an item, based on its WP Focus Tags.
+	 *
+	 * @return array
 	 */
 	public function get_tags_for_zotero() {
 		$tags = [];
@@ -293,6 +390,12 @@ class Citation {
 		return $tags;
 	}
 
+	/**
+	 * Get the post ID of the Research Topic associated with a Zotero Collection ID.
+	 *
+	 * @param string $zotero_collection_id Zotero Collection ID.
+	 * @return array
+	 */
 	public function get_post_id_from_zotero_collection_id( $zotero_collection_id ) {
 		$existing = new WP_Query(
 			[
@@ -318,6 +421,12 @@ class Citation {
 		return $post_id;
 	}
 
+	/**
+	 * Set Research Topics for an item, based on its Zotero Collection IDs.
+	 *
+	 * @param array $collection_ids Zotero Collection IDs.
+	 * @return void
+	 */
 	public function set_research_topics_from_collection_ids( $collection_ids ) {
 		$rt_map = ramp_app()->get_cpttax_map( 'research_topic' );
 
@@ -339,6 +448,12 @@ class Citation {
 		wp_set_object_terms( $this->get_post_id(), $research_topics, 'ramp_assoc_topic' );
 	}
 
+	/**
+	 * Set Focus Tags for an item, based on its Zotero Tags.
+	 *
+	 * @param array $tags Zotero Tags.
+	 * @return void
+	 */
 	public function set_focus_tags_from_tags( $tags ) {
 		// Disabling for now.
 		// phpcs:disable Squiz.PHP.NonExecutableCode.Unreachable
@@ -366,6 +481,7 @@ class Citation {
 	 * Sets the Zotero library ID for an item.
 	 *
 	 * @param string $zotero_library_id
+	 * @return void
 	 */
 	public function set_zotero_library_id( $zotero_library_id ) {
 		update_post_meta( $this->get_post_id(), 'zotero_library_id', $zotero_library_id );
