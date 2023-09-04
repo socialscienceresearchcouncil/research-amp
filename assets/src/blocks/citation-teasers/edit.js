@@ -4,9 +4,7 @@ import {
 	Panel,
 	PanelBody,
 	PanelRow,
-	SelectControl,
-	Spinner,
-	ToggleControl,
+	SelectControl
 } from '@wordpress/components';
 
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
@@ -27,9 +25,9 @@ import './editor.scss';
 /**
  * Edit function.
  *
- * @param  root0
- * @param  root0.attributes
- * @param  root0.setAttributes
+ * @param  {Object}   root0               Props passed to the component.
+ * @param  {Object}   root0.attributes    Block attributes.
+ * @param  {callable} root0.setAttributes Block attributes setter.
  * @return {WPElement} Element to render.
  */
 export default function edit( { attributes, setAttributes } ) {
@@ -39,20 +37,15 @@ export default function edit( { attributes, setAttributes } ) {
 		contentModeResearchTopicId,
 		numberOfItems,
 		order,
-		researchTopic,
 		showLoadMore,
 	} = attributes;
 
-	const blockProps = () => {
-		const classNames = [];
+	const customClassNames = [
+		'number-of-items-' + numberOfItems,
+		'content-mode-' + contentMode,
+	];
 
-		classNames.push( 'number-of-items-' + numberOfItems );
-		classNames.push( 'content-mode-' + contentMode );
-
-		return useBlockProps( {
-			className: classNames,
-		} );
-	};
+	const blockProps = useBlockProps( { className: customClassNames } );
 
 	const serverSideAtts = Object.assign( {}, attributes, {
 		isEditMode: true,
@@ -66,16 +59,14 @@ export default function edit( { attributes, setAttributes } ) {
 						title={ __( 'Content Settings', 'research-amp' ) }
 					>
 						<ContentModeControl
-							changeCallback={ ( contentMode ) =>
-								setAttributes( { contentMode } )
+							changeCallback={ ( newContentMode ) =>
+								setAttributes( { contentMode: newContentMode } )
 							}
-							changeProfileIdCallback={ (
-								contentModeProfileId
-							) => setAttributes( { contentModeProfileId } ) }
-							changeResearchTopicIdCallback={ (
-								contentModeResearchTopicId
-							) =>
-								setAttributes( { contentModeResearchTopicId } )
+							changeProfileIdCallback={ ( newContentModeProfileId ) => 
+								setAttributes( { contentModeProfileId: newContentModeProfileId } ) 
+							}
+							changeResearchTopicIdCallback={ ( newContentModeResearchTopicId ) =>
+								setAttributes( { contentModeResearchTopicId: newContentModeResearchTopicId } )
 							}
 							glossAuto={ __( 'Show Citations relevant to the current Research Topic or Profile context.', 'research-amp' ) }
 							glossAll={ __( 'Pull from all Citations.', 'research-amp' ) }
@@ -85,9 +76,7 @@ export default function edit( { attributes, setAttributes } ) {
 							legend={ __( 'Determine which Citations will be shown in this block.', 'research-amp' ) }
 							selectedMode={ contentMode }
 							selectedProfileId={ contentModeProfileId }
-							selectedResearchTopicId={
-								contentModeResearchTopicId
-							}
+							selectedResearchTopicId={ contentModeResearchTopicId }
 						/>
 					</PanelBody>
 				</Panel>
@@ -110,8 +99,8 @@ export default function edit( { attributes, setAttributes } ) {
 									},
 								] }
 								value={ order }
-								onChange={ ( order ) =>
-									setAttributes( { order } )
+								onChange={ ( newOrder ) =>
+									setAttributes( { order: newOrder } )
 								}
 							/>
 						</PanelRow>
@@ -119,8 +108,8 @@ export default function edit( { attributes, setAttributes } ) {
 						<PanelRow>
 							<NumberOfItemsControl
 								numberOfItems={ numberOfItems }
-								onChangeCallback={ ( numberOfItems ) =>
-									setAttributes( { numberOfItems } )
+								onChangeCallback={ ( newNumberOfItems ) =>
+									setAttributes( { numberOfItems: newNumberOfItems } )
 								}
 							/>
 						</PanelRow>
@@ -128,8 +117,8 @@ export default function edit( { attributes, setAttributes } ) {
 						<PanelRow>
 							<LoadMoreToggle
 								showLoadMore={ showLoadMore }
-								onChangeCallback={ ( showLoadMore ) =>
-									setAttributes( { showLoadMore } )
+								onChangeCallback={ ( newShowLoadMore ) =>
+									setAttributes( { showLoadMore: newShowLoadMore } )
 								}
 							/>
 						</PanelRow>
@@ -137,7 +126,7 @@ export default function edit( { attributes, setAttributes } ) {
 				</Panel>
 			</InspectorControls>
 
-			<div { ...blockProps() }>
+			<div { ...blockProps }>
 				<ServerSideRender
 					attributes={ serverSideAtts }
 					block="research-amp/citation-teasers"
