@@ -77,27 +77,12 @@ export default function edit( { attributes, setAttributes } ) {
 							) =>
 								setAttributes( { contentModeResearchTopicId } )
 							}
-							glossAuto={ __(
-								'Show Citations relevant to the current Research Topic or Profile context.',
-								'research-amp'
-							) }
-							glossAll={ __(
-								'Pull from all Citations.',
-								'research-amp'
-							) }
-							glossAdvanced={ __(
-								'Show Citations associated with a specific Research Topic or Profile.',
-								'research-amp'
-							) }
-							labelAuto={ __(
-								'Relevant Citations',
-								'research-amp'
-							) }
+							glossAuto={ __( 'Show Citations relevant to the current Research Topic or Profile context.', 'research-amp' ) }
+							glossAll={ __( 'Pull from all Citations.', 'research-amp' ) }
+							glossAdvanced={ __( 'Show Citations associated with a specific Research Topic or Profile.', 'research-amp' ) }
+							labelAuto={ __( 'Relevant Citations', 'research-amp' ) }
 							labelAll={ __( 'All Citations', 'research-amp' ) }
-							legend={ __(
-								'Determine which Citations will be shown in this block.',
-								'research-amp'
-							) }
+							legend={ __( 'Determine which Citations will be shown in this block.', 'research-amp' ) }
 							selectedMode={ contentMode }
 							selectedProfileId={ contentModeProfileId }
 							selectedResearchTopicId={
@@ -116,17 +101,11 @@ export default function edit( { attributes, setAttributes } ) {
 								label={ __( 'Order', 'research-amp' ) }
 								options={ [
 									{
-										label: __(
-											'Date Added',
-											'research-amp'
-										),
+										label: __( 'Date Added', 'research-amp' ),
 										value: 'addedDate',
 									},
 									{
-										label: __(
-											'Publication Date',
-											'research-amp'
-										),
+										label: __( 'Publication Date', 'research-amp' ),
 										value: 'publicationDate',
 									},
 								] }
