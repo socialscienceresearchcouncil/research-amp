@@ -65,6 +65,13 @@ registerPlugin( 'ramp-profile-settings-controls', {
 	render: ProfileSettingsControls,
 } );
 
+// Add Citation Inspector controls.
+import CitationSettingsControls from './components/CitationSettingsControls';
+registerPlugin( 'ramp-citation-settings-controls', {
+	icon: 'users',
+	render: CitationSettingsControls,
+} );
+
 // Swap out the selector control for some custom taxonomies.
 import ReorderableFlatTermSelector from './components/ReorderableFlatTermSelector';
 

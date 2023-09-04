@@ -54,6 +54,9 @@ class Admin {
 		add_filter( 'manage_edit-ramp_profile_columns', [ $this, 'add_schprof_featured_column' ] );
 		add_action( 'manage_ramp_profile_posts_custom_column', [ $this, 'schprof_featured_column_content' ], 10, 2 );
 
+		add_filter( 'manage_edit-ramp_citation_columns', [ $this, 'add_citation_featured_column' ] );
+		add_action( 'manage_ramp_citation_posts_custom_column', [ $this, 'citation_featured_column_content' ], 10, 2 );
+
 		add_action( 'admin_notices', [ $this, 'add_companion_plugin_admin_notice' ] );
 
 		// Necessary to load scripts for persistent dismissible admin notices.
@@ -496,6 +499,40 @@ class Admin {
 		$profile_profile = Profile::get_instance( $post_id );
 
 		if ( $profile_profile->get_is_featured() ) {
+			echo 'Yes';
+		}
+	}
+
+	/**
+	 * Add the 'Featured' column to the Citations list table.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $columns Columns.
+	 * @return array
+	 */
+	public function add_citation_featured_column( $columns ) {
+		$last = array_pop( $columns );
+		return array_merge( $columns, [ 'featured' => 'Featured?' ], [ $last ] );
+	}
+
+	/**
+	 * Add content to the 'Featured' column in the Citations list table.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $column Column name.
+	 * @param int    $post_id Post ID.
+	 * @return void
+	 */
+	public function citation_featured_column_content( $column, $post_id ) {
+		if ( 'featured' !== $column ) {
+			return;
+		}
+
+		$citation = new Citation( $post_id );
+
+		if ( $citation->get_is_featured() ) {
 			echo 'Yes';
 		}
 	}

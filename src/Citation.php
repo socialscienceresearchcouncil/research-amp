@@ -221,6 +221,29 @@ class Citation {
 	}
 
 	/**
+	 * Gets whether the citation is featured.
+	 *
+	 * @return bool
+	 */
+	public function get_is_featured() {
+		return (bool) get_post_meta( $this->get_post_id(), 'is_featured', true );
+	}
+
+	/**
+	 * Sets whether the citation is featured.
+	 *
+	 * @param bool $is_featured Whether the citation is featured.
+	 * @return void
+	 */
+	public function set_is_featured( $is_featured ) {
+		if ( $is_featured ) {
+			update_post_meta( $this->get_post_id(), 'is_featured', '1' );
+		} else {
+			delete_post_meta( $this->get_post_id(), 'is_featured' );
+		}
+	}
+
+	/**
 	 * Sets the post ID for a citation.
 	 *
 	 * @param int $post_id Post ID.
