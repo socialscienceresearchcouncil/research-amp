@@ -20,9 +20,11 @@ export default function ProfileSettingsControls( {} ) {
 	const { alphabeticalName, isFeatured } = useSelect( ( dataSelect ) => {
 		const { getEditedPostAttribute } = dataSelect( store );
 
+		const editedPostMeta = getEditedPostAttribute( 'meta' );
+
 		// getEditedPostTypeAttribute is not available in the Site Editor.
-		const savedAlphabeticalName = postType ? getEditedPostAttribute( 'meta' ).alphabetical_name : '';
-		const savedIsFeatured = postType ? getEditedPostAttribute( 'meta' ).is_featured : false;
+		const savedAlphabeticalName = postType && editedPostMeta ? editedPostMeta.alphabetical_name : '';
+		const savedIsFeatured = postType && editedPostMeta ? editedPostMeta.is_featured : false;
 
 		return {
 			alphabeticalName: savedAlphabeticalName,
