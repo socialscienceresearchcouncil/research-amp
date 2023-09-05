@@ -25,9 +25,9 @@ import './editor.scss';
 /**
  * Edit function.
  *
- * @param  {Object}   root0               Props passed to the component.
- * @param  {Object}   root0.attributes    Block attributes.
- * @param  {callable} root0.setAttributes Block attributes setter.
+ * @param {Object}     props Component     props.
+ * @param {Object}     props.attributes    Block attributes.
+ * @param {Function}   props.setAttributes Block attributes setter.
  * @return {WPElement} Element to render.
  */
 export default function edit( { attributes, setAttributes } ) {
@@ -68,9 +68,11 @@ export default function edit( { attributes, setAttributes } ) {
 							changeResearchTopicIdCallback={ ( newContentModeResearchTopicId ) =>
 								setAttributes( { contentModeResearchTopicId: newContentModeResearchTopicId } )
 							}
+							enabledModes={ [ 'auto', 'all', 'advanced', 'featured' ] }
 							glossAuto={ __( 'Show Citations relevant to the current Research Topic or Profile context.', 'research-amp' ) }
 							glossAll={ __( 'Pull from all Citations.', 'research-amp' ) }
 							glossAdvanced={ __( 'Show Citations associated with a specific Research Topic or Profile.', 'research-amp' ) }
+							glossFeatured={ __( 'Show Citations marked as Featured.', 'research-amp' ) }
 							labelAuto={ __( 'Relevant Citations', 'research-amp' ) }
 							labelAll={ __( 'All Citations', 'research-amp' ) }
 							legend={ __( 'Determine which Citations will be shown in this block.', 'research-amp' ) }

@@ -27,6 +27,16 @@ $query_args = [
 	'tax_query'      => \SSRC\RAMP\Blocks::get_content_mode_tax_query_from_template_args( $r ),
 ];
 
+if ( 'featured' === $r['contentMode'] ) {
+	$query_args['meta_query'] = [
+		[
+			'key'     => 'is_featured',
+			'value'   => '1',
+			'compare' => '=',
+		],
+	];
+}
+
 if ( 'publicationDate' === $r['order'] ) {
 	$query_args['orderby']  = 'meta_value';
 	$query_args['meta_key'] = 'publication_date';

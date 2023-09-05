@@ -9,7 +9,7 @@
 	},
 	"attributes": {
 		"contentMode": {
-			"enum": [ "auto", "all", "advanced" ],
+			"enum": [ "auto", "all", "advanced", "featured" ],
 			"default": "auto"
 		},
 		"contentModeProfileId": {

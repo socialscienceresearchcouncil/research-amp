@@ -351,6 +351,11 @@ class Blocks {
 				$retval['profile_id']        = (int) $r['contentModeProfileId'];
 			break;
 
+			case 'featured' :
+				$retval['research_topic_id'] = 0;
+				$retval['profile_id']        = 0;
+			break;
+
 			case 'auto' :
 			default :
 				// For preview, we fall onto the most recent Research Topic.
