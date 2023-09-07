@@ -20,6 +20,10 @@ require __DIR__ . '/vendor/autoload.php';
 /**
  * Shorthand function to fetch main plugin instance.
  *
+ * The plugin is bootstrapped at plugins_loaded with the priority of 5.
+ * It needs to happen this early so that the theme directory can be registered
+ * in time for WordPress to recognize research-amp-theme as supporting theme.json.
+ *
  * @since 1.0.0
  */
 function ramp_app() {
@@ -60,4 +64,4 @@ function ramp_app() {
 
 	return $instance;
 }
-add_action( 'plugins_loaded', 'ramp_app' );
+add_action( 'plugins_loaded', 'ramp_app', 5 );
