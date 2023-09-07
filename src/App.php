@@ -93,6 +93,6 @@ class App {
 	 * @since 1.0.0
 	 */
 	public function register_theme_directory() {
-		register_theme_directory( RAMP_PLUGIN_DIR . '/themes' );
+		register_theme_directory( RAMP_PLUGIN_DIR . 'themes' );
 	}
 }
