@@ -30,6 +30,29 @@ class Client {
 		return $this->data['library_id'];
 	}
 
+	/**
+	 * Gets a set of default parameters for the wp_remote_* functions.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return array
+	 */
+	protected function get_remote_defaults() {
+		$defaults = [
+			'headers' => $this->get_headers(),
+			'timeout' => 10,
+		];
+
+		/**
+		 * Filters the default parameters for the wp_remote_* functions in Zotero\Client.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $defaults
+		 */
+		return apply_filters( 'ramp_zotero_client_remote_defaults', $defaults );
+	}
+
 	protected function get_headers() {
 		return [
 			'Content-Type'       => 'application/json',
@@ -42,13 +65,7 @@ class Client {
 	public function get_key_permissions() {
 		$url = $this->base . '/keys/' . $this->get_api_key();
 
-		$result = wp_remote_get(
-			$url,
-			[
-				'headers' => $this->get_headers(),
-				'timeout' => 10,
-			]
-		);
+		$result = wp_remote_get( $url, $this->get_remote_defaults() );
 
 		$response_code = wp_remote_retrieve_response_code( $result );
 		if ( 200 !== $response_code ) {
@@ -74,13 +91,7 @@ class Client {
 		$url = $this->base . '/' . $this->get_library_id() . '/items/';
 		$url = add_query_arg( $query_args, $url );
 
-		$result = wp_remote_get(
-			$url,
-			[
-				'headers' => $this->get_headers(),
-				'timeout' => 10,
-			]
-		);
+		$result = wp_remote_get( $url, $this->get_remote_defaults() );
 
 		$response_code = wp_remote_retrieve_response_code( $result );
 		if ( 200 !== $response_code ) {
@@ -97,12 +108,7 @@ class Client {
 	public function get_record( $item_id ) {
 		$url = $this->base . '/' . $this->get_library_id() . '/items/' . $item_id;
 
-		$result = wp_remote_get(
-			$url,
-			[
-				'headers' => $this->get_headers(),
-			]
-		);
+		$result = wp_remote_get( $url, $this->get_remote_defaults() );
 
 		$response_code = wp_remote_retrieve_response_code( $result );
 		if ( 200 !== $response_code ) {
@@ -116,13 +122,14 @@ class Client {
 	public function post_item( $data ) {
 		$url = $this->base . '/' . $this->get_library_id() . '/items';
 
-		$result = wp_remote_post(
-			$url,
+		$post_params = array_merge(
+			$this->get_remote_defaults(),
 			[
-				'headers' => $this->get_headers(),
-				'body'    => wp_json_encode( $data ),
+				'body' => wp_json_encode( $data ),
 			]
 		);
+
+		$result = wp_remote_post( $url, $post_params );
 
 		$response_code = wp_remote_retrieve_response_code( $result );
 		if ( 200 !== $response_code ) {
@@ -142,12 +149,7 @@ class Client {
 	public function get_collections() {
 		$url = $this->base . '/' . $this->get_library_id() . '/collections/';
 
-		$result = wp_remote_get(
-			$url,
-			[
-				'headers' => $this->get_headers(),
-			]
-		);
+		$result = wp_remote_get( $url, $this->get_remote_defaults() );
 
 		$response_code = wp_remote_retrieve_response_code( $result );
 		if ( 200 !== $response_code ) {
@@ -161,12 +163,7 @@ class Client {
 	public function get_collection( $collection_id ) {
 		$url = $this->base . '/' . $this->get_library_id() . '/collections/' . $collection_id;
 
-		$result = wp_remote_get(
-			$url,
-			[
-				'headers' => $this->get_headers(),
-			]
-		);
+		$result = wp_remote_get( $url, $this->get_remote_defaults() );
 
 		$response_code = wp_remote_retrieve_response_code( $result );
 		if ( 200 !== $response_code ) {
@@ -180,13 +177,14 @@ class Client {
 	public function create_collection( $data ) {
 		$url = $this->base . '/' . $this->get_library_id() . '/collections';
 
-		$result = wp_remote_post(
-			$url,
+		$post_params = array_merge(
+			$this->get_remote_defaults(),
 			[
-				'headers' => $this->get_headers(),
-				'body'    => wp_json_encode( [ 0 => $data ] ),
+				'body' => wp_json_encode( $data ),
 			]
 		);
+
+		$result = wp_remote_post( $url, $post_params );
 
 		$response_code = wp_remote_retrieve_response_code( $result );
 		if ( 200 !== $response_code ) {
@@ -206,14 +204,15 @@ class Client {
 	public function update_collection( $collection_id, $data ) {
 		$url = $this->base . '/' . $this->get_library_id() . '/collections/' . $collection_id;
 
-		$result = wp_remote_request(
-			$url,
+		$put_params = array_merge(
+			$this->get_remote_defaults(),
 			[
-				'method'  => 'PUT',
-				'headers' => $this->get_headers(),
-				'body'    => wp_json_encode( $data ),
+				'method' => 'PUT',
+				'body'   => wp_json_encode( $data ),
 			]
 		);
+
+		$result = wp_remote_request( $url, $put_params );
 
 		$response_code = wp_remote_retrieve_response_code( $result );
 
