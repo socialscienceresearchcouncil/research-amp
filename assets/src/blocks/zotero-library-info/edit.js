@@ -1,3 +1,5 @@
+/* eslint camelcase: ["error", { "allow": ["collection_map", "zotero_api_key", "zotero_library_id"] }] */
+
 import { __, sprintf } from '@wordpress/i18n';
 
 import { unescapeString } from '../../components/ReorderableFlatTermSelector/utils';
@@ -23,20 +25,17 @@ import './editor.scss';
 /**
  * Edit function.
  *
- * @param  root0
- * @param  root0.attributes
- * @param  root0.setAttributes
+ * @param {Object} root0
  * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
  *
  * @return {WPElement} Element to render.
  */
-export default function edit( { attributes } ) {
+export default function Edit( {} ) {
 	const { editPost } = dispatch( 'core/editor' );
 
 	const {
 		apiKey,
 		collectionMap,
-		isConnected,
 		isNew,
 		libraryId,
 		libraryInfo,
@@ -46,34 +45,25 @@ export default function edit( { attributes } ) {
 	} = useSelect( ( select ) => {
 		const { zotero_api_key, zotero_library_id } = select( 'core/editor' ).getEditedPostAttribute( 'meta' );
 
-		const collectionMap = select( 'core/editor' ).getEditedPostAttribute( 'collection_map' );
-
-		const postTitle = select( 'core/editor' ).getEditedPostAttribute( 'title' );
-		const postId = select( 'core/editor' ).getCurrentPostId();
-
-		const isNew = select( 'core/editor' ).isEditedPostNew();
-
-		const libraryInfo = select( 'research-amp' ).getLibraryInfo( postId );
-		const researchTopics = select( 'research-amp' ).getResearchTopics();
-
-		const isConnected =
-			'undefined' !== typeof libraryInfo &&
-			libraryInfo.hasOwnProperty( 'isConnected' )
-				? libraryInfo.isConnected
-				: null;
+		const thisPostId = select( 'core/editor' ).getCurrentPostId();
 
 		return {
 			apiKey: zotero_api_key,
-			collectionMap,
-			isConnected,
-			isNew,
+			collectionMap: select( 'core/editor' ).getEditedPostAttribute( 'collection_map' ),
+			isNew: select( 'core/editor' ).isEditedPostNew(),
 			libraryId: zotero_library_id,
-			libraryInfo,
-			postId,
-			postTitle,
-			researchTopics,
+			libraryInfo: select( 'research-amp' ).getLibraryInfo( thisPostId ),
+			postId: thisPostId,
+			postTitle: select( 'core/editor' ).getEditedPostAttribute( 'title' ),
+			researchTopics: select( 'research-amp' ).getResearchTopics(),
 		};
 	}, [] );
+
+	const isConnected =
+		'undefined' !== typeof libraryInfo &&
+		libraryInfo.hasOwnProperty( 'isConnected' )
+			? libraryInfo.isConnected
+			: null;
 
 	const triggerIngest = () => {
 		apiFetch( {
@@ -82,7 +72,7 @@ export default function edit( { attributes } ) {
 				action: 'sync',
 			} ),
 			method: 'POST',
-		} ).then( ( res ) => {} );
+		} ).then( () => {} );
 	};
 
 	const editPostMeta = ( newMeta ) => {

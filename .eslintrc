@@ -1,6 +1,7 @@
 {
   "extends": [ "plugin:@wordpress/eslint-plugin/recommended" ],
   "rules": {
+    "camelcase": ["error", { "ignoreDestructuring": true }],
     "prettier/prettier": "off"
   }
 }
