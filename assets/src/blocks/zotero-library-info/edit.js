@@ -2,17 +2,15 @@ import { __, sprintf } from '@wordpress/i18n';
 
 import { unescapeString } from '../../components/ReorderableFlatTermSelector/utils';
 
-import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 
 import {
 	Button,
-	Panel,
-	PanelBody,
 	SelectControl,
 	TextControl,
 } from '@wordpress/components';
 
-import { dispatch, select, useSelect, useDispatch } from '@wordpress/data';
+import { dispatch, useSelect } from '@wordpress/data';
 import { addQueryArgs } from '@wordpress/url';
 
 import apiFetch from '@wordpress/api-fetch';
@@ -32,7 +30,7 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function edit( { attributes, setAttributes } ) {
+export default function edit( { attributes } ) {
 	const { editPost } = dispatch( 'core/editor' );
 
 	const {
@@ -46,14 +44,11 @@ export default function edit( { attributes, setAttributes } ) {
 		postTitle,
 		researchTopics,
 	} = useSelect( ( select ) => {
-		const { collection_map, zotero_api_key, zotero_library_id } =
-			select( 'core/editor' ).getEditedPostAttribute( 'meta' );
+		const { zotero_api_key, zotero_library_id } = select( 'core/editor' ).getEditedPostAttribute( 'meta' );
 
-		const collectionMap =
-			select( 'core/editor' ).getEditedPostAttribute( 'collection_map' );
+		const collectionMap = select( 'core/editor' ).getEditedPostAttribute( 'collection_map' );
 
-		const postTitle =
-			select( 'core/editor' ).getEditedPostAttribute( 'title' );
+		const postTitle = select( 'core/editor' ).getEditedPostAttribute( 'title' );
 		const postId = select( 'core/editor' ).getCurrentPostId();
 
 		const isNew = select( 'core/editor' ).isEditedPostNew();
@@ -118,13 +113,8 @@ export default function edit( { attributes, setAttributes } ) {
 		}
 	);
 
-	const blockProps = () => {
-		const classNames = [ 'ramp-zotero-library-info' ];
-
-		return useBlockProps( {
-			className: classNames,
-		} );
-	};
+	const customClassNames = [ 'ramp-zotero-library-info' ];
+	const blockProps = useBlockProps( { className: customClassNames } );
 
 	const researchTopicsOptions = researchTopics.map( ( topic ) => {
 		return {
@@ -150,7 +140,7 @@ export default function edit( { attributes, setAttributes } ) {
 
 	return (
 		<>
-			<div { ...blockProps() }>
+			<div { ...blockProps }>
 				<fieldset>
 					<legend>
 						{ __( 'Library Settings', 'research-amp' ) }
@@ -158,23 +148,17 @@ export default function edit( { attributes, setAttributes } ) {
 
 					{ ! isNew && false === isConnected && (
 						<p className="connection-error">
-							{ __(
-								'Could not connect to your Zotero library. Please check your Library ID and API key.',
-								'research-amp'
-							) }
+							{ __( 'Could not connect to your Zotero library. Please check your Library ID and API key.', 'research-amp' ) }
 						</p>
 					) }
 
 					<TextControl
 						label={ __( 'Library Name', 'research-amp' ) }
 						value={ postTitle }
-						onChange={ ( postTitle ) => {
-							editPostTitle( postTitle );
+						onChange={ ( newPostTitle ) => {
+							editPostTitle( newPostTitle );
 						} }
-						help={ __(
-							'Displayed on individual Citation pages, to indicate the source library for that item.',
-							'research-amp'
-						) }
+						help={ __( 'Displayed on individual Citation pages, to indicate the source library for that item.', 'research-amp' ) }
 					/>
 
 					<TextControl
@@ -202,10 +186,7 @@ export default function edit( { attributes, setAttributes } ) {
 						<p>
 							{ sprintf(
 								/* translators: 1. Timestamp for last sync; 2. Relative time since last sync */
-								__(
-									'Last library sync: %1$s (%2$s)',
-									'research-amp'
-								),
+								__( 'Last library sync: %1$s (%2$s)', 'research-amp' ),
 								lastIngest,
 								lastIngestRelative
 							) }
@@ -214,20 +195,14 @@ export default function edit( { attributes, setAttributes } ) {
 						<p>
 							{ sprintf(
 								/* translators: 1. Timestamp for next sync; 2. Relative time until next sync */
-								__(
-									'Next library sync: %1$s (%2$s)',
-									'research-amp'
-								),
+								__( 'Next library sync: %1$s (%2$s)', 'research-amp' ),
 								nextIngest,
 								nextIngestRelative
 							) }
 						</p>
 
 						<p>
-							{ __(
-								'You may trigger an immediate sync by clicking the button below. (New sync timestamps may not appear for a few minutes.)',
-								'research-amp'
-							) }
+							{ __( 'You may trigger an immediate sync by clicking the button below. (New sync timestamps may not appear for a few minutes.)', 'research-amp' ) }
 						</p>
 
 						<Button variant="primary" onClick={ triggerIngest }>
@@ -246,10 +221,7 @@ export default function edit( { attributes, setAttributes } ) {
 						</legend>
 
 						<p>
-							{ __(
-								'When importing from the Zotero library, a new Citation is associated with Research Topics according to the Collections in which the item appears in the library. Use this interface to associate Zotero Collections with Research Topics.',
-								'research-amp'
-							) }
+							{ __( 'When importing from the Zotero library, a new Citation is associated with Research Topics according to the Collections in which the item appears in the library. Use this interface to associate Zotero Collections with Research Topics.', 'research-amp' ) }
 						</p>
 
 						{ sortedCollectionKeys.length > 0 && (
@@ -257,9 +229,7 @@ export default function edit( { attributes, setAttributes } ) {
 								{ sortedCollectionKeys.map(
 									( collectionKey ) => (
 										<li
-											key={
-												'collection-' + collectionKey
-											}
+											key={ 'collection-' + collectionKey }
 											className="collection-row"
 										>
 											<div className="collection-map-name">
@@ -272,21 +242,14 @@ export default function edit( { attributes, setAttributes } ) {
 													target="_blank"
 													rel="noreferrer"
 												>
-													{
-														collectionList[
-															collectionKey
-														].name
-													}
+													{ collectionList[ collectionKey ].name }
 												</a>
 											</div>
 
 											<div className="collection-map-selector">
 												<SelectControl
 													hideLabelFromVision={ true }
-													label={ __(
-														'Select a Research Topic',
-														'ramp'
-													) }
+													label={ __( 'Select a Research Topic', 'ramp' ) }
 													onChange={ ( selected ) => {
 														setCollectionMap(
 															collectionKey,
@@ -294,18 +257,8 @@ export default function edit( { attributes, setAttributes } ) {
 														);
 													} }
 													options={ allOptions }
-													value={
-														collectionMap.hasOwnProperty(
-															collectionKey
-														) !== -1
-															? collectionMap[
-																	collectionKey
-															  ]
-															: 0
-													}
-													__nextHasNoMarginBottom={
-														true
-													}
+													value={ collectionMap.hasOwnProperty( collectionKey) !== -1 ? collectionMap[ collectionKey ] : 0 }
+													__nextHasNoMarginBottom={ true }
 												/>
 											</div>
 										</li>
@@ -316,10 +269,7 @@ export default function edit( { attributes, setAttributes } ) {
 
 						{ sortedCollectionKeys.length === 0 && (
 							<p>
-								{ __(
-									'No Collections have been found for this Zotero Library. If you think you should be seeing Collections here, try refreshing the page.',
-									'research-amp'
-								) }
+								{ __( 'No Collections have been found for this Zotero Library. If you think you should be seeing Collections here, try refreshing the page.', 'research-amp' ) }
 							</p>
 						) }
 					</fieldset>
