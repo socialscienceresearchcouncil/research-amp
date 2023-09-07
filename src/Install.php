@@ -16,6 +16,15 @@ use SSRC\RAMP\Util\Navigation;
  */
 class Install {
 	/**
+	 * Whether to install default RAMP data.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var bool
+	 */
+	protected $install_default_data = true;
+
+	/**
 	 * Default focus tags.
 	 *
 	 * @since 1.0.0
@@ -37,14 +46,18 @@ class Install {
 	 */
 	public function install() {
 		$this->install_default_research_topics();
-		$this->install_default_profiles();
-		$this->install_default_research_reviews();
-		$this->install_default_articles();
-		$this->install_default_pages();
-		$this->install_default_nav_menus();
-		$this->install_default_page_on_front();
-		$this->install_default_logo();
-		$this->install_default_homepage_slide();
+
+		if ( $this->install_default_data ) {
+			$this->install_default_profiles();
+			$this->install_default_research_reviews();
+			$this->install_default_articles();
+			$this->install_default_pages();
+			$this->install_default_nav_menus();
+			$this->install_default_page_on_front();
+			$this->install_default_logo();
+			$this->install_default_homepage_slide();
+		}
+
 		$this->set_installed_version();
 	}
 
@@ -67,6 +80,18 @@ class Install {
 	 * @return void
 	 */
 	protected function install_default_research_topics() {
+		// Don't install any default data if there are already research topics.
+		$existing_query = get_posts(
+			[
+				'post_type' => 'ramp_topic',
+			]
+		);
+
+		if ( ! empty( $existing_query->posts ) ) {
+			$this->install_default_data = false;
+			return;
+		}
+
 		$research_topics_data = [
 			'renewable-energy-technology' => [
 				'post_title'   => __( 'Renewable Energy Technology', 'research-amp' ),
