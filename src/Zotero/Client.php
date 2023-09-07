@@ -1,9 +1,32 @@
 <?php
+/**
+ * Client class for interacting with the Zotero API.
+ *
+ * @package SSRC\RAMP
+ */
 
 namespace SSRC\RAMP\Zotero;
 
+/**
+ * Client class for interacting with the Zotero API.
+ *
+ * @since 1.0.0
+ */
 class Client {
+	/**
+	 * Base URL for the Zotero API.
+	 *
+	 * @since 1.0.0
+	 * @var string
+	 */
 	protected $base = 'https://api.zotero.org';
+
+	/**
+	 * Data for the client.
+	 *
+	 * @since 1.0.0
+	 * @var array
+	 */
 	protected $data = [
 		'library_id' => '',
 		'api_key'    => '',
@@ -16,16 +39,31 @@ class Client {
 	 *
 	 * @param string $library_id
 	 * @param string $apk_key
+	 * @return void
 	 */
 	public function __construct( $library_id, $api_key ) {
 		$this->data['library_id'] = $library_id;
 		$this->data['api_key']    = $api_key;
 	}
 
+	/**
+	 * Gets the API key.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string
+	 */
 	protected function get_api_key() {
 		return $this->data['api_key'];
 	}
 
+	/**
+	 * Gets the library ID.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string
+	 */
 	protected function get_library_id() {
 		return $this->data['library_id'];
 	}
@@ -53,6 +91,13 @@ class Client {
 		return apply_filters( 'ramp_zotero_client_remote_defaults', $defaults );
 	}
 
+	/**
+	 * Gets the headers for the wp_remote_* functions.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return array
+	 */
 	protected function get_headers() {
 		return [
 			'Content-Type'       => 'application/json',
@@ -62,6 +107,13 @@ class Client {
 		];
 	}
 
+	/**
+	 * Gets the permissions belonging to the current API key.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string
+	 */
 	public function get_key_permissions() {
 		$url = $this->base . '/keys/' . $this->get_api_key();
 
@@ -75,6 +127,14 @@ class Client {
 		return wp_remote_retrieve_body( $result );
 	}
 
+	/**
+	 * Gets the items belonging to the current library.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $args Arguments to pass to the API.
+	 * @return array
+	 */
 	public function get_items( $args = [] ) {
 		$defaults = [
 			'sort'      => 'dateAdded',
@@ -105,6 +165,14 @@ class Client {
 		return (array) $json;
 	}
 
+	/**
+	 * Gets a Zotero library record.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $item_id ID of the item to get.
+	 * @return array
+	 */
 	public function get_record( $item_id ) {
 		$url = $this->base . '/' . $this->get_library_id() . '/items/' . $item_id;
 
@@ -119,6 +187,14 @@ class Client {
 		return (array) $json->data;
 	}
 
+	/**
+	 * Updates a Zotero library record.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $data Data to update.
+	 * @return array
+	 */
 	public function post_item( $data ) {
 		$url = $this->base . '/' . $this->get_library_id() . '/items';
 
@@ -146,6 +222,13 @@ class Client {
 		return (array) $record;
 	}
 
+	/**
+	 * Gets a list of the collections belonging to a Zotero library.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return array
+	 */
 	public function get_collections() {
 		$url = $this->base . '/' . $this->get_library_id() . '/collections/';
 
@@ -160,6 +243,14 @@ class Client {
 		return $json;
 	}
 
+	/**
+	 * Gets a Zotero collection.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $collection_id ID of the collection to get.
+	 * @return array
+	 */
 	public function get_collection( $collection_id ) {
 		$url = $this->base . '/' . $this->get_library_id() . '/collections/' . $collection_id;
 
@@ -174,6 +265,14 @@ class Client {
 		return (array) $json->data;
 	}
 
+	/**
+	 * Creates a Zotero collection.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $data Data to create the collection with.
+	 * @return array
+	 */
 	public function create_collection( $data ) {
 		$url = $this->base . '/' . $this->get_library_id() . '/collections';
 
@@ -201,6 +300,15 @@ class Client {
 		return $collection_id;
 	}
 
+	/**
+	 * Updates a Zotero collection.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $collection_id ID of the collection to update.
+	 * @param array $data Data to update the collection with.
+	 * @return array
+	 */
 	public function update_collection( $collection_id, $data ) {
 		$url = $this->base . '/' . $this->get_library_id() . '/collections/' . $collection_id;
 
