@@ -239,7 +239,7 @@ export default function Edit( {} ) {
 											<div className="collection-map-selector">
 												<SelectControl
 													hideLabelFromVision={ true }
-													label={ __( 'Select a Research Topic', 'ramp' ) }
+													label={ __( 'Select a Research Topic', 'research-amp' ) }
 													onChange={ ( selected ) => {
 														setCollectionMap(
 															collectionKey,
