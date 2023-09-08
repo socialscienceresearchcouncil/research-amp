@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'RAMP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'RAMP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'RAMP_VER', '1.0-alpha' );
+define( 'RAMP_VER', '1.0.0-alpha-20230908' );
 
 require __DIR__ . '/vendor/autoload.php';
 

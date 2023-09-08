@@ -20,8 +20,8 @@ async function updateVersion() {
 
     // Update the PHP constant
     let constantFile = await fs.readFile( loaderFile, 'utf8' );
-    constantFile = constantFile.replace(/define\('YOUR_PLUGIN_VERSION', '(.+)'\);/, `define('YOUR_PLUGIN_VERSION', '${version}');`);
-    await fs.writeFile('../your-constants-file.php', constantFile);
+    constantFile = constantFile.replace( /define\( 'RAMP_VER', '(.+)' \);/, `define( 'RAMP_VER', '${version}' );` );
+    await fs.writeFile( loaderFile, constantFile );
 
     console.log(`Version updated to ${version}`);
   } catch (error) {
