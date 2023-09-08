@@ -561,7 +561,7 @@ class Install {
 
 		$help_page_content .= '<!-- wp:heading {"level":2} -->' . "\n" . '<h2>' . esc_html__( 'Next Steps', 'research-amp' ) . '</h2>' . "\n" . '<!-- /wp:heading -->' . "\n";
 		$help_page_content .= $this->convert_text_to_paragraph_blocks( '<p>' . esc_html__( 'Take time to familiarize yourself with how our sample content is set up. Once you are ready, delete the sample content and begin populating your Research AMP site with your own Research Topics.', 'research-amp' ) . '</p>' ) . "\n";
-		$help_page_content .= wp_kses_post( $this->convert_text_to_paragraph_blocks( 'For more help getting set up with Research AMP, visit <a href="https://ramp.ssrc.org">our online documentation</a>', 'research-amp' ) ) . "\n";
+		$help_page_content .= wp_kses_post( $this->convert_text_to_paragraph_blocks( 'For more help getting set up with Research AMP, visit <a href="https://ramp.ssrc.org/support">our online documentation</a>', 'research-amp' ) ) . "\n";
 
 		$pages_data = [
 			'get-started'          => [
