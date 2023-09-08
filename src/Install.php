@@ -511,22 +511,78 @@ class Install {
 	 * @return void
 	 */
 	protected function install_default_pages() {
+		$help_page_content  = '<!-- wp:heading {"level":2} -->' . "\n" . '<h2>' . esc_html__( 'Welcome to Research AMP!', 'research-amp' ) . '</h2>' . "\n" . '<!-- /wp:heading -->' . "\n";
+		$help_page_content .= $this->convert_text_to_paragraph_blocks( '<p>' . esc_html__( 'This page contains information that will help to orient you to the Research AMP platform. Be sure to delete this page, or set it to Draft status, before launching your site.', 'research-amp' ) . '</p>' ) . "\n";
+		$help_page_content .= '<!-- wp:heading {"level":2} -->' . "\n" . '<h2>' . esc_html__( 'Sample Content', 'research-amp' ) . '</h2>' . "\n" . '<!-- /wp:heading -->' . "\n";
+		$help_page_content .= $this->convert_text_to_paragraph_blocks( '<p>' . esc_html__( "To help you get started using Research AMP, we've provided some sample content. This content demonstrates how the various parts of a Research AMP site work together.", 'research-amp' ) . '</p>' ) . "\n";
+		$help_page_content .= '<!-- wp:list -->' . "\n" . '<ul>' . "\n";
+
+		$help_page_content .= '<!-- wp:list-item -->' . "\n" . '<li>';
+		$help_page_content .= wp_kses_post(
+			sprintf(
+				// translators: Link to the Research Topics archive.
+				__( '<a href="%s">Research Topics</a> are the main organizational concept for a Research AMP site, tying together all other content types.', 'research-amp' ),
+				get_post_type_archive_link( 'ramp_topic' )
+			)
+		);
+		$help_page_content .= '</li>' . "\n" . '<!-- /wp:list-item -->' . "\n";
+
+		$help_page_content .= '<!-- wp:list-item -->' . "\n" . '<li>';
+		$help_page_content .= wp_kses_post(
+			sprintf(
+				// translators: Link to the Research Reviews archive.
+				__( '<a href="%s">Research Reviews</a> are annotated reviews of the literature associated with a given Research Topic.', 'research-amp' ),
+				get_post_type_archive_link( 'ramp_review' )
+			)
+		);
+		$help_page_content .= '</li>' . "\n" . '<!-- /wp:list-item -->' . "\n";
+
+		$help_page_content .= '<!-- wp:list-item -->' . "\n" . '<li>';
+		$help_page_content .= wp_kses_post(
+			sprintf(
+				// translators: Link to the Profiles archive.
+				__( '<a href="%s">Profiles</a> represent scholars, authors, or other important people in your field or community. Profiles can be linked to one or more Research Topics, or to specific pieces of content like Articles and Citations.', 'research-amp' ),
+				get_post_type_archive_link( 'ramp_profile' )
+			)
+		);
+		$help_page_content .= '</li>' . "\n" . '<!-- /wp:list-item -->' . "\n";
+
+		$help_page_content .= '<!-- wp:list-item -->' . "\n" . '<li>';
+		$help_page_content .= wp_kses_post(
+			sprintf(
+				// translators: Link to the Articles archive.
+				__( '<a href="%s">Articles</a> are first-party content created by your team. These can range from long-form essays, to interviews, to embedded videos. Use the "Article Type" taxonomy to sort Articles by type.', 'research-amp' ),
+				get_post_type_archive_link( 'ramp_article' )
+			)
+		);
+		$help_page_content .= '</li>' . "\n" . '<!-- /wp:list-item -->' . "\n";
+
+		$help_page_content .= '</ul>' . "\n" . '<!-- /wp:list -->' . "\n";
+
+		$help_page_content .= '<!-- wp:heading {"level":2} -->' . "\n" . '<h2>' . esc_html__( 'Next Steps', 'research-amp' ) . '</h2>' . "\n" . '<!-- /wp:heading -->' . "\n";
+		$help_page_content .= $this->convert_text_to_paragraph_blocks( '<p>' . esc_html__( 'Take time to familiarize yourself with how our sample content is set up. Once you are ready, delete the sample content and begin populating your Research AMP site with your own Research Topics.', 'research-amp' ) . '</p>' ) . "\n";
+		$help_page_content .= wp_kses_post( $this->convert_text_to_paragraph_blocks( 'For more help getting set up with Research AMP, visit <a href="https://ramp.ssrc.org">our online documentation</a>', 'research-amp' ) ) . "\n";
+
 		$pages_data = [
 			'get-started'          => [
 				'post_title'   => __( 'Get Started', 'research-amp' ),
-				'post_content' => __( 'Use this page to provide information on how readers can get involved in contributing to your project.', 'research-amp' ),
+				'post_content' => $this->convert_text_to_paragraph_blocks( __( 'Use this page to provide information on how readers can get involved in contributing to your project.', 'research-amp' ) ) . $this->get_lorem_ipsum( 3 ),
 			],
 			'about'                => [
 				'post_title'   => __( 'About', 'research-amp' ),
-				'post_content' => __( 'Use this page to provide background information on your project.', 'research-amp' ),
+				'post_content' => $this->convert_text_to_paragraph_blocks( __( 'Use this page to provide background information on your project.', 'research-amp' ) ) . $this->get_lorem_ipsum( 3 ),
 			],
 			'contact'              => [
 				'post_title'   => __( 'Contact', 'research-amp' ),
-				'post_content' => __( 'Use this page to contact information for your project or organization. You may decide to use a WordPress plugin to provide a contact form.', 'research-amp' ),
+				'post_content' => $this->convert_text_to_paragraph_blocks( __( 'Use this page to contact information for your project or organization. You may decide to use a WordPress plugin to provide a contact form.', 'research-amp' ) ) . $this->get_lorem_ipsum( 3 ),
 			],
 			'terms-and-conditions' => [
 				'post_title'   => __( 'Terms and Conditions', 'research-amp' ),
-				'post_content' => __( 'Use this page for the Terms and Conditions of your project.', 'research-amp' ),
+				'post_content' => $this->convert_text_to_paragraph_blocks( __( 'Use this page for the Terms and Conditions of your project.', 'research-amp' ) . $this->get_lorem_ipsum( 3 ) ),
+			],
+			'help'                 => [
+				'post_title'   => __( 'Help', 'research-amp' ),
+				'post_content' => $help_page_content,
 			],
 		];
 
@@ -538,7 +594,7 @@ class Install {
 				continue;
 			}
 
-			$page_content = $this->convert_text_to_paragraph_blocks( $page_data['post_content'] ) . $this->get_lorem_ipsum( 3 );
+			$page_content = $page_data['post_content'];
 
 			$page_id = wp_insert_post(
 				[
