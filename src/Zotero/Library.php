@@ -131,14 +131,37 @@ class Library {
 	/**
 	 * Checks to see whether the credentials for the library are correct.
 	 *
-	 * @return bool True if the credentials are valid.
+	 * @return string
 	 */
 	public function check_zotero_credentials() {
 		$client = new Client( $this->get_zotero_library_id(), $this->get_zotero_api_key() );
 
 		$permissions = $client->get_key_permissions();
 
-		return ! empty( $permissions );
+		// If the permissions are empty, then the credentials are invalid.
+		if ( empty( $permissions ) ) {
+			return 'invalid_credentials';
+		}
+
+		// If the current library belongs to a user, check access:user:library.
+		if ( 'users' === substr( $this->get_zotero_library_id(), 0, 5 ) ) {
+			if ( ! empty( $permissions->access ) && ! empty( $permissions->access->user ) && ! empty( $permissions->access->user->library ) ) {
+				return 'valid';
+			} else {
+				return 'no_read_access_to_user_library';
+			}
+		}
+
+		if ( 'groups' === substr( $this->get_zotero_library_id(), 0, 6 ) ) {
+			$group_id = substr( $this->get_zotero_library_id(), 7 );
+			if ( ! empty( $permissions->access ) && ! empty( $permissions->access->groups ) && ! empty( $permissions->access->groups->{ $group_id } ) && ! empty( $permissions->access->groups->{ $group_id }->library ) ) {
+				return 'valid';
+			} else {
+				return 'no_read_access_to_group_library';
+			}
+		}
+
+		return 'invalid_credentials';
 	}
 
 	public function get_collection_list() {
@@ -146,16 +169,27 @@ class Library {
 
 		if ( false === $list ) {
 			$list = $this->get_collection_list_from_zotero();
-			set_transient( 'ramp_collection_list_' . $this->get_id(), $list, 5 * MINUTE_IN_SECONDS );
+			if ( null !== $list ) {
+				set_transient( 'ramp_collection_list_' . $this->get_id(), $list, 5 * MINUTE_IN_SECONDS );
+			}
 		}
 
 		return $list;
 	}
 
+	/**
+	 * Gets a list of collections from Zotero.
+	 *
+	 * @return array|null
+	 */
 	public function get_collection_list_from_zotero() {
 		$client = new Client( $this->get_zotero_library_id(), $this->get_zotero_api_key() );
 
 		$collections_raw = $client->get_collections();
+		if ( null === $collections_raw ) {
+			return null;
+		}
+
 		$collection_list = [];
 		foreach ( $collections_raw as $collection ) {
 			$key  = $collection->data->key;
@@ -175,6 +209,10 @@ class Library {
 
 	public function get_collection_map() {
 		$collection_list = $this->get_collection_list();
+
+		if ( ! $collection_list ) {
+			return [];
+		}
 
 		$topic_posts = get_posts(
 			[

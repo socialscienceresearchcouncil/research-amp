@@ -112,7 +112,7 @@ class Client {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return string
+	 * @return object
 	 */
 	public function get_key_permissions() {
 		$url = $this->base . '/keys/' . $this->get_api_key();
@@ -124,7 +124,7 @@ class Client {
 			return null;
 		}
 
-		return wp_remote_retrieve_body( $result );
+		return json_decode( wp_remote_retrieve_body( $result ) );
 	}
 
 	/**
@@ -227,7 +227,7 @@ class Client {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return array
+	 * @return array|null
 	 */
 	public function get_collections() {
 		$url = $this->base . '/' . $this->get_library_id() . '/collections/';
@@ -236,7 +236,7 @@ class Client {
 
 		$response_code = wp_remote_retrieve_response_code( $result );
 		if ( 200 !== $response_code ) {
-			return [];
+			return null;
 		}
 
 		$json = json_decode( wp_remote_retrieve_body( $result ) );

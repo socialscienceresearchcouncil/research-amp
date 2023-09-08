@@ -88,20 +88,23 @@ export default function Edit( {} ) {
 	const nextIngest = libraryInfo?.nextIngest;
 	const nextIngestRelative = libraryInfo?.nextIngestRelative;
 
-	const collectionList = libraryInfo?.collectionList || {};
+	const collectionList = libraryInfo && libraryInfo.hasOwnProperty( 'collectionList' ) ? libraryInfo.collectionList : {};
 
-	const sortedCollectionKeys = Object.keys( collectionList ).sort(
-		( a, b ) => {
-			const aName = collectionList[ a ].name;
-			const bName = collectionList[ b ].name;
+	const sortedCollectionKeys =
+		null !== collectionList
+			? Object.keys( collectionList ).sort(
+				( a, b ) => {
+					const aName = collectionList[ a ].name;
+					const bName = collectionList[ b ].name;
 
-			if ( aName === bName ) {
-				return 0;
-			}
+					if ( aName === bName ) {
+						return 0;
+					}
 
-			return aName.localeCompare( bName ) > 0 ? 1 : -1;
-		}
-	);
+					return aName.localeCompare( bName ) > 0 ? 1 : -1;
+				}
+			)
+			: [];
 
 	const customClassNames = [ 'ramp-zotero-library-info' ];
 	const blockProps = useBlockProps( { className: customClassNames } );
@@ -128,6 +131,19 @@ export default function Edit( {} ) {
 		} );
 	};
 
+	const getConnectionStatusMessage = () => {
+		switch ( isConnected ) {
+			case 'invalid_credentials' :
+				return __( 'Your Zotero credentials are invalid. Please check your Library ID and API key.', 'research-amp' );
+
+			case 'no_read_access_to_user_library' :
+				return __( 'Your Zotero API key does not have read access to your library. Please check your API key, and ensure that it is configured properly..', 'research-amp' );
+
+			case 'no_read_access_to_group_library' :
+				return __( 'Your Zotero API key does not have read access to the specified group library. Please check your API key, and ensure that is configured properly.', 'research-amp' );
+		}
+	}
+
 	return (
 		<>
 			<div { ...blockProps }>
@@ -136,9 +152,9 @@ export default function Edit( {} ) {
 						{ __( 'Library Settings', 'research-amp' ) }
 					</legend>
 
-					{ ! isNew && false === isConnected && (
+					{ ! isNew && 'valid' !== isConnected && (
 						<p className="connection-error">
-							{ __( 'Could not connect to your Zotero library. Please check your Library ID and API key.', 'research-amp' ) }
+							{ getConnectionStatusMessage() }
 						</p>
 					) }
 
@@ -257,7 +273,13 @@ export default function Edit( {} ) {
 							</ul>
 						) }
 
-						{ sortedCollectionKeys.length === 0 && (
+						{ sortedCollectionKeys.length ===  0 && null === collectionList && (
+							<p>
+								{ __( 'We could not connect to your Zotero library to fetch Collections. Please see above for error message.', 'research-amp' ) }
+							</p>
+						) }
+
+						{ sortedCollectionKeys.length === 0 && null !== collectionList && (
 							<p>
 								{ __( 'No Collections have been found for this Zotero Library. If you think you should be seeing Collections here, try refreshing the page.', 'research-amp' ) }
 							</p>
