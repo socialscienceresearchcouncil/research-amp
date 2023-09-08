@@ -1,7 +1,7 @@
 {
   "name": "research-amp",
-  "version": "1.0.0",
-  "description": "The Research Area Mapping Platform",
+  "version": "1.0.0-alpha-20230908",
+  "description": "Research Area Mapping Platform (Research AMP)",
   "author": "Social Science Research Council",
   "license": "GPL-3.0",
   "keywords": [
@@ -51,7 +51,8 @@
     "lint:blocks": "wp-scripts lint-js assets/src",
     "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
     "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map",
-    "start": "wp-scripts start assets/src/index.js assets/src/frontend.js assets/src/homepage-slides.js"
+    "start": "wp-scripts start assets/src/index.js assets/src/frontend.js assets/src/homepage-slides.js",
+		"update-version": "node scripts/update-version.js"
   },
   "dependencies": {
     "@dnd-kit/core": "^5.0.3",
