@@ -3,7 +3,7 @@
 Plugin Name: Research Area Mapping Platform (Research AMP)
 Plugin URI: https://ramp.ssrc.org
 Author: Social Science Research Council
-Version: 1.0.0-alpha-20230908
+Version: 1.0.0-alpha-20230911
 GitHub Plugin URI: socialscienceresearchcouncil/research-amp
 Release Asset: true
 Primary Branch: main
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'RAMP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'RAMP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'RAMP_VER', '1.0.0-alpha-20230908' );
+define( 'RAMP_VER', '1.0.0-alpha-20230911' );
 
 require __DIR__ . '/vendor/autoload.php';
 
