@@ -49,6 +49,7 @@ class Navigation {
 			$articles_link,
 			$profiles_link,
 			$citations_link,
+			self::get_about_submenu_block(),
 		];
 
 		return implode( '', $items );
@@ -190,6 +191,46 @@ class Navigation {
 		);
 
 		return $research_topics_submenu;
+	}
+
+	/**
+	 * Creates a top-level navigation menu 'About' with a submenu containing various About subpages.
+	 *
+	 * @return string
+	 */
+	public static function get_about_submenu_block() {
+		$ramp_page_ids = get_option( 'ramp_pages' );
+
+		$about_submenu_items = '';
+		foreach ( $ramp_page_ids as $ramp_page_id ) {
+			$submenu_item = get_comment_delimited_block_content(
+				'core/navigation-link',
+				[
+					'label'          => esc_attr( get_the_title( $ramp_page_id ) ),
+					'url'            => esc_attr( get_permalink( $ramp_page_id ) ),
+					'id'             => esc_attr( $ramp_page_id ),
+					'type'           => 'page',
+					'kind'           => 'post-type',
+					'isTopLevelLink' => false,
+				],
+				''
+			);
+
+			$about_submenu_items .= $submenu_item;
+		}
+
+		$about_page = get_page_by_path( 'about' );
+
+		$about_submenu = sprintf(
+			'<!-- wp:navigation-submenu {"label":"%s","type":"","url":"%s","kind":"post-type-archive","isTopLevelItem":true,"className":"about-subnav"} -->' .
+			'%s' .
+			'<!-- /wp:navigation-submenu -->',
+			esc_attr( __( 'About', 'research-amp' ) ),
+			esc_url( get_permalink( $about_page ) ),
+			$about_submenu_items
+		);
+
+		return $about_submenu;
 	}
 
 	public static function replace_research_topics_subnav() {
