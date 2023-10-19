@@ -1,5 +1,7 @@
 # Research AMP
 
+![Research AMP logo](https://ramp.ssrc.org/wp-content/uploads/2022/09/RAMP-logo-horizontal-630x138_web-300x70.png)
+
 Research AMP is a free, open-source technology for building scholarly communities, collecting research, and sharing insights with new audiences. Research AMP lowers barriers to the dissemination of public scholarship and fills the need to put credible, accessible, and comprehensive scholarship in the hands of expert and lay audiences. 
 
 Research AMP helps you: 
