@@ -349,7 +349,6 @@ class CitationLibrary {
 		$citation->set_cached_zotero_data( $zotero_data );
 
 		$publication_date = $this->calculate_record_publication_date( $zotero_item );
-		_b( $publication_date );
 		if ( $publication_date ) {
 			$citation->set_publication_date( $publication_date );
 		}
