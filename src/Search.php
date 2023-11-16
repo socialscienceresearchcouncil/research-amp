@@ -157,6 +157,9 @@ class Search {
 		$clauses['join'] .= $postmeta_join_clause;
 		$clauses['where'] = $new_where_clause;
 
+		// Ensure unique results.
+		$clauses['groupby'] = "{$wpdb->posts}.ID";
+
 		return $clauses;
 	}
 }
