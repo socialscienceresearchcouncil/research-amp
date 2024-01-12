@@ -21,6 +21,8 @@ class PressForward {
 
 		add_action( 'add_meta_boxes_nomthis', [ $this, 'metaboxes' ], 100 );
 
+		// The 'pressforward_draft_post_type' filter was introduced in PF 5.5.0.
+		add_filter( 'pressforward_draft_post_type', [ __CLASS__, 'news_item_post_type' ] );
 		add_filter( 'option_' . PF_SLUG . '_draft_post_type', [ __CLASS__, 'news_item_post_type' ] );
 
 		add_filter(
