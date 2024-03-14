@@ -22,7 +22,7 @@ $query_args = [
 
 $content_query = new WP_Query( $query_args );
 
-$has_more_pages = ( $offset + $number_of_items ) <= $content_query->found_posts;
+$has_more_pages = ( $offset + $number_of_items ) < $content_query->found_posts;
 
 $div_classes = [];
 

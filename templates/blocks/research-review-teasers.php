@@ -57,7 +57,7 @@ $query_args['offset'] = $offset;
 
 $research_review_query = new WP_Query( $query_args );
 
-$has_more_pages = ( $offset + $number_of_items ) <= $research_review_query->found_posts;
+$has_more_pages = ( $offset + $number_of_items ) < $research_review_query->found_posts;
 
 $list_classes = [
 	'item-type-list',

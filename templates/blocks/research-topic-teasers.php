@@ -75,7 +75,7 @@ $query_args['orderby'] = $post_orderby;
 
 $research_topic_query = new WP_Query( $query_args );
 
-$has_more_pages = ( $offset + $number_of_items ) <= $research_topic_query->found_posts;
+$has_more_pages = ( $offset + $number_of_items ) < $research_topic_query->found_posts;
 
 $list_classes = [
 	'load-more-list',

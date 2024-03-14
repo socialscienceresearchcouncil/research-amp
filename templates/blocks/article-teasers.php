@@ -99,7 +99,7 @@ $query_args['offset'] = $offset;
 
 $articles_query = new WP_Query( $query_args );
 
-$has_more_pages = ( $offset + $number_of_items ) <= $articles_query->found_posts;
+$has_more_pages = ( $offset + $number_of_items ) < $articles_query->found_posts;
 
 $teasers_classes = [
 	'article-teasers',

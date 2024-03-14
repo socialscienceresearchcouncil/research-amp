@@ -72,7 +72,7 @@ $query_args['offset'] = $offset;
 
 $citation_query = new WP_Query( $query_args );
 
-$has_more_pages = ( $offset + $number_of_items ) <= $citation_query->found_posts;
+$has_more_pages = ( $offset + $number_of_items ) < $citation_query->found_posts;
 
 $list_classes = [
 	'item-type-list',
