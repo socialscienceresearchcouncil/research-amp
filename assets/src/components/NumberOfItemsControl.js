@@ -12,7 +12,9 @@ const NumberOfItemsControl = ( props ) => {
 			value={ numberOfItems }
 			min={ 1 }
 			step={ 1 }
-			onChange={ onChangeCallback }
+			onChange={ ( newValue ) => {
+				onChangeCallback( Number( newValue ) )
+			} }
 		/>
 	);
 };
