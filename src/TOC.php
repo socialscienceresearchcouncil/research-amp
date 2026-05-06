@@ -50,7 +50,11 @@ class TOC {
 
 		// Bail if no headings found.
 		if ( ! $post->hasTOCItems() ) {
-			return \Easy_Plugins\Table_Of_Contents\Debug::log()->appendTo( $content );
+			if ( class_exists( '\Easy_Plugins\Table_Of_Contents\Debug' ) ) {
+				return \Easy_Plugins\Table_Of_Contents\Debug::log()->appendTo( $content );
+			} elseif ( class_exists( '\Eztoc\Table_Of_Contents\Debug' ) ) {
+				return \Eztoc\Table_Of_Contents\Debug::log()->appendTo( $content );
+			}
 		}
 
 		$find    = $post->getHeadings();
